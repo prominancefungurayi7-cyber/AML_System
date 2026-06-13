@@ -34,7 +34,7 @@ def test_register_and_login(client):
         data={
             "username": "newuser",
             "email": "newuser@example.com",
-            "id_number": "123456789",
+            "id_number": "63-1234567A47",
             "password": "secret123",
             "role": "customer",
         },
@@ -57,17 +57,34 @@ def test_register_and_login(client):
 
     login = client.post(
         "/login",
-        data={"email": "newuser@example.com", "id_number": "123456789", "password": "secret123"},
+        data={"email": "newuser@example.com", "id_number": "63-1234567A47", "password": "secret123"},
         follow_redirects=True,
     )
     assert login.status_code == 200
     assert b"Customer" in login.data or b"Banking" in login.data
 
 
+def test_register_rejects_invalid_id_format(client):
+    response = client.post(
+        "/register",
+        data={
+            "username": "badid",
+            "email": "badid@example.com",
+            "id_number": "123456789",
+            "password": "secret123",
+            "role": "customer",
+        },
+        follow_redirects=True,
+    )
+
+    assert response.status_code == 200
+    assert b"00-0000000A00" in response.data
+
+
 def test_high_value_transfer_creates_alert(client):
     client.post(
         "/register",
-        data={"username": "sender", "email": "sender@example.com", "id_number": "111111111", "password": "secret123", "role": "customer"},
+        data={"username": "sender", "email": "sender@example.com", "id_number": "63-1111111A11", "password": "secret123", "role": "customer"},
         follow_redirects=True,
     )
     with client.session_transaction() as session:
@@ -80,7 +97,7 @@ def test_high_value_transfer_creates_alert(client):
 
     client.post(
         "/register",
-        data={"username": "receiver", "email": "receiver@example.com", "id_number": "222222222", "password": "secret123", "role": "customer"},
+        data={"username": "receiver", "email": "receiver@example.com", "id_number": "63-2222222A22", "password": "secret123", "role": "customer"},
         follow_redirects=True,
     )
     with client.session_transaction() as session:
@@ -93,7 +110,7 @@ def test_high_value_transfer_creates_alert(client):
 
     client.post(
         "/login",
-        data={"email": "sender@example.com", "id_number": "111111111", "password": "secret123"},
+        data={"email": "sender@example.com", "id_number": "63-1111111A11", "password": "secret123"},
         follow_redirects=True,
     )
 
@@ -148,7 +165,7 @@ def test_transaction_processing_emits_live_events(client):
 def test_reports_show_alert_history(client):
     client.post(
         "/register",
-        data={"username": "sender2", "email": "sender2@example.com", "id_number": "333333333", "password": "secret123", "role": "customer"},
+        data={"username": "sender2", "email": "sender2@example.com", "id_number": "63-3333333A33", "password": "secret123", "role": "customer"},
         follow_redirects=True,
     )
     with client.session_transaction() as session:
@@ -161,7 +178,7 @@ def test_reports_show_alert_history(client):
 
     client.post(
         "/register",
-        data={"username": "receiver2", "email": "receiver2@example.com", "id_number": "444444444", "password": "secret123", "role": "customer"},
+        data={"username": "receiver2", "email": "receiver2@example.com", "id_number": "63-4444444A44", "password": "secret123", "role": "customer"},
         follow_redirects=True,
     )
     with client.session_transaction() as session:
@@ -173,7 +190,7 @@ def test_reports_show_alert_history(client):
     )
     client.post(
         "/login",
-        data={"email": "sender2@example.com", "id_number": "333333333", "password": "secret123"},
+        data={"email": "sender2@example.com", "id_number": "63-3333333A33", "password": "secret123"},
         follow_redirects=True,
     )
     client.post(
@@ -188,7 +205,7 @@ def test_reports_show_alert_history(client):
     )
     client.post(
         "/login",
-        data={"email": "compliance@example.com", "id_number": "100000002", "password": "compliance123"},
+        data={"email": "compliance@example.com", "id_number": "63-1000002A02", "password": "compliance123"},
         follow_redirects=True,
     )
 

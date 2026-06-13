@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import random
+import re
 import smtplib
 import sqlite3
 import threading
@@ -37,6 +38,9 @@ app.logger.setLevel(logging.INFO)
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 app.extensions["realtime_broker"] = RealtimeBroker(app=app, socketio=socketio)
+
+ID_NUMBER_PATTERN = re.compile(r"^\d{2}-\d{7}[A-Z]\d{2}$")
+ID_NUMBER_FORMAT_MESSAGE = "ID number must use the format 00-0000000A00, for example 63-1234567A47."
 
 
 class DatabaseAdapter:
@@ -339,13 +343,13 @@ def init_db():
 def seed_demo_data():
     conn = connect_db()
     default_users = [
-        ("admin", "admin@example.com", "100000001", generate_password_hash("admin123"), "admin", "ACC1001"),
-        ("compliance", "compliance@example.com", "100000002", generate_password_hash("compliance123"), "compliance", "ACC1002"),
-        ("demo", "demo@example.com", "100000003", generate_password_hash("demo123"), "customer", "ACC1003"),
+        ("admin", "admin@example.com", "63-1000001A01", generate_password_hash("admin123"), "admin", "ACC1001"),
+        ("compliance", "compliance@example.com", "63-1000002A02", generate_password_hash("compliance123"), "compliance", "ACC1002"),
+        ("demo", "demo@example.com", "63-1000003A03", generate_password_hash("demo123"), "customer", "ACC1003"),
     ]
     for username, email, id_number, password_hash, role, account_number in default_users:
         existing = conn.execute(
-            "SELECT id FROM users WHERE username = ?", (username,)
+            "SELECT id, id_number FROM users WHERE username = ?", (username,)
         ).fetchone()
         if existing is None:
             conn.execute(
@@ -355,6 +359,8 @@ def seed_demo_data():
                 """,
                 (username, email, id_number, password_hash, role, account_number, datetime.now(timezone.utc).isoformat()),
             )
+        elif not is_valid_id_number(existing["id_number"]):
+            conn.execute("UPDATE users SET id_number = ? WHERE id = ?", (id_number, existing["id"]))
     conn.commit()
     conn.close()
 
@@ -375,6 +381,14 @@ def get_user_by_id_number(id_number):
     return get_db().execute(
         "SELECT * FROM users WHERE id_number = ?", (id_number,)
     ).fetchone()
+
+
+def normalize_id_number(id_number):
+    return id_number.strip().upper()
+
+
+def is_valid_id_number(id_number):
+    return bool(ID_NUMBER_PATTERN.fullmatch(id_number))
 
 
 def get_user_by_id(user_id):
@@ -401,7 +415,7 @@ def send_otp_email(recipient_email, otp):
     if app.config.get("TESTING"):
         return True
 
-    sender_email = os.environ.get("SMTP_EMAIL", "prominencefungurayi7@gmail.com")
+    sender_email = os.environ.get("SMTP_EMAIL", "prominancefungurayi7@gmail.com")
     sender_password = os.environ.get("SMTP_PASSWORD", "mrww ilxu nvva lhpr").replace(" ", "")
     smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
@@ -519,11 +533,14 @@ def register():
 
         username = request.form.get("username", "").strip()
         email = request.form.get("email", "").strip().lower()
-        id_number = request.form.get("id_number", "").strip()
+        id_number = normalize_id_number(request.form.get("id_number", ""))
         password = request.form.get("password", "")
         role = request.form.get("role", "customer")
         if not username or not email or not id_number or not password:
             flash("Username, email, ID number, and password are required.")
+            return render_template("register.html")
+        if not is_valid_id_number(id_number):
+            flash(ID_NUMBER_FORMAT_MESSAGE)
             return render_template("register.html")
         if get_user_by_username(username) is not None:
             flash("That username is already taken.")
@@ -545,7 +562,13 @@ def register():
             "otp": otp,
             "expires_at": time.time() + 600,
         }
-        send_otp_email(email, otp)
+        try:
+            send_otp_email(email, otp)
+        except Exception:
+            app.logger.exception("Unable to send registration OTP")
+            session.pop("pending_registration", None)
+            flash("We could not send the verification code. Please check the email address and try again.")
+            return render_template("register.html")
         flash(f"A verification code has been sent to {email}.")
         return render_template("register.html", otp_step=True, email=email)
     return render_template("register.html")
@@ -555,17 +578,20 @@ def register():
 def login():
     if request.method == "POST":
         email = request.form.get("email", "").strip().lower()
-        id_number = request.form.get("id_number", "").strip()
+        id_number = normalize_id_number(request.form.get("id_number", ""))
         password = request.form.get("password", "")
-        user = None
-        if email:
-            user = get_user_by_email(email)
-        if user is None and id_number:
-            user = get_user_by_id_number(id_number)
-        if user is not None and check_password_hash(user["password_hash"], password):
+        if not email or not id_number or not password:
+            flash("Email, ID number, and password are required.")
+            return render_template("login.html")
+        if not is_valid_id_number(id_number):
+            flash(ID_NUMBER_FORMAT_MESSAGE)
+            return render_template("login.html")
+
+        user = get_user_by_email(email)
+        if user is not None and user["id_number"] == id_number and check_password_hash(user["password_hash"], password):
             session["user_id"] = user["id"]
             session["role"] = user["role"]
-            record_activity(email or id_number or user["username"], "login", "User logged in")
+            record_activity(email, "login", "User logged in")
             flash("Welcome back!")
             return redirect(url_for("dashboard_redirect"))
         flash("Invalid login credentials.")
@@ -777,4 +803,10 @@ if __name__ == "__main__":
     init_db()
     seed_demo_data()
     ensure_background_monitor()
-    socketio.run(app, debug=app.config.get("DEBUG", False), host="0.0.0.0", port=5000)
+    socketio.run(
+        app,
+        debug=app.config.get("DEBUG", False),
+        host="0.0.0.0",
+        port=5000,
+        allow_unsafe_werkzeug=True,
+    )
