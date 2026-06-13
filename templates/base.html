@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZB Bank | AML Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">ZB</div>
+          <div>
+            <h1>ZB Bank</h1>
+            <p>Banking • Insurance • Investments</p>
+          </div>
+        </div>
+        <nav class="topnav">
+          {% if current_user %}
+            {% if current_user.role == 'customer' %}
+              <a href="{{ url_for('customer_dashboard') }}">Customer Portal</a>
+            {% endif %}
+            {% if current_user.role in ['compliance', 'admin'] %}
+              <a href="{{ url_for('compliance_dashboard') }}">Compliance Hub</a>
+              <a href="{{ url_for('reports') }}">Reports</a>
+            {% endif %}
+            {% if current_user.role == 'admin' %}
+              <a href="{{ url_for('admin_dashboard') }}">Admin Center</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Sign Out</a>
+          {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Open Account</a>
+          {% endif %}
+        </nav>
+      </header>
+
+      <main>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flash-messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

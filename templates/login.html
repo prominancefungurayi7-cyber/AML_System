@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<img src="C:\Users\PROMINENT\Desktop\AML System\zb_logo.png" alt="ZB Logo" class="logo">
+
+<section class="auth-layout">
+  <div class="auth-panel auth-panel--brand">
+    <div class="hero-badge">MyZB Secure Access</div>
+    <h2>Welcome back</h2>
+    <p>Access your banking portal with secure sign-in, protected transactions, and real-time account oversight.</p>
+    <div class="auth-points">
+      <div class="auth-point">Instant account access</div>
+      <div class="auth-point">Protected payments</div>
+      <div class="auth-point">24/7 digital monitoring</div>
+    </div>
+  </div>
+  <div class="auth-panel auth-panel--form">
+    <div class="auth-brand-inline">
+      <div class="brand-mark brand-mark--small">ZB</div>
+      <div>
+        <h3>Sign In</h3>
+        <p>Secure access to your digital banking experience</p>
+      </div>
+    </div>
+    <form method="post" class="auth-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" autocomplete="current-password" required>
+      <div class="auth-actions">
+        <button type="submit">Sign In</button>
+        <a class="text-link" href="#">Forgot password?</a>
+      </div>
+    </form>
+    <div class="auth-footer">
+      <span>Not registered?</span>
+      <a href="{{ url_for('register') }}">Create an account</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

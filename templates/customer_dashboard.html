@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero hero-banner">
+  <div class="hero-badge">MyZB Digital Banking</div>
+  <h2>Customer Banking Overview</h2>
+  <p>Manage secure payments, monitor account activity, and review intelligent AML alerts in one place.</p>
+</section>
+<section class="grid">
+  <div class="card">
+    <p class="status-pill">Primary Account</p>
+    <h3>{{ user.account_number }}</h3>
+    <p class="metric">${{ "%.2f"|format(user.balance) }}</p>
+    <p>Available balance</p>
+  </div>
+  <div class="card">
+    <h3>Initiate Transaction</h3>
+    <form method="post" action="{{ url_for('create_transaction') }}">
+      <label>Type</label>
+      <select name="type">
+        <option value="deposit">Deposit</option>
+        <option value="withdraw">Withdrawal</option>
+        <option value="transfer">Transfer</option>
+      </select>
+      <label>Amount</label>
+      <input type="number" step="0.01" name="amount" required>
+      <label>Recipient Username</label>
+      <input name="recipient" placeholder="Only for transfers">
+      <button type="submit">Process Transaction</button>
+    </form>
+  </div>
+</section>
+<section class="grid">
+  <div class="card table-card">
+    <h3>Recent Transactions</h3>
+    <ul>
+      {% for txn in transactions %}
+        <li>Tx #{{ txn.id }} • {{ txn.timestamp }} • {{ txn.transaction_type }} • ${{ "%.2f"|format(txn.amount) }} • <span class="status-pill{% if txn.risk_level != 'normal' %} alert{% endif %}">{{ txn.risk_level }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="card table-card">
+    <h3>AML Alerts</h3>
+    <ul id="customer-alerts">
+      {% for alert in alerts %}
+        <li>Alert #{{ alert.id }} • Tx #{{ alert.transaction_id }} • {{ alert.timestamp }} • <span class="status-pill alert">{{ alert.risk_level }}</span> • {{ alert.reason }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+<section class="card">
+  <h3>Live AML Feed</h3>
+  <p id="live-status">Connected • live monitoring active</p>
+  <ul id="live-feed"></ul>
+</section>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+  const feed = document.getElementById('live-feed');
+  const status = document.getElementById('live-status');
+
+  const addFeedItem = (text) => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    feed.prepend(item);
+  };
+
+  if (window.io) {
+    const socket = io({ transports: ['websocket', 'polling'] });
+    socket.on('connect', () => {
+      status.textContent = 'Connected • WebSocket live stream active';
+    });
+    socket.on('alert', (alert) => {
+      addFeedItem(`Alert • Tx #${alert.transaction_id} • ${alert.risk_level} • Score ${alert.risk_score} • ${alert.reason}`);
+      status.textContent = 'Live alert received • stream active';
+    });
+    socket.on('transaction', (txn) => {
+      addFeedItem(`Transaction • ${txn.type} • ${txn.amount} • ${txn.risk_level}`);
+    });
+  } else if (window.EventSource) {
+    const source = new EventSource('/stream');
+    source.addEventListener('alert', (event) => {
+      const alert = JSON.parse(event.data);
+      addFeedItem(`Alert • Tx #${alert.transaction_id} • ${alert.risk_level} • Score ${alert.risk_score} • ${alert.reason}`);
+      status.textContent = 'Live alert received • stream active';
+    });
+    source.addEventListener('transaction', (event) => {
+      const txn = JSON.parse(event.data);
+      addFeedItem(`Transaction • ${txn.type} • ${txn.amount} • ${txn.risk_level}`);
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero hero-banner">
+  <div class="hero-badge">Institutional Oversight</div>
+  <h2>Administrative Control Center</h2>
+  <p>Oversee users, manage permissions, and review AML activity across the bank.</p>
+</section>
+<section class="grid">
+  <div class="card">
+    <h3>Manage Users</h3>
+    <form method="post">
+      <label>User</label>
+      <select name="user_id">
+        {% for user in users %}
+          <option value="{{ user.id }}">{{ user.username }} ({{ user.role }})</option>
+        {% endfor %}
+      </select>
+      <label>Role</label>
+      <select name="role">
+        <option value="customer">Customer</option>
+        <option value="compliance">Compliance</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">Update Role</button>
+    </form>
+  </div>
+  <div class="card table-card">
+    <h3>Recent Activity</h3>
+    <ul>
+      {% for event in activity %}
+        <li>{{ event.timestamp }} • {{ event.action }} • {{ event.detail }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+<section class="card table-card">
+  <h3>Recent Transactions</h3>
+  <ul>
+    {% for txn in transactions %}
+      <li>{{ txn.timestamp }} • {{ txn.sender_account }} → {{ txn.receiver_account }} • ${{ "%.2f"|format(txn.amount) }} • <span class="status-pill{% if txn.risk_level != 'normal' %} alert{% endif %}">{{ txn.risk_level }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

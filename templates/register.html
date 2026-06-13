@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="grid">
+  <div class="hero hero-banner">
+    <div class="hero-badge">Grow with Confidence</div>
+    <h2>Create Your ZB Bank Profile</h2>
+    <p>Join a secure banking environment with real-time monitoring, rapid transaction processing, and compliance oversight.</p>
+    <div class="hero-stats">
+      <div class="stat-chip">Fast Onboarding</div>
+      <div class="stat-chip">Smart Risk Control</div>
+      <div class="stat-chip">Always Connected</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Account Registration</h3>
+    <form method="post">
+      <label>Username</label>
+      <input name="username" required>
+      <label>Password</label>
+      <input type="password" name="password" required>
+      <label>Role</label>
+      <select name="role">
+        <option value="customer">Customer</option>
+        <option value="compliance">Compliance Officer</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">Create Secure Account</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

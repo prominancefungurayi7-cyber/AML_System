@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero hero-banner">
+  <div class="hero-badge">Risk Intelligence</div>
+  <h2>ZB Bank AML Reporting</h2>
+  <p>Monitor portfolio risk, investigate flagged activity, and review alert trends for the institution.</p>
+</section>
+<section class="card table-card">
+  <h3>Executive Summary</h3>
+  <ul>
+    <li><strong>Total transactions:</strong> {{ total_transactions }}</li>
+    <li><strong>Suspicious transactions:</strong> {{ suspicious_transactions }}</li>
+  </ul>
+  <h3>High-risk accounts</h3>
+  <ul>
+    {% for account in high_risk_accounts %}
+      <li>{{ account.account_number }} - {{ account.count }} alerts</li>
+    {% endfor %}
+  </ul>
+  <h3>Risk analysis summary</h3>
+  <ul>
+    {% for item in risk_summary %}
+      <li>{{ item.risk_level }} - {{ item.count }} transactions</li>
+    {% endfor %}
+  </ul>
+  <h3>Alert history</h3>
+  <ul>
+    {% for alert in alerts %}
+      <li>Alert #{{ alert.id }} • Tx #{{ alert.transaction_id }} • {{ alert.timestamp }} • {{ alert.account_number }} • {{ alert.risk_level }} • Score {{ alert.risk_score }} • {{ alert.reason }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
