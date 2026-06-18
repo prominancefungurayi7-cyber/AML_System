@@ -682,7 +682,8 @@ def register():
                 flash("Invalid verification code.")
                 return render_template("register.html", otp_step=True, email=pending.get("email"))
 
-            acct = f"ACC{1000 + get_db().execute('SELECT COUNT(*) FROM users').fetchone()[0] + 1}"
+            user_count = get_db().execute("SELECT COUNT(*) as c FROM users").fetchone()["c"]
+            acct = f"ACC{1000 + int(user_count) + 1}"
             get_db().execute(
                 "INSERT INTO users (username,email,id_number,password_hash,role,account_number,balance,kyc_status,created_at) VALUES (?,?,?,?,?,?,5000,'pending',?)",
                 (pending["username"], pending["email"], pending["id_number"],
