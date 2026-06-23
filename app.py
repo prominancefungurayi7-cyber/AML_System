@@ -845,13 +845,14 @@ def login():
             record_activity(staff_identifier, "failed_login", f"Failed staff login attempt from {request.remote_addr}")
             return render_template("login.html")
 
-        if not all([email, id_number, password]):
+        customer_identifier = email or login_identifier or username
+        if not all([customer_identifier, id_number, password]):
             flash("All fields are required.")
             return render_template("login.html")
         if not is_valid_id_number(id_number):
             flash(ID_NUMBER_FORMAT_MESSAGE)
             return render_template("login.html")
-        user = get_user_by_email(email)
+        user = get_user_by_email(email) if email else get_user_by_username(customer_identifier)
         if (
             user
             and user["role"] == "customer"
@@ -860,11 +861,11 @@ def login():
         ):
             session["user_id"] = user["id"]
             session["role"] = user["role"]
-            record_activity(email, "login", f"Login from {request.remote_addr}")
+            record_activity(customer_identifier, "login", f"Login from {request.remote_addr}")
             flash("Welcome back.")
             return redirect(url_for("dashboard_redirect"))
         flash("Invalid credentials.")
-        record_activity(email, "failed_login", f"Failed login attempt from {request.remote_addr}")
+        record_activity(customer_identifier, "failed_login", f"Failed login attempt from {request.remote_addr}")
     return render_template("login.html")
 
 

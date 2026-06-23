@@ -90,6 +90,15 @@ def test_register_and_login(client):
     assert login.status_code == 200
     assert b"Customer" in login.data or b"Banking" in login.data
 
+    client.get("/logout", follow_redirects=True)
+    username_login = client.post(
+        "/login",
+        data={"login": "newuser", "id_number": "631234567a47", "password": "secret123"},
+        follow_redirects=True,
+    )
+    assert username_login.status_code == 200
+    assert b"Customer" in username_login.data or b"Banking" in username_login.data
+
 
 def test_register_and_login_accepts_six_digit_id_body(client):
     response = client.post(
