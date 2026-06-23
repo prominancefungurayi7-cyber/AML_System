@@ -581,8 +581,8 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
             """,
             (transaction_id, account_number, risk_score, risk_level, reason, rules_json, timestamp),
         )
-        return True
-    return False
+        return get_last_insert_id(conn)
+    return None
 
 
 def _parse_timestamp(value):
@@ -688,6 +688,45 @@ def _ai_training_rows(rows):
         history["recipients"].add(row["receiver_account"])
         history["events"].append((_parse_timestamp(row["timestamp"]), float(row["amount"])))
     return enriched
+
+
+def _train_ai_model_from_db(conn, emit_events=True):
+    rows = conn.execute(
+        """
+        SELECT id, sender_account, receiver_account, amount, transaction_type, timestamp, risk_level
+        FROM transactions
+        ORDER BY timestamp ASC, id ASC
+        """
+    ).fetchall()
+    model = train_ai_model(_ai_training_rows(rows))
+    if emit_events:
+        broadcast_event("ai_model", {
+            "trained": model is not None,
+            "training_rows": len(rows),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+    return model
+
+
+def _transaction_payload(row):
+    confidence = row["ai_confidence"] if "ai_confidence" in row.keys() else 0
+    return {
+        "id": row["id"],
+        "sender_account": row["sender_account"],
+        "receiver_account": row["receiver_account"],
+        "amount": float(row["amount"]),
+        "type": row["transaction_type"],
+        "transaction_type": row["transaction_type"],
+        "timestamp": row["timestamp"],
+        "risk_level": row["risk_level"],
+        "risk_score": float(row["risk_score"] or 0),
+        "rule_level": row["rule_level"] or "normal",
+        "rule_score": float(row["rule_score"] or 0),
+        "ai_risk_level": row["ai_risk_level"] or "unavailable",
+        "ai_confidence": float(confidence or 0),
+        "channel": row["channel"] if "channel" in row.keys() else "online",
+        "description": row["description"] or "",
+    }
 
 
 RISK_RANK = {
@@ -860,16 +899,12 @@ def process_transaction_event(
             )
 
     if emit_events:
-        broadcast_event("transaction", {
-            "id": transaction_id,
-            "type": transaction_type,
-            "amount": amount,
-            "risk_level": risk_level,
-            "risk_score": risk_score,
-            "timestamp": timestamp,
-        })
+        tx_row = conn.execute("SELECT * FROM transactions WHERE id=?", (transaction_id,)).fetchone()
+        if tx_row:
+            broadcast_event("transaction", _transaction_payload(tx_row))
         if created_alert:
             broadcast_event("alert", {
+                "id": created_alert,
                 "transaction_id": transaction_id,
                 "account_number": account_number or sender_account,
                 "risk_score": risk_score,
@@ -890,7 +925,12 @@ def monitor_transactions():
                 conn = connect_db()
                 last_id = app.config.get("LAST_MONITORED_TRANSACTION_ID", 0)
                 rows = conn.execute(
-                    "SELECT id, sender_account, receiver_account, amount, transaction_type, timestamp FROM transactions WHERE id>? ORDER BY id ASC",
+                    """
+                    SELECT id, sender_account, receiver_account, amount, transaction_type, timestamp
+                    FROM transactions
+                    WHERE id>? AND risk_score=0 AND description='Initiated'
+                    ORDER BY id ASC
+                    """,
                     (last_id,),
                 ).fetchall()
                 for row in rows:
@@ -901,6 +941,8 @@ def monitor_transactions():
                     )
                     app.config["LAST_MONITORED_TRANSACTION_ID"] = row["id"]
                 conn.commit()
+                if rows:
+                    _train_ai_model_from_db(conn)
                 conn.close()
         except Exception:
             pass
@@ -1240,6 +1282,7 @@ def create_transaction():
         get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient_user["id"]))
 
     get_db().commit()
+    _train_ai_model_from_db(get_db())
     record_activity(user["username"], f"{tx_type}", f"${amount:.2f} — risk: {risk_level}")
 
     risk_labels = {
@@ -1514,9 +1557,22 @@ def generate_transactions():
             ),
         )
         transaction_id = get_last_insert_id(get_db())
-        create_alert_if_needed(
+        alert_id = create_alert_if_needed(
             get_db(), transaction_id, sender_account, risk_score, label, reason, rules_json, timestamp
         )
+        tx_row = get_db().execute("SELECT * FROM transactions WHERE id=?", (transaction_id,)).fetchone()
+        if tx_row:
+            broadcast_event("transaction", _transaction_payload(tx_row))
+        if label != "normal":
+            broadcast_event("alert", {
+                "id": alert_id,
+                "transaction_id": transaction_id,
+                "account_number": sender_account,
+                "risk_score": risk_score,
+                "risk_level": label,
+                "reason": reason,
+                "timestamp": timestamp,
+            })
 
         if tx_type == "deposit":
             get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
@@ -1535,14 +1591,7 @@ def generate_transactions():
         generated[label] += 1
 
     get_db().commit()
-    rows = get_db().execute(
-        """
-        SELECT id, sender_account, receiver_account, amount, transaction_type, timestamp, risk_level
-        FROM transactions
-        ORDER BY timestamp ASC, id ASC
-        """
-    ).fetchall()
-    model = train_ai_model(_ai_training_rows(rows))
+    model = _train_ai_model_from_db(get_db())
     record_activity(
         admin_user["username"],
         "generate_transactions",

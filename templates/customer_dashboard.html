@@ -9,7 +9,7 @@
   <div class="card">
     <p class="status-pill">Primary Account</p>
     <h3>{{ user.account_number }}</h3>
-    <p class="metric">${{ "%.2f"|format(user.balance) }}</p>
+    <p class="metric" id="account-balance">${{ "%.2f"|format(user.balance) }}</p>
     <p>Available balance</p>
   </div>
   <div class="card">
@@ -32,7 +32,7 @@
 <section class="grid">
   <div class="card table-card">
     <h3>Recent Transactions</h3>
-    <ul>
+    <ul id="customer-transactions">
       {% for txn in transactions %}
         <li>
           Tx #{{ txn.id }} • {{ txn.timestamp }} • {{ txn.transaction_type }} • ${{ "%.2f"|format(txn.amount) }}
@@ -60,6 +60,17 @@
 <script>
   const feed = document.getElementById('live-feed');
   const status = document.getElementById('live-status');
+  const transactions = document.getElementById('customer-transactions');
+  const alerts = document.getElementById('customer-alerts');
+  const balance = document.getElementById('account-balance');
+  const accountNumber = '{{ user.account_number }}';
+
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+  const money = (value) => Number(value || 0).toFixed(2);
+  const score = (value) => Number(value || 0).toFixed(0);
+  const confidence = (value) => `${Math.round(Number(value || 0) * 100)}%`;
 
   const addFeedItem = (text) => {
     const item = document.createElement('li');
@@ -67,29 +78,70 @@
     feed.prepend(item);
   };
 
+  const trimList = (list, maxItems = 25) => {
+    while (list.children.length > maxItems) list.removeChild(list.lastElementChild);
+  };
+
+  const prependTransaction = (txn) => {
+    if (txn.sender_account !== accountNumber && txn.receiver_account !== accountNumber) return;
+    const alertClass = txn.risk_level !== 'normal' ? ' alert' : '';
+    const item = document.createElement('li');
+    item.innerHTML = `
+      Tx #${escapeHtml(txn.id)} • ${escapeHtml(txn.timestamp)} • ${escapeHtml(txn.transaction_type || txn.type)} • $${money(txn.amount)}
+      <br>Final risk <span class="status-pill${alertClass}">${escapeHtml(txn.risk_level)}</span> • Score ${score(txn.risk_score)}
+      <br><span class="muted-line">Rules risk: ${escapeHtml(txn.rule_level || 'normal')} / ${score(txn.rule_score)} • AI behavior risk: ${escapeHtml(txn.ai_risk_level || 'unavailable')} / ${confidence(txn.ai_confidence)}</span>
+    `;
+    transactions.prepend(item);
+    trimList(transactions);
+  };
+
+  const prependAlert = (alert) => {
+    if (alert.account_number !== accountNumber) return;
+    const item = document.createElement('li');
+    item.innerHTML = `Alert #${escapeHtml(alert.id || '')} • Tx #${escapeHtml(alert.transaction_id)} • ${escapeHtml(alert.timestamp)} • <span class="status-pill alert">${escapeHtml(alert.risk_level)}</span> • ${escapeHtml(alert.reason)}`;
+    alerts.prepend(item);
+    trimList(alerts, 10);
+  };
+
+  const updateBalance = (txn) => {
+    if (!balance || (txn.sender_account !== accountNumber && txn.receiver_account !== accountNumber)) return;
+    let current = Number(balance.textContent.replace(/[^0-9.-]/g, '')) || 0;
+    const amount = Number(txn.amount || 0);
+    const type = txn.transaction_type || txn.type;
+    if (type === 'deposit' && txn.sender_account === accountNumber) current += amount;
+    if (type === 'withdraw' && txn.sender_account === accountNumber) current -= amount;
+    if (type === 'transfer' && txn.sender_account === accountNumber) current -= amount;
+    if (type === 'transfer' && txn.receiver_account === accountNumber) current += amount;
+    balance.textContent = `$${money(current)}`;
+  };
+
+  const handleTransaction = (txn) => {
+    prependTransaction(txn);
+    updateBalance(txn);
+    addFeedItem(`Transaction • ${txn.type} • ${txn.amount} • ${txn.risk_level}`);
+  };
+  const handleAlert = (alert) => {
+    prependAlert(alert);
+    addFeedItem(`Alert • Tx #${alert.transaction_id} • ${alert.risk_level} • Score ${alert.risk_score} • ${alert.reason}`);
+    status.textContent = 'Live alert received • stream active';
+  };
+  const handleAiModel = (model) => {
+    addFeedItem(`AI model • ${model.trained ? 'trained' : 'waiting for more labels'} • ${model.training_rows} rows`);
+  };
+
   if (window.io) {
     const socket = io({ transports: ['websocket', 'polling'] });
     socket.on('connect', () => {
       status.textContent = 'Connected • WebSocket live stream active';
     });
-    socket.on('alert', (alert) => {
-      addFeedItem(`Alert • Tx #${alert.transaction_id} • ${alert.risk_level} • Score ${alert.risk_score} • ${alert.reason}`);
-      status.textContent = 'Live alert received • stream active';
-    });
-    socket.on('transaction', (txn) => {
-      addFeedItem(`Transaction • ${txn.type} • ${txn.amount} • ${txn.risk_level}`);
-    });
+    socket.on('alert', handleAlert);
+    socket.on('transaction', handleTransaction);
+    socket.on('ai_model', handleAiModel);
   } else if (window.EventSource) {
     const source = new EventSource('/stream');
-    source.addEventListener('alert', (event) => {
-      const alert = JSON.parse(event.data);
-      addFeedItem(`Alert • Tx #${alert.transaction_id} • ${alert.risk_level} • Score ${alert.risk_score} • ${alert.reason}`);
-      status.textContent = 'Live alert received • stream active';
-    });
-    source.addEventListener('transaction', (event) => {
-      const txn = JSON.parse(event.data);
-      addFeedItem(`Transaction • ${txn.type} • ${txn.amount} • ${txn.risk_level}`);
-    });
+    source.addEventListener('alert', (event) => handleAlert(JSON.parse(event.data)));
+    source.addEventListener('transaction', (event) => handleTransaction(JSON.parse(event.data)));
+    source.addEventListener('ai_model', (event) => handleAiModel(JSON.parse(event.data)));
   }
 </script>
 {% endblock %}

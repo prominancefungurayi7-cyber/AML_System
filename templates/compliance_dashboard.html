@@ -19,7 +19,7 @@
 <section class="grid">
   <div class="card table-card">
     <h3>Transactions</h3>
-    <ul>
+    <ul id="compliance-transactions">
       {% for txn in transactions %}
         <li>
           Tx #{{ txn.id }} | {{ txn.timestamp }} | {{ txn.transaction_type }} | ${{ "%.2f"|format(txn.amount) }}
@@ -32,7 +32,7 @@
   <div class="card table-card">
     <h3>Alerts</h3>
     <ul id="compliance-alerts">
-      {% for alert in alerts %}
+      {% for alert in open_alerts %}
         <li>Alert #{{ alert.id }} | Tx #{{ alert.transaction_id }} | {{ alert.timestamp }} | {{ alert.account_number }} | <span class="status-pill alert">{{ alert.risk_level }}</span> | {{ alert.reason }}</li>
       {% endfor %}
     </ul>
@@ -47,11 +47,60 @@
 <script>
   const feed = document.getElementById('compliance-feed');
   const status = document.getElementById('compliance-status');
+  const transactions = document.getElementById('compliance-transactions');
+  const alerts = document.getElementById('compliance-alerts');
+  const currentFilter = '{{ filter_value }}';
+
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+  const money = (value) => Number(value || 0).toFixed(2);
+  const score = (value) => Number(value || 0).toFixed(0);
+  const confidence = (value) => `${Math.round(Number(value || 0) * 100)}%`;
+  const suspiciousLevels = ['suspicious', 'super_suspicious', 'high_risk', 'critical'];
 
   const addFeedItem = (text) => {
     const item = document.createElement('li');
     item.textContent = text;
     feed.prepend(item);
+  };
+  const trimList = (list, maxItems = 25) => {
+    while (list.children.length > maxItems) list.removeChild(list.lastElementChild);
+  };
+  const passesFilter = (txn) => {
+    if (currentFilter === 'flagged') return txn.risk_level !== 'normal';
+    if (currentFilter === 'suspicious') return suspiciousLevels.includes(txn.risk_level);
+    return true;
+  };
+  const prependTransaction = (txn) => {
+    if (!passesFilter(txn)) return;
+    const alertClass = txn.risk_level !== 'normal' ? ' alert' : '';
+    const item = document.createElement('li');
+    item.innerHTML = `
+      Tx #${escapeHtml(txn.id)} | ${escapeHtml(txn.timestamp)} | ${escapeHtml(txn.transaction_type || txn.type)} | $${money(txn.amount)}
+      <br>Final risk <span class="status-pill${alertClass}">${escapeHtml(txn.risk_level)}</span> | Score ${score(txn.risk_score)}
+      <br><span class="muted-line">Rules risk: ${escapeHtml(txn.rule_level || 'normal')} / ${score(txn.rule_score)} | AI behavior risk: ${escapeHtml(txn.ai_risk_level || 'unavailable')} / ${confidence(txn.ai_confidence)}</span>
+    `;
+    transactions.prepend(item);
+    trimList(transactions);
+  };
+  const prependAlert = (alert) => {
+    const item = document.createElement('li');
+    item.innerHTML = `Alert #${escapeHtml(alert.id || '')} | Tx #${escapeHtml(alert.transaction_id)} | ${escapeHtml(alert.timestamp)} | ${escapeHtml(alert.account_number)} | <span class="status-pill alert">${escapeHtml(alert.risk_level)}</span> | ${escapeHtml(alert.reason)}`;
+    alerts.prepend(item);
+    trimList(alerts, 30);
+  };
+  const handleTransaction = (txn) => {
+    prependTransaction(txn);
+    addFeedItem(`Transaction | Tx #${txn.id} | ${txn.risk_level} | Score ${txn.risk_score}`);
+  };
+  const handleAlert = (alert) => {
+    prependAlert(alert);
+    addFeedItem(`Alert | Tx #${alert.transaction_id} | ${alert.risk_level} | Score ${alert.risk_score} | ${alert.reason}`);
+    status.textContent = 'New alert received | stream active';
+  };
+  const handleAiModel = (model) => {
+    addFeedItem(`AI model | ${model.trained ? 'trained' : 'waiting for more labels'} | ${model.training_rows} rows`);
   };
 
   if (window.io) {
@@ -59,17 +108,14 @@
     socket.on('connect', () => {
       status.textContent = 'Connected | WebSocket alert monitoring active';
     });
-    socket.on('alert', (alert) => {
-      addFeedItem(`Alert | Tx #${alert.transaction_id} | ${alert.risk_level} | Score ${alert.risk_score} | ${alert.reason}`);
-      status.textContent = 'New alert received | stream active';
-    });
+    socket.on('transaction', handleTransaction);
+    socket.on('alert', handleAlert);
+    socket.on('ai_model', handleAiModel);
   } else if (window.EventSource) {
     const source = new EventSource('/stream');
-    source.addEventListener('alert', (event) => {
-      const alert = JSON.parse(event.data);
-      addFeedItem(`Alert | Tx #${alert.transaction_id} | ${alert.risk_level} | Score ${alert.risk_score} | ${alert.reason}`);
-      status.textContent = 'New alert received | stream active';
-    });
+    source.addEventListener('transaction', (event) => handleTransaction(JSON.parse(event.data)));
+    source.addEventListener('alert', (event) => handleAlert(JSON.parse(event.data)));
+    source.addEventListener('ai_model', (event) => handleAiModel(JSON.parse(event.data)));
   }
 </script>
 {% endblock %}

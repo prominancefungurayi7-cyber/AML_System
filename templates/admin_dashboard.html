@@ -7,21 +7,16 @@
 </section>
 
 <div class="card">
-    <h3>Transaction Simulator</h3>
-
-    <form method="post" action="{{ url_for('generate_transactions') }}">
-        <label>Number of Transactions</label>
-
-        <select name="count">
-            <option value="100">100</option>
-            <option value="1000">1000</option>
-            <option value="5000">5000</option>
-        </select>
-
-        <button type="submit">
-            Generate Transactions
-        </button>
-    </form>
+  <h3>Transaction Simulator</h3>
+  <form method="post" action="{{ url_for('generate_transactions') }}">
+    <label>Number of Transactions</label>
+    <select name="count">
+      <option value="100">100</option>
+      <option value="1000">1000</option>
+      <option value="5000">5000</option>
+    </select>
+    <button type="submit">Generate Transactions</button>
+  </form>
 </div>
 
 <section class="grid">
@@ -45,7 +40,7 @@
   </div>
   <div class="card table-card">
     <h3>Recent Activity</h3>
-    <ul>
+    <ul id="admin-activity">
       {% for event in activity %}
         <li>{{ event.timestamp }} • {{ event.action }} • {{ event.detail }}</li>
       {% endfor %}
@@ -54,53 +49,106 @@
 </section>
 
 <div class="card table-card">
-    <h3>Registered Users</h3>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Account Number</th>
-                <th>Role</th>
-                <th>Balance</th>
-                <th>KYC</th>
-                <th>Created</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.account_number }}</td>
-                <td>{{ user.role }}</td>
-                <td>${{ "%.2f"|format(user.balance) }}</td>
-                <td>{{ user.kyc_status }}</td>
-                <td>{{ user.created_at }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <h3>Registered Users</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Account Number</th>
+        <th>Role</th>
+        <th>Balance</th>
+        <th>KYC</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.account_number }}</td>
+        <td>{{ user.role }}</td>
+        <td data-balance-account="{{ user.account_number }}">${{ "%.2f"|format(user.balance) }}</td>
+        <td>{{ user.kyc_status }}</td>
+        <td>{{ user.created_at }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 <section class="card table-card">
   <h3>Recent Transactions</h3>
-  <ul>
+  <ul id="admin-transactions">
     {% for txn in transactions %}
-      <li>{{ txn.timestamp }} • {{ txn.sender_account }} → {{ txn.receiver_account }} • ${{ "%.2f"|format(txn.amount) }} • <span class="status-pill{% if txn.risk_level != 'normal' %} alert{% endif %}">{{ txn.risk_level }}</span></li>
+      <li>{{ txn.timestamp }} • {{ txn.sender_account }} -> {{ txn.receiver_account }} • ${{ "%.2f"|format(txn.amount) }} • <span class="status-pill{% if txn.risk_level != 'normal' %} alert{% endif %}">{{ txn.risk_level }}</span></li>
     {% endfor %}
   </ul>
 </section>
 
 <section class="admin-danger-zone">
   <form method="post" action="{{ url_for('clear_transactions') }}">
-    <button type="submit" class="danger-button">
-      Clear All Transactions
-    </button>
+    <button type="submit" class="danger-button">Clear All Transactions</button>
   </form>
 </section>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+  const transactions = document.getElementById('admin-transactions');
+  const activity = document.getElementById('admin-activity');
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+  const money = (value) => Number(value || 0).toFixed(2);
+  const trimList = (list, maxItems = 25) => {
+    while (list.children.length > maxItems) list.removeChild(list.lastElementChild);
+  };
+  const balanceCell = (account) => document.querySelector(`[data-balance-account="${CSS.escape(account)}"]`);
+  const adjustBalance = (account, delta) => {
+    const cell = balanceCell(account);
+    if (!cell) return;
+    const current = Number(cell.textContent.replace(/[^0-9.-]/g, '')) || 0;
+    cell.textContent = `$${money(current + delta)}`;
+  };
+  const updateBalances = (txn) => {
+    const amount = Number(txn.amount || 0);
+    const type = txn.transaction_type || txn.type;
+    if (type === 'deposit') adjustBalance(txn.sender_account, amount);
+    if (type === 'withdraw') adjustBalance(txn.sender_account, -amount);
+    if (type === 'transfer') {
+      adjustBalance(txn.sender_account, -amount);
+      adjustBalance(txn.receiver_account, amount);
+    }
+  };
+  const prependTransaction = (txn) => {
+    const alertClass = txn.risk_level !== 'normal' ? ' alert' : '';
+    const item = document.createElement('li');
+    item.innerHTML = `${escapeHtml(txn.timestamp)} • ${escapeHtml(txn.sender_account)} -> ${escapeHtml(txn.receiver_account)} • $${money(txn.amount)} • <span class="status-pill${alertClass}">${escapeHtml(txn.risk_level)}</span>`;
+    transactions.prepend(item);
+    trimList(transactions, 20);
+    updateBalances(txn);
+  };
+  const prependActivity = (text) => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    activity.prepend(item);
+    trimList(activity, 25);
+  };
+  const handleAiModel = (model) => {
+    prependActivity(`${model.timestamp} • ai_model • ${model.trained ? 'trained' : 'waiting for more labels'} on ${model.training_rows} rows`);
+  };
+
+  if (window.io) {
+    const socket = io({ transports: ['websocket', 'polling'] });
+    socket.on('transaction', prependTransaction);
+    socket.on('ai_model', handleAiModel);
+  } else if (window.EventSource) {
+    const source = new EventSource('/stream');
+    source.addEventListener('transaction', (event) => prependTransaction(JSON.parse(event.data)));
+    source.addEventListener('ai_model', (event) => handleAiModel(JSON.parse(event.data)));
+  }
+</script>
 {% endblock %}
