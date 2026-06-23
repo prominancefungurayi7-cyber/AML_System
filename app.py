@@ -722,26 +722,38 @@ def _combine_rule_ai_risk(rule_score, rule_level, rule_reason, triggered_rules, 
         ai_score = AI_RISK_SCORES.get(ai_level, rule_score)
         ai_rank = RISK_RANK.get(ai_level, 0)
 
-        if ai_level == "normal" and ai_confidence >= 0.75 and not mandatory:
-            if rule_score < 60:
-                final_score = min(rule_score, 20)
+        if not mandatory:
+            ai_weight = min(0.85, max(0.60, ai_confidence))
+            rule_weight = 1 - ai_weight
+            blended_score = round((ai_score * ai_weight) + (rule_score * rule_weight))
+
+            if ai_level == "normal" and ai_confidence >= 0.75:
+                final_score = min(blended_score, 24)
                 final_level = "normal"
                 final_reason = (
-                    f"AI behavior model recognized this as normal for the sender "
-                    f"({ai_confidence:.0%} confidence). Rule review: {rule_reason}"
+                    f"AI-led behavior model recognized this as normal for the sender "
+                    f"({ai_confidence:.0%} confidence), so non-mandatory rule risk was reduced. "
+                    f"Rule review: {rule_reason}"
                 )
             else:
-                final_score = min(rule_score, 55)
+                final_score = max(0, min(100, blended_score))
                 final_level = _risk_level_from_score(final_score)
+                ai_direction = "increased" if ai_rank > RISK_RANK.get(rule_level, 0) else "tempered"
                 final_reason = (
-                    f"AI behavior model reduced a non-mandatory rule alert "
-                    f"({ai_confidence:.0%} normal confidence). Rule review: {rule_reason}"
+                    f"AI-led behavior model {ai_direction} the behavioral risk "
+                    f"({ai_confidence:.0%} confidence, {ai_weight:.0%} AI weighting). "
+                    f"Rule review: {rule_reason}"
                 )
-        elif ai_rank > RISK_RANK.get(rule_level, 0) and not mandatory:
+        elif ai_level == "normal":
+            final_reason = (
+                f"Mandatory compliance rule preserved despite AI normal prediction "
+                f"({ai_confidence:.0%} confidence). Rule review: {rule_reason}"
+            )
+        elif ai_rank > RISK_RANK.get(rule_level, 0):
             final_score = max(rule_score, ai_score)
             final_level = _risk_level_from_score(final_score)
             final_reason = (
-                f"AI behavior model added user-specific abnormal-behavior risk "
+                f"Mandatory compliance rule preserved and AI behavior model added elevated context "
                 f"({ai_confidence:.0%} confidence). Rule review: {rule_reason}"
             )
 

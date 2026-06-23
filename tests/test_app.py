@@ -246,10 +246,26 @@ def test_ai_can_soften_non_mandatory_rule_risk():
         0.92,
     )
 
-    assert score == 20
+    assert score < 25
     assert level == "normal"
-    assert "recognized this as normal" in reason
+    assert "AI-led behavior model recognized this as normal" in reason
     assert "normal" in ai_reason
+
+
+def test_ai_leads_non_mandatory_behavioral_risk_when_confident():
+    score, level, reason, ai_reason = aml_app._combine_rule_ai_risk(
+        20,
+        "normal",
+        "Routine transaction with minor rule indicators",
+        [],
+        "super_suspicious",
+        0.88,
+    )
+
+    assert score >= 70
+    assert level in ("high_risk", "critical")
+    assert "AI-led behavior model increased" in reason
+    assert "super suspicious" in ai_reason
 
 
 def test_ai_cannot_suppress_mandatory_compliance_risk():
