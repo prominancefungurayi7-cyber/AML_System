@@ -1171,7 +1171,7 @@ def admin_dashboard():
                     get_db().execute("UPDATE users SET kyc_status=? WHERE id=?", (kyc, user_id))
                 get_db().commit()
                 record_activity(admin_user["username"], "update_user", f"Updated user {user_id}: kyc={kyc or 'unchanged'}")
-                flash("User updated. Staff roles are restricted to built-in staff accounts.")
+                flash("User updated.")
 
         elif action == "add_watchlist":
             name = request.form.get("wl_name", "")
