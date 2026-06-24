@@ -200,6 +200,55 @@ main { padding: 2rem; max-width: 1380px; margin: 0 auto; }
   gap: 1rem;
   margin-top: 1rem;
 }
+.react-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.metric-tile {
+  background: var(--zb-panel);
+  border: 1px solid var(--zb-border);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(7, 24, 39, 0.05);
+}
+.metric-tile strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--zb-green);
+  font-size: 1.4rem;
+}
+.metric-label {
+  color: var(--zb-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.react-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.react-filter-card {
+  margin-top: 1rem;
+}
+.react-filter-card form {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 260px) auto;
+  align-items: end;
+}
+.panel-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.empty-state {
+  margin-bottom: 0;
+}
 .hero {
   background: linear-gradient(120deg, #f5fbf7 0%, #fefcf7 100%);
   border-color: #dfe6de;
@@ -307,6 +356,7 @@ li { margin-bottom: 0.45rem; }
   .auth-layout { grid-template-columns: 1fr; }
   .auth-panel { min-height: auto; }
   .auth-actions { flex-direction: column; align-items: flex-start; }
+  .react-filter-card form { grid-template-columns: 1fr; }
 }
 table {
     width: 100%;

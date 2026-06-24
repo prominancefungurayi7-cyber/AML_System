@@ -29,6 +29,7 @@ import sqlite3
 import threading
 import time
 from datetime import datetime, timedelta, timezone
+from decimal import Decimal
 from email.message import EmailMessage
 from functools import wraps
 from queue import Queue
@@ -533,6 +534,22 @@ def _user_balance_payload(row):
         "kyc_status": row["kyc_status"],
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def serialize_value(value):
+    if isinstance(value, Decimal):
+        return float(value)
+    if isinstance(value, datetime):
+        return value.isoformat()
+    return value
+
+
+def serialize_row(row):
+    return {key: serialize_value(row[key]) for key in row.keys()}
+
+
+def serialize_rows(rows):
+    return [serialize_row(row) for row in rows]
 
 
 def broadcast_user_balance(conn, account_number):
@@ -1443,6 +1460,15 @@ def compliance_dashboard():
 
     return render_template(
         "compliance_dashboard.html",
+        dashboard_data={
+            "transactions": serialize_rows(transactions),
+            "open_alerts": serialize_rows(open_alerts),
+            "filter_value": filter_value,
+            "stats": stats,
+            "page": page,
+            "total_count": total_count,
+            "page_size": PAGE_SIZE,
+        },
         transactions=transactions,
         open_alerts=open_alerts,
         filter_value=filter_value,
@@ -1622,6 +1648,14 @@ def admin_dashboard():
     }
     return render_template(
         "admin_dashboard.html",
+        dashboard_data={
+            "users": serialize_rows(users),
+            "activity": serialize_rows(activity),
+            "transactions": serialize_rows(transactions),
+            "watchlist": serialize_rows(watchlist),
+            "system_stats": system_stats,
+            "page": page,
+        },
         users=users, activity=activity, transactions=transactions,
         watchlist=watchlist, system_stats=system_stats, page=page,
     )
