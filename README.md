@@ -8,14 +8,7 @@ A Flask-based AML monitoring prototype with authentication, transactions, risk s
    `pip install -r requirements.txt`
 2. Create the local MySQL database and user:
 
-```sql
-CREATE DATABASE IF NOT EXISTS aml CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER IF NOT EXISTS 'aml'@'localhost' IDENTIFIED BY 'aml123';
-CREATE USER IF NOT EXISTS 'aml'@'127.0.0.1' IDENTIFIED BY 'aml123';
-GRANT ALL PRIVILEGES ON aml.* TO 'aml'@'localhost';
-GRANT ALL PRIVILEGES ON aml.* TO 'aml'@'127.0.0.1';
-FLUSH PRIVILEGES;
-```
+
 
 3. Confirm `.env` contains:
    `DATABASE_URL=mysql://aml:aml123@127.0.0.1:3306/aml`
