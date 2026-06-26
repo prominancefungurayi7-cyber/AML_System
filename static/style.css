@@ -146,13 +146,14 @@ html[data-theme="light"] .topbar {
   box-shadow: 0 18px 38px rgba(28, 91, 255, 0.42), inset 0 1px 0 rgba(255,255,255,0.35);
 }
 
-.brand-block h1 { margin: 0; color: var(--zb-text); font-size: 1.12rem; letter-spacing: 0; }
-
-.brand-name {
+.brand-mark--stacked {
   display: flex;
   flex-direction: column;
-  gap: 0.05rem;
-  line-height: 1;
+  gap: 0.02rem;
+  line-height: 0.98;
+  min-width: 86px;
+  height: 58px;
+  font-size: 0.98rem;
 }
 
 .brand-block p { margin: 0.14rem 0 0; color: var(--zb-muted); font-size: 0.82rem; }
