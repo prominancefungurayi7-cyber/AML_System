@@ -1680,10 +1680,10 @@ def generate_transactions():
         count = 100
 
     users = get_db().execute(
-        "SELECT id, username, account_number FROM users ORDER BY id"
+        "SELECT id, username, account_number FROM users WHERE role='customer' ORDER BY id"
     ).fetchall()
     if not users:
-        flash("No users are available for transaction generation.")
+        flash("No customer accounts are available for transaction generation.")
         return redirect(url_for("admin_dashboard"))
 
     generated = {"normal": 0, "suspicious": 0, "super_suspicious": 0}
