@@ -296,11 +296,7 @@
       stats: setStats,
       reset: () => {
         setTransactions([]);
-        setActivity((current) => trim([{
-          timestamp: new Date().toISOString(),
-          action: "reset",
-          detail: "transactions, alerts, reports, and AI model cleared",
-        }, ...current], 25));
+        setActivity([]);
       },
     });
 

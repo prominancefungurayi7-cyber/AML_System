@@ -11,7 +11,7 @@ New capabilities vs prototype:
   • SAR (Suspicious Activity Report) workflow with status tracking
   • CTR (Currency Transaction Report) auto-generation
   • Case management: open → investigating → escalated → closed
-  • Immutable audit trail (append-only activity_log)
+  • System activity log for operational history
   • Role-based dashboard with analyst / compliance / admin separation
   • Detailed per-transaction rule evidence stored in DB
   • Watchlist / PEP (Politically Exposed Person) screening hook
@@ -1790,7 +1790,7 @@ def generate_transactions():
 def clear_transactions():
     admin_user = get_user_by_id(session["user_id"])
     conn = get_db()
-    for table in ("sar_reports", "ctr_reports", "alerts", "transactions"):
+    for table in ("sar_reports", "ctr_reports", "alerts", "transactions", "activity_log"):
         conn.execute(f"DELETE FROM {table}")
     conn.commit()
     delete_ai_model()
@@ -1800,8 +1800,8 @@ def clear_transactions():
         "timestamp": datetime.now(timezone.utc).isoformat(),
     })
     broadcast_stats(conn)
-    record_activity(admin_user["username"], "clear_transactions", "Cleared all transactions, alerts, and AI model")
-    flash("All transactions, alerts, reports, and the trained AI model have been cleared.")
+    record_activity(admin_user["username"], "clear_transactions", "Cleared all transactions, alerts, reports, recent activity, and AI model")
+    flash("All transactions, alerts, reports, recent activity, and the trained AI model have been cleared.")
     return redirect(url_for("admin_dashboard"))
 
 
