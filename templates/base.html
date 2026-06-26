@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ZB Bank | AML Intelligence</title>
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("zb-theme");
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.dataset.theme = savedTheme || (prefersLight ? "light" : "dark");
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,27 +23,35 @@
           <div class="brand-mark">ZB</div>
           <div>
             <h1>ZB Bank</h1>
-            <p>Banking • Insurance • Investments</p>
+            <p>Banking &bull; Insurance &bull; Investments</p>
           </div>
         </div>
-        <nav class="topnav">
-          {% if current_user %}
-            {% if current_user.role == 'customer' %}
-              <a href="{{ url_for('customer_dashboard') }}">Customer Portal</a>
+        <div class="topbar-actions">
+          <nav class="topnav">
+            {% if current_user %}
+              {% if current_user.role == 'customer' %}
+                <a href="{{ url_for('customer_dashboard') }}" {% if request.endpoint == 'customer_dashboard' %}aria-current="page"{% endif %}>Customer Portal</a>
+              {% endif %}
+              {% if current_user.role in ['compliance', 'admin'] %}
+                <a href="{{ url_for('compliance_dashboard') }}" {% if request.endpoint == 'compliance_dashboard' %}aria-current="page"{% endif %}>Compliance Hub</a>
+                <a href="{{ url_for('reports') }}" {% if request.endpoint == 'reports' %}aria-current="page"{% endif %}>Reports</a>
+              {% endif %}
+              {% if current_user.role == 'admin' %}
+                <a href="{{ url_for('admin_dashboard') }}" {% if request.endpoint == 'admin_dashboard' %}aria-current="page"{% endif %}>Admin Center</a>
+              {% endif %}
+              <a href="{{ url_for('logout') }}">Sign Out</a>
+            {% else %}
+              <a href="{{ url_for('login') }}" {% if request.endpoint == 'login' %}aria-current="page"{% endif %}>Login</a>
+              <a href="{{ url_for('register') }}" {% if request.endpoint == 'register' %}aria-current="page"{% endif %}>Open Account</a>
             {% endif %}
-            {% if current_user.role in ['compliance', 'admin'] %}
-              <a href="{{ url_for('compliance_dashboard') }}">Compliance Hub</a>
-              <a href="{{ url_for('reports') }}">Reports</a>
-            {% endif %}
-            {% if current_user.role == 'admin' %}
-              <a href="{{ url_for('admin_dashboard') }}">Admin Center</a>
-            {% endif %}
-            <a href="{{ url_for('logout') }}">Sign Out</a>
-          {% else %}
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('register') }}">Open Account</a>
-          {% endif %}
-        </nav>
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+            <span class="theme-toggle__track" aria-hidden="true">
+              <span class="theme-toggle__thumb"></span>
+            </span>
+            <span class="theme-toggle__text">Dark</span>
+          </button>
+        </div>
       </header>
 
       <main>
@@ -53,6 +68,22 @@
       </main>
     </div>
     <script>
+      const themeToggle = document.querySelector(".theme-toggle");
+      const themeText = document.querySelector(".theme-toggle__text");
+      const applyThemeLabel = () => {
+        const isLight = document.documentElement.dataset.theme === "light";
+        themeToggle.setAttribute("aria-label", `Switch to ${isLight ? "dark" : "light"} theme`);
+        themeToggle.setAttribute("aria-pressed", String(isLight));
+        themeText.textContent = isLight ? "Light" : "Dark";
+      };
+      applyThemeLabel();
+      themeToggle.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("zb-theme", nextTheme);
+        applyThemeLabel();
+      });
+
       document.querySelectorAll(".flash-messages").forEach((flash) => {
         window.setTimeout(() => {
           flash.classList.add("is-clearing");
