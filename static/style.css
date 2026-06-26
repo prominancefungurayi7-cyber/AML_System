@@ -948,6 +948,12 @@ html[data-theme="light"] .activity-item p {
   animation: status-breathe 2.2s ease-in-out infinite;
 }
 
+html[data-theme="light"] .live-status {
+  background: rgba(9, 92, 54, 0.12);
+  color: #064d2f;
+  border-color: rgba(9, 92, 54, 0.28);
+}
+
 .live-dot {
   width: 8px;
   height: 8px;
