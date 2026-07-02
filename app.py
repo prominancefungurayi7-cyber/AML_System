@@ -1,5 +1,5 @@
 """
-app.py — ZB Bank AML Intelligence Platform
+app.py — StanPro Bank AML Intelligence Platform
 ==========================================
 Industry-ready Flask application aligned with:
   • FATF Recommendations 10, 16, 20, 29
@@ -1250,7 +1250,7 @@ def index():
 
 @app.route("/health")
 def health():
-    return {"status": "ok", "service": "zb-aml", "timestamp": datetime.now(timezone.utc).isoformat()}, 200
+    return {"status": "ok", "service": "stanpro-aml", "timestamp": datetime.now(timezone.utc).isoformat()}, 200
 
 
 @app.route("/dashboard")
@@ -1279,10 +1279,10 @@ def send_otp_email(recipient_email, otp):
     smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
     msg = EmailMessage()
-    msg["Subject"] = "ZB Bank — Your verification code"
+    msg["Subject"] = "StanPro Bank — Your verification code"
     msg["From"] = sender_email
     msg["To"] = recipient_email
-    msg.set_content(f"Your ZB Bank verification code is: {otp}\n\nThis code expires in 10 minutes.")
+    msg.set_content(f"Your StanPro Bank verification code is: {otp}\n\nThis code expires in 10 minutes.")
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(sender_email, sender_password)
@@ -1321,7 +1321,7 @@ def register():
             session["user_id"] = user["id"]
             session["role"] = user["role"]
             record_activity(pending["username"], "register", f"New {pending['role']} registered")
-            flash("Account created. Welcome to ZB Bank AML Portal.")
+            flash("Account created. Welcome to StanPro Bank AML Portal.")
             return redirect(url_for("dashboard_redirect"))
 
         username = request.form.get("username", "").strip()
