@@ -81,6 +81,13 @@ app.config.setdefault(
     app.config.get("DATABASE_URL", os.path.join(os.path.dirname(__file__), "aml.db")),
 )
 
+# Ensure data directory exists for Railway
+if app.config["DATABASE"].startswith("sqlite:///"):
+    db_path = app.config["DATABASE"].replace("sqlite:///", "")
+    db_dir = os.path.dirname(db_path)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
+
 logging.basicConfig(level=logging.INFO)
 app.logger.setLevel(logging.INFO)
 
