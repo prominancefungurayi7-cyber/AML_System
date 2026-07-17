@@ -210,24 +210,9 @@ def build_or_update_customer_profile(conn, account_number: str) -> Optional[Cust
     # Convert to list of dicts
     tx_list = [dict(tx) for tx in transactions]
     
-    # Get balance history if available
-    balance_history = conn.execute(
-        """
-        SELECT balance, timestamp FROM (
-            SELECT balance, timestamp FROM transactions
-            WHERE sender_account=? OR receiver_account=?
-            ORDER BY timestamp DESC
-            LIMIT 100
-        ) as recent
-        """,
-        (account_number, account_number)
-    ).fetchall()
-    
-    balance_list = [dict(b) for b in balance_history] if balance_history else None
-    
-    # Extract profile
+    # Extract profile (balance history not available from transactions table)
     profile = behavioral_profiler.extract_profile_from_history(
-        account_number, tx_list, balance_list
+        account_number, tx_list, None
     )
     
     if profile:
