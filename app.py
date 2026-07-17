@@ -1914,7 +1914,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         LEFT JOIN users u ON t.sender_account = u.account_number
 
-        WHERE sender_account=? AND id<>? AND timestamp<?
+        WHERE sender_account=? AND t.id<>? AND timestamp<?
 
         """,
 
@@ -1930,7 +1930,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         FROM transactions
 
-        WHERE sender_account=? AND id<>? AND timestamp>=? AND timestamp<?
+        WHERE sender_account=? AND t.id<>? AND timestamp>=? AND timestamp<?
 
         """,
 
@@ -1944,7 +1944,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         SELECT id FROM transactions
 
-        WHERE sender_account=? AND receiver_account=? AND id<>? AND timestamp<?
+        WHERE sender_account=? AND receiver_account=? AND t.id<>? AND timestamp<?
 
         LIMIT 1
 
