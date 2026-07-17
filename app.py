@@ -819,68 +819,68 @@ def _migrate_mysql(conn):
             ("wealth_segment", "VARCHAR(255) DEFAULT 'average'"),
         ],
         "transactions": [
-
+            ("currency", "VARCHAR(255) DEFAULT 'USD'"),
+            ("channel", "VARCHAR(255) DEFAULT 'online'"),
             ("rule_score", "DOUBLE DEFAULT 0"),
-
             ("rule_level", "VARCHAR(255) DEFAULT 'normal'"),
-
             ("rule_reason", "LONGTEXT"),
-
             ("ai_risk_level", "VARCHAR(255)"),
-
             ("ai_confidence", "DOUBLE DEFAULT 0"),
-
             ("ai_reason", "LONGTEXT"),
-
+            ("rules_triggered", "LONGTEXT DEFAULT '[]'"),
+            ("ctr_required", "INTEGER DEFAULT 0"),
+            ("sar_required", "INTEGER DEFAULT 0"),
+            ("destination_country", "VARCHAR(255) DEFAULT 'ZW'"),
+            ("screening_hits", "LONGTEXT"),
+            ("reviewed_by", "VARCHAR(255)"),
+            ("reviewed_at", "VARCHAR(255)"),
         ],
-
+        "alerts": [
+            ("rules_triggered", "LONGTEXT DEFAULT '[]'"),
+            ("status", "VARCHAR(255) DEFAULT 'open'"),
+            ("assigned_to", "VARCHAR(255)"),
+            ("case_notes", "LONGTEXT"),
+            ("resolved_at", "VARCHAR(255)"),
+            ("resolved_by", "VARCHAR(255)"),
+        ],
     }
 
     for table, columns in column_migrations.items():
+        try:
+            existing = {
+                row["Field"]
+                for row in conn.execute(f"SHOW COLUMNS FROM {table}").fetchall()
+            }
+            for column_name, column_def in columns:
+                if column_name not in existing:
+                    conn.execute(f"ALTER TABLE {table} ADD COLUMN {column_name} {column_def}")
+        except Exception as e:
+            logging.error(f"Error adding columns to {table}: {e}")
 
-        existing = {
-
-            row["Field"]
-
-            for row in conn.execute(f"SHOW COLUMNS FROM {table}").fetchall()
-
-        }
-
-        for column_name, column_def in columns:
-
-            if column_name not in existing:
-
-                conn.execute(f"ALTER TABLE {table} ADD COLUMN {column_name} {column_def}")
-
-
-
-    migrations = [
-
-        "ALTER TABLE transactions MODIFY COLUMN description LONGTEXT",
-
-        "ALTER TABLE transactions MODIFY COLUMN rules_triggered LONGTEXT",
-
-        "ALTER TABLE transactions MODIFY COLUMN rule_reason LONGTEXT",
-
-        "ALTER TABLE transactions MODIFY COLUMN ai_reason LONGTEXT",
-
-        "ALTER TABLE alerts MODIFY COLUMN reason LONGTEXT NOT NULL",
-
-        "ALTER TABLE alerts MODIFY COLUMN rules_triggered LONGTEXT",
-
-        "ALTER TABLE alerts MODIFY COLUMN case_notes LONGTEXT",
-
-        "ALTER TABLE sar_reports MODIFY COLUMN narrative LONGTEXT NOT NULL",
-
-        "ALTER TABLE watchlist MODIFY COLUMN reason LONGTEXT",
-
-        "ALTER TABLE activity_log MODIFY COLUMN detail LONGTEXT NOT NULL",
-
+    # Modify existing columns to LONGTEXT - only if column exists
+    modify_migrations = [
+        ("transactions", "description", "LONGTEXT"),
+        ("transactions", "rules_triggered", "LONGTEXT"),
+        ("transactions", "rule_reason", "LONGTEXT"),
+        ("transactions", "ai_reason", "LONGTEXT"),
+        ("alerts", "reason", "LONGTEXT"),
+        ("alerts", "rules_triggered", "LONGTEXT"),
+        ("alerts", "case_notes", "LONGTEXT"),
+        ("sar_reports", "narrative", "LONGTEXT"),
+        ("watchlist", "reason", "LONGTEXT"),
+        ("activity_log", "detail", "LONGTEXT"),
     ]
 
-    for statement in migrations:
-
-        conn.execute(statement)
+    for table, column, new_type in modify_migrations:
+        try:
+            existing = {
+                row["Field"]
+                for row in conn.execute(f"SHOW COLUMNS FROM {table}").fetchall()
+            }
+            if column in existing:
+                conn.execute(f"ALTER TABLE {table} MODIFY COLUMN {column} {new_type}")
+        except Exception as e:
+            logging.error(f"Error modifying {table}.{column}: {e}")
 
 
 
@@ -1225,7 +1225,7 @@ def request_page(default=1):
 
     try:
 
-        page = int(request.args.get("page", default))
+        page = int(request.args.get("page", 1))
 
     except (TypeError, ValueError):
 
@@ -1956,13 +1956,13 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
 
 
-    avg_amount = float(prior["avg_amount"] if prior else 0)
+    avg_amount = float(prior.get("avg_amount") if prior else 0)
 
-    max_amount = float(prior["max_amount"] if prior else 0)
+    max_amount = float(prior.get("max_amount") if prior else 0)
 
-    tx_count = int(prior["tx_count"] if prior else 0)
+    tx_count = int(prior.get("tx_count") if prior else 0)
 
-    volume_24h = float(recent["volume"] if recent else 0)
+    volume_24h = float(recent.get("volume") if recent else 0)
 
     amount = float(amount)
 
@@ -1982,7 +1982,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         "amount_to_sender_max": amount / max_amount if max_amount > 0 else 1.0,
 
-        "sender_tx_count_24h": int(recent["tx_count"] if recent else 0),
+        "sender_tx_count_24h": int(recent.get("tx_count") if recent else 0),
 
         "sender_volume_24h": volume_24h,
 
@@ -1990,7 +1990,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         "is_new_recipient": 0.0 if recipient_seen else 1.0,
 
-        "wealth_segment": prior["wealth_segment"] if prior and prior["wealth_segment"] else "average",
+        "wealth_segment": prior.get("wealth_segment") if prior and prior.get("wealth_segment") else "average",
 
     })
 
@@ -2776,7 +2776,7 @@ def login_required(*roles):
 
                 return redirect(url_for("login"))
 
-            if roles and user["role"] not in roles:
+            if roles and user.get("role") not in roles:
 
                 flash("Access denied.")
 
@@ -3013,7 +3013,7 @@ def register():
 
             user_count = get_db().execute("SELECT COUNT(*) as c FROM users").fetchone()["c"]
 
-            acct = f"ACC{1000 + int(user_count) + 1}"
+            acct = f"ACC{1000 + int(user_count or 0) + 1}"
 
             pep_flag = 1 if any(h.list_type == "pep" for h in reg_hits) else 0
 
@@ -3409,7 +3409,7 @@ def create_transaction():
 
         recipient_user = get_user_by_account_number(recipient_account)
 
-        if not recipient_user or recipient_user["id"] == user["id"] or recipient_user["role"] != "customer":
+        if not recipient_user or recipient_user.get("id") == user["id"] or recipient_user.get("role") != "customer":
 
             flash("Recipient customer account not found.")
 
@@ -3421,7 +3421,7 @@ def create_transaction():
 
     sender_account = user["account_number"]
 
-    receiver_account = recipient_user["account_number"] if recipient_user else user["account_number"]
+    receiver_account = recipient_user.get("account_number") if recipient_user else user["account_number"]
 
 
 
@@ -3469,7 +3469,7 @@ def create_transaction():
 
         get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
 
-        get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient_user["id"]))
+        get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient_user.get("id")))
 
 
 
@@ -3705,7 +3705,7 @@ def alert_detail(alert_id):
 
             old_risk = account_user.get("risk_rating", "standard") if account_user else "standard"
 
-            new_risk = update_customer_risk_rating(get_db(), alert["account_number"], "resolve", old_risk)
+            new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "resolve", old_risk)
 
             record_activity(officer["username"], "resolve_alert", f"Alert #{alert_id} resolved, risk rating: {old_risk} -> {new_risk}")
 
@@ -3727,7 +3727,7 @@ def alert_detail(alert_id):
 
             old_risk = account_user.get("risk_rating", "standard") if account_user else "standard"
 
-            new_risk = update_customer_risk_rating(get_db(), alert["account_number"], "escalate", old_risk)
+            new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "escalate", old_risk)
 
             record_activity(officer["username"], "escalate_alert", f"Alert #{alert_id} escalated, risk rating: {old_risk} -> {new_risk}")
 
@@ -3745,7 +3745,7 @@ def alert_detail(alert_id):
 
                 "INSERT INTO sar_reports (alert_id, account_number, filed_by, narrative, status, reference_number, created_at) VALUES (?,?,?,?,'draft',?,?)",
 
-                (alert_id, alert["account_number"], officer["username"], narrative, ref,
+                (alert_id, alert.get("account_number"), officer["username"], narrative, ref,
 
                  datetime.now(timezone.utc).isoformat()),
 
@@ -4071,6 +4071,8 @@ def generate_transactions():
 
     generated = {"normal": 0, "flagged": 0, "critical": 0}
 
+    # Batch insert transactions first for performance
+    transactions_to_process = []
     for label in _simulation_plan(count):
 
         (
@@ -4084,8 +4086,6 @@ def generate_transactions():
         sender_account = sender["account_number"]
 
         receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
-
-
 
         get_db().execute(
 
@@ -4113,7 +4113,39 @@ def generate_transactions():
 
         transaction_id = get_last_insert_id(get_db())
 
+        transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
 
+        # Update balances immediately
+        if tx_type == "deposit":
+
+            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+
+        elif tx_type == "withdraw":
+
+            get_db().execute(
+
+                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+
+                (amount, amount, sender["id"]),
+
+            )
+
+        elif tx_type == "transfer":
+
+            get_db().execute(
+
+                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+
+                (amount, amount, sender["id"]),
+
+            )
+
+            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
+
+    get_db().commit()
+
+    # Process transactions in batch for AML rules and AI
+    for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in transactions_to_process:
 
         risk_score, risk_level, reason, alert_id = process_transaction_event(
 
@@ -4138,36 +4170,6 @@ def generate_transactions():
         else:
 
             generated["flagged"] += 1
-
-
-
-        if tx_type == "deposit":
-
-            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
-
-        elif tx_type == "withdraw":
-
-            get_db().execute(
-
-                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-
-                (amount, amount, sender["id"]),
-
-            )
-
-        else:
-
-            get_db().execute(
-
-                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-
-                (amount, amount, sender["id"]),
-
-            )
-
-            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
-
-
 
     get_db().commit()
 
@@ -4307,19 +4309,28 @@ def migrate_database():
 
     conn = get_db()
 
-    if DB_TYPE == "sqlite":
+    try:
+        if DB_TYPE == "sqlite":
 
-        _migrate_sqlite(conn)
+            _migrate_sqlite(conn)
 
-    elif DB_TYPE == "mysql":
+        elif DB_TYPE == "mysql":
 
-        _migrate_mysql(conn)
+            _migrate_mysql(conn)
 
-    conn.commit()
+        conn.commit()
 
-    record_activity(admin_user["username"], "migrate_database", "Ran database migration")
+        record_activity(admin_user["username"], "migrate_database", "Ran database migration")
 
-    flash("Database migration completed successfully.")
+        flash("Database migration completed successfully.")
+
+    except Exception as e:
+
+        conn.rollback()
+
+        app.logger.error(f"Database migration failed: {e}")
+
+        flash(f"Database migration failed: {str(e)}")
 
     return redirect(url_for("admin_dashboard"))
 
@@ -4371,7 +4382,7 @@ def reports():
 
         """
 
-        SELECT substr(timestamp,1,7) as month, COUNT(*) as count, SUM(amount) as volume
+        SELECT SUBSTRING(timestamp,1,7) as month, COUNT(*) as count, SUM(amount) as volume
 
         FROM transactions
 
