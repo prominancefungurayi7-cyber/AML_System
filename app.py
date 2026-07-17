@@ -812,6 +812,12 @@ def _migrate_mysql(conn):
 
     column_migrations = {
 
+        "users": [
+            ("kyc_status", "VARCHAR(255) DEFAULT 'pending'"),
+            ("pep_flag", "INTEGER DEFAULT 0"),
+            ("risk_rating", "VARCHAR(255) DEFAULT 'standard'"),
+            ("wealth_segment", "VARCHAR(255) DEFAULT 'average'"),
+        ],
         "transactions": [
 
             ("rule_score", "DOUBLE DEFAULT 0"),
@@ -4264,6 +4270,56 @@ def clear_transactions():
     record_activity(admin_user["username"], "clear_transactions", "Cleared all transactions, alerts, reports, recent activity, and AI model")
 
     flash("All transactions, alerts, reports, recent activity, and the trained AI model have been cleared.")
+
+    return redirect(url_for("admin_dashboard"))
+
+
+
+@app.route("/admin/clear-watchlist", methods=["POST"])
+
+@login_required("admin")
+
+def clear_watchlist():
+
+    admin_user = get_user_by_id(session["user_id"])
+
+    conn = get_db()
+
+    conn.execute("DELETE FROM watchlist")
+
+    conn.commit()
+
+    record_activity(admin_user["username"], "clear_watchlist", "Cleared all watchlist entries")
+
+    flash("All watchlist entries have been cleared.")
+
+    return redirect(url_for("admin_dashboard"))
+
+
+
+@app.route("/admin/migrate-database", methods=["POST"])
+
+@login_required("admin")
+
+def migrate_database():
+
+    admin_user = get_user_by_id(session["user_id"])
+
+    conn = get_db()
+
+    if DB_TYPE == "sqlite":
+
+        _migrate_sqlite(conn)
+
+    elif DB_TYPE == "mysql":
+
+        _migrate_mysql(conn)
+
+    conn.commit()
+
+    record_activity(admin_user["username"], "migrate_database", "Ran database migration")
+
+    flash("Database migration completed successfully.")
 
     return redirect(url_for("admin_dashboard"))
 

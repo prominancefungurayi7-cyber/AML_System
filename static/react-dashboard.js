@@ -431,6 +431,28 @@
           },
         },
           h("button", { type: "submit", className: "danger-button" }, "Clear All Transactions")
+        ),
+        h("form", {
+          method: "post",
+          action: "/admin/clear-watchlist",
+          onSubmit: (event) => {
+            if (!window.confirm("Clear all watchlist entries?")) {
+              event.preventDefault();
+            }
+          },
+        },
+          h("button", { type: "submit", className: "danger-button" }, "Clear Watchlist")
+        ),
+        h("form", {
+          method: "post",
+          action: "/admin/migrate-database",
+          onSubmit: (event) => {
+            if (!window.confirm("Run database migration to add missing columns?")) {
+              event.preventDefault();
+            }
+          },
+        },
+          h("button", { type: "submit", className: "danger-button" }, "Migrate Database")
         )
       )
     );
