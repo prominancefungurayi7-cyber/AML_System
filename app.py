@@ -1928,7 +1928,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         SELECT COUNT(*) AS tx_count, COALESCE(SUM(amount), 0) AS volume
 
-        FROM transactions
+        FROM transactions t
 
         WHERE sender_account=? AND t.id<>? AND timestamp>=? AND timestamp<?
 
@@ -1942,7 +1942,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         """
 
-        SELECT id FROM transactions
+        SELECT id FROM transactions t
 
         WHERE sender_account=? AND receiver_account=? AND t.id<>? AND timestamp<?
 
