@@ -4226,7 +4226,7 @@ def generate_transactions():
 
         count = 100
 
-    if count not in (50, 100, 250, 500):
+    if count not in (100, 500, 1000, 2000):
 
         count = 100
 
