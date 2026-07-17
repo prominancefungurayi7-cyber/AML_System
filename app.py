@@ -873,6 +873,20 @@ def get_schema_sql():
 
     );
 
+
+
+    CREATE TABLE IF NOT EXISTS behavioral_profiles (
+
+        account_number {text_type} PRIMARY KEY,
+
+        profile_data {long_text_type},
+
+        last_updated {text_type},
+
+        total_transactions INTEGER DEFAULT 0
+
+    );
+
     """
 
 
