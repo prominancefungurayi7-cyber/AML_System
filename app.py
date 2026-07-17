@@ -1764,7 +1764,7 @@ def _simulation_transaction(label, users):
 
 
 
-def _simulation_reason(label, amount, tx_type, scenario_reason=None):def _simulation_reason(label, amount, tx_type, scenario_reason=None):
+def _simulation_reason(label, amount, tx_type, scenario_reason=None):
 
     if label == "normal":
 
