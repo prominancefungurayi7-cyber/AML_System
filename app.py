@@ -552,6 +552,8 @@ def get_schema_sql():
 
         risk_rating {text_type} DEFAULT 'standard',
 
+        wealth_segment {text_type} DEFAULT 'average',
+
         created_at {text_type} NOT NULL
 
     );
@@ -766,7 +768,7 @@ def _migrate_sqlite(conn):
 
     migrations = {
 
-        "users": ["kyc_status TEXT DEFAULT 'pending'", "pep_flag INTEGER DEFAULT 0", "risk_rating TEXT DEFAULT 'standard'"],
+        "users": ["kyc_status TEXT DEFAULT 'pending'", "pep_flag INTEGER DEFAULT 0", "risk_rating TEXT DEFAULT 'standard'", "wealth_segment TEXT DEFAULT 'average'"],
 
         "transactions": ["currency TEXT DEFAULT 'USD'", "channel TEXT DEFAULT 'online'",
 
@@ -926,7 +928,7 @@ def seed_demo_data():
 
             conn.execute(
 
-                "INSERT INTO users (username, email, id_number, password_hash, role, account_number, balance, kyc_status, created_at) VALUES (?,?,?,?,?,?,5000,'verified',?)",
+                "INSERT INTO users (username, email, id_number, password_hash, role, account_number, balance, kyc_status, wealth_segment, created_at) VALUES (?,?,?,?,?,?,5000,'verified','average',?)",
 
                 (username, email, id_number, pwd_hash, role, acct, now),
 
@@ -942,7 +944,7 @@ def seed_demo_data():
 
                 SET username=?, email=?, id_number=?, password_hash=?, role=?,
 
-                    account_number=?, kyc_status='verified'
+                    account_number=?, kyc_status='verified', wealth_segment='average'
 
                 WHERE id=?
 
@@ -952,11 +954,48 @@ def seed_demo_data():
 
             )
 
+    _seed_wealth_tier_users(conn, now)
+
     _seed_watchlist(conn)
 
     conn.commit()
 
     conn.close()
+
+
+def _seed_wealth_tier_users(conn, now):
+    """Seed users with different wealth tiers for realistic transaction simulation."""
+    wealth_tiers = {
+        "low": {"count": 5, "balance_range": (500, 5000), "transaction_range": (50, 500)},
+        "average": {"count": 5, "balance_range": (10000, 50000), "transaction_range": (500, 5000)},
+        "high": {"count": 3, "balance_range": (100000, 500000), "transaction_range": (5000, 50000)},
+        "ultra_high": {"count": 2, "balance_range": (1000000, 10000000), "transaction_range": (50000, 500000)},
+    }
+    
+    user_id = 1000
+    for tier, config in wealth_tiers.items():
+        for i in range(config["count"]):
+            username = f"user_{tier}_{i+1}"
+            email = f"{username}@example.com"
+            id_number = f"63-{user_id:07d}A{user_id % 100:02d}"
+            account_number = f"ACC{user_id}"
+            balance = random.randint(*config["balance_range"])
+            
+            existing = conn.execute(
+                "SELECT id FROM users WHERE username = ? OR account_number = ?",
+                (username, account_number),
+            ).fetchone()
+            
+            if existing is None:
+                conn.execute(
+                    """
+                    INSERT INTO users (username, email, id_number, password_hash, role, account_number, balance, kyc_status, wealth_segment, created_at)
+                    VALUES (?,?,?,?,?,?,?,?,?,?)
+                    """,
+                    (username, email, id_number, generate_password_hash("password123"), "customer", account_number,
+                     balance, "verified", tier, now),
+                )
+            user_id += 1
 
 
 
@@ -1646,6 +1685,25 @@ def _scenario_amount(low, high, label):
 
 
 
+def _simulation_segment_multiplier(segment, label):
+
+    segment = (segment or "average").lower()
+
+    multipliers = {
+
+        "low": {"normal": 0.6, "suspicious": 0.75, "super_suspicious": 0.9},
+
+        "average": {"normal": 1.0, "suspicious": 1.0, "super_suspicious": 1.0},
+
+        "high": {"normal": 1.5, "suspicious": 1.1, "super_suspicious": 1.2},
+
+        "ultra_high": {"normal": 2.0, "suspicious": 1.2, "super_suspicious": 1.3},
+
+    }
+
+    return multipliers.get(segment, multipliers["average"]).get(label, 1.0)
+
+
 def _simulation_transaction(label, users):
 
     if label == "normal":
@@ -1661,23 +1719,35 @@ def _simulation_transaction(label, users):
         scenario = random.choice(SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS)
 
 
-
     tx_type = scenario["type"]
 
-    amount = _scenario_amount(*scenario["amount"], label)
+    sender = random.choice(users)
+
+    amount = round(
+        _scenario_amount(*scenario["amount"], label)
+        * _simulation_segment_multiplier(sender.get("wealth_segment", "average"), label),
+        2,
+    )
 
     hour = random.choice(scenario["hours"])
 
 
+    if tx_type in ("withdraw", "transfer") and sender.get("balance") is not None:
 
-    sender = random.choice(users)
+        balance = float(sender["balance"] or 0)
+
+        if balance > 0 and amount > balance * 0.85:
+
+            amount = round(balance * random.uniform(0.35, 0.75), 2)
+
+            amount = max(amount, 1.0)
+
 
     recipient = sender
 
     if tx_type == "transfer" and len(users) > 1:
 
         recipient = random.choice([user for user in users if user["id"] != sender["id"]])
-
 
 
     timestamp = _simulation_timestamp(hour)
@@ -1694,9 +1764,7 @@ def _simulation_transaction(label, users):
 
 
 
-
-
-def _simulation_reason(label, amount, tx_type, scenario_reason=None):
+def _simulation_reason(label, amount, tx_type, scenario_reason=None):def _simulation_reason(label, amount, tx_type, scenario_reason=None):
 
     if label == "normal":
 
@@ -1832,9 +1900,13 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
             COALESCE(AVG(amount), 0) AS avg_amount,
 
-            COALESCE(MAX(amount), 0) AS max_amount
+            COALESCE(MAX(amount), 0) AS max_amount,
 
-        FROM transactions
+            COALESCE(u.wealth_segment, 'average') AS wealth_segment
+
+        FROM transactions t
+
+        LEFT JOIN users u ON t.sender_account = u.account_number
 
         WHERE sender_account=? AND id<>? AND timestamp<?
 
@@ -1912,6 +1984,8 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         "is_new_recipient": 0.0 if recipient_seen else 1.0,
 
+        "wealth_segment": prior["wealth_segment"] if prior and prior["wealth_segment"] else "average",
+
     })
 
     return profile
@@ -1958,15 +2032,19 @@ def _train_ai_model_from_db(conn, emit_events=True):
 
         """
 
-        SELECT id, sender_account, receiver_account, amount, transaction_type,
+        SELECT t.id, t.sender_account, t.receiver_account, t.amount, t.transaction_type,
 
-               timestamp, risk_level, risk_score, channel
+               t.timestamp, t.risk_level, t.risk_score, t.channel,
 
-        FROM transactions
+               COALESCE(u.wealth_segment, 'average') AS wealth_segment
+
+        FROM transactions t
+
+        LEFT JOIN users u ON t.sender_account = u.account_number
 
         WHERE description != 'Initiated' OR risk_score > 0
 
-        ORDER BY timestamp ASC, id ASC
+        ORDER BY t.timestamp ASC, t.id ASC
 
         """
 
@@ -3973,7 +4051,7 @@ def generate_transactions():
 
     users = get_db().execute(
 
-        "SELECT id, username, account_number FROM users WHERE role='customer' ORDER BY id"
+        "SELECT id, username, account_number, balance, wealth_segment FROM users WHERE role='customer' ORDER BY id"
 
     ).fetchall()
 
