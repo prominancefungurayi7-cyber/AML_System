@@ -174,9 +174,9 @@ class RealtimeBroker:
             try:
                 self._kafka_producer = KafkaProducer(
                     bootstrap_servers=[server.strip() for server in kafka_bootstrap.split(",") if server.strip()],
-                    api_version_auto_timeout_ms=500,
-                    request_timeout_ms=1000,
-                    max_block_ms=1000,
+                    api_version_auto_timeout_ms=100,
+                    request_timeout_ms=200,
+                    max_block_ms=200,
                     value_serializer=lambda value: json.dumps(value).encode("utf-8"),
                 )
             except Exception:
