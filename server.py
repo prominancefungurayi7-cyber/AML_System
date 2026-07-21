@@ -170,7 +170,8 @@ class RealtimeBroker:
                 self._redis_client = None
 
         kafka_bootstrap = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
-        if kafka_bootstrap and KafkaProducer is not None:
+        # Skip Kafka if not configured or set to localhost (won't work in cloud)
+        if kafka_bootstrap and KafkaProducer is not None and "localhost" not in kafka_bootstrap and "127.0.0.1" not in kafka_bootstrap:
             try:
                 self._kafka_producer = KafkaProducer(
                     bootstrap_servers=[server.strip() for server in kafka_bootstrap.split(",") if server.strip()],
