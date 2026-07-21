@@ -24,5 +24,5 @@ ENV PYTHONUNBUFFERED=1
 # Expose port
 EXPOSE 5000
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--worker-class", "eventlet", "-w", "2", "--timeout", "300", "server:app"]
+# Run the application - use Railway's dynamic PORT environment variable
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-5000} --worker-class eventlet -w 2 --timeout 300 server:app"]
