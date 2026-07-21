@@ -110,6 +110,7 @@ from typing import Optional, Dict, List, Tuple, Any
 
 # Import from consolidated ai_core module
 from ai_core import (
+    MODEL_PATH,
     PROFILE_FEATURE_DEFAULTS,
     BehavioralProfiler,
     CustomerBehavioralProfile,
@@ -400,7 +401,7 @@ def assess_transaction_behavioral_risk(
     
     if not profile:
         # Insufficient data for behavioral analysis - cold start
-        # Return neutral baseline to rely on global ML model (ai_detector.py)
+        # Return neutral baseline to rely on global ML model (ai_core.py)
         return 0, "normal", "Cold-start: insufficient transaction history for behavioral analysis (< 5 transactions)", []
     
     # Cold-start grace period: check if user has < 5 transactions
@@ -4874,7 +4875,7 @@ def ensure_ai_model_ready():
 
         return
 
-    if os.path.exists(ai_detector.MODEL_PATH):
+    if os.path.exists(MODEL_PATH):
 
         return
 
