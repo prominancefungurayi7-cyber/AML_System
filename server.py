@@ -243,9 +243,9 @@ class RealtimeBroker:
                 pass
         if self.socketio is not None:
             try:
-                self.socketio.emit(event_name, payload, broadcast=True)
+                self.socketio.emit(event_name, payload)
                 if self.app:
-                    self.app.logger.info(f"SocketIO broadcast event: {event_name} (broadcast=True)")
+                    self.app.logger.info(f"SocketIO broadcast event: {event_name}")
             except Exception as e:
                 if self.app:
                     self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
