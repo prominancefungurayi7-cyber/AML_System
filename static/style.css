@@ -80,8 +80,8 @@ body::before {
 }
 
 .topbar {
-  width: min(100% - 2rem, 1380px);
-  margin: 0.75rem auto 0;
+  width: calc(100% - 2rem);
+  margin: 0.75rem 1rem 0;
   color: var(--StanPro-text);
   padding: 0.5rem 1rem;
   display: flex;
@@ -246,8 +246,7 @@ html[data-theme="light"] .theme-toggle__thumb {
 
 main {
   padding: var(--space-4) 1.5rem 1.5rem;
-  max-width: 1380px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .hero,
@@ -1231,6 +1230,7 @@ html[data-theme="light"] .action-link:hover {
   grid-template-columns: 200px 1fr;
   gap: 1rem;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .admin-sidebar {
@@ -1296,21 +1296,18 @@ html[data-theme="light"] .action-link:hover {
 
 .sidebar-toggle {
   position: fixed;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 48px;
+  left: 1rem;
+  top: 4rem;
+  width: 36px;
+  height: 36px;
   background: var(--StanPro-green);
   border: 1px solid var(--StanPro-border);
-  border-radius: 0 4px 4px 0;
-  border-left: none;
+  border-radius: 4px;
   color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
   z-index: 100;
   transition: background 0.15s ease;
 }
@@ -1320,11 +1317,26 @@ html[data-theme="light"] .action-link:hover {
 }
 
 .sidebar-toggle::before {
-  content: "◀";
+  content: "";
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.sidebar-toggle.expanded::before {
-  content: "▶";
+.sidebar-toggle::before::after,
+.sidebar-toggle::before::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: white;
+  border-radius: 1px;
+}
+
+.sidebar-toggle::before {
+  width: 18px;
+  height: 2px;
+  background: white;
+  border-radius: 1px;
 }
 
 @media (max-width: 760px) {
