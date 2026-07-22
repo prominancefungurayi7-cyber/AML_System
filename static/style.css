@@ -1297,7 +1297,7 @@ html[data-theme="light"] .action-link:hover {
 .sidebar-toggle {
   position: fixed;
   left: 1rem;
-  top: 4rem;
+  top: 5.5rem;
   width: 36px;
   height: 36px;
   background: var(--StanPro-green);
