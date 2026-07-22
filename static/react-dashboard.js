@@ -592,22 +592,7 @@
 
     return h(window.React.Fragment, null,
       h(StatGrid, { items: metricItems }),
-      h("section", { className: "card react-filter-card action-card" },
-        h("form", { method: "get" },
-          h("label", null, "Show"),
-          h("select", { name: "filter", defaultValue: filterValue },
-            h("option", { value: "all" }, "All"),
-            h("option", { value: "flagged" }, "Flagged"),
-            h("option", { value: "suspicious" }, "Suspicious"),
-            h("option", { value: "ctr" }, "CTR required"),
-            h("option", { value: "sar" }, "SAR required")
-          ),
-          h("button", { type: "submit" }, "Apply Filter")
-        ),
-        h("p", { className: "muted-line" }, `Page ${initialData.page || 1} of ${pageCount} | ${initialData.total_count || 0} matching transactions`)
-      ),
       h("section", { className: "react-dashboard-grid compliance-dashboard-grid" },
-        h(ComplianceTransactionsPanel, { transactions }),
         h(AlertsPanel, { alerts })
       ),
       h("section", { className: "card table-card" },
