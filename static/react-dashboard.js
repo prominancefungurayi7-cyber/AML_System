@@ -627,7 +627,7 @@
       h(PanelHeading, { title: "Transactions" }),
       transactions.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Transaction", "Type", "Amount", "Risk", "AI Assessment"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Transaction", "Type", "Amount", "AI Assessment"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -638,12 +638,8 @@
             h("td", null, labelize(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
             h("td", null,
-              h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)),
+              h("span", { className: riskClass(txn.ai_risk_level || txn.risk_level) }, labelize(txn.ai_risk_level || txn.risk_level || "unavailable")),
               h("span", { className: "muted-line block-line" }, `Score ${score(txn.risk_score)}`)
-            ),
-            h("td", null,
-              h("span", null, `${labelize(txn.ai_risk_level || "unavailable")}`),
-              h("span", { className: "muted-line block-line" }, `${confidence(txn.ai_confidence)}`)
             )
           ))
         )
