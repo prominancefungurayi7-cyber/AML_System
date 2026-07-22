@@ -110,21 +110,34 @@
         Object.keys(handlers).forEach((eventName) => socket.on(eventName, handlers[eventName]));
         
         socket.on('connect', () => {
-          console.log('SocketIO connected');
+          console.log('SocketIO connected', { socketId: socket.id });
         });
         
-        socket.on('disconnect', () => {
-          console.log('SocketIO disconnected');
+        socket.on('disconnect', (reason) => {
+          console.log('SocketIO disconnected', { reason });
         });
         
         socket.on('connect_error', (error) => {
           console.error('SocketIO connection error:', error);
         });
         
+        socket.on('reconnect', (attemptNumber) => {
+          console.log('SocketIO reconnected', { attemptNumber });
+        });
+        
+        socket.on('reconnect_attempt', (attemptNumber) => {
+          console.log('SocketIO reconnection attempt', { attemptNumber });
+        });
+        
+        socket.on('reconnect_error', (error) => {
+          console.error('SocketIO reconnection error:', error);
+        });
+        
         return () => socket.disconnect();
       }
 
       if (window.EventSource) {
+        console.log('Using EventSource fallback for realtime');
         const source = new EventSource("/stream");
         Object.keys(handlers).forEach((eventName) => {
           source.addEventListener(eventName, (event) => {
@@ -140,6 +153,7 @@
         return () => source.close();
       }
 
+      console.warn('Neither SocketIO nor EventSource available for realtime');
       return undefined;
     }, []);
   }

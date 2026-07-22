@@ -186,26 +186,40 @@ class RealtimeBroker:
     def _start_redis_listener(self):
         """Subscribe to Redis pub/sub for cross-instance event fan-out."""
         if self._redis_client is None:
+            if self.app:
+                self.app.logger.warning("Redis client not available, skipping Redis listener")
             return
         try:
             self._redis_pubsub = self._redis_client.pubsub(ignore_subscribe_messages=True)
             self._redis_pubsub.subscribe("aml-events")
+            if self.app:
+                self.app.logger.info("Redis listener started, subscribed to 'aml-events' channel")
 
             def _listen():
+                if self.app:
+                    self.app.logger.info("Redis listener thread started")
                 for raw in self._redis_pubsub.listen():
                     if raw.get("type") != "message":
                         continue
                     try:
                         message = json.loads(raw["data"])
                         if message.get("publisher") == self._instance_id:
+                            if self.app:
+                                self.app.logger.debug(f"Skipping own event from Redis: {message.get('event')}")
                             continue
-                        self._local_deliver(message.get("event"), message.get("data"))
-                    except Exception:
-                        pass
+                        event_name = message.get("event")
+                        if self.app:
+                            self.app.logger.info(f"Received event from Redis: {event_name}")
+                        self._local_deliver(event_name, message.get("data"))
+                    except Exception as e:
+                        if self.app:
+                            self.app.logger.error(f"Error processing Redis message: {e}")
 
             thread = threading.Thread(target=_listen, daemon=True)
             thread.start()
-        except Exception:
+        except Exception as e:
+            if self.app:
+                self.app.logger.error(f"Failed to start Redis listener: {e}")
             self._redis_pubsub = None
 
     def _local_deliver(self, event_name, payload):
@@ -227,7 +241,7 @@ class RealtimeBroker:
             try:
                 self.socketio.emit(event_name, payload, broadcast=True)
                 if self.app:
-                    self.app.logger.debug(f"SocketIO broadcast event: {event_name}")
+                    self.app.logger.info(f"SocketIO broadcast event: {event_name} (broadcast=True)")
             except Exception as e:
                 if self.app:
                     self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
@@ -255,7 +269,7 @@ class RealtimeBroker:
                 self._redis_client.expire(event_key, 3600)
                 self._redis_client.publish("aml-events", json.dumps(message))
                 if self.app:
-                    self.app.logger.debug(f"Published event to Redis: {event_name}")
+                    self.app.logger.info(f"Published event to Redis: {event_name}")
             except Exception as e:
                 if self.app:
                     self.app.logger.error(f"Failed to publish event to Redis: {e}")
@@ -493,6 +507,8 @@ socketio_kwargs = {
     "cors_allowed_origins": "*",
     "manage_session": False,
     "async_mode": "threading",
+    "logger": True,
+    "engineio_logger": True,
 }
 
 if redis_url and redis is not None:
@@ -506,6 +522,7 @@ else:
     app.logger.warning("REDIS_URL not configured, SocketIO will work in single-instance mode")
 
 socketio = SocketIO(app, **socketio_kwargs)
+app.logger.info(f"SocketIO initialized with async_mode: {socketio.async_mode}")
 
 app.extensions["realtime_broker"] = RealtimeBroker(app=app, socketio=socketio)
 
