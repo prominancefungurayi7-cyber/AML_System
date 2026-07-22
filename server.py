@@ -162,11 +162,15 @@ class RealtimeBroker:
                 self._redis_client = redis.from_url(
                     redis_url,
                     decode_responses=True,
-                    socket_connect_timeout=0.5,
-                    socket_timeout=0.5,
+                    socket_connect_timeout=5.0,
+                    socket_timeout=5.0,
                 )
                 self._redis_client.ping()
-            except Exception:
+                if self.app:
+                    self.app.logger.info(f"RealtimeBroker connected to Redis: {redis_url}")
+            except Exception as e:
+                if self.app:
+                    self.app.logger.error(f"RealtimeBroker failed to connect to Redis: {e}")
                 self._redis_client = None
 
         kafka_bootstrap = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
@@ -1667,7 +1671,8 @@ def get_last_insert_id(conn):
 
 
 def broadcast_event(event_name, payload):
-
+    if app:
+        app.logger.info(f"broadcast_event called: {event_name}")
     app.extensions["realtime_broker"].publish(event_name, payload)
 
 

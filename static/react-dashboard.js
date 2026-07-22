@@ -184,6 +184,14 @@
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const sidebarItems = [
+      { id: "overview", label: "Overview" },
+      { id: "transactions", label: "Transactions" },
+      { id: "alerts", label: "Alerts" },
+      { id: "activity", label: "Activity Feed" },
+      { id: "signout", label: "Sign Out", href: "/logout" }
+    ];
+
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
       if (!ownsTransaction(txn, accountNumber)) return;
@@ -255,13 +263,6 @@
       { label: "Open alerts", value: stats.open_alerts || alerts.filter((alert) => alert.status === "open").length, caption: "live cases" },
     ];
 
-    const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "transactions", label: "Transactions" },
-      { id: "alerts", label: "Alerts" },
-      { id: "activity", label: "Activity Feed" },
-    ];
-
     const renderSection = () => {
       switch (activeSection) {
         case "overview":
@@ -315,7 +316,11 @@
         onClick: () => setSidebarOpen(true),
         type: "button",
         "aria-label": "Open sidebar"
-      }),
+      }, h("svg", { viewBox: "0 0 24 24" },
+        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
+        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
+        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
+      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)
@@ -323,15 +328,21 @@
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("h3", null, "Customer Portal"),
         h("nav", null,
-          sidebarItems.map((item) => h("button", {
-            key: item.id,
-            className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-            onClick: () => {
-              setActiveSection(item.id);
-              setSidebarOpen(false);
-            },
-            type: "button"
-          }, item.label))
+          sidebarItems.map((item) => item.href ? 
+            h("a", {
+              key: item.id,
+              href: item.href,
+              className: "sidebar-item"
+            }, item.label) :
+            h("button", {
+              key: item.id,
+              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
+              onClick: () => {
+                setActiveSection(item.id);
+                setSidebarOpen(false);
+              },
+              type: "button"
+            }, item.label))
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
@@ -398,6 +409,16 @@
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const sidebarItems = [
+      { id: "overview", label: "Overview" },
+      { id: "users", label: "User Management" },
+      { id: "transactions", label: "Transactions" },
+      { id: "watchlist", label: "Watchlist" },
+      { id: "activity", label: "Activity Feed" },
+      { id: "reports", label: "Reports", href: "/reports" },
+      { id: "signout", label: "Sign Out", href: "/logout" }
+    ];
+
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
       const txType = txn.transaction_type || txn.type;
@@ -455,15 +476,6 @@
       { label: "Open alerts", value: stats.open_alerts || 0, caption: "active cases" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "pending review" },
       { label: "Pending CTRs", value: stats.pending_ctrs || 0, caption: "currency reports" },
-    ];
-
-    const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "users", label: "Users" },
-      { id: "transactions", label: "Transactions" },
-      { id: "watchlist", label: "Watchlist" },
-      { id: "activity", label: "Activity" },
-      { id: "settings", label: "Settings" },
     ];
 
     const renderSection = () => {
@@ -582,7 +594,11 @@
         onClick: () => setSidebarOpen(true),
         type: "button",
         "aria-label": "Open sidebar"
-      }),
+      }, h("svg", { viewBox: "0 0 24 24" },
+        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
+        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
+        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
+      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)
@@ -590,15 +606,21 @@
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("h3", null, "Admin Panel"),
         h("nav", null,
-          sidebarItems.map((item) => h("button", {
-            key: item.id,
-            className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-            onClick: () => {
-              setActiveSection(item.id);
-              setSidebarOpen(false);
-            },
-            type: "button"
-          }, item.label))
+          sidebarItems.map((item) => item.href ? 
+            h("a", {
+              key: item.id,
+              href: item.href,
+              className: "sidebar-item"
+            }, item.label) :
+            h("button", {
+              key: item.id,
+              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
+              onClick: () => {
+                setActiveSection(item.id);
+                setSidebarOpen(false);
+              },
+              type: "button"
+            }, item.label))
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
@@ -685,6 +707,14 @@
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const filterValue = initialData.filter_value || "all";
 
+    const sidebarItems = [
+      { id: "overview", label: "Overview" },
+      { id: "alerts", label: "Alerts" },
+      { id: "activity", label: "Activity Feed" },
+      { id: "reports", label: "Reports", href: "/reports" },
+      { id: "signout", label: "Sign Out", href: "/logout" }
+    ];
+
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
       if (filterValue === "flagged") return txn.risk_level !== "normal";
@@ -738,12 +768,6 @@
       { label: "Pending CTRs", value: stats.pending_ctrs || 0, caption: "currency reports" },
     ];
 
-    const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "alerts", label: "Alerts" },
-      { id: "activity", label: "Activity Feed" },
-    ];
-
     const renderSection = () => {
       switch (activeSection) {
         case "overview":
@@ -774,7 +798,11 @@
         onClick: () => setSidebarOpen(true),
         type: "button",
         "aria-label": "Open sidebar"
-      }),
+      }, h("svg", { viewBox: "0 0 24 24" },
+        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
+        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
+        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
+      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)
@@ -782,15 +810,21 @@
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("h3", null, "Compliance Panel"),
         h("nav", null,
-          sidebarItems.map((item) => h("button", {
-            key: item.id,
-            className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-            onClick: () => {
-              setActiveSection(item.id);
-              setSidebarOpen(false);
-            },
-            type: "button"
-          }, item.label))
+          sidebarItems.map((item) => item.href ? 
+            h("a", {
+              key: item.id,
+              href: item.href,
+              className: "sidebar-item"
+            }, item.label) :
+            h("button", {
+              key: item.id,
+              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
+              onClick: () => {
+                setActiveSection(item.id);
+                setSidebarOpen(false);
+              },
+              type: "button"
+            }, item.label))
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
