@@ -280,6 +280,40 @@ class RealtimeBroker:
             except Exception:
                 pass
 
+    def queue_for_offline_user(self, user_id, event_name, payload):
+        """Queue message for offline user to deliver when they reconnect"""
+        if self._redis_client is None:
+            if self.app:
+                self.app.logger.warning("Redis not available, cannot queue offline message")
+            return
+        
+        try:
+            offline_queue_key = f"offline_queue:user:{user_id}"
+            message = {"event": event_name, "data": payload, "timestamp": int(time.time())}
+            self._redis_client.lpush(offline_queue_key, json.dumps(message))
+            self._redis_client.ltrim(offline_queue_key, 0, 99)  # Keep last 100 messages
+            self._redis_client.expire(offline_queue_key, 86400)  # 24 hour TTL
+            if self.app:
+                self.app.logger.info(f"Queued event {event_name} for offline user {user_id}")
+        except Exception as e:
+            if self.app:
+                self.app.logger.error(f"Failed to queue offline message for user {user_id}: {e}")
+
+    def get_offline_queue(self, user_id):
+        """Retrieve queued messages for user who just reconnected"""
+        if self._redis_client is None:
+            return []
+        
+        try:
+            offline_queue_key = f"offline_queue:user:{user_id}"
+            messages = self._redis_client.lrange(offline_queue_key, 0, -1)
+            self._redis_client.delete(offline_queue_key)
+            return [json.loads(msg) for msg in messages]
+        except Exception as e:
+            if self.app:
+                self.app.logger.error(f"Failed to retrieve offline queue for user {user_id}: {e}")
+            return []
+
     def stream_response(self):
         queue = Queue()
         self.add_subscriber(queue)
@@ -528,7 +562,7 @@ app.extensions["realtime_broker"] = RealtimeBroker(app=app, socketio=socketio)
 
 
 
-# SocketIO authentication middleware
+# SocketIO authentication middleware with presence tracking
 
 @socketio.on('connect')
 def handle_connect():
@@ -538,13 +572,52 @@ def handle_connect():
     
     user_id = session.get('user_id')
     role = session.get('role', 'unknown')
-    app.logger.info(f"User {user_id} (role: {role}) connected via SocketIO")
+    sid = request.sid
+    
+    # Store presence in Redis for cross-server routing
+    broker = app.extensions.get('realtime_broker')
+    if broker and broker._redis_client:
+        try:
+            presence_key = f"presence:user:{user_id}"
+            broker._redis_client.hset(presence_key, mapping={
+                'sid': sid,
+                'server_id': broker._instance_id,
+                'role': role,
+                'connected_at': int(time.time())
+            })
+            broker._redis_client.expire(presence_key, 300)  # 5 minute TTL
+            app.logger.info(f"User {user_id} (role: {role}) connected via SocketIO, presence stored in Redis")
+            
+            # Deliver queued offline messages
+            offline_messages = broker.get_offline_queue(user_id)
+            if offline_messages:
+                app.logger.info(f"Delivering {len(offline_messages)} queued messages to user {user_id}")
+                for msg in reversed(offline_messages):  # Deliver in chronological order
+                    socketio.emit(msg['event'], msg['data'], to=sid)
+        except Exception as e:
+            app.logger.error(f"Failed to store presence in Redis: {e}")
+    else:
+        app.logger.warning(f"User {user_id} (role: {role}) connected via SocketIO (no Redis presence tracking)")
     
     # Send initial connection confirmation
-    socketio.emit('connect', {'status': 'connected', 'user_id': user_id}, to=request.sid)
+    socketio.emit('connect', {'status': 'connected', 'user_id': user_id}, to=sid)
     
     return True
 
+
+@socketio.on('heartbeat')
+def handle_heartbeat():
+    """Client heartbeat to maintain connection and refresh presence TTL"""
+    if 'user_id' in session:
+        user_id = session.get('user_id')
+        broker = app.extensions.get('realtime_broker')
+        if broker and broker._redis_client:
+            try:
+                presence_key = f"presence:user:{user_id}"
+                broker._redis_client.expire(presence_key, 300)  # Refresh TTL
+                app.logger.debug(f"Heartbeat received from user {user_id}")
+            except Exception as e:
+                app.logger.error(f"Failed to refresh presence TTL: {e}")
 
 
 @socketio.on('disconnect')
@@ -552,7 +625,18 @@ def handle_disconnect():
     if 'user_id' in session:
         user_id = session.get('user_id')
         role = session.get('role', 'unknown')
-        app.logger.info(f"User {user_id} (role: {role}) disconnected from SocketIO")
+        
+        # Remove presence from Redis
+        broker = app.extensions.get('realtime_broker')
+        if broker and broker._redis_client:
+            try:
+                presence_key = f"presence:user:{user_id}"
+                broker._redis_client.delete(presence_key)
+                app.logger.info(f"User {user_id} (role: {role}) disconnected, presence removed from Redis")
+            except Exception as e:
+                app.logger.error(f"Failed to remove presence from Redis: {e}")
+        else:
+            app.logger.info(f"User {user_id} (role: {role}) disconnected from SocketIO")
 
 
 

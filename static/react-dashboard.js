@@ -133,7 +133,17 @@
           console.error('SocketIO reconnection error:', error);
         });
         
-        return () => socket.disconnect();
+        // Send heartbeat every 30 seconds to maintain connection
+        const heartbeatInterval = setInterval(() => {
+          if (socket.connected) {
+            socket.emit('heartbeat');
+          }
+        }, 30000);
+        
+        return () => {
+          clearInterval(heartbeatInterval);
+          socket.disconnect();
+        };
       }
 
       if (window.EventSource) {
