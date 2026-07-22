@@ -158,6 +158,7 @@
     const [feed, setFeed] = useState([]);
     const [status, setStatus] = useState("Connected | live monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
@@ -285,7 +286,13 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("aside", { className: "admin-sidebar" },
+      h("button", {
+        className: `sidebar-toggle ${sidebarCollapsed ? "expanded" : ""}`,
+        onClick: () => setSidebarCollapsed(!sidebarCollapsed),
+        type: "button",
+        "aria-label": sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+      }),
+      h("aside", { className: `admin-sidebar ${sidebarCollapsed ? "collapsed" : ""}` },
         h("h3", null, "Customer Portal"),
         h("nav", null,
           sidebarItems.map((item) => h("button", {
@@ -358,6 +365,7 @@
     const [watchlist, setWatchlist] = useState(initialData.watchlist || []);
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
@@ -538,7 +546,13 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("aside", { className: "admin-sidebar" },
+      h("button", {
+        className: `sidebar-toggle ${sidebarCollapsed ? "expanded" : ""}`,
+        onClick: () => setSidebarCollapsed(!sidebarCollapsed),
+        type: "button",
+        "aria-label": sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+      }),
+      h("aside", { className: `admin-sidebar ${sidebarCollapsed ? "collapsed" : ""}` },
         h("h3", null, "Admin Panel"),
         h("nav", null,
           sidebarItems.map((item) => h("button", {
@@ -630,6 +644,7 @@
     const [feed, setFeed] = useState([]);
     const [status, setStatus] = useState("Connected | live alert monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const filterValue = initialData.filter_value || "all";
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
@@ -716,7 +731,13 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("aside", { className: "admin-sidebar" },
+      h("button", {
+        className: `sidebar-toggle ${sidebarCollapsed ? "expanded" : ""}`,
+        onClick: () => setSidebarCollapsed(!sidebarCollapsed),
+        type: "button",
+        "aria-label": sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+      }),
+      h("aside", { className: `admin-sidebar ${sidebarCollapsed ? "collapsed" : ""}` },
         h("h3", null, "Compliance Panel"),
         h("nav", null,
           sidebarItems.map((item) => h("button", {

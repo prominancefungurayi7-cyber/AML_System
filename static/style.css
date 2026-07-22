@@ -1239,6 +1239,16 @@ html[data-theme="light"] .action-link:hover {
   border-radius: 4px;
   padding: 1rem;
   height: fit-content;
+  transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.admin-sidebar.collapsed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-100%);
 }
 
 .admin-sidebar h3 {
@@ -1282,6 +1292,39 @@ html[data-theme="light"] .action-link:hover {
 
 .admin-content {
   min-width: 0;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 48px;
+  background: var(--StanPro-green);
+  border: 1px solid var(--StanPro-border);
+  border-radius: 0 4px 4px 0;
+  border-left: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  z-index: 100;
+  transition: background 0.15s ease;
+}
+
+.sidebar-toggle:hover {
+  background: var(--StanPro-green-dark);
+}
+
+.sidebar-toggle::before {
+  content: "◀";
+}
+
+.sidebar-toggle.expanded::before {
+  content: "▶";
 }
 
 @media (max-width: 760px) {
