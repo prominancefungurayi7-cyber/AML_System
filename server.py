@@ -263,6 +263,8 @@ class RealtimeBroker:
 
     def publish(self, event_name, payload):
         message = {"event": event_name, "data": payload, "publisher": self._instance_id}
+        if self.app:
+            self.app.logger.info(f"RealtimeBroker.publish called for event: {event_name}")
         self._local_deliver(event_name, payload)
 
         if self._redis_client is not None:
@@ -277,6 +279,9 @@ class RealtimeBroker:
             except Exception as e:
                 if self.app:
                     self.app.logger.error(f"Failed to publish event to Redis: {e}")
+        else:
+            if self.app:
+                self.app.logger.warning("Redis client not available, event not published to Redis")
 
         if self._kafka_producer is not None:
             try:
@@ -552,7 +557,7 @@ socketio_kwargs = {
 if redis_url and redis is not None:
     try:
         socketio_kwargs["message_queue"] = redis_url
-        socketio_kwargs["channel"] = "aml-socketio"
+        socketio_kwargs["channel"] = "aml-events"
         app.logger.info(f"SocketIO configured with Redis message queue: {redis_url}")
     except Exception as e:
         app.logger.warning(f"Failed to configure Redis message queue: {e}")
