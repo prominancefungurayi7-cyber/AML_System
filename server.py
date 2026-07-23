@@ -4486,7 +4486,7 @@ def admin_dashboard():
 @login_required("admin")
 
 def generate_transactions():
-
+    app.logger.info("Transaction generation route called")
     admin_user = get_user_by_id(session["user_id"])
 
     try:
@@ -4665,6 +4665,7 @@ def generate_transactions():
 
         )
 
+        app.logger.info(f"Transaction generation completed: {count} transactions generated")
         flash(f"Generated {count} transactions: {generated['normal']} normal, {generated['flagged']} flagged, {generated['critical']} critical.")
 
         return redirect(url_for("admin_dashboard"))
