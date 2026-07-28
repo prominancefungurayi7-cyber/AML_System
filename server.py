@@ -613,7 +613,7 @@ def handle_connect():
         app.logger.warning(f"User {user_id} (role: {role}) connected via SocketIO (no Redis presence tracking)")
     
     # Send initial connection confirmation
-    socketio.emit('connect', {'status': 'connected', 'user_id': user_id}, to=sid)
+    socketio.emit('connection_confirmed', {'status': 'connected', 'user_id': user_id}, to=sid)
     
     return True
 
