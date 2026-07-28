@@ -103,6 +103,11 @@ html[data-theme="light"] .topbar {
 
 .brand-block { display: flex; align-items: center; gap: 1rem; }
 
+/* Hide sidebar toggle on pages without sidebar */
+.no-sidebar .sidebar-toggle {
+  display: none;
+}
+
 .brand-mark {
   min-width: 60px;
   width: auto;
