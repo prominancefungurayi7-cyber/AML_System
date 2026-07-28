@@ -1346,9 +1346,68 @@ html[data-theme="light"] .action-link:hover {
   opacity: 1;
 }
 
+.sidebar-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.sidebar-close-button:hover {
+  background: var(--StanPro-hover);
+}
+
+.sidebar-close-button svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--StanPro-text);
+  fill: currentColor;
+}
+
 .sidebar-toggle:hover {
   background: var(--StanPro-green-dark);
   transform: scale(1.05);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--StanPro-text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.sidebar-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: var(--StanPro-text);
+}
+
+.sidebar-item:hover {
+  background: var(--StanPro-hover);
+}
+
+.sidebar-item.active {
+  background: var(--StanPro-green);
+  color: white;
+}
+
+.sidebar-item.active svg {
+  stroke: white;
 }
 
 .sidebar-toggle.hidden {

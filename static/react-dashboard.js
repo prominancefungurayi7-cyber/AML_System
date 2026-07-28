@@ -14,6 +14,57 @@
   const { createElement: h, useEffect, useMemo, useState } = window.React;
   const suspiciousLevels = ["suspicious", "super_suspicious", "high_risk", "critical"];
 
+  function Icon({ name }) {
+    const icons = {
+      home: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("polyline", { points: "9 22 9 12 15 12 15 22", fill: "none", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      users: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("circle", { cx: "9", cy: "7", r: "4", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("path", { d: "M16 3.13a4 4 0 0 1 0 7.75", fill: "none", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      list: h("svg", { viewBox: "0 0 24 24" },
+        h("line", { x1: "8", y1: "6", x2: "21", y2: "6", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "8", y1: "12", x2: "21", y2: "12", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "8", y1: "18", x2: "21", y2: "18", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "3", y1: "6", x2: "3.01", y2: "6", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "3", y1: "12", x2: "3.01", y2: "12", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "3", y1: "18", x2: "3.01", y2: "18", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      shield: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", fill: "none", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      activity: h("svg", { viewBox: "0 0 24 24" },
+        h("polyline", { points: "22 12 18 12 15 21 9 3 6 12 2 12", fill: "none", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      settings: h("svg", { viewBox: "0 0 24 24" },
+        h("circle", { cx: "12", cy: "12", r: "3", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("path", { d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z", fill: "none", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      file: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("polyline", { points: "14 2 14 8 20 8", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "16", y1: "13", x2: "8", y2: "13", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "16", y1: "17", x2: "8", y2: "17", stroke: "currentColor", strokeWidth: 2 }),
+        h("polyline", { points: "10 9 9 9 8 9", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      logout: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("polyline", { points: "16 17 21 12 16 7", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "21", y1: "12", x2: "9", y2: "12", stroke: "currentColor", strokeWidth: 2 })
+      ),
+      alert: h("svg", { viewBox: "0 0 24 24" },
+        h("path", { d: "M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z", fill: "none", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "12", y1: "9", x2: "12", y2: "13", stroke: "currentColor", strokeWidth: 2 }),
+        h("line", { x1: "12", y1: "17", x2: "12.01", y2: "17", stroke: "currentColor", strokeWidth: 2 })
+      )
+    };
+    return icons[name] || null;
+  }
+
   function readJson(id) {
     const node = document.getElementById(id);
     if (!node) return {};
@@ -194,11 +245,11 @@
     const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "transactions", label: "Transactions" },
-      { id: "alerts", label: "Alerts" },
-      { id: "activity", label: "Activity Feed" },
-      { id: "signout", label: "Sign Out", href: "/logout" }
+      { id: "overview", label: "Overview", icon: "home" },
+      { id: "transactions", label: "Transactions", icon: "list" },
+      { id: "alerts", label: "Alerts", icon: "alert" },
+      { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
     const toggleTheme = () => {
@@ -359,14 +410,23 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("h3", null, "Customer Portal"),
+        sidebarOpen && h("button", {
+          className: "sidebar-close-button",
+          onClick: () => setSidebarOpen(false),
+          type: "button",
+          "aria-label": "Close sidebar"
+        }, h("svg", { viewBox: "0 0 24 24" },
+          h("circle", { cx: "12", cy: "5", r: "1.5" }),
+          h("circle", { cx: "12", cy: "12", r: "1.5" }),
+          h("circle", { cx: "12", cy: "19", r: "1.5" })
+        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
               key: item.id,
               href: item.href,
               className: "sidebar-item"
-            }, item.label) :
+            }, h(Icon, { name: item.icon }), item.label) :
             h("button", {
               key: item.id,
               className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
@@ -375,7 +435,7 @@
                 setSidebarOpen(false);
               },
               type: "button"
-            }, item.label))
+            }, h(Icon, { name: item.icon }), item.label))
         ),
         h("div", { className: "sidebar-footer" },
           h("button", {
@@ -457,14 +517,14 @@
     const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "users", label: "User Management" },
-      { id: "transactions", label: "Transactions" },
-      { id: "watchlist", label: "Watchlist" },
-      { id: "activity", label: "Activity Feed" },
-      { id: "settings", label: "Settings" },
-      { id: "reports", label: "Reports", href: "/reports" },
-      { id: "signout", label: "Sign Out", href: "/logout" }
+      { id: "overview", label: "Overview", icon: "home" },
+      { id: "users", label: "User Management", icon: "users" },
+      { id: "transactions", label: "Transactions", icon: "list" },
+      { id: "watchlist", label: "Watchlist", icon: "shield" },
+      { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "settings", label: "Settings", icon: "settings" },
+      { id: "reports", label: "Reports", href: "/reports", icon: "file" },
+      { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
     const toggleTheme = () => {
@@ -676,14 +736,23 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("h3", null, "Admin Panel"),
+        sidebarOpen && h("button", {
+          className: "sidebar-close-button",
+          onClick: () => setSidebarOpen(false),
+          type: "button",
+          "aria-label": "Close sidebar"
+        }, h("svg", { viewBox: "0 0 24 24" },
+          h("circle", { cx: "12", cy: "5", r: "1.5" }),
+          h("circle", { cx: "12", cy: "12", r: "1.5" }),
+          h("circle", { cx: "12", cy: "19", r: "1.5" })
+        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
               key: item.id,
               href: item.href,
               className: "sidebar-item"
-            }, item.label) :
+            }, h(Icon, { name: item.icon }), item.label) :
             h("button", {
               key: item.id,
               className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
@@ -692,7 +761,7 @@
                 setSidebarOpen(false);
               },
               type: "button"
-            }, item.label))
+            }, h(Icon, { name: item.icon }), item.label))
         ),
         h("div", { className: "sidebar-footer" },
           h("button", {
@@ -794,11 +863,11 @@
     const filterValue = initialData.filter_value || "all";
 
     const sidebarItems = [
-      { id: "overview", label: "Overview" },
-      { id: "alerts", label: "Alerts" },
-      { id: "activity", label: "Activity Feed" },
-      { id: "reports", label: "Reports", href: "/reports" },
-      { id: "signout", label: "Sign Out", href: "/logout" }
+      { id: "overview", label: "Overview", icon: "home" },
+      { id: "alerts", label: "Alerts", icon: "alert" },
+      { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "reports", label: "Reports", href: "/reports", icon: "file" },
+      { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
     const toggleTheme = () => {
@@ -918,14 +987,23 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("h3", null, "Compliance Panel"),
+        sidebarOpen && h("button", {
+          className: "sidebar-close-button",
+          onClick: () => setSidebarOpen(false),
+          type: "button",
+          "aria-label": "Close sidebar"
+        }, h("svg", { viewBox: "0 0 24 24" },
+          h("circle", { cx: "12", cy: "5", r: "1.5" }),
+          h("circle", { cx: "12", cy: "12", r: "1.5" }),
+          h("circle", { cx: "12", cy: "19", r: "1.5" })
+        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
               key: item.id,
               href: item.href,
               className: "sidebar-item"
-            }, item.label) :
+            }, h(Icon, { name: item.icon }), item.label) :
             h("button", {
               key: item.id,
               className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
@@ -934,7 +1012,7 @@
                 setSidebarOpen(false);
               },
               type: "button"
-            }, item.label))
+            }, h(Icon, { name: item.icon }), item.label))
         ),
         h("div", { className: "sidebar-footer" },
           h("button", {
