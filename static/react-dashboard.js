@@ -415,6 +415,7 @@
       { id: "transactions", label: "Transactions" },
       { id: "watchlist", label: "Watchlist" },
       { id: "activity", label: "Activity Feed" },
+      { id: "settings", label: "Settings" },
       { id: "reports", label: "Reports", href: "/reports" },
       { id: "signout", label: "Sign Out", href: "/logout" }
     ];
