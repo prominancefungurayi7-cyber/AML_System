@@ -52,28 +52,12 @@
       </main>
     </div>
     <script>
-      const themeToggle = document.querySelector(".theme-toggle");
-      const themeText = document.querySelector(".theme-toggle__text");
-      const applyThemeLabel = () => {
-        const isLight = document.documentElement.dataset.theme === "light";
-        themeToggle.setAttribute("aria-label", `Switch to ${isLight ? "dark" : "light"} theme`);
-        themeToggle.setAttribute("aria-pressed", String(isLight));
-        themeText.textContent = isLight ? "Light" : "Dark";
-      };
-      applyThemeLabel();
-      themeToggle.addEventListener("click", () => {
-        const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-        document.documentElement.dataset.theme = nextTheme;
-        localStorage.setItem("StanPro-theme", nextTheme);
-        document.cookie = `StanPro-theme=${encodeURIComponent(nextTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
-        applyThemeLabel();
-      });
-
+      // Auto-fade flash messages after 4 seconds
       document.querySelectorAll(".flash-messages").forEach((flash) => {
         window.setTimeout(() => {
           flash.classList.add("is-clearing");
           flash.addEventListener("transitionend", () => flash.remove(), { once: true });
-        }, 5000);
+        }, 4000);
       });
     </script>
   </body>
