@@ -212,6 +212,11 @@ class RealtimeBroker:
                                 self.app.logger.debug(f"Skipping own event from Redis: {message.get('event')}")
                             continue
                         event_name = message.get("event")
+                        # Skip internal SocketIO events to prevent infinite loops
+                        if event_name in ['connect', 'disconnect', 'heartbeat']:
+                            if self.app:
+                                self.app.logger.debug(f"Skipping internal SocketIO event from Redis: {event_name}")
+                            continue
                         if self.app:
                             self.app.logger.info(f"Received event from Redis: {event_name}")
                         self._local_deliver(event_name, message.get("data"))
