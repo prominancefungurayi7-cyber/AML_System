@@ -1909,6 +1909,35 @@ def _generate_sar_ref():
     return f"SAR-{ts.year}-{ts.strftime('%m%d')}-{random.randint(1000,9999)}"
 
 
+def update_customer_risk_rating(db, account_number, action, current_risk):
+    """Update customer risk rating based on alert action."""
+    risk_levels = ["standard", "medium", "high", "critical"]
+    
+    try:
+        current_idx = risk_levels.index(current_risk.lower()) if current_risk.lower() in risk_levels else 0
+    except:
+        current_idx = 0
+    
+    if action == "resolve":
+        # Reduce risk level on resolve
+        new_idx = max(0, current_idx - 1)
+    elif action == "escalate":
+        # Increase risk level on escalate
+        new_idx = min(len(risk_levels) - 1, current_idx + 1)
+    elif action == "file_sar":
+        # Set to high or critical on SAR
+        new_idx = min(len(risk_levels) - 1, current_idx + 2)
+    else:
+        return current_risk
+    
+    new_risk = risk_levels[new_idx]
+    
+    # Update database (caller will commit)
+    db.execute("UPDATE users SET risk_rating=? WHERE account_number=?", (new_risk, account_number))
+    
+    return new_risk
+
+
 
 def _generate_ctr_ref():
 
