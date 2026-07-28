@@ -1358,14 +1358,15 @@ html[data-theme="light"] .action-link:hover {
 
 .sidebar-close-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 4px;
   transition: background 0.2s ease;
+  z-index: 10;
 }
 
 .sidebar-close-button:hover {

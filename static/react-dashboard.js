@@ -266,6 +266,18 @@
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
+    // Hide/show header toggle button based on sidebar state
+    useEffect(() => {
+      const headerToggle = document.getElementById('sidebar-toggle');
+      if (headerToggle) {
+        if (sidebarOpen) {
+          headerToggle.classList.add('hidden');
+        } else {
+          headerToggle.classList.remove('hidden');
+        }
+      }
+    }, [sidebarOpen]);
+
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
       if (!ownsTransaction(txn, accountNumber)) return;
@@ -520,6 +532,18 @@
       window.addEventListener('sidebar-toggle-click', handleToggleClick);
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
+
+    // Hide/show header toggle button based on sidebar state
+    useEffect(() => {
+      const headerToggle = document.getElementById('sidebar-toggle');
+      if (headerToggle) {
+        if (sidebarOpen) {
+          headerToggle.classList.add('hidden');
+        } else {
+          headerToggle.classList.remove('hidden');
+        }
+      }
+    }, [sidebarOpen]);
 
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
@@ -843,6 +867,18 @@
       window.addEventListener('sidebar-toggle-click', handleToggleClick);
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
+
+    // Hide/show header toggle button based on sidebar state
+    useEffect(() => {
+      const headerToggle = document.getElementById('sidebar-toggle');
+      if (headerToggle) {
+        if (sidebarOpen) {
+          headerToggle.classList.add('hidden');
+        } else {
+          headerToggle.classList.remove('hidden');
+        }
+      }
+    }, [sidebarOpen]);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
