@@ -155,7 +155,9 @@
           reconnection: true,
           reconnectionAttempts: Infinity,
           reconnectionDelay: 1000,
-          reconnectionDelayMax: 5000
+          reconnectionDelayMax: 5000,
+          pingTimeout: 60000,
+          pingInterval: 10000
         });
         
         Object.keys(handlers).forEach((eventName) => socket.on(eventName, handlers[eventName]));
@@ -166,14 +168,6 @@
         
         socket.on('disconnect', (reason) => {
           console.log('SocketIO disconnected', { reason });
-          // Add delay before reconnect to prevent rapid reconnection loops
-          if (reason === 'transport close' || reason === 'ping timeout') {
-            setTimeout(() => {
-              if (!socket.connected) {
-                socket.connect();
-              }
-            }, 2000);
-          }
         });
         
         socket.on('connect_error', (error) => {
@@ -192,12 +186,12 @@
           console.error('SocketIO reconnection error:', error);
         });
         
-        // Send heartbeat every 30 seconds to maintain connection
+        // Send heartbeat every 15 seconds to maintain connection (more frequent than ping timeout)
         const heartbeatInterval = setInterval(() => {
           if (socket.connected) {
             socket.emit('heartbeat');
           }
-        }, 30000);
+        }, 15000);
         
         return () => {
           clearInterval(heartbeatInterval);
