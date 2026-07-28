@@ -266,18 +266,6 @@
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
-    // Hide/show header toggle button based on sidebar state
-    useEffect(() => {
-      const headerToggle = document.getElementById('sidebar-toggle');
-      if (headerToggle) {
-        if (sidebarOpen) {
-          headerToggle.classList.add('hidden');
-        } else {
-          headerToggle.classList.remove('hidden');
-        }
-      }
-    }, [sidebarOpen]);
-
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
       if (!ownsTransaction(txn, accountNumber)) return;
@@ -402,16 +390,6 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        sidebarOpen && h("button", {
-          className: "sidebar-close-button",
-          onClick: () => setSidebarOpen(false),
-          type: "button",
-          "aria-label": "Close sidebar"
-        }, h("svg", { viewBox: "0 0 24 24" },
-          h("circle", { cx: "12", cy: "5", r: "1.5" }),
-          h("circle", { cx: "12", cy: "12", r: "1.5" }),
-          h("circle", { cx: "12", cy: "19", r: "1.5" })
-        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
@@ -532,18 +510,6 @@
       window.addEventListener('sidebar-toggle-click', handleToggleClick);
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
-
-    // Hide/show header toggle button based on sidebar state
-    useEffect(() => {
-      const headerToggle = document.getElementById('sidebar-toggle');
-      if (headerToggle) {
-        if (sidebarOpen) {
-          headerToggle.classList.add('hidden');
-        } else {
-          headerToggle.classList.remove('hidden');
-        }
-      }
-    }, [sidebarOpen]);
 
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
@@ -720,16 +686,6 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        sidebarOpen && h("button", {
-          className: "sidebar-close-button",
-          onClick: () => setSidebarOpen(false),
-          type: "button",
-          "aria-label": "Close sidebar"
-        }, h("svg", { viewBox: "0 0 24 24" },
-          h("circle", { cx: "12", cy: "5", r: "1.5" }),
-          h("circle", { cx: "12", cy: "12", r: "1.5" }),
-          h("circle", { cx: "12", cy: "19", r: "1.5" })
-        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
@@ -868,18 +824,6 @@
       return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
-    // Hide/show header toggle button based on sidebar state
-    useEffect(() => {
-      const headerToggle = document.getElementById('sidebar-toggle');
-      if (headerToggle) {
-        if (sidebarOpen) {
-          headerToggle.classList.add('hidden');
-        } else {
-          headerToggle.classList.remove('hidden');
-        }
-      }
-    }, [sidebarOpen]);
-
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
       if (filterValue === "flagged") return txn.risk_level !== "normal";
@@ -963,16 +907,6 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        sidebarOpen && h("button", {
-          className: "sidebar-close-button",
-          onClick: () => setSidebarOpen(false),
-          type: "button",
-          "aria-label": "Close sidebar"
-        }, h("svg", { viewBox: "0 0 24 24" },
-          h("circle", { cx: "12", cy: "5", r: "1.5" }),
-          h("circle", { cx: "12", cy: "12", r: "1.5" }),
-          h("circle", { cx: "12", cy: "19", r: "1.5" })
-        )),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
