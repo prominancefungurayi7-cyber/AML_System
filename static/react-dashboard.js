@@ -200,6 +200,14 @@
       { id: "signout", label: "Sign Out", href: "/logout" }
     ];
 
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.dataset.theme || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = newTheme;
+      localStorage.setItem("StanPro-theme", newTheme);
+      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+    };
+
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
       if (!ownsTransaction(txn, accountNumber)) return;
@@ -351,6 +359,19 @@
               },
               type: "button"
             }, item.label))
+        ),
+        h("div", { className: "sidebar-footer" },
+          h("button", {
+            className: "theme-toggle-sidebar",
+            onClick: toggleTheme,
+            type: "button",
+            "aria-label": "Toggle theme"
+          }, 
+            h("span", { className: "theme-toggle__track" },
+              h("span", { className: "theme-toggle__thumb" })
+            ),
+            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+          )
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
@@ -427,6 +448,14 @@
       { id: "reports", label: "Reports", href: "/reports" },
       { id: "signout", label: "Sign Out", href: "/logout" }
     ];
+
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.dataset.theme || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = newTheme;
+      localStorage.setItem("StanPro-theme", newTheme);
+      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+    };
 
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
@@ -630,6 +659,19 @@
               },
               type: "button"
             }, item.label))
+        ),
+        h("div", { className: "sidebar-footer" },
+          h("button", {
+            className: "theme-toggle-sidebar",
+            onClick: toggleTheme,
+            type: "button",
+            "aria-label": "Toggle theme"
+          }, 
+            h("span", { className: "theme-toggle__track" },
+              h("span", { className: "theme-toggle__thumb" })
+            ),
+            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+          )
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
@@ -723,6 +765,14 @@
       { id: "reports", label: "Reports", href: "/reports" },
       { id: "signout", label: "Sign Out", href: "/logout" }
     ];
+
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.dataset.theme || "dark";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = newTheme;
+      localStorage.setItem("StanPro-theme", newTheme);
+      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+    };
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
@@ -834,6 +884,19 @@
               },
               type: "button"
             }, item.label))
+        ),
+        h("div", { className: "sidebar-footer" },
+          h("button", {
+            className: "theme-toggle-sidebar",
+            onClick: toggleTheme,
+            type: "button",
+            "aria-label": "Toggle theme"
+          }, 
+            h("span", { className: "theme-toggle__track" },
+              h("span", { className: "theme-toggle__thumb" })
+            ),
+            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+          )
         )
       ),
       h("main", { className: "admin-content" }, renderSection())
