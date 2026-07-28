@@ -115,6 +115,14 @@
         
         socket.on('disconnect', (reason) => {
           console.log('SocketIO disconnected', { reason });
+          // Add delay before reconnect to prevent rapid reconnection loops
+          if (reason === 'transport close' || reason === 'ping timeout') {
+            setTimeout(() => {
+              if (!socket.connected) {
+                socket.connect();
+              }
+            }, 2000);
+          }
         });
         
         socket.on('connect_error', (error) => {

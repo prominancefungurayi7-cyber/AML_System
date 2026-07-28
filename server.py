@@ -589,8 +589,21 @@ def handle_connect():
     role = session.get('role', 'unknown')
     sid = request.sid
     
-    # Store presence in Redis for cross-server routing
+    # Rate limit connection logging to prevent log spam
     broker = app.extensions.get('realtime_broker')
+    if broker and broker._redis_client:
+        try:
+            presence_key = f"presence:user:{user_id}"
+            existing = broker._redis_client.hget(presence_key, 'sid')
+            if existing and existing.decode('utf-8') == sid:
+                # Same socket reconnecting, don't log
+                pass
+            else:
+                app.logger.info(f"User {user_id} (role: {role}) connected via SocketIO, presence stored in Redis")
+        except:
+            app.logger.info(f"User {user_id} (role: {role}) connected via SocketIO, presence stored in Redis")
+    
+    # Store presence in Redis for cross-server routing
     if broker and broker._redis_client:
         try:
             presence_key = f"presence:user:{user_id}"
@@ -601,7 +614,6 @@ def handle_connect():
                 'connected_at': int(time.time())
             })
             broker._redis_client.expire(presence_key, 300)  # 5 minute TTL
-            app.logger.info(f"User {user_id} (role: {role}) connected via SocketIO, presence stored in Redis")
             
             # Deliver queued offline messages
             offline_messages = broker.get_offline_queue(user_id)
