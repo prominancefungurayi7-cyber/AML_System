@@ -1341,13 +1341,19 @@ html[data-theme="light"] .action-link:hover {
   align-items: center;
   justify-content: center;
   z-index: 1001;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: background 0.15s ease, transform 0.15s ease, opacity 0.3s ease;
   padding: 0;
+  opacity: 1;
 }
 
 .sidebar-toggle:hover {
   background: var(--StanPro-green-dark);
   transform: scale(1.05);
+}
+
+.sidebar-toggle.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar-toggle svg {

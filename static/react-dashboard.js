@@ -191,6 +191,7 @@
     const [status, setStatus] = useState("Connected | live monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
       { id: "overview", label: "Overview" },
@@ -207,6 +208,22 @@
       localStorage.setItem("StanPro-theme", newTheme);
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
+
+    // Scroll-based toggle button visibility
+    useEffect(() => {
+      let lastScrollY = window.scrollY;
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+          setShowToggle(false);
+        } else {
+          setShowToggle(true);
+        }
+        lastScrollY = currentScrollY;
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
     const adjustBalanceFromTransaction = (txn) => {
@@ -328,10 +345,10 @@
 
     return h("div", { className: "admin-layout" },
       h("button", {
-        className: "sidebar-toggle",
-        onClick: () => setSidebarOpen(true),
+        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
+        onClick: () => setSidebarOpen(!sidebarOpen),
         type: "button",
-        "aria-label": "Open sidebar"
+        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
       }, h("svg", { viewBox: "0 0 24 24" },
         h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
         h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
@@ -437,6 +454,7 @@
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
       { id: "overview", label: "Overview" },
@@ -456,6 +474,22 @@
       localStorage.setItem("StanPro-theme", newTheme);
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
+
+    // Scroll-based toggle button visibility
+    useEffect(() => {
+      let lastScrollY = window.scrollY;
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+          setShowToggle(false);
+        } else {
+          setShowToggle(true);
+        }
+        lastScrollY = currentScrollY;
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const updateBalances = (txn) => {
       const amount = Number(txn.amount || 0);
@@ -628,10 +662,10 @@
 
     return h("div", { className: "admin-layout" },
       h("button", {
-        className: "sidebar-toggle",
-        onClick: () => setSidebarOpen(true),
+        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
+        onClick: () => setSidebarOpen(!sidebarOpen),
         type: "button",
-        "aria-label": "Open sidebar"
+        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
       }, h("svg", { viewBox: "0 0 24 24" },
         h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
         h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
@@ -756,6 +790,7 @@
     const [status, setStatus] = useState("Connected | live alert monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [showToggle, setShowToggle] = useState(true);
     const filterValue = initialData.filter_value || "all";
 
     const sidebarItems = [
@@ -773,6 +808,22 @@
       localStorage.setItem("StanPro-theme", newTheme);
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
+
+    // Scroll-based toggle button visibility
+    useEffect(() => {
+      let lastScrollY = window.scrollY;
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+          setShowToggle(false);
+        } else {
+          setShowToggle(true);
+        }
+        lastScrollY = currentScrollY;
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
@@ -853,10 +904,10 @@
 
     return h("div", { className: "admin-layout" },
       h("button", {
-        className: "sidebar-toggle",
-        onClick: () => setSidebarOpen(true),
+        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
+        onClick: () => setSidebarOpen(!sidebarOpen),
         type: "button",
-        "aria-label": "Open sidebar"
+        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
       }, h("svg", { viewBox: "0 0 24 24" },
         h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
         h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
