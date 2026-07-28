@@ -551,8 +551,8 @@ app.logger.setLevel(logging.INFO)
 
 
 
-# Configure SocketIO with Redis message queue for cross-device broadcasting
-redis_url = os.environ.get("REDIS_URL")
+# Configure SocketIO for cross-device broadcasting
+# Note: We use RealtimeBroker with Redis for cross-instance messaging, not SocketIO's message queue
 socketio_kwargs = {
     "cors_allowed_origins": "*",
     "manage_session": False,
@@ -561,15 +561,7 @@ socketio_kwargs = {
     "engineio_logger": False,
 }
 
-if redis_url and redis is not None:
-    try:
-        socketio_kwargs["message_queue"] = redis_url
-        socketio_kwargs["channel"] = "aml-events"
-        app.logger.info(f"SocketIO configured with Redis message queue: {redis_url}")
-    except Exception as e:
-        app.logger.warning(f"Failed to configure Redis message queue: {e}")
-else:
-    app.logger.warning("REDIS_URL not configured, SocketIO will work in single-instance mode")
+app.logger.info("SocketIO configured for local instance (RealtimeBroker handles cross-instance messaging)")
 
 socketio = SocketIO(app, **socketio_kwargs)
 app.logger.info(f"SocketIO initialized with async_mode: {socketio.async_mode}")
