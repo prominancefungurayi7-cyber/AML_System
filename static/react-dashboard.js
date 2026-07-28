@@ -107,7 +107,12 @@
           reconnectionDelayMax: 5000
         });
         
-        Object.keys(handlers).forEach((eventName) => socket.on(eventName, handlers[eventName]));
+        Object.keys(handlers).forEach((eventName) => {
+          socket.on(eventName, (data) => {
+            console.log(`SocketIO event received: ${eventName}`, data);
+            handlers[eventName](data);
+          });
+        });
         
         socket.on('connect', () => {
           console.log('SocketIO connected', { socketId: socket.id });
