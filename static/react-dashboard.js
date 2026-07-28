@@ -242,7 +242,6 @@
     const [status, setStatus] = useState("Connected | live monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -260,20 +259,11 @@
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
-    // Scroll-based toggle button visibility
+    // Listen for sidebar toggle click from header
     useEffect(() => {
-      let lastScrollY = window.scrollY;
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          setShowToggle(false);
-        } else {
-          setShowToggle(true);
-        }
-        lastScrollY = currentScrollY;
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      const handleToggleClick = () => setSidebarOpen(prev => !prev);
+      window.addEventListener('sidebar-toggle-click', handleToggleClick);
+      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
@@ -395,16 +385,6 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("button", {
-        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
-        onClick: () => setSidebarOpen(!sidebarOpen),
-        type: "button",
-        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
-      }, h("svg", { viewBox: "0 0 24 24" },
-        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
-        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
-        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
-      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)
@@ -514,7 +494,6 @@
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showToggle, setShowToggle] = useState(true);
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -535,20 +514,11 @@
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
-    // Scroll-based toggle button visibility
+    // Listen for sidebar toggle click from header
     useEffect(() => {
-      let lastScrollY = window.scrollY;
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          setShowToggle(false);
-        } else {
-          setShowToggle(true);
-        }
-        lastScrollY = currentScrollY;
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      const handleToggleClick = () => setSidebarOpen(prev => !prev);
+      window.addEventListener('sidebar-toggle-click', handleToggleClick);
+      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
     const updateBalances = (txn) => {
@@ -721,16 +691,6 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("button", {
-        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
-        onClick: () => setSidebarOpen(!sidebarOpen),
-        type: "button",
-        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
-      }, h("svg", { viewBox: "0 0 24 24" },
-        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
-        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
-        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
-      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)
@@ -859,7 +819,6 @@
     const [status, setStatus] = useState("Connected | live alert monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showToggle, setShowToggle] = useState(true);
     const filterValue = initialData.filter_value || "all";
 
     const sidebarItems = [
@@ -878,20 +837,11 @@
       document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
-    // Scroll-based toggle button visibility
+    // Listen for sidebar toggle click from header
     useEffect(() => {
-      let lastScrollY = window.scrollY;
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > 50) {
-          setShowToggle(false);
-        } else {
-          setShowToggle(true);
-        }
-        lastScrollY = currentScrollY;
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      const handleToggleClick = () => setSidebarOpen(prev => !prev);
+      window.addEventListener('sidebar-toggle-click', handleToggleClick);
+      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
     }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
@@ -972,16 +922,6 @@
     };
 
     return h("div", { className: "admin-layout" },
-      h("button", {
-        className: `sidebar-toggle ${!showToggle ? 'hidden' : ''}`,
-        onClick: () => setSidebarOpen(!sidebarOpen),
-        type: "button",
-        "aria-label": sidebarOpen ? "Close sidebar" : "Open sidebar"
-      }, h("svg", { viewBox: "0 0 24 24" },
-        h("line", { x1: "3", y1: "12", x2: "21", y2: "12" }),
-        h("line", { x1: "3", y1: "6", x2: "21", y2: "6" }),
-        h("line", { x1: "3", y1: "18", x2: "21", y2: "18" })
-      )),
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
         onClick: () => setSidebarOpen(false)

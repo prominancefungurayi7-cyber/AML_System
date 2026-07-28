@@ -28,6 +28,13 @@
     <div class="page-shell">
       <header class="topbar">
         <div class="brand-block">
+          <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" id="sidebar-toggle">
+            <svg viewBox="0 0 24 24">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
           <div class="brand-mark brand-mark--stacked">
             <span>StanPro</span>
             <span>Bank</span>
@@ -59,6 +66,31 @@
           flash.addEventListener("transitionend", () => flash.remove(), { once: true });
         }, 4000);
       });
+
+      // Sidebar toggle functionality
+      const sidebarToggle = document.getElementById('sidebar-toggle');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          const event = new CustomEvent('sidebar-toggle-click');
+          window.dispatchEvent(event);
+        });
+      }
+
+      // Scroll-based fade effect for sidebar toggle
+      let lastScrollY = window.scrollY;
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        const toggle = document.getElementById('sidebar-toggle');
+        if (toggle) {
+          if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            toggle.classList.add('hidden');
+          } else {
+            toggle.classList.remove('hidden');
+          }
+        }
+        lastScrollY = currentScrollY;
+      };
+      window.addEventListener('scroll', handleScroll);
     </script>
   </body>
 </html>
