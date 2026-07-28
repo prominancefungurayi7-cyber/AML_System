@@ -564,6 +564,8 @@ socketio_kwargs = {
     "async_mode": "threading",
     "logger": False,
     "engineio_logger": False,
+    "ping_timeout": 60,
+    "ping_interval": 25,
 }
 
 app.logger.info("SocketIO configured for local instance (RealtimeBroker handles cross-instance messaging)")

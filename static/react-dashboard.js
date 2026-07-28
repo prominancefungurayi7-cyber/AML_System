@@ -102,7 +102,7 @@
         const socket = window.io({ 
           transports: ["websocket", "polling"],
           reconnection: true,
-          reconnectionAttempts: 5,
+          reconnectionAttempts: Infinity,
           reconnectionDelay: 1000,
           reconnectionDelayMax: 5000
         });
