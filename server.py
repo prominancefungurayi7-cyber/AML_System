@@ -262,6 +262,13 @@ class RealtimeBroker:
         return queue
 
     def publish(self, event_name, payload):
+        # Skip publishing internal SocketIO events to Redis to prevent infinite loops
+        if event_name in ['connect', 'disconnect', 'heartbeat']:
+            if self.app:
+                self.app.logger.info(f"Skipping Redis publish for internal event: {event_name}")
+            self._local_deliver(event_name, payload)
+            return
+
         message = {"event": event_name, "data": payload, "publisher": self._instance_id}
         if self.app:
             self.app.logger.info(f"RealtimeBroker.publish called for event: {event_name}")
@@ -550,8 +557,8 @@ socketio_kwargs = {
     "cors_allowed_origins": "*",
     "manage_session": False,
     "async_mode": "threading",
-    "logger": True,
-    "engineio_logger": True,
+    "logger": False,
+    "engineio_logger": False,
 }
 
 if redis_url and redis is not None:
