@@ -1426,6 +1426,39 @@ html[data-theme="light"] .action-link:hover {
   stroke: white;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--StanPro-green);
+  color: white;
+  border: 2px solid var(--StanPro-border);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.15s ease;
+  z-index: 1000;
+  box-shadow: var(--StanPro-shadow);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--StanPro-green-dark);
+  transform: translateY(-2px);
+}
+
 .sidebar-toggle.hidden {
   opacity: 0;
   pointer-events: none;

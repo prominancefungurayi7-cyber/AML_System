@@ -57,6 +57,8 @@
         {% endwith %}
         {% block content %}{% endblock %}
       </main>
+      
+      <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
     </div>
     <script>
       // Auto-fade flash messages after 4 seconds
@@ -91,6 +93,25 @@
         lastScrollY = currentScrollY;
       };
       window.addEventListener('scroll', handleScroll);
+
+      // Back to top button functionality
+      const backToTop = document.getElementById("back-to-top");
+      if (backToTop) {
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) {
+            backToTop.classList.add("visible");
+          } else {
+            backToTop.classList.remove("visible");
+          }
+        });
+
+        backToTop.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
+      }
     </script>
   </body>
 </html>
