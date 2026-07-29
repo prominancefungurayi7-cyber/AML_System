@@ -301,18 +301,17 @@ class RealtimeBroker:
             self.app.logger.info(f"RealtimeBroker.publish called for event: {event_name}")
         self._local_deliver(event_name, payload)
 
+        # Publish to Redis in background thread to avoid blocking
         if self._redis_client is not None:
-            try:
-                event_key = f"aml_events:history"
-                self._redis_client.lpush(event_key, json.dumps(message))
-                self._redis_client.ltrim(event_key, 0, 999)
-                self._redis_client.expire(event_key, 3600)
-                self._redis_client.publish("aml-events", json.dumps(message))
-                if self.app:
-                    self.app.logger.info(f"Published event to Redis: {event_name}")
-            except Exception as e:
-                if self.app:
-                    self.app.logger.error(f"Failed to publish event to Redis: {e}")
+            def publish_to_redis():
+                try:
+                    self._redis_client.publish("aml-events", json.dumps(message))
+                    if self.app:
+                        self.app.logger.info(f"Published event to Redis: {event_name}")
+                except Exception as e:
+                    if self.app:
+                        self.app.logger.error(f"Failed to publish event to Redis: {e}")
+            threading.Thread(target=publish_to_redis, daemon=True).start()
         else:
             if self.app:
                 self.app.logger.warning("Redis client not available, event not published to Redis")

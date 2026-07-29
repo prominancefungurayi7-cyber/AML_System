@@ -147,78 +147,79 @@
     );
   }
 
+  // Singleton SocketIO connection to prevent multiple connections
+  let globalSocket = null;
+  let globalHeartbeatInterval = null;
+
+  function getSocket() {
+    if (!globalSocket && window.io) {
+      globalSocket = window.io({ 
+        transports: ["websocket", "polling"],
+        reconnection: true,
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 500,
+        reconnectionDelayMax: 2000,
+        pingTimeout: 30000,
+        pingInterval: 5000
+      });
+      
+      globalSocket.on('connect', () => {
+        console.log('SocketIO connected', { socketId: globalSocket.id });
+      });
+      
+      globalSocket.on('disconnect', (reason) => {
+        console.log('SocketIO disconnected', { reason });
+      });
+      
+      globalSocket.on('connect_error', (error) => {
+        console.error('SocketIO connection error:', error);
+      });
+      
+      globalSocket.on('reconnect', (attemptNumber) => {
+        console.log('SocketIO reconnected', { attemptNumber });
+      });
+      
+      globalSocket.on('reconnect_attempt', (attemptNumber) => {
+        console.log('SocketIO reconnection attempt', { attemptNumber });
+      });
+      
+      globalSocket.on('reconnect_error', (error) => {
+        console.error('SocketIO reconnection error:', error);
+      });
+      
+      // Send heartbeat every 5 seconds to maintain connection (more frequent than ping interval)
+      globalHeartbeatInterval = setInterval(() => {
+        if (globalSocket && globalSocket.connected) {
+          globalSocket.emit('heartbeat');
+        }
+      }, 5000);
+    }
+    return globalSocket;
+  }
+
   function useRealtime(handlers) {
     useEffect(() => {
-      if (window.io) {
-        const socket = window.io({ 
-          transports: ["websocket", "polling"],
-          reconnection: true,
-          reconnectionAttempts: Infinity,
-          reconnectionDelay: 500,
-          reconnectionDelayMax: 2000,
-          pingTimeout: 30000,
-          pingInterval: 5000
-        });
-        
-        Object.keys(handlers).forEach((eventName) => socket.on(eventName, handlers[eventName]));
-        
-        socket.on('connect', () => {
-          console.log('SocketIO connected', { socketId: socket.id });
-        });
-        
-        socket.on('disconnect', (reason) => {
-          console.log('SocketIO disconnected', { reason });
-        });
-        
-        socket.on('connect_error', (error) => {
-          console.error('SocketIO connection error:', error);
-        });
-        
-        socket.on('reconnect', (attemptNumber) => {
-          console.log('SocketIO reconnected', { attemptNumber });
-        });
-        
-        socket.on('reconnect_attempt', (attemptNumber) => {
-          console.log('SocketIO reconnection attempt', { attemptNumber });
-        });
-        
-        socket.on('reconnect_error', (error) => {
-          console.error('SocketIO reconnection error:', error);
-        });
-        
-        // Send heartbeat every 5 seconds to maintain connection (more frequent than ping interval)
-        const heartbeatInterval = setInterval(() => {
-          if (socket.connected) {
-            socket.emit('heartbeat');
-          }
-        }, 5000);
-        
-        return () => {
-          clearInterval(heartbeatInterval);
-          socket.disconnect();
-        };
+      const socket = getSocket();
+      if (!socket) {
+        console.warn('SocketIO not available');
+        return;
       }
-
-      if (window.EventSource) {
-        console.log('Using EventSource fallback for realtime');
-        const source = new EventSource("/stream");
-        Object.keys(handlers).forEach((eventName) => {
-          source.addEventListener(eventName, (event) => {
-            const payload = eventName === "reset" ? {} : JSON.parse(event.data);
-            handlers[eventName](payload);
-          });
+      
+      // Store event handlers for cleanup
+      const eventHandlers = {};
+      Object.keys(handlers).forEach((eventName) => {
+        const handler = handlers[eventName];
+        socket.on(eventName, handler);
+        eventHandlers[eventName] = handler;
+      });
+      
+      return () => {
+        // Remove event handlers on cleanup
+        Object.keys(eventHandlers).forEach((eventName) => {
+          socket.off(eventName, eventHandlers[eventName]);
         });
-        
-        source.addEventListener('error', (error) => {
-          console.error('EventSource error:', error);
-        });
-        
-        return () => source.close();
-      }
-
-      console.warn('Neither SocketIO nor EventSource available for realtime');
-      return undefined;
-    }, []);
+      };
+    }, [JSON.stringify(handlers)]); // Re-register if handlers change
   }
 
   function ownsTransaction(txn, accountNumber) {
