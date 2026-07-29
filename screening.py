@@ -16,6 +16,8 @@ import difflib
 import re
 from dataclasses import dataclass, field
 from typing import Any
+import threading
+import time
 
 
 FUZZY_NAME_THRESHOLD = 0.82
@@ -27,6 +29,10 @@ LIST_TYPE_SEVERITY = {
     "internal": ("warning", 40),
     "adverse_media": ("info", 20),
 }
+
+# Simple in-memory cache for watchlist to avoid repeated DB queries
+_watchlist_cache = {"data": None, "timestamp": 0, "lock": threading.Lock()}
+WATCHLIST_CACHE_TTL = 5  # seconds
 
 
 @dataclass
@@ -98,7 +104,14 @@ def screen_entity(
     normalized_acct = (account_number or "").strip().upper()
     normalized_name = normalize_name(name or "")
 
-    watchlist_rows = conn.execute("SELECT * FROM watchlist").fetchall()
+    # Use cached watchlist data to avoid repeated DB queries
+    current_time = time.time()
+    with _watchlist_cache["lock"]:
+        if _watchlist_cache["data"] is None or (current_time - _watchlist_cache["timestamp"]) > WATCHLIST_CACHE_TTL:
+            _watchlist_cache["data"] = conn.execute("SELECT * FROM watchlist").fetchall()
+            _watchlist_cache["timestamp"] = current_time
+        watchlist_rows = _watchlist_cache["data"]
+    
     for row in watchlist_rows:
         entry = dict(row)
         wl_id = (entry.get("id_number") or "").strip().upper()

@@ -4707,13 +4707,15 @@ def generate_transactions():
 
         get_db().commit()
 
-        for user_row in get_db().execute(
-
-            "SELECT account_number FROM users ORDER BY id"
-
-        ).fetchall():
-
-            broadcast_user_balance(get_db(), user_row["account_number"])
+        # Only broadcast balances for affected accounts, not all users
+        affected_accounts = set()
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in transactions_to_process:
+            affected_accounts.add(sender_account)
+            if tx_type == "transfer":
+                affected_accounts.add(receiver_account)
+        
+        for account in affected_accounts:
+            broadcast_user_balance(get_db(), account)
 
         broadcast_event("transaction_batch", {
 
