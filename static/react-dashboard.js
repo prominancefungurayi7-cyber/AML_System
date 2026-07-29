@@ -154,10 +154,10 @@
           transports: ["websocket", "polling"],
           reconnection: true,
           reconnectionAttempts: Infinity,
-          reconnectionDelay: 1000,
-          reconnectionDelayMax: 5000,
-          pingTimeout: 60000,
-          pingInterval: 10000
+          reconnectionDelay: 500,
+          reconnectionDelayMax: 2000,
+          pingTimeout: 30000,
+          pingInterval: 5000
         });
         
         Object.keys(handlers).forEach((eventName) => socket.on(eventName, handlers[eventName]));
@@ -186,12 +186,12 @@
           console.error('SocketIO reconnection error:', error);
         });
         
-        // Send heartbeat every 15 seconds to maintain connection (more frequent than ping timeout)
+        // Send heartbeat every 5 seconds to maintain connection (more frequent than ping interval)
         const heartbeatInterval = setInterval(() => {
           if (socket.connected) {
             socket.emit('heartbeat');
           }
-        }, 15000);
+        }, 5000);
         
         return () => {
           clearInterval(heartbeatInterval);

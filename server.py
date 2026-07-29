@@ -162,8 +162,14 @@ class RealtimeBroker:
                 self._redis_client = redis.from_url(
                     redis_url,
                     decode_responses=True,
-                    socket_connect_timeout=5.0,
-                    socket_timeout=5.0,
+                    socket_connect_timeout=2.0,
+                    socket_timeout=2.0,
+                    socket_keepalive=True,
+                    socket_keepalive_options={
+                        "TCP_KEEPIDLE": 1,
+                        "TCP_KEEPINTVL": 1,
+                        "TCP_KEEPCNT": 3,
+                    },
                 )
                 self._redis_client.ping()
                 if self.app:
@@ -202,27 +208,40 @@ class RealtimeBroker:
             def _listen():
                 if self.app:
                     self.app.logger.info("Redis listener thread started")
-                for raw in self._redis_pubsub.listen():
-                    if raw.get("type") != "message":
-                        continue
+                while True:
                     try:
-                        message = json.loads(raw["data"])
-                        if message.get("publisher") == self._instance_id:
-                            if self.app:
-                                self.app.logger.debug(f"Skipping own event from Redis: {message.get('event')}")
-                            continue
-                        event_name = message.get("event")
-                        # Skip internal SocketIO events to prevent infinite loops
-                        if event_name in ['connect', 'disconnect', 'heartbeat']:
-                            if self.app:
-                                self.app.logger.debug(f"Skipping internal SocketIO event from Redis: {event_name}")
-                            continue
-                        if self.app:
-                            self.app.logger.info(f"Received event from Redis: {event_name}")
-                        self._local_deliver(event_name, message.get("data"))
+                        # Use get_message with timeout for faster response
+                        raw = self._redis_pubsub.get_message(timeout=0.1)
+                        if raw and raw.get("type") == "message":
+                            try:
+                                message = json.loads(raw["data"])
+                                if message.get("publisher") == self._instance_id:
+                                    if self.app:
+                                        self.app.logger.debug(f"Skipping own event from Redis: {message.get('event')}")
+                                    continue
+                                event_name = message.get("event")
+                                # Skip internal SocketIO events to prevent infinite loops
+                                if event_name in ['connect', 'disconnect', 'heartbeat']:
+                                    if self.app:
+                                        self.app.logger.debug(f"Skipping internal SocketIO event from Redis: {event_name}")
+                                    continue
+                                if self.app:
+                                    self.app.logger.info(f"Received event from Redis: {event_name}")
+                                self._local_deliver(event_name, message.get("data"))
+                            except Exception as e:
+                                if self.app:
+                                    self.app.logger.error(f"Error processing Redis message: {e}")
                     except Exception as e:
                         if self.app:
-                            self.app.logger.error(f"Error processing Redis message: {e}")
+                            self.app.logger.error(f"Redis listener error: {e}")
+                        # Brief pause before reconnecting
+                        import time
+                        time.sleep(0.5)
+                        try:
+                            self._redis_pubsub = self._redis_client.pubsub(ignore_subscribe_messages=True)
+                            self._redis_pubsub.subscribe("aml-events")
+                        except:
+                            pass
 
             thread = threading.Thread(target=_listen, daemon=True)
             thread.start()
@@ -564,8 +583,8 @@ socketio_kwargs = {
     "async_mode": "threading",
     "logger": False,
     "engineio_logger": False,
-    "ping_timeout": 90,
-    "ping_interval": 15,
+    "ping_timeout": 30,
+    "ping_interval": 5,
 }
 
 app.logger.info("SocketIO configured for local instance (RealtimeBroker handles cross-instance messaging)")
