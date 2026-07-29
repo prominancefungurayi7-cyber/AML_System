@@ -1725,29 +1725,31 @@ def _stats_payload(conn):
 
     today_start = datetime.now(timezone.utc).strftime("%Y-%m-%dT00:00:00")
 
+    # Use a single query with subqueries for better performance
+    stats_query = """
+        SELECT 
+            (SELECT COUNT(*) FROM transactions) as total_transactions,
+            (SELECT COUNT(*) FROM transactions WHERE risk_level!='normal') as suspicious_transactions,
+            (SELECT COUNT(*) FROM alerts WHERE status='open') as open_alerts,
+            (SELECT COUNT(*) FROM transactions WHERE risk_level IN ('super_suspicious','high_risk','critical') AND timestamp>=?) as high_risk_today,
+            (SELECT COUNT(*) FROM sar_reports WHERE status='draft') as pending_sars,
+            (SELECT COUNT(*) FROM ctr_reports WHERE status='pending') as pending_ctrs
+    """
+    row = conn.execute(stats_query, (today_start,)).fetchone()
+
     return {
 
-        "total_transactions": conn.execute("SELECT COUNT(*) as c FROM transactions").fetchone()["c"],
+        "total_transactions": row["total_transactions"],
 
-        "suspicious_transactions": conn.execute(
+        "suspicious_transactions": row["suspicious_transactions"],
 
-            "SELECT COUNT(*) as c FROM transactions WHERE risk_level!='normal'"
+        "open_alerts": row["open_alerts"],
 
-        ).fetchone()["c"],
+        "high_risk_today": row["high_risk_today"],
 
-        "open_alerts": conn.execute("SELECT COUNT(*) as c FROM alerts WHERE status='open'").fetchone()["c"],
+        "pending_sars": row["pending_sars"],
 
-        "high_risk_today": conn.execute(
-
-            "SELECT COUNT(*) as c FROM transactions WHERE risk_level IN ('super_suspicious','high_risk','critical') AND timestamp>=?",
-
-            (today_start,),
-
-        ).fetchone()["c"],
-
-        "pending_sars": conn.execute("SELECT COUNT(*) as c FROM sar_reports WHERE status='draft'").fetchone()["c"],
-
-        "pending_ctrs": conn.execute("SELECT COUNT(*) as c FROM ctr_reports WHERE status='pending'").fetchone()["c"],
+        "pending_ctrs": row["pending_ctrs"],
 
         "timestamp": datetime.now(timezone.utc).isoformat(),
 
