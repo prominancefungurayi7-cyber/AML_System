@@ -209,6 +209,8 @@ class RealtimeBroker:
                 self.app.logger.info("Redis listener started, subscribed to 'aml-events' channel")
 
             def _listen():
+                consecutive_errors = 0
+                max_consecutive_errors = 5
                 if self.app:
                     self.app.logger.info("Redis listener thread started")
                 while True:
@@ -231,15 +233,25 @@ class RealtimeBroker:
                                 if self.app:
                                     self.app.logger.info(f"Received event from Redis: {event_name}")
                                 self._local_deliver(event_name, message.get("data"))
+                                consecutive_errors = 0  # Reset error counter on success
                             except Exception as e:
                                 if self.app:
                                     self.app.logger.error(f"Error processing Redis message: {e}")
+                                consecutive_errors += 1
                     except Exception as e:
+                        consecutive_errors += 1
                         if self.app:
                             self.app.logger.error(f"Redis listener error: {e}")
-                        # Brief pause before reconnecting
-                        import time
-                        time.sleep(0.5)
+                        # If too many consecutive errors, wait longer before reconnecting
+                        if consecutive_errors >= max_consecutive_errors:
+                            if self.app:
+                                self.app.logger.warning(f"Too many consecutive Redis errors ({consecutive_errors}), waiting 5 seconds before reconnect")
+                            import time
+                            time.sleep(5)
+                        else:
+                            # Brief pause before reconnecting
+                            import time
+                            time.sleep(0.5)
                         try:
                             self._redis_pubsub = self._redis_client.pubsub(ignore_subscribe_messages=True)
                             self._redis_pubsub.subscribe("aml-events")
@@ -268,14 +280,18 @@ class RealtimeBroker:
                 subscriber.put_nowait(message)
             except Exception:
                 pass
+        
+        # Emit to SocketIO in background thread to avoid blocking
         if self.socketio is not None:
-            try:
-                self.socketio.emit(event_name, payload)
-                if self.app:
-                    self.app.logger.info(f"SocketIO broadcast event: {event_name}")
-            except Exception as e:
-                if self.app:
-                    self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
+            def emit_to_socketio():
+                try:
+                    self.socketio.emit(event_name, payload)
+                    if self.app:
+                        self.app.logger.info(f"SocketIO broadcast event: {event_name}")
+                except Exception as e:
+                    if self.app:
+                        self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
+            threading.Thread(target=emit_to_socketio, daemon=True).start()
 
     def set_socketio(self, socketio):
         self.socketio = socketio
@@ -287,6 +303,14 @@ class RealtimeBroker:
             if queue not in app_subscribers:
                 app_subscribers.append(queue)
         return queue
+
+    def remove_subscriber(self, queue):
+        if queue in self._subscribers:
+            self._subscribers.remove(queue)
+        if self.app is not None:
+            app_subscribers = self.app.config.get("STREAM_SUBSCRIBERS", [])
+            if queue in app_subscribers:
+                app_subscribers.remove(queue)
 
     def publish(self, event_name, payload):
         # Skip publishing internal SocketIO events to Redis to prevent infinite loops
