@@ -3218,7 +3218,14 @@ def monitor_transactions():
 
                 if rows:
 
-                    _train_ai_model_from_db(conn)
+                    # Train AI model in background thread to avoid blocking monitor
+                    def train_in_background():
+                        try:
+                            _train_ai_model_from_db(conn)
+                        except Exception as e:
+                            if app:
+                                app.logger.error(f"Background AI training in monitor failed: {e}")
+                    threading.Thread(target=train_in_background, daemon=True).start()
 
                 conn.close()
 
@@ -4014,7 +4021,15 @@ def create_transaction():
 
     broadcast_stats(get_db())
 
-    _train_ai_model_from_db(get_db())
+    # Train AI model in background thread to avoid blocking
+    import threading
+    def train_in_background():
+        try:
+            _train_ai_model_from_db(get_db())
+        except Exception as e:
+            if app:
+                app.logger.error(f"Background AI training failed: {e}")
+    threading.Thread(target=train_in_background, daemon=True).start()
 
     record_activity(user["username"], f"{tx_type}", f"${amount:.2f} — risk: {risk_level}")
 
@@ -4716,7 +4731,15 @@ def generate_transactions():
 
         broadcast_stats(get_db())
 
-        model = _train_ai_model_from_db(get_db())
+        # Train AI model in background thread to avoid blocking
+        import threading
+        def train_in_background():
+            try:
+                _train_ai_model_from_db(get_db())
+            except Exception as e:
+                if app:
+                    app.logger.error(f"Background AI training failed: {e}")
+        threading.Thread(target=train_in_background, daemon=True).start()
 
         record_activity(
 
