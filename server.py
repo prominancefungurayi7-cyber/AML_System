@@ -73,8 +73,11 @@ from functools import wraps
 from urllib.parse import unquote, urlparse
 
 
-
 from dotenv import load_dotenv
+
+# Flag to prevent concurrent AI training
+_ai_training_in_progress = False
+_ai_training_lock = threading.Lock()
 
 from flask import (
 
@@ -2610,50 +2613,62 @@ def _ai_training_rows(rows):
 
 
 def _train_ai_model_from_db(conn, emit_events=True):
+    # Prevent concurrent AI training
+    global _ai_training_in_progress, _ai_training_lock
+    with _ai_training_lock:
+        if _ai_training_in_progress:
+            if app:
+                app.logger.info("AI training already in progress, skipping")
+            return None
+        _ai_training_in_progress = True
+    
+    try:
+        rows = conn.execute(
 
-    rows = conn.execute(
+            """
 
-        """
+            SELECT t.id, t.sender_account, t.receiver_account, t.amount, t.transaction_type,
 
-        SELECT t.id, t.sender_account, t.receiver_account, t.amount, t.transaction_type,
+                   t.timestamp, t.risk_level, t.risk_score, t.channel,
 
-               t.timestamp, t.risk_level, t.risk_score, t.channel,
+                   COALESCE(u.wealth_segment, 'average') AS wealth_segment
 
-               COALESCE(u.wealth_segment, 'average') AS wealth_segment
+            FROM transactions t
 
-        FROM transactions t
+            LEFT JOIN users u ON t.sender_account = u.account_number
 
-        LEFT JOIN users u ON t.sender_account = u.account_number
+            WHERE description != 'Initiated' OR risk_score > 0
 
-        WHERE description != 'Initiated' OR risk_score > 0
+            ORDER BY t.timestamp ASC, t.id ASC
 
-        ORDER BY t.timestamp ASC, t.id ASC
+            """
 
-        """
+        ).fetchall()
 
-    ).fetchall()
+        model = train_ai_model(_ai_training_rows(rows))
 
-    model = train_ai_model(_ai_training_rows(rows))
+        if emit_events:
 
-    if emit_events:
+            meta = get_model_metadata()
 
-        meta = get_model_metadata()
+            broadcast_event("ai_model", {
 
-        broadcast_event("ai_model", {
+                "trained": model is not None,
 
-            "trained": model is not None,
+                "training_rows": len(rows),
 
-            "training_rows": len(rows),
+                "version": meta.get("version", "unknown"),
 
-            "version": meta.get("version", "unknown"),
+                "cross_val_f1": meta.get("cross_val_f1_weighted"),
 
-            "cross_val_f1": meta.get("cross_val_f1_weighted"),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
 
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            })
 
-        })
-
-    return model
+        return model
+    finally:
+        with _ai_training_lock:
+            _ai_training_in_progress = False
 
 
 
