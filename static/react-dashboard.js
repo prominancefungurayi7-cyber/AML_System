@@ -150,8 +150,6 @@
   // Singleton SocketIO connection to prevent multiple connections
   let globalSocket = null;
   let globalHeartbeatInterval = null;
-  let lastEventTime = Date.now();
-  let connectionHealthInterval = null;
 
   function getSocket() {
     if (!globalSocket && window.io) {
@@ -167,7 +165,6 @@
       
       globalSocket.on('connect', () => {
         console.log('SocketIO connected', { socketId: globalSocket.id });
-        lastEventTime = Date.now();
       });
       
       globalSocket.on('disconnect', (reason) => {
@@ -180,7 +177,6 @@
       
       globalSocket.on('reconnect', (attemptNumber) => {
         console.log('SocketIO reconnected', { attemptNumber });
-        lastEventTime = Date.now();
       });
       
       globalSocket.on('reconnect_attempt', (attemptNumber) => {
@@ -191,27 +187,13 @@
         console.error('SocketIO reconnection error:', error);
       });
       
-      // Track all events to detect stale connections
-      globalSocket.onAny((eventName, ...args) => {
-        lastEventTime = Date.now();
-      });
-      
-      // Send heartbeat every 5 seconds to maintain connection (more frequent than ping interval)
+      // Socket.IO maintains transport-level ping/pong. This heartbeat only
+      // refreshes the server-side presence record.
       globalHeartbeatInterval = setInterval(() => {
         if (globalSocket && globalSocket.connected) {
           globalSocket.emit('heartbeat');
         }
-      }, 5000);
-      
-      // Monitor connection health and force reconnect if stale
-      connectionHealthInterval = setInterval(() => {
-        const timeSinceLastEvent = Date.now() - lastEventTime;
-        if (timeSinceLastEvent > 30000 && globalSocket && globalSocket.connected) {
-          console.warn('Connection stale (no events for 30s), forcing reconnect');
-          globalSocket.disconnect();
-          globalSocket.connect();
-        }
-      }, 10000);
+      }, 30000);
     }
     return globalSocket;
   }

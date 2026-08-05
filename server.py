@@ -52,6 +52,8 @@ import re
 
 import smtplib
 
+import socket
+
 import sqlite3
 
 import threading
@@ -162,17 +164,24 @@ class RealtimeBroker:
         redis_url = os.environ.get("REDIS_URL")
         if redis_url and redis is not None:
             try:
+                # redis-py expects numeric socket option constants, not their
+                # string names. Windows does not expose every Linux setting.
+                keepalive_options = {}
+                for option_name, value in (
+                    ("TCP_KEEPIDLE", 1),
+                    ("TCP_KEEPINTVL", 1),
+                    ("TCP_KEEPCNT", 3),
+                ):
+                    option = getattr(socket, option_name, None)
+                    if option is not None:
+                        keepalive_options[option] = value
                 self._redis_client = redis.from_url(
                     redis_url,
                     decode_responses=True,
                     socket_connect_timeout=2.0,
                     socket_timeout=2.0,
                     socket_keepalive=True,
-                    socket_keepalive_options={
-                        "TCP_KEEPIDLE": 1,
-                        "TCP_KEEPINTVL": 1,
-                        "TCP_KEEPCNT": 3,
-                    },
+                    socket_keepalive_options=keepalive_options or None,
                 )
                 self._redis_client.ping()
                 if self.app:
@@ -281,17 +290,18 @@ class RealtimeBroker:
             except Exception:
                 pass
         
-        # Emit to SocketIO in background thread to avoid blocking
+        # Flask-SocketIO's emit is safe to call from worker/background threads.
+        # Starting a new OS thread for every event eventually exhausts resources
+        # during sustained transaction activity and makes connected clients appear
+        # to stop receiving updates.
         if self.socketio is not None:
-            def emit_to_socketio():
-                try:
-                    self.socketio.emit(event_name, payload)
-                    if self.app:
-                        self.app.logger.info(f"SocketIO broadcast event: {event_name}")
-                except Exception as e:
-                    if self.app:
-                        self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
-            threading.Thread(target=emit_to_socketio, daemon=True).start()
+            try:
+                self.socketio.emit(event_name, payload)
+                if self.app:
+                    self.app.logger.info(f"SocketIO broadcast event: {event_name}")
+            except Exception as e:
+                if self.app:
+                    self.app.logger.error(f"SocketIO broadcast failed for {event_name}: {e}")
 
     def set_socketio(self, socketio):
         self.socketio = socketio
@@ -606,6 +616,8 @@ app.logger.setLevel(logging.INFO)
 socketio_kwargs = {
     "cors_allowed_origins": "*",
     "manage_session": False,
+    # The deployment uses Gunicorn's threaded worker (see Procfile/Dockerfile),
+    # which is the matching and portable Socket.IO runtime for this application.
     "async_mode": "threading",
     "logger": False,
     "engineio_logger": False,
@@ -613,7 +625,7 @@ socketio_kwargs = {
     "ping_interval": 5,
 }
 
-app.logger.info("SocketIO configured for local instance (RealtimeBroker handles cross-instance messaging)")
+app.logger.info("SocketIO configured with threading (RealtimeBroker handles cross-instance messaging)")
 
 socketio = SocketIO(app, **socketio_kwargs)
 app.logger.info(f"SocketIO initialized with async_mode: {socketio.async_mode}")
@@ -690,6 +702,9 @@ def handle_heartbeat():
                 app.logger.debug(f"Heartbeat received from user {user_id}")
             except Exception as e:
                 app.logger.error(f"Failed to refresh presence TTL: {e}")
+    # Separate from Socket.IO transport ping/pong; confirms that the application
+    # and server-side presence tracking are both still alive.
+    socketio.emit("heartbeat_ack", {"timestamp": time.time()}, to=request.sid)
 
 
 @socketio.on('disconnect')
@@ -938,6 +953,11 @@ def connect_db():
 
         return DatabaseAdapter(conn, "mysql")
 
+    # sqlite3.connect accepts a filesystem path, not a SQLAlchemy-style URL.
+    # Supporting sqlite:/// here keeps local, test, and Railway fallback
+    # deployments from failing with "unable to open database file".
+    if database_url.startswith("sqlite:///"):
+        database_url = database_url[len("sqlite:///"):]
     conn = sqlite3.connect(database_url)
 
     conn.row_factory = sqlite3.Row
@@ -3260,11 +3280,19 @@ def monitor_transactions():
 
                     # Train AI model in background thread to avoid blocking monitor
                     def train_in_background():
+                        training_conn = None
                         try:
-                            _train_ai_model_from_db(conn)
+                            # The monitor closes its connection below. Training
+                            # owns an independent connection so it cannot race
+                            # with that cleanup.
+                            training_conn = connect_db()
+                            _train_ai_model_from_db(training_conn)
                         except Exception as e:
                             if app:
                                 app.logger.error(f"Background AI training in monitor failed: {e}")
+                        finally:
+                            if training_conn is not None:
+                                training_conn.close()
                     threading.Thread(target=train_in_background, daemon=True).start()
 
                 conn.close()
@@ -3353,7 +3381,7 @@ def login_required(*roles):
 
                 return redirect(url_for("login"))
 
-            if roles and user and user.get("role") not in roles:
+            if roles and user and user["role"] not in roles:
 
                 flash("Access denied.")
 
@@ -3986,7 +4014,7 @@ def create_transaction():
 
         recipient_user = get_user_by_account_number(recipient_account)
 
-        if not recipient_user or (recipient_user.get("id") is not None and recipient_user.get("id") == user["id"]) or (recipient_user.get("role") is not None and recipient_user.get("role") != "customer"):
+        if not recipient_user or (recipient_user["id"] is not None and recipient_user["id"] == user["id"]) or (recipient_user["role"] is not None and recipient_user["role"] != "customer"):
 
             flash("Recipient customer account not found.")
 
@@ -3998,7 +4026,7 @@ def create_transaction():
 
     sender_account = user["account_number"]
 
-    receiver_account = recipient_user.get("account_number") if recipient_user and recipient_user.get("account_number") else user["account_number"]
+    receiver_account = recipient_user["account_number"] if recipient_user and recipient_user["account_number"] else user["account_number"]
 
 
 
@@ -4046,7 +4074,7 @@ def create_transaction():
 
         get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
 
-        if recipient_user and recipient_user.get("id") is not None:
+        if recipient_user and recipient_user["id"] is not None:
             get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient_user["id"]))
 
 
@@ -4277,7 +4305,7 @@ def alert_detail(alert_id):
 
             # Update customer risk rating
             if account_user:
-                old_risk = account_user.get("risk_rating", "standard")
+                old_risk = account_user["risk_rating"] or "standard"
                 new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "resolve", old_risk)
                 record_activity(officer["username"], "resolve_alert", f"Alert #{alert_id} resolved, risk rating: {old_risk} -> {new_risk}")
                 flash(f"Alert #{alert_id} marked as resolved. Customer risk rating updated to {new_risk}.")
@@ -4299,7 +4327,7 @@ def alert_detail(alert_id):
 
             # Update customer risk rating
             if account_user:
-                old_risk = account_user.get("risk_rating", "standard")
+                old_risk = account_user["risk_rating"] or "standard"
                 new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "escalate", old_risk)
                 record_activity(officer["username"], "escalate_alert", f"Alert #{alert_id} escalated, risk rating: {old_risk} -> {new_risk}")
                 flash(f"Alert #{alert_id} escalated. Customer risk rating updated to {new_risk}.")
@@ -4335,7 +4363,7 @@ def alert_detail(alert_id):
 
             # Update customer risk rating
             if account_user:
-                old_risk = account_user.get("risk_rating", "standard")
+                old_risk = account_user["risk_rating"] or "standard"
                 new_risk = update_customer_risk_rating(get_db(), alert["account_number"], "file_sar", old_risk)
                 record_activity(officer["username"], "file_sar", f"SAR {ref} filed for alert #{alert_id}, risk rating: {old_risk} -> {new_risk}")
                 flash(f"SAR filed successfully. Reference: {ref}. Customer risk rating updated to {new_risk}.")
