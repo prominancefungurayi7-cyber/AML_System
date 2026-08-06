@@ -177,6 +177,9 @@ class CustomerBehavioralProfile:
     recent_frequency_trend: str
     recent_channel_shifts: List[str]
     
+    # Recent transactions for pattern detection (last 50 transactions)
+    recent_transactions: List[Dict[str, Any]] = field(default_factory=list)
+    
     # Risk indicators based on behavioral patterns
     behavioral_risk_score: float  # 0-100 based on pattern anomalies
     risk_factors: List[str]
@@ -641,6 +644,9 @@ class BehavioralProfiler:
         recent_channel_shifts = self._detect_channel_shifts(channels)
         
         # Build profile
+        # Keep last 50 transactions for pattern detection
+        recent_transactions = sorted_tx[-50:] if len(sorted_tx) > 50 else sorted_tx
+        
         profile = CustomerBehavioralProfile(
             account_number=account_number,
             last_updated=datetime.now(timezone.utc).isoformat(),
@@ -676,6 +682,7 @@ class BehavioralProfiler:
             recent_amount_trend=recent_amount_trend,
             recent_frequency_trend=recent_frequency_trend,
             recent_channel_shifts=recent_channel_shifts,
+            recent_transactions=recent_transactions,
             behavioral_risk_score=0,
             risk_factors=[]
         )
@@ -1048,16 +1055,56 @@ class BehavioralProfiler:
         """Score how anomalous the transaction pattern is (0-100)."""
         amount = float(transaction.get('amount', 0))
         tx_type = transaction.get('transaction_type', 'unknown')
+        sender_account = transaction.get('sender_account', '')
+        receiver_account = transaction.get('receiver_account', '')
         
         score = 0
         
-        # Check for structuring (amounts just below thresholds)
+        # Check for structuring (amounts just below CTR threshold)
         if 8500 <= amount <= 9999:
             score += 40
         
-        # Check for round amounts (suspicious for transfers)
-        if tx_type == 'transfer' and amount >= 1000 and amount % 1000 == 0:
-            score += 20
+        # Check for smurfing (amounts just below half CTR threshold)
+        if 4500 <= amount <= 4900:
+            score += 35
+        
+        # Check for small ATM structuring
+        if 2500 <= amount <= 2900 and tx_type == 'deposit':
+            score += 30
+        
+        # Check for rapid layering (need recent transaction history)
+        if hasattr(profile, 'recent_transactions') and profile.recent_transactions:
+            try:
+                tx_time = datetime.fromisoformat(transaction.get('timestamp', ''))
+                rapid_count = 0
+                same_recipient_count = 0
+                
+                for tx in profile.recent_transactions:
+                    if tx.get('sender_account') == sender_account:
+                        try:
+                            tx_timestamp = datetime.fromisoformat(tx.get('timestamp', ''))
+                            time_diff = (tx_time - tx_timestamp).total_seconds()
+                            
+                            # Rapid transfers within 10 minutes
+                            if 0 < time_diff <= 600:
+                                rapid_count += 1
+                            
+                            # Same recipient in 24 hours
+                            if time_diff <= 86400 and tx.get('receiver_account') == receiver_account:
+                                same_recipient_count += 1
+                        except (ValueError, TypeError):
+                            continue
+                
+                if rapid_count >= 2:
+                    score += 45
+                if same_recipient_count >= 2:
+                    score += 35
+            except (ValueError, TypeError):
+                pass
+        
+        # Check for high-value transfers (layering)
+        if tx_type == 'transfer' and amount >= 5000:
+            score += 25
         
         # Check if transaction type is unusual
         type_freq = profile.type_distribution.get(tx_type, 0)
@@ -1090,6 +1137,14 @@ class BehavioralProfiler:
         """
         profile.last_updated = datetime.now(timezone.utc).isoformat()
         profile.total_transactions += 1
+        
+        # Update recent transactions for pattern detection
+        if not hasattr(profile, 'recent_transactions'):
+            profile.recent_transactions = []
+        profile.recent_transactions.append(new_transaction)
+        # Keep only last 50 transactions
+        if len(profile.recent_transactions) > 50:
+            profile.recent_transactions = profile.recent_transactions[-50:]
         
         # Adaptive learning rate based on anomaly and profile maturity
         # Lower learning rate for anomalous transactions to prevent contamination
