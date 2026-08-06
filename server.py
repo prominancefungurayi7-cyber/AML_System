@@ -130,6 +130,7 @@ from ai_core import (
 from config import DevelopmentConfig, ProductionConfig, TestingConfig
 
 from screening import is_registration_blocked, screen_entity, screening_summary
+from aml_rules import CTR_THRESHOLD, assess_rules
 
 
 # ============================================================================
@@ -475,7 +476,9 @@ def save_customer_behavioral_profile(conn, profile: CustomerBehavioralProfile):
         )
 
 
-def build_or_update_customer_profile(conn, account_number: str) -> Optional[CustomerBehavioralProfile]:
+def build_or_update_customer_profile(
+    conn, account_number: str, exclude_transaction_id=None, reference_timestamp=None
+) -> Optional[CustomerBehavioralProfile]:
     """Build or update customer's behavioral profile from transaction history."""
     # Get customer's transaction history
     transactions = conn.execute(
@@ -483,11 +486,14 @@ def build_or_update_customer_profile(conn, account_number: str) -> Optional[Cust
         SELECT id, amount, transaction_type, sender_account, receiver_account, 
                channel, timestamp, destination_country
         FROM transactions
-        WHERE sender_account=? OR receiver_account=?
+        WHERE (sender_account=? OR receiver_account=?)
+          AND (? IS NULL OR id<>?)
+          AND (? IS NULL OR timestamp<?)
         ORDER BY timestamp DESC
         LIMIT 500
         """,
-        (account_number, account_number)
+        (account_number, account_number, exclude_transaction_id, exclude_transaction_id,
+         reference_timestamp, reference_timestamp)
     ).fetchall()
     
     if not transactions:
@@ -528,7 +534,9 @@ def assess_transaction_behavioral_risk(
     
     if not profile:
         # Try to build profile from history
-        profile = build_or_update_customer_profile(conn, sender_account)
+        profile = build_or_update_customer_profile(
+            conn, sender_account, transaction.get("id"), transaction.get("timestamp")
+        )
     
     if not profile:
         # Insufficient data for behavioral analysis - cold start
@@ -2479,7 +2487,9 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
 
     existing = conn.execute("SELECT id FROM alerts WHERE transaction_id=?", (transaction_id,)).fetchone()
 
-    if existing is None and risk_level != "normal":
+    # Low scores are retained for trend analysis but do not interrupt analysts.
+    # Alerts require a material, explainable signal (score >= 40).
+    if existing is None and risk_level in ("suspicious", "high_risk", "critical"):
 
         conn.execute(
 
@@ -3118,14 +3128,13 @@ def process_transaction_event(
 
     screen_delta, screen_reason, screen_json = screening_summary(screening_hits)
 
-    # Legacy rule-based assessment removed - using AI + Behavioral only
-    # Screening hits are incorporated directly into risk assessment
-    rule_score = screen_delta if screen_delta else 0
-    rule_level = _risk_level_from_score(rule_score)
-    rule_reason = screen_reason if screen_delta else "No screening hits"
-    
-    # Build triggered rules list from screening only
-    triggered = []
+    # Rules are evaluated before behavioural/ML blending.  They provide the
+    # auditable typology evidence that a statistical model alone cannot infer.
+    triggered = [rule.payload() for rule in assess_rules(
+        conn, amount=amount, tx_type=transaction_type, sender=sender_account,
+        receiver=receiver_account, timestamp=timestamp,
+        destination_country=destination_country,
+    )]
     if screen_delta:
         triggered.append({
             "rule_id": "SCREENING",
@@ -3135,7 +3144,9 @@ def process_transaction_event(
             "severity": "critical" if any(h.list_type == "sanctions" for h in screening_hits) else "warning",
             "typology": "Watchlist / PEP Screening",
         })
-
+    rule_score = min(100, sum(int(rule["score_delta"]) for rule in triggered))
+    rule_level = _risk_level_from_score(rule_score)
+    rule_reason = "; ".join(rule["reason"] for rule in triggered) or "No rule indicators"
     rules_json = json.dumps(triggered + screen_json)
 
 
@@ -3155,47 +3166,48 @@ def process_transaction_event(
     if tx_row and tx_row["channel"]:
         transaction_dict["channel"] = tx_row["channel"]
     
-    # Primary: Behavioral-based risk assessment
+    # Behavioural evidence is customer-specific and is never the sole reason
+    # to suppress a confirmed compliance typology.
     behavioral_score, behavioral_level, behavioral_reason, anomaly_reasons = assess_transaction_behavioral_risk(
         conn, transaction_dict, sender_account
     )
-    
-    # Combine behavioral and screening assessments
-    # Behavioral assessment takes priority unless mandatory screening rules are triggered
-    mandatory = any(h.list_type == "sanctions" for h in screening_hits)
-    
+    ml_features = dict(transaction_dict)
+    ml_features.update(_ai_profile_for_transaction(
+        conn, transaction_id, sender_account, receiver_account, amount, timestamp
+    ))
+    ml_level, ml_confidence, _ = predict_risk_level(ml_features)
+    ml_score = AI_RISK_SCORES.get(ml_level, 0) if ml_confidence >= 0.65 else 0
+
+    # AI only contributes when confident.  Rules marked critical (and
+    # sanctions) are non-downgradable; all other signals must independently
+    # reach a material threshold before an alert is opened.
+    behavioral_confidence = min(0.90, behavioral_score / 100) if behavioral_score else 0
+    ai_score = round((ml_score * ml_confidence * 0.65) + (behavioral_score * behavioral_confidence * 0.35))
+    mandatory = any(h.list_type == "sanctions" for h in screening_hits) or any(
+        rule["severity"] == "critical" for rule in triggered
+    )
+    risk_score = max(rule_score, ai_score)
     if mandatory:
-        # Mandatory compliance rules override behavioral assessment
-        risk_score = rule_score
-        risk_level = rule_level
-        reason = f"Mandatory compliance rule: {rule_reason}. Behavioral context: {behavioral_reason}"
-    elif behavioral_score > 0:
-        # Use behavioral assessment when available
-        risk_score = behavioral_score
-        risk_level = behavioral_level
-        reason = behavioral_reason
-        
-        # Add rule context for high-risk transactions
-        if rule_score >= 40:
-            reason += f" Rule-based context: {rule_reason}"
-            risk_score = max(risk_score, rule_score * 0.3)  # Blend in rule score
-            risk_level = _risk_level_from_score(risk_score)
-    else:
-        # Fallback to rule-based when insufficient behavioral data
-        risk_score = rule_score
-        risk_level = rule_level
-        reason = rule_reason
-    
-    # Set AI-related fields for database compatibility
-    ai_level = behavioral_level if behavioral_score > 0 else None
-    ai_confidence = min(1.0, behavioral_score / 100) if behavioral_score > 0 else 0
-    ai_reason = behavioral_reason if behavioral_score > 0 else None
+        risk_score = max(risk_score, rule_score)
+    risk_level = _risk_level_from_score(risk_score)
+    reasons = []
+    if triggered:
+        reasons.append(rule_reason)
+    if ml_score:
+        reasons.append(f"ML model: {ml_level.replace('_', ' ')} ({ml_confidence:.0%} confidence)")
+    if behavioral_score >= 40:
+        reasons.append(behavioral_reason)
+    reason = "; ".join(reasons) or "Routine transaction — no material AML indicators"
+
+    ai_level = ml_level or behavioral_level
+    ai_confidence = max(ml_confidence or 0, behavioral_confidence)
+    ai_reason = f"{behavioral_reason} ML: {ml_level or 'unavailable'} ({ml_confidence or 0:.0%})."
 
 
 
-    ctr_required = 1 if "[CTR REQUIRED]" in rule_reason else 0
+    ctr_required = 1 if transaction_type in ("deposit", "withdraw") and float(amount) >= CTR_THRESHOLD else 0
 
-    sar_required = 1 if "[SAR REVIEW]" in rule_reason else 0
+    sar_required = 1 if any(rule["rule_id"] == "R07" for rule in triggered) else 0
 
     if risk_level in ("suspicious", "super_suspicious", "high_risk", "critical"):
 
@@ -4850,7 +4862,11 @@ def generate_transactions():
         get_db().commit()
 
         # Process transactions in batch for AML rules and AI
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in transactions_to_process:
+        # Evaluate chronologically so every score uses only information that
+        # was available at that point in time.
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
+            transactions_to_process, key=lambda item: item[5]
+        ):
 
             risk_score, risk_level, reason, alert_id = process_transaction_event(
 
