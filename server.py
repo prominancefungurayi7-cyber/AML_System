@@ -2428,14 +2428,14 @@ def _simulation_transaction(label, users):
 
     amount = round(
         _scenario_amount(*scenario["amount"], label)
-        * _simulation_segment_multiplier(sender.get("wealth_segment", "average"), label),
+        * _simulation_segment_multiplier(sender["wealth_segment"] or "average", label),
         2,
     )
 
     hour = random.choice(scenario["hours"])
 
 
-    if tx_type in ("withdraw", "transfer") and sender.get("balance") is not None:
+    if tx_type in ("withdraw", "transfer") and sender["balance"] is not None:
 
         balance = float(sender["balance"] or 0)
 
@@ -2686,13 +2686,13 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
          timestamp, timestamp),
     ).fetchone()
 
-    avg_amount = float(prior.get("avg_amount") if prior else 0)
+    avg_amount = float(prior["avg_amount"] if prior else 0)
 
-    max_amount = float(prior.get("max_amount") if prior else 0)
+    max_amount = float(prior["max_amount"] if prior else 0)
 
-    tx_count = int(prior.get("tx_count") if prior else 0)
+    tx_count = int(prior["tx_count"] if prior else 0)
 
-    volume_24h = float(recent.get("volume") if recent else 0)
+    volume_24h = float(recent["volume"] if recent else 0)
 
     amount = float(amount)
 
@@ -2712,7 +2712,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         "amount_to_sender_max": amount / max_amount if max_amount > 0 else 1.0,
 
-        "sender_tx_count_24h": int(recent.get("tx_count") if recent else 0),
+        "sender_tx_count_24h": int(recent["tx_count"] if recent else 0),
 
         "sender_volume_24h": volume_24h,
 
@@ -2720,13 +2720,13 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         "is_new_recipient": 0.0 if recipient_seen else 1.0,
 
-        "wealth_segment": prior.get("wealth_segment") if prior and prior.get("wealth_segment") else "average",
+        "wealth_segment": prior["wealth_segment"] if prior and prior["wealth_segment"] else "average",
 
         # New structuring and layering features
-        "same_day_count": int(same_day_txs.get("count") if same_day_txs else 0),
-        "same_day_total": float(same_day_txs.get("total") if same_day_txs else 0),
-        "same_recipient_count": int(same_recipient_24h.get("count") if same_recipient_24h else 0),
-        "rapid_transfer_count": int(rapid_transfers.get("count") if rapid_transfers else 0),
+        "same_day_count": int(same_day_txs["count"] if same_day_txs else 0),
+        "same_day_total": float(same_day_txs["total"] if same_day_txs else 0),
+        "same_recipient_count": int(same_recipient_24h["count"] if same_recipient_24h else 0),
+        "rapid_transfer_count": int(rapid_transfers["count"] if rapid_transfers else 0),
 
     })
 
