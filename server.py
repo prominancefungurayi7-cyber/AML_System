@@ -2290,9 +2290,75 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
 
     },
 
+    # Enhanced structuring scenarios
+
+    {
+
+        "type": "deposit",
+
+        "amount": (4500, 4900),
+
+        "channel": "branch",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Multiple cash deposits just below half CTR threshold",
+
+        "reason": "Smurfing pattern: multiple deposits below $5000 to avoid reporting",
+
+    },
+
+    {
+
+        "type": "deposit",
+
+        "amount": (2500, 2900),
+
+        "channel": "atm",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Frequent small cash deposits via ATM",
+
+        "reason": "Structuring through small ATM deposits to avoid detection",
+
+    },
+
+    # Enhanced layering scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (8000, 15000),
+
+        "channel": "online",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Rapid sequential transfers to multiple accounts",
+
+        "reason": "Layering: rapid movement of funds through multiple accounts",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (3000, 7000),
+
+        "channel": "mobile",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Circular transfer pattern between related accounts",
+
+        "reason": "Layering: circular transfers to obscure audit trail",
+
+    },
+
 ]
-
-
 
 
 
@@ -2518,6 +2584,7 @@ def _history_profile(amount, receiver_account, timestamp, history):
 def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_account, amount, timestamp):
 
     cutoff = (_parse_timestamp(timestamp) - timedelta(hours=24)).isoformat()
+    tx_date = _parse_timestamp(timestamp).date()
 
     prior = conn.execute(
 
@@ -2577,7 +2644,37 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
     ).fetchone()
 
+    # New structuring and layering features
+    same_day_txs = conn.execute(
+        """
+        SELECT COUNT(*) AS count, COALESCE(SUM(amount), 0) AS total
+        FROM transactions t
+        WHERE sender_account=? AND t.id<>? AND DATE(timestamp)=DATE(?)
+        """,
+        (sender_account, transaction_id, timestamp),
+    ).fetchone()
 
+    same_recipient_24h = conn.execute(
+        """
+        SELECT COUNT(*) AS count
+        FROM transactions t
+        WHERE sender_account=? AND receiver_account=? AND t.id<>? AND timestamp>=? AND timestamp<?
+        """,
+        (sender_account, receiver_account, transaction_id, cutoff, timestamp),
+    ).fetchone()
+
+    rapid_transfers = conn.execute(
+        """
+        SELECT COUNT(*) AS count
+        FROM transactions t
+        WHERE sender_account=? AND t.id<>? 
+        AND timestamp>=? AND timestamp<?
+        AND ABS(strftime('%s', ?) - strftime('%s', timestamp)) <= 600
+        """,
+        (sender_account, transaction_id, 
+         (_parse_timestamp(timestamp) - timedelta(minutes=10)).isoformat(), 
+         timestamp, timestamp),
+    ).fetchone()
 
     avg_amount = float(prior.get("avg_amount") if prior else 0)
 
@@ -2614,6 +2711,12 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
         "is_new_recipient": 0.0 if recipient_seen else 1.0,
 
         "wealth_segment": prior.get("wealth_segment") if prior and prior.get("wealth_segment") else "average",
+
+        # New structuring and layering features
+        "same_day_count": int(same_day_txs.get("count") if same_day_txs else 0),
+        "same_day_total": float(same_day_txs.get("total") if same_day_txs else 0),
+        "same_recipient_count": int(same_recipient_24h.get("count") if same_recipient_24h else 0),
+        "rapid_transfer_count": int(rapid_transfers.get("count") if rapid_transfers else 0),
 
     })
 
