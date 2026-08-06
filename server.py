@@ -2615,11 +2615,11 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         LEFT JOIN users u ON t.sender_account = u.account_number
 
-        WHERE sender_account=? AND t.id<>? AND timestamp<?
+        WHERE sender_account=? AND (? IS NULL OR t.id<>?) AND timestamp<?
 
         """,
 
-        (sender_account, transaction_id, timestamp),
+        (sender_account, transaction_id, transaction_id, timestamp),
 
     ).fetchone()
 
@@ -2631,11 +2631,11 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         FROM transactions t
 
-        WHERE sender_account=? AND t.id<>? AND timestamp>=? AND timestamp<?
+        WHERE sender_account=? AND (? IS NULL OR t.id<>?) AND timestamp>=? AND timestamp<?
 
         """,
 
-        (sender_account, transaction_id, cutoff, timestamp),
+        (sender_account, transaction_id, transaction_id, cutoff, timestamp),
 
     ).fetchone()
 
@@ -2645,13 +2645,13 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
 
         SELECT id FROM transactions t
 
-        WHERE sender_account=? AND receiver_account=? AND t.id<>? AND timestamp<?
+        WHERE sender_account=? AND receiver_account=? AND (? IS NULL OR t.id<>?) AND timestamp<?
 
         LIMIT 1
 
         """,
 
-        (sender_account, receiver_account, transaction_id, timestamp),
+        (sender_account, receiver_account, transaction_id, transaction_id, timestamp),
 
     ).fetchone()
 
@@ -2660,29 +2660,29 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
         """
         SELECT COUNT(*) AS count, COALESCE(SUM(amount), 0) AS total
         FROM transactions t
-        WHERE sender_account=? AND t.id<>? AND DATE(timestamp)=DATE(?)
+        WHERE sender_account=? AND (? IS NULL OR t.id<>?) AND DATE(timestamp)=DATE(?)
         """,
-        (sender_account, transaction_id, timestamp),
+        (sender_account, transaction_id, transaction_id, timestamp),
     ).fetchone()
 
     same_recipient_24h = conn.execute(
         """
         SELECT COUNT(*) AS count
         FROM transactions t
-        WHERE sender_account=? AND receiver_account=? AND t.id<>? AND timestamp>=? AND timestamp<?
+        WHERE sender_account=? AND receiver_account=? AND (? IS NULL OR t.id<>?) AND timestamp>=? AND timestamp<?
         """,
-        (sender_account, receiver_account, transaction_id, cutoff, timestamp),
+        (sender_account, receiver_account, transaction_id, transaction_id, cutoff, timestamp),
     ).fetchone()
 
     rapid_transfers = conn.execute(
         """
         SELECT COUNT(*) AS count
         FROM transactions t
-        WHERE sender_account=? AND t.id<>? 
+        WHERE sender_account=? AND (? IS NULL OR t.id<>?) 
         AND timestamp>=? AND timestamp<?
         AND ABS(strftime('%s', timestamp) - strftime('%s', ?)) <= 600
         """,
-        (sender_account, transaction_id, 
+        (sender_account, transaction_id, transaction_id, 
          (_parse_timestamp(timestamp) - timedelta(minutes=10)).isoformat(), 
          timestamp, timestamp),
     ).fetchone()
