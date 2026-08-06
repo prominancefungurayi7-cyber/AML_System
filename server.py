@@ -535,7 +535,8 @@ def assess_transaction_behavioral_risk(
     if not profile:
         # Try to build profile from history
         profile = build_or_update_customer_profile(
-            conn, sender_account, transaction.get("id"), transaction.get("timestamp")
+            conn, sender_account, exclude_transaction_id=transaction.get("id"), 
+            reference_timestamp=transaction.get("timestamp")
         )
     
     if not profile:
