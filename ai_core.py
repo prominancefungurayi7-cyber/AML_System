@@ -70,48 +70,48 @@ _BOOTSTRAP = [
     {"amount": 45, "hour": 10, "transaction_type": "deposit", "sender_account": "A", "receiver_account": "A",
      "sender_avg_amount": 200, "sender_max_amount": 500, "sender_tx_count": 15, "risk_level": "normal",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 0, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
     {"amount": 120, "hour": 14, "transaction_type": "transfer", "sender_account": "B", "receiver_account": "C",
      "sender_avg_amount": 150, "sender_max_amount": 400, "sender_tx_count": 8, "risk_level": "normal",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 0, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
     {"amount": 350, "hour": 11, "transaction_type": "withdraw", "sender_account": "D", "receiver_account": "D",
      "sender_avg_amount": 300, "sender_max_amount": 800, "sender_tx_count": 20, "risk_level": "normal",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 0, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
     # Structuring: cash deposit below CTR threshold
     {"amount": 9500, "hour": 14, "transaction_type": "deposit", "sender_account": "E", "receiver_account": "E",
      "sender_avg_amount": 500, "sender_max_amount": 2000, "sender_tx_count": 3, "is_new_recipient": 1.0,
      "risk_level": "suspicious", "same_day_count": 2, "same_day_total": 19000, "same_recipient_count": 0,
-     "rapid_transfer_count": 0, "round_number": 1, "structuring_indicators": 3, "layering_indicators": 0},
+     "rapid_transfer_count": 0, "structuring_indicators": 2, "layering_indicators": 0},
     {"amount": 9800, "hour": 15, "transaction_type": "deposit", "sender_account": "F", "receiver_account": "F",
      "sender_avg_amount": 800, "sender_max_amount": 3000, "sender_tx_count": 5, "risk_level": "suspicious",
      "same_day_count": 1, "same_day_total": 9800, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 1, "structuring_indicators": 2, "layering_indicators": 0},
+     "structuring_indicators": 1, "layering_indicators": 0},
     # Layering: rapid transfers
     {"amount": 5500, "hour": 2, "transaction_type": "transfer", "sender_account": "G", "receiver_account": "H",
      "sender_avg_amount": 200, "sender_max_amount": 500, "sender_tx_count": 2, "is_new_recipient": 1.0,
      "sender_tx_count_24h": 4, "sender_volume_24h": 12000, "risk_level": "suspicious",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 1, "rapid_transfer_count": 2,
-     "round_number": 1, "structuring_indicators": 1, "layering_indicators": 3},
+     "structuring_indicators": 0, "layering_indicators": 3},
     {"amount": 15000, "hour": 3, "transaction_type": "transfer", "sender_account": "I", "receiver_account": "J",
      "sender_avg_amount": 300, "sender_max_amount": 1000, "sender_tx_count": 1, "is_new_recipient": 1.0,
      "risk_level": "super_suspicious", "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0,
-     "rapid_transfer_count": 0, "round_number": 1, "structuring_indicators": 0, "layering_indicators": 1},
+     "rapid_transfer_count": 0, "structuring_indicators": 0, "layering_indicators": 1},
     {"amount": 25000, "hour": 1, "transaction_type": "withdraw", "sender_account": "K", "receiver_account": "K",
      "sender_avg_amount": 50000, "sender_max_amount": 80000, "sender_tx_count": 50,
      "sender_tx_count_24h": 8, "sender_volume_24h": 95000, "risk_level": "super_suspicious",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 1, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
     {"amount": 12000, "hour": 14, "transaction_type": "deposit", "sender_account": "L", "receiver_account": "L",
      "sender_avg_amount": 400, "sender_max_amount": 1500, "sender_tx_count": 4, "risk_level": "super_suspicious",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 1, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
     {"amount": 500, "hour": 2, "transaction_type": "transfer", "sender_account": "M", "receiver_account": "N",
      "sender_avg_amount": 100, "sender_max_amount": 300, "sender_tx_count": 12, "sender_tx_count_24h": 6,
      "sender_volume_24h": 4500, "is_new_recipient": 1.0, "risk_level": "suspicious",
      "same_day_count": 0, "same_day_total": 0, "same_recipient_count": 0, "rapid_transfer_count": 0,
-     "round_number": 0, "structuring_indicators": 0, "layering_indicators": 0},
+     "structuring_indicators": 0, "layering_indicators": 0},
 ]
 
 
@@ -254,7 +254,6 @@ def transaction_features(transaction, recent_transactions=None):
     same_day_total = 0
     same_recipient_count = 0
     rapid_transfer_count = 0
-    round_number = 1 if amount % 1000 < 10 else 0  # Round numbers like $5000, $10000
     
     if recent_transactions:
         try:
@@ -283,8 +282,6 @@ def transaction_features(transaction, recent_transactions=None):
     if 8000 <= amount <= 9999:  # Below CTR threshold
         structuring_indicators += 1
     if same_day_count >= 3:  # Multiple transactions same day
-        structuring_indicators += 1
-    if round_number:  # Round numbers common in structuring
         structuring_indicators += 1
 
     # Layering detection: rapid transfers and same recipient
@@ -321,10 +318,8 @@ def transaction_features(transaction, recent_transactions=None):
         float(same_day_total),
         float(same_recipient_count),
         float(rapid_transfer_count),
-        float(round_number),
         float(structuring_indicators),
         float(layering_indicators),
-        1 if amount % 500 < 10 else 0,  # Half-round numbers ($2500, $5000, $7500)
     ]
 
 
