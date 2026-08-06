@@ -2680,7 +2680,7 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
         FROM transactions t
         WHERE sender_account=? AND t.id<>? 
         AND timestamp>=? AND timestamp<?
-        AND ABS(strftime('%s', ?) - strftime('%s', timestamp)) <= 600
+        AND ABS(strftime('%s', timestamp) - strftime('%s', ?)) <= 600
         """,
         (sender_account, transaction_id, 
          (_parse_timestamp(timestamp) - timedelta(minutes=10)).isoformat(), 
