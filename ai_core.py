@@ -181,8 +181,8 @@ class CustomerBehavioralProfile:
     recent_transactions: List[Dict[str, Any]] = field(default_factory=list)
     
     # Risk indicators based on behavioral patterns
-    behavioral_risk_score: float  # 0-100 based on pattern anomalies
-    risk_factors: List[str]
+    behavioral_risk_score: float = 0  # 0-100 based on pattern anomalies
+    risk_factors: List[str] = field(default_factory=list)
 
 
 @dataclass
