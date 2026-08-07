@@ -2680,11 +2680,10 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
         FROM transactions t
         WHERE sender_account=? AND (? IS NULL OR t.id<>?) 
         AND timestamp>=? AND timestamp<?
-        AND ABS(strftime('%s', timestamp) - strftime('%s', ?)) <= 600
         """,
-        (sender_account, transaction_id, transaction_id, 
-         (_parse_timestamp(timestamp) - timedelta(minutes=10)).isoformat(), 
-         timestamp, timestamp),
+        (sender_account, transaction_id, transaction_id,
+         (_parse_timestamp(timestamp) - timedelta(minutes=10)).isoformat(),
+         timestamp),
     ).fetchone()
 
     avg_amount = float(prior["avg_amount"] if prior else 0)
