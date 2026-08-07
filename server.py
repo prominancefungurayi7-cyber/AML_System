@@ -1534,9 +1534,9 @@ def seed_demo_data():
 
             conn.execute(
 
-                "INSERT INTO users (username, email, id_number, password_hash, role, account_number, balance, kyc_status, wealth_segment, created_at) VALUES (?,?,?,?,?,?,5000,'verified','average',?)",
+                "INSERT INTO users (username, email, id_number, password_hash, role, account_number, balance, kyc_status, wealth_segment, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
 
-                (username, email, id_number, pwd_hash, role, acct, now),
+                (username, email, id_number, pwd_hash, role, acct, 5000, 'verified', 'average', now),
 
             )
 
@@ -1651,11 +1651,11 @@ def _seed_watchlist(conn):
 
                 INSERT INTO watchlist (name, id_number, account_number, list_type, reason, added_by, added_at)
 
-                VALUES (?,?,?,?,?,'system',?)
+                VALUES (?,?,?,?,?,?,?)
 
                 """,
 
-                (name, id_num, acct, list_type, reason, now),
+                (name, id_num, acct, list_type, reason, 'system', now),
 
             )
 
@@ -3742,11 +3742,11 @@ def register():
 
             get_db().execute(
 
-                "INSERT INTO users (username,email,id_number,password_hash,role,account_number,balance,kyc_status,pep_flag,created_at) VALUES (?,?,?,?,?,?,5000,?,?,?)",
+                "INSERT INTO users (username,email,id_number,password_hash,role,account_number,balance,kyc_status,pep_flag,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
 
                 (pending["username"], pending["email"], pending["id_number"],
 
-                 pending["password_hash"], pending["role"], acct, kyc_status, pep_flag,
+                 pending["password_hash"], pending["role"], acct, 5000, kyc_status, pep_flag,
 
                  datetime.now(timezone.utc).isoformat()),
 
@@ -4154,11 +4154,11 @@ def create_transaction():
 
             currency, channel, timestamp, status, risk_score, risk_level, description)
 
-        VALUES (?,?,?,?,'USD','online',?,'Completed',0,'normal','Initiated')
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)
 
         """,
 
-        (sender_account, receiver_account, amount, tx_type, timestamp),
+        (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp, 'Completed', 0, 'normal', 'Initiated'),
 
     )
 
@@ -4461,9 +4461,9 @@ def alert_detail(alert_id):
 
             get_db().execute(
 
-                "INSERT INTO sar_reports (alert_id, account_number, filed_by, narrative, status, reference_number, created_at) VALUES (?,?,?,?,'draft',?,?)",
+                "INSERT INTO sar_reports (alert_id, account_number, filed_by, narrative, status, reference_number, created_at) VALUES (?,?,?,?,?,?,?)",
 
-                (alert_id, alert.get("account_number"), officer["username"], narrative, ref,
+                (alert_id, alert.get("account_number"), officer["username"], narrative, 'draft', ref,
 
                  datetime.now(timezone.utc).isoformat()),
 
