@@ -3134,7 +3134,7 @@ def process_transaction_event(
     triggered = [rule.payload() for rule in assess_rules(
         conn, amount=amount, tx_type=transaction_type, sender=sender_account,
         receiver=receiver_account, timestamp=timestamp,
-        destination_country=destination_country,
+        destination_country=destination_country, exclude_transaction_id=transaction_id,
     )]
     if screen_delta:
         triggered.append({

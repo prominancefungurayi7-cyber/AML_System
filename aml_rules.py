@@ -39,25 +39,34 @@ def _time(value: str) -> datetime:
         return datetime.now(timezone.utc)
 
 
-def _prior(conn, sender: str, timestamp: str, minutes: int) -> list[dict[str, Any]]:
+def _prior(conn, sender: str, timestamp: str, minutes: int, exclude_transaction_id=None) -> list[dict[str, Any]]:
     end = _time(timestamp)
     start = end - timedelta(minutes=minutes)
-    rows = conn.execute(
-        """SELECT amount, transaction_type, sender_account, receiver_account, timestamp
-           FROM transactions
-           WHERE sender_account=? AND timestamp>=? AND timestamp<?
-           ORDER BY timestamp ASC, id ASC LIMIT 200""",
-        (sender, start.isoformat(), end.isoformat()),
-    ).fetchall()
+    if exclude_transaction_id:
+        rows = conn.execute(
+            """SELECT amount, transaction_type, sender_account, receiver_account, timestamp
+               FROM transactions
+               WHERE sender_account=? AND id<>? AND timestamp>=? AND timestamp<?
+               ORDER BY timestamp ASC, id ASC LIMIT 200""",
+            (sender, exclude_transaction_id, start.isoformat(), end.isoformat()),
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            """SELECT amount, transaction_type, sender_account, receiver_account, timestamp
+               FROM transactions
+               WHERE sender_account=? AND timestamp>=? AND timestamp<?
+               ORDER BY timestamp ASC, id ASC LIMIT 200""",
+            (sender, start.isoformat(), end.isoformat()),
+        ).fetchall()
     return [dict(row) for row in rows]
 
 
 def assess_rules(conn, *, amount: float, tx_type: str, sender: str, receiver: str,
-                 timestamp: str, destination_country: str = "ZW") -> list[RuleResult]:
+                 timestamp: str, destination_country: str = "ZW", exclude_transaction_id=None) -> list[RuleResult]:
     """Return all independent rule hits for one transaction."""
     amount = float(amount)
-    prior_hour = _prior(conn, sender, timestamp, 60)
-    prior_day = _prior(conn, sender, timestamp, 24 * 60)
+    prior_hour = _prior(conn, sender, timestamp, 60, exclude_transaction_id)
+    prior_day = _prior(conn, sender, timestamp, 24 * 60, exclude_transaction_id)
     hits: list[RuleResult] = []
 
     def hit(rule_id, points, reason, severity, typology, **evidence):
