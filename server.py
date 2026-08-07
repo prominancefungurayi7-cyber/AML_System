@@ -2500,11 +2500,11 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
 
                                 rules_triggered, status, timestamp)
 
-            VALUES (?,?,?,?,?,?,'open',?)
+            VALUES (?,?,?,?,?,?,?,?)
 
             """,
 
-            (transaction_id, account_number, risk_score, risk_level, reason, rules_json, timestamp),
+            (transaction_id, account_number, risk_score, risk_level, reason, rules_json, 'open', timestamp),
 
         )
 
@@ -3282,13 +3282,13 @@ def process_transaction_event(
 
                     generated_by, status, created_at)
 
-                VALUES (?,?,?,'system','pending',?)
+                VALUES (?,?,?,?,?,?)
 
                 """,
 
                 (transaction_id, account_number or sender_account, amount,
 
-                 datetime.now(timezone.utc).isoformat()),
+                 'system', 'pending', datetime.now(timezone.utc).isoformat()),
 
             )
 
@@ -4815,15 +4815,13 @@ def generate_transactions():
 
                     destination_country)
 
-                VALUES (?,?,?,?,?,?,?,'Completed',0,'normal',?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
 
                 """,
 
                 (
 
-                    sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp,
-
-                    description, dest_country,
+                    sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country,
 
                 ),
 
