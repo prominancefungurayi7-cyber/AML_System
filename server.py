@@ -4366,6 +4366,12 @@ def compliance_dashboard():
 
 
 
+def _get_next_open_alert_id(conn, current_alert_id):
+    next_alert = conn.execute(
+        "SELECT id FROM alerts WHERE status='open' AND id != ? ORDER BY timestamp DESC, id DESC LIMIT 1",
+        (current_alert_id,),
+    ).fetchone()
+    return next_alert["id"] if next_alert else None
 
 
 @app.route("/compliance/alert/<int:alert_id>", methods=["GET", "POST"])
@@ -4390,9 +4396,11 @@ def alert_detail(alert_id):
 
     ).fetchone()
 
+    account_number = alert["account_number"]
+
     account_user = get_db().execute(
 
-        "SELECT * FROM users WHERE account_number=?", (alert["account_number"],)
+        "SELECT * FROM users WHERE account_number=?", (account_number,)
 
     ).fetchone()
 
@@ -4421,7 +4429,7 @@ def alert_detail(alert_id):
             # Update customer risk rating
             if account_user:
                 old_risk = account_user["risk_rating"] or "standard"
-                new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "resolve", old_risk)
+                new_risk = update_customer_risk_rating(get_db(), account_number, "resolve", old_risk)
                 record_activity(officer["username"], "resolve_alert", f"Alert #{alert_id} resolved, risk rating: {old_risk} -> {new_risk}")
                 flash(f"Alert #{alert_id} marked as resolved. Customer risk rating updated to {new_risk}.")
             else:
@@ -4443,7 +4451,7 @@ def alert_detail(alert_id):
             # Update customer risk rating
             if account_user:
                 old_risk = account_user["risk_rating"] or "standard"
-                new_risk = update_customer_risk_rating(get_db(), alert.get("account_number"), "escalate", old_risk)
+                new_risk = update_customer_risk_rating(get_db(), account_number, "escalate", old_risk)
                 record_activity(officer["username"], "escalate_alert", f"Alert #{alert_id} escalated, risk rating: {old_risk} -> {new_risk}")
                 flash(f"Alert #{alert_id} escalated. Customer risk rating updated to {new_risk}.")
             else:
@@ -4462,7 +4470,7 @@ def alert_detail(alert_id):
 
                 "INSERT INTO sar_reports (alert_id, account_number, filed_by, narrative, status, reference_number, created_at) VALUES (?,?,?,?,?,?,?)",
 
-                (alert_id, alert.get("account_number"), officer["username"], narrative, 'draft', ref,
+                (alert_id, account_number, officer["username"], narrative, 'draft', ref,
 
                  datetime.now(timezone.utc).isoformat()),
 
@@ -4479,7 +4487,7 @@ def alert_detail(alert_id):
             # Update customer risk rating
             if account_user:
                 old_risk = account_user["risk_rating"] or "standard"
-                new_risk = update_customer_risk_rating(get_db(), alert["account_number"], "file_sar", old_risk)
+                new_risk = update_customer_risk_rating(get_db(), account_number, "file_sar", old_risk)
                 record_activity(officer["username"], "file_sar", f"SAR {ref} filed for alert #{alert_id}, risk rating: {old_risk} -> {new_risk}")
                 flash(f"SAR filed successfully. Reference: {ref}. Customer risk rating updated to {new_risk}.")
             else:
@@ -4508,7 +4516,11 @@ def alert_detail(alert_id):
 
         broadcast_stats(get_db())
 
-        return redirect(url_for("alert_detail", alert_id=alert_id))
+        next_alert_id = _get_next_open_alert_id(get_db(), alert_id)
+        if next_alert_id is not None:
+            return redirect(url_for("alert_detail", alert_id=next_alert_id))
+
+        return redirect(url_for("compliance_dashboard"))
 
 
 
