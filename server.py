@@ -3231,14 +3231,6 @@ def process_transaction_event(
     if mandatory:
         risk_score = max(risk_score, rule_score)
     risk_level = _risk_level_from_score(risk_score)
-    if generated_label is not None:
-        risk_score, risk_level, reason = _calibrate_generated_transaction_risk(
-            generated_label,
-            risk_score,
-            risk_level,
-            reason,
-            mandatory=mandatory,
-        )
     reasons = []
     if triggered:
         reasons.append(rule_reason)
@@ -3247,6 +3239,15 @@ def process_transaction_event(
     if behavioral_score >= 40:
         reasons.append(behavioral_reason)
     reason = "; ".join(reasons) or "Routine transaction — no material AML indicators"
+
+    if generated_label is not None:
+        risk_score, risk_level, reason = _calibrate_generated_transaction_risk(
+            generated_label,
+            risk_score,
+            risk_level,
+            reason,
+            mandatory=mandatory,
+        )
 
     ai_level = ml_level or behavioral_level
     ai_confidence = max(ml_confidence or 0, behavioral_confidence)
