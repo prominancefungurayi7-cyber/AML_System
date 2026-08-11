@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 from typing import Dict, List
 
 # Import modules to test
+from ai_core import transaction_features
 from aml_data_validator import TransactionValidator, validate_transaction
 from aml_feature_engineering import FeatureEngineer, extract_features
 from aml_fraud_patterns import FraudPatternDetector, detect_fraud_patterns
@@ -177,6 +178,27 @@ class TestFeatureEngineering:
 
 class TestFraudPatternDetection:
     """Tests for aml_fraud_patterns.py"""
+
+    def test_precomputed_sequence_metrics_are_used_in_ml_features(self):
+        """Sequence features from the transaction payload should be preserved for ML scoring."""
+        tx = {
+            "amount": 4800.0,
+            "transaction_type": "transfer",
+            "sender_account": "ACC1001",
+            "receiver_account": "ACC1002",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "same_day_count": 4,
+            "same_day_total": 18000.0,
+            "same_recipient_count": 3,
+            "rapid_transfer_count": 2,
+        }
+
+        features = transaction_features(tx)
+
+        assert features[19] == 4.0
+        assert features[20] == 18000.0
+        assert features[21] == 3.0
+        assert features[22] == 2.0
     
     def test_no_patterns(self):
         """Test with no suspicious patterns"""

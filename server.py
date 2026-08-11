@@ -1824,11 +1824,11 @@ def broadcast_stats(conn=None):
 
 
 
-def request_page(default=1):
+def request_page(parameter="page", default=1):
 
     try:
 
-        page = int(request.args.get("page", 1))
+        page = int(request.args.get(parameter, default))
 
     except (TypeError, ValueError):
 
@@ -2409,23 +2409,60 @@ def _simulation_segment_multiplier(segment, label):
 
 
 def _simulation_transaction(label, users):
-
+    """Generate one or more linked transactions that reflect laundering typologies."""
     if label == "normal":
-
         scenario = random.choice(NORMAL_TRANSACTION_SCENARIOS)
-
     elif label == "suspicious":
-
         scenario = random.choice(SUSPICIOUS_TRANSACTION_SCENARIOS)
-
     else:
-
         scenario = random.choice(SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS)
 
-
     tx_type = scenario["type"]
-
     sender = random.choice(users)
+    hour = random.choice(scenario["hours"])
+    dest_country = scenario.get("destination_country", "ZW")
+    description = scenario["description"]
+    scenario_reason = scenario.get("reason")
+
+    base_dt = _parse_timestamp(_simulation_timestamp(hour))
+
+    if label in ("suspicious", "super_suspicious") and tx_type == "deposit":
+        count = 3 if label == "suspicious" else 4
+        transactions = []
+        for idx in range(count):
+            amount = round(random.uniform(180, 450), 2) if label == "suspicious" else round(random.uniform(280, 480), 2)
+            if sender["balance"] is not None:
+                balance = float(sender["balance"] or 0)
+                if balance > 0 and amount > balance * 0.85:
+                    amount = round(balance * random.uniform(0.35, 0.75), 2)
+                    amount = max(amount, 1.0)
+            tx_timestamp = (base_dt + timedelta(minutes=idx * random.randint(3, 10))).isoformat()
+            transactions.append((sender, sender, tx_type, amount, tx_timestamp, scenario["channel"], description, scenario_reason, dest_country))
+        return transactions
+
+    if label in ("suspicious", "super_suspicious") and tx_type == "transfer":
+        count = 3 if label == "suspicious" else 4
+        if len(users) <= 1:
+            recipients = [sender]
+        else:
+            recipients = random.sample([user for user in users if user["id"] != sender["id"]], k=min(count, len(users) - 1))
+        transactions = []
+        for idx, recipient in enumerate(recipients):
+            amount = round(
+                _scenario_amount(*scenario["amount"], label)
+                * _simulation_segment_multiplier(sender["wealth_segment"] or "average", label),
+                2,
+            )
+            if sender["balance"] is not None:
+                balance = float(sender["balance"] or 0)
+                if balance > 0 and amount > balance * 0.85:
+                    amount = round(balance * random.uniform(0.35, 0.75), 2)
+                    amount = max(amount, 1.0)
+            tx_timestamp = (base_dt + timedelta(minutes=idx * random.randint(3, 10))).isoformat()
+            transactions.append((sender, recipient, tx_type, amount, tx_timestamp, scenario["channel"], description, scenario_reason, dest_country))
+        if not transactions:
+            transactions.append((sender, sender, tx_type, 0.0, base_dt.isoformat(), scenario["channel"], description, scenario_reason, dest_country))
+        return transactions
 
     amount = round(
         _scenario_amount(*scenario["amount"], label)
@@ -2433,38 +2470,23 @@ def _simulation_transaction(label, users):
         2,
     )
 
-    hour = random.choice(scenario["hours"])
-
-
     if tx_type in ("withdraw", "transfer") and sender["balance"] is not None:
-
         balance = float(sender["balance"] or 0)
-
         if balance > 0 and amount > balance * 0.85:
-
             amount = round(balance * random.uniform(0.35, 0.75), 2)
-
             amount = max(amount, 1.0)
 
-
     recipient = sender
-
     if tx_type == "transfer" and len(users) > 1:
-
         recipient = random.choice([user for user in users if user["id"] != sender["id"]])
 
-
     timestamp = _simulation_timestamp(hour)
-
-    dest_country = scenario.get("destination_country", "ZW")
-
-    return (
-
-        sender, recipient, tx_type, amount, timestamp,
-
-        scenario["channel"], scenario["description"], scenario.get("reason"), dest_country,
-
-    )
+    return [
+        (
+            sender, recipient, tx_type, amount, timestamp,
+            scenario["channel"], description, scenario_reason, dest_country,
+        )
+    ]
 
 
 
@@ -2531,59 +2553,57 @@ def _parse_timestamp(value):
 
 
 def _history_profile(amount, receiver_account, timestamp, history):
-
     amounts = history.get("amounts", [])
-
     recipients = history.get("recipients", set())
-
     events = history.get("events", [])
+    prior_transactions = history.get("transactions", [])
 
     amount = float(amount)
-
     avg_amount = sum(amounts) / len(amounts) if amounts else 0.0
-
     max_amount = max(amounts) if amounts else 0.0
 
     current_time = _parse_timestamp(timestamp)
-
     cutoff = current_time - timedelta(hours=24)
-
     recent_amounts = [
-
         float(event_amount)
-
         for event_time, event_amount in events
-
         if event_time >= cutoff
-
     ]
-
     volume_24h = sum(recent_amounts)
 
+    same_day_count = 0
+    same_day_total = 0.0
+    same_recipient_count = 0
+    rapid_transfer_count = 0
 
+    for prior_tx in prior_transactions:
+        try:
+            prior_time = _parse_timestamp(prior_tx.get("timestamp"))
+            if current_time.date() == prior_time.date():
+                same_day_count += 1
+                same_day_total += float(prior_tx.get("amount", 0) or 0)
+            if prior_time >= cutoff and prior_tx.get("receiver_account") == receiver_account:
+                same_recipient_count += 1
+            if 0 < (current_time - prior_time).total_seconds() <= 600:
+                rapid_transfer_count += 1
+        except (TypeError, ValueError):
+            continue
 
     profile = dict(PROFILE_FEATURE_DEFAULTS)
-
     profile.update({
-
         "sender_avg_amount": avg_amount,
-
         "sender_max_amount": max_amount,
-
         "sender_tx_count": len(amounts),
-
         "amount_to_sender_avg": amount / avg_amount if avg_amount > 0 else 1.0,
-
         "amount_to_sender_max": amount / max_amount if max_amount > 0 else 1.0,
-
         "sender_tx_count_24h": len(recent_amounts),
-
         "sender_volume_24h": volume_24h,
-
         "amount_to_sender_volume_24h": amount / volume_24h if volume_24h > 0 else 1.0,
-
         "is_new_recipient": 0.0 if receiver_account in recipients else 1.0,
-
+        "same_day_count": same_day_count,
+        "same_day_total": same_day_total,
+        "same_recipient_count": same_recipient_count,
+        "rapid_transfer_count": rapid_transfer_count,
     })
 
     return profile
@@ -2746,7 +2766,7 @@ def _ai_training_rows(rows):
 
         sender = row["sender_account"]
 
-        history = histories.setdefault(sender, {"amounts": [], "recipients": set(), "events": []})
+        history = histories.setdefault(sender, {"amounts": [], "recipients": set(), "events": [], "transactions": []})
 
         profile = _history_profile(row["amount"], row["receiver_account"], row["timestamp"], history)
 
@@ -2757,10 +2777,9 @@ def _ai_training_rows(rows):
         enriched.append(item)
 
         history["amounts"].append(float(row["amount"]))
-
         history["recipients"].add(row["receiver_account"])
-
         history["events"].append((_parse_timestamp(row["timestamp"]), float(row["amount"])))
+        history["transactions"].append(dict(row))
 
     return enriched
 
@@ -4256,7 +4275,11 @@ def compliance_dashboard():
 
     page = request_page()
 
+    alert_page = request_page("alert_page")
+
     offset = (page - 1) * PAGE_SIZE
+
+    alert_offset = (alert_page - 1) * PAGE_SIZE
 
     # Whitelist of valid filter values to prevent SQL injection
     VALID_FILTERS = {
@@ -4288,9 +4311,17 @@ def compliance_dashboard():
 
     open_alerts = get_db().execute(
 
-        "SELECT a.*, u.username FROM alerts a LEFT JOIN users u ON a.account_number=u.account_number WHERE a.status='open' ORDER BY a.timestamp DESC LIMIT 30"
+        "SELECT a.*, u.username FROM alerts a LEFT JOIN users u ON a.account_number=u.account_number WHERE a.status='open' ORDER BY a.timestamp DESC, a.id DESC LIMIT ? OFFSET ?",
+
+        (PAGE_SIZE, alert_offset),
 
     ).fetchall()
+
+    open_alert_count = get_db().execute(
+
+        "SELECT COUNT(*) as c FROM alerts WHERE status='open'"
+
+    ).fetchone()["c"]
 
     pending_sars = get_db().execute(
 
@@ -4308,7 +4339,7 @@ def compliance_dashboard():
 
     stats = {
 
-        "open_alerts": get_db().execute("SELECT COUNT(*) as c FROM alerts WHERE status='open'").fetchone()["c"],
+        "open_alerts": open_alert_count,
 
         "high_risk_today": get_db().execute(
 
@@ -4346,6 +4377,10 @@ def compliance_dashboard():
 
             "page_size": PAGE_SIZE,
 
+            "alert_page": alert_page,
+
+            "open_alert_count": open_alert_count,
+
         },
 
         transactions=transactions,
@@ -4361,6 +4396,10 @@ def compliance_dashboard():
         total_count=total_count,
 
         page_size=PAGE_SIZE,
+
+        alert_page=alert_page,
+
+        open_alert_count=open_alert_count,
 
     )
 
@@ -4803,71 +4842,42 @@ def generate_transactions():
         # Batch insert transactions first for performance
         transactions_to_process = []
         for label in _simulation_plan(count):
-
-            (
-
+            transactions = _simulation_transaction(label, users)
+            for (
                 sender, recipient, tx_type, amount, timestamp,
-
                 channel, description, _scenario_reason, dest_country,
-
-            ) = _simulation_transaction(label, users)
-
-            sender_account = sender["account_number"]
-
-            receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
-
-            get_db().execute(
-
-                """
-
-                INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-
-                    currency, channel, timestamp, status, risk_score, risk_level, description,
-
-                    destination_country)
-
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-
-                """,
-
-                (
-
-                    sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country,
-
-                ),
-
-            )
-
-            transaction_id = get_last_insert_id(get_db())
-
-            transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
-
-            # Update balances immediately
-            if tx_type == "deposit":
-
-                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
-
-            elif tx_type == "withdraw":
+            ) in transactions:
+                sender_account = sender["account_number"]
+                receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
 
                 get_db().execute(
-
-                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-
-                    (amount, amount, sender["id"]),
-
+                    """
+                    INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                        currency, channel, timestamp, status, risk_score, risk_level, description,
+                        destination_country)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                    """,
+                    (
+                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country,
+                    ),
                 )
 
-            elif tx_type == "transfer":
+                transaction_id = get_last_insert_id(get_db())
+                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
 
-                get_db().execute(
-
-                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-
-                    (amount, amount, sender["id"]),
-
-                )
-
-                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
+                if tx_type == "deposit":
+                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+                elif tx_type == "withdraw":
+                    get_db().execute(
+                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                        (amount, amount, sender["id"]),
+                    )
+                elif tx_type == "transfer":
+                    get_db().execute(
+                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                        (amount, amount, sender["id"]),
+                    )
+                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
 
         get_db().commit()
 

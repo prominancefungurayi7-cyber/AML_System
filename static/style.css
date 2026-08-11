@@ -1060,6 +1060,19 @@ html[data-theme="light"] .risk-critical {
   transform: translateY(-1px);
 }
 
+.queue-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.pagination-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 html[data-theme="light"] .action-link {
   background: rgba(29, 92, 255, 0.09);
   color: #134cae;

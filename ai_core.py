@@ -252,13 +252,19 @@ def transaction_features(transaction, recent_transactions=None):
     amount = float(_value(transaction, "amount", 0))
     hour = _timestamp_hour(timestamp)
 
-    # Calculate structuring and layering features from recent transactions
-    same_day_count = 0
-    same_day_total = 0
-    same_recipient_count = 0
-    rapid_transfer_count = 0
-    
-    if recent_transactions:
+    # Prefer precomputed sequence metrics that are already available on the
+    # transaction payload (for example from the live processing path) and only
+    # fall back to recomputing them from history when needed.
+    has_precomputed_sequence_metrics = any(
+        key in transaction for key in ("same_day_count", "same_day_total", "same_recipient_count", "rapid_transfer_count")
+    )
+
+    same_day_count = float(_value(transaction, "same_day_count", 0) or 0)
+    same_day_total = float(_value(transaction, "same_day_total", 0) or 0)
+    same_recipient_count = float(_value(transaction, "same_recipient_count", 0) or 0)
+    rapid_transfer_count = float(_value(transaction, "rapid_transfer_count", 0) or 0)
+
+    if not has_precomputed_sequence_metrics and recent_transactions:
         try:
             tx_time = datetime.fromisoformat(str(timestamp))
             for tx in recent_transactions:

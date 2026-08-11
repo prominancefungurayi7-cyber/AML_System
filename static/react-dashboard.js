@@ -862,9 +862,9 @@
       },
     });
 
-    const pageCount = useMemo(() => {
-      return Math.max(1, Math.ceil(Number(initialData.total_count || 0) / Number(initialData.page_size || 25)));
-    }, [initialData.total_count, initialData.page_size]);
+    const alertPageCount = useMemo(() => {
+      return Math.max(1, Math.ceil(Number(initialData.open_alert_count || 0) / Number(initialData.page_size || 25)));
+    }, [initialData.open_alert_count, initialData.page_size]);
 
     const metricItems = [
       { label: "Open alerts", value: stats.open_alerts || alerts.length, caption: "needs review" },
@@ -878,10 +878,10 @@
         case "overview":
           return h(window.React.Fragment, null,
             h(StatGrid, { items: metricItems }),
-            h(AlertsPanel, { alerts })
+            h(AlertsPanel, { alerts, page: initialData.alert_page, pageCount: alertPageCount })
           );
         case "alerts":
-          return h(AlertsPanel, { alerts });
+          return h(AlertsPanel, { alerts, page: initialData.alert_page, pageCount: alertPageCount });
         case "activity":
           return h("section", { className: "card table-card" },
             h(PanelHeading, { title: "Live Compliance Feed", meta: h(LiveStatus, null, status) }),
@@ -963,9 +963,9 @@
     );
   }
 
-  function AlertsPanel({ alerts }) {
+  function AlertsPanel({ alerts, page = 1, pageCount = 1 }) {
     return h("div", { className: "card table-card" },
-      h(PanelHeading, { title: "Alerts" }),
+      h(PanelHeading, { title: "Open Alerts" }),
       alerts.length ? h("table", { className: "data-table" },
         h("thead", null,
           h("tr", null, ["Alert", "Account", "Risk", "Reason", "Action"].map((head) => h("th", { key: head }, head)))
@@ -985,7 +985,20 @@
             )
           )
         )
-      )) : h(EmptyState, null, "No open alerts.")
+      )) : h(EmptyState, null, "No open alerts."),
+      pageCount > 1 ? h("nav", { className: "queue-pagination", "aria-label": "Open alert pages" },
+        h("a", {
+          className: page <= 1 ? "action-link pagination-disabled" : "action-link",
+          href: page <= 1 ? undefined : `/compliance?alert_page=${page - 1}`,
+          "aria-disabled": page <= 1
+        }, "Previous"),
+        h("span", { className: "muted-line" }, `Page ${page} of ${pageCount}`),
+        h("a", {
+          className: page >= pageCount ? "action-link pagination-disabled" : "action-link",
+          href: page >= pageCount ? undefined : `/compliance?alert_page=${page + 1}`,
+          "aria-disabled": page >= pageCount
+        }, "Next")
+      ) : null
     );
   }
 
