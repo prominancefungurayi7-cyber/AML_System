@@ -20,6 +20,7 @@ from typing import Dict, List
 # Import modules to test
 from ai_core import transaction_features
 from aml_data_validator import TransactionValidator, validate_transaction
+from server import _simulation_plan
 from aml_feature_engineering import FeatureEngineer, extract_features
 from aml_fraud_patterns import FraudPatternDetector, detect_fraud_patterns
 from aml_risk_scoring import RiskScoringSystem, calculate_risk_assessment
@@ -178,6 +179,17 @@ class TestFeatureEngineering:
 
 class TestFraudPatternDetection:
     """Tests for aml_fraud_patterns.py"""
+
+    def test_simulation_plan_keeps_majority_normal_and_flags_the_rest(self):
+        """Training data should stay predominantly normal while still containing realistic flagged cases."""
+        labels = _simulation_plan(100)
+        normal_count = labels.count("normal")
+        suspicious_count = labels.count("suspicious")
+        super_count = labels.count("super_suspicious")
+
+        assert normal_count >= 60
+        assert suspicious_count == 25
+        assert super_count == 15
 
     def test_precomputed_sequence_metrics_are_used_in_ml_features(self):
         """Sequence features from the transaction payload should be preserved for ML scoring."""
