@@ -20,7 +20,7 @@ from typing import Dict, List
 # Import modules to test
 from ai_core import transaction_features
 from aml_data_validator import TransactionValidator, validate_transaction
-from server import _simulation_plan
+from server import _simulation_plan, _calibrate_generated_transaction_risk
 from aml_feature_engineering import FeatureEngineer, extract_features
 from aml_fraud_patterns import FraudPatternDetector, detect_fraud_patterns
 from aml_risk_scoring import RiskScoringSystem, calculate_risk_assessment
@@ -211,6 +211,20 @@ class TestFraudPatternDetection:
         assert features[20] == 18000.0
         assert features[21] == 3.0
         assert features[22] == 2.0
+
+    def test_generated_normal_transactions_stay_normal_when_not_required_to_escalate(self):
+        """Synthetic normal transactions should stay normal unless a compliance rule truly requires escalation."""
+        risk_score, risk_level, reason = _calibrate_generated_transaction_risk(
+            "normal",
+            80,
+            "high_risk",
+            "Routine transaction — no material AML indicators",
+            False,
+        )
+
+        assert risk_score == 20
+        assert risk_level == "normal"
+        assert "Routine transaction" in reason
     
     def test_no_patterns(self):
         """Test with no suspicious patterns"""

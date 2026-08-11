@@ -14,6 +14,20 @@
   const { createElement: h, useEffect, useMemo, useState } = window.React;
   const suspiciousLevels = ["suspicious", "super_suspicious", "high_risk", "critical"];
 
+  window.__amlSidebarController = window.__amlSidebarController || {
+    listeners: new Set(),
+    register(handler) {
+      this.listeners.add(handler);
+      return () => this.listeners.delete(handler);
+    },
+    toggle() {
+      this.listeners.forEach((handler) => handler());
+    },
+    close() {
+      this.listeners.forEach((handler) => handler(false));
+    }
+  };
+
   function Icon({ name }) {
     const icons = {
       home: h("svg", { viewBox: "0 0 24 24" },
@@ -257,9 +271,20 @@
 
     // Listen for sidebar toggle click from header
     useEffect(() => {
-      const handleToggleClick = () => setSidebarOpen(prev => !prev);
-      window.addEventListener('sidebar-toggle-click', handleToggleClick);
-      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
+      const handleToggleClick = (nextValue) => {
+        if (typeof nextValue === 'boolean') {
+          setSidebarOpen(nextValue);
+          return;
+        }
+        setSidebarOpen((prev) => !prev);
+      };
+      const unregister = window.__amlSidebarController.register(handleToggleClick);
+      const fallback = () => handleToggleClick();
+      window.addEventListener('sidebar-toggle-click', fallback);
+      return () => {
+        unregister();
+        window.removeEventListener('sidebar-toggle-click', fallback);
+      };
     }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
@@ -502,9 +527,20 @@
 
     // Listen for sidebar toggle click from header
     useEffect(() => {
-      const handleToggleClick = () => setSidebarOpen(prev => !prev);
-      window.addEventListener('sidebar-toggle-click', handleToggleClick);
-      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
+      const handleToggleClick = (nextValue) => {
+        if (typeof nextValue === 'boolean') {
+          setSidebarOpen(nextValue);
+          return;
+        }
+        setSidebarOpen((prev) => !prev);
+      };
+      const unregister = window.__amlSidebarController.register(handleToggleClick);
+      const fallback = () => handleToggleClick();
+      window.addEventListener('sidebar-toggle-click', fallback);
+      return () => {
+        unregister();
+        window.removeEventListener('sidebar-toggle-click', fallback);
+      };
     }, []);
 
     const updateBalances = (txn) => {
@@ -815,9 +851,20 @@
 
     // Listen for sidebar toggle click from header
     useEffect(() => {
-      const handleToggleClick = () => setSidebarOpen(prev => !prev);
-      window.addEventListener('sidebar-toggle-click', handleToggleClick);
-      return () => window.removeEventListener('sidebar-toggle-click', handleToggleClick);
+      const handleToggleClick = (nextValue) => {
+        if (typeof nextValue === 'boolean') {
+          setSidebarOpen(nextValue);
+          return;
+        }
+        setSidebarOpen((prev) => !prev);
+      };
+      const unregister = window.__amlSidebarController.register(handleToggleClick);
+      const fallback = () => handleToggleClick();
+      window.addEventListener('sidebar-toggle-click', fallback);
+      return () => {
+        unregister();
+        window.removeEventListener('sidebar-toggle-click', fallback);
+      };
     }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));

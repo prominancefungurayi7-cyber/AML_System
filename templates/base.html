@@ -72,9 +72,18 @@
       // Sidebar toggle functionality
       const sidebarToggle = document.getElementById('sidebar-toggle');
       if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', () => {
+        window.toggleGlobalSidebar = () => {
+          if (window.__amlSidebarController && typeof window.__amlSidebarController.toggle === 'function') {
+            window.__amlSidebarController.toggle();
+            return;
+          }
           const event = new CustomEvent('sidebar-toggle-click');
           window.dispatchEvent(event);
+        };
+
+        sidebarToggle.addEventListener('click', (event) => {
+          event.preventDefault();
+          window.toggleGlobalSidebar();
         });
       }
 
