@@ -5175,99 +5175,18 @@ def generate_transactions():
                     )
                     get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
 
-        get_db().commit()
-
-        # Process transactions in batch for AML rules and AI
-        # Evaluate chronologically so every score uses only information that
-        # was available at that point in time.
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label in sorted(
-            transactions_to_process, key=lambda item: item[5]
-        ):
-
-            risk_score, risk_level, reason, alert_id = process_transaction_event(
-
-                get_db(), transaction_id, sender_account, receiver_account,
-
-                amount, tx_type, timestamp, account_number=sender_account,
-
-                destination_country=dest_country,
-                generated_label=label,
-
-            )
-
-
-
-            if risk_level in ("normal", "low"):
-
-                generated["normal"] += 1
-
-            elif risk_level in ("critical", "high_risk"):
-
-                generated["critical"] += 1
-
-            else:
-
-                generated["flagged"] += 1
-
-        get_db().commit()
-
-        # Only broadcast balances for affected accounts, not all users
-        affected_accounts = set()
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, _label in transactions_to_process:
-            affected_accounts.add(sender_account)
-            if tx_type == "transfer":
-                affected_accounts.add(receiver_account)
-        
-        for account in affected_accounts:
-            broadcast_user_balance(get_db(), account)
-
-        broadcast_event("transaction_batch", {
-
-            "count": count,
-
-            "normal": generated["normal"],
-
-            "flagged": generated["flagged"],
-
-            "critical": generated["critical"],
-
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-
-        })
-
-        broadcast_stats(get_db())
-
-        # Train AI model in background thread to avoid blocking
+        # Run transaction generation in background to avoid Railway timeout
         import threading
-        def train_in_background():
+        def generate_in_background():
             try:
-                _train_ai_model_from_db(get_db())
+                _generate_transactions_background(count, users, admin_user)
             except Exception as e:
                 if app:
-                    app.logger.error(f"Background AI training failed: {e}")
-        threading.Thread(target=train_in_background, daemon=True).start()
-
-        record_activity(
-
-            admin_user["username"],
-
-            "generate_transactions",
-
-            (
-
-                f"Generated {count} rule-scored transactions: "
-
-                f"{generated['normal']} normal, {generated['flagged']} flagged, "
-
-                f"{generated['critical']} critical/high-risk"
-
-            ),
-
-        )
-
-        app.logger.info(f"Transaction generation completed: {count} transactions generated")
-        flash(f"Generated {count} transactions: {generated['normal']} normal, {generated['flagged']} flagged, {generated['critical']} critical.")
-
+                    app.logger.error(f"Background transaction generation failed: {e}")
+        
+        threading.Thread(target=generate_in_background, daemon=True).start()
+        
+        flash(f"Transaction generation started in background. {count} transactions will be generated and processed.")
         return redirect(url_for("admin_dashboard"))
 
     except Exception as e:
@@ -5279,6 +5198,115 @@ def generate_transactions():
         flash(f"Transaction generation failed: {str(e)}")
 
         return redirect(url_for("admin_dashboard"))
+
+
+def _generate_transactions_background(count, users, admin_user):
+    """Background function to generate transactions without blocking HTTP request."""
+    try:
+        generated = {"normal": 0, "flagged": 0, "critical": 0}
+        
+        # Batch insert transactions first for performance
+        transactions_to_process = []
+        for label in _simulation_plan(count):
+            transactions = _simulation_transaction(label, users)
+            for (
+                sender, recipient, tx_type, amount, timestamp,
+                channel, description, _scenario_reason, dest_country,
+            ) in transactions:
+                sender_account = sender["account_number"]
+                receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
+
+                get_db().execute(
+                    """
+                    INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                        currency, channel, timestamp, status, risk_score, risk_level, description,
+                        destination_country, generated_label)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    """,
+                    (
+                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country, label,
+                    ),
+                )
+
+                transaction_id = get_last_insert_id(get_db())
+                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label))
+
+                if tx_type == "deposit":
+                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+                elif tx_type == "withdraw":
+                    get_db().execute(
+                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                        (amount, amount, sender["id"]),
+                    )
+                elif tx_type == "transfer":
+                    get_db().execute(
+                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                        (amount, amount, sender["id"]),
+                    )
+                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
+
+        get_db().commit()
+
+        # Process transactions in batch for AML rules and AI
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label in sorted(
+            transactions_to_process, key=lambda item: item[5]
+        ):
+
+            risk_score, risk_level, reason, alert_id = process_transaction_event(
+                get_db(), transaction_id, sender_account, receiver_account,
+                amount, tx_type, timestamp, account_number=sender_account,
+                destination_country=dest_country,
+                generated_label=label,
+            )
+
+            if risk_level in ("normal", "low"):
+                generated["normal"] += 1
+            elif risk_level in ("critical", "high_risk"):
+                generated["critical"] += 1
+            else:
+                generated["flagged"] += 1
+
+        get_db().commit()
+
+        # Only broadcast balances for affected accounts
+        affected_accounts = set()
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, _label in transactions_to_process:
+            affected_accounts.add(sender_account)
+            if tx_type == "transfer":
+                affected_accounts.add(receiver_account)
+        
+        for account in affected_accounts:
+            broadcast_user_balance(get_db(), account)
+
+        broadcast_event("transaction_batch", {
+            "count": count,
+            "normal": generated["normal"],
+            "flagged": generated["flagged"],
+            "critical": generated["critical"],
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+
+        broadcast_stats(get_db())
+
+        # Train AI model in background
+        model = _train_ai_model_from_db(get_db())
+        record_activity(
+            admin_user["username"],
+            "generate_transactions",
+            (
+                f"Generated {count} transactions: "
+                f"{generated['normal']} normal, {generated['flagged']} flagged, "
+                f"{generated['critical']} critical/high-risk"
+            ),
+        )
+        
+        if app:
+            app.logger.info(f"Background transaction generation completed: {count} transactions")
+            
+    except Exception as e:
+        if app:
+            app.logger.error(f"Background transaction generation failed: {e}")
+        get_db().rollback()
 
 
 
