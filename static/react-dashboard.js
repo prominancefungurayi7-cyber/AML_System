@@ -617,7 +617,8 @@
                     h("option", { value: "100" }, "100"),
                     h("option", { value: "500" }, "500"),
                     h("option", { value: "1000" }, "1000"),
-                    h("option", { value: "2000" }, "2000")
+                    h("option", { value: "2000" }, "2000"),
+                    h("option", { value: "5000" }, "5000")
                   ),
                   h("button", { type: "submit" }, "Generate Transactions")
                 )
