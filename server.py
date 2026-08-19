@@ -2696,7 +2696,7 @@ def _simulation_segment_multiplier(segment, label):
 
 
 def _simulation_transaction(label, users):
-    """Generate one or more linked transactions that reflect laundering typologies."""
+    """Generate one transaction that reflects laundering typologies."""
     if label == "normal":
         scenario = random.choice(NORMAL_TRANSACTION_SCENARIOS)
     elif label == "suspicious":
@@ -2712,44 +2712,6 @@ def _simulation_transaction(label, users):
     scenario_reason = scenario.get("reason")
 
     base_dt = _parse_timestamp(_simulation_timestamp(hour))
-
-    if label in ("suspicious", "super_suspicious") and tx_type == "deposit":
-        count = 3 if label == "suspicious" else 4
-        transactions = []
-        for idx in range(count):
-            amount = round(random.uniform(180, 450), 2) if label == "suspicious" else round(random.uniform(280, 480), 2)
-            if sender["balance"] is not None:
-                balance = float(sender["balance"] or 0)
-                if balance > 0 and amount > balance * 0.85:
-                    amount = round(balance * random.uniform(0.35, 0.75), 2)
-                    amount = max(amount, 1.0)
-            tx_timestamp = (base_dt + timedelta(minutes=idx * random.randint(3, 10))).isoformat()
-            transactions.append((sender, sender, tx_type, amount, tx_timestamp, scenario["channel"], description, scenario_reason, dest_country))
-        return transactions
-
-    if label in ("suspicious", "super_suspicious") and tx_type == "transfer":
-        count = 3 if label == "suspicious" else 4
-        if len(users) <= 1:
-            recipients = [sender]
-        else:
-            recipients = random.sample([user for user in users if user["id"] != sender["id"]], k=min(count, len(users) - 1))
-        transactions = []
-        for idx, recipient in enumerate(recipients):
-            amount = round(
-                _scenario_amount(*scenario["amount"], label)
-                * _simulation_segment_multiplier(sender["wealth_segment"] or "average", label),
-                2,
-            )
-            if sender["balance"] is not None:
-                balance = float(sender["balance"] or 0)
-                if balance > 0 and amount > balance * 0.85:
-                    amount = round(balance * random.uniform(0.35, 0.75), 2)
-                    amount = max(amount, 1.0)
-            tx_timestamp = (base_dt + timedelta(minutes=idx * random.randint(3, 10))).isoformat()
-            transactions.append((sender, recipient, tx_type, amount, tx_timestamp, scenario["channel"], description, scenario_reason, dest_country))
-        if not transactions:
-            transactions.append((sender, sender, tx_type, 0.0, base_dt.isoformat(), scenario["channel"], description, scenario_reason, dest_country))
-        return transactions
 
     amount = round(
         _scenario_amount(*scenario["amount"], label)
