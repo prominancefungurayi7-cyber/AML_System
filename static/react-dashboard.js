@@ -987,14 +987,34 @@
   }
 
   function ComplianceTransactionsPanel({ transactions }) {
+    const [filter, setFilter] = useState("all");
+    
+    const filteredTransactions = filter === "all" 
+      ? transactions 
+      : transactions.filter(txn => txn.risk_level === filter);
+    
     return h("div", { className: "card table-card" },
       h(PanelHeading, { title: "Transactions" }),
-      transactions.length ? h("table", { className: "data-table" },
+      h("div", { className: "filter-bar" },
+        h("label", null, "Filter by Risk:"),
+        h("select", { 
+          value: filter, 
+          onChange: (e) => setFilter(e.target.value),
+          className: "filter-select"
+        },
+          h("option", { value: "all" }, "All"),
+          h("option", { value: "critical" }, "Critical"),
+          h("option", { value: "high_risk" }, "High Risk"),
+          h("option", { value: "suspicious" }, "Suspicious"),
+          h("option", { value: "normal" }, "Normal")
+        )
+      ),
+      filteredTransactions.length ? h("table", { className: "data-table" },
         h("thead", null,
           h("tr", null, ["Transaction", "Type", "Amount", "AI Assessment"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
-          transactions.map((txn, index) => h("tr", { key: txn.id || index },
+          filteredTransactions.map((txn, index) => h("tr", { key: txn.id || index },
             h("td", null,
               h("strong", null, `#${txn.id || ""}`),
               h("span", { className: "muted-line block-line" }, shortTime(txn.timestamp))

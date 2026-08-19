@@ -3376,6 +3376,8 @@ def process_transaction_event(
 
     generated_label=None,
 
+    scenario_reason=None,
+
 ):
 
     sender_user = conn.execute(
@@ -3503,6 +3505,8 @@ def process_transaction_event(
         reasons.append(f"ML model: {ml_level.replace('_', ' ')} ({ml_confidence:.0%} confidence)")
     if behavioral_score >= 40:
         reasons.append(behavioral_reason)
+    if scenario_reason:
+        reasons.append(f"Simulation scenario: {scenario_reason}")
     reason = "; ".join(reasons) or "Routine transaction — no material AML indicators"
 
     if generated_label is not None:
@@ -5159,7 +5163,7 @@ def generate_transactions():
                 )
 
                 transaction_id = get_last_insert_id(get_db())
-                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label))
+                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label, _scenario_reason))
 
                 if tx_type == "deposit":
                     get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
@@ -5184,7 +5188,7 @@ def generate_transactions():
         # Process transactions in batch for AML rules and AI
         # Evaluate chronologically so every score uses only information that
         # was available at that point in time.
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label in sorted(
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label, scenario_reason in sorted(
             transactions_to_process, key=lambda item: item[5]
         ):
 
@@ -5193,6 +5197,7 @@ def generate_transactions():
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
                 generated_label=label,
+                scenario_reason=scenario_reason,
             )
 
             if risk_level in ("normal", "low"):
