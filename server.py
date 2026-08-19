@@ -5177,6 +5177,10 @@ def generate_transactions():
 
         get_db().commit()
 
+        # Train AI model first with existing data before processing new transactions
+        # This ensures new transactions are processed with a properly trained model
+        _train_ai_model_from_db(get_db(), emit_events=False)
+
         # Process transactions in batch for AML rules and AI
         # Evaluate chronologically so every score uses only information that
         # was available at that point in time.
@@ -5220,7 +5224,7 @@ def generate_transactions():
 
         broadcast_stats(get_db())
 
-        # Train AI model in background thread to avoid blocking
+        # Retrain AI model with the new transactions to include them in training
         import threading
         def train_in_background():
             try:
