@@ -1376,6 +1376,7 @@ def _migrate_mysql(conn):
             ("screening_hits", "LONGTEXT"),
             ("reviewed_by", "VARCHAR(255)"),
             ("reviewed_at", "VARCHAR(255)"),
+            ("generated_label", "VARCHAR(50)"),
         ],
         "alerts": [
             ("rules_triggered", "LONGTEXT DEFAULT '[]'"),
@@ -2243,6 +2244,148 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
 
     },
 
+    # Third-party payment scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (3000, 8500),
+
+        "channel": "online",
+
+        "hours": list(range(9, 17)),
+
+        "description": "Transfer to third-party account with no prior relationship",
+
+        "reason": "Third-party payment: transfer to unrelated beneficiary",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (4500, 9500),
+
+        "channel": "mobile",
+
+        "hours": list(range(8, 20)),
+
+        "description": "Multiple payments to different third-party accounts",
+
+        "reason": "Third-party funneling: payments to multiple unrelated accounts",
+
+    },
+
+    # Shell company scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (8000, 18000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "KY",
+
+        "description": "Transfer to offshore corporate account with no business purpose",
+
+        "reason": "Shell company: transfer to offshore entity with no legitimate business reason",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (12000, 25000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "BZ",
+
+        "description": "Large transfer to newly incorporated business entity",
+
+        "reason": "Shell company: transfer to recently created corporate entity",
+
+    },
+
+    # Trade-based money laundering scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (15000, 35000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "CN",
+
+        "description": "Over-invoiced international trade payment",
+
+        "reason": "Trade-based laundering: payment amount inconsistent with typical trade values",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (5000, 12000),
+
+        "channel": "online",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Multiple small payments to same business entity",
+
+        "reason": "Trade-based structuring: breaking large payments into smaller amounts",
+
+    },
+
+    # Crypto/digital asset scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (3000, 8000),
+
+        "channel": "online",
+
+        "hours": [0, 1, 2, 3, 22, 23],
+
+        "description": "Transfer to cryptocurrency exchange platform",
+
+        "reason": "Crypto-related: transfer to digital asset exchange during off-hours",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (7000, 15000),
+
+        "channel": "online",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Rapid transfers between crypto exchange accounts",
+
+        "reason": "Crypto layering: rapid movement through digital asset platforms",
+
+    },
+
 ]
 
 
@@ -2364,6 +2507,150 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "description": "Circular transfer pattern between related accounts",
 
         "reason": "Layering: circular transfers to obscure audit trail",
+
+    },
+
+    # Real estate scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (50000, 150000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "AE",
+
+        "description": "Large transfer to real estate development company",
+
+        "reason": "Real estate laundering: large payment to property development entity",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (25000, 75000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "PA",
+
+        "description": "Multiple transfers to property holding companies",
+
+        "reason": "Real estate structuring: payments to multiple property holding entities",
+
+    },
+
+    # Casino/gambling scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (15000, 40000),
+
+        "channel": "online",
+
+        "hours": [0, 1, 2, 3, 22, 23],
+
+        "description": "Large transfer to online gambling platform",
+
+        "reason": "Casino laundering: transfer to gambling platform during off-hours",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (8000, 20000),
+
+        "channel": "online",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Rapid deposits and withdrawals from casino accounts",
+
+        "reason": "Casino layering: rapid movement through gambling platforms",
+
+    },
+
+    # Political corruption scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (20000, 50000),
+
+        "channel": "swift",
+
+        "hours": list(range(9, 16)),
+
+        "destination_country": "RU",
+
+        "description": "Transfer to entity linked to politically exposed person",
+
+        "reason": "PEP-related: transfer to entity associated with foreign official",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (30000, 80000),
+
+        "channel": "swift",
+
+        "hours": [0, 1, 2, 3, 23],
+
+        "destination_country": "NG",
+
+        "description": "Off-hours transfer to offshore trust structure",
+
+        "reason": "Corruption: transfer to offshore trust structure during unusual hours",
+
+    },
+
+    # Terrorist financing scenarios
+
+    {
+
+        "type": "transfer",
+
+        "amount": (5000, 15000),
+
+        "channel": "mobile",
+
+        "hours": [0, 1, 2, 3, 22, 23],
+
+        "description": "Small rapid transfers to high-risk region accounts",
+
+        "reason": "Terrorist financing: small rapid transfers to high-risk jurisdictions",
+
+    },
+
+    {
+
+        "type": "transfer",
+
+        "amount": (10000, 25000),
+
+        "channel": "online",
+
+        "hours": list(range(9, 16)),
+
+        "description": "Transfer to charity organization in conflict zone",
+
+        "reason": "Terrorist financing: transfer to charitable entity in high-risk region",
 
     },
 
@@ -2804,7 +3091,7 @@ def _train_ai_model_from_db(conn, emit_events=True):
 
             SELECT t.id, t.sender_account, t.receiver_account, t.amount, t.transaction_type,
 
-                   t.timestamp, t.risk_level, t.risk_score, t.channel,
+                   t.timestamp, COALESCE(t.generated_label, t.risk_level) as risk_level, t.risk_score, t.channel,
 
                    COALESCE(u.wealth_segment, 'average') AS wealth_segment
 
@@ -3095,6 +3382,14 @@ def _combine_rule_ai_risk(rule_score, rule_level, rule_reason, triggered_rules, 
 
 
 
+# Flag to disable rule-based engine for AI-only testing
+_RULE_ENGINE_ENABLED = False
+
+def set_rule_engine_enabled(enabled: bool):
+    """Enable or disable the rule-based engine for AI-only testing."""
+    global _RULE_ENGINE_ENABLED
+    _RULE_ENGINE_ENABLED = enabled
+
 def process_transaction_event(
 
     conn,
@@ -3171,24 +3466,32 @@ def process_transaction_event(
 
     # Rules are evaluated before behavioural/ML blending.  They provide the
     # auditable typology evidence that a statistical model alone cannot infer.
-    triggered = [rule.payload() for rule in assess_rules(
-        conn, amount=amount, tx_type=transaction_type, sender=sender_account,
-        receiver=receiver_account, timestamp=timestamp,
-        destination_country=destination_country, exclude_transaction_id=transaction_id,
-    )]
-    if screen_delta:
-        triggered.append({
-            "rule_id": "SCREENING",
-            "triggered": True,
-            "score_delta": screen_delta,
-            "reason": screen_reason,
-            "severity": "critical" if any(h.list_type == "sanctions" for h in screening_hits) else "warning",
-            "typology": "Watchlist / PEP Screening",
-        })
-    rule_score = min(100, sum(int(rule["score_delta"]) for rule in triggered))
-    rule_level = _risk_level_from_score(rule_score)
-    rule_reason = "; ".join(rule["reason"] for rule in triggered) or "No rule indicators"
-    rules_json = json.dumps(triggered + screen_json)
+    if _RULE_ENGINE_ENABLED:
+        triggered = [rule.payload() for rule in assess_rules(
+            conn, amount=amount, tx_type=transaction_type, sender=sender_account,
+            receiver=receiver_account, timestamp=timestamp,
+            destination_country=destination_country, exclude_transaction_id=transaction_id,
+        )]
+        if screen_delta:
+            triggered.append({
+                "rule_id": "SCREENING",
+                "triggered": True,
+                "score_delta": screen_delta,
+                "reason": screen_reason,
+                "severity": "critical" if any(h.list_type == "sanctions" for h in screening_hits) else "warning",
+                "typology": "Watchlist / PEP Screening",
+            })
+        rule_score = min(100, sum(int(rule["score_delta"]) for rule in triggered))
+        rule_level = _risk_level_from_score(rule_score)
+        rule_reason = "; ".join(rule["reason"] for rule in triggered) or "No rule indicators"
+        rules_json = json.dumps(triggered + screen_json)
+    else:
+        # Rule engine disabled - use AI-only approach
+        triggered = []
+        rule_score = 0
+        rule_level = "normal"
+        rule_reason = "Rule engine disabled - AI-only mode"
+        rules_json = json.dumps([])
 
 
 
@@ -4885,11 +5188,11 @@ def generate_transactions():
                     """
                     INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
                         currency, channel, timestamp, status, risk_score, risk_level, description,
-                        destination_country)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                        destination_country, generated_label)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
                     """,
                     (
-                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country,
+                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country, label,
                     ),
                 )
 

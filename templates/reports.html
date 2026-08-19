@@ -1,129 +1,148 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="hero hero-banner">
-  <div class="hero-badge">Risk Intelligence</div>
-  <h2>StanPro Bank AML Reporting</h2>
-  <p>Monitor portfolio risk, investigate flagged activity, and review regulatory reports for the institution.</p>
-</section>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="page-sidebar">
+    <nav>
+      <a href="{{ url_for('compliance_dashboard') }}" class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2"></path><polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2"></polyline></svg>
+        Compliance Hub
+      </a>
+      <a href="{{ url_for('reports') }}" class="sidebar-item active">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2"></path><polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2"></polyline><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"></line><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"></polyline><polyline points="10 9 9 9 8 9" stroke="currentColor" stroke-width="2"></polyline></svg>
+        Reports
+      </a>
+      <a href="/logout" class="sidebar-item">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" fill="none" stroke="currentColor" stroke-width="2"></path><polyline points="16 17 21 12 16 7" fill="none" stroke="currentColor" stroke-width="2"></polyline><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"></line></svg>
+        Sign Out
+      </a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <main class="admin-content">
+    <section class="hero hero-banner">
+      <div class="hero-badge">Risk Intelligence</div>
+      <h2>StanPro Bank AML Reporting</h2>
+      <p>Monitor portfolio risk, investigate flagged activity, and review regulatory reports for the institution.</p>
+    </section>
 
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-<script>
-  (function() {
-    let socket = null;
-    let eventSource = null;
-    let reconnectAttempts = 0;
-    const maxReconnectAttempts = 10;
-    const reconnectDelay = 1000;
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+      (function() {
+        let socket = null;
+        let eventSource = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 10;
+        const reconnectDelay = 1000;
 
-    function connectSocketIO() {
-      if (!window.io) return;
-      
-      socket = window.io({
-        transports: ["websocket", "polling"],
-        reconnection: true,
-        reconnectionAttempts: maxReconnectAttempts,
-        reconnectionDelay: reconnectDelay,
-        reconnectionDelayMax: 5000
-      });
+        function connectSocketIO() {
+          if (!window.io) return;
+          
+          socket = window.io({
+            transports: ["websocket", "polling"],
+            reconnection: true,
+            reconnectionAttempts: maxReconnectAttempts,
+            reconnectionDelay: reconnectDelay,
+            reconnectionDelayMax: 5000
+          });
 
-      socket.on('connect', function() {
-        console.log('SocketIO connected');
-        reconnectAttempts = 0;
-      });
+          socket.on('connect', function() {
+            console.log('SocketIO connected');
+            reconnectAttempts = 0;
+          });
 
-      socket.on('disconnect', function() {
-        console.log('SocketIO disconnected, attempting to reconnect...');
-      });
+          socket.on('disconnect', function() {
+            console.log('SocketIO disconnected, attempting to reconnect...');
+          });
 
-      socket.on('connect_error', function(error) {
-        console.error('SocketIO connection error:', error);
-        reconnectAttempts++;
-        if (reconnectAttempts >= maxReconnectAttempts) {
-          console.error('Max reconnection attempts reached, falling back to EventSource');
-          socket.disconnect();
+          socket.on('connect_error', function(error) {
+            console.error('SocketIO connection error:', error);
+            reconnectAttempts++;
+            if (reconnectAttempts >= maxReconnectAttempts) {
+              console.error('Max reconnection attempts reached, falling back to EventSource');
+              socket.disconnect();
+              connectEventSource();
+            }
+          });
+
+          socket.on('alert_update', function(data) {
+            location.reload();
+          });
+
+          socket.on('sar_report', function(data) {
+            location.reload();
+          });
+
+          socket.on('ctr_report', function(data) {
+            location.reload();
+          });
+
+          socket.on('stats', function(data) {
+            location.reload();
+          });
+        }
+
+        function connectEventSource() {
+          if (!window.EventSource) return;
+          
+          eventSource = new EventSource('/stream');
+          
+          eventSource.addEventListener('alert_update', function(event) {
+            try {
+              JSON.parse(event.data);
+              location.reload();
+            } catch (e) {
+              console.error('Error parsing event data:', e);
+            }
+          });
+
+          eventSource.addEventListener('sar_report', function(event) {
+            try {
+              JSON.parse(event.data);
+              location.reload();
+            } catch (e) {
+              console.error('Error parsing event data:', e);
+            }
+          });
+
+          eventSource.addEventListener('ctr_report', function(event) {
+            try {
+              JSON.parse(event.data);
+              location.reload();
+            } catch (e) {
+              console.error('Error parsing event data:', e);
+            }
+          });
+
+          eventSource.addEventListener('stats', function(event) {
+            try {
+              JSON.parse(event.data);
+              location.reload();
+            } catch (e) {
+              console.error('Error parsing event data:', e);
+            }
+          });
+
+          eventSource.onerror = function(error) {
+            console.error('EventSource error:', error);
+            eventSource.close();
+            setTimeout(connectEventSource, reconnectDelay);
+          };
+        }
+
+        // Try SocketIO first, fall back to EventSource
+        if (window.io) {
+          connectSocketIO();
+        } else {
           connectEventSource();
         }
-      });
 
-      socket.on('alert_update', function(data) {
-        location.reload();
-      });
-
-      socket.on('sar_report', function(data) {
-        location.reload();
-      });
-
-      socket.on('ctr_report', function(data) {
-        location.reload();
-      });
-
-      socket.on('stats', function(data) {
-        location.reload();
-      });
-    }
-
-    function connectEventSource() {
-      if (!window.EventSource) return;
-      
-      eventSource = new EventSource('/stream');
-      
-      eventSource.addEventListener('alert_update', function(event) {
-        try {
-          JSON.parse(event.data);
-          location.reload();
-        } catch (e) {
-          console.error('Error parsing event data:', e);
-        }
-      });
-
-      eventSource.addEventListener('sar_report', function(event) {
-        try {
-          JSON.parse(event.data);
-          location.reload();
-        } catch (e) {
-          console.error('Error parsing event data:', e);
-        }
-      });
-
-      eventSource.addEventListener('ctr_report', function(event) {
-        try {
-          JSON.parse(event.data);
-          location.reload();
-        } catch (e) {
-          console.error('Error parsing event data:', e);
-        }
-      });
-
-      eventSource.addEventListener('stats', function(event) {
-        try {
-          JSON.parse(event.data);
-          location.reload();
-        } catch (e) {
-          console.error('Error parsing event data:', e);
-        }
-      });
-
-      eventSource.onerror = function(error) {
-        console.error('EventSource error:', error);
-        eventSource.close();
-        setTimeout(connectEventSource, reconnectDelay);
-      };
-    }
-
-    // Try SocketIO first, fall back to EventSource
-    if (window.io) {
-      connectSocketIO();
-    } else {
-      connectEventSource();
-    }
-
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', function() {
-      if (socket) socket.disconnect();
-      if (eventSource) eventSource.close();
-    });
-  })();
-</script>
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+          if (socket) socket.disconnect();
+          if (eventSource) eventSource.close();
+        });
+      })();
+    </script>
 
 <section class="card table-card">
   <h3>Executive Summary</h3>
@@ -205,4 +224,63 @@
     {% endfor %}
   </ul>
 </section>
+  </main>
+</div>
+
+<script>
+  (function() {
+    const sidebar = document.getElementById('page-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    let sidebarOpen = false;
+
+    function toggleSidebar(forceState) {
+      sidebarOpen = typeof forceState === 'boolean' ? forceState : !sidebarOpen;
+      if (sidebar) {
+        sidebar.classList.toggle('open', sidebarOpen);
+      }
+      if (overlay) {
+        overlay.classList.toggle('active', sidebarOpen);
+      }
+    }
+
+    // Register with global sidebar controller
+    window.__amlSidebarController = window.__amlSidebarController || {
+      listeners: new Set(),
+      register(handler) {
+        this.listeners.add(handler);
+        return () => this.listeners.delete(handler);
+      },
+      toggle() {
+        this.listeners.forEach((handler) => handler());
+      },
+      close() {
+        this.listeners.forEach((handler) => handler(false));
+      }
+    };
+
+    const unregister = window.__amlSidebarController.register(toggleSidebar);
+
+    // Handle sidebar toggle click from header
+    const handleToggleClick = (nextValue) => {
+      if (typeof nextValue === 'boolean') {
+        toggleSidebar(nextValue);
+        return;
+      }
+      toggleSidebar();
+    };
+    const fallback = () => handleToggleClick();
+    window.addEventListener('sidebar-toggle-click', fallback);
+
+    // Close sidebar when clicking overlay
+    if (overlay) {
+      overlay.addEventListener('click', () => toggleSidebar(false));
+    }
+
+    // Cleanup
+    window.addEventListener('beforeunload', function() {
+      unregister();
+      window.removeEventListener('sidebar-toggle-click', fallback);
+    });
+  })();
+</script>
 {% endblock %}
