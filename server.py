@@ -3506,7 +3506,7 @@ def process_transaction_event(
     if behavioral_score >= 40:
         reasons.append(behavioral_reason)
     if scenario_reason:
-        reasons.append(f"Simulation scenario: {scenario_reason}")
+        reasons.append(f"Reason: {scenario_reason}")
     reason = "; ".join(reasons) or "Routine transaction — no material AML indicators"
 
     if generated_label is not None:
