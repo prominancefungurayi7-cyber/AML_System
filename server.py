@@ -28,17 +28,9 @@ New capabilities vs prototype:
 
   • Detailed per-transaction rule evidence stored in DB
 
-  • Watchlist / PEP (Politically Exposed Person) screening hook
-
-  • Pagination on all list views
-
-  • API endpoints for external SIEM / BI integration
-
-  • Real-time event broadcasting via WebSocket/Redis/Kafka
+  • Security features: rate limiting, account lockout, secure headers
 
 """
-
-
 
 import json
 
@@ -74,12 +66,21 @@ from functools import wraps
 
 from urllib.parse import unquote, urlparse
 
+from collections import defaultdict
+
 
 from dotenv import load_dotenv
 
 # Flag to prevent concurrent AI training
 _ai_training_in_progress = False
 _ai_training_lock = threading.Lock()
+
+# Security: Rate limiting for login attempts
+_login_attempts = defaultdict(list)
+_account_lockouts = defaultdict(dict)
+MAX_LOGIN_ATTEMPTS = 5
+LOCKOUT_DURATION = 900  # 15 minutes
+RATE_LIMIT_WINDOW = 300  # 5 minutes
 
 from flask import (
 
@@ -432,6 +433,57 @@ app.config.from_object(
     DevelopmentConfig if os.environ.get("FLASK_ENV") == "development" else ProductionConfig
 
 )
+
+# Security: Add secure headers
+@app.after_request
+def add_security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    return response
+
+# Security: Rate limiting and account lockout functions
+def check_login_attempts(identifier):
+    """Check if identifier is locked out due to too many failed attempts."""
+    if identifier in _account_lockouts:
+        lockout_data = _account_lockouts[identifier]
+        if time.time() < lockout_data['until']:
+            remaining_time = int(lockout_data['until'] - time.time())
+            return False, f"Account locked. Try again in {remaining_time} seconds."
+        else:
+            # Lockout expired, clear it
+            del _account_lockouts[identifier]
+            _login_attempts[identifier] = []
+    return True, None
+
+def record_login_attempt(identifier, success):
+    """Record login attempt for rate limiting."""
+    current_time = time.time()
+    
+    # Clean old attempts outside the rate limit window
+    _login_attempts[identifier] = [
+        attempt for attempt in _login_attempts[identifier]
+        if current_time - attempt < RATE_LIMIT_WINDOW
+    ]
+    
+    if success:
+        # Clear failed attempts on successful login
+        _login_attempts[identifier] = []
+        if identifier in _account_lockouts:
+            del _account_lockouts[identifier]
+    else:
+        # Record failed attempt
+        _login_attempts[identifier].append(current_time)
+        
+        # Check if should lockout
+        if len(_login_attempts[identifier]) >= MAX_LOGIN_ATTEMPTS:
+            _account_lockouts[identifier] = {
+                'until': current_time + LOCKOUT_DURATION
+            }
+            return True  # Account is now locked
+    
+    return False  # Account not locked
 
 # behavioral_profiler is imported from ai_core module
 # No need to reinitialize - using global instance from ai_core
@@ -4138,7 +4190,15 @@ def register():
 
 
 
-        otp_code = f"{random.randint(100000, 999999)}"
+        # Check if using EmailJS (client-generated OTP) or SMTP (server-generated OTP)
+        client_otp = request.form.get('client_otp')
+        
+        if client_otp:
+            # EmailJS flow: use client-generated OTP
+            otp_code = client_otp
+        else:
+            # SMTP flow: generate server-side OTP
+            otp_code = f"{random.randint(100000, 999999)}"
 
         session["pending_registration"] = {
 
@@ -4150,19 +4210,21 @@ def register():
 
         }
 
-        try:
+        # Only send via SMTP if not using EmailJS
+        if not client_otp:
+            try:
 
-            send_otp_email_async(email, otp_code)
+                send_otp_email_async(email, otp_code)
 
-        except Exception as e:
+            except Exception as e:
 
-            session.pop("pending_registration", None)
+                session.pop("pending_registration", None)
 
-            app.logger.error(f"OTP send failed: {str(e)}")
+                app.logger.error(f"OTP send failed: {str(e)}")
 
-            flash("Could not send verification code. Please check the email address or try again later.")
+                flash("Could not send verification code. Please check the email address or try again later.")
 
-            return render_template("register.html")
+                return render_template("register.html")
 
         flash(f"Verification code sent to {email}.")
 
@@ -4196,90 +4258,68 @@ def login():
 
         password = request.form.get("password", "")
 
-
-
         staff_identifier = login_identifier or username
-
-        if staff_identifier in STAFF_ACCOUNTS:
-
-            staff = STAFF_ACCOUNTS[staff_identifier]
-
-            user = get_user_by_username(staff_identifier)
-
-            if (
-
-                user
-
-                and user["role"] == staff["role"]
-
-                and check_password_hash(user["password_hash"], password)
-
-            ):
-
-                session["user_id"] = user["id"]
-
-                session["role"] = user["role"]
-
-                record_activity(staff_identifier, "login", f"Staff login from {request.remote_addr}")
-
-                flash("Welcome back.")
-
-                return redirect(url_for("dashboard_redirect"))
-
-            flash("Invalid credentials.")
-
-            record_activity(staff_identifier, "failed_login", f"Failed staff login attempt from {request.remote_addr}")
-
+        # Security: Check rate limiting for staff login
+        can_login, lockout_message = check_login_attempts(staff_identifier)
+        if not can_login:
+            flash(lockout_message)
             return render_template("login.html")
 
-
+        if staff_identifier in STAFF_ACCOUNTS:
+            staff = STAFF_ACCOUNTS[staff_identifier]
+            user = get_user_by_username(staff_identifier)
+            if (
+                user
+                and user["role"] == staff["role"]
+                and check_password_hash(user["password_hash"], password)
+            ):
+                session["user_id"] = user["id"]
+                session["role"] = user["role"]
+                record_activity(staff_identifier, "login", f"Staff login from {request.remote_addr}")
+                record_login_attempt(staff_identifier, True)
+                flash("Welcome back.")
+                return redirect(url_for("dashboard_redirect"))
+            flash("Invalid credentials.")
+            record_activity(staff_identifier, "failed_login", f"Failed staff login attempt from {request.remote_addr}")
+            is_locked = record_login_attempt(staff_identifier, False)
+            if is_locked:
+                flash("Too many failed attempts. Account locked for 15 minutes.")
+            return render_template("login.html")
 
         customer_identifier = email or login_identifier or username
+        # Security: Check rate limiting for customer login
+        can_login, lockout_message = check_login_attempts(customer_identifier)
+        if not can_login:
+            flash(lockout_message)
+            return render_template("login.html")
 
         if not all([customer_identifier, id_number, password]):
-
             flash("All fields are required.")
-
             return render_template("login.html")
 
         if not is_valid_id_number(id_number):
-
             flash(ID_NUMBER_FORMAT_MESSAGE)
-
             return render_template("login.html")
 
         user = get_user_by_email(email) if email else get_user_by_username(customer_identifier)
-
         if (
-
             user
-
             and user["role"] == "customer"
-
             and user["id_number"] == id_number
-
             and check_password_hash(user["password_hash"], password)
-
         ):
-
             session["user_id"] = user["id"]
-
             session["role"] = user["role"]
-
             record_activity(customer_identifier, "login", f"Login from {request.remote_addr}")
-
+            record_login_attempt(customer_identifier, True)
             flash("Welcome back.")
-
             return redirect(url_for("dashboard_redirect"))
-
         flash("Invalid credentials.")
-
         record_activity(customer_identifier, "failed_login", f"Failed login attempt from {request.remote_addr}")
-
+        is_locked = record_login_attempt(customer_identifier, False)
+        if is_locked:
+            flash("Too many failed attempts. Account locked for 15 minutes.")
     return render_template("login.html")
-
-
-
 
 
 @app.route("/logout")

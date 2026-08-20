@@ -13,7 +13,7 @@
   </div>
   <div class="card">
     <h3>Account Registration</h3>
-    <form method="post">
+    <form method="post" id="registerForm" data-otp-step="{% if otp_step %}true{% else %}false{% endif %}">
       {% if otp_step %}
         <p>A one-time verification code was sent to {{ email }}.</p>
         <label for="otp">Verification Code</label>
@@ -28,17 +28,162 @@
         <input id="id_number" name="id_number" autocomplete="off" pattern="[0-9]{2}-?[0-9]{6,7}[A-Za-z][0-9]{2}" title="Type your ID number; it will be formatted like 08-995728P34." required>
         <label for="password">Password</label>
         <input id="password" type="password" name="password" autocomplete="new-password" required>
-        <button type="submit">Send Verification Code</button>
+        <div id="password-strength" class="password-strength"></div>
+        <div id="password-requirements" class="password-requirements">
+          <p>Password must contain:</p>
+          <ul>
+            <li id="req-length">At least 8 characters</li>
+            <li id="req-uppercase">At least 1 uppercase letter</li>
+            <li id="req-lowercase">At least 1 lowercase letter</li>
+            <li id="req-number">At least 1 number</li>
+            <li id="req-special">At least 1 special character (!@#$%^&*)</li>
+          </ul>
+        </div>
+        <button type="submit" id="sendOtpBtn">Send Verification Code</button>
       {% endif %}
     </form>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
+  // Initialize EmailJS (replace with your actual service ID)
+  emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+
   document.querySelectorAll('input[name="id_number"]').forEach((input) => {
     input.addEventListener('input', () => {
       const value = input.value.replace(/[^0-9a-z]/gi, '').toUpperCase().slice(0, 12);
       input.value = value.length > 2 ? `${value.slice(0, 2)}-${value.slice(2)}` : value;
     });
   });
+
+  // Password strength checker
+  const passwordInput = document.getElementById('password');
+  const strengthDiv = document.getElementById('password-strength');
+  const requirements = {
+    length: document.getElementById('req-length'),
+    uppercase: document.getElementById('req-uppercase'),
+    lowercase: document.getElementById('req-lowercase'),
+    number: document.getElementById('req-number'),
+    special: document.getElementById('req-special')
+  };
+
+  if (passwordInput) {
+    passwordInput.addEventListener('input', function() {
+      const password = this.value;
+      let strength = 0;
+      
+      // Check requirements
+      const hasLength = password.length >= 8;
+      const hasUppercase = /[A-Z]/.test(password);
+      const hasLowercase = /[a-z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      const hasSpecial = /[!@#$%^&*]/.test(password);
+      
+      // Update requirement indicators
+      requirements.length.style.color = hasLength ? 'green' : 'red';
+      requirements.uppercase.style.color = hasUppercase ? 'green' : 'red';
+      requirements.lowercase.style.color = hasLowercase ? 'green' : 'red';
+      requirements.number.style.color = hasNumber ? 'green' : 'red';
+      requirements.special.style.color = hasSpecial ? 'green' : 'red';
+      
+      // Calculate strength
+      strength += hasLength ? 1 : 0;
+      strength += hasUppercase ? 1 : 0;
+      strength += hasLowercase ? 1 : 0;
+      strength += hasNumber ? 1 : 0;
+      strength += hasSpecial ? 1 : 0;
+      
+      // Display strength
+      let strengthText = '';
+      let strengthColor = '';
+      
+      if (strength <= 2) {
+        strengthText = 'Weak';
+        strengthColor = 'red';
+      } else if (strength <= 4) {
+        strengthText = 'Medium';
+        strengthColor = 'orange';
+      } else {
+        strengthText = 'Strong';
+        strengthColor = 'green';
+      }
+      
+      strengthDiv.textContent = `Password Strength: ${strengthText}`;
+      strengthDiv.style.color = strengthColor;
+    });
+  }
+
+  // EmailJS integration for OTP
+  const registerForm = document.getElementById('registerForm');
+  const sendOtpBtn = document.getElementById('sendOtpBtn');
+  const isOtpStep = registerForm ? registerForm.dataset.otpStep === 'true' : false;
+
+  if (registerForm && !isOtpStep) {
+    registerForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const password = document.getElementById('password').value;
+      
+      // Validate password strength
+      if (password.length < 8 || 
+          !/[A-Z]/.test(password) || 
+          !/[a-z]/.test(password) || 
+          !/[0-9]/.test(password) || 
+          !/[!@#$%^&*]/.test(password)) {
+        alert('Please ensure your password meets all requirements');
+        return;
+      }
+      
+      // Generate OTP client-side (in production, this should be server-side)
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      
+      // Store OTP in session via server request
+      const formData = new FormData(this);
+      formData.append('client_otp', otp);
+      
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (response.ok) {
+          // Send OTP via EmailJS
+          const email = document.getElementById('email').value;
+          await emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', {
+            to_email: email,
+            otp: otp,
+            to_name: document.getElementById('username').value
+          });
+          
+          // Redirect to OTP step
+          window.location.href = `/register?otp_step=true&email=${encodeURIComponent(email)}`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send verification code. Please try again.');
+      }
+    });
+  }
 </script>
+<style>
+  .password-strength {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .password-requirements {
+    margin-top: 10px;
+    font-size: 0.9em;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .password-requirements ul {
+    margin: 5px 0;
+    padding-left: 20px;
+  }
+  .password-requirements li {
+    margin: 3px 0;
+  }
+</style>
 {% endblock %}
