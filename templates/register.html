@@ -46,8 +46,8 @@
 </section>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS (replace with your actual service ID)
-  emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+  // Initialize EmailJS
+  emailjs.init("KbIP2wWUxWsAc_TA8");
 
   document.querySelectorAll('input[name="id_number"]').forEach((input) => {
     input.addEventListener('input', () => {
@@ -150,7 +150,7 @@
         if (response.ok) {
           // Send OTP via EmailJS
           const email = document.getElementById('email').value;
-          await emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', {
+          await emailjs.send('service_0ad6822', 'template_gtrldtr', {
             to_email: email,
             otp: otp,
             to_name: document.getElementById('username').value
