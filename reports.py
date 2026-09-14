@@ -25,7 +25,7 @@ def create_sar_report(conn, transaction_id, account_number, filing_reason, filed
     Args:
         conn: Database connection
         transaction_id: Associated transaction ID
-        account_number: Account number
+        account_number: Wallet number
         filing_reason: Reason for filing SAR
         filed_by: User who filed the report
     
@@ -52,7 +52,7 @@ def create_ctr_report(conn, account_number, total_amount, transaction_count, fil
     
     Args:
         conn: Database connection
-        account_number: Account number
+        account_number: Wallet number
         total_amount: Total amount for CTR
         transaction_count: Number of transactions
         filing_date: Filing date
@@ -98,7 +98,7 @@ def get_sar_reports_by_account(conn, account_number, limit=50):
     
     Args:
         conn: Database connection
-        account_number: Account number
+        account_number: Wallet number
         limit: Maximum number of reports to return
     
     Returns:
@@ -147,7 +147,7 @@ def get_ctr_reports_by_account(conn, account_number, limit=50):
     
     Args:
         conn: Database connection
-        account_number: Account number
+        account_number: Wallet number
         limit: Maximum number of reports to return
     
     Returns:

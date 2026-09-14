@@ -83,7 +83,7 @@ def assess_rules(conn, *, amount: float, tx_type: str, sender: str, receiver: st
     small_deposits = [row for row in prior_hour if row["transaction_type"] == "deposit" and float(row["amount"]) < 500]
     if tx_type == "deposit" and amount < 500 and len(small_deposits) + 1 >= 3:
         total = amount + sum(float(row["amount"]) for row in small_deposits)
-        hit("R03", 40, f"{len(small_deposits) + 1} small deposits totalling ${total:,.2f} within 60 minutes", "critical", "Smurfing", count=len(small_deposits) + 1, total=total)
+        hit("R03", 40, f"{len(small_deposits) + 1} small cash-ins totalling ${total:,.2f} within 60 minutes", "critical", "Smurfing", count=len(small_deposits) + 1, total=total)
 
     if len(prior_hour) + 1 >= 5:
         volume = amount + sum(float(row["amount"]) for row in prior_hour)
@@ -99,7 +99,7 @@ def assess_rules(conn, *, amount: float, tx_type: str, sender: str, receiver: st
             hit("R07", 30, f"Transfer of ${amount:,.2f} meets SAR review threshold", "critical", "SAR Trigger", amount=amount)
 
     if tx_type == "transfer" and sender == receiver:
-        hit("R08", 25, "Self-transfer indicates a possible pass-through account", "warning", "Self-Transfer")
+        hit("R08", 25, "Self-transfer indicates a possible pass-through wallet", "warning", "Self-Transfer")
 
     hourly_outflow = amount + sum(float(row["amount"]) for row in prior_day if row["transaction_type"] in ("transfer", "withdraw"))
     if tx_type in ("transfer", "withdraw") and hourly_outflow > 20_000:

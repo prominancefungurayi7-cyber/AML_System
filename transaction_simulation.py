@@ -1,7 +1,7 @@
 """
 transaction_simulation.py — Transaction Simulation Module
 
-This module handles the generation of simulated banking transactions for AML testing.
+This module handles the generation of simulated mobile-money transactions for AML testing.
 It provides realistic transaction scenarios including normal, suspicious, and highly suspicious
 transactions based on money laundering typologies.
 
@@ -111,7 +111,7 @@ NORMAL_TRANSACTION_SCENARIOS = [
         "amount": (20, 500),
         "channel": "atm",
         "hours": list(range(6, 23)),
-        "description": "ATM cash withdrawal at bank terminal",
+        "description": "ATM cash withdrawal at mobile-money agent terminal",
     },
     {
         "type": "transfer",
@@ -138,7 +138,7 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "channel": "branch",
         "hours": list(range(9, 16)),
         "description": "Cash deposit just below currency reporting threshold",
-        "reason": "Possible structuring: cash deposit below the CTR threshold",
+        "reason": "Possible structuring: cash-in below the CTR threshold",
     },
     {
         "type": "transfer",
@@ -153,7 +153,7 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (1500, 6500),
         "channel": "atm",
         "hours": [0, 1, 2, 3, 4, 22, 23],
-        "description": "High-value ATM cash withdrawal outside normal banking hours",
+        "description": "High-value ATM cash withdrawal outside normal mobile-money hours",
         "reason": "Large cash withdrawal during unusual hours",
     },
     {
@@ -161,7 +161,7 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (2500, 7400),
         "channel": "mobile",
         "hours": list(range(6, 23)),
-        "description": "Multiple rapid mobile transfers to another customer account",
+        "description": "Multiple rapid mobile transfers to another customer wallet",
         "reason": "Potential layering through repeated customer-to-customer transfers",
     },
     {
@@ -169,7 +169,7 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (3000, 8500),
         "channel": "online",
         "hours": list(range(9, 17)),
-        "description": "Transfer to third-party account with no prior relationship",
+        "description": "Transfer to third-party walle with no prior relationship",
         "reason": "Third-party payment: transfer to unrelated beneficiary",
     },
     {
@@ -177,7 +177,7 @@ SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (4500, 9500),
         "channel": "mobile",
         "hours": list(range(8, 20)),
-        "description": "Multiple payments to different third-party accounts",
+        "description": "Multiple payments to different third-party wallets",
         "reason": "Third-party funneling: payments to multiple unrelated accounts",
     },
     {
@@ -258,7 +258,7 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (10000, 24000),
         "channel": "branch",
         "hours": list(range(9, 16)),
-        "description": "Large over-the-counter cash withdrawal",
+        "description": "Large over-the-counter cash withdrawal at agent location",
         "reason": "Large cash withdrawal meets threshold for immediate compliance review",
     },
     {
@@ -266,15 +266,15 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (4500, 4900),
         "channel": "branch",
         "hours": list(range(9, 16)),
-        "description": "Multiple cash deposits just below half CTR threshold",
-        "reason": "Smurfing pattern: multiple deposits below $5000 to avoid reporting",
+        "description": "Multiple cash-ins just below half CTR threshold",
+        "reason": "Smurfing pattern: multiple cash-ins below $5000 to avoid reporting",
     },
     {
         "type": "deposit",
         "amount": (2500, 2900),
         "channel": "atm",
         "hours": list(range(9, 16)),
-        "description": "Frequent small cash deposits via ATM",
+        "description": "Frequent small cash-ins via ATM",
         "reason": "Structuring through small ATM deposits to avoid detection",
     },
     {
@@ -282,15 +282,15 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
         "amount": (8000, 15000),
         "channel": "online",
         "hours": list(range(9, 16)),
-        "description": "Rapid sequential transfers to multiple accounts",
-        "reason": "Layering: rapid movement of funds through multiple accounts",
+        "description": "Rapid sequential transfers to multiple wallets",
+        "reason": "Layering: rapid movement of funds through multiple wallets",
     },
     {
         "type": "transfer",
         "amount": (3000, 7000),
         "channel": "mobile",
         "hours": list(range(9, 16)),
-        "description": "Circular transfer pattern between related accounts",
+        "description": "Circular transfer pattern between related wallets",
         "reason": "Layering: circular transfers to obscure audit trail",
     },
     {
@@ -445,7 +445,7 @@ def _simulation_transaction(label, users):
 def _simulation_reason(label, amount, tx_type, scenario_reason=None):
     """Generate simulation reason based on transaction label."""
     if label == "normal":
-        return "Routine customer activity consistent with known banking behaviour"
+        return "Routine wallet activity consistent with known mobile-money behaviour"
 
     if label == "suspicious":
         return f"{scenario_reason or 'Suspicious transaction pattern'} involving a {tx_type} of ${amount:,.2f}"
