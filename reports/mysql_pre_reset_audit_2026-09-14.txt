@@ -1,0 +1,41 @@
+MySQL Pre-Reset Audit
+Generated (local): 2026-09-14T15:07:00+02:00
+MySQL version: 8.0.46
+Database: aml
+Host: 127.0.0.1
+Port: 3306
+User: aml
+Application DB URL (redacted): mysql://aml:***@127.0.0.1:3306/aml
+
+Source: Read-only readiness audit (mysql_reset_readiness_report.md) captured immediately
+before approved Option B table-level reset execution on 2026-09-14.
+
+Pre-reset row counts (approved for destruction):
+  users: 17
+  transactions: 7028
+  agents: 0
+  alerts: 2201
+  sar_reports: 0
+  ctr_reports: 149
+  customer_baselines: 0
+  conversations: 2
+  messages: 10
+  unread_messages: 2
+  user_presence: 4
+  behavioral_profiles: 15
+  system_activity_log: 0
+  activity_log: 67
+  watchlist: 4
+
+Total records: 9599 across 15 tables
+
+Safety checks (Phase 1):
+  Application database type: MySQL (confirmed via DATABASE_URL)
+  Host/port/database/user: 127.0.0.1 / 3306 / aml / aml — confirmed
+  MySQL connection: PASS
+  All 15 expected tables existed before reset: PASS
+  clean_aml_mysql_schema.sql present: PASS
+  Schema inspected (DROP/CREATE DATABASE excluded from execution): PASS
+
+Note: A first reset attempt failed on INT/BIGINT FK incompatibility for alerts/sar/ctr
+child columns. Recovery completed successfully with required BIGINT alignment at apply time.

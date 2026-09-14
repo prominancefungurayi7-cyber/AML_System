@@ -1,0 +1,16 @@
+PASS: MySQL connection
+PASS: Admin login/authentication — HTTP 200
+PASS: User read / wallet accounts — 5 customers
+PASS: Customer login — user=demo
+PASS: Transaction creation — HTTP 200, tx_id=3
+PASS: Transaction retrieval — id=3
+PASS: Agent DB create/read — agent_id=1
+FAIL: Dashboard database queries — HTTP 302
+PASS: Agent API (admin) — HTTP 200
+PASS: Alerts workflow (DB create/read) — alert_id=1
+PASS: SAR workflow (DB create/read) — sar_id=1
+PASS: CTR workflow (DB create/read) — ctr_id=1
+PASS: Messaging
+PASS: Unread messages
+PASS: User presence
+PASS: Socket.IO initialization (no DB failure) — async_mode=threading

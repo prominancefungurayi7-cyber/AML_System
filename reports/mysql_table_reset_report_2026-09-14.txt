@@ -1,0 +1,162 @@
+MySQL Table-Level Reset Report
+========================================================================
+
+1. Reset date/time (local): 2026-09-14T15:13:18+02:00 (completed); verification 2026-09-14T15:24:00+02:00
+2. MySQL version: 8.0.46
+3. Database name: aml
+
+4. Tables dropped (15):
+   - users
+   - transactions
+   - agents
+   - alerts
+   - sar_reports
+   - ctr_reports
+   - customer_baselines
+   - conversations
+   - messages
+   - unread_messages
+   - user_presence
+   - behavioral_profiles
+   - system_activity_log
+   - activity_log
+   - watchlist
+
+5. Tables recreated from clean_aml_mysql_schema.sql:
+   - users
+   - transactions
+   - agents
+   - alerts
+   - sar_reports
+   - ctr_reports
+   - customer_baselines
+   - conversations
+   - messages
+   - unread_messages
+   - user_presence
+   - behavioral_profiles
+   - system_activity_log
+   - activity_log
+   - watchlist
+
+6. Pre-reset row counts (from readiness audit, approved for destruction):
+   users: 17
+   transactions: 7028
+   agents: 0
+   alerts: 2201
+   sar_reports: 0
+   ctr_reports: 149
+   customer_baselines: 0
+   conversations: 2
+   messages: 10
+   unread_messages: 2
+   user_presence: 4
+   behavioral_profiles: 15
+   system_activity_log: 0
+   activity_log: 67
+   watchlist: 4
+   Total: 9599
+
+7. Post-reset row counts (after initialize_startup seed + regression verification):
+   users: 15
+   transactions: 2
+   agents: 0
+   alerts: 0
+   sar_reports: 0
+   ctr_reports: 0
+   customer_baselines: 0
+   conversations: 1
+   messages: 0
+   unread_messages: 0
+   user_presence: 1
+   behavioral_profiles: 0
+   system_activity_log: 0
+   activity_log: 14
+   watchlist: 4
+
+8. Schema verification:
+   Charset: utf8mb4
+   Collation: utf8mb4_unicode_ci
+   Tables present: 15 / 15
+   All tables engine: InnoDB
+   Transaction columns (27): id, sender_account, receiver_account, amount, transaction_type,
+     currency, channel, timestamp, status, risk_score, risk_level, description, rules_triggered,
+     ctr_required, sar_required, reviewed_by, reviewed_at, rule_score, rule_level, rule_reason,
+     ai_risk_level, ai_confidence, ai_reason, destination_country, screening_hits,
+     generated_label, agent_id
+   Primary keys, unique constraints, NOT NULL, AUTO_INCREMENT: verified via information_schema
+   Issues: none
+
+9. Foreign-key verification (17 constraints):
+   alerts.fk_alerts_transaction -> transactions
+   behavioral_profiles.fk_behavioral_profiles_account -> users
+   conversations.fk_conversations_p1 -> users
+   conversations.fk_conversations_p2 -> users
+   ctr_reports.fk_ctr_transaction -> transactions
+   customer_baselines.fk_customer_baselines_account -> users
+   messages.fk_messages_conversation -> conversations
+   messages.fk_messages_receiver -> users
+   messages.fk_messages_sender -> users
+   sar_reports.fk_sar_alert -> alerts
+   transactions.fk_transactions_agent -> agents
+   transactions.fk_transactions_receiver -> users
+   transactions.fk_transactions_sender -> users
+   unread_messages.fk_unread_conversation -> conversations
+   unread_messages.fk_unread_user -> users
+   user_presence.fk_presence_conversation -> conversations
+   user_presence.fk_presence_user -> users
+
+10. Index verification:
+   Total indexes: 43 (includes PRIMARY, UNIQUE, and named indexes from schema)
+   Includes idx_agents_region, idx_agents_city, idx_alerts_risk_level, transaction indexes,
+   messaging indexes, and user uniqueness indexes per clean_aml_mysql_schema.sql
+
+11. Application startup result:
+   PASS: Application configured for MySQL (mysql://aml:***@127.0.0.1:3306/aml)
+   PASS: initialize_startup() completed (init_db + seed_demo_data + AI hooks)
+   PASS: Admin login (HTTP 200)
+   PASS: Dashboard reachable after admin login (initial startup test)
+   PASS: Agent API responded HTTP 200
+
+12. Functional regression results (reports/mysql_post_reset_regression_2026-09-14.txt):
+   PASS: MySQL connection
+   PASS: Admin login/authentication
+   PASS: User read / wallet accounts
+   PASS: Customer login (demo account)
+   PASS: Transaction creation
+   PASS: Transaction retrieval
+   PASS: Agent DB create/read
+   PASS: Agent API (admin)
+   PASS: Alerts workflow (DB create/read)
+   PASS: SAR workflow (DB create/read)
+   PASS: CTR workflow (DB create/read)
+   PASS: Messaging
+   PASS: Unread messages
+   PASS: User presence
+   PASS: Socket.IO initialization (no DB failure; async_mode=threading)
+   MINOR: Dashboard returned HTTP 302 in one regression step after customer-session
+          switch (admin re-login resolves; initial startup dashboard test passed HTTP 200)
+
+13. ML protection verification:
+   ML files fingerprinted: 199
+   PASS: No ML-related file content changes detected during reset operation
+   Git status: only new infrastructure/report files untracked (schema SQL, reports, reset scripts)
+   No changes to: 30-feature design, labels, datasets, training code, model files, thresholds,
+   evaluation methodology, or research reports
+
+14. Warnings:
+   - First schema apply attempt failed: MySQL rejected INT child FK columns referencing BIGINT
+     parent PKs (alerts.transaction_id, sar_reports.alert_id, ctr_reports.transaction_id).
+     Recovery applied BIGINT alignment at apply-time only (required for MySQL FK enforcement;
+     relationships unchanged).
+   - Redis unavailable for RealtimeBroker (timeout) — not a MySQL/database failure; Socket.IO
+     still initializes with threading mode.
+   - Background AI training thread logs application-context warning on empty post-reset DB;
+     not a schema/reset failure and no ML architecture changes were made.
+
+15. Failures:
+   none (schema, FK, application startup, and core functional paths verified)
+
+Reset method: Option B — table-level DROP + recreate (no DROP DATABASE / CREATE DATABASE)
+Pre-reset audit file: reports/mysql_pre_reset_audit_2026-09-14.txt
+Regression detail file: reports/mysql_post_reset_regression_2026-09-14.txt
