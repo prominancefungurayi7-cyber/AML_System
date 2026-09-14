@@ -21,8 +21,8 @@
   <main class="admin-content">
     <section class="hero hero-banner">
       <div class="hero-badge">Risk Intelligence</div>
-      <h2>StanPro Bank AML Reporting</h2>
-      <p>Monitor portfolio risk, investigate flagged activity, and review regulatory reports for the institution.</p>
+      <h2>EcoCash Mobile Money AML Reporting</h2>
+      <p>Monitor wallet activity risk, investigate flagged activity, and review regulatory reports for the mobile-money network.</p>
     </section>
 
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
@@ -162,7 +162,7 @@
   <p>No transaction history yet.</p>
   {% endif %}
 
-  <h3>High-risk accounts</h3>
+  <h3>High-risk wallets</h3>
   {% if high_risk_accounts %}
   <ul>
     {% for account in high_risk_accounts %}
@@ -170,7 +170,7 @@
     {% endfor %}
   </ul>
   {% else %}
-  <p>No high-risk accounts identified.</p>
+  <p>No high-risk wallets identified.</p>
   {% endif %}
 
   <h3>Risk analysis summary</h3>
@@ -186,7 +186,7 @@
     {% for sar in sar_reports %}
       <li>
         {{ sar.reference_number or ('SAR #' ~ sar.id) }} — {{ sar.status|upper }} —
-        Account {{ sar.account_number }} — {{ sar.created_at }}
+        Wallet {{ sar.account_number }} — {{ sar.created_at }}
         {% if sar.status == 'draft' %}
           <form method="post" action="{{ url_for('submit_sar', sar_id=sar.id) }}" style="display:inline;">
             <button type="submit" class="btn btn-primary">Submit to FIU</button>
@@ -204,7 +204,7 @@
   <ul>
     {% for ctr in ctr_reports %}
       <li>
-        CTR #{{ ctr.id }} — {{ ctr.status|upper }} — Account {{ ctr.account_number }} —
+        CTR #{{ ctr.id }} — {{ ctr.status|upper }} — Wallet {{ ctr.account_number }} —
         ${{ "%.2f"|format(ctr.amount) }} — {{ ctr.created_at }}
       </li>
     {% endfor %}

@@ -3,8 +3,8 @@
 <section class="grid no-sidebar">
   <div class="hero hero-banner">
     <div class="hero-badge">Grow with Confidence</div>
-    <h2>Create Your StanPro Bank Profile</h2>
-    <p>Join a secure banking environment with real-time monitoring, rapid transaction processing, and compliance oversight.</p>
+    <h2>Create Your EcoCash Wallet Profile</h2>
+    <p>Join a secure mobile-money environment with real-time monitoring, rapid wallet transfers, and compliance oversight.</p>
     <div class="hero-stats">
       <div class="stat-chip">Fast Onboarding</div>
       <div class="stat-chip">Smart Risk Control</div>
@@ -12,13 +12,13 @@
     </div>
   </div>
   <div class="card">
-    <h3>Account Registration</h3>
+    <h3>Wallet Registration</h3>
     <form method="post" id="registerForm" data-otp-step="{% if otp_step %}true{% else %}false{% endif %}">
       {% if otp_step %}
         <p>A one-time verification code was sent to {{ email }}.</p>
         <label for="otp">Verification Code</label>
         <input id="otp" name="otp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
-        <button type="submit">Verify Account</button>
+        <button type="submit">Verify Wallet</button>
       {% else %}
         <label for="username">Username</label>
         <input id="username" name="username" autocomplete="username" required>

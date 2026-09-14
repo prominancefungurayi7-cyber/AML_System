@@ -114,6 +114,16 @@
     return String(value || "normal").replace(/_/g, " ");
   }
 
+  function labelizeTransactionType(value) {
+    const type = String(value || "").toLowerCase();
+    const mobileMoneyLabels = {
+      "deposit": "Cash-In",
+      "withdraw": "Cash-Out",
+      "transfer": "Wallet-to-Wallet Transfer"
+    };
+    return mobileMoneyLabels[type] || labelize(value);
+  }
+
   function shortTime(value) {
     if (!value) return "";
     const date = new Date(value);
@@ -269,8 +279,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("StanPro-theme", newTheme);
-      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("ecocash-theme", newTheme);
+      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
     // Listen for sidebar toggle click from header
@@ -356,8 +366,8 @@
     });
 
     const metricItems = [
-      { label: "Available balance", value: money(balance), caption: accountNumber },
-      { label: "Transactions", value: stats.total_tx || transactions.length, caption: "account history" },
+      { label: "Wallet balance", value: money(balance), caption: accountNumber },
+      { label: "Transactions", value: stats.total_tx || transactions.length, caption: "wallet history" },
       { label: "Flagged", value: stats.flagged || 0, caption: "requires attention" },
       { label: "Open alerts", value: stats.open_alerts || alerts.filter((alert) => alert.status === "open").length, caption: "live cases" },
     ];
@@ -369,26 +379,26 @@
             h(StatGrid, { items: metricItems }),
             h("section", { className: "grid" },
               h("div", { className: "card account-card" },
-                h("p", { className: "status-pill" }, "Primary Account"),
+                h("p", { className: "status-pill" }, "EcoCash Wallet"),
                 h("h3", null, accountNumber),
                 h("p", { className: "metric" }, money(balance)),
-                h("p", { className: "muted-line" }, "Available balance updates automatically after every live transaction.")
+                h("p", { className: "muted-line" }, "Wallet balance updates automatically after every mobile-money transaction.")
               ),
               h("div", { className: "card action-card" },
-                h(PanelHeading, { title: "Initiate Transaction" }),
+                h(PanelHeading, { title: "Send or Receive Money" }),
                 h("form", { method: "post", action: "/customer/transaction" },
                   h("label", null, "Type"),
                   h("select", { name: "type", defaultValue: "deposit" },
-                    h("option", { value: "deposit" }, "Deposit"),
-                    h("option", { value: "withdraw" }, "Withdrawal"),
-                    h("option", { value: "transfer" }, "Transfer")
+                    h("option", { value: "deposit" }, "Cash In"),
+                    h("option", { value: "withdraw" }, "Cash Out"),
+                    h("option", { value: "transfer" }, "Send Money")
                   ),
                   h("label", null, "Amount"),
                   h("input", { type: "number", step: "0.01", name: "amount", required: true }),
-                  h("label", null, "Recipient Account Number"),
+                  h("label", null, "Recipient Wallet Number"),
                   h("input", { name: "recipient", placeholder: "ACC1004" }),
-                  h("p", { className: "form-hint" }, "Recipient is required for transfers only."),
-                  h("button", { type: "submit" }, "Process Transaction")
+                  h("p", { className: "form-hint" }, "Recipient wallet is required when sending money."),
+                  h("button", { type: "submit" }, "Complete Mobile-Money Transaction")
                 )
               ),
             )
@@ -463,7 +473,7 @@
               h("strong", null, `#${txn.id || ""}`),
               h("span", { className: "muted-line block-line" }, shortTime(txn.timestamp))
             ),
-            h("td", null, labelize(txn.transaction_type || txn.type)),
+            h("td", null, labelizeTransactionType(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
             h("td", null,
               h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)),
@@ -497,7 +507,7 @@
             h("td", null, alert.reason || "")
           )
         )
-      )) : h(EmptyState, null, "No alerts for this account.")
+      )) : h(EmptyState, null, "No alerts for this wallet.")
     );
   }
 
@@ -525,8 +535,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("StanPro-theme", newTheme);
-      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("ecocash-theme", newTheme);
+      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
     // Listen for sidebar toggle click from header
@@ -599,7 +609,7 @@
     });
 
     const metricItems = [
-      { label: "Users", value: stats.total_users || users.length, caption: "registered accounts" },
+      { label: "Users", value: stats.total_users || users.length, caption: "registered wallets" },
       { label: "Transactions", value: stats.total_transactions || 0, caption: "monitored ledger" },
       { label: "Open alerts", value: stats.open_alerts || 0, caption: "active cases" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "pending review" },
@@ -613,8 +623,8 @@
             h(StatGrid, { items: metricItems }),
             h("section", { className: "react-dashboard-grid" },
               h("div", { className: "card action-card" },
-                h(PanelHeading, { title: "Transaction Simulator", meta: h("span", { className: "status-pill" }, "Customers only") }),
-                h("p", { className: "muted-line" }, "Generate realistic deposits, withdrawals, and transfers using registered customer accounts."),
+                h(PanelHeading, { title: "Mobile-Money Transaction Simulator", meta: h("span", { className: "status-pill" }, "Wallet users only") }),
+                h("p", { className: "muted-line" }, "Generate realistic cash-ins, cash-outs, and wallet transfers using registered EcoCash wallets."),
                 h("form", { method: "post", action: "/admin/generate-transactions" },
                   h("label", null, "Number of Transactions"),
                   h("select", { name: "count", defaultValue: "100" },
@@ -810,7 +820,7 @@
       h("table", { className: "data-table" },
         h("thead", null,
           h("tr", null,
-            ["ID", "Username", "Email", "Account Number", "Role", "Balance", "KYC", "Created"].map((head) => h("th", { key: head }, head))
+            ["ID", "Username", "Email", "Wallet Number", "Role", "Balance", "KYC", "Created"].map((head) => h("th", { key: head }, head))
           )
         ),
         h("tbody", null,
@@ -851,8 +861,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("StanPro-theme", newTheme);
-      document.cookie = `StanPro-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("ecocash-theme", newTheme);
+      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
     };
 
     // Listen for sidebar toggle click from header
@@ -1026,7 +1036,7 @@
               h("strong", null, `#${txn.id || ""}`),
               h("span", { className: "muted-line block-line" }, shortTime(txn.timestamp))
             ),
-            h("td", null, labelize(txn.transaction_type || txn.type)),
+            h("td", null, labelizeTransactionType(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
             h("td", null,
               h("span", { className: riskClass(txn.ai_risk_level || txn.risk_level) }, labelize(txn.ai_risk_level || txn.risk_level || "unavailable")),
@@ -1043,7 +1053,7 @@
       h(PanelHeading, { title: "Open Alerts" }),
       alerts.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Alert", "Account", "Risk", "Reason", "Action"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Alert", "Wallet", "Risk", "Reason", "Action"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           alerts.map((alert, index) => h("tr", { key: alert.id || index },

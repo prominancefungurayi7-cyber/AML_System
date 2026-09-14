@@ -132,7 +132,7 @@
     <li><strong>Status:</strong> {{ alert.status|upper }}</li>
     <li><strong>Risk level:</strong> {{ alert.risk_level }}</li>
     <li><strong>Risk score:</strong> {{ alert.risk_score }}</li>
-    <li><strong>Account:</strong> {{ alert.account_number }}</li>
+    <li><strong>Wallet:</strong> {{ alert.account_number }}</li>
     <li><strong>Transaction ID:</strong> {{ alert.transaction_id }}</li>
     <li><strong>Created:</strong> {{ alert.timestamp }}</li>
     {% if alert.assigned_to %}<li><strong>Assigned to:</strong> {{ alert.assigned_to }}</li>{% endif %}
@@ -164,13 +164,13 @@
 
 {% if account_user %}
 <section class="card table-card">
-  <h3>Account Holder</h3>
+  <h3>Wallet Holder</h3>
   <ul>
     <li><strong>Username:</strong> {{ account_user.username }}</li>
     <li><strong>KYC status:</strong> {{ account_user.kyc_status }}</li>
     <li><strong>PEP flag:</strong> {{ 'Yes' if account_user.pep_flag else 'No' }}</li>
     <li><strong>Risk rating:</strong> {{ account_user.risk_rating or 'standard' }}</li>
-    <li><strong>Balance:</strong> ${{ "%.2f"|format(account_user.balance or 0) }}</li>
+    <li><strong>Wallet Balance:</strong> ${{ "%.2f"|format(account_user.balance or 0) }}</li>
   </ul>
 </section>
 {% endif %}
