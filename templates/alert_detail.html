@@ -148,10 +148,15 @@
 <section class="card table-card">
   <h3>Transaction Details</h3>
   <ul>
-    <li><strong>Type:</strong> {{ transaction.transaction_type }}</li>
+    <li><strong>Type:</strong>
+      {% if transaction.transaction_type == 'deposit' %}Cash-In
+      {% elif transaction.transaction_type == 'withdraw' %}Cash-Out
+      {% elif transaction.transaction_type == 'transfer' %}Wallet-to-Wallet Transfer
+      {% else %}{{ transaction.transaction_type }}{% endif %}
+    </li>
     <li><strong>Amount:</strong> ${{ "%.2f"|format(transaction.amount) }}</li>
-    <li><strong>Sender:</strong> {{ transaction.sender_account }}</li>
-    <li><strong>Receiver:</strong> {{ transaction.receiver_account }}</li>
+    <li><strong>Sender Wallet:</strong> {{ transaction.sender_account }}</li>
+    <li><strong>Receiver Wallet:</strong> {{ transaction.receiver_account }}</li>
     <li><strong>Channel:</strong> {{ transaction.channel or 'online' }}</li>
     <li><strong>Destination:</strong> {{ transaction.destination_country or 'ZW' }}</li>
     <li><strong>AI risk level:</strong> {{ transaction.ai_risk_level or 'unavailable' }} ({{ "%.0f"|format((transaction.ai_confidence or 0) * 100) }}% confidence)</li>
