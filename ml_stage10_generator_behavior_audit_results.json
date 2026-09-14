@@ -1,0 +1,287 @@
+{
+  "timestamp": "2026-09-02T12:35:51.803732",
+  "part_1_generator_behavior_inventory": {
+    "customer_profile_types": {
+      "salaried_individual": 60,
+      "small_business": 40,
+      "medium_business": 30,
+      "large_business": 10,
+      "high_net_worth": 10,
+      "international_business": 10,
+      "frequent_domestic_spender": 20,
+      "occasional_high_value": 10,
+      "cash_intensive_business": 6,
+      "structuring_behavior": 2,
+      "funnel_account": 1,
+      "layering_behavior": 1
+    },
+    "aml_typologies": {
+      "none": 6898,
+      "structuring": 878,
+      "layering": 884,
+      "funnel_account": 563,
+      "rapid_movement": 640,
+      "unusual_recipient_network": 0,
+      "shell_company": 214,
+      "high_risk_jurisdiction": 332,
+      "behavioral_change": 327,
+      "cash_intensive": 0,
+      "crypto_related": 0,
+      "trade_based": 0
+    },
+    "class_distribution": {
+      "normal": 6898,
+      "suspicious": 2157,
+      "super_suspicious": 945
+    },
+    "scenario_frequencies": {
+      "legitimate": 996,
+      "normal": 4830,
+      "behavioral": 352,
+      "cash": 727,
+      "layering": 390,
+      "severe": 711,
+      "new": 345,
+      "rapid": 374,
+      "structuring": 355,
+      "funnel": 318,
+      "high": 354,
+      "multiple": 248
+    },
+    "typology_frequencies": {
+      "none": 6898,
+      "behavioral_change": 327,
+      "layering": 884,
+      "rapid_movement": 640,
+      "funnel_account": 563,
+      "shell_company": 214,
+      "structuring": 878,
+      "high_risk_jurisdiction": 332
+    },
+    "borderline_cases": {
+      "normal": 6898,
+      "suspicious": 2007,
+      "super_suspicious": 895
+    },
+    "legitimate_high_value_count": 996
+  },
+  "part_2_constant_features_investigation": {
+    "is_self_transfer": {
+      "dataset_count": 0,
+      "dataset_percentage": 0.0,
+      "feature_mean": 0.0,
+      "feature_std": 0.0,
+      "unique_values": [
+        0.0
+      ],
+      "root_cause": "GENERATOR LIMITATION"
+    },
+    "new_recipient_ratio_7d": {
+      "feature_mean": 0.0,
+      "feature_std": 0.0,
+      "unique_values": [
+        0.0
+      ],
+      "unique_recipients_7d_mean": 8.9795,
+      "unique_recipients_7d_std": 3.4813634885162332,
+      "root_cause": "FEATURE EXTRACTION BUG OR GENERATOR LIMITATION"
+    }
+  },
+  "part_3_ground_truth_feasibility": {
+    "feasible": true,
+    "critical_finding": "Generator has transaction-level scenarios that can be used for labeling",
+    "proposed_approach": "Use scenario_id as primary ground-truth determinant"
+  },
+  "part_4_proposed_labeling_framework": {
+    "normal": {
+      "scenarios": [
+        "normal",
+        "legitimate_high_value",
+        "cash_deposit",
+        "cash_withdrawal",
+        "new_recipient"
+      ],
+      "generator_behavior": "Normal transaction patterns",
+      "aml_relevance": "Low - these are legitimate transaction types",
+      "transaction_level": true,
+      "available_before_prediction": true,
+      "observable_features": [
+        "amount",
+        "sender_avg_amount",
+        "is_deposit",
+        "is_withdraw",
+        "is_transfer",
+        "is_new_recipient"
+      ],
+      "arbitrary_risk": "Low - based on legitimate transaction types",
+      "hidden_determinants": "None"
+    },
+    "suspicious": {
+      "scenarios": [
+        "structuring",
+        "layering",
+        "funnel",
+        "rapid_movement",
+        "high_risk_country",
+        "behavioral_change"
+      ],
+      "generator_behavior": "AML typology indicators",
+      "aml_relevance": "High - these are recognized AML typologies",
+      "transaction_level": true,
+      "available_before_prediction": true,
+      "observable_features": [
+        "amount_z_score",
+        "unique_recipients_24h",
+        "unique_recipients_7d",
+        "sender_tx_count_24h",
+        "time_since_last_tx"
+      ],
+      "arbitrary_risk": "Low - based on AML domain knowledge",
+      "hidden_determinants": "None"
+    },
+    "super_suspicious": {
+      "scenarios": [
+        "severe_structuring",
+        "severe_layering",
+        "severe_funnel",
+        "multiple_typologies"
+      ],
+      "generator_behavior": "Severe/coordinated AML typologies",
+      "aml_relevance": "Very High - these indicate coordinated money laundering",
+      "transaction_level": true,
+      "available_before_prediction": true,
+      "observable_features": [
+        "amount_z_score",
+        "unique_recipients_7d",
+        "sender_tx_count_24h",
+        "rapid_transfer_count",
+        "amount_to_sender_volume_24h"
+      ],
+      "arbitrary_risk": "Low - based on AML domain knowledge",
+      "hidden_determinants": "None"
+    }
+  },
+  "part_5_class_distribution_estimation": {
+    "estimated_distribution": {
+      "normal": 8937,
+      "suspicious": 1063,
+      "super_suspicious": 0
+    },
+    "estimated_percentages": {
+      "normal": 89.37,
+      "suspicious": 10.63,
+      "super_suspicious": 0.0
+    },
+    "assessment": "ACCEPTABLE with super_suspicious borderline"
+  },
+  "part_6_circularity_audit": {
+    "overall_risk": "LOW",
+    "assessments": {
+      "Labels generated independently of 34 features": {
+        "answer": "YES",
+        "justification": "Labels are derived from generator scenario_id, not from extracted features"
+      },
+      "Model could trivially reconstruct labeling rule": {
+        "answer": "MEDIUM RISK",
+        "justification": "Scenario mapping is rule-based, but scenarios are not directly observable from features"
+      },
+      "Labels based on generator semantics": {
+        "answer": "YES",
+        "justification": "Labels are based on AML typologies and scenarios, not feature thresholds"
+      },
+      "Hidden variables determining label": {
+        "answer": "NO",
+        "justification": "Scenario_id is part of the generator output and can be exposed"
+      },
+      "Random component influences labels": {
+        "answer": "NO (in proposed design)",
+        "justification": "Scenario selection would be deterministic based on generator parameters"
+      },
+      "Labeling uses future information": {
+        "answer": "NO",
+        "justification": "Scenarios are determined before transaction generation"
+      },
+      "Test-set information involved": {
+        "answer": "NO",
+        "justification": "Labeling is independent of test set"
+      },
+      "Model-performance-based optimization": {
+        "answer": "NO",
+        "justification": "Labeling is based on AML semantics, not model performance"
+      }
+    }
+  },
+  "part_7_comparison": {
+    "Behavioral realism": [
+      "MEDIUM",
+      "HIGH",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "Observable feature alignment": [
+      "HIGH",
+      "HIGH",
+      "HIGH",
+      "HIGH"
+    ],
+    "Label consistency": [
+      "MEDIUM",
+      "HIGH",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "Class balance": [
+      "GOOD",
+      "POOR",
+      "GOOD",
+      "GOOD"
+    ],
+    "Super-suspicious representation": [
+      "GOOD",
+      "POOR",
+      "BORDERLINE",
+      "BORDERLINE"
+    ],
+    "Temporal validity": [
+      "HIGH",
+      "HIGH",
+      "HIGH",
+      "HIGH"
+    ],
+    "Transaction-level semantic correctness": [
+      "HIGH",
+      "HIGH",
+      "HIGH",
+      "HIGH"
+    ],
+    "Resistance to trivial reconstruction": [
+      "LOW",
+      "MEDIUM",
+      "LOW",
+      "HIGH"
+    ],
+    "Leakage/circularity risk": [
+      "HIGH",
+      "MEDIUM",
+      "HIGH",
+      "LOW"
+    ],
+    "Expected generalization value": [
+      "MEDIUM",
+      "HIGH",
+      "MEDIUM",
+      "HIGH"
+    ]
+  },
+  "part_8_go_no_go_decision": {
+    "decision": "GO",
+    "justification": "Generator has transaction-level scenarios that can be used for labeling",
+    "required_modifications": [
+      "Remove random.random() from scenario selection",
+      "Make scenario selection deterministic",
+      "Increase severe scenario frequency",
+      "Fix new_recipient_ratio_7d calculation"
+    ],
+    "implementation_plan": "Modify generator, regenerate dataset, re-extract features, re-train models"
+  }
+}

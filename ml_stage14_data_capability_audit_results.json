@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-09-02T13:35:48.214777",
+  "data_capability_audit": {
+    "recipient_account/counterparty_identity": "AVAILABLE",
+    "recipient_country": "NOT AVAILABLE (generator has country info but not in dataset)",
+    "sender_country": "NOT AVAILABLE (generator has country info but not in dataset)",
+    "transaction_direction": "AVAILABLE (transaction_type)",
+    "inbound_outbound_relationship": "AVAILABLE (inferred from transaction_type)",
+    "account_age_tenure": "NOT AVAILABLE",
+    "transaction_purpose": "PARTIALLY AVAILABLE (description field exists but not structured)",
+    "geographic_information": "NOT AVAILABLE",
+    "device_ip_information": "NOT AVAILABLE",
+    "cash_source_information": "NOT AVAILABLE",
+    "ownership_beneficial_owner": "NOT AVAILABLE",
+    "transaction_chains": "NOT AVAILABLE (no chain_id or related_transactions)",
+    "account_to_account_network_relationships": "AVAILABLE (sender_account + receiver_account)",
+    "historical_customer_behavior": "AVAILABLE (can compute from transaction history)"
+  },
+  "generator_has_country_info": true,
+  "dataset_has_country_info": false,
+  "key_limitations": [
+    "Generator has country information but does not export it to dataset",
+    "No account age/tenure information",
+    "No device/IP information",
+    "No ownership/beneficial owner information",
+    "No transaction chain tracking",
+    "No structured transaction purpose"
+  ],
+  "available_dimensions": [
+    "recipient_account/counterparty_identity",
+    "transaction_direction",
+    "inbound_outbound_relationship",
+    "account_to_account_network_relationships",
+    "historical_customer_behavior"
+  ]
+}

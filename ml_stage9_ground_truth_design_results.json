@@ -1,0 +1,2910 @@
+{
+  "timestamp": "2026-09-02T00:00:15.022515",
+  "feature_analysis": {
+    "constant_features": [
+      "is_self_transfer",
+      "new_recipient_ratio_7d"
+    ],
+    "feature_count": 34
+  },
+  "candidate_a": {
+    "candidate": "Candidate A",
+    "class_distribution": {
+      "normal": 0.4635,
+      "suspicious": 0.4329,
+      "super_suspicious": 0.1036
+    },
+    "feature_label_signal": {
+      "amount_normal_vs_suspicious": 0.13021219874043022,
+      "amount_suspicious_vs_super": 0.19663225897534847,
+      "amount_normal_vs_super": 0.33720836234334195,
+      "sender_avg_amount_normal_vs_suspicious": 0.10308519278337919,
+      "sender_avg_amount_suspicious_vs_super": 0.05360528904710042,
+      "sender_avg_amount_normal_vs_super": 0.04557549181440798,
+      "sender_max_amount_normal_vs_suspicious": 0.08952342339483721,
+      "sender_max_amount_suspicious_vs_super": 0.06386944069083264,
+      "sender_max_amount_normal_vs_super": 0.02185854217235195,
+      "sender_tx_count_normal_vs_suspicious": 0.13557223747086614,
+      "sender_tx_count_suspicious_vs_super": 0.1714148499075814,
+      "sender_tx_count_normal_vs_super": 0.2980185875704675,
+      "amount_to_sender_avg_normal_vs_suspicious": 0.19968865417423604,
+      "amount_to_sender_avg_suspicious_vs_super": 0.5366490329757787,
+      "amount_to_sender_avg_normal_vs_super": 0.5851992399129868,
+      "amount_to_sender_max_normal_vs_suspicious": 0.10039716072912896,
+      "amount_to_sender_max_suspicious_vs_super": 0.25934482000009984,
+      "amount_to_sender_max_normal_vs_super": 0.2885350980424016,
+      "sender_tx_count_24h_normal_vs_suspicious": 0.22546271376213178,
+      "sender_tx_count_24h_suspicious_vs_super": 0.24489657277098778,
+      "sender_tx_count_24h_normal_vs_super": 0.5452864491455529,
+      "sender_volume_24h_normal_vs_suspicious": 0.0137411713273396,
+      "sender_volume_24h_suspicious_vs_super": 0.17473579085561336,
+      "sender_volume_24h_normal_vs_super": 0.19331599357086998,
+      "amount_to_sender_volume_24h_normal_vs_suspicious": 0.18482185169155316,
+      "amount_to_sender_volume_24h_suspicious_vs_super": 0.1509291884140237,
+      "amount_to_sender_volume_24h_normal_vs_super": 0.2499446917139849,
+      "is_new_recipient_normal_vs_suspicious": 0.34391774001576936,
+      "is_new_recipient_suspicious_vs_super": 0.1758874487385201,
+      "is_new_recipient_normal_vs_super": 0.5210028344384147,
+      "same_day_count_normal_vs_suspicious": 0.21874584724129809,
+      "same_day_count_suspicious_vs_super": 0.13990669451904195,
+      "same_day_count_normal_vs_super": 0.3855335308137932,
+      "same_day_total_normal_vs_suspicious": 0.035152983679500864,
+      "same_day_total_suspicious_vs_super": 0.12391071045902155,
+      "same_day_total_normal_vs_super": 0.1656084356556264,
+      "same_recipient_count_normal_vs_suspicious": 0.1905039266023284,
+      "same_recipient_count_suspicious_vs_super": 0.043034961489027655,
+      "same_recipient_count_normal_vs_super": 0.14956473347892993,
+      "rapid_transfer_count_normal_vs_suspicious": 0.06884835867848928,
+      "rapid_transfer_count_suspicious_vs_super": 0.0021258854392330892,
+      "rapid_transfer_count_normal_vs_super": 0.06745851874078432,
+      "hour_normal_vs_suspicious": 0.16312300327329374,
+      "hour_suspicious_vs_super": 0.11038106205152762,
+      "hour_normal_vs_super": 0.050388623023190714,
+      "is_deposit_normal_vs_suspicious": 0.08906363730526627,
+      "is_deposit_suspicious_vs_super": 0.024275739244275892,
+      "is_deposit_normal_vs_super": 0.11338132769481857,
+      "is_withdraw_normal_vs_suspicious": 0.04975329739531985,
+      "is_withdraw_suspicious_vs_super": 0.03182467288351585,
+      "is_withdraw_normal_vs_super": 0.08159340136857711,
+      "is_transfer_normal_vs_suspicious": 0.04579280377781009,
+      "is_transfer_suspicious_vs_super": 0.005728514063888283,
+      "is_transfer_normal_vs_super": 0.04005436573586304,
+      "is_off_hours_normal_vs_suspicious": 0.4150078264582432,
+      "is_off_hours_suspicious_vs_super": 0.18946232416580674,
+      "is_off_hours_normal_vs_super": 0.23965514500603105,
+      "channel_encoded_normal_vs_suspicious": 0.010653251726049405,
+      "channel_encoded_suspicious_vs_super": 0.13746325287314656,
+      "channel_encoded_normal_vs_super": 0.12826075351893956,
+      "amount_std_dev_normal_vs_suspicious": 0.09710693851692545,
+      "amount_std_dev_suspicious_vs_super": 0.05829996564618904,
+      "amount_std_dev_normal_vs_super": 0.034186417281248084,
+      "amount_z_score_normal_vs_suspicious": 0.0914238386280641,
+      "amount_z_score_suspicious_vs_super": 0.1783413812027695,
+      "amount_z_score_normal_vs_super": 0.18280327630310106,
+      "tx_frequency_7d_normal_vs_suspicious": 0.3328100475670553,
+      "tx_frequency_7d_suspicious_vs_super": 0.059915317034902056,
+      "tx_frequency_7d_normal_vs_super": 0.4019036333575294,
+      "tx_frequency_30d_normal_vs_suspicious": 0.1350166279456297,
+      "tx_frequency_30d_suspicious_vs_super": 0.17216475696506034,
+      "tx_frequency_30d_normal_vs_super": 0.2982363787323368,
+      "day_of_week_normal_vs_suspicious": 0.005422000012290274,
+      "day_of_week_suspicious_vs_super": 0.05491919218023815,
+      "day_of_week_normal_vs_super": 0.059658160673128034,
+      "is_weekend_normal_vs_suspicious": 0.004723920168655362,
+      "is_weekend_suspicious_vs_super": 0.0110865698423095,
+      "is_weekend_normal_vs_super": 0.015809814017739454,
+      "time_since_last_tx_normal_vs_suspicious": 0.7131284327137902,
+      "time_since_last_tx_suspicious_vs_super": 0.17415306320382698,
+      "time_since_last_tx_normal_vs_super": 0.9365876731908582,
+      "unique_recipients_24h_normal_vs_suspicious": 0.2272037526414809,
+      "unique_recipients_24h_suspicious_vs_super": 0.24117127410207503,
+      "unique_recipients_24h_normal_vs_super": 0.5427075577545869,
+      "unique_recipients_7d_normal_vs_suspicious": 0.3199337216128691,
+      "unique_recipients_7d_suspicious_vs_super": 0.0958024893301797,
+      "unique_recipients_7d_normal_vs_super": 0.420652531445772,
+      "recipient_concentration_normal_vs_suspicious": 0.11731207696498,
+      "recipient_concentration_suspicious_vs_super": 0.1689665436828759,
+      "recipient_concentration_normal_vs_super": 0.2670483660271919,
+      "amount_change_vs_avg_7d_normal_vs_suspicious": 0.08106378665739172,
+      "amount_change_vs_avg_7d_suspicious_vs_super": 0.30606307178217873,
+      "amount_change_vs_avg_7d_normal_vs_super": 0.41883842195112914,
+      "frequency_change_vs_avg_7d_normal_vs_suspicious": 0.5097461051002983,
+      "frequency_change_vs_avg_7d_suspicious_vs_super": 0.19978680196996773,
+      "frequency_change_vs_avg_7d_normal_vs_super": 0.7457761085412699,
+      "amount_mutual_info": 0.06355153454408646,
+      "sender_avg_amount_mutual_info": 0.01616279989700975,
+      "sender_max_amount_mutual_info": 0.03141670787186612,
+      "sender_tx_count_mutual_info": 0.040625635013873174,
+      "amount_to_sender_avg_mutual_info": 0.14901489528896383,
+      "amount_to_sender_max_mutual_info": 0.09156845608304032,
+      "sender_tx_count_24h_mutual_info": 0.1279412736008414,
+      "sender_volume_24h_mutual_info": 0.1028782892205804,
+      "amount_to_sender_volume_24h_mutual_info": 0.28510118291077124,
+      "is_new_recipient_mutual_info": 0.02895599619402689,
+      "same_day_count_mutual_info": 0.0406601970289846,
+      "same_day_total_mutual_info": 0.03576692476527077,
+      "same_recipient_count_mutual_info": 0.011007237007411907,
+      "rapid_transfer_count_mutual_info": 0.0069969760353034705,
+      "hour_mutual_info": 0.016963194523565095,
+      "is_deposit_mutual_info": 0,
+      "is_withdraw_mutual_info": 0.009027248694367884,
+      "is_transfer_mutual_info": 0,
+      "is_self_transfer_mutual_info": 0.006056805013349376,
+      "is_off_hours_mutual_info": 0.02589792649425182,
+      "channel_encoded_mutual_info": 0.0013711438872969772,
+      "amount_std_dev_mutual_info": 0.01533349722390831,
+      "amount_z_score_mutual_info": 0.16781270114761027,
+      "tx_frequency_7d_mutual_info": 0.03408016669199143,
+      "tx_frequency_30d_mutual_info": 0.040233699470128004,
+      "day_of_week_mutual_info": 0.01025915313469139,
+      "is_weekend_mutual_info": 0.0024732854317839337,
+      "time_since_last_tx_mutual_info": 0.13397901623903796,
+      "unique_recipients_24h_mutual_info": 0.13154171266948733,
+      "unique_recipients_7d_mutual_info": 0.029848374049820103,
+      "recipient_concentration_mutual_info": 0.029780246296056134,
+      "new_recipient_ratio_7d_mutual_info": 0.006056805013349376,
+      "amount_change_vs_avg_7d_mutual_info": 0.11109719910129079,
+      "frequency_change_vs_avg_7d_mutual_info": 0.07899095917664689
+    },
+    "label_consistency": {
+      "agreement_rate": 0.6902,
+      "near_identical_agreement_rate": 1.0,
+      "near_identical_pairs": 8
+    },
+    "temporal_stability": {},
+    "class_statistics": {
+      "amount": {
+        "normal": {
+          "mean": 15034.45507443366,
+          "std": 61497.56905716495,
+          "min": 10.0,
+          "max": 1258425.5,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 26720.27184800185,
+          "std": 111023.27127253081,
+          "min": 10.0,
+          "max": 2268263.01,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 51632.34192084942,
+          "std": 140628.67670610375,
+          "min": 49.68,
+          "max": 1872287.93,
+          "count": 1036
+        }
+      },
+      "sender_avg_amount": {
+        "normal": {
+          "mean": 20328.75730965756,
+          "std": 60807.02895915639,
+          "min": 0.0,
+          "max": 787115.6545454544,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 27713.009217227303,
+          "std": 81024.32007463463,
+          "min": 0.0,
+          "max": 782056.5858333333,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 23483.53508697062,
+          "std": 76717.52479176981,
+          "min": 87.04333333333334,
+          "max": 760739.2799999999,
+          "count": 1036
+        }
+      },
+      "sender_max_amount": {
+        "normal": {
+          "mean": 76583.19801078748,
+          "std": 188019.79631240602,
+          "min": 0.0,
+          "max": 2268263.01,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 95382.7161053361,
+          "std": 229879.95856163767,
+          "min": 0.0,
+          "max": 2268263.01,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 81044.26388996138,
+          "std": 218980.2945156718,
+          "min": 90.09,
+          "max": 2268263.01,
+          "count": 1036
+        }
+      },
+      "sender_tx_count": {
+        "normal": {
+          "mean": 25.78856526429342,
+          "std": 15.463747642260145,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 23.82028182028182,
+          "std": 13.506914256415891,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 21.575289575289574,
+          "std": 12.673496534454047,
+          "min": 2.0,
+          "max": 49.0,
+          "count": 1036
+        }
+      },
+      "amount_to_sender_avg": {
+        "normal": {
+          "mean": 0.5629487804499326,
+          "std": 0.5440398186396708,
+          "min": 0.002086935272943624,
+          "max": 5.500229365720537,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 1.032015919906304,
+          "std": 3.277125518367651,
+          "min": 0.001523927394478312,
+          "max": 132.23648511844502,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 7.607397881901961,
+          "std": 17.015174154425633,
+          "min": 0.00109370475857564,
+          "max": 280.1886843438608,
+          "count": 1036
+        }
+      },
+      "amount_to_sender_max": {
+        "normal": {
+          "mean": 0.23061471160596994,
+          "std": 0.36100083084159074,
+          "min": 0.0002231872840384043,
+          "max": 4.668352129629183,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.45179770821988074,
+          "std": 3.0946410303781064,
+          "min": 0.0003719757236332769,
+          "max": 132.23648511844502,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 3.032707549642085,
+          "std": 13.729312445275083,
+          "min": 0.0003305965828010395,
+          "max": 260.7994089165566,
+          "count": 1036
+        }
+      },
+      "sender_tx_count_24h": {
+        "normal": {
+          "mean": 1.735059331175836,
+          "std": 0.9091978160359219,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 1.4583044583044582,
+          "std": 1.4788030919405368,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 1.113899613899614,
+          "std": 1.3299085891945273,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 1036
+        }
+      },
+      "sender_volume_24h": {
+        "normal": {
+          "mean": 39034.36411218986,
+          "std": 152924.536795054,
+          "min": 0.0,
+          "max": 3878558.1399999997,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 41465.60511434512,
+          "std": 198048.82530350497,
+          "min": 0.0,
+          "max": 3886084.77,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 14038.7869980695,
+          "std": 100252.59192237124,
+          "min": 0.0,
+          "max": 2120050.33,
+          "count": 1036
+        }
+      },
+      "amount_to_sender_volume_24h": {
+        "normal": {
+          "mean": 97.99784217873942,
+          "std": 3062.0200782751663,
+          "min": 0.0005430758417602118,
+          "max": 173944.79,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 6781.239253970198,
+          "std": 51046.84503280565,
+          "min": 0.0007901444644573656,
+          "max": 1547985.69,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 19938.1684934098,
+          "std": 112216.02015709114,
+          "min": 0.004712897547106818,
+          "max": 1872287.93,
+          "count": 1036
+        }
+      },
+      "is_new_recipient": {
+        "normal": {
+          "mean": 0.6778856526429342,
+          "std": 0.46733693963564965,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.8244398244398244,
+          "std": 0.38048947782950715,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.8861003861003861,
+          "std": 0.317842736855558,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "same_day_count": {
+        "normal": {
+          "mean": 0.9214670981661273,
+          "std": 0.9004643246360557,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.705012705012705,
+          "std": 1.071205768557496,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.5627413127413128,
+          "std": 0.9595297835294193,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 1036
+        }
+      },
+      "same_day_total": {
+        "normal": {
+          "mean": 22649.98153613808,
+          "std": 117275.2733474147,
+          "min": 0.0,
+          "max": 3071143.1999999997,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 18567.3232986833,
+          "std": 114992.98556483768,
+          "min": 0.0,
+          "max": 3453885.36,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 7136.701747104247,
+          "std": 61614.259132103194,
+          "min": 0.0,
+          "max": 1378702.81,
+          "count": 1036
+        }
+      },
+      "same_recipient_count": {
+        "normal": {
+          "mean": 0.04681769147788565,
+          "std": 0.21631779447512295,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.013629013629013628,
+          "std": 0.11793420597901286,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.019305019305019305,
+          "std": 0.14450949725204318,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 1036
+        }
+      },
+      "rapid_transfer_count": {
+        "normal": {
+          "mean": 0.02740021574973031,
+          "std": 0.16458064088552743,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.017094017094017096,
+          "std": 0.13315370145249328,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.017374517374517374,
+          "std": 0.13072543298176242,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "hour": {
+        "normal": {
+          "mean": 12.496224379719525,
+          "std": 3.930522085996143,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 11.754215754215755,
+          "std": 5.092501227578137,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 12.283783783783784,
+          "std": 4.483417387021741,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 1036
+        }
+      },
+      "is_deposit": {
+        "normal": {
+          "mean": 0.3825242718446602,
+          "std": 0.48605598881167283,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.4261954261954262,
+          "std": 0.49458001345692626,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.43822393822393824,
+          "std": 0.4964086792717866,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "is_withdraw": {
+        "normal": {
+          "mean": 0.32923408845738944,
+          "std": 0.4699858079690062,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.3060753060753061,
+          "std": 0.46091462040561826,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.2915057915057915,
+          "std": 0.4546753908862202,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "is_transfer": {
+        "normal": {
+          "mean": 0.28824163969795036,
+          "std": 0.4529930123773878,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.26772926772926775,
+          "std": 0.44282683416939056,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.2702702702702703,
+          "std": 0.4443138599126279,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "is_self_transfer": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 1036
+        }
+      },
+      "is_off_hours": {
+        "normal": {
+          "mean": 0.02308522114347357,
+          "std": 0.15019041384024967,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.13167013167013167,
+          "std": 0.33817085204498903,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.07432432432432433,
+          "std": 0.2624246420969956,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "channel_encoded": {
+        "normal": {
+          "mean": 3.2455231930960085,
+          "std": 2.338923731617938,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 3.2707322707322706,
+          "std": 2.393416618493646,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 2.9469111969111967,
+          "std": 2.3173531702737695,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 1036
+        }
+      },
+      "amount_std_dev": {
+        "normal": {
+          "mean": 19762.74788547927,
+          "std": 51224.85834987506,
+          "min": 0.0,
+          "max": 632964.1920544532,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 25448.539885500533,
+          "std": 65058.85659758716,
+          "min": 0.0,
+          "max": 612755.9991117273,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 21721.443422010972,
+          "std": 62780.13826301683,
+          "min": 3.846660889654817,
+          "max": 616380.5986569995,
+          "count": 1036
+        }
+      },
+      "amount_z_score": {
+        "normal": {
+          "mean": -0.2693759353836524,
+          "std": 0.47102698818103383,
+          "min": -1.9958168968721566,
+          "max": 4.949509310557411,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.1146522529448778,
+          "std": 5.921736800180334,
+          "min": -172.2696302408584,
+          "max": 267.962423746227,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 16.171541300366542,
+          "std": 127.19032812508262,
+          "min": -8.999241480246363,
+          "max": 2655.3870759611314,
+          "count": 1036
+        }
+      },
+      "tx_frequency_7d": {
+        "normal": {
+          "mean": 9.064077669902913,
+          "std": 3.853879686037107,
+          "min": 0.0,
+          "max": 20.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 10.334257334257334,
+          "std": 3.7788119788706833,
+          "min": 0.0,
+          "max": 21.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 10.554054054054054,
+          "std": 3.5546761707926278,
+          "min": 2.0,
+          "max": 21.0,
+          "count": 1036
+        }
+      },
+      "tx_frequency_30d": {
+        "normal": {
+          "mean": 25.756202804746493,
+          "std": 15.418213290533057,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 23.8013398013398,
+          "std": 13.473798358188528,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 21.5530888030888,
+          "std": 12.630003389514966,
+          "min": 2.0,
+          "max": 49.0,
+          "count": 1036
+        }
+      },
+      "day_of_week": {
+        "normal": {
+          "mean": 2.8985976267529665,
+          "std": 2.1130307065048206,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 2.90990990990991,
+          "std": 2.059358561777654,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 3.022200772200772,
+          "std": 2.029847185471496,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 1036
+        }
+      },
+      "is_weekend": {
+        "normal": {
+          "mean": 0.28996763754045307,
+          "std": 0.4537960293370181,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.28782628782628783,
+          "std": 0.45280202932998487,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.2828185328185328,
+          "std": 0.45058648832712017,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1036
+        }
+      },
+      "time_since_last_tx": {
+        "normal": {
+          "mean": 8.707861917239422,
+          "std": 8.423292827214723,
+          "min": 0.0,
+          "max": 87.48055516694444,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 18.47131624707387,
+          "std": 17.433763076571246,
+          "min": 0.0,
+          "max": 116.70000002694444,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 21.503487254239868,
+          "std": 17.38811540313578,
+          "min": 0.0005557191666666667,
+          "max": 88.66055594833334,
+          "count": 1036
+        }
+      },
+      "unique_recipients_24h": {
+        "normal": {
+          "mean": 1.7091693635382956,
+          "std": 0.8835962904024397,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 1.4363594363594363,
+          "std": 1.4500874013365623,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 1.1032818532818534,
+          "std": 1.3084448274098883,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 1036
+        }
+      },
+      "unique_recipients_7d": {
+        "normal": {
+          "mean": 8.354045307443366,
+          "std": 3.536175085623716,
+          "min": 0.0,
+          "max": 17.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 9.458997458997459,
+          "std": 3.369187746944618,
+          "min": 0.0,
+          "max": 20.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 9.774131274131275,
+          "std": 3.2076518897087922,
+          "min": 2.0,
+          "max": 21.0,
+          "count": 1036
+        }
+      },
+      "recipient_concentration": {
+        "normal": {
+          "mean": 0.1974421902772369,
+          "std": 0.17233820896979185,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.17961246778227014,
+          "std": 0.12844712155954083,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.161413092614718,
+          "std": 0.08187915773118837,
+          "min": 0.047619047619047616,
+          "max": 0.5,
+          "count": 1036
+        }
+      },
+      "new_recipient_ratio_7d": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 1036
+        }
+      },
+      "amount_change_vs_avg_7d": {
+        "normal": {
+          "mean": -6286.551609138863,
+          "std": 39486.72391254408,
+          "min": -734876.6816666666,
+          "max": 709355.33625,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": -1096.8319097847077,
+          "std": 81473.739472345,
+          "min": -847099.3709090909,
+          "max": 1651153.6854545455,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 28863.787090537917,
+          "std": 111924.38601301171,
+          "min": -793912.5811111111,
+          "max": 1312934.4727272727,
+          "count": 1036
+        }
+      },
+      "frequency_change_vs_avg_7d": {
+        "normal": {
+          "mean": 0.43632814506600914,
+          "std": 0.4180182262423941,
+          "min": -0.9285714285714286,
+          "max": 1.9238095238095239,
+          "count": 4635
+        },
+        "suspicious": {
+          "mean": 0.682944482944483,
+          "std": 0.5416549573271302,
+          "min": -1.1714285714285715,
+          "max": 2.1904761904761907,
+          "count": 4329
+        },
+        "super_suspicious": {
+          "mean": 0.7892857142857143,
+          "std": 0.5227238104995442,
+          "min": -0.8952380952380952,
+          "max": 2.2666666666666666,
+          "count": 1036
+        }
+      }
+    },
+    "super_suspicious_vs_normal_separation": {
+      "amount": 0.33720836234334195,
+      "sender_avg_amount": 0.04557549181440798,
+      "sender_max_amount": 0.02185854217235195,
+      "sender_tx_count": 0.2980185875704675,
+      "amount_to_sender_avg": 0.5851992399129868,
+      "amount_to_sender_max": 0.2885350980424016,
+      "sender_tx_count_24h": 0.5452864491455529,
+      "sender_volume_24h": 0.19331599357086998,
+      "amount_to_sender_volume_24h": 0.2499446917139849,
+      "is_new_recipient": 0.5210028344384147,
+      "same_day_count": 0.3855335308137932,
+      "same_day_total": 0.1656084356556264,
+      "same_recipient_count": 0.14956473347892993,
+      "rapid_transfer_count": 0.06745851874078432,
+      "hour": 0.050388623023190714,
+      "is_deposit": 0.11338132769481857,
+      "is_withdraw": 0.08159340136857711,
+      "is_transfer": 0.04005436573586304,
+      "is_off_hours": 0.23965514500603105,
+      "channel_encoded": 0.12826075351893956,
+      "amount_std_dev": 0.034186417281248084,
+      "amount_z_score": 0.18280327630310106,
+      "tx_frequency_7d": 0.4019036333575294,
+      "tx_frequency_30d": 0.2982363787323368,
+      "day_of_week": 0.059658160673128034,
+      "is_weekend": 0.015809814017739454,
+      "time_since_last_tx": 0.9365876731908582,
+      "unique_recipients_24h": 0.5427075577545869,
+      "unique_recipients_7d": 0.420652531445772,
+      "recipient_concentration": 0.2670483660271919,
+      "amount_change_vs_avg_7d": 0.41883842195112914,
+      "frequency_change_vs_avg_7d": 0.7457761085412699
+    }
+  },
+  "candidate_b": {
+    "candidate": "Candidate B",
+    "class_distribution": {
+      "suspicious": 0.8866,
+      "normal": 0.1052,
+      "super_suspicious": 0.0082
+    },
+    "feature_label_signal": {
+      "amount_normal_vs_suspicious": 0.044276376906394244,
+      "amount_suspicious_vs_super": 0.006527482765078202,
+      "amount_normal_vs_super": 0.058039655094593724,
+      "sender_avg_amount_normal_vs_suspicious": 0.06275733090490943,
+      "sender_avg_amount_suspicious_vs_super": 0.2523085703952322,
+      "sender_avg_amount_normal_vs_super": 0.19811969646383307,
+      "sender_max_amount_normal_vs_suspicious": 0.31364832582525337,
+      "sender_max_amount_suspicious_vs_super": 0.22867761887469953,
+      "sender_max_amount_normal_vs_super": 0.2171125286347853,
+      "sender_tx_count_normal_vs_suspicious": 1.883883395019269,
+      "sender_tx_count_suspicious_vs_super": 0.5848746976280802,
+      "sender_tx_count_normal_vs_super": 1.818731766794951,
+      "amount_to_sender_avg_normal_vs_suspicious": 0.14155994538282046,
+      "amount_to_sender_avg_suspicious_vs_super": 0.3692184094172652,
+      "amount_to_sender_avg_normal_vs_super": 0.6412278872590513,
+      "amount_to_sender_max_normal_vs_suspicious": 0.013771012979270943,
+      "amount_to_sender_max_suspicious_vs_super": 0.0043635638969748754,
+      "amount_to_sender_max_normal_vs_super": 0.07532256263180397,
+      "sender_tx_count_24h_normal_vs_suspicious": 0.1472999179610331,
+      "sender_tx_count_24h_suspicious_vs_super": 0.22244215140497303,
+      "sender_tx_count_24h_normal_vs_super": 0.10242988563036558,
+      "sender_volume_24h_normal_vs_suspicious": 0.04358396123591923,
+      "sender_volume_24h_suspicious_vs_super": 0.26679450141995653,
+      "sender_volume_24h_normal_vs_super": 0.4166562694074859,
+      "amount_to_sender_volume_24h_normal_vs_suspicious": 0.15129162471318058,
+      "amount_to_sender_volume_24h_suspicious_vs_super": 0.010093442113715009,
+      "amount_to_sender_volume_24h_normal_vs_super": 0.502076537757142,
+      "is_new_recipient_normal_vs_suspicious": 0.5834934720734439,
+      "is_new_recipient_suspicious_vs_super": 0.12202979614394935,
+      "is_new_recipient_normal_vs_super": 0.46041531845907074,
+      "same_day_count_normal_vs_suspicious": 0.028726910655671508,
+      "same_day_count_suspicious_vs_super": 0.12540762877241435,
+      "same_day_count_normal_vs_super": 0.15531534479147266,
+      "same_day_total_normal_vs_suspicious": 0.00760017663150024,
+      "same_day_total_suspicious_vs_super": 0.18337725802474675,
+      "same_day_total_normal_vs_super": 0.3009254726223136,
+      "same_recipient_count_normal_vs_suspicious": 0.019474262375082416,
+      "same_recipient_count_suspicious_vs_super": 0.036787157185829165,
+      "same_recipient_count_normal_vs_super": 0.056799345505536135,
+      "rapid_transfer_count_normal_vs_suspicious": 0.00816534635222584,
+      "rapid_transfer_count_suspicious_vs_super": 0.07547528844458506,
+      "rapid_transfer_count_normal_vs_super": 0.06818628116580529,
+      "hour_normal_vs_suspicious": 0.10896755338586085,
+      "hour_suspicious_vs_super": 0.16644644106770254,
+      "hour_normal_vs_super": 0.280537442515858,
+      "is_deposit_normal_vs_suspicious": 0.046059973296242354,
+      "is_deposit_suspicious_vs_super": 0.03517157140040151,
+      "is_deposit_normal_vs_super": 0.08111228758723873,
+      "is_withdraw_normal_vs_suspicious": 0.008315271828108803,
+      "is_withdraw_suspicious_vs_super": 0.08267223609965918,
+      "is_withdraw_normal_vs_super": 0.07435664633456672,
+      "is_transfer_normal_vs_suspicious": 0.041360924363931795,
+      "is_transfer_suspicious_vs_super": 0.13074771782473785,
+      "is_transfer_normal_vs_super": 0.17210419498879695,
+      "is_off_hours_normal_vs_suspicious": 0.009781256348010598,
+      "is_off_hours_suspicious_vs_super": 0.10999178483789217,
+      "is_off_hours_normal_vs_super": 0.11961369515948253,
+      "channel_encoded_normal_vs_suspicious": 0.0693844118488665,
+      "channel_encoded_suspicious_vs_super": 0.2566629199898901,
+      "channel_encoded_normal_vs_super": 0.3307466854622764,
+      "amount_std_dev_normal_vs_suspicious": 0.22461643324418956,
+      "amount_std_dev_suspicious_vs_super": 0.19873042024191404,
+      "amount_std_dev_normal_vs_super": 0.08712543752627168,
+      "amount_z_score_normal_vs_suspicious": 0.04371774451306018,
+      "amount_z_score_suspicious_vs_super": 0.0017871447533243346,
+      "amount_z_score_normal_vs_super": 0.16025258116024213,
+      "tx_frequency_7d_normal_vs_suspicious": 2.920086019529153,
+      "tx_frequency_7d_suspicious_vs_super": 1.8007942824050327,
+      "tx_frequency_7d_normal_vs_super": 5.8677365776114945,
+      "tx_frequency_30d_normal_vs_suspicious": 1.8859939336047393,
+      "tx_frequency_30d_suspicious_vs_super": 0.589530377869706,
+      "tx_frequency_30d_normal_vs_super": 1.8270588507294614,
+      "day_of_week_normal_vs_suspicious": 0.12086132725160968,
+      "day_of_week_suspicious_vs_super": 0.16747191301981762,
+      "day_of_week_normal_vs_super": 0.2683371845206241,
+      "is_weekend_normal_vs_suspicious": 0.09566199978371483,
+      "is_weekend_suspicious_vs_super": 0.177106856654836,
+      "is_weekend_normal_vs_super": 0.08145411943175514,
+      "time_since_last_tx_normal_vs_suspicious": 0.6641143763419797,
+      "time_since_last_tx_suspicious_vs_super": 0.2347014527642067,
+      "time_since_last_tx_normal_vs_super": 0.9459055925880037,
+      "unique_recipients_24h_normal_vs_suspicious": 0.14797904844525342,
+      "unique_recipients_24h_suspicious_vs_super": 0.22906986698152826,
+      "unique_recipients_24h_normal_vs_super": 0.10860057494455776,
+      "unique_recipients_7d_normal_vs_suspicious": 2.9868574392543668,
+      "unique_recipients_7d_suspicious_vs_super": 1.6285429603654313,
+      "unique_recipients_7d_normal_vs_super": 5.486215260478229,
+      "recipient_concentration_normal_vs_suspicious": 0.8669614697559066,
+      "recipient_concentration_suspicious_vs_super": 0.40287868551791733,
+      "recipient_concentration_normal_vs_super": 1.0562982542091315,
+      "amount_change_vs_avg_7d_normal_vs_suspicious": 0.06838787501817604,
+      "amount_change_vs_avg_7d_suspicious_vs_super": 0.226820308749987,
+      "amount_change_vs_avg_7d_normal_vs_super": 0.4108143905635824,
+      "frequency_change_vs_avg_7d_normal_vs_suspicious": 0.9564684354516825,
+      "frequency_change_vs_avg_7d_suspicious_vs_super": 1.946411196962837,
+      "frequency_change_vs_avg_7d_normal_vs_super": 3.6781583936018256,
+      "amount_mutual_info": 0,
+      "sender_avg_amount_mutual_info": 0.0653025044086899,
+      "sender_max_amount_mutual_info": 0.13357521320996923,
+      "sender_tx_count_mutual_info": 0.21180492738175216,
+      "amount_to_sender_avg_mutual_info": 0.0603346458585996,
+      "amount_to_sender_max_mutual_info": 0.06663894565079054,
+      "sender_tx_count_24h_mutual_info": 0.0022863774479835453,
+      "sender_volume_24h_mutual_info": 0.004072597950472989,
+      "amount_to_sender_volume_24h_mutual_info": 0.09435154713110383,
+      "is_new_recipient_mutual_info": 0.012006154871810448,
+      "same_day_count_mutual_info": 0,
+      "same_day_total_mutual_info": 0,
+      "same_recipient_count_mutual_info": 0,
+      "rapid_transfer_count_mutual_info": 0,
+      "hour_mutual_info": 0.0014793568664537293,
+      "is_deposit_mutual_info": 0,
+      "is_withdraw_mutual_info": 0,
+      "is_transfer_mutual_info": 0,
+      "is_self_transfer_mutual_info": 0,
+      "is_off_hours_mutual_info": 0,
+      "channel_encoded_mutual_info": 0,
+      "amount_std_dev_mutual_info": 0.0932915594399999,
+      "amount_z_score_mutual_info": 0.08000090553692063,
+      "tx_frequency_7d_mutual_info": 0.24833315987676308,
+      "tx_frequency_30d_mutual_info": 0.21191516157276324,
+      "day_of_week_mutual_info": 0.025955769916826688,
+      "is_weekend_mutual_info": 0,
+      "time_since_last_tx_mutual_info": 0.06860303452529459,
+      "unique_recipients_24h_mutual_info": 0.0019811770707331977,
+      "unique_recipients_7d_mutual_info": 0.2613459067777675,
+      "recipient_concentration_mutual_info": 0.21798358925012673,
+      "new_recipient_ratio_7d_mutual_info": 0,
+      "amount_change_vs_avg_7d_mutual_info": 0.06258962787123523,
+      "frequency_change_vs_avg_7d_mutual_info": 0.22501217782418914
+    },
+    "label_consistency": {
+      "agreement_rate": 0.95,
+      "near_identical_agreement_rate": 1.0,
+      "near_identical_pairs": 8
+    },
+    "temporal_stability": {},
+    "class_statistics": {
+      "amount": {
+        "normal": {
+          "mean": 20461.637538022813,
+          "std": 71787.31993594588,
+          "min": 10.0,
+          "max": 1003153.84,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 24291.732268215655,
+          "std": 99058.32053242953,
+          "min": 10.0,
+          "max": 2268263.01,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 23801.479878048776,
+          "std": 38330.640349904636,
+          "min": 82.89,
+          "max": 233747.28,
+          "count": 82
+        }
+      },
+      "sender_avg_amount": {
+        "normal": {
+          "mean": 20128.697133425787,
+          "std": 62884.47639450007,
+          "min": 0.0,
+          "max": 758094.335,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 24412.478269123407,
+          "std": 73241.03168058877,
+          "min": 87.04333333333334,
+          "max": 787115.6545454544,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 11047.898333284327,
+          "std": 15723.259708943198,
+          "min": 752.183125,
+          "max": 74919.76421052632,
+          "count": 82
+        }
+      },
+      "sender_max_amount": {
+        "normal": {
+          "mean": 37721.57171102661,
+          "std": 96976.92870253933,
+          "min": 0.0,
+          "max": 1003153.84,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 91098.73262237763,
+          "std": 220270.2908011929,
+          "min": 90.09,
+          "max": 2268263.01,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 54540.26,
+          "std": 50962.950390552556,
+          "min": 5225.94,
+          "max": 240206.63,
+          "count": 82
+        }
+      },
+      "sender_tx_count": {
+        "normal": {
+          "mean": 5.2956273764258555,
+          "std": 9.27510915023352,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 26.81524926686217,
+          "std": 13.226592103365986,
+          "min": 1.0,
+          "max": 49.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 20.548780487804876,
+          "std": 7.392275646590171,
+          "min": 9.0,
+          "max": 47.0,
+          "count": 82
+        }
+      },
+      "amount_to_sender_avg": {
+        "normal": {
+          "mean": 0.8802878046832943,
+          "std": 0.7957237578596039,
+          "min": 0.0041528874826840985,
+          "max": 6.777058220654919,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 1.5452902954362497,
+          "std": 6.595688578952791,
+          "min": 0.00109370475857564,
+          "max": 280.1886843438608,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 4.04295354202005,
+          "std": 6.929651154689596,
+          "min": 0.023918543269988733,
+          "max": 44.710862180967204,
+          "count": 82
+        }
+      },
+      "amount_to_sender_max": {
+        "normal": {
+          "mean": 0.6627543257415243,
+          "std": 0.5907209971004743,
+          "min": 0.0007353822517698552,
+          "max": 4.536668149621846,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.6113942211929024,
+          "std": 5.24123968615189,
+          "min": 0.0002231872840384043,
+          "max": 260.7994089165566,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.5948508881753418,
+          "std": 1.1298054071449632,
+          "min": 0.006623797989710135,
+          "max": 9.194545292143001,
+          "count": 82
+        }
+      },
+      "sender_tx_count_24h": {
+        "normal": {
+          "mean": 1.3992395437262357,
+          "std": 1.0695684109776062,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 1.571509136025265,
+          "std": 1.2615697259621377,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 1.2682926829268293,
+          "std": 1.45762177762699,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 82
+        }
+      },
+      "sender_volume_24h": {
+        "normal": {
+          "mean": 32252.97035171103,
+          "std": 92052.04003833384,
+          "min": 0.0,
+          "max": 1027940.1599999999,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 38422.319009699975,
+          "std": 177763.13696076238,
+          "min": 0.0,
+          "max": 3886084.77,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 4764.150975609756,
+          "std": 15224.11812777844,
+          "min": 0.0,
+          "max": 112161.03,
+          "count": 82
+        }
+      },
+      "amount_to_sender_volume_24h": {
+        "normal": {
+          "mean": 0.7693840165437723,
+          "std": 0.5930572686117962,
+          "min": 0.0008364321729244308,
+          "max": 2.9783993193911047,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 5643.42846060285,
+          "std": 52745.31890697821,
+          "min": 0.0005430758417602118,
+          "max": 1872287.93,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 5252.453224606431,
+          "std": 14792.57035165722,
+          "min": 0.2933538354216689,
+          "max": 82959.37,
+          "count": 82
+        }
+      },
+      "is_new_recipient": {
+        "normal": {
+          "mean": 0.9448669201520913,
+          "std": 0.2283483937609957,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.741033160387999,
+          "std": 0.43809207121295346,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.7926829268292683,
+          "std": 0.4078793357653883,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "same_day_count": {
+        "normal": {
+          "mean": 0.7652091254752852,
+          "std": 0.876268499571881,
+          "min": 0.0,
+          "max": 4.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.7922400180464697,
+          "std": 1.001482607268447,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.9390243902439024,
+          "std": 1.3179441620237886,
+          "min": 0.0,
+          "max": 4.0,
+          "count": 82
+        }
+      },
+      "same_day_total": {
+        "normal": {
+          "mean": 20059.958060836503,
+          "std": 73330.58132072429,
+          "min": 0.0,
+          "max": 992438.2799999999,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 19322.16171779833,
+          "std": 116061.22072217712,
+          "min": 0.0,
+          "max": 3453885.36,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 4156.930731707318,
+          "std": 14430.866981050029,
+          "min": 0.0,
+          "max": 112161.03,
+          "count": 82
+        }
+      },
+      "same_recipient_count": {
+        "normal": {
+          "mean": 0.026615969581749048,
+          "std": 0.16103481032011205,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.02988946537333634,
+          "std": 0.17486737918167777,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.036585365853658534,
+          "std": 0.18889685938866624,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "rapid_transfer_count": {
+        "normal": {
+          "mean": 0.02091254752851711,
+          "std": 0.14315968194006448,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.022106925332731786,
+          "std": 0.1493233630021517,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.012195121951219513,
+          "std": 0.11043152607484653,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "hour": {
+        "normal": {
+          "mean": 11.706273764258555,
+          "std": 4.498254084943157,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 12.198849537559216,
+          "std": 4.542416850944844,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 12.926829268292684,
+          "std": 4.1981197666847345,
+          "min": 1.0,
+          "max": 23.0,
+          "count": 82
+        }
+      },
+      "is_deposit": {
+        "normal": {
+          "mean": 0.38688212927756654,
+          "std": 0.4872679358205412,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.4094292803970223,
+          "std": 0.4917562609765934,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.4268292682926829,
+          "std": 0.4976608941363029,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "is_withdraw": {
+        "normal": {
+          "mean": 0.31844106463878324,
+          "std": 0.4660931855412602,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.3145725242499436,
+          "std": 0.4643715898676883,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.35365853658536583,
+          "std": 0.48104698621955677,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "is_transfer": {
+        "normal": {
+          "mean": 0.2946768060836502,
+          "std": 0.45611417740490284,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.27599819535303405,
+          "std": 0.4470410855861513,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.21951219512195122,
+          "std": 0.4164633650362829,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "is_self_transfer": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 82
+        }
+      },
+      "is_off_hours": {
+        "normal": {
+          "mean": 0.0779467680608365,
+          "std": 0.26821531074882166,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.0753440108278818,
+          "std": 0.26396050755880546,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.04878048780487805,
+          "std": 0.21673440675482067,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "channel_encoded": {
+        "normal": {
+          "mean": 3.376425855513308,
+          "std": 2.3436728519426806,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 3.2130611324159712,
+          "std": 2.3652524914045556,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 2.6341463414634148,
+          "std": 2.140221490337507,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 82
+        }
+      },
+      "amount_std_dev": {
+        "normal": {
+          "mean": 12406.806661833396,
+          "std": 36169.970117524615,
+          "min": 0.0,
+          "max": 472399.4917617087,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 23686.277533403303,
+          "std": 61115.82994028904,
+          "min": 0.0,
+          "max": 632964.1920544532,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 14829.070479624175,
+          "std": 15415.535598642833,
+          "min": 1317.794620927328,
+          "max": 76849.80489596764,
+          "count": 82
+        }
+      },
+      "amount_z_score": {
+        "normal": {
+          "mean": 0.3530871526462961,
+          "std": 10.69272911341879,
+          "min": -172.2696302408584,
+          "max": 267.962423746227,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 1.7472743766093188,
+          "std": 43.814295258751244,
+          "min": -8.999241480246363,
+          "max": 2655.3870759611314,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 1.6915441716190125,
+          "std": 5.018274306044121,
+          "min": -1.0839571297691435,
+          "max": 40.81747432114829,
+          "count": 82
+        }
+      },
+      "tx_frequency_7d": {
+        "normal": {
+          "mean": 2.8127376425855513,
+          "std": 2.1254896599528457,
+          "min": 0.0,
+          "max": 12.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 10.542296413264156,
+          "std": 3.08153240211642,
+          "min": 1.0,
+          "max": 21.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 15.317073170731707,
+          "std": 2.136560341611109,
+          "min": 9.0,
+          "max": 20.0,
+          "count": 82
+        }
+      },
+      "tx_frequency_30d": {
+        "normal": {
+          "mean": 5.29467680608365,
+          "std": 9.270778610855087,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 26.78693886758403,
+          "std": 13.182473655482141,
+          "min": 1.0,
+          "max": 49.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 20.51219512195122,
+          "std": 7.266095632403635,
+          "min": 9.0,
+          "max": 45.0,
+          "count": 82
+        }
+      },
+      "day_of_week": {
+        "normal": {
+          "mean": 2.668250950570342,
+          "std": 2.485202559529611,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 2.9422512970900065,
+          "std": 2.025567892325418,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 3.292682926829268,
+          "std": 2.157317749783761,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 82
+        }
+      },
+      "is_weekend": {
+        "normal": {
+          "mean": 0.3269961977186312,
+          "std": 0.46933897680891257,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.2829912023460411,
+          "std": 0.450477602452956,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.36585365853658536,
+          "std": 0.4846328665668685,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 82
+        }
+      },
+      "time_since_last_tx": {
+        "normal": {
+          "mean": 6.978410165198827,
+          "std": 7.939009130957471,
+          "min": 0.0,
+          "max": 23.915000445,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 15.082865721315137,
+          "std": 15.323780116816899,
+          "min": 0.0005557191666666667,
+          "max": 116.70000002694444,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 18.7183638586687,
+          "std": 15.654224301514914,
+          "min": 0.06305607277777778,
+          "max": 65.02944425194444,
+          "count": 82
+        }
+      },
+      "unique_recipients_24h": {
+        "normal": {
+          "mean": 1.379277566539924,
+          "std": 1.0458873519409795,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 1.5486126776449358,
+          "std": 1.2349282199825664,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 1.2439024390243902,
+          "std": 1.4191022689093296,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 82
+        }
+      },
+      "unique_recipients_7d": {
+        "normal": {
+          "mean": 2.6368821292775664,
+          "std": 1.8469737568263818,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 9.68779607489285,
+          "std": 2.7810051771430584,
+          "min": 1.0,
+          "max": 21.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 13.768292682926829,
+          "std": 2.195949022816786,
+          "min": 8.0,
+          "max": 20.0,
+          "count": 82
+        }
+      },
+      "recipient_concentration": {
+        "normal": {
+          "mean": 0.35728540840232853,
+          "std": 0.2948195601026618,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.16615273829727645,
+          "std": 0.10143488016193193,
+          "min": 0.047619047619047616,
+          "max": 1.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.1333714820778741,
+          "std": 0.05433530357164103,
+          "min": 0.05,
+          "max": 0.26666666666666666,
+          "count": 82
+        }
+      },
+      "new_recipient_ratio_7d": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 82
+        }
+      },
+      "amount_change_vs_avg_7d": {
+        "normal": {
+          "mean": -4322.60693380231,
+          "std": 49605.512863285905,
+          "min": -733308.015,
+          "max": 489495.50999999995,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": -53.58546732199968,
+          "std": 73025.47349511486,
+          "min": -847099.3709090909,
+          "max": 1651153.6854545455,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 12670.763751433338,
+          "std": 31006.983143851267,
+          "min": -27468.03444444445,
+          "max": 164287.07235294118,
+          "count": 82
+        }
+      },
+      "frequency_change_vs_avg_7d": {
+        "normal": {
+          "mean": 0.22533043635705233,
+          "std": 0.2750567961365796,
+          "min": -0.9285714285714286,
+          "max": 1.2809523809523808,
+          "count": 1052
+        },
+        "suspicious": {
+          "mean": 0.6131443824992212,
+          "std": 0.5031367567254666,
+          "min": -1.1714285714285715,
+          "max": 2.2666666666666666,
+          "count": 8866
+        },
+        "super_suspicious": {
+          "mean": 1.5044134727061558,
+          "std": 0.4076827081166887,
+          "min": -0.0714285714285714,
+          "max": 2.1571428571428575,
+          "count": 82
+        }
+      }
+    },
+    "super_suspicious_vs_normal_separation": {
+      "amount": 0.058039655094593724,
+      "sender_avg_amount": 0.19811969646383307,
+      "sender_max_amount": 0.2171125286347853,
+      "sender_tx_count": 1.818731766794951,
+      "amount_to_sender_avg": 0.6412278872590513,
+      "amount_to_sender_max": 0.07532256263180397,
+      "sender_tx_count_24h": 0.10242988563036558,
+      "sender_volume_24h": 0.4166562694074859,
+      "amount_to_sender_volume_24h": 0.502076537757142,
+      "is_new_recipient": 0.46041531845907074,
+      "same_day_count": 0.15531534479147266,
+      "same_day_total": 0.3009254726223136,
+      "same_recipient_count": 0.056799345505536135,
+      "rapid_transfer_count": 0.06818628116580529,
+      "hour": 0.280537442515858,
+      "is_deposit": 0.08111228758723873,
+      "is_withdraw": 0.07435664633456672,
+      "is_transfer": 0.17210419498879695,
+      "is_off_hours": 0.11961369515948253,
+      "channel_encoded": 0.3307466854622764,
+      "amount_std_dev": 0.08712543752627168,
+      "amount_z_score": 0.16025258116024213,
+      "tx_frequency_7d": 5.8677365776114945,
+      "tx_frequency_30d": 1.8270588507294614,
+      "day_of_week": 0.2683371845206241,
+      "is_weekend": 0.08145411943175514,
+      "time_since_last_tx": 0.9459055925880037,
+      "unique_recipients_24h": 0.10860057494455776,
+      "unique_recipients_7d": 5.486215260478229,
+      "recipient_concentration": 1.0562982542091315,
+      "amount_change_vs_avg_7d": 0.4108143905635824,
+      "frequency_change_vs_avg_7d": 3.6781583936018256
+    }
+  },
+  "candidate_c_deterministic": {
+    "candidate": "Candidate C (Deterministic)",
+    "class_distribution": {
+      "normal": 0.6781,
+      "suspicious": 0.2877,
+      "super_suspicious": 0.0342
+    },
+    "feature_label_signal": {
+      "amount_normal_vs_suspicious": 0.19045928146860763,
+      "amount_suspicious_vs_super": 0.19946217137672329,
+      "amount_normal_vs_super": 0.38352437462965183,
+      "sender_avg_amount_normal_vs_suspicious": 0.06544626696802897,
+      "sender_avg_amount_suspicious_vs_super": 0.22752720098117035,
+      "sender_avg_amount_normal_vs_super": 0.16964958669279567,
+      "sender_max_amount_normal_vs_suspicious": 0.06464826921993214,
+      "sender_max_amount_suspicious_vs_super": 0.2515276753082499,
+      "sender_max_amount_normal_vs_super": 0.19364908467771363,
+      "sender_tx_count_normal_vs_suspicious": 0.029168857246364303,
+      "sender_tx_count_suspicious_vs_super": 0.28955007006305,
+      "sender_tx_count_normal_vs_super": 0.2496666109808394,
+      "amount_to_sender_avg_normal_vs_suspicious": 0.22033695541673196,
+      "amount_to_sender_avg_suspicious_vs_super": 0.8544715040388761,
+      "amount_to_sender_avg_normal_vs_super": 1.020238961421376,
+      "amount_to_sender_max_normal_vs_suspicious": 0.08629583737094035,
+      "amount_to_sender_max_suspicious_vs_super": 0.40007111089059655,
+      "amount_to_sender_max_normal_vs_super": 0.48737026402814115,
+      "sender_tx_count_24h_normal_vs_suspicious": 1.1575489646436816,
+      "sender_tx_count_24h_suspicious_vs_super": 0.6709718136121475,
+      "sender_tx_count_24h_normal_vs_super": 0.4489904049585264,
+      "sender_volume_24h_normal_vs_suspicious": 0.2247091706304505,
+      "sender_volume_24h_suspicious_vs_super": 0.1676973297251799,
+      "sender_volume_24h_normal_vs_super": 0.3233857940346077,
+      "amount_to_sender_volume_24h_normal_vs_suspicious": 0.2594038648091647,
+      "amount_to_sender_volume_24h_suspicious_vs_super": 0.10383852671136926,
+      "amount_to_sender_volume_24h_normal_vs_super": 0.23550432925565934,
+      "is_new_recipient_normal_vs_suspicious": 0.059787157097893714,
+      "is_new_recipient_suspicious_vs_super": 0.191775528379402,
+      "is_new_recipient_normal_vs_super": 0.13190479140974926,
+      "same_day_count_normal_vs_suspicious": 0.7126832036635089,
+      "same_day_count_suspicious_vs_super": 0.36686669112724984,
+      "same_day_count_normal_vs_super": 0.3429980287543494,
+      "same_day_total_normal_vs_suspicious": 0.18502504607437634,
+      "same_day_total_suspicious_vs_super": 0.14119417716060176,
+      "same_day_total_normal_vs_super": 0.2593635862122689,
+      "same_recipient_count_normal_vs_suspicious": 0.1328380971570558,
+      "same_recipient_count_suspicious_vs_super": 0.10875560688070905,
+      "same_recipient_count_normal_vs_super": 0.01920308177910677,
+      "rapid_transfer_count_normal_vs_suspicious": 0.14669807477772034,
+      "rapid_transfer_count_suspicious_vs_super": 0.14128566775002663,
+      "rapid_transfer_count_normal_vs_super": 0.007718530213305176,
+      "hour_normal_vs_suspicious": 0.00012790279672956508,
+      "hour_suspicious_vs_super": 0.08108121674338253,
+      "hour_normal_vs_super": 0.08380777193681627,
+      "is_deposit_normal_vs_suspicious": 0.092680508775208,
+      "is_deposit_suspicious_vs_super": 0.09119394874545274,
+      "is_deposit_normal_vs_super": 0.0014203068469565896,
+      "is_withdraw_normal_vs_suspicious": 0.07281994307999273,
+      "is_withdraw_suspicious_vs_super": 0.0783299860328161,
+      "is_withdraw_normal_vs_super": 0.0055566615251168745,
+      "is_transfer_normal_vs_suspicious": 0.026982596470154246,
+      "is_transfer_suspicious_vs_super": 0.019610973616462534,
+      "is_transfer_normal_vs_super": 0.007352494706082325,
+      "is_off_hours_normal_vs_suspicious": 0.08830340421929535,
+      "is_off_hours_suspicious_vs_super": 0.04768434649381276,
+      "is_off_hours_normal_vs_super": 0.13560322272003436,
+      "channel_encoded_normal_vs_suspicious": 0.01953722405526165,
+      "channel_encoded_suspicious_vs_super": 0.26629929514555695,
+      "channel_encoded_normal_vs_super": 0.24907527492849496,
+      "amount_std_dev_normal_vs_suspicious": 0.06398909206687929,
+      "amount_std_dev_suspicious_vs_super": 0.22822724712361284,
+      "amount_std_dev_normal_vs_super": 0.17076904983916605,
+      "amount_z_score_normal_vs_suspicious": 0.0769377476217844,
+      "amount_z_score_suspicious_vs_super": 0.25404877448368124,
+      "amount_z_score_normal_vs_super": 0.4573547234613697,
+      "tx_frequency_7d_normal_vs_suspicious": 0.03937278373270467,
+      "tx_frequency_7d_suspicious_vs_super": 0.2751628221507902,
+      "tx_frequency_7d_normal_vs_super": 0.21236233409754282,
+      "tx_frequency_30d_normal_vs_suspicious": 0.029485612854989355,
+      "tx_frequency_30d_suspicious_vs_super": 0.2893266726855481,
+      "tx_frequency_30d_normal_vs_super": 0.24915904667055458,
+      "day_of_week_normal_vs_suspicious": 0.011211983702664298,
+      "day_of_week_suspicious_vs_super": 0.049776894271494315,
+      "day_of_week_normal_vs_super": 0.03764105287854878,
+      "is_weekend_normal_vs_suspicious": 0.03706391190167646,
+      "is_weekend_suspicious_vs_super": 0.0048527413901103275,
+      "is_weekend_normal_vs_super": 0.04189473823751197,
+      "time_since_last_tx_normal_vs_suspicious": 1.270317723490725,
+      "time_since_last_tx_suspicious_vs_super": 0.5732817927092644,
+      "time_since_last_tx_normal_vs_super": 0.6372944807164558,
+      "unique_recipients_24h_normal_vs_suspicious": 1.1621734615005956,
+      "unique_recipients_24h_suspicious_vs_super": 0.6784491203622399,
+      "unique_recipients_24h_normal_vs_super": 0.44262747940625946,
+      "unique_recipients_7d_normal_vs_suspicious": 0.031483826758108076,
+      "unique_recipients_7d_suspicious_vs_super": 0.36169965975906515,
+      "unique_recipients_7d_normal_vs_super": 0.29863182033690655,
+      "recipient_concentration_normal_vs_suspicious": 0.08053528825706652,
+      "recipient_concentration_suspicious_vs_super": 0.4451618637980323,
+      "recipient_concentration_normal_vs_super": 0.3641963262779096,
+      "amount_change_vs_avg_7d_normal_vs_suspicious": 0.21275336330989977,
+      "amount_change_vs_avg_7d_suspicious_vs_super": 0.4172587253551093,
+      "amount_change_vs_avg_7d_normal_vs_super": 0.6685177418155105,
+      "frequency_change_vs_avg_7d_normal_vs_suspicious": 0.06879422698737565,
+      "frequency_change_vs_avg_7d_suspicious_vs_super": 0.5218541798670714,
+      "frequency_change_vs_avg_7d_normal_vs_super": 0.46641514135642564,
+      "amount_mutual_info": 0.06948871000388501,
+      "sender_avg_amount_mutual_info": 0.020954021963449865,
+      "sender_max_amount_mutual_info": 0.006685187841300344,
+      "sender_tx_count_mutual_info": 0.016236590308692733,
+      "amount_to_sender_avg_mutual_info": 0.16452608872512142,
+      "amount_to_sender_max_mutual_info": 0.10349136401966774,
+      "sender_tx_count_24h_mutual_info": 0.19439218614023823,
+      "sender_volume_24h_mutual_info": 0.2047059057780647,
+      "amount_to_sender_volume_24h_mutual_info": 0.4330540157340237,
+      "is_new_recipient_mutual_info": 0.008060798969510508,
+      "same_day_count_mutual_info": 0.0612815835905367,
+      "same_day_total_mutual_info": 0.06651266515536114,
+      "same_recipient_count_mutual_info": 0,
+      "rapid_transfer_count_mutual_info": 0,
+      "hour_mutual_info": 0.002932168385970435,
+      "is_deposit_mutual_info": 0,
+      "is_withdraw_mutual_info": 0.00036467019475638907,
+      "is_transfer_mutual_info": 0,
+      "is_self_transfer_mutual_info": 0,
+      "is_off_hours_mutual_info": 0,
+      "channel_encoded_mutual_info": 0.010458378439027305,
+      "amount_std_dev_mutual_info": 0.023173370487572287,
+      "amount_z_score_mutual_info": 0.1870624171909534,
+      "tx_frequency_7d_mutual_info": 0.027128176819448457,
+      "tx_frequency_30d_mutual_info": 0.01624552407259139,
+      "day_of_week_mutual_info": 0.005528978658199124,
+      "is_weekend_mutual_info": 0,
+      "time_since_last_tx_mutual_info": 0.24036369359324894,
+      "unique_recipients_24h_mutual_info": 0.19462237620943212,
+      "unique_recipients_7d_mutual_info": 0.0279833790015378,
+      "recipient_concentration_mutual_info": 0.03232752346932366,
+      "new_recipient_ratio_7d_mutual_info": 0,
+      "amount_change_vs_avg_7d_mutual_info": 0.1295416294509486,
+      "frequency_change_vs_avg_7d_mutual_info": 0.022048256520532883
+    },
+    "label_consistency": {
+      "agreement_rate": 0.79112,
+      "near_identical_agreement_rate": 1.0,
+      "near_identical_pairs": 8
+    },
+    "temporal_stability": {},
+    "class_statistics": {
+      "amount": {
+        "normal": {
+          "mean": 16571.241108980976,
+          "std": 73180.76786723497,
+          "min": 10.0,
+          "max": 1678004.66,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 36186.187358359406,
+          "std": 125926.4505436588,
+          "min": 10.0,
+          "max": 2268263.01,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 65411.15596491228,
+          "std": 164554.1787331567,
+          "min": 125.1,
+          "max": 1872287.93,
+          "count": 342
+        }
+      },
+      "sender_avg_amount": {
+        "normal": {
+          "mean": 22802.134894565967,
+          "std": 69321.11709716827,
+          "min": 0.0,
+          "max": 787115.6545454544,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 27683.71792868843,
+          "std": 79508.94704940538,
+          "min": 62.54,
+          "max": 760739.2799999999,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 12441.567780271695,
+          "std": 51514.743421573345,
+          "min": 87.04333333333334,
+          "max": 648643.388,
+          "count": 342
+        }
+      },
+      "sender_max_amount": {
+        "normal": {
+          "mean": 82271.41793245834,
+          "std": 204049.92219980256,
+          "min": 0.0,
+          "max": 2268263.01,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 96366.84096280848,
+          "std": 231170.8492373219,
+          "min": 74.6,
+          "max": 2268263.01,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 48850.50216374268,
+          "std": 133920.69543897436,
+          "min": 125.93,
+          "max": 1872287.93,
+          "count": 342
+        }
+      },
+      "sender_tx_count": {
+        "normal": {
+          "mean": 24.496681905323697,
+          "std": 14.721901767213742,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 24.91414668057004,
+          "std": 13.89001345047643,
+          "min": 2.0,
+          "max": 49.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 21.08187134502924,
+          "std": 12.546419101278431,
+          "min": 3.0,
+          "max": 49.0,
+          "count": 342
+        }
+      },
+      "amount_to_sender_avg": {
+        "normal": {
+          "mean": 0.6723461162005416,
+          "std": 2.4934583311058347,
+          "min": 0.002086935272943624,
+          "max": 132.23648511844502,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 1.9556585182976687,
+          "std": 7.850351330066559,
+          "min": 0.00109370475857564,
+          "max": 280.1886843438608,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 13.95473727839764,
+          "std": 18.241882840792147,
+          "min": 0.029685120708716477,
+          "max": 176.47763845656897,
+          "count": 342
+        }
+      },
+      "amount_to_sender_max": {
+        "normal": {
+          "mean": 0.3284444240983883,
+          "std": 2.4688137306177813,
+          "min": 0.0002231872840384043,
+          "max": 132.23648511844502,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.7713616599261804,
+          "std": 6.82575910184172,
+          "min": 0.0003305965828010395,
+          "max": 260.7994089165566,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 5.0299045414852115,
+          "std": 13.417088991828342,
+          "min": 0.01908692612738193,
+          "max": 142.934903854158,
+          "count": 342
+        }
+      },
+      "sender_tx_count_24h": {
+        "normal": {
+          "mean": 1.9317209851054418,
+          "std": 1.1301308311830687,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.6694473409801877,
+          "std": 1.04931337594783,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 1.4152046783625731,
+          "std": 1.1703082979437995,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 342
+        }
+      },
+      "sender_volume_24h": {
+        "normal": {
+          "mean": 48937.05074325321,
+          "std": 197023.11346953543,
+          "min": 0.0,
+          "max": 3886084.77,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 14534.891098366354,
+          "std": 89771.33929374447,
+          "min": 0.0,
+          "max": 2551874.4699999997,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 3842.2302631578946,
+          "std": 8497.429009782827,
+          "min": 0.0,
+          "max": 106303.61,
+          "count": 342
+        }
+      },
+      "amount_to_sender_volume_24h": {
+        "normal": {
+          "mean": 300.4006564601636,
+          "std": 11965.723761149675,
+          "min": 0.0005430758417602118,
+          "max": 967651.96,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 13706.278183840861,
+          "std": 72099.75897370046,
+          "min": 0.0007901444644573656,
+          "max": 1547985.69,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 26304.585092811307,
+          "std": 155697.11754458447,
+          "min": 2.293531571891316,
+          "max": 1872287.93,
+          "count": 342
+        }
+      },
+      "is_new_recipient": {
+        "normal": {
+          "mean": 0.7684707270314113,
+          "std": 0.4218408599540148,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.7427876259993048,
+          "std": 0.43717342002829607,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.8216374269005848,
+          "std": 0.3833785715872811,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "same_day_count": {
+        "normal": {
+          "mean": 0.9854003834242737,
+          "std": 1.0283270084351275,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.34793187347931875,
+          "std": 0.7366616884305791,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.652046783625731,
+          "std": 0.9119499382570214,
+          "min": 0.0,
+          "max": 4.0,
+          "count": 342
+        }
+      },
+      "same_day_total": {
+        "normal": {
+          "mean": 25423.9372850612,
+          "std": 130664.09133156424,
+          "min": 0.0,
+          "max": 3453885.36,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 6902.618731317344,
+          "std": 54475.58362939036,
+          "min": 0.0,
+          "max": 1404199.96,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 1449.3484502923977,
+          "std": 3975.399652170319,
+          "min": 0.0,
+          "max": 41609.95,
+          "count": 342
+        }
+      },
+      "same_recipient_count": {
+        "normal": {
+          "mean": 0.03583542250405545,
+          "std": 0.1898190383115801,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.014598540145985401,
+          "std": 0.12282440697674615,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.03216374269005848,
+          "std": 0.19257628895751716,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 342
+        }
+      },
+      "rapid_transfer_count": {
+        "normal": {
+          "mean": 0.027577053531927444,
+          "std": 0.16644960392690408,
+          "min": 0.0,
+          "max": 2.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.007994438651372959,
+          "std": 0.08906899060436464,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.02631578947368421,
+          "std": 0.16030723704341965,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "hour": {
+        "normal": {
+          "mean": 12.165904733815072,
+          "std": 4.433220613840689,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 12.166492874522072,
+          "std": 4.757734713933979,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 11.783625730994151,
+          "std": 4.686033502086715,
+          "min": 0.0,
+          "max": 23.0,
+          "count": 342
+        }
+      },
+      "is_deposit": {
+        "normal": {
+          "mean": 0.39404217667010766,
+          "std": 0.48868001485934637,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.4396941258255127,
+          "std": 0.49643616235425514,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.39473684210526316,
+          "std": 0.489510277498347,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "is_withdraw": {
+        "normal": {
+          "mean": 0.3248783365285356,
+          "std": 0.4683639107520258,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.29127563434132775,
+          "std": 0.45442922154379056,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.32748538011695905,
+          "std": 0.4699835818774019,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "is_transfer": {
+        "normal": {
+          "mean": 0.28107948680135675,
+          "std": 0.4495593545878405,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.26903023983315955,
+          "std": 0.44353280277572,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.2777777777777778,
+          "std": 0.44855947702775256,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "is_self_transfer": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 342
+        }
+      },
+      "is_off_hours": {
+        "normal": {
+          "mean": 0.06724671877304232,
+          "std": 0.2504672613394315,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.0910670837678137,
+          "std": 0.28775449765799255,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.10526315789473684,
+          "std": 0.30734186414142817,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "channel_encoded": {
+        "normal": {
+          "mean": 3.231676743843091,
+          "std": 2.349136408051188,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 3.278067431352103,
+          "std": 2.399549828471564,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 2.6608187134502925,
+          "std": 2.233216957388828,
+          "min": 0.0,
+          "max": 7.0,
+          "count": 342
+        }
+      },
+      "amount_std_dev": {
+        "normal": {
+          "mean": 21597.587123017674,
+          "std": 56906.74742062461,
+          "min": 0.0,
+          "max": 632964.1920544532,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 25494.274728889122,
+          "std": 64639.752727387386,
+          "min": 0.3464823227814147,
+          "max": 616380.5986569995,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 13070.802112674734,
+          "std": 41808.692894285225,
+          "min": 10.809577697579122,
+          "max": 537077.0723502217,
+          "count": 342
+        }
+      },
+      "amount_z_score": {
+        "normal": {
+          "mean": -0.293892829023294,
+          "std": 0.7876065903105552,
+          "min": -48.938085135810965,
+          "max": 2.2952914223119216,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 3.687655964923042,
+          "std": 73.18168787042995,
+          "min": -172.2696302408584,
+          "max": 2655.3870759611314,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 21.593537988883767,
+          "std": 67.67483504294282,
+          "min": -8.999241480246363,
+          "max": 565.892462249244,
+          "count": 342
+        }
+      },
+      "tx_frequency_7d": {
+        "normal": {
+          "mean": 9.78395516885415,
+          "std": 4.02507799302166,
+          "min": 0.0,
+          "max": 21.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 9.636426833507125,
+          "std": 3.446476424615021,
+          "min": 2.0,
+          "max": 21.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 10.567251461988304,
+          "std": 3.3179301467293687,
+          "min": 3.0,
+          "max": 20.0,
+          "count": 342
+        }
+      },
+      "tx_frequency_30d": {
+        "normal": {
+          "mean": 24.46969473528978,
+          "std": 14.679712397957282,
+          "min": 0.0,
+          "max": 49.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 24.89051094890511,
+          "std": 13.85212122743731,
+          "min": 2.0,
+          "max": 49.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 21.07017543859649,
+          "std": 12.522860713045532,
+          "min": 3.0,
+          "max": 49.0,
+          "count": 342
+        }
+      },
+      "day_of_week": {
+        "normal": {
+          "mean": 2.9203657277687656,
+          "std": 2.1025689264355307,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 2.897115050399722,
+          "std": 2.044493440098503,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 2.997076023391813,
+          "std": 1.9711980935010727,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 342
+        }
+      },
+      "is_weekend": {
+        "normal": {
+          "mean": 0.2937619820085533,
+          "std": 0.45551781482425663,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.2770246784845325,
+          "std": 0.4476065739901693,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.27485380116959063,
+          "std": 0.4470947031422807,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 342
+        }
+      },
+      "time_since_last_tx": {
+        "normal": {
+          "mean": 8.741861368574899,
+          "std": 8.613599825191711,
+          "min": 0.0,
+          "max": 80.69000003583334,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 26.938744052397364,
+          "std": 18.33571001644364,
+          "min": 0.003055114722222222,
+          "max": 116.70000002694444,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 17.016234609141485,
+          "std": 16.215836721815336,
+          "min": 0.06305607277777778,
+          "max": 88.66055594833334,
+          "count": 342
+        }
+      },
+      "unique_recipients_24h": {
+        "normal": {
+          "mean": 1.9023742810794868,
+          "std": 1.1018469191971902,
+          "min": 0.0,
+          "max": 8.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.6614529023288147,
+          "std": 1.032546699511387,
+          "min": 0.0,
+          "max": 6.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 1.4035087719298245,
+          "std": 1.1517114505459785,
+          "min": 0.0,
+          "max": 5.0,
+          "count": 342
+        }
+      },
+      "unique_recipients_7d": {
+        "normal": {
+          "mean": 8.975667305707123,
+          "std": 3.6478664937953553,
+          "min": 0.0,
+          "max": 21.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 8.869308307264511,
+          "std": 3.0850744329981556,
+          "min": 2.0,
+          "max": 20.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 9.982456140350877,
+          "std": 3.070001832529808,
+          "min": 3.0,
+          "max": 17.0,
+          "count": 342
+        }
+      },
+      "recipient_concentration": {
+        "normal": {
+          "mean": 0.1907048009442562,
+          "std": 0.167645302016749,
+          "min": 0.0,
+          "max": 1.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.17979872361181742,
+          "std": 0.09258579163664177,
+          "min": 0.05,
+          "max": 0.6666666666666666,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.14462194701487788,
+          "std": 0.06257997391288536,
+          "min": 0.058823529411764705,
+          "max": 0.375,
+          "count": 342
+        }
+      },
+      "new_recipient_ratio_7d": {
+        "normal": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "count": 342
+        }
+      },
+      "amount_change_vs_avg_7d": {
+        "normal": {
+          "mean": -7138.508748696214,
+          "std": 51403.28722040777,
+          "min": -847099.3709090909,
+          "max": 991008.725,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 9060.990709498374,
+          "std": 94620.06893264364,
+          "min": -793912.5811111111,
+          "max": 1651153.6854545455,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 53667.51150193818,
+          "std": 117914.64868140827,
+          "min": -5809.445,
+          "max": 1312934.4727272727,
+          "count": 342
+        }
+      },
+      "frequency_change_vs_avg_7d": {
+        "normal": {
+          "mean": 0.5820513900885528,
+          "std": 0.49465704879834044,
+          "min": -0.9285714285714286,
+          "max": 2.2666666666666666,
+          "count": 6781
+        },
+        "suspicious": {
+          "mean": 0.5469487064898951,
+          "std": 0.5253924866824702,
+          "min": -1.1714285714285715,
+          "max": 2.1571428571428575,
+          "count": 2877
+        },
+        "super_suspicious": {
+          "mean": 0.8072681704260651,
+          "std": 0.47078309965857845,
+          "min": -0.8952380952380952,
+          "max": 1.8619047619047617,
+          "count": 342
+        }
+      }
+    },
+    "super_suspicious_vs_normal_separation": {
+      "amount": 0.38352437462965183,
+      "sender_avg_amount": 0.16964958669279567,
+      "sender_max_amount": 0.19364908467771363,
+      "sender_tx_count": 0.2496666109808394,
+      "amount_to_sender_avg": 1.020238961421376,
+      "amount_to_sender_max": 0.48737026402814115,
+      "sender_tx_count_24h": 0.4489904049585264,
+      "sender_volume_24h": 0.3233857940346077,
+      "amount_to_sender_volume_24h": 0.23550432925565934,
+      "is_new_recipient": 0.13190479140974926,
+      "same_day_count": 0.3429980287543494,
+      "same_day_total": 0.2593635862122689,
+      "same_recipient_count": 0.01920308177910677,
+      "rapid_transfer_count": 0.007718530213305176,
+      "hour": 0.08380777193681627,
+      "is_deposit": 0.0014203068469565896,
+      "is_withdraw": 0.0055566615251168745,
+      "is_transfer": 0.007352494706082325,
+      "is_off_hours": 0.13560322272003436,
+      "channel_encoded": 0.24907527492849496,
+      "amount_std_dev": 0.17076904983916605,
+      "amount_z_score": 0.4573547234613697,
+      "tx_frequency_7d": 0.21236233409754282,
+      "tx_frequency_30d": 0.24915904667055458,
+      "day_of_week": 0.03764105287854878,
+      "is_weekend": 0.04189473823751197,
+      "time_since_last_tx": 0.6372944807164558,
+      "unique_recipients_24h": 0.44262747940625946,
+      "unique_recipients_7d": 0.29863182033690655,
+      "recipient_concentration": 0.3641963262779096,
+      "amount_change_vs_avg_7d": 0.6685177418155105,
+      "frequency_change_vs_avg_7d": 0.46641514135642564
+    }
+  },
+  "stochasticity_analysis": {
+    "noise_applied_to_all_transactions": true,
+    "transactions_near_super_boundary": 199,
+    "transactions_near_suspicious_boundary": 705,
+    "total_potential_changes": 904,
+    "actual_label_changes": 219,
+    "percentage_changed": 2.19
+  }
+}

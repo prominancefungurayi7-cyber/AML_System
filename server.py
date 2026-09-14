@@ -788,7 +788,7 @@ def handle_typing(data):
         socketio.emit('user_typing', {
             'user': username,
             'conversation_id': conversation_id
-        }, broadcast=True)
+        })
     except Exception as e:
         app.logger.error(f"Error handling typing: {e}")
 
@@ -810,7 +810,7 @@ def handle_stop_typing(data):
         socketio.emit('user_stop_typing', {
             'user': username,
             'conversation_id': conversation_id
-        }, broadcast=True)
+        })
     except Exception as e:
         app.logger.error(f"Error handling stop typing: {e}")
 
@@ -827,10 +827,10 @@ def handle_mark_read(data):
     try:
         conn = connect_db()
         mark_conversation_as_read(conn, conversation_id, username)
-        conn.close()
-        
-        # Update unread badge
         unread = get_unread_count(conn, username)
+        conn.close()
+
+        # Update unread badge
         socketio.emit('unread_update', unread, to=f"user:{username}")
     except Exception as e:
         app.logger.error(f"Error marking messages as read: {e}")
@@ -2148,13 +2148,13 @@ def process_transaction_event(
     
     # Adaptive confidence threshold: higher-risk levels tolerate lower confidence
     # super_suspicious: 0.55 threshold (catch risky transactions even with modest confidence)
-    # suspicious: 0.65 threshold (standard AML risk threshold)
+    # suspicious: 0.55 threshold (lowered from 0.65 to improve detection)
     # normal: 0.75 threshold (require high confidence to avoid false positives)
     confidence_threshold = 0.65  # default
     if ml_level == "super_suspicious":
         confidence_threshold = 0.55
     elif ml_level == "suspicious":
-        confidence_threshold = 0.65
+        confidence_threshold = 0.55
     else:
         confidence_threshold = 0.75
     

@@ -1,0 +1,308 @@
+{
+  "timestamp": "2026-09-03T20:49:39.640168",
+  "experiment_type": "Stage 19: SMOTE + XGBoost Experiment",
+  "total_features": 18,
+  "feature_names": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours",
+    "counterparty_change_score_7d"
+  ],
+  "train_samples": 8000,
+  "test_samples": 2000,
+  "train_customers": 160,
+  "test_customers": 40,
+  "customer_overlap": 0,
+  "pre_smote_distribution": {
+    "normal": 5964,
+    "suspicious": 1761,
+    "super_suspicious": 275
+  },
+  "smote_configs": [
+    {
+      "name": "No_SMOTE_Baseline",
+      "sampling_strategy": null,
+      "post_smote_distribution": {
+        "normal": 5964,
+        "suspicious": 1761,
+        "super_suspicious": 275
+      },
+      "total_samples": 8000,
+      "cv_mean_macro_f1": 0.5381932542127396,
+      "cv_std_macro_f1": 0.03245041884642019,
+      "cv_scores": [
+        0.5730114255119763,
+        0.5027554792735348,
+        0.5636973049636805,
+        0.4954448183191877,
+        0.5560572429953186
+      ]
+    },
+    {
+      "name": "Balanced_SMOTE",
+      "sampling_strategy": "auto",
+      "post_smote_distribution": {
+        "normal": 5964,
+        "suspicious": 5964,
+        "super_suspicious": 5964
+      },
+      "total_samples": 17892,
+      "cv_mean_macro_f1": 0.7963927945251558,
+      "cv_std_macro_f1": 0.005304777764093648,
+      "cv_scores": [
+        0.8048276244556781,
+        0.7973933652710086,
+        0.794298996996309,
+        0.7884079298214574,
+        0.7970360560813258
+      ]
+    },
+    {
+      "name": "Mild_SMOTE",
+      "sampling_strategy": {
+        "0": 5964,
+        "2": 2982,
+        "1": 2982
+      },
+      "post_smote_distribution": {
+        "normal": 5964,
+        "suspicious": 2982,
+        "super_suspicious": 2982
+      },
+      "total_samples": 11928,
+      "cv_mean_macro_f1": 0.7007084917574288,
+      "cv_std_macro_f1": 0.012435273520277063,
+      "cv_scores": [
+        0.7178933292859494,
+        0.693021360546779,
+        0.6916712004092268,
+        0.6874977048439884,
+        0.7134588637012
+      ]
+    },
+    {
+      "name": "Conservative_SMOTE",
+      "sampling_strategy": {
+        "0": 5964,
+        "2": 1789,
+        "1": 1789
+      },
+      "post_smote_distribution": {
+        "normal": 5964,
+        "suspicious": 1789,
+        "super_suspicious": 1789
+      },
+      "total_samples": 9542,
+      "cv_mean_macro_f1": 0.6436608908379735,
+      "cv_std_macro_f1": 0.006035586834686374,
+      "cv_scores": [
+        0.6340958565193512,
+        0.6530203808824456,
+        0.6448964779327112,
+        0.6424407321320423,
+        0.6438510067233171
+      ]
+    }
+  ],
+  "best_config": {
+    "name": "Balanced_SMOTE",
+    "sampling_strategy": "auto",
+    "post_smote_distribution": {
+      "normal": 5964,
+      "suspicious": 5964,
+      "super_suspicious": 5964
+    },
+    "total_samples": 17892,
+    "cv_mean_macro_f1": 0.7963927945251558,
+    "cv_std_macro_f1": 0.005304777764093648
+  },
+  "test_metrics": {
+    "accuracy": 0.7345,
+    "macro_f1": 0.4670195711219798,
+    "weighted_f1": 0.691869129157749,
+    "per_class": {
+      "normal": {
+        "precision": 0.8055229142185664,
+        "recall": 0.9251012145748988,
+        "f1": 0.8611809045226131
+      },
+      "super_suspicious": {
+        "precision": 0.23232323232323232,
+        "recall": 0.7301587301587301,
+        "f1": 0.3524904214559387
+      },
+      "suspicious": {
+        "precision": 0.52,
+        "recall": 0.11428571428571428,
+        "f1": 0.1873873873873874
+      }
+    },
+    "confusion_matrix": [
+      [
+        1371,
+        65,
+        46
+      ],
+      [
+        15,
+        46,
+        2
+      ],
+      [
+        316,
+        87,
+        52
+      ]
+    ],
+    "suspicious_false_negatives": 403,
+    "super_suspicious_false_negatives": 17
+  },
+  "champion": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "test_metrics": {
+      "accuracy": 0.7775,
+      "macro_f1": 0.5014950487733087,
+      "weighted_f1": 0.7343579063785308,
+      "per_class": {
+        "normal": {
+          "precision": 0.8058198097369894,
+          "recall": 0.97165991902834,
+          "f1": 0.8810033649434078
+        },
+        "super_suspicious": {
+          "precision": 0.3902439024390244,
+          "recall": 0.25396825396825395,
+          "f1": 0.3076923076923077
+        },
+        "suspicious": {
+          "precision": 0.5755813953488372,
+          "recall": 0.2175824175824176,
+          "f1": 0.3157894736842105
+        }
+      },
+      "confusion_matrix": [
+        [
+          1440,
+          2,
+          40
+        ],
+        [
+          14,
+          16,
+          33
+        ],
+        [
+          333,
+          23,
+          99
+        ]
+      ],
+      "false_positives": [
+        347,
+        25,
+        73
+      ],
+      "false_negatives": [
+        42,
+        47,
+        356
+      ],
+      "super_suspicious_false_negatives": 47
+    }
+  },
+  "stage18": {
+    "config": {
+      "name": "Balanced_SMOTE",
+      "sampling_strategy": "auto",
+      "post_smote_distribution": {
+        "normal": 5964,
+        "suspicious": 5964,
+        "super_suspicious": 5964
+      },
+      "total_samples": 17892,
+      "cv_mean_macro_f1": 0.8203849051492391,
+      "cv_std_macro_f1": 0.006855455179493906
+    },
+    "test_metrics": {
+      "accuracy": 0.74,
+      "macro_f1": 0.4836981197024098,
+      "weighted_f1": 0.6989094417136166,
+      "per_class": {
+        "normal": {
+          "precision": 0.8055067369654364,
+          "recall": 0.9278002699055331,
+          "f1": 0.8623392913138915
+        },
+        "super_suspicious": {
+          "precision": 0.25882352941176473,
+          "recall": 0.6984126984126984,
+          "f1": 0.3776824034334764
+        },
+        "suspicious": {
+          "precision": 0.4959349593495935,
+          "recall": 0.13406593406593406,
+          "f1": 0.21107266435986158
+        }
+      },
+      "confusion_matrix": [
+        [
+          1375,
+          45,
+          62
+        ],
+        [
+          19,
+          44,
+          0
+        ],
+        [
+          313,
+          81,
+          61
+        ]
+      ],
+      "suspicious_false_negatives": 394,
+      "super_suspicious_false_negatives": 19
+    }
+  },
+  "comparison_champion": {
+    "accuracy_diff": -0.04299999999999993,
+    "macro_f1_diff": -0.03447547765132897,
+    "weighted_f1_diff": -0.042488777220781815,
+    "suspicious_recall_diff": -0.1032967032967033,
+    "super_suspicious_recall_diff": 0.47619047619047616,
+    "suspicious_false_negatives_diff": 47,
+    "super_suspicious_false_negatives_diff": -30
+  },
+  "comparison_stage18": {
+    "accuracy_diff": -0.005499999999999949,
+    "macro_f1_diff": -0.016678548580429997,
+    "weighted_f1_diff": -0.007040312555867567,
+    "suspicious_recall_diff": -0.01978021978021978,
+    "super_suspicious_recall_diff": 0.031746031746031744,
+    "suspicious_false_negatives_diff": 9,
+    "super_suspicious_false_negatives_diff": -2
+  },
+  "cv_test_gap": 0.329373223403176,
+  "verdict": "NEW MODEL WORSE - KEEP CHAMPION",
+  "verdict_reason": "New model performs worse in Macro F1 (-0.0345)."
+}

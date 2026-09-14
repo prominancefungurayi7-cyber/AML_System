@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-01T22:24:57.588207",
+  "train_samples": 8000,
+  "test_samples": 2000,
+  "train_date_range": {
+    "start": "2026-08-02",
+    "end": "2026-08-26"
+  },
+  "test_date_range": {
+    "start": "2026-08-26",
+    "end": "2026-09-01"
+  },
+  "customer_overlap": 0,
+  "baseline_majority": {
+    "accuracy": 0.686,
+    "macro_f1": 0.27125345986555954
+  },
+  "baseline_logreg": {
+    "accuracy": 0.336,
+    "macro_f1": 0.28528874683839506,
+    "weighted_f1": 0.3828340754627453
+  },
+  "random_forest": {
+    "cv_macro_f1_mean": 0.34389834040427747,
+    "cv_macro_f1_std": 0.006301497649140005,
+    "test_accuracy": 0.664,
+    "test_macro_f1": 0.34532973683300483,
+    "test_weighted_f1": 0.5858417730054984
+  },
+  "gradient_boosting": {
+    "cv_macro_f1_mean": 0.3478085245043475,
+    "cv_macro_f1_std": 0.013019012856011859,
+    "test_accuracy": 0.6975,
+    "test_macro_f1": 0.35624012667592453,
+    "test_weighted_f1": 0.6050223837447379
+  },
+  "feature_importance": {
+    "amount": 0.05096439126297577,
+    "sender_avg_amount": 0.05366337633045256,
+    "sender_max_amount": 0.04659384931677933,
+    "sender_tx_count": 0.04652542303544031,
+    "amount_to_sender_avg": 0.05085019423522714,
+    "amount_to_sender_max": 0.05315012655901389,
+    "sender_tx_count_24h": 0.012696279673660282,
+    "sender_volume_24h": 0.041791216343597316,
+    "amount_to_sender_volume_24h": 0.04916010547397013,
+    "is_new_recipient": 0.006371120768425816,
+    "same_day_count": 0.011332690646923308,
+    "same_day_total": 0.03184654701512037,
+    "same_recipient_count": 0.0016453112388631337,
+    "rapid_transfer_count": 0.0007696979084370843,
+    "hour": 0.05774460863541318,
+    "is_deposit": 0.007997451337875851,
+    "is_withdraw": 0.00810375978092055,
+    "is_transfer": 0.0069023072342499015,
+    "is_self_transfer": 0.0,
+    "is_off_hours": 0.0025847413960049873,
+    "channel_encoded": 0.0267930755372319,
+    "amount_std_dev": 0.050821225719150216,
+    "amount_z_score": 0.05272985908577524,
+    "tx_frequency_7d": 0.026088002370408075,
+    "tx_frequency_30d": 0.039916021371428786,
+    "day_of_week": 0.02812245641215147,
+    "is_weekend": 0.0063902463148578234,
+    "time_since_last_tx": 0.055435312529960645,
+    "unique_recipients_24h": 0.01377428027948238,
+    "unique_recipients_7d": 0.025267522685830292,
+    "recipient_concentration": 0.03293753286406769,
+    "new_recipient_ratio_7d": 0.0,
+    "amount_change_vs_avg_7d": 0.053936098067394966,
+    "frequency_change_vs_avg_7d": 0.047095168568909586
+  }
+}

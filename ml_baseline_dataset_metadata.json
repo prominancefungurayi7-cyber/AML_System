@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-01T18:25:33.304077+00:00",
+  "random_seed": 42,
+  "num_transactions": 10000,
+  "num_unique_accounts": 100,
+  "label_distribution": {
+    "normal": 7000,
+    "suspicious": 2000,
+    "super_suspicious": 1000
+  },
+  "transaction_types": {
+    "transfer": 5209,
+    "deposit": 1746,
+    "withdraw": 3045
+  },
+  "channels": {
+    "mobile": 1884,
+    "online": 2460,
+    "ach": 1390,
+    "atm": 1627,
+    "card": 1424,
+    "swift": 865,
+    "branch": 350
+  },
+  "amount_stats": {
+    "min": 15.64,
+    "max": 72950.0,
+    "mean": 4103.524282,
+    "median": 1029.78
+  }
+}

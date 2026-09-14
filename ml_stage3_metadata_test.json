@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-09-01T18:35:03.730476+00:00",
+  "random_seed": 42,
+  "num_customers": 46,
+  "num_transactions": 920,
+  "transactions_per_customer": 20,
+  "class_distribution": {
+    "normal": 920,
+    "suspicious": 0,
+    "super_suspicious": 0
+  },
+  "typology_distribution": {
+    "none": 920,
+    "structuring": 0,
+    "layering": 0,
+    "funnel_account": 0,
+    "rapid_movement": 0,
+    "unusual_recipient_network": 0,
+    "shell_company": 0,
+    "high_risk_jurisdiction": 0,
+    "behavioral_change": 0,
+    "cash_intensive": 0,
+    "crypto_related": 0,
+    "trade_based": 0
+  },
+  "customer_profile_types": {
+    "salaried_individual": 15,
+    "small_business": 10,
+    "medium_business": 7,
+    "large_business": 2,
+    "high_net_worth": 2,
+    "international_business": 2,
+    "frequent_domestic_spender": 5,
+    "occasional_high_value": 2,
+    "cash_intensive_business": 1,
+    "structuring_behavior": 0,
+    "funnel_account": 0,
+    "layering_behavior": 0
+  }
+}

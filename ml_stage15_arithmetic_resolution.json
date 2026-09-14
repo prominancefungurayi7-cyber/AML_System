@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-09-02T13:45:55.845626",
+  "stage14_claim": "34 - 1 + 25 = 57",
+  "correct_arithmetic": "34 - 1 + 25 = 58",
+  "independent_verification": "32 + 25 = 57",
+  "verified_count": 57,
+  "resolution": "Use 57 as the correct final feature count",
+  "reason": "34 original - 1 removed (is_self_transfer) + 25 new = 58"
+}

@@ -1,0 +1,305 @@
+{
+  "timestamp": "2026-09-03T21:00:07.928671",
+  "diagnostic_type": "Stage 20 Dataset Learnability / Signal Diagnostic",
+  "dataset_info": {
+    "total_transactions": 10000,
+    "train_transactions": 8000,
+    "test_transactions": 2000,
+    "train_customers": 160,
+    "test_customers": 40,
+    "customer_overlap": 0
+  },
+  "class_distributions": {
+    "train": {
+      "normal": 5964,
+      "super_suspicious": 275,
+      "suspicious": 1761
+    },
+    "test": {
+      "normal": 1482,
+      "super_suspicious": 63,
+      "suspicious": 455
+    }
+  },
+  "minority_diversity": {
+    "train": {
+      "suspicious_customers": 160,
+      "suspicious_transactions": 1761,
+      "super_suspicious_customers": 11,
+      "super_suspicious_transactions": 275
+    },
+    "test": {
+      "suspicious_customers": 40,
+      "super_suspicious_customers": 3
+    }
+  },
+  "feature_separation": {
+    "amount": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "sender_avg_amount": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "sender_max_amount": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "amount_to_sender_avg": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "amount_z_score": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "amount_deviation_from_baseline_30d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "tx_frequency_7d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "tx_frequency_30d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "frequency_change_vs_avg_7d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "sender_tx_count_24h": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "sender_volume_24h": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "same_day_count": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "rapid_transfer_count": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "is_new_recipient": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "unique_recipients_7d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "hour": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "is_off_hours": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    },
+    "counterparty_change_score_7d": {
+      "cohens_d_normal_suspicious": 0.0,
+      "cohens_d_normal_super": 0.0,
+      "cohens_d_suspicious_super": 0.0,
+      "overlap_normal_suspicious": 0.0,
+      "overlap_normal_super": 0.0,
+      "overlap_suspicious_super": 0.0
+    }
+  },
+  "feature_mutual_info": {
+    "amount": 0.6660780190534263,
+    "sender_avg_amount": 0.6591465472478268,
+    "sender_max_amount": 0.1990341082619957,
+    "amount_to_sender_avg": 0.6558803525480178,
+    "amount_z_score": 0.6429751035920214,
+    "amount_deviation_from_baseline_30d": 0.6429751035920214,
+    "tx_frequency_7d": 0.0031920949186879074,
+    "tx_frequency_30d": 0.004744243019970313,
+    "frequency_change_vs_avg_7d": 0.06523267177601468,
+    "sender_tx_count_24h": 0.0005507240472835456,
+    "sender_volume_24h": 0.5247787315544649,
+    "same_day_count": 0.0001795228019618642,
+    "rapid_transfer_count": 0.00043267502867728807,
+    "is_new_recipient": 0.0006612088399172711,
+    "unique_recipients_7d": 0.002810292092046952,
+    "hour": 0.005766953970253963,
+    "is_off_hours": 0.0020143912336010594,
+    "counterparty_change_score_7d": 0.01066988935424785
+  },
+  "feature_anova": {
+    "amount": {
+      "F": 3.5140931508730904,
+      "p": 0.02982077831307748
+    },
+    "sender_avg_amount": {
+      "F": 0.40888881221032686,
+      "p": 0.6644019893528251
+    },
+    "sender_max_amount": {
+      "F": 1.4254422695732525,
+      "p": 0.24046319200288985
+    },
+    "amount_to_sender_avg": {
+      "F": 10.101002414603947,
+      "p": 4.1564451161996526e-05
+    },
+    "amount_z_score": {
+      "F": 0.29183266294278465,
+      "p": 0.7469014623866206
+    },
+    "amount_deviation_from_baseline_30d": {
+      "F": 0.29183266294278465,
+      "p": 0.7469014623866206
+    },
+    "tx_frequency_7d": {
+      "F": 1.9156630481055896,
+      "p": 0.14731173344120588
+    },
+    "tx_frequency_30d": {
+      "F": 1.2802447600255318,
+      "p": 0.27802622128381016
+    },
+    "frequency_change_vs_avg_7d": {
+      "F": 1.8302547318648819,
+      "p": 0.16043988200661444
+    },
+    "sender_tx_count_24h": {
+      "F": 0.4839744634455032,
+      "p": 0.6163469916459567
+    },
+    "sender_volume_24h": {
+      "F": 0.5372959749743289,
+      "p": 0.5843472429280556
+    },
+    "same_day_count": {
+      "F": 0.07421020475302294,
+      "p": 0.9284771425429938
+    },
+    "rapid_transfer_count": {
+      "F": 1.866286957615673,
+      "p": 0.15476436394695903
+    },
+    "is_new_recipient": {
+      "F": 5.179077746875626,
+      "p": 0.005652109013364864
+    },
+    "unique_recipients_7d": {
+      "F": 1.4798012375305825,
+      "p": 0.2277452780895705
+    },
+    "hour": {
+      "F": 1.3296771617809833,
+      "p": 0.26462114360070077
+    },
+    "is_off_hours": {
+      "F": 16.626657836203275,
+      "p": 6.224518302179056e-08
+    },
+    "counterparty_change_score_7d": {
+      "F": 0.18195362836796142,
+      "p": 0.8336434478910136
+    }
+  },
+  "assessments": {
+    "separability": "VERY POOR - Minimal class separation",
+    "signal": "GOOD - Strong feature signal",
+    "avg_cohens_d": 0.0,
+    "avg_overlap": 0.0,
+    "total_mi": 4.087122632932437
+  },
+  "useful_features": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_volume_24h",
+    "counterparty_change_score_7d"
+  ],
+  "weak_features": [
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "sender_tx_count_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours"
+  ]
+}

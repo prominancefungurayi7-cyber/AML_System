@@ -1,0 +1,315 @@
+{
+  "timestamp": "2026-09-02T20:57:36.156949",
+  "verification_type": "Class Weight Results Integrity Check",
+  "test_samples": 2000,
+  "label_classes": [
+    "normal",
+    "super_suspicious",
+    "suspicious"
+  ],
+  "schemes": {
+    "Baseline": {
+      "weights": {
+        "normal": 1.0,
+        "suspicious": 1.0,
+        "super_suspicious": 1.0
+      },
+      "test_metrics": {
+        "accuracy": 0.7765,
+        "macro_f1": 0.48069279320356323,
+        "weighted_f1": 0.7339986492551642,
+        "per_class": {
+          "normal": {
+            "precision": 0.8056022408963586,
+            "recall": 0.970310391363023,
+            "f1": 0.8803183348637894
+          },
+          "super_suspicious": {
+            "precision": 0.3076923076923077,
+            "recall": 0.19047619047619047,
+            "f1": 0.23529411764705882
+          },
+          "suspicious": {
+            "precision": 0.5852272727272727,
+            "recall": 0.22637362637362637,
+            "f1": 0.3264659270998415
+          }
+        },
+        "confusion_matrix": [
+          [
+            1438,
+            7,
+            37
+          ],
+          [
+            15,
+            12,
+            36
+          ],
+          [
+            332,
+            20,
+            103
+          ]
+        ],
+        "suspicious_false_negatives": 352,
+        "super_suspicious_false_negatives": 51
+      },
+      "internal_consistency": {
+        "cm_total_matches_test_samples": 1,
+        "row_totals_match_class_counts": true,
+        "recall_from_cm_matches_report": true,
+        "accuracy_from_cm_matches_report": true
+      }
+    },
+    "Mild": {
+      "weights": {
+        "normal": 1.0,
+        "suspicious": 1.5,
+        "super_suspicious": 2.0
+      },
+      "test_metrics": {
+        "accuracy": 0.774,
+        "macro_f1": 0.5212014589260686,
+        "weighted_f1": 0.7347619308947574,
+        "per_class": {
+          "normal": {
+            "precision": 0.8096590909090909,
+            "recall": 0.9615384615384616,
+            "f1": 0.879086983343615
+          },
+          "super_suspicious": {
+            "precision": 0.3582089552238806,
+            "recall": 0.38095238095238093,
+            "f1": 0.36923076923076925
+          },
+          "suspicious": {
+            "precision": 0.5722543352601156,
+            "recall": 0.2175824175824176,
+            "f1": 0.31528662420382164
+          }
+        },
+        "confusion_matrix": [
+          [
+            1425,
+            9,
+            48
+          ],
+          [
+            13,
+            24,
+            26
+          ],
+          [
+            322,
+            34,
+            99
+          ]
+        ],
+        "suspicious_false_negatives": 356,
+        "super_suspicious_false_negatives": 39
+      },
+      "internal_consistency": {
+        "cm_total_matches_test_samples": 1,
+        "row_totals_match_class_counts": true,
+        "recall_from_cm_matches_report": true,
+        "accuracy_from_cm_matches_report": true
+      }
+    },
+    "Moderate": {
+      "weights": {
+        "normal": 1.0,
+        "suspicious": 2.0,
+        "super_suspicious": 3.0
+      },
+      "test_metrics": {
+        "accuracy": 0.7615,
+        "macro_f1": 0.5054210884701248,
+        "weighted_f1": 0.7246335315921645,
+        "per_class": {
+          "normal": {
+            "precision": 0.809221902017291,
+            "recall": 0.9473684210526315,
+            "f1": 0.8728629157600248
+          },
+          "super_suspicious": {
+            "precision": 0.3125,
+            "recall": 0.3968253968253968,
+            "f1": 0.34965034965034963
+          },
+          "suspicious": {
+            "precision": 0.5081081081081081,
+            "recall": 0.20659340659340658,
+            "f1": 0.29375
+          }
+        },
+        "confusion_matrix": [
+          [
+            1404,
+            12,
+            66
+          ],
+          [
+            13,
+            25,
+            25
+          ],
+          [
+            318,
+            43,
+            94
+          ]
+        ],
+        "suspicious_false_negatives": 361,
+        "super_suspicious_false_negatives": 38
+      },
+      "internal_consistency": {
+        "cm_total_matches_test_samples": 1,
+        "row_totals_match_class_counts": true,
+        "recall_from_cm_matches_report": true,
+        "accuracy_from_cm_matches_report": true
+      }
+    },
+    "Strong": {
+      "weights": {
+        "normal": 1.0,
+        "suspicious": 3.0,
+        "super_suspicious": 4.0
+      },
+      "test_metrics": {
+        "accuracy": 0.7005,
+        "macro_f1": 0.5130338761966241,
+        "weighted_f1": 0.6997030716990799,
+        "per_class": {
+          "normal": {
+            "precision": 0.8159838817998657,
+            "recall": 0.819838056680162,
+            "f1": 0.8179064288118478
+          },
+          "super_suspicious": {
+            "precision": 0.35384615384615387,
+            "recall": 0.36507936507936506,
+            "f1": 0.359375
+          },
+          "suspicious": {
+            "precision": 0.3654708520179372,
+            "recall": 0.35824175824175825,
+            "f1": 0.36182019977802443
+          }
+        },
+        "confusion_matrix": [
+          [
+            1215,
+            11,
+            256
+          ],
+          [
+            13,
+            23,
+            27
+          ],
+          [
+            261,
+            31,
+            163
+          ]
+        ],
+        "suspicious_false_negatives": 292,
+        "super_suspicious_false_negatives": 40
+      },
+      "internal_consistency": {
+        "cm_total_matches_test_samples": 1,
+        "row_totals_match_class_counts": true,
+        "recall_from_cm_matches_report": true,
+        "accuracy_from_cm_matches_report": true
+      }
+    }
+  },
+  "prediction_comparisons": {
+    "Baseline_vs_Mild": {
+      "disagreement_count": 59,
+      "disagreement_percentage": 2.9499999999999997
+    },
+    "Baseline_vs_Moderate": {
+      "disagreement_count": 92,
+      "disagreement_percentage": 4.6
+    },
+    "Baseline_vs_Strong": {
+      "disagreement_count": 324,
+      "disagreement_percentage": 16.2
+    },
+    "Mild_vs_Moderate": {
+      "disagreement_count": 40,
+      "disagreement_percentage": 2.0
+    },
+    "Mild_vs_Strong": {
+      "disagreement_count": 285,
+      "disagreement_percentage": 14.249999999999998
+    },
+    "Moderate_vs_Strong": {
+      "disagreement_count": 269,
+      "disagreement_percentage": 13.450000000000001
+    }
+  },
+  "champion": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "test_metrics": {
+      "accuracy": 0.7775,
+      "macro_f1": 0.5014950487733087,
+      "weighted_f1": 0.7343579063785308,
+      "per_class": {
+        "normal": {
+          "precision": 0.8058198097369894,
+          "recall": 0.97165991902834,
+          "f1": 0.8810033649434078
+        },
+        "super_suspicious": {
+          "precision": 0.3902439024390244,
+          "recall": 0.25396825396825395,
+          "f1": 0.3076923076923077
+        },
+        "suspicious": {
+          "precision": 0.5755813953488372,
+          "recall": 0.2175824175824176,
+          "f1": 0.3157894736842105
+        }
+      },
+      "confusion_matrix": [
+        [
+          1440,
+          2,
+          40
+        ],
+        [
+          14,
+          16,
+          33
+        ],
+        [
+          333,
+          23,
+          99
+        ]
+      ],
+      "false_positives": [
+        347,
+        25,
+        73
+      ],
+      "false_negatives": [
+        42,
+        47,
+        356
+      ],
+      "super_suspicious_false_negatives": 47
+    }
+  },
+  "corrected_verdict": "CLASS-WEIGHTED MODEL SLIGHTLY BETTER",
+  "corrected_verdict_reason": "Class-weighted model shows modest improvement in Macro F1 (+0.0197) but minority-class recall improvement is limited.",
+  "best_scheme": "Mild"
+}

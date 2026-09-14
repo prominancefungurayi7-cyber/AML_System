@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-02T14:08:22.760142",
+  "stage15_overfitting": {
+    "random_forest": {
+      "train_macro_f1": 0.7618068681730291,
+      "test_macro_f1": 0.5008583306753681,
+      "train_test_gap": 0.260948537497661,
+      "overfitting_level": "HIGH"
+    },
+    "gradient_boosting": {
+      "train_macro_f1": 0.8384957076080933,
+      "test_macro_f1": 0.5064257311226698,
+      "train_test_gap": 0.3320699764854236,
+      "overfitting_level": "HIGH"
+    }
+  },
+  "stage12_baseline": {
+    "random_forest_test_macro_f1": 0.4416005144363448,
+    "gradient_boosting_test_macro_f1": 0.4355182153190375
+  },
+  "rf_memorization_warning": false,
+  "recommendations": [
+    "Random Forest shows high overfitting (gap > 0.2)",
+    "Gradient Boosting shows high overfitting (gap > 0.2)",
+    "Consider regularization in Stage 16",
+    "Consider reducing model complexity",
+    "Consider feature selection to reduce noise"
+  ]
+}

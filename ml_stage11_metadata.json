@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-09-02T10:48:12.775286+00:00",
+  "random_seed": 42,
+  "num_customers": 200,
+  "num_transactions": 10000,
+  "transactions_per_customer": 50,
+  "class_distribution": {
+    "normal": 7446,
+    "suspicious": 2216,
+    "super_suspicious": 338
+  },
+  "typology_distribution": {
+    "none": 7446,
+    "structuring": 540,
+    "layering": 566,
+    "funnel_account": 445,
+    "rapid_movement": 448,
+    "unusual_recipient_network": 0,
+    "shell_company": 75,
+    "high_risk_jurisdiction": 361,
+    "behavioral_change": 367,
+    "cash_intensive": 0,
+    "crypto_related": 0,
+    "trade_based": 0
+  },
+  "scenario_distribution": {
+    "normal": 5218,
+    "legitimate": 1118,
+    "cash": 744,
+    "funnel": 370,
+    "new": 366,
+    "layering": 393,
+    "behavioral": 367,
+    "structuring": 366,
+    "rapid": 359,
+    "high": 361,
+    "severe": 254,
+    "multiple": 84
+  },
+  "customer_profile_types": {
+    "salaried_individual": 56,
+    "small_business": 36,
+    "medium_business": 28,
+    "large_business": 10,
+    "high_net_worth": 10,
+    "international_business": 10,
+    "frequent_domestic_spender": 20,
+    "occasional_high_value": 10,
+    "cash_intensive_business": 6,
+    "structuring_behavior": 6,
+    "funnel_account": 4,
+    "layering_behavior": 4
+  },
+  "ground_truth_methodology": "scenario_based",
+  "scenario_to_label_mapping": {
+    "normal": "normal",
+    "legitimate_high_value": "normal",
+    "cash_deposit": "normal",
+    "cash_withdrawal": "normal",
+    "new_recipient": "normal",
+    "structuring": "suspicious",
+    "layering": "suspicious",
+    "funnel": "suspicious",
+    "rapid_movement": "suspicious",
+    "high_risk_country": "suspicious",
+    "behavioral_change": "suspicious",
+    "severe_structuring": "super_suspicious",
+    "severe_layering": "super_suspicious",
+    "severe_funnel": "super_suspicious",
+    "multiple_typologies": "super_suspicious"
+  }
+}

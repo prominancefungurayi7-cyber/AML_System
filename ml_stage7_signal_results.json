@@ -1,0 +1,386 @@
+{
+  "timestamp": "2026-09-01T22:32:20.959112",
+  "stage6_verification": {
+    "dataset_size": 10000,
+    "feature_count": 34,
+    "train_samples": 8000,
+    "test_samples": 2000,
+    "customer_overlap": 0,
+    "gb_test_macro_f1": 0.35624012667592453,
+    "rf_test_macro_f1": 0.34532973683300483
+  },
+  "actual_training_performance": {
+    "rf_train_macro_f1": 0.9514405243085621,
+    "rf_cv_macro_f1": 0.34389834040427747,
+    "rf_test_macro_f1": 0.34532973683300483,
+    "rf_train_cv_gap": 0.6075421839042846,
+    "rf_train_test_gap": 0.6061107874755572,
+    "overfitting_status": "OVERFITTING DETECTED (large train-test gap)"
+  },
+  "feature_separation": {
+    "amount": {
+      "d_normal_suspicious": 0.0048304608570542305,
+      "d_normal_super": 0.034252617260856245,
+      "d_suspicious_super": 0.03249163931736926,
+      "max_separation": 0.034252617260856245
+    },
+    "sender_avg_amount": {
+      "d_normal_suspicious": 0.010673921448198015,
+      "d_normal_super": 0.05662565957407104,
+      "d_suspicious_super": 0.04920745161266289,
+      "max_separation": 0.05662565957407104
+    },
+    "sender_max_amount": {
+      "d_normal_suspicious": 0.0016133425737525407,
+      "d_normal_super": 0.0389242573456911,
+      "d_suspicious_super": 0.038465034292347954,
+      "max_separation": 0.0389242573456911
+    },
+    "sender_tx_count": {
+      "d_normal_suspicious": 0.09402253471890645,
+      "d_normal_super": 0.06582058305650897,
+      "d_suspicious_super": 0.028240313386700844,
+      "max_separation": 0.09402253471890645
+    },
+    "amount_to_sender_avg": {
+      "d_normal_suspicious": 0.05913534695242485,
+      "d_normal_super": 0.016265308260596623,
+      "d_suspicious_super": 0.06684318268708593,
+      "max_separation": 0.06684318268708593
+    },
+    "amount_to_sender_max": {
+      "d_normal_suspicious": 0.04892237438462296,
+      "d_normal_super": 0.008808432364422197,
+      "d_suspicious_super": 0.05258337408885614,
+      "max_separation": 0.05258337408885614
+    },
+    "sender_tx_count_24h": {
+      "d_normal_suspicious": 0.004292406440091317,
+      "d_normal_super": 0.008513053832155297,
+      "d_suspicious_super": 0.012711865936644147,
+      "max_separation": 0.012711865936644147
+    },
+    "sender_volume_24h": {
+      "d_normal_suspicious": 0.020379900848404284,
+      "d_normal_super": 0.04235598825426345,
+      "d_suspicious_super": 0.027256638152287706,
+      "max_separation": 0.04235598825426345
+    },
+    "amount_to_sender_volume_24h": {
+      "d_normal_suspicious": 0.009385393287156478,
+      "d_normal_super": 0.010171662163096847,
+      "d_suspicious_super": 0.020418944331392474,
+      "max_separation": 0.020418944331392474
+    },
+    "is_new_recipient": {
+      "d_normal_suspicious": 0.009189274546080024,
+      "d_normal_super": 0.03365391272687449,
+      "d_suspicious_super": 0.04264911438679466,
+      "max_separation": 0.04264911438679466
+    },
+    "same_day_count": {
+      "d_normal_suspicious": 0.0007153037877725714,
+      "d_normal_super": 0.0022876656224155817,
+      "d_suspicious_super": 0.002995510001501579,
+      "max_separation": 0.002995510001501579
+    },
+    "same_day_total": {
+      "d_normal_suspicious": 0.006117956272671105,
+      "d_normal_super": 0.0538939815872947,
+      "d_suspicious_super": 0.06127807600988574,
+      "max_separation": 0.06127807600988574
+    },
+    "same_recipient_count": {
+      "d_normal_suspicious": 0.023733611529688586,
+      "d_normal_super": 0.00609050389513979,
+      "d_suspicious_super": 0.0179017656000458,
+      "max_separation": 0.023733611529688586
+    },
+    "rapid_transfer_count": {
+      "d_normal_suspicious": 0.0016412646070877587,
+      "d_normal_super": 0.04393442864812717,
+      "d_suspicious_super": 0.04592068539144606,
+      "max_separation": 0.04592068539144606
+    },
+    "hour": {
+      "d_normal_suspicious": 0.026561767283440472,
+      "d_normal_super": 0.06903688892496625,
+      "d_suspicious_super": 0.04338834559260982,
+      "max_separation": 0.06903688892496625
+    },
+    "is_deposit": {
+      "d_normal_suspicious": 0.031685885074049645,
+      "d_normal_super": 0.06688577646937813,
+      "d_suspicious_super": 0.035379251338020716,
+      "max_separation": 0.06688577646937813
+    },
+    "is_withdraw": {
+      "d_normal_suspicious": 0.003985122013009162,
+      "d_normal_super": 0.010897426685833154,
+      "d_suspicious_super": 0.006922173047334274,
+      "max_separation": 0.010897426685833154
+    },
+    "is_transfer": {
+      "d_normal_suspicious": 0.030562581031756103,
+      "d_normal_super": 0.06236625588181373,
+      "d_suspicious_super": 0.032292609758674914,
+      "max_separation": 0.06236625588181373
+    },
+    "is_self_transfer": {
+      "d_normal_suspicious": 0.0,
+      "d_normal_super": 0.0,
+      "d_suspicious_super": 0.0,
+      "max_separation": 0.0
+    },
+    "is_off_hours": {
+      "d_normal_suspicious": 0.009571487071685229,
+      "d_normal_super": 0.012199809222261312,
+      "d_suspicious_super": 0.0026691365322760955,
+      "max_separation": 0.012199809222261312
+    },
+    "channel_encoded": {
+      "d_normal_suspicious": 0.031593257330167206,
+      "d_normal_super": 0.039323768413248514,
+      "d_suspicious_super": 0.007889945786057659,
+      "max_separation": 0.039323768413248514
+    },
+    "amount_std_dev": {
+      "d_normal_suspicious": 0.006003025925635515,
+      "d_normal_super": 0.04745787706864499,
+      "d_suspicious_super": 0.04311234079610139,
+      "max_separation": 0.04745787706864499
+    },
+    "amount_z_score": {
+      "d_normal_suspicious": 0.03145819552730044,
+      "d_normal_super": 0.0058434341495418474,
+      "d_suspicious_super": 0.03462341016553241,
+      "max_separation": 0.03462341016553241
+    },
+    "tx_frequency_7d": {
+      "d_normal_suspicious": 0.022073312019282563,
+      "d_normal_super": 0.016099526570411464,
+      "d_suspicious_super": 0.005948629858433536,
+      "max_separation": 0.022073312019282563
+    },
+    "tx_frequency_30d": {
+      "d_normal_suspicious": 0.09063837955442948,
+      "d_normal_super": 0.060807617141915626,
+      "d_suspicious_super": 0.03002586772419518,
+      "max_separation": 0.09063837955442948
+    },
+    "day_of_week": {
+      "d_normal_suspicious": 0.046226396906165576,
+      "d_normal_super": 0.0008458617632017264,
+      "d_suspicious_super": 0.04493018107667577,
+      "max_separation": 0.046226396906165576
+    },
+    "is_weekend": {
+      "d_normal_suspicious": 0.030904025293511345,
+      "d_normal_super": 0.012010912543175458,
+      "d_suspicious_super": 0.04273253121174269,
+      "max_separation": 0.04273253121174269
+    },
+    "time_since_last_tx": {
+      "d_normal_suspicious": 0.020382370143884262,
+      "d_normal_super": 0.015043522984645476,
+      "d_suspicious_super": 0.03621436323613967,
+      "max_separation": 0.03621436323613967
+    },
+    "unique_recipients_24h": {
+      "d_normal_suspicious": 0.0047586698617306305,
+      "d_normal_super": 0.014483405282838986,
+      "d_suspicious_super": 0.019109817428563314,
+      "max_separation": 0.019109817428563314
+    },
+    "unique_recipients_7d": {
+      "d_normal_suspicious": 0.019348802911784105,
+      "d_normal_super": 0.021677070602862076,
+      "d_suspicious_super": 0.002379574865287978,
+      "max_separation": 0.021677070602862076
+    },
+    "recipient_concentration": {
+      "d_normal_suspicious": 0.020892108255484428,
+      "d_normal_super": 0.007886084687877288,
+      "d_suspicious_super": 0.027673546577939287,
+      "max_separation": 0.027673546577939287
+    },
+    "new_recipient_ratio_7d": {
+      "d_normal_suspicious": 0.0,
+      "d_normal_super": 0.0,
+      "d_suspicious_super": 0.0,
+      "max_separation": 0.0
+    },
+    "amount_change_vs_avg_7d": {
+      "d_normal_suspicious": 0.006445099144228548,
+      "d_normal_super": 0.0012919465669677817,
+      "d_suspicious_super": 0.005917316737019835,
+      "max_separation": 0.006445099144228548
+    },
+    "frequency_change_vs_avg_7d": {
+      "d_normal_suspicious": 0.06344274112019713,
+      "d_normal_super": 0.040550366677768575,
+      "d_suspicious_super": 0.022245181379008952,
+      "max_separation": 0.06344274112019713
+    }
+  },
+  "mutual_information": {
+    "sender_tx_count": 0.011438314062553578,
+    "frequency_change_vs_avg_7d": 0.008559395528695335,
+    "new_recipient_ratio_7d": 0.006322493584302702,
+    "rapid_transfer_count": 0.005681829524196047,
+    "amount_to_sender_max": 0.004888856748122006,
+    "tx_frequency_30d": 0.004332102442197172,
+    "is_weekend": 0.0040509957112226935,
+    "same_day_count": 0.0023063169658203986,
+    "is_new_recipient": 0.0013219196809384215,
+    "same_recipient_count": 0.0006389871208702935,
+    "amount_to_sender_volume_24h": 0.0005640781991231858,
+    "recipient_concentration": 0.0005577541132355535,
+    "is_transfer": 0.000446944878130795,
+    "sender_volume_24h": 0.00021974541790203972,
+    "amount": 0.0,
+    "sender_avg_amount": 0.0,
+    "sender_max_amount": 0.0,
+    "amount_to_sender_avg": 0.0,
+    "sender_tx_count_24h": 0.0,
+    "same_day_total": 0.0,
+    "hour": 0.0,
+    "is_deposit": 0.0,
+    "is_withdraw": 0.0,
+    "is_self_transfer": 0.0,
+    "is_off_hours": 0.0,
+    "channel_encoded": 0.0,
+    "amount_std_dev": 0.0,
+    "amount_z_score": 0.0,
+    "tx_frequency_7d": 0.0,
+    "day_of_week": 0.0,
+    "time_since_last_tx": 0.0,
+    "unique_recipients_24h": 0.0,
+    "unique_recipients_7d": 0.0,
+    "amount_change_vs_avg_7d": 0.0
+  },
+  "class_separability": {
+    "explained_variance_2d": [
+      0.14604904016921635,
+      0.12271289913895751
+    ],
+    "centroids": {
+      "normal": [
+        0.010074057772825672,
+        -0.016215426670948645
+      ],
+      "suspicious": [
+        0.006285623278639614,
+        0.025960284690864855
+      ],
+      "super_suspicious": [
+        -0.08788247611531934,
+        0.05910865513017005
+      ]
+    },
+    "inter_class_distances": {
+      "normal_suspicious": 0.04234551764699238,
+      "normal_super": 0.12356860374124538,
+      "suspicious_super": 0.09983208605579638
+    }
+  },
+  "temporal_analysis": [
+    {
+      "period": 1,
+      "super_rate": 0.1055,
+      "suspicious_rate": 0.217,
+      "hour_mean": 12.2355
+    },
+    {
+      "period": 2,
+      "super_rate": 0.0915,
+      "suspicious_rate": 0.2185,
+      "hour_mean": 12.05
+    },
+    {
+      "period": 3,
+      "super_rate": 0.088,
+      "suspicious_rate": 0.2085,
+      "hour_mean": 12.273
+    },
+    {
+      "period": 4,
+      "super_rate": 0.096,
+      "suspicious_rate": 0.212,
+      "hour_mean": 12.137
+    },
+    {
+      "period": 5,
+      "super_rate": 0.0915,
+      "suspicious_rate": 0.2225,
+      "hour_mean": 12.0695
+    }
+  ],
+  "customer_analysis": {
+    "total_customers": 200,
+    "customers_with_suspicious": 199,
+    "customers_with_super": 195,
+    "max_suspicious_per_customer": 50,
+    "max_super_per_customer": 50
+  },
+  "label_feature_consistency": {
+    "near_duplicate_conflicts": 1963,
+    "near_duplicate_pairs": 4376,
+    "conflict_rate": 0.4485831809872029
+  },
+  "feature_redundancy": {
+    "high_corr_pairs": 10,
+    "top_correlations": [
+      {
+        "f1": "sender_tx_count",
+        "f2": "tx_frequency_30d",
+        "corr": 0.9998646568867016
+      },
+      {
+        "f1": "sender_tx_count_24h",
+        "f2": "unique_recipients_24h",
+        "corr": 0.9928270296717512
+      },
+      {
+        "f1": "sender_max_amount",
+        "f2": "amount_std_dev",
+        "corr": 0.9873853880185667
+      },
+      {
+        "f1": "sender_avg_amount",
+        "f2": "amount_std_dev",
+        "corr": 0.9629886514321837
+      },
+      {
+        "f1": "tx_frequency_7d",
+        "f2": "unique_recipients_7d",
+        "corr": 0.9599278508239208
+      },
+      {
+        "f1": "sender_avg_amount",
+        "f2": "sender_max_amount",
+        "corr": 0.9595523055631074
+      },
+      {
+        "f1": "amount_to_sender_avg",
+        "f2": "amount_to_sender_max",
+        "corr": 0.9332633558340171
+      },
+      {
+        "f1": "amount_to_sender_max",
+        "f2": "amount_z_score",
+        "corr": 0.7761902196047449
+      },
+      {
+        "f1": "sender_volume_24h",
+        "f2": "same_day_total",
+        "corr": 0.7639361672552164
+      },
+      {
+        "f1": "amount_to_sender_avg",
+        "f2": "amount_z_score",
+        "corr": 0.703807005005856
+      }
+    ]
+  }
+}

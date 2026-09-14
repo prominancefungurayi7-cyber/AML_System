@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-09-02T23:35:49.253718",
+  "verification_type": "Stage 17 Integrity Check",
+  "integrity_checks": {
+    "Feature list matches": true,
+    "Dataset row count matches": true,
+    "Train row count matches": true,
+    "Test row count matches": true,
+    "Customer holdout 160/40": true,
+    "Zero customer overlap": true,
+    "Confusion matrix total matches test samples": true,
+    "Row totals match class counts": true,
+    "Recall from CM matches report": true,
+    "Accuracy from CM matches report": true,
+    "Metrics match reported results": true,
+    "random_state=42 used": true,
+    "Test data not used for selection": true
+  },
+  "all_checks_pass": true,
+  "recalculated_metrics": {
+    "accuracy": 0.772,
+    "macro_f1": 0.4899025235983732,
+    "weighted_f1": 0.7291544891638659,
+    "per_class": {
+      "normal": {
+        "precision": 0.8055087127599775,
+        "recall": 0.9669365721997301,
+        "f1": 0.8788715118061944
+      },
+      "super_suspicious": {
+        "precision": 0.3333333333333333,
+        "recall": 0.25396825396825395,
+        "f1": 0.2882882882882883
+      },
+      "suspicious": {
+        "precision": 0.5491329479768786,
+        "recall": 0.2087912087912088,
+        "f1": 0.30254777070063693
+      }
+    },
+    "confusion_matrix": [
+      [
+        1433,
+        4,
+        45
+      ],
+      [
+        14,
+        16,
+        33
+      ],
+      [
+        332,
+        28,
+        95
+      ]
+    ],
+    "suspicious_false_negatives": 360,
+    "super_suspicious_false_negatives": 47
+  },
+  "reported_metrics": {
+    "accuracy": 0.772,
+    "macro_f1": 0.4899025235983732,
+    "weighted_f1": 0.7291544891638659,
+    "per_class": {
+      "normal": {
+        "precision": 0.8055087127599775,
+        "recall": 0.9669365721997301,
+        "f1": 0.8788715118061944
+      },
+      "super_suspicious": {
+        "precision": 0.3333333333333333,
+        "recall": 0.25396825396825395,
+        "f1": 0.2882882882882883
+      },
+      "suspicious": {
+        "precision": 0.5491329479768786,
+        "recall": 0.2087912087912088,
+        "f1": 0.30254777070063693
+      }
+    },
+    "confusion_matrix": [
+      [
+        1433,
+        4,
+        45
+      ],
+      [
+        14,
+        16,
+        33
+      ],
+      [
+        332,
+        28,
+        95
+      ]
+    ],
+    "suspicious_false_negatives": 360,
+    "super_suspicious_false_negatives": 47
+  },
+  "metric_differences": {
+    "accuracy_diff": 0.0,
+    "macro_f1_diff": 0.0,
+    "weighted_f1_diff": 0.0,
+    "suspicious_recall_diff": 0.0,
+    "super_suspicious_recall_diff": 0.0,
+    "suspicious_false_negatives_diff": 0,
+    "super_suspicious_false_negatives_diff": 0
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "timestamp": "2026-09-02T13:38:02.481207",
+  "temporal_safety_audit": {
+    "threshold_proximity_10k": {
+      "scenario": "structuring",
+      "definition": "Distance from $10,000 CTR threshold: |amount - 10000|",
+      "data_requirements": [
+        "amount"
+      ],
+      "temporal_safety_claim": "Computed from current transaction amount only",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "threshold_proximity_5k": {
+      "scenario": "structuring",
+      "definition": "Distance from $5,000 threshold: |amount - 5000|",
+      "data_requirements": [
+        "amount"
+      ],
+      "temporal_safety_claim": "Computed from current transaction amount only",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "near_threshold_count_7d": {
+      "scenario": "structuring",
+      "definition": "Count of transactions in last 7 days with amount in [8000, 12000]",
+      "data_requirements": [
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "near_threshold_ratio_7d": {
+      "scenario": "structuring",
+      "definition": "Ratio of near-threshold transactions to total transactions in last 7 days",
+      "data_requirements": [
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "amount_clustering_score": {
+      "scenario": "structuring",
+      "definition": "Standard deviation of transaction amounts in last 7 days",
+      "data_requirements": [
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "counterparty_diversity_7d": {
+      "scenario": "layering",
+      "definition": "Number of unique receiver accounts in last 7 days",
+      "data_requirements": [
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "counterparty_diversity_30d": {
+      "scenario": "layering",
+      "definition": "Number of unique receiver accounts in last 30 days",
+      "data_requirements": [
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 30 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "pass_through_ratio_7d": {
+      "scenario": "layering",
+      "definition": "Ratio of outbound transfers to total transactions in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "rapid_counterparty_switch_count": {
+      "scenario": "layering",
+      "definition": "Number of times receiver account changes in last 7 days",
+      "data_requirements": [
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "single_counterparty_dominance_7d": {
+      "scenario": "layering",
+      "definition": "Maximum percentage of transactions to single receiver in last 7 days",
+      "data_requirements": [
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "inbound_aggregation_7d": {
+      "scenario": "funnel",
+      "definition": "Ratio of deposits to total transactions in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "outbound_diversification_7d": {
+      "scenario": "funnel",
+      "definition": "Ratio of transfers to total transactions in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "many_to_one_ratio_7d": {
+      "scenario": "funnel",
+      "definition": "Ratio of unique senders to unique receivers in last 7 days (network perspective)",
+      "data_requirements": [
+        "sender_account",
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "concentration_index_7d": {
+      "scenario": "funnel",
+      "definition": "Herfindahl index of receiver concentration in last 7 days",
+      "data_requirements": [
+        "receiver_account",
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "inbound_to_outbound_time_avg_7d": {
+      "scenario": "rapid_movement",
+      "definition": "Average time between deposit and subsequent transfer in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "same_day_pass_through_count_7d": {
+      "scenario": "rapid_movement",
+      "definition": "Count of deposit-transfer pairs occurring on same day in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "funds_through_ratio_7d": {
+      "scenario": "rapid_movement",
+      "definition": "Ratio of outbound amount to inbound amount in last 7 days",
+      "data_requirements": [
+        "transaction_type",
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "velocity_score_7d": {
+      "scenario": "rapid_movement",
+      "definition": "Average number of transactions per day in last 7 days",
+      "data_requirements": [
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 7 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "amount_deviation_from_baseline_30d": {
+      "scenario": "behavioral_change",
+      "definition": "Z-score of current amount relative to 30-day historical mean",
+      "data_requirements": [
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 30 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "frequency_deviation_from_baseline_30d": {
+      "scenario": "behavioral_change",
+      "definition": "Z-score of current transaction count relative to 30-day historical mean",
+      "data_requirements": [
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 30 days only)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "counterparty_change_score_7d": {
+      "scenario": "behavioral_change",
+      "definition": "Jaccard similarity between current 7-day and previous 7-day receiver sets",
+      "data_requirements": [
+        "receiver_account",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 14 days: current 7d vs previous 7d)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "rolling_behavioral_change_7d": {
+      "scenario": "behavioral_change",
+      "definition": "Standard deviation of amounts in last 7 days divided by standard deviation in previous 7 days",
+      "data_requirements": [
+        "amount",
+        "timestamp",
+        "historical transactions"
+      ],
+      "temporal_safety_claim": "Computed from historical transactions (last 14 days: current 7d vs previous 7d)",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "concurrent_suspicious_indicators": {
+      "scenario": "severe",
+      "definition": "Count of suspicious behavioral indicators present simultaneously",
+      "data_requirements": [
+        "All candidate features"
+      ],
+      "temporal_safety_claim": "Computed from current transaction features only",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "typology_aggregation_score": {
+      "scenario": "severe",
+      "definition": "Combined score based on structuring + layering + funnel + rapid_movement indicators",
+      "data_requirements": [
+        "All candidate features"
+      ],
+      "temporal_safety_claim": "Computed from current transaction features only",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    },
+    "severity_index": {
+      "scenario": "severe",
+      "definition": "Weighted sum of suspicious indicators based on severity weights",
+      "data_requirements": [
+        "All candidate features"
+      ],
+      "temporal_safety_claim": "Computed from current transaction features only",
+      "is_safe": true,
+      "safety_issues": [],
+      "status": "TEMPORALLY SAFE"
+    }
+  },
+  "summary": {
+    "total_features": 25,
+    "safe_count": 25,
+    "unsafe_count": 0
+  },
+  "temporal_safety_guarantee": [
+    "All features use only current transaction data",
+    "All historical features use explicit time windows (7d, 30d, 14d)",
+    "No features use future transactions",
+    "No features use future aggregates",
+    "No features use future labels",
+    "No features use test-set information"
+  ]
+}

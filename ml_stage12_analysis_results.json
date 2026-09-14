@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-09-02T13:12:30.010747",
+  "stage6_comparison": {
+    "random_forest": {
+      "stage6_macro_f1": 0.34532973683300483,
+      "stage12_primary_macro_f1": 0.4416005144363448,
+      "stage12_secondary_macro_f1": 0.23171498189002307,
+      "primary_delta": 0.09627077760333996,
+      "secondary_delta": -0.11361475494298176
+    },
+    "gradient_boosting": {
+      "stage6_macro_f1": 0.35624012667592453,
+      "stage12_primary_macro_f1": 0.4355182153190375,
+      "stage12_secondary_macro_f1": 0.2320136073033796,
+      "primary_delta": 0.07927808864311298,
+      "secondary_delta": -0.12422651937254492
+    }
+  },
+  "overfitting_analysis": {
+    "primary_split": {
+      "random_forest": {
+        "train_macro_f1": 1.0,
+        "test_macro_f1": 0.4416005144363448,
+        "gap": 0.5583994855636552
+      },
+      "gradient_boosting": {
+        "train_macro_f1": 0.6586540122738457,
+        "test_macro_f1": 0.4355182153190375,
+        "gap": 0.22313579695480817
+      }
+    },
+    "secondary_split": {
+      "random_forest": {
+        "train_macro_f1": 1.0,
+        "test_macro_f1": 0.23171498189002307,
+        "gap": 0.768285018109977
+      },
+      "gradient_boosting": {
+        "train_macro_f1": 0.4739264812257513,
+        "test_macro_f1": 0.2320136073033796,
+        "gap": 0.2419128739223717
+      }
+    }
+  },
+  "leakage_audit": {
+    "feature_leakage": "PASS",
+    "temporal_leakage": "PASS",
+    "preprocessing_leakage": "PASS",
+    "split_leakage": "PASS",
+    "duplicate_leakage": "PASS",
+    "customer_leakage": "PASS (primary), WARNING (secondary)"
+  }
+}

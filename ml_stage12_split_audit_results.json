@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-09-02T13:04:29.740837",
+  "dataset_chronologically_sorted": false,
+  "total_transactions": 10000,
+  "total_customers": 200,
+  "train_transactions": 8000,
+  "test_transactions": 2000,
+  "train_customers": 200,
+  "test_customers": 200,
+  "customer_overlap": 200,
+  "temporal_overlap": false,
+  "stage6_split_applicable": false
+}

@@ -1,0 +1,276 @@
+{
+  "timestamp": "2026-09-02T20:39:34.811578",
+  "experiment_type": "XGBoost vs Gradient Boosting Champion",
+  "total_features": 18,
+  "feature_names": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours",
+    "counterparty_change_score_7d"
+  ],
+  "train_transactions": 8000,
+  "test_transactions": 2000,
+  "train_customers": 160,
+  "test_customers": 40,
+  "gradient_boosting_champion": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "test_metrics": {
+      "accuracy": 0.7775,
+      "macro_f1": 0.5014950487733087,
+      "weighted_f1": 0.7343579063785308,
+      "per_class": {
+        "normal": {
+          "precision": 0.8058198097369894,
+          "recall": 0.97165991902834,
+          "f1": 0.8810033649434078
+        },
+        "super_suspicious": {
+          "precision": 0.3902439024390244,
+          "recall": 0.25396825396825395,
+          "f1": 0.3076923076923077
+        },
+        "suspicious": {
+          "precision": 0.5755813953488372,
+          "recall": 0.2175824175824176,
+          "f1": 0.3157894736842105
+        }
+      },
+      "confusion_matrix": [
+        [
+          1440,
+          2,
+          40
+        ],
+        [
+          14,
+          16,
+          33
+        ],
+        [
+          333,
+          23,
+          99
+        ]
+      ],
+      "false_positives": [
+        347,
+        25,
+        73
+      ],
+      "false_negatives": [
+        42,
+        47,
+        356
+      ],
+      "super_suspicious_false_negatives": 47
+    }
+  },
+  "xgboost_candidate": {
+    "configs_tested": [
+      {
+        "learning_rate": 0.1,
+        "max_depth": 5,
+        "n_estimators": 100,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5,
+        "gamma": 0.1,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "random_state": 42,
+        "eval_metric": "mlogloss"
+      },
+      {
+        "learning_rate": 0.05,
+        "max_depth": 4,
+        "n_estimators": 200,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5,
+        "gamma": 0.1,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "random_state": 42,
+        "eval_metric": "mlogloss"
+      },
+      {
+        "learning_rate": 0.01,
+        "max_depth": 3,
+        "n_estimators": 500,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "min_child_weight": 5,
+        "gamma": 0.1,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "random_state": 42,
+        "eval_metric": "mlogloss"
+      }
+    ],
+    "best_config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 5,
+      "gamma": 0.1,
+      "reg_alpha": 0.1,
+      "reg_lambda": 1.0,
+      "random_state": 42,
+      "eval_metric": "mlogloss"
+    },
+    "train_metrics": {
+      "accuracy": 0.794,
+      "macro_f1": 0.5892604165241796,
+      "weighted_f1": 0.7466659236425793,
+      "per_class": {
+        "normal": {
+          "precision": 0.8016100422977214,
+          "recall": 0.9850771294433266,
+          "f1": 0.8839238697058602
+        },
+        "super_suspicious": {
+          "precision": 0.7529411764705882,
+          "recall": 0.46545454545454545,
+          "f1": 0.5752808988764045
+        },
+        "suspicious": {
+          "precision": 0.6966067864271457,
+          "recall": 0.19818285065303803,
+          "f1": 0.30857648099027407
+        }
+      },
+      "confusion_matrix": [
+        [
+          5875,
+          1,
+          88
+        ],
+        [
+          83,
+          128,
+          64
+        ],
+        [
+          1371,
+          41,
+          349
+        ]
+      ],
+      "false_positives": [
+        1454,
+        42,
+        152
+      ],
+      "false_negatives": [
+        89,
+        147,
+        1412
+      ],
+      "suspicious_false_negatives": 1412,
+      "super_suspicious_false_negatives": 147
+    },
+    "test_metrics": {
+      "accuracy": 0.775,
+      "macro_f1": 0.4957725435479903,
+      "weighted_f1": 0.7263615989161674,
+      "per_class": {
+        "normal": {
+          "precision": 0.801328168234643,
+          "recall": 0.9770580296896086,
+          "f1": 0.8805107935542719
+        },
+        "super_suspicious": {
+          "precision": 0.3829787234042553,
+          "recall": 0.2857142857142857,
+          "f1": 0.32727272727272727
+        },
+        "suspicious": {
+          "precision": 0.5753424657534246,
+          "recall": 0.18461538461538463,
+          "f1": 0.2795341098169717
+        }
+      },
+      "confusion_matrix": [
+        [
+          1448,
+          2,
+          32
+        ],
+        [
+          15,
+          18,
+          30
+        ],
+        [
+          344,
+          27,
+          84
+        ]
+      ],
+      "false_positives": [
+        359,
+        29,
+        62
+      ],
+      "false_negatives": [
+        34,
+        45,
+        371
+      ],
+      "suspicious_false_negatives": 371,
+      "super_suspicious_false_negatives": 45
+    },
+    "feature_importance": [
+      0.16983594000339508,
+      0.13193117082118988,
+      0.10828325152397156,
+      0.0780765637755394,
+      0.054675351828336716,
+      0.05613281950354576,
+      0.03847469761967659,
+      0.03933808580040932,
+      0.030582498759031296,
+      0.0272707249969244,
+      0.03347952291369438,
+      0.02465059980750084,
+      0.024398352950811386,
+      0.034944240003824234,
+      0.05448398366570473,
+      0.02557496912777424,
+      0.032584138214588165,
+      0.03528307378292084
+    ]
+  },
+  "comparison": {
+    "accuracy_diff": -0.0024999999999999467,
+    "macro_f1_diff": -0.005722505225318475,
+    "weighted_f1_diff": -0.007996307462363461,
+    "suspicious_recall_diff": -0.03296703296703296,
+    "super_suspicious_recall_diff": 0.031746031746031744,
+    "suspicious_false_negatives_diff": 15,
+    "super_suspicious_false_negatives_diff": -2
+  },
+  "verdict": "MIXED RESULTS",
+  "verdict_reason": "XGBoost shows mixed results with trade-offs between metrics."
+}

@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-09-02T12:52:54.273065",
+  "part_1_ground_truth_validation": {
+    "label_mismatches": 0,
+    "status": "PASS"
+  },
+  "part_2_class_distribution": {
+    "normal": 7446,
+    "suspicious": 2216,
+    "super_suspicious": 338
+  },
+  "part_3_temporal_integrity": {
+    "status": "PASS"
+  },
+  "part_4_feature_integrity": {
+    "constant_features": [
+      "is_self_transfer"
+    ],
+    "near_constant_features": [],
+    "nan_features": [],
+    "inf_features": [],
+    "status": "PASS"
+  },
+  "part_5_generator_behavioral_coverage": {
+    "scenario_distribution": {
+      "normal": 5218,
+      "legitimate": 1118,
+      "cash": 744,
+      "funnel": 370,
+      "new": 366,
+      "layering": 393,
+      "behavioral": 367,
+      "structuring": 366,
+      "rapid": 359,
+      "high": 361,
+      "severe": 254,
+      "multiple": 84
+    },
+    "severe_scenarios_count": 338,
+    "severe_scenarios_percentage": 3.38,
+    "status": "PASS"
+  },
+  "part_6_feature_label_signal": {
+    "top_cohens_d": {
+      "sender_max_amount": 157815.25129013165,
+      "sender_volume_24h": 129687.46052802027,
+      "same_day_total": 90048.51198617654,
+      "amount": 76431.27889370783,
+      "amount_change_vs_avg_7d": 55662.11183328533,
+      "sender_avg_amount": 49994.08537405344,
+      "amount_std_dev": 42330.574667188805,
+      "amount_to_sender_volume_24h": 27056.01734831324,
+      "amount_z_score": 25.88349878988408,
+      "time_since_last_tx": 15.024299496529254
+    },
+    "top_mutual_information": {
+      "tx_frequency_30d": 0.11200622830204066,
+      "sender_tx_count": 0.1119744689835731,
+      "frequency_change_vs_avg_7d": 0.08823328007782649,
+      "day_of_week": 0.042505098159056454,
+      "sender_max_amount": 0.02785214973496819,
+      "is_weekend": 0.01639490084843498,
+      "new_recipient_ratio_7d": 0.014173424456987993,
+      "is_off_hours": 0.010171648989038662,
+      "amount_change_vs_avg_7d": 0.009361175753274997,
+      "amount": 0.00928748390986378
+    },
+    "nearest_neighbor_agreement": 0.6904,
+    "status": "PASS"
+  },
+  "part_7_circularity_audit": {
+    "overall_risk": "LOW",
+    "status": "PASS"
+  },
+  "part_8_label_noise_analysis": {
+    "near_identical_pairs": 0,
+    "label_disagreement_rate": 0,
+    "status": "PASS"
+  },
+  "part_9_no_model_optimization": {
+    "status": "PASS"
+  },
+  "part_10_artifact_integrity": {
+    "status": "PASS"
+  },
+  "overall_status": "PASS"
+}

@@ -1,0 +1,52 @@
+{
+  "train_accuracy": 0.9565,
+  "test_accuracy": 0.925,
+  "test_precision_macro": 0.924171460764545,
+  "test_recall_macro": 0.9345454545454546,
+  "test_f1_macro": 0.9279776009768175,
+  "test_precision_weighted": 0.9290279935922882,
+  "test_recall_weighted": 0.925,
+  "test_f1_weighted": 0.9256277101823177,
+  "test_precision_per_class": [
+    0.9519230769230769,
+    0.8260162601626017,
+    0.9945750452079566
+  ],
+  "test_recall_per_class": [
+    0.88,
+    0.9236363636363636,
+    1.0
+  ],
+  "test_f1_per_class": [
+    0.9145496535796767,
+    0.8721030042918455,
+    0.9972801450589301
+  ],
+  "confusion_matrix": [
+    [
+      792,
+      107,
+      1
+    ],
+    [
+      40,
+      508,
+      2
+    ],
+    [
+      0,
+      0,
+      550
+    ]
+  ],
+  "cv_mean": 0.9482038814759571,
+  "cv_std": 0.01091802692205319,
+  "cv_to_test_gap": 0.02022628049913966,
+  "suspicious_false_negatives": 0,
+  "super_suspicious_false_negatives": 42,
+  "class_names": [
+    "normal",
+    "super_suspicious",
+    "suspicious"
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "timestamp": "2026-09-02T13:21:09.384372",
+  "task_9_customer_profile": {
+    "homogeneous_customers": 0,
+    "heterogeneous_customers": 200,
+    "normal_customers": 186,
+    "suspicious_customers": 9,
+    "super_customers": 5
+  },
+  "task_10_temporal": {
+    "train_class_distribution": {
+      "normal": 6402,
+      "suspicious": 1598
+    },
+    "test_class_distribution": {
+      "normal": 1044,
+      "suspicious": 618,
+      "super_suspicious": 338
+    },
+    "distribution_shift": {
+      "normal": -27.825000000000003,
+      "suspicious": 10.924999999999997,
+      "super_suspicious": 16.900000000000002
+    }
+  },
+  "task_11_overfitting": {
+    "rf_train_f1": 1.0,
+    "rf_test_f1": 0.4416005144363448,
+    "rf_gap": 0.5583994855636552,
+    "gb_train_f1": 0.6586540122738457,
+    "gb_test_f1": 0.4355182153190375,
+    "gb_gap": 0.22313579695480817
+  },
+  "task_13_sufficiency": {
+    "scenario_verdicts": {
+      "legitimate_high_value": "NOT REPRESENTED",
+      "cash_withdrawal": "NOT REPRESENTED",
+      "funnel": "NOT REPRESENTED",
+      "new_recipient": "NOT REPRESENTED",
+      "layering": "NOT REPRESENTED",
+      "behavioral_change": "NOT REPRESENTED",
+      "structuring": "NOT REPRESENTED",
+      "rapid_movement": "NOT REPRESENTED",
+      "high_risk_country": "NOT REPRESENTED",
+      "cash_deposit": "NOT REPRESENTED",
+      "severe_funnel": "PARTIALLY REPRESENTED",
+      "severe_structuring": "PARTIALLY REPRESENTED",
+      "severe_layering": "PARTIALLY REPRESENTED",
+      "multiple_typologies": "PARTIALLY REPRESENTED"
+    },
+    "sufficient_count": 0,
+    "partial_count": 4,
+    "not_represented_count": 10,
+    "overall_verdict": "34 features PARTIALLY SUFFICIENT"
+  },
+  "task_14_feature_gaps": {
+    "legitimate_high_value": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "cash_withdrawal": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "funnel": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "new_recipient": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "layering": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "behavioral_change": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "structuring": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "rapid_movement": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "high_risk_country": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "cash_deposit": [
+      "amount",
+      "velocity",
+      "frequency",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "severe_funnel": [
+      "amount",
+      "velocity",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "severe_structuring": [
+      "amount",
+      "velocity",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "severe_layering": [
+      "amount",
+      "velocity",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ],
+    "multiple_typologies": [
+      "amount",
+      "velocity",
+      "recipient",
+      "timing",
+      "historical_behavior",
+      "country"
+    ]
+  },
+  "task_15_root_cause": "MIXED PROBLEM - PRIMARY: FEATURE PROBLEM, SECONDARY: MODEL PROBLEM, TERTIARY: GENERATOR PROBLEM"
+}

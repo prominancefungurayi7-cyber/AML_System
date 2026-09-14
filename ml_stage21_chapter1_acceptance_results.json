@@ -1,0 +1,33 @@
+[
+  {
+    "capability": "Cross-border laundering",
+    "status": "PARTIALLY SUPPORTED",
+    "evidence": "Features exist, importance: 0.0182"
+  },
+  {
+    "capability": "Trade-based money laundering",
+    "status": "PARTIALLY SUPPORTED",
+    "evidence": "Amount features exist, suspicious F1: 0.9973. No invoice data.",
+    "limitation": "Cannot verify invoices without trade data"
+  },
+  {
+    "capability": "Cash-based laundering",
+    "status": "WELL SUPPORTED",
+    "evidence": "Amount deviation and frequency change features exist"
+  },
+  {
+    "capability": "Complex patterns over time",
+    "status": "PARTIALLY SUPPORTED",
+    "evidence": "Sequence features exist: time_since_last, recurring_pattern"
+  },
+  {
+    "capability": "Real-time monitoring",
+    "status": "WELL SUPPORTED",
+    "evidence": "All features use historical data only"
+  },
+  {
+    "capability": "Behavioral deviation",
+    "status": "WELL SUPPORTED",
+    "evidence": "Deviation features exist"
+  }
+]

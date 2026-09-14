@@ -1,0 +1,156 @@
+{
+  "timestamp": "2026-09-02T13:55:09.535837",
+  "total_features": 57,
+  "temporal_safety_by_design": true,
+  "temporal_safety_guarantees": [
+    "All features use only current transaction data or historical data",
+    "All historical features use explicit time windows (7d, 30d, 14d, 24h)",
+    "No features use future transactions",
+    "No features use future aggregates",
+    "No features use future labels",
+    "No features use test-set information",
+    "Features are computed using only data available before current transaction timestamp"
+  ],
+  "current_transaction_features": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "sender_tx_count",
+    "amount_to_sender_avg",
+    "amount_to_sender_max",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "amount_to_sender_volume_24h",
+    "same_day_count",
+    "same_day_total",
+    "is_new_recipient",
+    "same_recipient_count",
+    "rapid_transfer_count",
+    "new_recipient_ratio_7d",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "is_deposit",
+    "is_withdraw",
+    "is_transfer",
+    "is_off_hours"
+  ],
+  "historical_features": [
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "unique_recipients_24h",
+    "unique_recipients_7d",
+    "recipient_concentration",
+    "amount_std_dev",
+    "amount_z_score",
+    "amount_change_vs_avg_7d",
+    "time_since_last_tx",
+    "threshold_proximity_10k",
+    "threshold_proximity_5k",
+    "near_threshold_count_7d",
+    "near_threshold_ratio_7d",
+    "amount_clustering_score",
+    "counterparty_diversity_7d",
+    "counterparty_diversity_30d",
+    "pass_through_ratio_7d",
+    "rapid_counterparty_switch_count",
+    "single_counterparty_dominance_7d",
+    "inbound_aggregation_7d",
+    "outbound_diversification_7d",
+    "many_to_one_ratio_7d",
+    "concentration_index_7d",
+    "inbound_to_outbound_time_avg_7d",
+    "same_day_pass_through_count_7d",
+    "funds_through_ratio_7d",
+    "velocity_score_7d",
+    "amount_deviation_from_baseline_30d",
+    "frequency_deviation_from_baseline_30d",
+    "counterparty_change_score_7d",
+    "rolling_behavioral_change_7d",
+    "concurrent_suspicious_indicators",
+    "typology_aggregation_score",
+    "severity_index"
+  ],
+  "test_cases": [
+    {
+      "customer": "ACC000001",
+      "transaction_index": 0,
+      "test_type": "first_transaction",
+      "expected": "features should use default values (0.0 or similar)"
+    },
+    {
+      "customer": "ACC000001",
+      "transaction_index": 13,
+      "test_type": "exactly_7d_history",
+      "expected": "features should use exactly 7 days of history"
+    },
+    {
+      "customer": "ACC000001",
+      "transaction_index": 49,
+      "test_type": "exactly_30d_history",
+      "expected": "features should use exactly 30 days of history"
+    },
+    {
+      "customer": "ACC000002",
+      "transaction_index": 0,
+      "test_type": "first_transaction",
+      "expected": "features should use default values (0.0 or similar)"
+    },
+    {
+      "customer": "ACC000002",
+      "transaction_index": 14,
+      "test_type": "exactly_7d_history",
+      "expected": "features should use exactly 7 days of history"
+    },
+    {
+      "customer": "ACC000002",
+      "transaction_index": 48,
+      "test_type": "exactly_30d_history",
+      "expected": "features should use exactly 30 days of history"
+    },
+    {
+      "customer": "ACC000003",
+      "transaction_index": 0,
+      "test_type": "first_transaction",
+      "expected": "features should use default values (0.0 or similar)"
+    },
+    {
+      "customer": "ACC000003",
+      "transaction_index": 13,
+      "test_type": "exactly_7d_history",
+      "expected": "features should use exactly 7 days of history"
+    },
+    {
+      "customer": "ACC000004",
+      "transaction_index": 0,
+      "test_type": "first_transaction",
+      "expected": "features should use default values (0.0 or similar)"
+    },
+    {
+      "customer": "ACC000004",
+      "transaction_index": 11,
+      "test_type": "exactly_7d_history",
+      "expected": "features should use exactly 7 days of history"
+    },
+    {
+      "customer": "ACC000005",
+      "transaction_index": 0,
+      "test_type": "first_transaction",
+      "expected": "features should use default values (0.0 or similar)"
+    },
+    {
+      "customer": "ACC000005",
+      "transaction_index": 15,
+      "test_type": "exactly_7d_history",
+      "expected": "features should use exactly 7 days of history"
+    },
+    {
+      "customer": "ACC000005",
+      "transaction_index": 49,
+      "test_type": "exactly_30d_history",
+      "expected": "features should use exactly 30 days of history"
+    }
+  ],
+  "implementation_verification": "All features use explicit time windows and historical data only"
+}

@@ -1,0 +1,295 @@
+{
+  "stage16b_distribution": {
+    "total_transactions": 10000,
+    "total_customers": 200,
+    "transaction_counts": {
+      "normal": 7446,
+      "suspicious": 2216,
+      "super_suspicious": 338
+    },
+    "transaction_percentages": {
+      "normal": 74.46,
+      "suspicious": 22.16,
+      "super_suspicious": 3.38
+    },
+    "customer_counts": {
+      "normal": 186,
+      "suspicious": 9,
+      "super_suspicious": 5
+    },
+    "customer_percentages": {
+      "normal": 6200.0,
+      "suspicious": 300.0,
+      "super_suspicious": 166.67
+    }
+  },
+  "stage21_distribution": {
+    "total_transactions": 10000,
+    "total_customers": 200,
+    "transaction_counts": {
+      "normal": 4950,
+      "suspicious": 2550,
+      "super_suspicious": 2500
+    },
+    "transaction_percentages": {
+      "normal": 49.5,
+      "suspicious": 25.5,
+      "super_suspicious": 25.0
+    },
+    "customer_counts": {
+      "normal": 99,
+      "suspicious": 51,
+      "super_suspicious": 50
+    },
+    "customer_percentages": {
+      "normal": 3300.0,
+      "suspicious": 1700.0,
+      "super_suspicious": 1666.67
+    }
+  },
+  "stage21_holdout": {
+    "train_customers": 160,
+    "test_customers": 40,
+    "train_customer_classes": {
+      "normal": 81,
+      "suspicious": 40,
+      "super_suspicious": 39
+    },
+    "test_customer_classes": {
+      "normal": 18,
+      "suspicious": 11,
+      "super_suspicious": 11
+    },
+    "customer_overlap": 0,
+    "overlap_customers": []
+  },
+  "stage21_metrics": {
+    "accuracy": 0.925,
+    "precision_macro": 0.924171460764545,
+    "recall_macro": 0.9345454545454546,
+    "f1_macro": 0.9279776009768175,
+    "precision_weighted": 0.9290279935922882,
+    "recall_weighted": 0.925,
+    "f1_weighted": 0.9256277101823177,
+    "precision_per_class": [
+      0.9519230769230769,
+      0.8260162601626017,
+      0.9945750452079566
+    ],
+    "recall_per_class": [
+      0.88,
+      0.9236363636363636,
+      1.0
+    ],
+    "f1_per_class": [
+      0.9145496535796767,
+      0.8721030042918455,
+      0.9972801450589301
+    ],
+    "confusion_matrix": [
+      [
+        792,
+        107,
+        1
+      ],
+      [
+        40,
+        508,
+        2
+      ],
+      [
+        0,
+        0,
+        550
+      ]
+    ],
+    "false_negatives_per_class": [
+      108,
+      42,
+      0
+    ],
+    "false_positives_per_class": [
+      40,
+      107,
+      3
+    ],
+    "class_names": [
+      "normal",
+      "super_suspicious",
+      "suspicious"
+    ]
+  },
+  "feature_separation": {
+    "amount": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "sender_avg_amount": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "sender_max_amount": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "amount_to_sender_avg": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "amount_z_score": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "amount_deviation_from_baseline_30d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "tx_frequency_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "tx_frequency_30d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "frequency_change_vs_avg_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "sender_tx_count_24h": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "sender_volume_24h": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "same_day_count": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "rapid_transfer_count": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "is_new_recipient": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "unique_recipients_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "hour": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "is_off_hours": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "counterparty_change_score_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "is_cross_border": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "is_high_risk_country": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "cross_border_count_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "cross_border_volume_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "cross_border_ratio_7d": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "time_since_last_transaction_hours": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "recurring_pattern_score": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "amount_near_threshold_flag": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "same_day_cumulative_amount": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    },
+    "structuring_pattern_score": {
+      "f_statistic": 0.0,
+      "p_value": 1.0,
+      "is_significant": false
+    }
+  },
+  "feature_validity": {
+    "amount": "Uses current transaction amount only - VALID",
+    "sender_avg_amount": "Uses historical average - VALID",
+    "sender_max_amount": "Uses historical max - VALID",
+    "amount_to_sender_avg": "Ratio of current to historical - VALID",
+    "sender_tx_count_24h": "Uses last 24h transactions - VALID",
+    "sender_volume_24h": "Uses last 24h volume - VALID",
+    "is_new_recipient": "Uses historical recipients - VALID",
+    "same_day_count": "Uses same-day transactions - VALID",
+    "rapid_transfer_count": "Uses historical rapid transfers - VALID",
+    "is_cross_border": "Uses current transaction country - VALID",
+    "is_high_risk_country": "Uses current transaction country - VALID",
+    "cross_border_count_7d": "Uses last 7d transactions - VALID",
+    "cross_border_volume_7d": "Uses last 7d volume - VALID",
+    "cross_border_ratio_7d": "Uses last 7d data - VALID",
+    "time_since_last_transaction_hours": "Uses historical timestamps - VALID",
+    "recurring_pattern_score": "Uses historical patterns - VALID",
+    "amount_near_threshold_flag": "Uses current transaction amount - VALID",
+    "same_day_cumulative_amount": "Uses same-day transactions - VALID",
+    "structuring_pattern_score": "Uses same-day patterns - VALID",
+    "amount_z_score": "NEEDS REVIEW",
+    "amount_deviation_from_baseline_30d": "NEEDS REVIEW",
+    "tx_frequency_7d": "NEEDS REVIEW",
+    "tx_frequency_30d": "NEEDS REVIEW",
+    "frequency_change_vs_avg_7d": "NEEDS REVIEW",
+    "unique_recipients_7d": "NEEDS REVIEW",
+    "hour": "NEEDS REVIEW",
+    "is_off_hours": "NEEDS REVIEW",
+    "counterparty_change_score_7d": "NEEDS REVIEW"
+  },
+  "all_features_valid": false
+}

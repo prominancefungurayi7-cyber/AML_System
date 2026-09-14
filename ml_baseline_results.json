@@ -1,0 +1,166 @@
+{
+  "evaluation_timestamp": "2026-09-01T18:26:10.491729+00:00",
+  "dataset_size": 10000,
+  "train_size": 7000,
+  "test_size": 3000,
+  "label_distribution": {
+    "normal": 1295,
+    "suspicious": 4329,
+    "super_suspicious": 4376
+  },
+  "evaluation_a_existing_methodology": {
+    "accuracy": 0.3225,
+    "precision_weighted": 0.6612647628127726,
+    "recall_weighted": 0.3225,
+    "f1_weighted": 0.3240761399718448,
+    "f1_macro": 0.32096095598367974,
+    "per_class_precision": [
+      0.18378146453089245,
+      0.546031746031746,
+      0.9165628891656289
+    ],
+    "per_class_recall": [
+      0.9922779922779923,
+      0.27812427812427815,
+      0.16819012797074953
+    ],
+    "per_class_f1": [
+      0.31012429105828404,
+      0.3685338230792776,
+      0.2842247538134775
+    ],
+    "per_class_support": [
+      1295,
+      4329,
+      4376
+    ],
+    "confusion_matrix": [
+      [
+        1285,
+        10,
+        0
+      ],
+      [
+        3058,
+        1204,
+        67
+      ],
+      [
+        2649,
+        991,
+        736
+      ]
+    ],
+    "false_positives": [
+      5707,
+      1001,
+      67
+    ],
+    "false_negatives": [
+      10,
+      3125,
+      3640
+    ],
+    "suspicious_recall": 0.27812427812427815,
+    "super_suspicious_recall": 0.16819012797074953
+  },
+  "evaluation_b_honest_methodology": {
+    "accuracy": 0.31966666666666665,
+    "precision_weighted": 0.6617125408048746,
+    "recall_weighted": 0.31966666666666665,
+    "f1_weighted": 0.3192716515965699,
+    "f1_macro": 0.3171444724684702,
+    "per_class_precision": [
+      0.18378887841658811,
+      0.5553846153846154,
+      0.9122807017543859
+    ],
+    "per_class_recall": [
+      0.9898477157360406,
+      0.2772657450076805,
+      0.15950920245398773
+    ],
+    "per_class_f1": [
+      0.31001589825119236,
+      0.3698770491803279,
+      0.27154046997389036
+    ],
+    "per_class_support": [
+      394,
+      1302,
+      1304
+    ],
+    "confusion_matrix": [
+      [
+        390,
+        4,
+        0
+      ],
+      [
+        921,
+        361,
+        20
+      ],
+      [
+        811,
+        285,
+        208
+      ]
+    ],
+    "false_positives": [
+      1732,
+      289,
+      20
+    ],
+    "false_negatives": [
+      4,
+      941,
+      1096
+    ],
+    "suspicious_recall": 0.2772657450076805,
+    "super_suspicious_recall": 0.15950920245398773
+  },
+  "feature_importance": {
+    "amount": 0.2220131791377051,
+    "hour": 0.029220839657476603,
+    "is_deposit": 0.020388235861383136,
+    "is_withdraw": 0.010717022022532212,
+    "is_transfer": 0.018339386033697988,
+    "is_self_transfer": 0.012523328994493528,
+    "is_off_hours": 0.026770010973526145,
+    "sender_avg_amount": 0.011860647780048084,
+    "sender_max_amount": 0.010641803560462706,
+    "sender_tx_count": 0.008879831996300044,
+    "amount_to_sender_avg": 0.19379715284633903,
+    "amount_to_sender_max": 0.12110309528921094,
+    "sender_tx_count_24h": 0.007162689783853831,
+    "sender_volume_24h": 0.011204978396769871,
+    "amount_to_sender_volume_24h": 0.08556894435711113,
+    "is_new_recipient": 0.0006081621966671003,
+    "channel_encoded": 0.11284563335517339,
+    "is_large_amount": 0.046463395120632515,
+    "is_structuring_band": 0.004885522196811344,
+    "same_day_count": 0.010409128751624508,
+    "same_day_total": 0.011151756663628864,
+    "same_recipient_count": 0.010125812954933526,
+    "rapid_transfer_count": 0.0009300868013977135,
+    "structuring_indicators": 0.006352883034616382,
+    "layering_indicators": 0.006036472233604411
+  },
+  "anomaly_detector": {
+    "mean_score": -0.04437851209707593,
+    "std_score": 0.04912722632560383,
+    "min_score": -0.18691907261207263,
+    "max_score": 0.09826397707720397,
+    "threshold": -0.11587851805982066,
+    "predicted_anomalies": 240
+  },
+  "limitations": [
+    "Labels are derived from rule engine via map_risk_to_ai_label() - this is label leakage",
+    "No customer-level splitting - same customer patterns may appear in train and test",
+    "No temporal splitting - cannot assess generalization to future periods",
+    "Synthetic data with artificial 70/20/10 distribution may not reflect reality",
+    "Normal scenarios all small amounts - model may learn 'large = suspicious' artificially",
+    "Anomaly detector cannot be properly evaluated without ground-truth anomaly labels"
+  ]
+}

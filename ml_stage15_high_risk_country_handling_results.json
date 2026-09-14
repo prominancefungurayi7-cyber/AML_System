@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-02T13:58:44.073947",
+  "high_risk_country_detectable": false,
+  "reason": "Country information not exported to dataset",
+  "generator_has_country_info": true,
+  "dataset_has_country_info": false,
+  "ground_truth_has_country_info": true,
+  "stage_15_policy": "DO NOT create fake country features",
+  "required_solution": "Generator modification to export country information",
+  "stage_15_constraint": "DO NOT modify generator during Stage 15",
+  "stage_13_observability": "NONE",
+  "stage_15_observability": "NONE",
+  "conclusion": "high_risk_country scenario CANNOT be detected without generator modification"
+}

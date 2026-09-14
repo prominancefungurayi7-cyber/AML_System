@@ -1,0 +1,143 @@
+{
+  "true_class_mapping": {
+    "model_classes": [
+      "0",
+      "1",
+      "2"
+    ],
+    "label_encoder_classes": [
+      "normal",
+      "super_suspicious",
+      "suspicious"
+    ],
+    "mapping": {
+      "0": "normal",
+      "1": "super_suspicious",
+      "2": "suspicious"
+    }
+  },
+  "ai_core_audit": {
+    "fallback_mapping": {
+      "0": "normal",
+      "1": "super_suspicious",
+      "2": "suspicious"
+    },
+    "fallback_correct": true,
+    "true_mapping": {
+      "0": "normal",
+      "1": "super_suspicious",
+      "2": "suspicious"
+    }
+  },
+  "suspicious_prediction": {
+    "features": [
+      9500,
+      3000,
+      10000,
+      3.17,
+      2.0,
+      0.5,
+      30,
+      100,
+      1.5,
+      15,
+      50000,
+      8,
+      5,
+      0,
+      5,
+      14,
+      0,
+      0.3
+    ],
+    "classifier_classes": [
+      "0",
+      "1",
+      "2"
+    ],
+    "predict_proba": [
+      0.14249734758357263,
+      0.2335588447192711,
+      0.6239438076971562
+    ],
+    "argmax": 2,
+    "classes_argmax": 2,
+    "label_encoder_classes": [
+      "normal",
+      "super_suspicious",
+      "suspicious"
+    ],
+    "final_decoded_label": "suspicious"
+  },
+  "severe_prediction": {
+    "features": [
+      100000,
+      3000,
+      10000,
+      33.33,
+      5.0,
+      2.0,
+      200,
+      500,
+      5.0,
+      100,
+      1000000,
+      50,
+      30,
+      1,
+      20,
+      3,
+      1,
+      1.0
+    ],
+    "predict_proba": [
+      0.6993158274730698,
+      0.21583755552221418,
+      0.08484661700471595
+    ],
+    "argmax": 0,
+    "classes_argmax": 0,
+    "final_decoded_label": "normal"
+  },
+  "map_risk_to_ai_label_usage": {
+    "ai_core_usage_count": 2,
+    "used_in_predict_risk_level": false,
+    "server_usage_count": 0
+  },
+  "application_flow": {
+    "steps": [
+      "Transaction enters system",
+      "Feature extraction via transaction_features()",
+      "predict_risk_level() called",
+      "Model loaded via load_ai_model()",
+      "Features passed to model.predict_proba()",
+      "argmax() finds highest probability index",
+      "LabelEncoder.inverse_transform() converts index to label",
+      "Confidence = probabilities[argmax]",
+      "Return (predicted_label, confidence, anomaly_score)",
+      "server.py process_transaction_event() receives prediction",
+      "Confidence thresholds applied (lines 2153-2159)",
+      "Final risk level determined",
+      "UI displays result"
+    ]
+  },
+  "confidence_thresholds": {
+    "super_suspicious": null,
+    "suspicious": null,
+    "normal": null
+  },
+  "threshold_test": {
+    "predicted": "suspicious",
+    "confidence": 0.6239438076971562,
+    "threshold": 0.65,
+    "passes": "False"
+  },
+  "conclusions": {
+    "model_quality_issue": false,
+    "integration_correct": true,
+    "model_predictions": {
+      "suspicious_pattern": "suspicious",
+      "severe_pattern": "normal"
+    }
+  }
+}

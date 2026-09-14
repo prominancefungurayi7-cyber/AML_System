@@ -1,0 +1,114 @@
+{
+  "timestamp": "2026-09-01T22:44:14.525302",
+  "artifact_hashes": {
+    "ml_stage3_dataset.csv": "2a9e20fd27a4cbd9fae20c63e0571e0252ab2623ec1ea5c054a00a5055179024",
+    "ml_stage3_ground_truth.json": "69f1c31af38cc443e63f1981c9e3b9719dc53dce3a1b982be40cccd57eb23f8b",
+    "ml_stage3_metadata.json": "e83f59180e530265bf0836de3db97dbd67852d1a3aeeedc4ae4e84494b8ab66d",
+    "ml_stage3_generator.py": "04969b15bf9c0763c479d5978c842c3a2c7c5944716e0de2f48d2a75cdd99d6f",
+    "ml_stage5_features.csv": "3613ce181447bd6600b8fd489e3f14b70fe70a8f9dd6409315f12e494dce4bc1"
+  },
+  "customer_prevalence": {
+    "total_customers": 200,
+    "customers_with_suspicious": 199,
+    "customers_with_super": 195,
+    "suspicious_pct": 0.995,
+    "super_pct": 0.975,
+    "expected_under_independent": 200.0
+  },
+  "near_duplicate_conflicts": {
+    "total_samples": 10000,
+    "total_possible_unique_pairs": 49995000,
+    "directed_comparisons": 50000,
+    "total_close_pairs": 4354,
+    "same_label_close_pairs": 2404,
+    "conflicting_labels": 1950,
+    "conflict_rate": 0.4479,
+    "exact_duplicate_feature_vectors": 0,
+    "near_identical_pairs": 8
+  },
+  "hidden_variables": [
+    {
+      "name": "customer.profile_type",
+      "influence": "Determines inherent AML typologies",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "STRONGLY REFLECTED"
+    },
+    {
+      "name": "customer.aml_typologies",
+      "influence": "Primary label determinant for high-risk customers",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "PARTIALLY REFLECTED"
+    },
+    {
+      "name": "customer.typology_severity",
+      "influence": "Distinguishes SUSPICIOUS vs SUPER_SUSPICIOUS",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "COMPLETELY INDEPENDENT"
+    },
+    {
+      "name": "scenario_id",
+      "influence": "Determines which AML typology is exhibited",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "STRONGLY REFLECTED"
+    },
+    {
+      "name": "generation_seed",
+      "influence": "Controls randomness in label assignment",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "COMPLETELY INDEPENDENT"
+    },
+    {
+      "name": "is_legitimate_high_value",
+      "influence": "Distinguishes legitimate vs suspicious high-value",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "PARTIALLY REFLECTED"
+    },
+    {
+      "name": "is_borderline_case",
+      "influence": "Marks edge cases that could be misclassified",
+      "in_dataset": "No",
+      "in_features": "No",
+      "observable_fingerprint": "COMPLETELY INDEPENDENT"
+    }
+  ],
+  "root_causes": [
+    {
+      "cause": "B - Weak or stochastic labels",
+      "likelihood": "VERY HIGH",
+      "evidence": "98% of customers get probabilistic labels via random.random(), creating label noise"
+    },
+    {
+      "cause": "C - Labels depend on hidden variables",
+      "likelihood": "HIGH",
+      "evidence": "typology_severity, is_borderline_case are completely independent of observable behavior"
+    },
+    {
+      "cause": "E - Customer-level vs transaction-level mismatch",
+      "likelihood": "MODERATE",
+      "evidence": "Labels mix customer profiles with transaction scenarios"
+    },
+    {
+      "cause": "A - Valid labels but insufficient features",
+      "likelihood": "LOW",
+      "evidence": "Features are comprehensive for observable behavior"
+    },
+    {
+      "cause": "D - Inconsistent labels",
+      "likelihood": "LOW",
+      "evidence": "Labels are consistent with generator logic, just stochastic"
+    },
+    {
+      "cause": "F - Excessively broad definitions",
+      "likelihood": "LOW",
+      "evidence": "Definitions are reasonable, probabilistic assignment is the issue"
+    }
+  ],
+  "label_process": "PROBABILISTIC with hidden variables",
+  "stochastic_labeling_verification": "Case B: Labels are randomly selected, but selected scenarios create observable behavioral differences. However, these differences are too weak to be reliably detected by the 34-feature representation."
+}

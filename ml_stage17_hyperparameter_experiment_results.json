@@ -1,0 +1,324 @@
+{
+  "timestamp": "2026-09-02T23:22:03.185268",
+  "experiment_type": "Stage 17: Controlled Hyperparameter Experiment",
+  "total_features": 18,
+  "feature_names": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours",
+    "counterparty_change_score_7d"
+  ],
+  "train_samples": 8000,
+  "test_samples": 2000,
+  "train_customers": 160,
+  "test_customers": 40,
+  "customer_overlap": 0,
+  "hyperparameter_configs": [
+    {
+      "name": "Champion_Baseline",
+      "hp": {
+        "learning_rate": 0.01,
+        "max_depth": 3,
+        "n_estimators": 500,
+        "subsample": 1.0,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.559010034975471,
+      "cv_std_macro_f1": 0.03683967908834533,
+      "cv_scores": [
+        0.5607964999755726,
+        0.5419201669201669,
+        0.60543062982497,
+        0.49956782430837565,
+        0.5873350538482692
+      ]
+    },
+    {
+      "name": "Lower_LR_More_Trees",
+      "hp": {
+        "learning_rate": 0.005,
+        "max_depth": 3,
+        "n_estimators": 700,
+        "subsample": 1.0,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.5448004141546844,
+      "cv_std_macro_f1": 0.02761449602414898,
+      "cv_scores": [
+        0.5430880102955804,
+        0.5452899404118916,
+        0.5632862953503771,
+        0.49543258618393665,
+        0.5769052385316362
+      ]
+    },
+    {
+      "name": "Higher_LR_Fewer_Trees",
+      "hp": {
+        "learning_rate": 0.02,
+        "max_depth": 3,
+        "n_estimators": 300,
+        "subsample": 1.0,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.563253326500519,
+      "cv_std_macro_f1": 0.04124625912950244,
+      "cv_scores": [
+        0.5682871366796924,
+        0.5386689813425246,
+        0.6183853932152187,
+        0.4996151359036311,
+        0.591309985361528
+      ]
+    },
+    {
+      "name": "Shallower_Trees",
+      "hp": {
+        "learning_rate": 0.01,
+        "max_depth": 2,
+        "n_estimators": 500,
+        "subsample": 1.0,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.4903722509270091,
+      "cv_std_macro_f1": 0.03861575925227711,
+      "cv_scores": [
+        0.5434928927182652,
+        0.4936564597134902,
+        0.4793958327590908,
+        0.4259990458356826,
+        0.5093170236085166
+      ]
+    },
+    {
+      "name": "Deeper_Trees",
+      "hp": {
+        "learning_rate": 0.01,
+        "max_depth": 4,
+        "n_estimators": 500,
+        "subsample": 1.0,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.5667931604968555,
+      "cv_std_macro_f1": 0.03620432178410001,
+      "cv_scores": [
+        0.5734420345852008,
+        0.5406596635215127,
+        0.5973178188940131,
+        0.5121106497916897,
+        0.6104356356918607
+      ]
+    },
+    {
+      "name": "Subsampling",
+      "hp": {
+        "learning_rate": 0.01,
+        "max_depth": 3,
+        "n_estimators": 500,
+        "subsample": 0.8,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.5586445747494535,
+      "cv_std_macro_f1": 0.037488481824472,
+      "cv_scores": [
+        0.5712517139435034,
+        0.5344185658235244,
+        0.6032637266927696,
+        0.49886791664419167,
+        0.5854209506432783
+      ]
+    },
+    {
+      "name": "More_Regularization",
+      "hp": {
+        "learning_rate": 0.01,
+        "max_depth": 3,
+        "n_estimators": 500,
+        "subsample": 1.0,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.5650157331722474,
+      "cv_std_macro_f1": 0.03687931277254593,
+      "cv_scores": [
+        0.5734140275980488,
+        0.5452849747066781,
+        0.6072433013823089,
+        0.5044009190148585,
+        0.5947354431593431
+      ]
+    },
+    {
+      "name": "Combined_Regularized",
+      "hp": {
+        "learning_rate": 0.005,
+        "max_depth": 3,
+        "n_estimators": 700,
+        "subsample": 0.8,
+        "min_samples_split": 10,
+        "min_samples_leaf": 5,
+        "random_state": 42
+      },
+      "cv_mean_macro_f1": 0.5482951610827286,
+      "cv_std_macro_f1": 0.03603487345421374,
+      "cv_scores": [
+        0.5539151419661456,
+        0.5315420146085632,
+        0.5925398779800587,
+        0.4888760792451144,
+        0.5746026916137609
+      ]
+    }
+  ],
+  "best_config": {
+    "name": "Deeper_Trees",
+    "hp": {
+      "learning_rate": 0.01,
+      "max_depth": 4,
+      "n_estimators": 500,
+      "subsample": 1.0,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "random_state": 42
+    },
+    "cv_mean_macro_f1": 0.5667931604968555,
+    "cv_std_macro_f1": 0.03620432178410001
+  },
+  "test_metrics": {
+    "accuracy": 0.772,
+    "macro_f1": 0.4899025235983732,
+    "weighted_f1": 0.7291544891638659,
+    "per_class": {
+      "normal": {
+        "precision": 0.8055087127599775,
+        "recall": 0.9669365721997301,
+        "f1": 0.8788715118061944
+      },
+      "super_suspicious": {
+        "precision": 0.3333333333333333,
+        "recall": 0.25396825396825395,
+        "f1": 0.2882882882882883
+      },
+      "suspicious": {
+        "precision": 0.5491329479768786,
+        "recall": 0.2087912087912088,
+        "f1": 0.30254777070063693
+      }
+    },
+    "confusion_matrix": [
+      [
+        1433,
+        4,
+        45
+      ],
+      [
+        14,
+        16,
+        33
+      ],
+      [
+        332,
+        28,
+        95
+      ]
+    ],
+    "suspicious_false_negatives": 360,
+    "super_suspicious_false_negatives": 47
+  },
+  "champion": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "test_metrics": {
+      "accuracy": 0.7775,
+      "macro_f1": 0.5014950487733087,
+      "weighted_f1": 0.7343579063785308,
+      "per_class": {
+        "normal": {
+          "precision": 0.8058198097369894,
+          "recall": 0.97165991902834,
+          "f1": 0.8810033649434078
+        },
+        "super_suspicious": {
+          "precision": 0.3902439024390244,
+          "recall": 0.25396825396825395,
+          "f1": 0.3076923076923077
+        },
+        "suspicious": {
+          "precision": 0.5755813953488372,
+          "recall": 0.2175824175824176,
+          "f1": 0.3157894736842105
+        }
+      },
+      "confusion_matrix": [
+        [
+          1440,
+          2,
+          40
+        ],
+        [
+          14,
+          16,
+          33
+        ],
+        [
+          333,
+          23,
+          99
+        ]
+      ],
+      "false_positives": [
+        347,
+        25,
+        73
+      ],
+      "false_negatives": [
+        42,
+        47,
+        356
+      ],
+      "super_suspicious_false_negatives": 47
+    }
+  },
+  "comparison": {
+    "accuracy_diff": -0.005499999999999949,
+    "macro_f1_diff": -0.01159252517493553,
+    "weighted_f1_diff": -0.005203417214664885,
+    "suspicious_recall_diff": -0.008791208791208788,
+    "super_suspicious_recall_diff": 0.0,
+    "suspicious_false_negatives_diff": 4,
+    "super_suspicious_false_negatives_diff": 0
+  },
+  "verdict": "MIXED RESULTS - KEEP CHAMPION",
+  "verdict_reason": "New model shows mixed results with trade-offs between metrics."
+}

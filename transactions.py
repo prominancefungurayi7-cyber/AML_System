@@ -14,7 +14,7 @@ Functions:
 """
 
 # Flag to disable rule-based engine for AI-only testing
-_RULE_ENGINE_ENABLED = False
+_RULE_ENGINE_ENABLED = False  # Disabled by default for AI-only testing
 
 RISK_RANK = {
     "normal": 0,

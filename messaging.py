@@ -14,6 +14,7 @@ Customer/Compliance Officer. Features include:
 import json
 from datetime import datetime, timezone
 from typing import Optional, Dict, List, Any, Tuple
+from utils import get_last_insert_id
 
 
 def create_messaging_tables_sql(database_url):
@@ -131,17 +132,15 @@ def send_message(conn, conversation_id: int, sender: str, receiver: str, content
     )
     conn.commit()
     
-    # Get the inserted message without relying on SQLite's last_insert_rowid().
-    # The application runs on MySQL as well, where that function does not
-    # exist; that made a successfully saved message appear to disappear before
-    # it could be emitted back to the browser.
+    # Retrieve the generated primary key using the active database dialect.
+    # MySQL normalizes TIMESTAMP values, so matching the original Python
+    # timestamp string is not reliable after the insert.
+    message_id = get_last_insert_id(conn)
     msg = conn.execute(
         """SELECT id, sender_username, receiver_username, content, status, created_at
            FROM messages
-           WHERE conversation_id=? AND sender_username=? AND receiver_username=?
-             AND content=? AND created_at=?
-           ORDER BY id DESC LIMIT 1""",
-        (conversation_id, sender, receiver, content.strip(), now),
+           WHERE id=?""",
+        (message_id,),
     ).fetchone()
     if msg is None:
         raise RuntimeError("Message was saved but could not be retrieved")

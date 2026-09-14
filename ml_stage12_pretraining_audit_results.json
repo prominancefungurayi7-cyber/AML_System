@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-09-02T13:02:27.528668",
+  "part_1_scenario_count": {
+    "unique_scenarios": 15,
+    "scenario_names": [
+      "behavioral_change",
+      "cash_deposit",
+      "cash_withdrawal",
+      "funnel",
+      "high_risk_country",
+      "layering",
+      "legitimate_high_value",
+      "multiple_typologies",
+      "new_recipient",
+      "normal",
+      "rapid_movement",
+      "severe_funnel",
+      "severe_layering",
+      "severe_structuring",
+      "structuring"
+    ],
+    "scenario_counts": {
+      "normal": 5218,
+      "legitimate_high_value": 1118,
+      "cash_withdrawal": 346,
+      "funnel": 370,
+      "new_recipient": 366,
+      "layering": 393,
+      "behavioral_change": 367,
+      "structuring": 366,
+      "rapid_movement": 359,
+      "high_risk_country": 361,
+      "cash_deposit": 398,
+      "severe_funnel": 75,
+      "severe_structuring": 90,
+      "severe_layering": 89,
+      "multiple_typologies": 84
+    },
+    "category_counts": {
+      "normal": 7446,
+      "suspicious": 2216,
+      "severe": 338
+    },
+    "discrepancy": true
+  },
+  "part_2_ground_truth_provenance": {
+    "label_mismatches": 0,
+    "status": "PASS"
+  },
+  "part_3_hidden_label_determinants": {
+    "scenario_observability": {
+      "normal": "directly observable",
+      "legitimate_high_value": "directly observable",
+      "cash_deposit": "directly observable",
+      "cash_withdrawal": "directly observable",
+      "new_recipient": "directly observable",
+      "structuring": "directly observable",
+      "layering": "directly observable",
+      "funnel": "directly observable",
+      "rapid_movement": "directly observable",
+      "high_risk_country": "NOT observable from 34 features",
+      "behavioral_change": "partially observable",
+      "severe_structuring": "directly observable",
+      "severe_layering": "directly observable",
+      "severe_funnel": "directly observable",
+      "multiple_typologies": "partially observable"
+    },
+    "observability_counts": {
+      "directly observable": 9188,
+      "partially observable": 451,
+      "NOT observable from 34 features": 361
+    },
+    "learnability_limitation_percentage": 3.61,
+    "status": "PASS"
+  },
+  "part_4_temporal_integrity": {
+    "status": "PASS"
+  },
+  "part_5_feature_verification": {
+    "feature_count": 34,
+    "matches_approved_34": true,
+    "is_self_transfer_constant": true,
+    "status": "PASS"
+  },
+  "part_6_feature_label_signal": {
+    "nearest_neighbor_agreement": 0.6904,
+    "status": "PASS"
+  },
+  "overall_status": "PASS"
+}

@@ -1,0 +1,58 @@
+feature,category,scenario_coverage,data_availability,temporal_safety,observability,aml_meaning
+amount,amount,normal/suspicious/severe,AVAILABLE,SAFE,MODERATE,Transaction amount
+sender_avg_amount,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Average transaction amount for sender
+sender_max_amount,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Maximum transaction amount for sender
+sender_tx_count,frequency,normal/suspicious/severe,AVAILABLE,SAFE,STRONG for severe,Total transaction count for sender
+amount_to_sender_avg,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Current amount divided by sender average
+amount_to_sender_max,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Current amount divided by sender maximum
+sender_tx_count_24h,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Transaction count in last 24 hours
+sender_volume_24h,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Total transaction volume in last 24 hours
+amount_to_sender_volume_24h,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Current amount divided by 24h volume
+is_new_recipient,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Binary flag if recipient is new
+same_day_count,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Number of transactions on same day
+same_day_total,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Total transaction amount on same day
+same_recipient_count,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Count of previous transactions to same recipient
+rapid_transfer_count,velocity,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Count of rapid transfers
+hour,timing,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Hour of day
+day_of_week,timing,normal/suspicious/severe,AVAILABLE,SAFE,MODERATE for severe,Day of week
+is_weekend,timing,normal/suspicious/severe,AVAILABLE,SAFE,MODERATE for severe,Binary flag if weekend
+is_deposit,transaction_type,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Binary flag if deposit
+is_withdraw,transaction_type,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Binary flag if withdraw
+is_transfer,transaction_type,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Binary flag if transfer
+is_off_hours,timing,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Binary flag if outside business hours
+time_since_last_tx,timing,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Time since last transaction
+tx_frequency_7d,frequency,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Transaction frequency in last 7 days
+tx_frequency_30d,frequency,normal/suspicious/severe,AVAILABLE,SAFE,STRONG for severe,Transaction frequency in last 30 days
+frequency_change_vs_avg_7d,frequency,normal/suspicious/severe,AVAILABLE,SAFE,MODERATE for severe,Change in frequency vs 7-day average
+unique_recipients_24h,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Number of unique recipients in last 24 hours
+unique_recipients_7d,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Number of unique recipients in last 7 days
+recipient_concentration,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Herfindahl index of recipient concentration
+new_recipient_ratio_7d,recipient,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Ratio of new recipients in last 7 days
+amount_std_dev,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Standard deviation of transaction amounts
+amount_z_score,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Z-score of current amount
+amount_change_vs_avg_7d,amount,normal/suspicious/severe,AVAILABLE,SAFE,WEAK,Change in amount vs 7-day average
+threshold_proximity_10k,structuring,structuring,AVAILABLE,SAFE,MODERATE,Distance from $10,000 CTR threshold
+threshold_proximity_5k,structuring,structuring,AVAILABLE,SAFE,MODERATE,Distance from $5,000 threshold
+near_threshold_count_7d,structuring,structuring,AVAILABLE,SAFE,MODERATE,Count of near-threshold transactions in last 7 days
+near_threshold_ratio_7d,structuring,structuring,AVAILABLE,SAFE,MODERATE,Ratio of near-threshold transactions
+amount_clustering_score,structuring,structuring,AVAILABLE,SAFE,MODERATE,Standard deviation of amounts in last 7 days
+counterparty_diversity_7d,layering,layering,AVAILABLE,SAFE,MODERATE,Number of unique receivers in last 7 days
+counterparty_diversity_30d,layering,layering,AVAILABLE,SAFE,MODERATE,Number of unique receivers in last 30 days
+pass_through_ratio_7d,layering,layering,AVAILABLE,SAFE,MODERATE,Ratio of outbound transfers to total
+rapid_counterparty_switch_count,layering,layering,AVAILABLE,SAFE,MODERATE,Number of counterparty changes in last 7 days
+single_counterparty_dominance_7d,layering,layering,AVAILABLE,SAFE,MODERATE,Maximum percentage to single receiver
+inbound_aggregation_7d,funnel,funnel,AVAILABLE,SAFE,MODERATE,Ratio of deposits to total transactions
+outbound_diversification_7d,funnel,funnel,AVAILABLE,SAFE,MODERATE,Ratio of transfers to total transactions
+many_to_one_ratio_7d,funnel,funnel,AVAILABLE,SAFE,MODERATE,Ratio of unique senders to unique receivers
+concentration_index_7d,funnel,funnel,AVAILABLE,SAFE,MODERATE,Herfindahl index of receiver concentration
+inbound_to_outbound_time_avg_7d,rapid_movement,rapid_movement,AVAILABLE,SAFE,MODERATE,Average time between deposit and transfer
+same_day_pass_through_count_7d,rapid_movement,rapid_movement,AVAILABLE,SAFE,MODERATE,Count of same-day deposit-transfer pairs
+funds_through_ratio_7d,rapid_movement,rapid_movement,AVAILABLE,SAFE,MODERATE,Ratio of outbound to inbound amount
+velocity_score_7d,rapid_movement,rapid_movement,AVAILABLE,SAFE,MODERATE,Average transactions per day
+amount_deviation_from_baseline_30d,behavioral_change,behavioral_change,AVAILABLE,SAFE,MODERATE,Z-score of amount vs 30-day baseline
+frequency_deviation_from_baseline_30d,behavioral_change,behavioral_change,AVAILABLE,SAFE,MODERATE,Z-score of frequency vs 30-day baseline
+counterparty_change_score_7d,behavioral_change,behavioral_change,AVAILABLE,SAFE,MODERATE,Jaccard similarity of receiver sets
+rolling_behavioral_change_7d,behavioral_change,behavioral_change,AVAILABLE,SAFE,MODERATE,Ratio of amount variability change
+concurrent_suspicious_indicators,severe,severe,AVAILABLE,SAFE,STRONG,Count of suspicious indicators present
+typology_aggregation_score,severe,severe,AVAILABLE,SAFE,STRONG,Combined score of typology indicators
+severity_index,severe,severe,AVAILABLE,SAFE,STRONG,Weighted sum of severity-weighted indicators

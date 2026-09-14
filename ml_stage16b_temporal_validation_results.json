@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-02T18:46:33.104953",
+  "validation_type": "temporal",
+  "split_method": "80% train / 20% test by transaction time",
+  "train_transactions": 8000,
+  "test_transactions": 2000,
+  "random_forest": {
+    "config": {
+      "max_depth": 6,
+      "min_samples_split": 20,
+      "min_samples_leaf": 10,
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "train_macro_f1": 0.3997226288865195,
+    "test_macro_f1": 0.3322372304762033,
+    "train_test_gap": 0.0674853984103162
+  },
+  "gradient_boosting": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "train_macro_f1": 0.595110062108055,
+    "test_macro_f1": 0.47637358532409907,
+    "train_test_gap": 0.11873647678395588
+  },
+  "note": "Temporal split can contain customer overlap - this is a known limitation"
+}

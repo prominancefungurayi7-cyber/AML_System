@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-09-02T20:44:17.247021",
+  "verification_type": "Results Integrity Check",
+  "test_samples": 2000,
+  "label_classes": [
+    "normal",
+    "super_suspicious",
+    "suspicious"
+  ],
+  "gradient_boosting": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "random_state": 42
+    },
+    "test_metrics": {
+      "accuracy": 0.7775,
+      "macro_f1": 0.5014950487733087,
+      "weighted_f1": 0.7343579063785308,
+      "per_class": {
+        "normal": {
+          "precision": 0.8058198097369894,
+          "recall": 0.97165991902834,
+          "f1": 0.8810033649434078
+        },
+        "super_suspicious": {
+          "precision": 0.3902439024390244,
+          "recall": 0.25396825396825395,
+          "f1": 0.3076923076923077
+        },
+        "suspicious": {
+          "precision": 0.5755813953488372,
+          "recall": 0.2175824175824176,
+          "f1": 0.3157894736842105
+        }
+      },
+      "confusion_matrix": [
+        [
+          1440,
+          2,
+          40
+        ],
+        [
+          14,
+          16,
+          33
+        ],
+        [
+          333,
+          23,
+          99
+        ]
+      ],
+      "suspicious_false_negatives": 356,
+      "super_suspicious_false_negatives": 47
+    }
+  },
+  "xgboost": {
+    "config": {
+      "learning_rate": 0.01,
+      "max_depth": 3,
+      "n_estimators": 500,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 5,
+      "gamma": 0.1,
+      "reg_alpha": 0.1,
+      "reg_lambda": 1.0,
+      "random_state": 42,
+      "eval_metric": "mlogloss"
+    },
+    "test_metrics": {
+      "accuracy": 0.775,
+      "macro_f1": 0.4957725435479903,
+      "weighted_f1": 0.7263615989161674,
+      "per_class": {
+        "normal": {
+          "precision": 0.801328168234643,
+          "recall": 0.9770580296896086,
+          "f1": 0.8805107935542719
+        },
+        "super_suspicious": {
+          "precision": 0.3829787234042553,
+          "recall": 0.2857142857142857,
+          "f1": 0.32727272727272727
+        },
+        "suspicious": {
+          "precision": 0.5753424657534246,
+          "recall": 0.18461538461538463,
+          "f1": 0.2795341098169717
+        }
+      },
+      "confusion_matrix": [
+        [
+          1448,
+          2,
+          32
+        ],
+        [
+          15,
+          18,
+          30
+        ],
+        [
+          344,
+          27,
+          84
+        ]
+      ],
+      "suspicious_false_negatives": 371,
+      "super_suspicious_false_negatives": 45
+    }
+  },
+  "prediction_comparison": {
+    "total_test_samples": 2000,
+    "identical_predictions": 1954,
+    "different_predictions": 46,
+    "disagreement_percentage": 2.3
+  },
+  "corrected_comparison": {
+    "accuracy_diff": -0.0024999999999999467,
+    "macro_f1_diff": -0.005722505225318475,
+    "weighted_f1_diff": -0.007996307462363461,
+    "suspicious_recall_diff": -0.03296703296703296,
+    "super_suspicious_recall_diff": 0.031746031746031744,
+    "suspicious_false_negatives_diff": 15,
+    "super_suspicious_false_negatives_diff": -2
+  },
+  "corrected_verdict": "MIXED RESULTS",
+  "corrected_verdict_reason": "XGBoost shows mixed results with trade-offs between metrics.",
+  "discrepancy_explanation": "The previous report incorrectly claimed identical confusion matrices. Actual prediction disagreement: 46 samples (2.30%). The confusion matrix shown was likely from XGBoost only."
+}

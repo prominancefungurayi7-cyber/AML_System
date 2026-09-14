@@ -244,91 +244,66 @@ def _value(transaction, key, default=None):
 
 
 def transaction_features(transaction, recent_transactions=None):
-    tx_type = _value(transaction, "transaction_type", "")
+    """
+    Extract 18 features for Stage 16B model integration.
+    Matches the frozen 18-feature set from Stage 16B validation.
+    """
     sender = _value(transaction, "sender_account", "")
     receiver = _value(transaction, "receiver_account", "")
     timestamp = _value(transaction, "timestamp", "")
-    channel = (_value(transaction, "channel", "online") or "online").lower()
     amount = float(_value(transaction, "amount", 0))
     hour = _timestamp_hour(timestamp)
 
-    # Prefer precomputed sequence metrics that are already available on the
-    # transaction payload (for example from the live processing path) and only
-    # fall back to recomputing them from history when needed.
-    has_precomputed_sequence_metrics = any(
-        key in transaction for key in ("same_day_count", "same_day_total", "same_recipient_count", "rapid_transfer_count")
-    )
-
+    # Extract precomputed features from transaction or use defaults
+    sender_avg_amount = float(_value(transaction, "sender_avg_amount", PROFILE_FEATURE_DEFAULTS["sender_avg_amount"]) or 0)
+    sender_max_amount = float(_value(transaction, "sender_max_amount", PROFILE_FEATURE_DEFAULTS["sender_max_amount"]) or 0)
+    sender_tx_count_24h = float(_value(transaction, "sender_tx_count_24h", PROFILE_FEATURE_DEFAULTS["sender_tx_count_24h"]) or 0)
+    sender_volume_24h = float(_value(transaction, "sender_volume_24h", PROFILE_FEATURE_DEFAULTS["sender_volume_24h"]) or 0)
+    is_new_recipient = float(_value(transaction, "is_new_recipient", PROFILE_FEATURE_DEFAULTS["is_new_recipient"]) or 0)
+    
+    # Calculate derived features
+    amount_to_sender_avg = amount / sender_avg_amount if sender_avg_amount > 0 else 1.0
+    amount_z_score = 0.0  # Would need historical data, default to 0
+    amount_deviation_from_baseline_30d = 0.0  # Would need 30-day baseline, default to 0
+    
+    # Frequency features
+    tx_frequency_7d = float(_value(transaction, "tx_frequency_7d", 0) or 0)
+    tx_frequency_30d = float(_value(transaction, "tx_frequency_30d", 0) or 0)
+    frequency_change_vs_avg_7d = 0.0  # Would need historical average, default to 0
+    
+    # Sequence features
     same_day_count = float(_value(transaction, "same_day_count", 0) or 0)
-    same_day_total = float(_value(transaction, "same_day_total", 0) or 0)
-    same_recipient_count = float(_value(transaction, "same_recipient_count", 0) or 0)
     rapid_transfer_count = float(_value(transaction, "rapid_transfer_count", 0) or 0)
+    
+    # Recipient features
+    unique_recipients_7d = float(_value(transaction, "unique_recipients_7d", 0) or 0)
+    
+    # Time features
+    is_off_hours = 1 if hour < 5 or hour >= 23 else 0
+    
+    # Counterparty change score
+    counterparty_change_score_7d = float(_value(transaction, "counterparty_change_score_7d", 0) or 0)
 
-    if not has_precomputed_sequence_metrics and recent_transactions:
-        try:
-            tx_time = datetime.fromisoformat(str(timestamp))
-            for tx in recent_transactions:
-                if tx.get("sender_account") == sender:
-                    try:
-                        tx_timestamp = datetime.fromisoformat(tx.get("timestamp", ""))
-                        # Same day transactions
-                        if tx_time.date() == tx_timestamp.date():
-                            same_day_count += 1
-                            same_day_total += float(tx.get("amount", 0))
-                        # Same recipient in last 24 hours
-                        if (tx_time - tx_timestamp).total_seconds() <= 86400 and tx.get("receiver_account") == receiver:
-                            same_recipient_count += 1
-                        # Rapid transfers (within 10 minutes)
-                        if 0 < (tx_time - tx_timestamp).total_seconds() <= 600:
-                            rapid_transfer_count += 1
-                    except (ValueError, TypeError):
-                        continue
-        except (ValueError, TypeError):
-            pass
-
-    # Structuring detection: multiple small amounts below threshold
-    structuring_indicators = 0
-    if 8000 <= amount <= 9999:  # Below CTR threshold
-        structuring_indicators += 1
-    if same_day_count >= 3:  # Multiple transactions same day
-        structuring_indicators += 1
-
-    # Layering detection: rapid transfers and same recipient
-    layering_indicators = 0
-    if rapid_transfer_count >= 2:
-        layering_indicators += 1
-    if same_recipient_count >= 2:
-        layering_indicators += 1
-    if tx_type == "transfer" and amount >= 5000:
-        layering_indicators += 1
-
+    # Return 18 features in the exact order from Stage 16B
     return [
-        amount,
-        hour,
-        1 if tx_type == "deposit" else 0,
-        1 if tx_type == "withdraw" else 0,
-        1 if tx_type == "transfer" else 0,
-        1 if sender == receiver else 0,
-        1 if hour < 5 or hour >= 23 else 0,
-        float(_value(transaction, "sender_avg_amount", PROFILE_FEATURE_DEFAULTS["sender_avg_amount"]) or 0),
-        float(_value(transaction, "sender_max_amount", PROFILE_FEATURE_DEFAULTS["sender_max_amount"]) or 0),
-        float(_value(transaction, "sender_tx_count", PROFILE_FEATURE_DEFAULTS["sender_tx_count"]) or 0),
-        float(_value(transaction, "amount_to_sender_avg", PROFILE_FEATURE_DEFAULTS["amount_to_sender_avg"]) or 0),
-        float(_value(transaction, "amount_to_sender_max", PROFILE_FEATURE_DEFAULTS["amount_to_sender_max"]) or 0),
-        float(_value(transaction, "sender_tx_count_24h", PROFILE_FEATURE_DEFAULTS["sender_tx_count_24h"]) or 0),
-        float(_value(transaction, "sender_volume_24h", PROFILE_FEATURE_DEFAULTS["sender_volume_24h"]) or 0),
-        float(_value(transaction, "amount_to_sender_volume_24h", PROFILE_FEATURE_DEFAULTS["amount_to_sender_volume_24h"]) or 0),
-        float(_value(transaction, "is_new_recipient", PROFILE_FEATURE_DEFAULTS["is_new_recipient"]) or 0),
-        float(CHANNEL_ENCODING.get(channel, 0)),
-        1 if amount >= 10000 else 0,
-        1 if 8500 <= amount <= 9999 else 0,
-        # New structuring and layering features
-        float(same_day_count),
-        float(same_day_total),
-        float(same_recipient_count),
-        float(rapid_transfer_count),
-        float(structuring_indicators),
-        float(layering_indicators),
+        amount,                                    # 1. amount
+        sender_avg_amount,                         # 2. sender_avg_amount
+        sender_max_amount,                         # 3. sender_max_amount
+        amount_to_sender_avg,                      # 4. amount_to_sender_avg
+        amount_z_score,                            # 5. amount_z_score
+        amount_deviation_from_baseline_30d,         # 6. amount_deviation_from_baseline_30d
+        tx_frequency_7d,                           # 7. tx_frequency_7d
+        tx_frequency_30d,                          # 8. tx_frequency_30d
+        frequency_change_vs_avg_7d,                # 9. frequency_change_vs_avg_7d
+        sender_tx_count_24h,                       # 10. sender_tx_count_24h
+        sender_volume_24h,                         # 11. sender_volume_24h
+        same_day_count,                            # 12. same_day_count
+        rapid_transfer_count,                      # 13. rapid_transfer_count
+        is_new_recipient,                          # 14. is_new_recipient
+        unique_recipients_7d,                      # 15. unique_recipients_7d
+        hour,                                      # 16. hour
+        is_off_hours,                              # 17. is_off_hours
+        counterparty_change_score_7d,              # 18. counterparty_change_score_7d
     ]
 
 
@@ -426,6 +401,9 @@ def load_ai_model():
     bundle = joblib.load(MODEL_PATH)
     if isinstance(bundle, Pipeline):
         return {"classifier": bundle, "anomaly_detector": None, "version": "1.0.0"}
+    # Handle Stage 16B model (GradientBoostingClassifier)
+    if hasattr(bundle, 'predict'):
+        return {"classifier": bundle, "anomaly_detector": None, "version": "16B"}
     return bundle
 
 
@@ -450,6 +428,7 @@ def predict_risk_level(transaction):
 
     classifier = bundle.get("classifier")
     anomaly = bundle.get("anomaly_detector")
+    version = bundle.get("version", "1.0.0")
     features = transaction_features(transaction)
 
     try:
@@ -460,7 +439,23 @@ def predict_risk_level(transaction):
 
     classes = list(classifier.classes_)
     best_index = int(probabilities.argmax())
-    predicted = classes[best_index]
+    
+    # For Stage 16B model, classes are numeric (0, 1, 2), need to convert to labels
+    if version == "16B":
+        # Load label encoder for Stage 16B model
+        label_encoder_path = os.path.join(os.path.dirname(__file__), "aml_label_encoder.pkl")
+        if os.path.exists(label_encoder_path):
+            import pickle
+            with open(label_encoder_path, 'rb') as f:
+                label_encoder = pickle.load(f)
+            predicted = label_encoder.inverse_transform([best_index])[0]
+        else:
+            # Fallback: map numeric to string labels
+            label_map = {0: "normal", 1: "super_suspicious", 2: "suspicious"}
+            predicted = label_map.get(best_index, "normal")
+    else:
+        predicted = classes[best_index]
+    
     confidence = float(probabilities[best_index])
 
     anomaly_score = None

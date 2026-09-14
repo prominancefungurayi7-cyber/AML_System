@@ -1,0 +1,764 @@
+{
+  "timestamp": "2026-09-02T13:39:03.196875",
+  "original_34_features": 33,
+  "features_to_remove": {
+    "is_self_transfer": {
+      "reason": "CONSTANT (always 0.0 in Stage 11 dataset)",
+      "action": "REMOVE from active modeling"
+    }
+  },
+  "new_candidate_features": 25,
+  "final_proposed_features": 57,
+  "final_feature_specification": {
+    "amount": {
+      "definition": "Transaction amount",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "MODERATE"
+    },
+    "sender_avg_amount": {
+      "definition": "Average transaction amount for sender (historical)",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "sender_max_amount": {
+      "definition": "Maximum transaction amount for sender (historical)",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "sender_tx_count": {
+      "definition": "Total transaction count for sender (historical)",
+      "category": "frequency",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "STRONG for severe"
+    },
+    "amount_to_sender_avg": {
+      "definition": "Current amount divided by sender average amount",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current + historical)",
+      "observability": "WEAK"
+    },
+    "amount_to_sender_max": {
+      "definition": "Current amount divided by sender maximum amount",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current + historical)",
+      "observability": "WEAK"
+    },
+    "sender_tx_count_24h": {
+      "definition": "Transaction count in last 24 hours",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 24h)",
+      "observability": "WEAK"
+    },
+    "sender_volume_24h": {
+      "definition": "Total transaction volume in last 24 hours",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 24h)",
+      "observability": "WEAK"
+    },
+    "amount_to_sender_volume_24h": {
+      "definition": "Current amount divided by 24h volume",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current + historical 24h)",
+      "observability": "WEAK"
+    },
+    "is_new_recipient": {
+      "definition": "Binary flag if recipient is new to sender",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "same_day_count": {
+      "definition": "Number of transactions on same day",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical same day)",
+      "observability": "WEAK"
+    },
+    "same_day_total": {
+      "definition": "Total transaction amount on same day",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical same day)",
+      "observability": "WEAK"
+    },
+    "same_recipient_count": {
+      "definition": "Count of previous transactions to same recipient",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "rapid_transfer_count": {
+      "definition": "Count of rapid transfers (inbound to outbound within 1 hour)",
+      "category": "velocity",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "hour": {
+      "definition": "Hour of day (0-23)",
+      "category": "timing",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "WEAK"
+    },
+    "day_of_week": {
+      "definition": "Day of week (0-6)",
+      "category": "timing",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "MODERATE for severe"
+    },
+    "is_weekend": {
+      "definition": "Binary flag if transaction is on weekend",
+      "category": "timing",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "MODERATE for severe"
+    },
+    "is_deposit": {
+      "definition": "Binary flag if transaction type is deposit",
+      "category": "transaction_type",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "WEAK"
+    },
+    "is_withdraw": {
+      "definition": "Binary flag if transaction type is withdraw",
+      "category": "transaction_type",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "WEAK"
+    },
+    "is_transfer": {
+      "definition": "Binary flag if transaction type is transfer",
+      "category": "transaction_type",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "WEAK"
+    },
+    "is_off_hours": {
+      "definition": "Binary flag if transaction is outside business hours",
+      "category": "timing",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current transaction)",
+      "observability": "WEAK"
+    },
+    "time_since_last_tx": {
+      "definition": "Time since last transaction (seconds)",
+      "category": "timing",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "tx_frequency_7d": {
+      "definition": "Transaction frequency in last 7 days",
+      "category": "frequency",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 7d)",
+      "observability": "WEAK"
+    },
+    "tx_frequency_30d": {
+      "definition": "Transaction frequency in last 30 days",
+      "category": "frequency",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 30d)",
+      "observability": "STRONG for severe"
+    },
+    "frequency_change_vs_avg_7d": {
+      "definition": "Change in frequency vs 7-day average",
+      "category": "frequency",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 7d)",
+      "observability": "MODERATE for severe"
+    },
+    "unique_recipients_24h": {
+      "definition": "Number of unique recipients in last 24 hours",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 24h)",
+      "observability": "WEAK"
+    },
+    "unique_recipients_7d": {
+      "definition": "Number of unique recipients in last 7 days",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 7d)",
+      "observability": "WEAK"
+    },
+    "recipient_concentration": {
+      "definition": "Herfindahl index of recipient concentration",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "new_recipient_ratio_7d": {
+      "definition": "Ratio of new recipients in last 7 days",
+      "category": "recipient",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 7d)",
+      "observability": "WEAK"
+    },
+    "amount_std_dev": {
+      "definition": "Standard deviation of transaction amounts",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical)",
+      "observability": "WEAK"
+    },
+    "amount_z_score": {
+      "definition": "Z-score of current amount relative to historical",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (current + historical)",
+      "observability": "WEAK"
+    },
+    "amount_change_vs_avg_7d": {
+      "definition": "Change in amount vs 7-day average",
+      "category": "amount",
+      "scenario_coverage": [
+        "normal",
+        "suspicious",
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE (historical 7d)",
+      "observability": "WEAK"
+    },
+    "threshold_proximity_10k": {
+      "definition": "Distance from $10,000 CTR threshold: |amount - 10000|",
+      "aml_meaning": "Detects transactions intentionally broken to avoid $10,000 reporting threshold",
+      "category": "structuring",
+      "scenario_coverage": [
+        "structuring"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes structuring observable by detecting near-threshold patterns"
+    },
+    "threshold_proximity_5k": {
+      "definition": "Distance from $5,000 threshold: |amount - 5000|",
+      "aml_meaning": "Detects transactions intentionally broken to avoid lower reporting thresholds",
+      "category": "structuring",
+      "scenario_coverage": [
+        "structuring"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes structuring observable by detecting near-threshold patterns"
+    },
+    "near_threshold_count_7d": {
+      "definition": "Count of transactions in last 7 days with amount in [8000, 12000]",
+      "aml_meaning": "Detects repeated near-threshold transactions (structuring pattern)",
+      "category": "structuring",
+      "scenario_coverage": [
+        "structuring"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes structuring observable by detecting clustering near threshold"
+    },
+    "near_threshold_ratio_7d": {
+      "definition": "Ratio of near-threshold transactions to total transactions in last 7 days",
+      "aml_meaning": "Detects high proportion of near-threshold activity",
+      "category": "structuring",
+      "scenario_coverage": [
+        "structuring"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes structuring observable by detecting clustering near threshold"
+    },
+    "amount_clustering_score": {
+      "definition": "Standard deviation of transaction amounts in last 7 days",
+      "aml_meaning": "Low variance indicates intentional amount clustering (structuring)",
+      "category": "structuring",
+      "scenario_coverage": [
+        "structuring"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes structuring observable by detecting amount clustering"
+    },
+    "counterparty_diversity_7d": {
+      "definition": "Number of unique receiver accounts in last 7 days",
+      "aml_meaning": "High diversity indicates layering (funds moving through many accounts)",
+      "category": "layering",
+      "scenario_coverage": [
+        "layering"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes layering observable by detecting counterparty diversity"
+    },
+    "counterparty_diversity_30d": {
+      "definition": "Number of unique receiver accounts in last 30 days",
+      "aml_meaning": "High diversity indicates layering (funds moving through many accounts)",
+      "category": "layering",
+      "scenario_coverage": [
+        "layering"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes layering observable by detecting counterparty diversity"
+    },
+    "pass_through_ratio_7d": {
+      "definition": "Ratio of outbound transfers to total transactions in last 7 days",
+      "aml_meaning": "High pass-through ratio indicates layering (funds moving through account)",
+      "category": "layering",
+      "scenario_coverage": [
+        "layering"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes layering observable by detecting pass-through behavior"
+    },
+    "rapid_counterparty_switch_count": {
+      "definition": "Number of times receiver account changes in last 7 days",
+      "aml_meaning": "Frequent counterparty switches indicate layering",
+      "category": "layering",
+      "scenario_coverage": [
+        "layering"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes layering observable by detecting rapid counterparty changes"
+    },
+    "single_counterparty_dominance_7d": {
+      "definition": "Maximum percentage of transactions to single receiver in last 7 days",
+      "aml_meaning": "Low dominance indicates layering (funds distributed across many)",
+      "category": "layering",
+      "scenario_coverage": [
+        "layering"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes layering observable by detecting lack of counterparty concentration"
+    },
+    "inbound_aggregation_7d": {
+      "definition": "Ratio of deposits to total transactions in last 7 days",
+      "aml_meaning": "High inbound ratio indicates funnel (funds from many sources)",
+      "category": "funnel",
+      "scenario_coverage": [
+        "funnel"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes funnel observable by detecting inbound aggregation"
+    },
+    "outbound_diversification_7d": {
+      "definition": "Ratio of transfers to total transactions in last 7 days",
+      "aml_meaning": "High outbound ratio indicates funnel (funds distributed to many)",
+      "category": "funnel",
+      "scenario_coverage": [
+        "funnel"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes funnel observable by detecting outbound diversification"
+    },
+    "many_to_one_ratio_7d": {
+      "definition": "Ratio of unique senders to unique receivers in last 7 days (network perspective)",
+      "aml_meaning": "Low ratio indicates funnel (many senders to few receivers)",
+      "category": "funnel",
+      "scenario_coverage": [
+        "funnel"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes funnel observable by detecting many-to-one patterns"
+    },
+    "concentration_index_7d": {
+      "definition": "Herfindahl index of receiver concentration in last 7 days",
+      "aml_meaning": "High concentration indicates funnel (funds concentrated to few receivers)",
+      "category": "funnel",
+      "scenario_coverage": [
+        "funnel"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes funnel observable by detecting receiver concentration"
+    },
+    "inbound_to_outbound_time_avg_7d": {
+      "definition": "Average time between deposit and subsequent transfer in last 7 days",
+      "aml_meaning": "Short average time indicates rapid movement (funds pass through quickly)",
+      "category": "rapid_movement",
+      "scenario_coverage": [
+        "rapid_movement"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes rapid movement observable by detecting quick pass-through"
+    },
+    "same_day_pass_through_count_7d": {
+      "definition": "Count of deposit-transfer pairs occurring on same day in last 7 days",
+      "aml_meaning": "High count indicates rapid movement (funds pass through same day)",
+      "category": "rapid_movement",
+      "scenario_coverage": [
+        "rapid_movement"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes rapid movement observable by detecting same-day pass-through"
+    },
+    "funds_through_ratio_7d": {
+      "definition": "Ratio of outbound amount to inbound amount in last 7 days",
+      "aml_meaning": "High ratio indicates rapid movement (most inbound funds passed through)",
+      "category": "rapid_movement",
+      "scenario_coverage": [
+        "rapid_movement"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes rapid movement observable by detecting funds pass-through"
+    },
+    "velocity_score_7d": {
+      "definition": "Average number of transactions per day in last 7 days",
+      "aml_meaning": "High velocity indicates rapid movement",
+      "category": "rapid_movement",
+      "scenario_coverage": [
+        "rapid_movement"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes rapid movement observable by detecting high transaction velocity"
+    },
+    "amount_deviation_from_baseline_30d": {
+      "definition": "Z-score of current amount relative to 30-day historical mean",
+      "aml_meaning": "High deviation indicates sudden change in amount behavior",
+      "category": "behavioral_change",
+      "scenario_coverage": [
+        "behavioral_change"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes behavioral change observable by detecting amount deviation"
+    },
+    "frequency_deviation_from_baseline_30d": {
+      "definition": "Z-score of current transaction count relative to 30-day historical mean",
+      "aml_meaning": "High deviation indicates sudden change in frequency behavior",
+      "category": "behavioral_change",
+      "scenario_coverage": [
+        "behavioral_change"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes behavioral change observable by detecting frequency deviation"
+    },
+    "counterparty_change_score_7d": {
+      "definition": "Jaccard similarity between current 7-day and previous 7-day receiver sets",
+      "aml_meaning": "Low similarity indicates sudden change in counterparty behavior",
+      "category": "behavioral_change",
+      "scenario_coverage": [
+        "behavioral_change"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes behavioral change observable by detecting counterparty change"
+    },
+    "rolling_behavioral_change_7d": {
+      "definition": "Standard deviation of amounts in last 7 days divided by standard deviation in previous 7 days",
+      "aml_meaning": "High ratio indicates sudden change in amount variability",
+      "category": "behavioral_change",
+      "scenario_coverage": [
+        "behavioral_change"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes behavioral change observable by detecting variability change"
+    },
+    "concurrent_suspicious_indicators": {
+      "definition": "Count of suspicious behavioral indicators present simultaneously",
+      "aml_meaning": "High count indicates multiple AML typologies (severe scenario)",
+      "category": "severe",
+      "scenario_coverage": [
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes severe scenarios observable by aggregating suspicious indicators"
+    },
+    "typology_aggregation_score": {
+      "definition": "Combined score based on structuring + layering + funnel + rapid_movement indicators",
+      "aml_meaning": "High score indicates multiple AML typologies (severe scenario)",
+      "category": "severe",
+      "scenario_coverage": [
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes severe scenarios observable by aggregating typology indicators"
+    },
+    "severity_index": {
+      "definition": "Weighted sum of suspicious indicators based on severity weights",
+      "aml_meaning": "High index indicates severe scenario (multiple typologies)",
+      "category": "severe",
+      "scenario_coverage": [
+        "severe"
+      ],
+      "data_availability": "AVAILABLE",
+      "temporal_safety": "SAFE",
+      "observability": "Makes severe scenarios observable by aggregating severity-weighted indicators"
+    }
+  },
+  "scenario_feature_coverage": {
+    "structuring": [
+      "threshold_proximity_10k",
+      "threshold_proximity_5k",
+      "near_threshold_count_7d",
+      "near_threshold_ratio_7d",
+      "amount_clustering_score"
+    ],
+    "layering": [
+      "counterparty_diversity_7d",
+      "counterparty_diversity_30d",
+      "pass_through_ratio_7d",
+      "rapid_counterparty_switch_count",
+      "single_counterparty_dominance_7d"
+    ],
+    "funnel": [
+      "inbound_aggregation_7d",
+      "outbound_diversification_7d",
+      "many_to_one_ratio_7d",
+      "concentration_index_7d"
+    ],
+    "rapid_movement": [
+      "inbound_to_outbound_time_avg_7d",
+      "same_day_pass_through_count_7d",
+      "funds_through_ratio_7d",
+      "velocity_score_7d"
+    ],
+    "behavioral_change": [
+      "amount_deviation_from_baseline_30d",
+      "frequency_deviation_from_baseline_30d",
+      "counterparty_change_score_7d",
+      "rolling_behavioral_change_7d"
+    ],
+    "high_risk_country": [],
+    "severe": [
+      "amount",
+      "sender_avg_amount",
+      "sender_max_amount",
+      "sender_tx_count",
+      "amount_to_sender_avg",
+      "amount_to_sender_max",
+      "sender_tx_count_24h",
+      "sender_volume_24h",
+      "amount_to_sender_volume_24h",
+      "is_new_recipient",
+      "same_day_count",
+      "same_day_total",
+      "same_recipient_count",
+      "rapid_transfer_count",
+      "hour",
+      "day_of_week",
+      "is_weekend",
+      "is_deposit",
+      "is_withdraw",
+      "is_transfer",
+      "is_off_hours",
+      "time_since_last_tx",
+      "tx_frequency_7d",
+      "tx_frequency_30d",
+      "frequency_change_vs_avg_7d",
+      "unique_recipients_24h",
+      "unique_recipients_7d",
+      "recipient_concentration",
+      "new_recipient_ratio_7d",
+      "amount_std_dev",
+      "amount_z_score",
+      "amount_change_vs_avg_7d",
+      "concurrent_suspicious_indicators",
+      "typology_aggregation_score",
+      "severity_index"
+    ]
+  },
+  "baseline_observability": {
+    "structuring": "NONE",
+    "layering": "WEAK",
+    "funnel": "NONE",
+    "rapid_movement": "WEAK",
+    "behavioral_change": "NONE",
+    "high_risk_country": "NONE",
+    "severe": "MODERATE"
+  },
+  "expected_observability": {
+    "structuring": "MODERATE (threshold proximity, clustering)",
+    "layering": "MODERATE (counterparty diversity, pass-through)",
+    "funnel": "MODERATE (inbound aggregation, concentration)",
+    "rapid_movement": "MODERATE (pass-through timing, velocity)",
+    "behavioral_change": "MODERATE (deviation from baseline)",
+    "high_risk_country": "NONE (requires generator modification)",
+    "severe": "STRONG (aggregation of multiple indicators)"
+  },
+  "critical_limitation": "high_risk_country requires generator modification to export country information"
+}

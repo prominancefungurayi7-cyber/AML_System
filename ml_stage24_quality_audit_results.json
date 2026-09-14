@@ -1,0 +1,100 @@
+{
+  "safety": {
+    "status": "FAIL",
+    "failures": [
+      "Label-derived feature present: ground_truth_label"
+    ],
+    "warnings": []
+  },
+  "quality": {
+    "status": "PASS",
+    "failures": [],
+    "warnings": [
+      "Train normal distribution 80.00% outside target 88%\u00b12%",
+      "Train suspicious distribution 13.33% outside target 8%\u00b11%",
+      "Train super-suspicious distribution 6.67% outside target 4%\u00b11%",
+      "Weak signal 423.33% outside target 20%\u00b110%"
+    ],
+    "metrics": {
+      "train_normal_pct": 0.8,
+      "train_suspicious_pct": 0.13333333333333333,
+      "train_super_suspicious_pct": 0.06666666666666667,
+      "dev_normal_pct": 0.8,
+      "dev_suspicious_pct": 0.13333333333333333,
+      "dev_super_suspicious_pct": 0.06666666666666667,
+      "test_normal_pct": 0.8,
+      "test_suspicious_pct": 0.13333333333333333,
+      "test_super_suspicious_pct": 0.06666666666666667,
+      "train_customers": 240,
+      "dev_customers": 30,
+      "test_customers": 30,
+      "signal_strong_pct": 0.26666666666666666,
+      "signal_moderate_pct": 0.5,
+      "signal_weak_pct": 4.233333333333333,
+      "hard_negative_count": 739
+    }
+  },
+  "statistical": {
+    "status": "PASS",
+    "failures": [],
+    "warnings": [
+      "Mean mutual information 0.0441 below 0.1",
+      "Low variance features: ['is_new_recipient', 'recurring_pattern_score', 'structuring_pattern_score']",
+      "High correlations found: 5 pairs"
+    ],
+    "metrics": {
+      "significant_features_count": "16",
+      "total_features": 32,
+      "significant_feature_ratio": 0.5,
+      "mean_mutual_information": 0.04414306153552704
+    }
+  },
+  "approval": {
+    "status": "FAIL",
+    "failures": [
+      "Label-derived feature present: ground_truth_label"
+    ],
+    "warnings": [
+      "Train normal distribution 80.00% outside target 88%\u00b12%",
+      "Train suspicious distribution 13.33% outside target 8%\u00b11%",
+      "Train super-suspicious distribution 6.67% outside target 4%\u00b11%",
+      "Weak signal 423.33% outside target 20%\u00b110%",
+      "Mean mutual information 0.0441 below 0.1",
+      "Low variance features: ['is_new_recipient', 'recurring_pattern_score', 'structuring_pattern_score']",
+      "High correlations found: 5 pairs"
+    ],
+    "allowed_to_proceed": false
+  },
+  "chapter1": {
+    "capabilities": {
+      "cross_border_laundering": {
+        "supported": true,
+        "evidence": "931 cross-border transactions, 11143 high-risk"
+      },
+      "trade_based_money_laundering": {
+        "supported": "partial",
+        "evidence": "Transaction-level patterns only (large international, timing)",
+        "limitations": "Cannot detect invoice verification or trade mis-invoicing without invoice/trade data"
+      },
+      "cash_based_laundering": {
+        "supported": true,
+        "evidence": "534 near-threshold transactions (structuring/smurfing)"
+      },
+      "complex_patterns_over_time": {
+        "supported": true,
+        "evidence": "10 transactions with structuring patterns"
+      },
+      "real_time_monitoring": {
+        "supported": true,
+        "evidence": "All features use historical data only, no future information required"
+      },
+      "behavioral_deviation": {
+        "supported": true,
+        "evidence": "666 transactions with amount deviation (z-score > 2)"
+      }
+    },
+    "limitations": [
+      "Trade-based AML: No invoice/trade document data for full capability"
+    ]
+  }
+}

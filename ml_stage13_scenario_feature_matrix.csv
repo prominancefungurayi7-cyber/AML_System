@@ -1,0 +1,16 @@
+scenario,true_class,count,pred_normal_rf,pred_suspicious_rf,pred_super_rf,recall_rf,recall_gb
+normal,normal,1042,1038,4,0,0.9962,0.9981
+legitimate_high_value,normal,205,204,1,0,0.9951,1.0000
+layering,suspicious,88,83,5,0,0.0568,0.0909
+cash_deposit,normal,86,86,0,0,1.0000,1.0000
+high_risk_country,suspicious,81,76,5,0,0.0617,0.0741
+new_recipient,normal,79,79,0,0,1.0000,1.0000
+behavioral_change,suspicious,77,73,4,0,0.0519,0.0649
+funnel,suspicious,74,71,3,0,0.0405,0.0541
+cash_withdrawal,normal,70,70,0,0,1.0000,1.0000
+structuring,suspicious,68,66,2,0,0.0294,0.0441
+rapid_movement,suspicious,67,64,3,0,0.0448,0.0746
+severe_structuring,super_suspicious,18,13,0,5,0.2778,0.3889
+severe_layering,super_suspicious,18,13,0,5,0.2778,0.3333
+multiple_typologies,super_suspicious,14,10,0,4,0.2857,0.3571
+severe_funnel,super_suspicious,13,9,0,4,0.3077,0.3846

@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-09-02T18:43:15.605983",
+  "total_features": 18,
+  "feature_names": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours",
+    "counterparty_change_score_7d"
+  ],
+  "total_transactions": 10000,
+  "total_customers": 200,
+  "feature_descriptions": {
+    "amount": "Transaction amount",
+    "sender_avg_amount": "Average transaction amount for sender (historical)",
+    "sender_max_amount": "Maximum transaction amount for sender (historical)",
+    "amount_to_sender_avg": "Current amount divided by sender average amount",
+    "amount_z_score": "Z-score of current amount relative to historical",
+    "amount_deviation_from_baseline_30d": "Z-score of current amount relative to 30-day historical mean",
+    "tx_frequency_7d": "Transaction frequency in last 7 days",
+    "tx_frequency_30d": "Transaction frequency in last 30 days",
+    "frequency_change_vs_avg_7d": "Change in frequency vs 7-day average",
+    "sender_tx_count_24h": "Transaction count in last 24 hours",
+    "sender_volume_24h": "Total transaction volume in last 24 hours",
+    "same_day_count": "Number of transactions on same day",
+    "rapid_transfer_count": "Count of rapid transfers (inbound to outbound within 1 hour)",
+    "is_new_recipient": "Binary flag if recipient is new to sender",
+    "unique_recipients_7d": "Number of unique recipients in last 7 days",
+    "hour": "Hour of day (0-23)",
+    "is_off_hours": "Binary flag if transaction is outside business hours",
+    "counterparty_change_score_7d": "Jaccard similarity between current 7d and previous 7d receiver sets"
+  },
+  "temporal_safety": {
+    "current_transaction_features": [
+      "amount",
+      "hour",
+      "is_off_hours"
+    ],
+    "historical_features": [
+      "sender_avg_amount",
+      "sender_max_amount",
+      "amount_to_sender_avg",
+      "amount_z_score",
+      "amount_deviation_from_baseline_30d",
+      "tx_frequency_7d",
+      "tx_frequency_30d",
+      "frequency_change_vs_avg_7d",
+      "sender_tx_count_24h",
+      "sender_volume_24h",
+      "same_day_count",
+      "rapid_transfer_count",
+      "is_new_recipient",
+      "unique_recipients_7d",
+      "counterparty_change_score_7d"
+    ]
+  },
+  "label_independence": "All features are label-independent - no use of ground_truth_label, scenario_id, or any target-derived variable"
+}
