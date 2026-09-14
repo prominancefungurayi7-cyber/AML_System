@@ -188,8 +188,10 @@ def get_schema_sql(database_url):
         destination_country {text_type} DEFAULT 'ZW',
         ctr_required INTEGER DEFAULT 0,
         sar_required INTEGER DEFAULT 0,
+        agent_id {pk_type},
         FOREIGN KEY (sender_account) REFERENCES users(account_number),
-        FOREIGN KEY (receiver_account) REFERENCES users(account_number)
+        FOREIGN KEY (receiver_account) REFERENCES users(account_number),
+        FOREIGN KEY (agent_id) REFERENCES agents(id)
     );
 
     CREATE TABLE IF NOT EXISTS alerts (
@@ -269,6 +271,17 @@ def get_schema_sql(database_url):
         added_by {text_type},
         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+
+    CREATE TABLE IF NOT EXISTS agents (
+        id {pk_type} PRIMARY KEY {ai},
+        agent_code {text_type} UNIQUE NOT NULL,
+        agent_name {text_type} NOT NULL,
+        location {text_type},
+        region {text_type},
+        city {text_type},
+        status {text_type} DEFAULT 'active',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
     """
     
     # MySQL doesn't support IF NOT EXISTS for indexes, handle separately
@@ -279,6 +292,9 @@ def get_schema_sql(database_url):
     CREATE INDEX IF NOT EXISTS idx_transactions_sender ON transactions(sender_account);
     CREATE INDEX IF NOT EXISTS idx_transactions_receiver ON transactions(receiver_account);
     CREATE INDEX IF NOT EXISTS idx_transactions_timestamp ON transactions(timestamp);
+    CREATE INDEX IF NOT EXISTS idx_transactions_agent ON transactions(agent_id);
+    CREATE INDEX IF NOT EXISTS idx_agents_region ON agents(region);
+    CREATE INDEX IF NOT EXISTS idx_agents_city ON agents(city);
     CREATE INDEX IF NOT EXISTS idx_alerts_account ON alerts(account_number);
     CREATE INDEX IF NOT EXISTS idx_alerts_status ON alerts(status);
     CREATE INDEX IF NOT EXISTS idx_activity_user ON system_activity_log(user_id);

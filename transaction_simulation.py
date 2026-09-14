@@ -399,7 +399,7 @@ def _parse_timestamp(value):
         return datetime.now(timezone.utc)
 
 
-def _simulation_transaction(label, users):
+def _simulation_transaction(label, users, agents=None):
     """Generate one transaction that reflects laundering typologies."""
     if label == "normal":
         scenario = random.choice(NORMAL_TRANSACTION_SCENARIOS)
@@ -433,11 +433,16 @@ def _simulation_transaction(label, users):
     if tx_type == "transfer" and len(users) > 1:
         recipient = random.choice([user for user in users if user["id"] != sender["id"]])
 
+    # Assign agent if agents are available
+    agent_id = None
+    if agents and len(agents) > 0:
+        agent_id = random.choice(agents)["id"]
+
     timestamp = _simulation_timestamp(hour)
     return [
         (
             sender, recipient, tx_type, amount, timestamp,
-            scenario["channel"], description, scenario_reason, dest_country,
+            scenario["channel"], description, scenario_reason, dest_country, agent_id,
         )
     ]
 
@@ -606,3 +611,158 @@ def _ai_profile_for_transaction(conn, transaction_id, sender_account, receiver_a
     })
 
     return profile
+
+
+# Agent scenario generation for agent behaviour analysis
+# These scenarios define ground-truth agent behaviour patterns independent of AML rules
+
+AGENT_SCENARIOS = {
+    "normal_agent_usage": {
+        "description": "Normal agent usage - wallets occasionally use different agents",
+        "agent_distribution": "diverse",
+        "wallet_agent_ratio": 3.0,  # Each wallet uses ~3 different agents
+        "typology": "normal"
+    },
+    "agent_concentration": {
+        "description": "Agent concentration - several wallets repeatedly use the same agent",
+        "agent_distribution": "concentrated",
+        "wallet_agent_ratio": 0.2,  # Many wallets share few agents
+        "typology": "suspicious"
+    },
+    "suspicious_shared_agent": {
+        "description": "Suspicious shared-agent activity - multiple suspicious wallets use the same agent",
+        "agent_distribution": "highly_concentrated",
+        "wallet_agent_ratio": 0.1,  # Many suspicious wallets share one agent
+        "typology": "suspicious"
+    },
+    "agent_network": {
+        "description": "Agent-network behaviour - group of wallets uses same small group of agents",
+        "agent_distribution": "clustered",
+        "wallet_agent_ratio": 0.5,  # Wallets cluster around agent groups
+        "typology": "suspicious"
+    },
+    "regional_concentration": {
+        "description": "Regional concentration - suspicious activity in specific regions",
+        "agent_distribution": "regional",
+        "wallet_agent_ratio": 0.3,
+        "typology": "suspicious"
+    },
+    "temporal_agent_burst": {
+        "description": "Temporal agent behaviour - agent processes burst of transactions in short period",
+        "agent_distribution": "temporal",
+        "wallet_agent_ratio": 1.0,
+        "typology": "suspicious"
+    }
+}
+
+
+def generate_agents(conn, num_agents=20):
+    """
+    Generate synthetic agent records for testing.
+    
+    Args:
+        conn: Database connection
+        num_agents: Number of agents to generate
+    
+    Returns:
+        List of agent dictionaries
+    """
+    regions = ["Harare", "Bulawayo", "Mutare", "Gweru", "Masvingo", "Chinhoyi", "Marondera"]
+    cities = {
+        "Harare": ["Harare CBD", "Borrowdale", "Avondale", "Mbare", "Highfield"],
+        "Bulawayo": ["Bulawayo CBD", "Nkulumane", "Mzilikazi", "Pumula"],
+        "Mutare": ["Mutare CBD", "Sakubva", "Dangamvura"],
+        "Gweru": ["Gweru CBD", "Midlands State University"],
+        "Masvingo": ["Masvingo CBD", "Mucheke"],
+        "Chinhoyi": ["Chinhoyi CBD"],
+        "Marondera": ["Marondera CBD"]
+    }
+    
+    agents = []
+    for i in range(num_agents):
+        region = random.choice(regions)
+        city = random.choice(cities[region])
+        
+        agent_code = f"AGT{i+1:04d}"
+        agent_name = f"Agent {i+1} - {city}"
+        
+        agent_id = None
+        try:
+            from agents import create_agent
+            agent_id = create_agent(
+                conn,
+                agent_code=agent_code,
+                agent_name=agent_name,
+                location=city,
+                region=region,
+                city=city,
+                status='active'
+            )
+        except:
+            # If agents module not available, create mock agent
+            agent_id = i + 1
+        
+        agents.append({
+            "id": agent_id,
+            "agent_code": agent_code,
+            "agent_name": agent_name,
+            "location": city,
+            "region": region,
+            "city": city,
+            "status": "active"
+        })
+    
+    return agents
+
+
+def assign_agent_to_transaction(scenario_type, agents, wallet_id=None):
+    """
+    Assign an agent to a transaction based on scenario type.
+    
+    Args:
+        scenario_type: Type of agent scenario (from AGENT_SCENARIOS)
+        agents: List of available agents
+        wallet_id: Wallet identifier for consistent assignment
+    
+    Returns:
+        Agent ID or None
+    """
+    if not agents or len(agents) == 0:
+        return None
+    
+    scenario = AGENT_SCENARIOS.get(scenario_type, AGENT_SCENARIOS["normal_agent_usage"])
+    
+    if scenario["agent_distribution"] == "diverse":
+        # Normal: random agent assignment
+        return random.choice(agents)["id"]
+    
+    elif scenario["agent_distribution"] == "concentrated":
+        # Concentrated: bias toward first few agents
+        if random.random() < 0.7:
+            return agents[random.randint(0, min(4, len(agents)-1))]["id"]
+        return random.choice(agents)["id"]
+    
+    elif scenario["agent_distribution"] == "highly_concentrated":
+        # Highly concentrated: mostly use first agent
+        if random.random() < 0.9:
+            return agents[0]["id"]
+        return random.choice(agents)["id"]
+    
+    elif scenario["agent_distribution"] == "clustered":
+        # Clustered: use small group of agents
+        cluster_start = (wallet_id or 0) % max(1, len(agents) // 3)
+        cluster_agents = agents[cluster_start:cluster_start + 3]
+        return random.choice(cluster_agents)["id"]
+    
+    elif scenario["agent_distribution"] == "regional":
+        # Regional: bias toward agents in same region
+        regional_agents = [a for a in agents if a["region"] == agents[0]["region"]]
+        if regional_agents and random.random() < 0.8:
+            return random.choice(regional_agents)["id"]
+        return random.choice(agents)["id"]
+    
+    elif scenario["agent_distribution"] == "temporal":
+        # Temporal: use same agent for burst
+        return agents[0]["id"]
+    
+    return random.choice(agents)["id"]

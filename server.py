@@ -3155,6 +3155,8 @@ def create_transaction():
 
     recipient_account = normalize_account_number(request.form.get("recipient", ""))
 
+    agent_id_str = request.form.get("agent_id", "")
+
 
 
     if tx_type not in VALID_TRANSACTION_TYPES:
@@ -3207,6 +3209,22 @@ def create_transaction():
 
 
 
+    # Validate agent_id if provided
+    agent_id = None
+    if agent_id_str:
+        try:
+            agent_id = int(agent_id_str)
+            # Verify agent exists
+            agent_check = get_db().execute("SELECT id FROM agents WHERE id=?", (agent_id,)).fetchone()
+            if not agent_check:
+                flash("Invalid agent ID.")
+                return redirect(url_for("customer_dashboard"))
+        except ValueError:
+            flash("Invalid agent ID format.")
+            return redirect(url_for("customer_dashboard"))
+
+
+
     timestamp = datetime.now(timezone.utc).isoformat()
 
     sender_account = user["account_number"]
@@ -3221,13 +3239,13 @@ def create_transaction():
 
         INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
 
-            currency, channel, timestamp, status, risk_score, risk_level, description)
+            currency, channel, timestamp, status, risk_score, risk_level, description, agent_id)
 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
 
         """,
 
-        (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp, 'Completed', 0, 'normal', 'Initiated'),
+        (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp, 'Completed', 0, 'normal', 'Initiated', agent_id),
 
     )
 
@@ -3896,7 +3914,7 @@ def generate_transactions():
             transactions = _simulation_transaction(label, users)
             for (
                 sender, recipient, tx_type, amount, timestamp,
-                channel, description, _scenario_reason, dest_country,
+                channel, description, _scenario_reason, dest_country, agent_id,
             ) in transactions:
                 sender_account = sender["account_number"]
                 receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
@@ -3905,11 +3923,11 @@ def generate_transactions():
                     """
                     INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
                         currency, channel, timestamp, status, risk_score, risk_level, description,
-                        destination_country, generated_label)
+                        destination_country, generated_label, agent_id)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
                     """,
                     (
-                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country, label,
+                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country, label, agent_id,
                     ),
                 )
 
@@ -4246,13 +4264,60 @@ def api_transactions():
 
     rows = get_db().execute(
 
-        "SELECT * FROM transactions ORDER BY id DESC LIMIT ? OFFSET ?",
+        """
+        SELECT t.*, 
+               a.id as agent_id,
+               a.agent_code as agent_code,
+               a.agent_name as agent_name,
+               a.location as agent_location,
+               a.region as agent_region,
+               a.city as agent_city
+        FROM transactions t
+        LEFT JOIN agents a ON t.agent_id = a.id
+        ORDER BY t.id DESC LIMIT ? OFFSET ?
+        """,
 
         (PAGE_SIZE, offset),
 
     ).fetchall()
 
     return jsonify(serialize_rows(rows))
+
+
+
+@app.route("/api/v1/agents")
+
+@login_required("compliance", "admin")
+
+def api_agents():
+
+    """API endpoint to retrieve all agents."""
+    from agents import get_all_agents
+    
+    limit = request.args.get('limit', 100, type=int)
+    offset = request.args.get('offset', 0, type=int)
+    
+    agents = get_all_agents(get_db(), limit=limit, offset=offset)
+    
+    return jsonify(serialize_rows(agents))
+
+
+
+@app.route("/api/v1/agents/<int:agent_id>")
+
+@login_required("compliance", "admin")
+
+def api_agent_detail(agent_id):
+
+    """API endpoint to retrieve a specific agent."""
+    from agents import get_agent_by_id
+    
+    agent = get_agent_by_id(get_db(), agent_id)
+    
+    if not agent:
+        return jsonify({'error': 'Agent not found'}), 404
+    
+    return jsonify(dict(agent))
 
 
 
