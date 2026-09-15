@@ -20,6 +20,7 @@ RISK_RANK = {
     "normal": 0,
     "low": 1,
     "suspicious": 2,
+    "suspicious_pattern": 2,  # Stage 14 binary classification
     "super_suspicious": 3,
     "high_risk": 3,
     "critical": 4,
@@ -57,6 +58,8 @@ def _risk_level_from_score(score):
     """
     Convert risk score to risk level.
     
+    Updated for Stage 14 binary classification compatibility.
+    
     Args:
         score: Risk score (0-100)
     
@@ -68,7 +71,7 @@ def _risk_level_from_score(score):
     if score >= 60:
         return "high_risk"
     if score >= 40:
-        return "suspicious"
+        return "suspicious_pattern"  # Stage 14 binary classification
     if score >= 25:
         return "low"
     return "normal"

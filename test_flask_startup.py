@@ -11,6 +11,6 @@ try:
     print("Flask app imported successfully")
     print(f"Database URL: {app.config.get('DATABASE_URL', 'Not set')}")
     print(f"Debug mode: {app.config.get('DEBUG', False)}")
-    print("✓ Flask startup test passed")
+    print("PASS Flask startup test passed")
 except Exception as e:
-    print(f"✗ Flask startup test failed: {e}")
+    print(f"FAIL Flask startup test failed: {e}")

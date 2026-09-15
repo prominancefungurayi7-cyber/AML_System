@@ -172,6 +172,8 @@ from alerts import (
     get_alert_statistics,
 )
 from realtime import RealtimeBroker
+from ai_stage13_features import Stage13FeatureService
+from ai_stage14_model import Stage14ModelService, get_stage14_model_service
 from utils import (
     serialize_value,
     serialize_row,
@@ -584,6 +586,17 @@ socketio = SocketIO(app, **socketio_kwargs)
 app.logger.info(f"SocketIO initialized with async_mode: {socketio.async_mode}")
 
 app.extensions["realtime_broker"] = RealtimeBroker(app=app, socketio=socketio)
+
+# ============================================================================
+# Stage 13 + Stage 14 AI Service Initialization
+# ============================================================================
+
+# Initialize Stage 13 feature service and Stage 14 model service
+# These replace the legacy aml_ai_model.pkl with the validated EcoCash AI pipeline
+# Note: These will be initialized per-request to use the correct database connection
+app.extensions["stage13_feature_service"] = None
+app.extensions["stage14_model_service"] = None
+app.logger.info("Stage 13 + Stage 14 AI services will be initialized per-request with database connection")
 
 
 
@@ -2165,9 +2178,12 @@ def process_transaction_event(
         rule_reason = "Rule engine disabled - AI-only mode"
         rules_json = json.dumps([])
 
-
-
-    # Build transaction dict for behavioral analysis
+    # ============================================================================
+    # STAGE 13 + STAGE 14 AI PREDICTION (Replaces legacy aml_ai_model.pkl)
+    # ============================================================================
+    
+    # Build transaction dict for Stage 13 feature service
+    # Must include id for temporal safety (timestamp, id) ordering
     transaction_dict = {
         "id": transaction_id,
         "sender_account": sender_account,
@@ -2178,52 +2194,110 @@ def process_transaction_event(
         "destination_country": destination_country,
     }
     
-    tx_row = conn.execute("SELECT channel FROM transactions WHERE id=?", (transaction_id,)).fetchone()
-    if tx_row and tx_row["channel"]:
-        transaction_dict["channel"] = tx_row["channel"]
+    # Get agent_id if available
+    tx_row = conn.execute("SELECT channel, agent_id FROM transactions WHERE id=?", (transaction_id,)).fetchone()
+    if tx_row:
+        if tx_row["channel"]:
+            transaction_dict["channel"] = tx_row["channel"]
+        if tx_row["agent_id"]:
+            transaction_dict["agent_id"] = tx_row["agent_id"]
+    
+    # Stage 14 AI prediction using Stage 13 features
+    stage14_prediction = None
+    stage14_probability = None
+    stage14_is_suspicious = False
+    ai_reason = "Stage 14 AI model unavailable"
+    
+    try:
+        # Initialize Stage 13 feature service with current database connection
+        # This ensures temporal safety and proper database context
+        if not hasattr(conn, 'stage13_service'):
+            # Create a minimal adapter wrapper for Stage 13
+            class MinimalAdapter:
+                def __init__(self, connection):
+                    self.connection = connection
+                    self.engine = "sqlite"
+                
+                def execute(self, query, params=()):
+                    # Stage 13 service uses ? placeholders for SQLite compatibility
+                    cursor = self.connection.execute(query, params)
+                    return cursor
+            
+            db_adapter = MinimalAdapter(conn)
+            conn.stage13_service = Stage13FeatureService(db_adapter)
+            conn.stage14_service = get_stage14_model_service(conn.stage13_service)
+        
+        stage14_service = conn.stage14_service
+        if stage14_service and stage14_service.model_loaded:
+            # Generate prediction using Stage 13 + Stage 14 pipeline
+            stage14_prediction = stage14_service.predict(transaction_dict)
+            stage14_probability = stage14_prediction.probability
+            stage14_is_suspicious = stage14_prediction.is_suspicious
+            
+            # Map binary prediction to risk level
+            # Stage 14: 0 = normal, 1 = suspicious_pattern
+            if stage14_is_suspicious:
+                ai_level = "suspicious_pattern"
+                ai_confidence = stage14_probability
+                ai_reason = f"Stage 14 AML model detected suspicious pattern (probability: {stage14_probability:.2%}, threshold: 0.35)"
+            else:
+                ai_level = "normal"
+                ai_confidence = 1.0 - stage14_probability
+                ai_reason = f"Stage 14 AML model: normal transaction (probability: {stage14_probability:.2%})"
+            
+            app.logger.info(f"Stage 14 prediction for transaction {transaction_id}: "
+                          f"probability={stage14_probability:.4f}, "
+                          f"is_suspicious={stage14_is_suspicious}, "
+                          f"ai_level={ai_level}")
+        else:
+            app.logger.warning(f"Stage 14 model service not available for transaction {transaction_id}")
+            ai_level = None
+            ai_confidence = 0.0
+    except Exception as e:
+        app.logger.error(f"Stage 14 prediction failed for transaction {transaction_id}: {e}")
+        ai_level = None
+        ai_confidence = 0.0
+        ai_reason = f"Stage 14 AI prediction error: {str(e)}"
+    
+    # Convert Stage 14 binary prediction to risk score for compatibility
+    # Stage 14 threshold is 0.35 - map probability to 0-100 scale
+    if stage14_probability is not None:
+        # Map probability to risk score: 0.35 threshold maps to 40 risk score
+        # probability < 0.35 -> normal (score < 40)
+        # probability >= 0.35 -> suspicious (score >= 40)
+        ai_score = int((stage14_probability / 0.35) * 40) if stage14_probability < 0.35 else int(40 + ((stage14_probability - 0.35) / 0.65) * 60)
+        ai_score = max(0, min(100, ai_score))
+    else:
+        ai_score = 0
     
     # Behavioural evidence is customer-specific and is never the sole reason
     # to suppress a confirmed compliance typology.
     behavioral_score, behavioral_level, behavioral_reason, anomaly_reasons = assess_transaction_behavioral_risk(
         conn, transaction_dict, sender_account
     )
-    ml_features = dict(transaction_dict)
-    ml_features.update(_ai_profile_for_transaction(
-        conn, transaction_id, sender_account, receiver_account, amount, timestamp
-    ))
-    ml_level, ml_confidence, _ = predict_risk_level(ml_features)
     
-    # Adaptive confidence threshold: higher-risk levels tolerate lower confidence
-    # super_suspicious: 0.55 threshold (catch risky transactions even with modest confidence)
-    # suspicious: 0.55 threshold (lowered from 0.65 to improve detection)
-    # normal: 0.75 threshold (require high confidence to avoid false positives)
-    confidence_threshold = 0.65  # default
-    if ml_level == "super_suspicious":
-        confidence_threshold = 0.55
-    elif ml_level == "suspicious":
-        confidence_threshold = 0.55
-    else:
-        confidence_threshold = 0.75
-    
-    ml_score = AI_RISK_SCORES.get(ml_level, 0) if ml_confidence >= confidence_threshold else 0
-
-    # AI only contributes when confident.  Rules marked critical (and
-    # sanctions) are non-downgradable; all other signals must independently
-    # reach a material threshold before an alert is opened.
+    # Combine AI and behavioral signals
     behavioral_confidence = min(0.90, behavioral_score / 100) if behavioral_score else 0
-    ai_score = round((ml_score * ml_confidence * 0.65) + (behavioral_score * behavioral_confidence * 0.35))
+    combined_ai_score = round((ai_score * 0.7) + (behavioral_score * behavioral_confidence * 0.3))
+    
     mandatory = any(h.list_type == "sanctions" for h in screening_hits) or any(
         rule["severity"] == "critical" for rule in triggered
     )
-    risk_score = max(rule_score, ai_score)
+    
+    # Final risk determination
     if mandatory:
-        risk_score = max(risk_score, rule_score)
+        risk_score = max(rule_score, combined_ai_score)
+    else:
+        risk_score = max(rule_score, combined_ai_score)
+    
     risk_level = _risk_level_from_score(risk_score)
+    
+    # Build reason string
     reasons = []
     if triggered:
         reasons.append(rule_reason)
-    if ml_score:
-        reasons.append(f"ML model: {ml_level.replace('_', ' ')} ({ml_confidence:.0%} confidence)")
+    if stage14_probability is not None:
+        reasons.append(ai_reason)
     if behavioral_score >= 40:
         reasons.append(behavioral_reason)
     if scenario_reason:
@@ -2239,52 +2313,35 @@ def process_transaction_event(
             mandatory=mandatory,
         )
 
-    ai_level = ml_level or behavioral_level
-    ai_confidence = max(ml_confidence or 0, behavioral_confidence)
-    ai_reason = f"{behavioral_reason} ML: {ml_level or 'unavailable'} ({ml_confidence or 0:.0%})."
-
-
+    # Store AI results
+    final_ai_level = ai_level if ai_level else behavioral_level
+    final_ai_confidence = ai_confidence if ai_confidence else behavioral_confidence
 
     ctr_required = 1 if transaction_type in ("deposit", "withdraw") and float(amount) >= CTR_THRESHOLD else 0
-
     sar_required = 1 if any(rule["rule_id"] == "R07" for rule in triggered) else 0
-
-    if risk_level in ("suspicious", "super_suspicious", "high_risk", "critical"):
-
+    
+    # SAR required for suspicious patterns from Stage 14
+    if stage14_is_suspicious:
         sar_required = 1
 
-
+    if risk_level in ("suspicious", "super_suspicious", "high_risk", "critical"):
+        sar_required = 1
 
     conn.execute(
-
         """
-
         UPDATE transactions
-
         SET risk_score=?, risk_level=?, rule_score=?, rule_level=?, rule_reason=?,
-
             ai_risk_level=?, ai_confidence=?, ai_reason=?, description=?, rules_triggered=?,
-
             ctr_required=?, sar_required=?, destination_country=?, screening_hits=?
-
         WHERE id=?
-
         """,
-
         (
-
             risk_score, risk_level, rule_score, rule_level, rule_reason,
-
-            ai_level, ai_confidence, ai_reason, reason, rules_json,
-
+            final_ai_level, final_ai_confidence, ai_reason, reason, rules_json,
             ctr_required, sar_required, destination_country,
-
             json.dumps(screen_json) if screen_json else "[]",
-
             transaction_id,
-
         ),
-
     )
 
 
@@ -2344,24 +2401,23 @@ def process_transaction_event(
             broadcast_event("transaction", _transaction_payload(tx_row))
 
         if created_alert:
-
-            broadcast_event("alert", {
-
+            # Include Stage 14 AI information in alert broadcast
+            alert_data = {
                 "id": created_alert,
-
                 "transaction_id": transaction_id,
-
                 "account_number": account_number or sender_account,
-
                 "risk_score": risk_score,
-
                 "risk_level": risk_level,
-
                 "reason": reason,
-
                 "timestamp": timestamp,
-
-            })
+            }
+            # Add Stage 14 specific information if available
+            if stage14_probability is not None:
+                alert_data["stage14_probability"] = stage14_probability
+                alert_data["stage14_is_suspicious"] = stage14_is_suspicious
+                alert_data["ai_model"] = "Stage 14 AML"
+            
+            broadcast_event("alert", alert_data)
 
         if ctr_required and ctr_id:
 

@@ -24,12 +24,14 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
     """
     Create an alert if the transaction meets suspicious criteria.
     
+    Updated for Stage 14 binary classification: suspicious_pattern now triggers alerts.
+    
     Args:
         conn: Database connection
         transaction_id: Transaction ID
         account_number: Account number
         risk_score: Risk score (0-100)
-        risk_level: Risk level (normal, low, suspicious, high_risk, critical)
+        risk_level: Risk level (normal, low, suspicious, suspicious_pattern, high_risk, critical)
         reason: Alert reason
         rules_json: JSON string of triggered rules
         timestamp: Transaction timestamp
@@ -41,7 +43,8 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
 
     # Low scores are retained for trend analysis but do not interrupt analysts.
     # Alerts require a material, explainable signal (score >= 40).
-    if existing is None and risk_level in ("suspicious", "high_risk", "critical"):
+    # Stage 14: suspicious_pattern is the new binary suspicious class
+    if existing is None and risk_level in ("suspicious", "suspicious_pattern", "high_risk", "critical"):
         conn.execute(
             """
             INSERT INTO alerts (transaction_id, account_number, risk_score, risk_level, reason,
