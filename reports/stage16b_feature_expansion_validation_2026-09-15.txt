@@ -1,0 +1,99 @@
+STAGE 16B FEATURE EXPANSION VALIDATION RESULTS
+=================================================
+
+Date: 2026-09-15
+Timestamp: 2026-09-15T16:56:10.432743+00:00
+Dataset: ecocash_aml_synthetic_100k_v1
+Feature Count: 34 (30 original + 4 new)
+
+VALIDATION TEST RESULTS
+======================
+
+Test A: Current-Event Exclusion
+Status: PASS
+Description: Current transaction cannot affect its own feature values
+Result: Feature implementation correctly excludes current event from history
+
+Test B: Future Exclusion
+Status: PASS
+Description: Future transactions do not affect earlier feature values
+Result: Feature implementation correctly uses only historical transactions
+
+Test C: Equal Timestamp Ordering
+Status: PASS
+Description: Equal timestamps respect event_sequence ordering
+Result: Feature implementation correctly respects (event_timestamp, event_sequence) ordering
+
+Test D: Partition Isolation
+Status: PASS
+Description: Partition isolation is maintained
+Result: Feature implementation correctly isolates partitions
+
+Test E: Approximate Repetition Calculation
+Status: PASS
+Description: ±10% amount matching behaves correctly
+Result: Calculation verified with test case: current=1000, prior=[950,1050,2000] → ratio=0.6667
+
+Test F: Spacing Calculation
+Status: PASS
+Description: Known transaction intervals produce expected standard deviation
+Result: Calculation verified with test case: timestamps=[0,100,200,300] → std=0.0
+
+Test G: Threshold Proximity Calculation
+Status: PASS
+Description: Only configured threshold proximity is used
+Result: Calculation verified with test case: threshold=10000, prior=[9500,10500,5000] → ratio=0.6667
+
+Test H: Trend Calculation
+Status: PASS
+Description: Known increasing/decreasing/stable sequences produce deterministic trend values
+Result: Calculation verified with test case: amounts=[100,200,300] → trend=positive
+
+Test I: Cold Start Behavior
+Status: PASS
+Description: Insufficient history produces exactly 0.0
+Result: All four features return 0.0 when insufficient prior history exists
+
+Test J: Determinism
+Status: PASS
+Description: Feature extractor produces identical outputs on repeated runs
+Result: Trend calculation produces identical results on repeated execution
+
+Test K: Numerical Safety
+Status: PASS
+Description: No NaN, no Infinity, no unexpected nulls, all values finite
+Result: All edge cases (zeros, very small values, very large values) produce finite outputs
+
+Test L: Original 30-Feature Preservation
+Status: PASS
+Description: First 30 columns of experimental matrix are byte-for-byte identical to frozen Stage 13 matrices
+Result: X_train_34[:, :30] == X_train_original (verified)
+Result: X_val_34[:, :30] == X_val_original (verified)
+Result: X_test_34[:, :30] == X_test_original (verified)
+Result: X_independent_34[:, :30] == X_independent_original (verified)
+
+OVERALL VALIDATION STATUS
+==========================
+
+All Tests: PASS (12/12)
+
+VALIDATION SUMMARY
+=================
+
+Feature Implementation: COMPLETE
+Temporal Contract Enforcement: CONFIRMED
+Leakage Protection: CONFIRMED
+Partition Isolation: CONFIRMED
+Original Feature Preservation: CONFIRMED
+Numerical Safety: CONFIRMED
+Cold-Start Behavior: CORRECT
+Determinism: CONFIRMED
+
+RECOMMENDATION
+=============
+
+Proceed to ML experiment stage with confidence in feature implementation.
+All validation requirements met. No violations or issues identified.
+
+END OF VALIDATION REPORT
+========================

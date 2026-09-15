@@ -1,0 +1,242 @@
+{
+  "correction_timestamp": "2026-09-15T16:16:22.136328+00:00",
+  "model_status": "FROZEN - NO RETRAINING",
+  "model_type": "gradient_boosting",
+  "model_hyperparameters": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "min_samples_split": 5,
+    "n_estimators": 200,
+    "random_state": 42
+  },
+  "threshold": 0.3500000000000001,
+  "data_integrity": {
+    "checksums": {
+      "X_train": "3110727538819d68",
+      "X_val": "8939ed0bbc5d7549",
+      "X_test": "1e5cd7765cb79761",
+      "X_independent": "3267ec39b24edfca",
+      "y_train": "5384b07384815726",
+      "y_val": "ed42ebba0b8e7033",
+      "y_test": "40b8c15730c6b5cd",
+      "y_independent": "64508775998cef03"
+    },
+    "partition_validation": true
+  },
+  "metrics_verification": {
+    "final_test": {
+      "roc_auc": 0.8474,
+      "pr_auc": 0.5829,
+      "macro_f1": 0.7471,
+      "suspicious_recall": 0.5206
+    },
+    "independent": {
+      "roc_auc": 0.8297,
+      "pr_auc": 0.559,
+      "macro_f1": 0.7245,
+      "suspicious_recall": 0.5458
+    }
+  },
+  "domain_analysis": {
+    "final_test": {
+      "structuring": {
+        "total_suspicious": 600,
+        "true_positives": 149,
+        "false_negatives": 451,
+        "suspicious_recall": 0.24833333333333332
+      },
+      "network": {
+        "total_suspicious": 600,
+        "true_positives": 420,
+        "false_negatives": 180,
+        "suspicious_recall": 0.7
+      },
+      "agent": {
+        "total_suspicious": 600,
+        "true_positives": 368,
+        "false_negatives": 232,
+        "suspicious_recall": 0.6133333333333333
+      }
+    },
+    "independent": {
+      "structuring": {
+        "total_suspicious": 400,
+        "true_positives": 123,
+        "false_negatives": 277,
+        "suspicious_recall": 0.3075
+      },
+      "network": {
+        "total_suspicious": 400,
+        "true_positives": 297,
+        "false_negatives": 103,
+        "suspicious_recall": 0.7425
+      },
+      "agent": {
+        "total_suspicious": 400,
+        "true_positives": 235,
+        "false_negatives": 165,
+        "suspicious_recall": 0.5875
+      }
+    }
+  },
+  "scenario_family_analysis": {
+    "final_test": {
+      "variable_fragment_burst": {
+        "total_suspicious": 150,
+        "true_positives": 35,
+        "false_negatives": 115,
+        "suspicious_recall": 0.23333333333333334
+      },
+      "similar_amount_repetition": {
+        "total_suspicious": 150,
+        "true_positives": 66,
+        "false_negatives": 84,
+        "suspicious_recall": 0.44
+      },
+      "agent_wallet_growth": {
+        "total_suspicious": 150,
+        "true_positives": 64,
+        "false_negatives": 86,
+        "suspicious_recall": 0.4266666666666667
+      },
+      "variable_near_threshold_history": {
+        "total_suspicious": 150,
+        "true_positives": 28,
+        "false_negatives": 122,
+        "suspicious_recall": 0.18666666666666668
+      },
+      "agent_temporal_burst": {
+        "total_suspicious": 150,
+        "true_positives": 121,
+        "false_negatives": 29,
+        "suspicious_recall": 0.8066666666666666
+      },
+      "distributed_same_day_fragmentation": {
+        "total_suspicious": 150,
+        "true_positives": 20,
+        "false_negatives": 130,
+        "suspicious_recall": 0.13333333333333333
+      },
+      "reciprocal_relationship_cycle": {
+        "total_suspicious": 150,
+        "true_positives": 91,
+        "false_negatives": 59,
+        "suspicious_recall": 0.6066666666666667
+      },
+      "many_to_one_collection": {
+        "total_suspicious": 150,
+        "true_positives": 105,
+        "false_negatives": 45,
+        "suspicious_recall": 0.7
+      },
+      "one_to_many_dispersion": {
+        "total_suspicious": 150,
+        "true_positives": 131,
+        "false_negatives": 19,
+        "suspicious_recall": 0.8733333333333333
+      },
+      "agent_flow_imbalance": {
+        "total_suspicious": 150,
+        "true_positives": 96,
+        "false_negatives": 54,
+        "suspicious_recall": 0.64
+      },
+      "agent_wallet_concentration": {
+        "total_suspicious": 150,
+        "true_positives": 87,
+        "false_negatives": 63,
+        "suspicious_recall": 0.58
+      },
+      "wallet_pass_through": {
+        "total_suspicious": 150,
+        "true_positives": 93,
+        "false_negatives": 57,
+        "suspicious_recall": 0.62
+      }
+    },
+    "independent": {
+      "variable_near_threshold_history": {
+        "total_suspicious": 100,
+        "true_positives": 22,
+        "false_negatives": 78,
+        "suspicious_recall": 0.22
+      },
+      "agent_temporal_burst": {
+        "total_suspicious": 100,
+        "true_positives": 76,
+        "false_negatives": 24,
+        "suspicious_recall": 0.76
+      },
+      "variable_fragment_burst": {
+        "total_suspicious": 100,
+        "true_positives": 43,
+        "false_negatives": 57,
+        "suspicious_recall": 0.43
+      },
+      "similar_amount_repetition": {
+        "total_suspicious": 100,
+        "true_positives": 48,
+        "false_negatives": 52,
+        "suspicious_recall": 0.48
+      },
+      "distributed_same_day_fragmentation": {
+        "total_suspicious": 100,
+        "true_positives": 10,
+        "false_negatives": 90,
+        "suspicious_recall": 0.1
+      },
+      "agent_flow_imbalance": {
+        "total_suspicious": 100,
+        "true_positives": 30,
+        "false_negatives": 70,
+        "suspicious_recall": 0.3
+      },
+      "reciprocal_relationship_cycle": {
+        "total_suspicious": 100,
+        "true_positives": 71,
+        "false_negatives": 29,
+        "suspicious_recall": 0.71
+      },
+      "wallet_pass_through": {
+        "total_suspicious": 100,
+        "true_positives": 48,
+        "false_negatives": 52,
+        "suspicious_recall": 0.48
+      },
+      "agent_wallet_growth": {
+        "total_suspicious": 100,
+        "true_positives": 65,
+        "false_negatives": 35,
+        "suspicious_recall": 0.65
+      },
+      "many_to_one_collection": {
+        "total_suspicious": 100,
+        "true_positives": 89,
+        "false_negatives": 11,
+        "suspicious_recall": 0.89
+      },
+      "agent_wallet_concentration": {
+        "total_suspicious": 100,
+        "true_positives": 64,
+        "false_negatives": 36,
+        "suspicious_recall": 0.64
+      },
+      "one_to_many_dispersion": {
+        "total_suspicious": 100,
+        "true_positives": 89,
+        "false_negatives": 11,
+        "suspicious_recall": 0.89
+      }
+    }
+  },
+  "compliance_verification": {
+    "model_retrained": false,
+    "threshold_changed": false,
+    "test_data_used_for_tuning": false,
+    "independent_data_used_for_tuning": false,
+    "stage13_matrices_modified": false,
+    "raw_data_modified": false,
+    "scenario_metadata_in_x": false
+  }
+}

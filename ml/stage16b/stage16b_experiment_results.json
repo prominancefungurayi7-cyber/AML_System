@@ -1,0 +1,159 @@
+{
+  "experiment_timestamp": "2026-09-15T17:10:07.736288+00:00",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "feature_count": 34,
+  "model_config": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "min_samples_split": 5,
+    "n_estimators": 200,
+    "random_state": 42
+  },
+  "selected_threshold": 0.40000000000000013,
+  "validation_metrics": {
+    "accuracy": 0.9025333333333333,
+    "balanced_accuracy": 0.7397474747474748,
+    "macro_f1": 0.7546175208863792,
+    "suspicious_precision": 0.6087516087516087,
+    "suspicious_recall": 0.5255555555555556,
+    "suspicious_f1": 0.5641025641025641,
+    "normal_precision": 0.9364866874907035,
+    "normal_recall": 0.953939393939394,
+    "normal_f1": 0.9451324776701944,
+    "roc_auc": 0.8553820707070708,
+    "pr_auc": 0.6055913269714798,
+    "fpr": 0.04606060606060606,
+    "confusion_matrix": [
+      [
+        12592,
+        608
+      ],
+      [
+        854,
+        946
+      ]
+    ],
+    "true_negatives": 12592,
+    "false_positives": 608,
+    "false_negatives": 854,
+    "true_positives": 946
+  },
+  "final_test_metrics": {
+    "accuracy": 0.9020666666666667,
+    "balanced_accuracy": 0.7301262626262627,
+    "macro_f1": 0.7487798435950164,
+    "suspicious_precision": 0.6115981119352664,
+    "suspicious_recall": 0.5038888888888889,
+    "suspicious_f1": 0.5525434054218702,
+    "normal_precision": 0.9339350447584523,
+    "normal_recall": 0.9563636363636364,
+    "normal_f1": 0.9450162817681625,
+    "roc_auc": 0.8588686237373738,
+    "pr_auc": 0.591408785561513,
+    "fpr": 0.04363636363636364,
+    "confusion_matrix": [
+      [
+        12624,
+        576
+      ],
+      [
+        893,
+        907
+      ]
+    ],
+    "true_negatives": 12624,
+    "false_positives": 576,
+    "false_negatives": 893,
+    "true_positives": 907
+  },
+  "independent_metrics": {
+    "accuracy": 0.887,
+    "balanced_accuracy": 0.735719696969697,
+    "macro_f1": 0.7342006765133791,
+    "suspicious_precision": 0.5287356321839081,
+    "suspicious_recall": 0.5366666666666666,
+    "suspicious_f1": 0.532671629445823,
+    "normal_precision": 0.9366886813937599,
+    "normal_recall": 0.9347727272727273,
+    "normal_f1": 0.9357297235809351,
+    "roc_auc": 0.8409898674242423,
+    "pr_auc": 0.5707878889606276,
+    "fpr": 0.06522727272727273,
+    "confusion_matrix": [
+      [
+        8226,
+        574
+      ],
+      [
+        556,
+        644
+      ]
+    ],
+    "true_negatives": 8226,
+    "false_positives": 574,
+    "false_negatives": 556,
+    "true_positives": 644
+  },
+  "test_domain_analysis": {
+    "structuring": {
+      "total_suspicious": 600,
+      "true_positives": 138,
+      "false_negatives": 462,
+      "suspicious_recall": 0.23
+    },
+    "network": {
+      "total_suspicious": 600,
+      "true_positives": 421,
+      "false_negatives": 179,
+      "suspicious_recall": 0.7016666666666667
+    },
+    "agent": {
+      "total_suspicious": 600,
+      "true_positives": 348,
+      "false_negatives": 252,
+      "suspicious_recall": 0.58
+    }
+  },
+  "independent_domain_analysis": {
+    "structuring": {
+      "total_suspicious": 400,
+      "true_positives": 119,
+      "false_negatives": 281,
+      "suspicious_recall": 0.2975
+    },
+    "network": {
+      "total_suspicious": 400,
+      "true_positives": 297,
+      "false_negatives": 103,
+      "suspicious_recall": 0.7425
+    },
+    "agent": {
+      "total_suspicious": 400,
+      "true_positives": 228,
+      "false_negatives": 172,
+      "suspicious_recall": 0.57
+    }
+  },
+  "baseline_comparison": {
+    "final_test": {
+      "macro_f1_diff": 0.0016798435950163837,
+      "suspicious_recall_diff": -0.01671111111111101,
+      "suspicious_precision_diff": 0.025198111935266332,
+      "suspicious_f1_diff": 0.0010434054218702027,
+      "roc_auc_diff": 0.011468623737373784,
+      "pr_auc_diff": 0.008508785561513021,
+      "fpr_diff": -0.00286363636363636
+    },
+    "independent": {
+      "macro_f1_diff": 0.009700676513379025,
+      "suspicious_recall_diff": -0.009133333333333327,
+      "suspicious_precision_diff": 0.03473563218390807,
+      "suspicious_f1_diff": 0.014071629445823075,
+      "roc_auc_diff": 0.011289867424242317,
+      "pr_auc_diff": 0.011787888960627546,
+      "fpr_diff": -0.010972727272727273
+    }
+  },
+  "baseline_threshold": 0.3500000000000001
+}

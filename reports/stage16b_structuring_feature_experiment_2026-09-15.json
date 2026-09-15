@@ -1,0 +1,219 @@
+{
+  "stage16b_status": "COMPLETE",
+  "experiment_type": "Structuring Feature Expansion ML Experiment",
+  "experiment_date": "2026-09-15",
+  "experiment_timestamp": "2026-09-15T17:09:18.045616+00:00",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "feature_count": 34,
+  "original_feature_count": 30,
+  "new_feature_count": 4,
+  "implementation_status": "COMPLETE",
+  "validation_status": "PASS (12/12 tests)",
+  "model_config": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "min_samples_split": 5,
+    "n_estimators": 200,
+    "random_state": 42
+  },
+  "selected_threshold": 0.4,
+  "baseline_threshold": 0.35,
+  "validation_metrics": {
+    "accuracy": 0.9025,
+    "balanced_accuracy": 0.7397,
+    "macro_f1": 0.7546,
+    "suspicious_precision": 0.6088,
+    "suspicious_recall": 0.5256,
+    "suspicious_f1": 0.5641,
+    "normal_precision": 0.9365,
+    "normal_recall": 0.9539,
+    "normal_f1": 0.9451,
+    "roc_auc": 0.8554,
+    "pr_auc": 0.6056,
+    "fpr": 0.0461
+  },
+  "final_test_metrics": {
+    "accuracy": 0.9021,
+    "balanced_accuracy": 0.7301,
+    "macro_f1": 0.7488,
+    "suspicious_precision": 0.6116,
+    "suspicious_recall": 0.5039,
+    "suspicious_f1": 0.5525,
+    "normal_precision": 0.9339,
+    "normal_recall": 0.9564,
+    "normal_f1": 0.9450,
+    "roc_auc": 0.8589,
+    "pr_auc": 0.5914,
+    "fpr": 0.0436
+  },
+  "independent_metrics": {
+    "accuracy": 0.8870,
+    "balanced_accuracy": 0.7357,
+    "macro_f1": 0.7342,
+    "suspicious_precision": 0.5287,
+    "suspicious_recall": 0.5367,
+    "suspicious_f1": 0.5327,
+    "normal_precision": 0.9367,
+    "normal_recall": 0.9348,
+    "normal_f1": 0.9357,
+    "roc_auc": 0.8410,
+    "pr_auc": 0.5708,
+    "fpr": 0.0652
+  },
+  "baseline_results": {
+    "final_test": {
+      "macro_f1": 0.7471,
+      "suspicious_recall": 0.5206,
+      "suspicious_precision": 0.5864,
+      "suspicious_f1": 0.5515,
+      "roc_auc": 0.8474,
+      "pr_auc": 0.5829,
+      "fpr": 0.0465
+    },
+    "independent": {
+      "macro_f1": 0.7245,
+      "suspicious_recall": 0.5458,
+      "suspicious_precision": 0.4940,
+      "suspicious_f1": 0.5186,
+      "roc_auc": 0.8297,
+      "pr_auc": 0.5590,
+      "fpr": 0.0762
+    }
+  },
+  "baseline_comparison": {
+    "final_test": {
+      "macro_f1_diff": 0.0017,
+      "suspicious_recall_diff": -0.0167,
+      "suspicious_precision_diff": 0.0252,
+      "suspicious_f1_diff": 0.0010,
+      "roc_auc_diff": 0.0115,
+      "pr_auc_diff": 0.0085,
+      "fpr_diff": -0.0029
+    },
+    "independent": {
+      "macro_f1_diff": 0.0097,
+      "suspicious_recall_diff": -0.0091,
+      "suspicious_precision_diff": 0.0347,
+      "suspicious_f1_diff": 0.0141,
+      "roc_auc_diff": 0.0113,
+      "pr_auc_diff": 0.0118,
+      "fpr_diff": -0.0110
+    }
+  },
+  "domain_analysis": {
+    "final_test": {
+      "structuring": {
+        "experimental_recall": 0.23,
+        "baseline_recall": 0.2483,
+        "difference": -0.0183
+      },
+      "network": {
+        "experimental_recall": 0.7017,
+        "baseline_recall": 0.7,
+        "difference": 0.0017
+      },
+      "agent": {
+        "experimental_recall": 0.58,
+        "baseline_recall": 0.6133,
+        "difference": -0.0333
+      }
+    },
+    "independent": {
+      "structuring": {
+        "experimental_recall": 0.2975,
+        "baseline_recall": 0.3075,
+        "difference": -0.01
+      },
+      "network": {
+        "experimental_recall": 0.7425,
+        "baseline_recall": 0.7425,
+        "difference": 0.0
+      },
+      "agent": {
+        "experimental_recall": 0.57,
+        "baseline_recall": 0.5875,
+        "difference": -0.0175
+      }
+    }
+  },
+  "generalization_analysis": {
+    "baseline": {
+      "validation_macro_f1": 0.7363,
+      "final_test_macro_f1": 0.7471,
+      "independent_macro_f1": 0.7245,
+      "validation_to_test": 0.0108,
+      "validation_to_independent": -0.0118,
+      "test_to_independent": -0.0226
+    },
+    "experimental": {
+      "validation_macro_f1": 0.7546,
+      "final_test_macro_f1": 0.7488,
+      "independent_macro_f1": 0.7342,
+      "validation_to_test": -0.0058,
+      "validation_to_independent": -0.0204,
+      "test_to_independent": -0.0146
+    }
+  },
+  "research_question_answer": "NO - The four targeted structuring features did not materially improve Structuring-domain detection",
+  "key_findings": [
+    "Structuring detection degraded: Independent recall decreased from 30.8% to 29.8%",
+    "Agent detection degraded: Independent recall decreased from 58.8% to 57.0%",
+    "Network detection unchanged: Independent recall remained at 74.3%",
+    "Overall Macro F1 improved slightly: Independent Macro F1 increased from 0.7245 to 0.7342",
+    "Precision improved at cost of recall: Suspicious precision improved but recall decreased"
+  ],
+  "model_selection_decision": "NOT_SUPERIOR",
+  "decision_rationale": [
+    "Structuring detection degraded - primary goal not achieved",
+    "Agent detection degraded - unexpected side effect",
+    "Overall improvement marginal - driven by precision gains, not recall",
+    "Recall-precision trade-off unfavorable - model became more conservative",
+    "New features not providing expected benefit"
+  ],
+  "data_model_protection": {
+    "stage11_dataset_modified": false,
+    "stage13_matrices_modified": false,
+    "stage14_model_modified": false,
+    "stage15_model_modified": false,
+    "partitions_modified": false,
+    "features_modified": false,
+    "labels_modified": false,
+    "database_modified": false,
+    "application_modified": false
+  },
+  "experimental_artifacts": {
+    "feature_matrices": "data/ecocash_aml_synthetic_100k_v1/features_stage16b/",
+    "model": "ml/stage16b/stage16b_expanded_model.pkl",
+    "results": "ml/stage16b/stage16b_experiment_results.json"
+  },
+  "recommendation": "DO NOT replace Stage 14 baseline with 34-feature model",
+  "next_research_directions": [
+    "Re-evaluate feature design - candidate features may not capture intended patterns",
+    "Investigate alternative approaches for structuring detection",
+    "Analyze scenario-level failure reasons",
+    "Consider different model architectures",
+    "Evaluate feature selection - subset of new features might be beneficial"
+  ],
+  "limitations": [
+    "Synthetic data results may not generalize to real-world AML",
+    "Single experimental run - multiple runs would provide robust conclusions",
+    "Feature design based on Stage 16A may not capture root causes",
+    "Model configuration not tuned specifically for 34 features",
+    "Threshold selection could be optimized differently"
+  ],
+  "official_baseline": "Stage 14 Gradient Boosting model remains the official frozen baseline",
+  "summary": {
+    "implementation_status": "COMPLETE",
+    "validation_status": "PASS",
+    "baseline_vs_expanded": "Baseline preferred",
+    "independent_macro_f1": "0.7342 (vs 0.7245 baseline)",
+    "independent_suspicious_recall": "0.5367 (vs 0.5458 baseline)",
+    "independent_structuring_recall": "0.2975 (vs 0.3075 baseline)",
+    "network_recall": "0.7425 (vs 0.7425 baseline)",
+    "agent_recall": "0.57 (vs 0.5875 baseline)",
+    "features_materially_improved_performance": "NO",
+    "stage14_remains_official_baseline": "YES"
+  },
+  "status": "COMPLETE"
+}

@@ -1,0 +1,603 @@
+{
+  "audit_timestamp": "2026-09-15T16:36:45.754316+00:00",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "structuring_features": [
+    "structuring_prior_tx_count_1h",
+    "structuring_prior_value_sum_24h",
+    "structuring_same_day_prior_tx_count",
+    "structuring_repeated_amount_ratio_7d",
+    "structuring_amount_cluster_dispersion_7d",
+    "structuring_near_threshold_history_ratio_7d"
+  ],
+  "feature_signal_analysis": {
+    "structuring_prior_tx_count_1h": {
+      "normal": {
+        "mean": 0.011943181818181818,
+        "median": 0.0,
+        "std": 0.1099818020023959,
+        "min": 0.0,
+        "max": 2.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.9882045454545455
+      },
+      "suspicious": {
+        "mean": 0.08341666666666667,
+        "median": 0.0,
+        "std": 0.31378069792275126,
+        "min": 0.0,
+        "max": 4.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.9265833333333333
+      },
+      "separation": {
+        "cohens_d": 0.3039989547803938,
+        "overlap_coefficient": 11.686458333333334,
+        "mean_difference": 0.07147348484848484
+      }
+    },
+    "structuring_prior_value_sum_24h": {
+      "normal": {
+        "mean": 1179.8462524989297,
+        "median": 0.0,
+        "std": 3594.9786995626364,
+        "min": 0.0,
+        "max": 64180.74752019692,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.7634431818181818
+      },
+      "suspicious": {
+        "mean": 2206.2017907108766,
+        "median": 0.0,
+        "std": 4279.437972471967,
+        "min": 0.0,
+        "max": 47368.14901933254,
+        "q25": 0.0,
+        "q75": 2382.615591792666,
+        "zero_ratio": 0.5078333333333334
+      },
+      "separation": {
+        "cohens_d": 0.2597018019570464,
+        "overlap_coefficient": 0.0007728404283480971,
+        "mean_difference": 1026.3555382119469
+      }
+    },
+    "structuring_same_day_prior_tx_count": {
+      "normal": {
+        "mean": 0.14023863636363637,
+        "median": 0.0,
+        "std": 0.39932208162192556,
+        "min": 0.0,
+        "max": 8.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.8752386363636364
+      },
+      "suspicious": {
+        "mean": 0.5768333333333333,
+        "median": 0.0,
+        "std": 1.1357508407314618,
+        "min": 0.0,
+        "max": 13.0,
+        "q25": 0.0,
+        "q75": 1.0,
+        "zero_ratio": 0.6723333333333333
+      },
+      "separation": {
+        "cohens_d": 0.5128626935485232,
+        "overlap_coefficient": 2.5859684586247087,
+        "mean_difference": 0.43659469696969694
+      }
+    },
+    "structuring_repeated_amount_ratio_7d": {
+      "normal": {
+        "mean": 0.03891531053406713,
+        "median": 0.0,
+        "std": 0.1507467787658298,
+        "min": 0.0,
+        "max": 1.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.9172840909090909
+      },
+      "suspicious": {
+        "mean": 0.06589691322737734,
+        "median": 0.0,
+        "std": 0.17393279541216958,
+        "min": 0.0,
+        "max": 1.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.8139166666666666
+      },
+      "separation": {
+        "cohens_d": 0.16578231696514636,
+        "overlap_coefficient": 44.69090909090908,
+        "mean_difference": 0.026981602693310208
+      }
+    },
+    "structuring_amount_cluster_dispersion_7d": {
+      "normal": {
+        "mean": 0.2705090851728578,
+        "median": 0.0821066430377672,
+        "std": 0.3443382547121096,
+        "min": 0.0,
+        "max": 2.3043846209190613,
+        "q25": 0.0,
+        "q75": 0.5001223354415989,
+        "zero_ratio": 0.4571818181818182
+      },
+      "suspicious": {
+        "mean": 0.48775246017562873,
+        "median": 0.4760430619325957,
+        "std": 0.42436272223384297,
+        "min": 0.0,
+        "max": 2.2839625202541893,
+        "q25": 0.02481091216334912,
+        "q75": 0.7610073421243256,
+        "zero_ratio": 0.23733333333333334
+      },
+      "separation": {
+        "cohens_d": 0.5621839242484815,
+        "overlap_coefficient": 16.39633782126108,
+        "mean_difference": 0.2172433750027709
+      }
+    },
+    "structuring_near_threshold_history_ratio_7d": {
+      "normal": {
+        "mean": 0.05767910177092664,
+        "median": 0.0,
+        "std": 0.1836934387632259,
+        "min": 0.0,
+        "max": 1.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.8832954545454546
+      },
+      "suspicious": {
+        "mean": 0.058176595681931946,
+        "median": 0.0,
+        "std": 0.17142625798459546,
+        "min": 0.0,
+        "max": 1.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "zero_ratio": 0.851
+      },
+      "separation": {
+        "cohens_d": 0.0028001677055899447,
+        "overlap_coefficient": 47.76003787878786,
+        "mean_difference": 0.0004974939110053075
+      }
+    }
+  },
+  "scenario_analysis": {
+    "variable_fragment_burst": {
+      "structuring_prior_tx_count_1h": {
+        "scenario_mean": 0.347,
+        "normal_mean": 0.017222222222222222,
+        "difference": 0.3297777777777777,
+        "signal_strength": 2.413963856654852
+      },
+      "structuring_prior_value_sum_24h": {
+        "scenario_mean": 1779.006806460064,
+        "normal_mean": 1298.2008575957198,
+        "difference": 480.80594886434415,
+        "signal_strength": 0.1298755973933914
+      },
+      "structuring_same_day_prior_tx_count": {
+        "scenario_mean": 1.079,
+        "normal_mean": 0.1836767676767677,
+        "difference": 0.8953232323232323,
+        "signal_strength": 1.6569266733205035
+      },
+      "structuring_repeated_amount_ratio_7d": {
+        "scenario_mean": 0.07350382205513785,
+        "normal_mean": 0.041836428925972696,
+        "difference": 0.03166739312916515,
+        "signal_strength": 0.20605466526944927
+      },
+      "structuring_amount_cluster_dispersion_7d": {
+        "scenario_mean": 0.49078474185038234,
+        "normal_mean": 0.29461660884311763,
+        "difference": 0.1961681330072647,
+        "signal_strength": 0.5440604548579818
+      },
+      "structuring_near_threshold_history_ratio_7d": {
+        "scenario_mean": 0.035063095238095233,
+        "normal_mean": 0.057967848573602355,
+        "difference": -0.022904753335507122,
+        "signal_strength": 0.12537183263309382
+      }
+    },
+    "similar_amount_repetition": {
+      "structuring_prior_tx_count_1h": {
+        "scenario_mean": 0.263,
+        "normal_mean": 0.01807070707070707,
+        "difference": 0.24492929292929294,
+        "signal_strength": 1.7475724938290942
+      },
+      "structuring_prior_value_sum_24h": {
+        "scenario_mean": 4107.357971829601,
+        "normal_mean": 1274.6821589556234,
+        "difference": 2832.675812873978,
+        "signal_strength": 0.7716055440948706
+      },
+      "structuring_same_day_prior_tx_count": {
+        "scenario_mean": 1.712,
+        "normal_mean": 0.1772828282828283,
+        "difference": 1.5347171717171717,
+        "signal_strength": 3.0322039122806563
+      },
+      "structuring_repeated_amount_ratio_7d": {
+        "scenario_mean": 0.33804690309690305,
+        "normal_mean": 0.039164276592217495,
+        "difference": 0.29888262650468556,
+        "signal_strength": 2.0099688349562443
+      },
+      "structuring_amount_cluster_dispersion_7d": {
+        "scenario_mean": 0.5226698413914592,
+        "normal_mean": 0.2942945371305815,
+        "difference": 0.2283753042608777,
+        "signal_strength": 0.633869468034246
+      },
+      "structuring_near_threshold_history_ratio_7d": {
+        "scenario_mean": 0.027617099567099564,
+        "normal_mean": 0.05804306065108714,
+        "difference": -0.03042596108398758,
+        "signal_strength": 0.16635557931693892
+      }
+    },
+    "distributed_same_day_fragmentation": {
+      "structuring_prior_tx_count_1h": {
+        "scenario_mean": 0.031,
+        "normal_mean": 0.020414141414141416,
+        "difference": 0.010585858585858584,
+        "signal_strength": 0.0699125817936755
+      },
+      "structuring_prior_value_sum_24h": {
+        "scenario_mean": 2039.2047116439567,
+        "normal_mean": 1295.5725959271956,
+        "difference": 743.6321157167611,
+        "signal_strength": 0.20139206976411267
+      },
+      "structuring_same_day_prior_tx_count": {
+        "scenario_mean": 0.373,
+        "normal_mean": 0.19080808080808082,
+        "difference": 0.18219191919191918,
+        "signal_strength": 0.325294333829348
+      },
+      "structuring_repeated_amount_ratio_7d": {
+        "scenario_mean": 0.024718686868686866,
+        "normal_mean": 0.042329208069270194,
+        "difference": -0.017610521200583328,
+        "signal_strength": 0.11408158376687666
+      },
+      "structuring_amount_cluster_dispersion_7d": {
+        "scenario_mean": 0.4467865545767329,
+        "normal_mean": 0.29506103497719494,
+        "difference": 0.15172551959953795,
+        "signal_strength": 0.4200619072440416
+      },
+      "structuring_near_threshold_history_ratio_7d": {
+        "scenario_mean": 0.05429365079365079,
+        "normal_mean": 0.05777360053768764,
+        "difference": -0.003479949744036849,
+        "signal_strength": 0.01907728767738509
+      }
+    },
+    "variable_near_threshold_history": {
+      "structuring_prior_tx_count_1h": {
+        "scenario_mean": 0.025,
+        "normal_mean": 0.020474747474747475,
+        "difference": 0.004525252525252526,
+        "signal_strength": 0.02984847980451706
+      },
+      "structuring_prior_value_sum_24h": {
+        "scenario_mean": 3230.934711586182,
+        "normal_mean": 1283.5349191601024,
+        "difference": 1947.3997924260796,
+        "signal_strength": 0.5304474566931117
+      },
+      "structuring_same_day_prior_tx_count": {
+        "scenario_mean": 0.332,
+        "normal_mean": 0.1912222222222222,
+        "difference": 0.1407777777777778,
+        "signal_strength": 0.2512894652171578
+      },
+      "structuring_repeated_amount_ratio_7d": {
+        "scenario_mean": 0.11232030649089472,
+        "normal_mean": 0.04144434322460142,
+        "difference": 0.07087596326629331,
+        "signal_strength": 0.46350484161762445
+      },
+      "structuring_amount_cluster_dispersion_7d": {
+        "scenario_mean": 0.4750062307677139,
+        "normal_mean": 0.2947759877429426,
+        "difference": 0.1802302430247713,
+        "signal_strength": 0.4996395361847677
+      },
+      "structuring_near_threshold_history_ratio_7d": {
+        "scenario_mean": 0.22818857940155893,
+        "normal_mean": 0.05601708610730472,
+        "difference": 0.1721714932942542,
+        "signal_strength": 0.9569239137139517
+      }
+    }
+  },
+  "false_negative_analysis": {
+    "variable_fragment_burst": {
+      "count": 197,
+      "mean_probability": 0.07084733354535293,
+      "median_probability": 0.04270067943863687,
+      "feature_means": [
+        0.005076142131979695,
+        1204.3236666857977,
+        0.1116751269035533,
+        0.03950930626057529,
+        0.28114193408740273,
+        0.06229151559100797
+      ],
+      "feature_medians": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.1394590520066983,
+        0.0
+      ]
+    },
+    "similar_amount_repetition": {
+      "count": 126,
+      "mean_probability": 0.07015666727280247,
+      "median_probability": 0.040728466102688154,
+      "feature_means": [
+        0.0,
+        1066.366685244113,
+        0.1746031746031746,
+        0.026719576719576716,
+        0.2630368746820827,
+        0.052116402116402116
+      ],
+      "feature_medians": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.13977678255356746,
+        0.0
+      ]
+    },
+    "distributed_same_day_fragmentation": {
+      "count": 156,
+      "mean_probability": 0.06278194194548012,
+      "median_probability": 0.038298140060817026,
+      "feature_means": [
+        0.00641025641025641,
+        1283.0341418628595,
+        0.1346153846153846,
+        0.03311965811965811,
+        0.25814326471313026,
+        0.08167735042735043
+      ],
+      "feature_medians": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.08432648794254252,
+        0.0
+      ]
+    },
+    "variable_near_threshold_history": {
+      "count": 142,
+      "mean_probability": 0.06818840493444574,
+      "median_probability": 0.040622933527317454,
+      "feature_means": [
+        0.007042253521126761,
+        1528.9343120169276,
+        0.1267605633802817,
+        0.04284037558685446,
+        0.21984922474705154,
+        0.06279342723004694
+      ],
+      "feature_medians": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "normal_hard_negative_analysis": {
+    "structuring_prior_tx_count_1h": {
+      "high_feature_count": 88000,
+      "correctly_classified": 84691,
+      "misclassified_as_suspicious": 3309,
+      "feature_threshold": 0.0,
+      "misclassification_rate": 0.03760227272727273
+    },
+    "structuring_prior_value_sum_24h": {
+      "high_feature_count": 8800,
+      "correctly_classified": 8151,
+      "misclassified_as_suspicious": 649,
+      "feature_threshold": 3538.2624426488974,
+      "misclassification_rate": 0.07375
+    },
+    "structuring_same_day_prior_tx_count": {
+      "high_feature_count": 10979,
+      "correctly_classified": 9895,
+      "misclassified_as_suspicious": 1084,
+      "feature_threshold": 1.0,
+      "misclassification_rate": 0.09873394662537571
+    },
+    "structuring_repeated_amount_ratio_7d": {
+      "high_feature_count": 88000,
+      "correctly_classified": 84691,
+      "misclassified_as_suspicious": 3309,
+      "feature_threshold": 0.0,
+      "misclassification_rate": 0.03760227272727273
+    },
+    "structuring_amount_cluster_dispersion_7d": {
+      "high_feature_count": 8800,
+      "correctly_classified": 7991,
+      "misclassified_as_suspicious": 809,
+      "feature_threshold": 0.7704755728652328,
+      "misclassification_rate": 0.09193181818181818
+    },
+    "structuring_near_threshold_history_ratio_7d": {
+      "high_feature_count": 9247,
+      "correctly_classified": 8826,
+      "misclassified_as_suspicious": 421,
+      "feature_threshold": 0.25,
+      "misclassification_rate": 0.045528279441981186
+    }
+  },
+  "correlation_analysis": {
+    "structuring_correlations": [
+      [
+        1.0,
+        0.13100785136454482,
+        0.3675605785232795,
+        0.06300999888043221,
+        0.10093709538387903,
+        -0.004508911712242433
+      ],
+      [
+        0.13100785136454482,
+        0.9999999999999999,
+        0.414622398441232,
+        0.06486509167575312,
+        0.15365283986056,
+        0.10071070066818458
+      ],
+      [
+        0.3675605785232795,
+        0.414622398441232,
+        1.0,
+        0.10947553913684387,
+        0.22970636659012678,
+        -0.0003540609120337217
+      ],
+      [
+        0.06300999888043221,
+        0.0648650916757531,
+        0.10947553913684387,
+        1.0,
+        0.021343266983039556,
+        0.056615903941317824
+      ],
+      [
+        0.10093709538387903,
+        0.15365283986056,
+        0.22970636659012678,
+        0.021343266983039556,
+        1.0,
+        0.06483839100752992
+      ],
+      [
+        -0.004508911712242433,
+        0.10071070066818458,
+        -0.0003540609120337218,
+        0.056615903941317824,
+        0.06483839100752993,
+        0.9999999999999999
+      ]
+    ],
+    "top_cross_correlations": {
+      "structuring_prior_tx_count_1h": [
+        [
+          "network_outbound_counterparty_count_7d",
+          0.13807285895757226
+        ],
+        [
+          "agent_prior_tx_count_1h",
+          0.0891496307642592
+        ],
+        [
+          "agent_hourly_tx_zscore_30d",
+          0.04385778960432967
+        ]
+      ],
+      "structuring_prior_value_sum_24h": [
+        [
+          "network_outbound_counterparty_count_7d",
+          0.26025759357343364
+        ],
+        [
+          "network_outbound_counterparty_entropy_30d",
+          0.13835701178858467
+        ],
+        [
+          "network_pass_through_ratio_24h",
+          0.10802075146055345
+        ]
+      ],
+      "structuring_same_day_prior_tx_count": [
+        [
+          "network_outbound_counterparty_count_7d",
+          0.37255838671997243
+        ],
+        [
+          "network_outbound_counterparty_entropy_30d",
+          0.12244970266387813
+        ],
+        [
+          "network_repeated_receiver_ratio_30d",
+          0.08774294633852564
+        ]
+      ],
+      "structuring_repeated_amount_ratio_7d": [
+        [
+          "network_outbound_counterparty_count_7d",
+          0.09018167318010321
+        ],
+        [
+          "network_counterparty_set_change_7d",
+          0.05620145476509213
+        ],
+        [
+          "network_outbound_counterparty_entropy_30d",
+          0.0528913555518737
+        ]
+      ],
+      "structuring_amount_cluster_dispersion_7d": [
+        [
+          "network_outbound_counterparty_count_7d",
+          0.6498016198689328
+        ],
+        [
+          "network_repeated_receiver_ratio_30d",
+          0.1850907823553329
+        ],
+        [
+          "network_outbound_counterparty_entropy_30d",
+          0.18003701315931578
+        ]
+      ],
+      "structuring_near_threshold_history_ratio_7d": [
+        [
+          "network_counterparty_set_change_7d",
+          0.06798401280772232
+        ],
+        [
+          "network_outbound_counterparty_count_7d",
+          0.054067766451100285
+        ],
+        [
+          "network_repeated_receiver_ratio_30d",
+          0.018930527076103387
+        ]
+      ]
+    }
+  },
+  "baseline_performance": {
+    "structuring_recall": 0.3075,
+    "network_recall": 0.7425,
+    "agent_recall": 0.5875
+  }
+}

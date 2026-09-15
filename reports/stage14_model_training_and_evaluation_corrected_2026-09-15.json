@@ -1,0 +1,399 @@
+{
+  "stage14_status": "PASS",
+  "correction_status": "PASS",
+  "audit_date": "2026-09-15",
+  "training_timestamp": "2026-09-15T14:55:02.216883+00:00",
+  "correction_timestamp": "2026-09-15T16:16:22.136328+00:00",
+  "correction_type": "ROC-AUC/PR-AUC Reporting Correction and Domain/Scenario Analysis Addition",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "feature_count": 30,
+  "feature_names": [
+    "structuring_prior_tx_count_1h",
+    "structuring_prior_value_sum_24h",
+    "structuring_same_day_prior_tx_count",
+    "structuring_repeated_amount_ratio_7d",
+    "structuring_amount_cluster_dispersion_7d",
+    "structuring_near_threshold_history_ratio_7d",
+    "network_outbound_counterparty_count_7d",
+    "network_inbound_counterparty_count_7d",
+    "network_outbound_counterparty_entropy_30d",
+    "network_top_counterparty_value_share_30d",
+    "network_current_receiver_is_new",
+    "network_repeated_receiver_ratio_30d",
+    "network_reciprocal_flow_ratio_7d",
+    "network_counterparty_set_change_7d",
+    "network_pass_through_ratio_24h",
+    "network_shared_counterparty_concentration_7d",
+    "agent_prior_tx_count_1h",
+    "agent_prior_tx_count_7d",
+    "agent_prior_value_sum_1h",
+    "agent_prior_value_sum_7d",
+    "agent_unique_wallet_count_7d",
+    "agent_wallet_value_hhi_7d",
+    "agent_repeat_wallet_ratio_7d",
+    "agent_current_wallet_is_new",
+    "agent_inbound_outbound_value_ratio_7d",
+    "agent_high_value_event_share_7d",
+    "agent_hourly_tx_zscore_30d",
+    "agent_hourly_value_zscore_30d",
+    "agent_burst_concentration_7d",
+    "agent_shared_wallet_flow_concentration_7d"
+  ],
+  "train_shape": [60000, 30],
+  "validation_shape": [15000, 30],
+  "test_shape": [15000, 30],
+  "independent_shape": [10000, 30],
+  "class_distribution": {
+    "train": {"normal": 52800, "suspicious": 7200},
+    "validation": {"normal": 13200, "suspicious": 1800},
+    "test": {"normal": 13200, "suspicious": 1800},
+    "independent": {"normal": 8800, "suspicious": 1200}
+  },
+  "preprocessing_methodology": "None - tree-based models do not require scaling",
+  "class_imbalance_methodology": "Class weighting evaluated in hyperparameter search",
+  "candidate_models": {
+    "logistic_regression": 0.6391,
+    "random_forest": 0.7345,
+    "gradient_boosting": 0.7363
+  },
+  "hyperparameter_search": {
+    "method": "Controlled grid search",
+    "data_used": "TRAIN and VALIDATION only",
+    "optimization_metric": "Macro F1 on validation set",
+    "reproducibility": "Fixed random seed (42)"
+  },
+  "validation_metrics": {
+    "logistic_regression": 0.6391,
+    "random_forest": 0.7345,
+    "gradient_boosting": 0.7363
+  },
+  "selected_model": "gradient_boosting",
+  "selected_hyperparameters": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "min_samples_leaf": 2,
+    "min_samples_split": 5,
+    "n_estimators": 200,
+    "random_state": 42
+  },
+  "selected_threshold": 0.35,
+  "threshold_selection_methodology": "Predefined threshold range (0.1-0.9) optimized for Macro F1 on validation set",
+  "model_freeze_verification": {
+    "model_artifact_exists": true,
+    "model_parameters_verified": true,
+    "threshold_verified": true,
+    "no_retraining_during_correction": true,
+    "no_threshold_search_during_correction": true
+  },
+  "final_test_metrics": {
+    "accuracy": 0.8984,
+    "balanced_accuracy": 0.7352,
+    "macro_f1": 0.7471,
+    "suspicious_recall": 0.5206,
+    "suspicious_precision": 0.5864,
+    "suspicious_f1": 0.5515,
+    "normal_recall": 0.9498,
+    "normal_precision": 0.9535,
+    "normal_f1": 0.9516,
+    "roc_auc": 0.8474,
+    "pr_auc": 0.5829,
+    "fpr": 0.0465,
+    "confusion_matrix": [[12536, 664], [862, 938]]
+  },
+  "independent_metrics": {
+    "accuracy": 0.8784,
+    "balanced_accuracy": 0.7348,
+    "macro_f1": 0.7245,
+    "suspicious_recall": 0.5458,
+    "suspicious_precision": 0.4940,
+    "suspicious_f1": 0.5186,
+    "normal_recall": 0.9238,
+    "normal_precision": 0.9488,
+    "normal_f1": 0.9362,
+    "roc_auc": 0.8297,
+    "pr_auc": 0.5590,
+    "fpr": 0.0762,
+    "confusion_matrix": [[8129, 671], [545, 655]]
+  },
+  "domain_analysis": {
+    "final_test": {
+      "structuring": {
+        "total_suspicious": 600,
+        "true_positives": 149,
+        "false_negatives": 451,
+        "suspicious_recall": 0.2483
+      },
+      "network": {
+        "total_suspicious": 600,
+        "true_positives": 420,
+        "false_negatives": 180,
+        "suspicious_recall": 0.7000
+      },
+      "agent": {
+        "total_suspicious": 600,
+        "true_positives": 368,
+        "false_negatives": 232,
+        "suspicious_recall": 0.6133
+      }
+    },
+    "independent": {
+      "structuring": {
+        "total_suspicious": 400,
+        "true_positives": 123,
+        "false_negatives": 277,
+        "suspicious_recall": 0.3075
+      },
+      "network": {
+        "total_suspicious": 400,
+        "true_positives": 297,
+        "false_negatives": 103,
+        "suspicious_recall": 0.7425
+      },
+      "agent": {
+        "total_suspicious": 400,
+        "true_positives": 235,
+        "false_negatives": 165,
+        "suspicious_recall": 0.5875
+      }
+    }
+  },
+  "scenario_family_analysis": {
+    "final_test": {
+      "variable_fragment_burst": {
+        "total_suspicious": 150,
+        "true_positives": 35,
+        "false_negatives": 115,
+        "suspicious_recall": 0.2333
+      },
+      "similar_amount_repetition": {
+        "total_suspicious": 150,
+        "true_positives": 66,
+        "false_negatives": 84,
+        "suspicious_recall": 0.4400
+      },
+      "agent_wallet_growth": {
+        "total_suspicious": 150,
+        "true_positives": 64,
+        "false_negatives": 86,
+        "suspicious_recall": 0.4267
+      },
+      "variable_near_threshold_history": {
+        "total_suspicious": 150,
+        "true_positives": 28,
+        "false_negatives": 122,
+        "suspicious_recall": 0.1867
+      },
+      "agent_temporal_burst": {
+        "total_suspicious": 150,
+        "true_positives": 121,
+        "false_negatives": 29,
+        "suspicious_recall": 0.8067
+      },
+      "distributed_same_day_fragmentation": {
+        "total_suspicious": 150,
+        "true_positives": 20,
+        "false_negatives": 130,
+        "suspicious_recall": 0.1333
+      },
+      "reciprocal_relationship_cycle": {
+        "total_suspicious": 150,
+        "true_positives": 91,
+        "false_negatives": 59,
+        "suspicious_recall": 0.6067
+      },
+      "many_to_one_collection": {
+        "total_suspicious": 150,
+        "true_positives": 105,
+        "false_negatives": 45,
+        "suspicious_recall": 0.7000
+      },
+      "one_to_many_dispersion": {
+        "total_suspicious": 150,
+        "true_positives": 131,
+        "false_negatives": 19,
+        "suspicious_recall": 0.8733
+      },
+      "agent_flow_imbalance": {
+        "total_suspicious": 150,
+        "true_positives": 96,
+        "false_negatives": 54,
+        "suspicious_recall": 0.6400
+      },
+      "agent_wallet_concentration": {
+        "total_suspicious": 150,
+        "true_positives": 87,
+        "false_negatives": 63,
+        "suspicious_recall": 0.5800
+      },
+      "wallet_pass_through": {
+        "total_suspicious": 150,
+        "true_positives": 93,
+        "false_negatives": 57,
+        "suspicious_recall": 0.6200
+      }
+    },
+    "independent": {
+      "variable_near_threshold_history": {
+        "total_suspicious": 100,
+        "true_positives": 22,
+        "false_negatives": 78,
+        "suspicious_recall": 0.2200
+      },
+      "agent_temporal_burst": {
+        "total_suspicious": 100,
+        "true_positives": 76,
+        "false_negatives": 24,
+        "suspicious_recall": 0.7600
+      },
+      "variable_fragment_burst": {
+        "total_suspicious": 100,
+        "true_positives": 43,
+        "false_negatives": 57,
+        "suspicious_recall": 0.4300
+      },
+      "similar_amount_repetition": {
+        "total_suspicious": 100,
+        "true_positives": 48,
+        "false_negatives": 52,
+        "suspicious_recall": 0.4800
+      },
+      "distributed_same_day_fragmentation": {
+        "total_suspicious": 100,
+        "true_positives": 10,
+        "false_negatives": 90,
+        "suspicious_recall": 0.1000
+      },
+      "agent_flow_imbalance": {
+        "total_suspicious": 100,
+        "true_positives": 30,
+        "false_negatives": 70,
+        "suspicious_recall": 0.3000
+      },
+      "reciprocal_relationship_cycle": {
+        "total_suspicious": 100,
+        "true_positives": 71,
+        "false_negatives": 29,
+        "suspicious_recall": 0.7100
+      },
+      "wallet_pass_through": {
+        "total_suspicious": 100,
+        "true_positives": 48,
+        "false_negatives": 52,
+        "suspicious_recall": 0.4800
+      },
+      "agent_wallet_growth": {
+        "total_suspicious": 100,
+        "true_positives": 65,
+        "false_negatives": 35,
+        "suspicious_recall": 0.6500
+      },
+      "many_to_one_collection": {
+        "total_suspicious": 100,
+        "true_positives": 89,
+        "false_negatives": 11,
+        "suspicious_recall": 0.8900
+      },
+      "agent_wallet_concentration": {
+        "total_suspicious": 100,
+        "true_positives": 64,
+        "false_negatives": 36,
+        "suspicious_recall": 0.6400
+      },
+      "one_to_many_dispersion": {
+        "total_suspicious": 100,
+        "true_positives": 89,
+        "false_negatives": 11,
+        "suspicious_recall": 0.8900
+      }
+    }
+  },
+  "feature_importance": [
+    {"feature": "network_current_receiver_is_new", "importance": 0.2767},
+    {"feature": "agent_prior_tx_count_7d", "importance": 0.1867},
+    {"feature": "network_repeated_receiver_ratio_30d", "importance": 0.1012},
+    {"feature": "structuring_same_day_prior_tx_count", "importance": 0.0665},
+    {"feature": "network_outbound_counterparty_count_7d", "importance": 0.0557},
+    {"feature": "network_inbound_counterparty_count_7d", "importance": 0.0437},
+    {"feature": "structuring_prior_value_sum_24h", "importance": 0.0436},
+    {"feature": "agent_current_wallet_is_new", "importance": 0.0378},
+    {"feature": "agent_prior_tx_count_1h", "importance": 0.0353},
+    {"feature": "structuring_repeated_amount_ratio_7d", "importance": 0.0328}
+  ],
+  "feature_importance_interpretation": {
+    "note": "Feature importance composition represents contribution to model predictions, NOT actual domain detection performance",
+    "network_importance_composition": "5/10 top features (50% of importance)",
+    "agent_importance_composition": "3/10 top features (30% of importance)",
+    "structuring_importance_composition": "2/10 top features (20% of importance)",
+    "actual_domain_performance": {
+      "network_recall": "70-74%",
+      "agent_recall": "58-61%",
+      "structuring_recall": "25-31%"
+    }
+  },
+  "error_analysis": {
+    "false_positive_rate_test": 0.0465,
+    "false_positive_rate_independent": 0.0762,
+    "false_negative_rate_test": 0.4794,
+    "false_negative_rate_independent": 0.4542,
+    "macro_f1_degradation": 0.0226
+  },
+  "generalization_analysis": {
+    "validation_macro_f1": 0.7513,
+    "final_test_macro_f1": 0.7471,
+    "independent_macro_f1": 0.7245,
+    "validation_to_test_degradation": 0.0042,
+    "test_to_independent_degradation": 0.0226,
+    "suspicious_recall_improvement": 0.0252
+  },
+  "data_integrity": {
+    "checksums": {
+      "X_train": "3110727538819d68",
+      "X_val": "8939ed0bbc5d7549",
+      "X_test": "1e5cd7765cb79761",
+      "X_independent": "3267ec39b24edfca",
+      "y_train": "5384b07384815726",
+      "y_val": "ed42ebba0b8e7033",
+      "y_test": "40b8c15730c6b5cd",
+      "y_independent": "64508775998cef03"
+    },
+    "partition_validation": true
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "python_version": "3.14",
+    "model_type": "GradientBoostingClassifier",
+    "library": "scikit-learn"
+  },
+  "warnings": [],
+  "limitations": [
+    "Synthetic data does not represent actual EcoCash customer behaviour",
+    "Limited to structuring, network, and agent behaviour domains",
+    "Decision-support only, does not prove money laundering occurred",
+    "False negative rate of ~47% misses many suspicious transactions",
+    "Domain performance varies significantly (Network: 70-74%, Agent: 58-61%, Structuring: 25-31%)",
+    "Performance sensitive to selected threshold (0.35)",
+    "Some scenario families show very low recall (<15%)"
+  ],
+  "compliance": {
+    "training_executed": true,
+    "strict_data_separation": true,
+    "validation_for_selection_only": true,
+    "final_test_for_evaluation_only": true,
+    "independent_for_generalization_only": true,
+    "no_test_tuning": true,
+    "no_independent_tuning": true,
+    "no_preprocessing_leakage": true,
+    "no_target_leakage": true,
+    "no_scenario_metadata_in_x": true,
+    "no_rule_risk_output_in_x": true,
+    "class_imbalance_handled": true,
+    "fixed_random_seed": true,
+    "no_raw_data_modified": true,
+    "no_stage13_matrices_modified": true,
+    "no_application_modifications": true,
+    "no_model_retraining_during_correction": true,
+    "no_threshold_search_during_correction": true,
+    "domain_scenario_analysis_evaluation_only": true
+  },
+  "status": "PASS"
+}

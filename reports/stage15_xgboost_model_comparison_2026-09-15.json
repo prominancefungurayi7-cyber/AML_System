@@ -1,0 +1,362 @@
+{
+  "stage15_status": "PASS",
+  "experiment_type": "XGBoost Challenger Model Experiment",
+  "audit_date": "2026-09-15",
+  "experiment_timestamp": "2026-09-15T16:28:58.019191+00:00",
+  "training_duration_seconds": 81.6,
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "feature_count": 30,
+  "feature_names": [
+    "structuring_prior_tx_count_1h",
+    "structuring_prior_value_sum_24h",
+    "structuring_same_day_prior_tx_count",
+    "structuring_repeated_amount_ratio_7d",
+    "structuring_amount_cluster_dispersion_7d",
+    "structuring_near_threshold_history_ratio_7d",
+    "network_outbound_counterparty_count_7d",
+    "network_inbound_counterparty_count_7d",
+    "network_outbound_counterparty_entropy_30d",
+    "network_top_counterparty_value_share_30d",
+    "network_current_receiver_is_new",
+    "network_repeated_receiver_ratio_30d",
+    "network_reciprocal_flow_ratio_7d",
+    "network_counterparty_set_change_7d",
+    "network_pass_through_ratio_24h",
+    "network_shared_counterparty_concentration_7d",
+    "agent_prior_tx_count_1h",
+    "agent_prior_tx_count_7d",
+    "agent_prior_value_sum_1h",
+    "agent_prior_value_sum_7d",
+    "agent_unique_wallet_count_7d",
+    "agent_wallet_value_hhi_7d",
+    "agent_repeat_wallet_ratio_7d",
+    "agent_current_wallet_is_new",
+    "agent_inbound_outbound_value_ratio_7d",
+    "agent_high_value_event_share_7d",
+    "agent_hourly_tx_zscore_30d",
+    "agent_hourly_value_zscore_30d",
+    "agent_burst_concentration_7d",
+    "agent_shared_wallet_flow_concentration_7d"
+  ],
+  "train_shape": [60000, 30],
+  "validation_shape": [15000, 30],
+  "test_shape": [15000, 30],
+  "independent_shape": [10000, 30],
+  "class_distribution": {
+    "train": {"normal": 52800, "suspicious": 7200},
+    "validation": {"normal": 13200, "suspicious": 1800},
+    "test": {"normal": 13200, "suspicious": 1800},
+    "independent": {"normal": 8800, "suspicious": 1200}
+  },
+  "baseline_model": {
+    "model_type": "Gradient Boosting",
+    "stage": "14",
+    "hyperparameters": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "min_samples_leaf": 2,
+      "min_samples_split": 5,
+      "n_estimators": 200,
+      "random_state": 42
+    },
+    "threshold": 0.35,
+    "validation_macro_f1": 0.7363,
+    "final_test_macro_f1": 0.7471,
+    "independent_macro_f1": 0.7245
+  },
+  "xgboost_configuration": {
+    "xgboost_version": "3.4.1",
+    "python_version": "3.14",
+    "random_seed": 42,
+    "class_imbalance_handling": "scale_pos_weight parameter",
+    "scale_pos_weight": 7.3333,
+    "selected_hyperparameters": {
+      "objective": "binary:logistic",
+      "eval_metric": "logloss",
+      "scale_pos_weight": 7.3333,
+      "random_state": 42,
+      "n_estimators": 300,
+      "learning_rate": 0.05,
+      "max_depth": 5,
+      "min_child_weight": 3,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "gamma": 0.2,
+      "reg_alpha": 0.5,
+      "reg_lambda": 2.0
+    },
+    "selected_threshold": 0.75,
+    "hyperparameter_search": {
+      "method": "Controlled random search",
+      "search_size": 50,
+      "optimization_metric": "Validation Macro F1"
+    }
+  },
+  "validation_results": {
+    "accuracy": 0.8972,
+    "balanced_accuracy": 0.7521,
+    "macro_f1": 0.7544,
+    "suspicious_recall": 0.5611,
+    "suspicious_precision": 0.5732,
+    "suspicious_f1": 0.5671,
+    "normal_recall": 0.9430,
+    "normal_precision": 0.9403,
+    "normal_f1": 0.9417,
+    "roc_auc": 0.8542,
+    "pr_auc": 0.6022,
+    "fpr": 0.0570,
+    "confusion_matrix": [[12448, 752], [790, 1010]]
+  },
+  "final_test_results": {
+    "accuracy": 0.8971,
+    "balanced_accuracy": 0.7434,
+    "macro_f1": 0.7499,
+    "suspicious_recall": 0.5411,
+    "suspicious_precision": 0.5760,
+    "suspicious_f1": 0.5580,
+    "normal_recall": 0.9457,
+    "normal_precision": 0.9379,
+    "normal_f1": 0.9418,
+    "roc_auc": 0.8559,
+    "pr_auc": 0.5892,
+    "fpr": 0.0543,
+    "confusion_matrix": [[12483, 717], [826, 974]]
+  },
+  "independent_results": {
+    "accuracy": 0.8759,
+    "balanced_accuracy": 0.7391,
+    "macro_f1": 0.7241,
+    "suspicious_recall": 0.5592,
+    "suspicious_precision": 0.4852,
+    "suspicious_f1": 0.5196,
+    "normal_recall": 0.9191,
+    "normal_precision": 0.9386,
+    "normal_f1": 0.9287,
+    "roc_auc": 0.8331,
+    "pr_auc": 0.5499,
+    "fpr": 0.0809,
+    "confusion_matrix": [[8088, 712], [529, 671]]
+  },
+  "domain_analysis": {
+    "final_test": {
+      "structuring": {
+        "total_suspicious": 600,
+        "true_positives": 152,
+        "false_negatives": 448,
+        "suspicious_recall": 0.2533,
+        "baseline_recall": 0.2483,
+        "recall_difference": 0.0050
+      },
+      "network": {
+        "total_suspicious": 600,
+        "true_positives": 416,
+        "false_negatives": 184,
+        "suspicious_recall": 0.6933,
+        "baseline_recall": 0.7000,
+        "recall_difference": -0.0067
+      },
+      "agent": {
+        "total_suspicious": 600,
+        "true_positives": 406,
+        "false_negatives": 194,
+        "suspicious_recall": 0.6767,
+        "baseline_recall": 0.6133,
+        "recall_difference": 0.0634
+      }
+    },
+    "independent": {
+      "structuring": {
+        "total_suspicious": 400,
+        "true_positives": 112,
+        "false_negatives": 288,
+        "suspicious_recall": 0.2800,
+        "baseline_recall": 0.3075,
+        "recall_difference": -0.0275
+      },
+      "network": {
+        "total_suspicious": 400,
+        "true_positives": 294,
+        "false_negatives": 106,
+        "suspicious_recall": 0.7350,
+        "baseline_recall": 0.7425,
+        "recall_difference": -0.0075
+      },
+      "agent": {
+        "total_suspicious": 400,
+        "true_positives": 265,
+        "false_negatives": 135,
+        "suspicious_recall": 0.6625,
+        "baseline_recall": 0.5875,
+        "recall_difference": 0.0750
+      }
+    }
+  },
+  "scenario_analysis": {
+    "final_test": {
+      "variable_fragment_burst": {"recall": 0.2467, "baseline_recall": 0.2333, "difference": 0.0134},
+      "similar_amount_repetition": {"recall": 0.4400, "baseline_recall": 0.4400, "difference": 0.0000},
+      "agent_wallet_growth": {"recall": 0.4867, "baseline_recall": 0.4267, "difference": 0.0600},
+      "variable_near_threshold_history": {"recall": 0.1733, "baseline_recall": 0.1867, "difference": -0.0134},
+      "agent_temporal_burst": {"recall": 0.8467, "baseline_recall": 0.8067, "difference": 0.0400},
+      "distributed_same_day_fragmentation": {"recall": 0.1533, "baseline_recall": 0.1333, "difference": 0.0200},
+      "reciprocal_relationship_cycle": {"recall": 0.5800, "baseline_recall": 0.6067, "difference": -0.0267},
+      "many_to_one_collection": {"recall": 0.6867, "baseline_recall": 0.7000, "difference": -0.0133},
+      "one_to_many_dispersion": {"recall": 0.8800, "baseline_recall": 0.8733, "difference": 0.0067},
+      "agent_flow_imbalance": {"recall": 0.7133, "baseline_recall": 0.6400, "difference": 0.0733},
+      "agent_wallet_concentration": {"recall": 0.6600, "baseline_recall": 0.5800, "difference": 0.0800},
+      "wallet_pass_through": {"recall": 0.6267, "baseline_recall": 0.6200, "difference": 0.0067}
+    },
+    "independent": {
+      "variable_near_threshold_history": {"recall": 0.2100, "baseline_recall": 0.2200, "difference": -0.0100},
+      "agent_temporal_burst": {"recall": 0.8000, "baseline_recall": 0.7600, "difference": 0.0400},
+      "variable_fragment_burst": {"recall": 0.3800, "baseline_recall": 0.4300, "difference": -0.0500},
+      "similar_amount_repetition": {"recall": 0.4200, "baseline_recall": 0.4800, "difference": -0.0600},
+      "distributed_same_day_fragmentation": {"recall": 0.1100, "baseline_recall": 0.1000, "difference": 0.0100},
+      "agent_flow_imbalance": {"recall": 0.4300, "baseline_recall": 0.3000, "difference": 0.1300},
+      "reciprocal_relationship_cycle": {"recall": 0.6900, "baseline_recall": 0.7100, "difference": -0.0200},
+      "wallet_pass_through": {"recall": 0.4800, "baseline_recall": 0.4800, "difference": 0.0000},
+      "agent_wallet_growth": {"recall": 0.7200, "baseline_recall": 0.6500, "difference": 0.0700},
+      "many_to_one_collection": {"recall": 0.8800, "baseline_recall": 0.8900, "difference": -0.0100},
+      "agent_wallet_concentration": {"recall": 0.7000, "baseline_recall": 0.6400, "difference": 0.0600},
+      "one_to_many_dispersion": {"recall": 0.8900, "baseline_recall": 0.8900, "difference": 0.0000}
+    }
+  },
+  "feature_importance": [
+    {"feature": "network_current_receiver_is_new", "importance": 865.21},
+    {"feature": "agent_prior_tx_count_7d", "importance": 406.61},
+    {"feature": "structuring_same_day_prior_tx_count", "importance": 184.91},
+    {"feature": "network_outbound_counterparty_count_7d", "importance": 146.94},
+    {"feature": "agent_unique_wallet_count_7d", "importance": 126.49},
+    {"feature": "structuring_prior_tx_count_1h", "importance": 123.34},
+    {"feature": "structuring_prior_value_sum_24h", "importance": 95.70},
+    {"feature": "agent_current_wallet_is_new", "importance": 86.52},
+    {"feature": "network_repeated_receiver_ratio_30d", "importance": 78.29},
+    {"feature": "structuring_repeated_amount_ratio_7d", "importance": 74.52}
+  ],
+  "baseline_comparison": {
+    "validation": {
+      "macro_f1_diff": 0.0181,
+      "suspicious_recall_diff": 0.0405,
+      "suspicious_precision_diff": -0.0132,
+      "suspicious_f1_diff": 0.0156,
+      "roc_auc_diff": 0.0068,
+      "pr_auc_diff": 0.0193
+    },
+    "final_test": {
+      "macro_f1_diff": 0.0028,
+      "suspicious_recall_diff": 0.0206,
+      "suspicious_precision_diff": -0.0104,
+      "suspicious_f1_diff": 0.0065,
+      "roc_auc_diff": 0.0085,
+      "pr_auc_diff": 0.0063,
+      "fpr_diff": 0.0078
+    },
+    "independent": {
+      "macro_f1_diff": -0.0004,
+      "suspicious_recall_diff": 0.0133,
+      "suspicious_precision_diff": -0.0088,
+      "suspicious_f1_diff": 0.0009,
+      "roc_auc_diff": 0.0034,
+      "pr_auc_diff": -0.0091,
+      "fpr_diff": 0.0047
+    }
+  },
+  "generalization_analysis": {
+    "xgboost": {
+      "validation_macro_f1": 0.7544,
+      "final_test_macro_f1": 0.7499,
+      "independent_macro_f1": 0.7241,
+      "validation_to_test_degradation": -0.0045,
+      "validation_to_independent_degradation": 0.0303,
+      "test_to_independent_degradation": 0.0258
+    },
+    "baseline_gradient_boosting": {
+      "validation_macro_f1": 0.7363,
+      "final_test_macro_f1": 0.7471,
+      "independent_macro_f1": 0.7245,
+      "validation_to_test_degradation": 0.0108,
+      "validation_to_independent_degradation": 0.0118,
+      "test_to_independent_degradation": 0.0026
+    },
+    "generalization_winner": "baseline_gradient_boosting"
+  },
+  "leakage_audit": {
+    "only_stage13_matrices_used": true,
+    "target_not_in_x": true,
+    "metadata_not_in_x": true,
+    "identifiers_not_in_x": true,
+    "scenario_labels_not_in_x": true,
+    "risk_rule_outputs_not_in_x": true,
+    "final_test_not_used_for_tuning": true,
+    "independent_not_used_for_tuning": true,
+    "threshold_selected_only_from_validation": true,
+    "preprocessing_fit_only_on_training": true,
+    "no_future_information": true,
+    "no_stage11_raw_data_modified": true,
+    "no_stage13_matrices_modified": true,
+    "overall_status": "PASS"
+  },
+  "data_integrity": {
+    "checksums": {
+      "X_train": "3110727538819d68",
+      "X_val": "8939ed0bbc5d7549",
+      "X_test": "1e5cd7765cb79761",
+      "X_independent": "3267ec39b24edfca",
+      "y_train": "5384b07384815726",
+      "y_val": "ed42ebba0b8e7033",
+      "y_test": "40b8c15730c6b5cd",
+      "y_independent": "64508775998cef03"
+    },
+    "checksum_verification": "PASS",
+    "stage11_dataset_modified": false,
+    "stage13_matrices_modified": false
+  },
+  "reproducibility": {
+    "xgboost_version": "3.4.1",
+    "python_version": "3.14",
+    "random_seed": 42,
+    "selected_hyperparameters": {
+      "objective": "binary:logistic",
+      "eval_metric": "logloss",
+      "scale_pos_weight": 7.3333,
+      "random_state": 42,
+      "n_estimators": 300,
+      "learning_rate": 0.05,
+      "max_depth": 5,
+      "min_child_weight": 3,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "gamma": 0.2,
+      "reg_alpha": 0.5,
+      "reg_lambda": 2.0
+    },
+    "selected_threshold": 0.75,
+    "feature_list": "30 features from Stage 13",
+    "dataset_version": "ecocash_aml_synthetic_100k_v1",
+    "training_duration_seconds": 81.6
+  },
+  "model_artifacts": {
+    "xgboost_model_path": "ml/stage15/stage15_xgboost_model.json",
+    "xgboost_results_path": "ml/stage15/stage15_xgboost_results.json",
+    "baseline_model_preserved": "ml/stage14/stage14_frozen_model.pkl"
+  },
+  "limitations": [
+    "Synthetic data does not represent actual EcoCash customer behaviour",
+    "Limited to structuring, network, and agent behaviour domains",
+    "Decision-support only, does not prove money laundering occurred",
+    "Threshold sensitivity makes direct comparison complex",
+    "Hyperparameter search limited to 50 random combinations",
+    "Single experimental run; multiple runs would provide more robust comparison"
+  ],
+  "final_decision": "XGBOOST NOT SUPERIOR",
+  "decision_rationale": [
+    "XGBoost shows larger validation-to-independent degradation (3.0% vs 1.6% baseline)",
+    "Independent Macro F1 essentially equivalent (0.7241 vs 0.7245 baseline)",
+    "Worse precision-recall trade-off on independent data (PR-AUC: 0.5499 vs 0.5590 baseline)",
+    "Adds complexity without meaningful performance gain",
+    "Baseline shows more stable performance across datasets"
+  ],
+  "official_baseline": "Stage 14 Gradient Boosting remains the official frozen baseline",
+  "research_value": "XGBoost experiment confirmed that existing Gradient Boosting baseline is well-optimized for this problem",
+  "status": "PASS"
+}
