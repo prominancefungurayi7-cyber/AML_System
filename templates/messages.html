@@ -111,6 +111,9 @@
   }
   function sendMessage() {
     const input = document.getElementById('messageInput'); const content = input.value.trim(); if (!content || !currentReceiver) return;
+    // A recipient can be removed or changed in another session. Do not send
+    // to a stale client-side contact; the server validates again on receipt.
+    if (!messageableUsers.some((contact) => contact.username === currentReceiver)) { alert('This customer is no longer an available messaging contact.'); loadMessageableUsers(); return; }
     pendingMessage = content;
     socket.emit('send_message', { receiver: currentReceiver, content, conversation_id: currentConversation }); input.value = ''; input.style.height = 'auto';
     if (currentConversation) socket.emit('stop_typing', { conversation_id: currentConversation });
@@ -138,7 +141,7 @@
     const time = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); group.innerHTML = `<div><div class="message-bubble">${escapeHtml(message.content)}</div><div class="message-time">${time}</div></div>`; container.appendChild(group); if (scroll) container.scrollTop = container.scrollHeight;
   }
   function getInitials(value) { return String(value || '--').slice(0, 2).toUpperCase(); }
-  function contactLabel(contact) { return contact.role === 'customer' ? contact.account_number : contact.username; }
+  function contactLabel(contact) { return contact.role === 'customer' ? `${contact.username} (${contact.account_number})` : contact.username; }
   function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text || ''; return div.innerHTML; }
 </script>
 {% endblock %}

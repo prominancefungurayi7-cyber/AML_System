@@ -701,13 +701,12 @@ def handle_disconnect():
 @socketio.on('send_message')
 def handle_send_message(data):
     """Handle incoming message."""
-    if 'username' not in session:
+    if 'user_id' not in session:
         socketio.emit('message_error', {'message': 'Not authenticated'}, to=request.sid)
         return
-    
-    sender = session['username']
-    receiver = data.get('receiver')
-    content = data.get('content')
+
+    receiver = str(data.get('receiver') or '').strip()
+    content = str(data.get('content') or '').strip()
     
     if not receiver or not content:
         socketio.emit('message_error', {'message': 'Missing receiver or content'}, to=request.sid)
@@ -716,14 +715,20 @@ def handle_send_message(data):
     try:
         conn = connect_db()
         
-        # Check permissions
-        sender_user = fetch_user_by_username(conn, sender)
+        # Do not trust a username supplied by the browser/session alone. The
+        # current account and recipient are resolved from the live users table
+        # immediately before every message is persisted.
+        sender_user = conn.execute(
+            "SELECT * FROM users WHERE id=?", (session['user_id'],)
+        ).fetchone()
         receiver_user = fetch_user_by_username(conn, receiver)
         
         if not sender_user or not receiver_user:
             socketio.emit('message_error', {'message': 'User not found'}, to=request.sid)
             conn.close()
             return
+
+        sender = sender_user['username']
         
         can_message, reason = can_user_message(sender_user['role'], receiver_user['role'])
         if can_message and not _is_authorized_messaging_counterpart(conn, sender_user, receiver):
@@ -841,19 +846,28 @@ def handle_mark_read(data):
 # ============================================================================
 
 def _get_messaging_counterparts(conn, user):
-    """Return the users available to the current role in secure messaging."""
+    """Return live, registered messaging contacts for the current role.
+
+    Compliance officers are intentionally given customer records only. The
+    users table is the registration authority, so stale conversation rows,
+    manually typed names, and deleted accounts cannot populate the contact
+    list.
+    """
     if user["role"] in {"admin", "customer"}:
         target_role = "compliance"
         return conn.execute(
-            "SELECT * FROM users WHERE role=? ORDER BY id ASC LIMIT 1",
+            "SELECT * FROM users WHERE role=? AND username IS NOT NULL "
+            "AND account_number IS NOT NULL ORDER BY id ASC LIMIT 1",
             (target_role,),
         ).fetchall()
 
     if user["role"] == "compliance":
-        # Compliance can respond to the Admin and to all bank customers.
+        # This query runs for every API request rather than using a cached
+        # list or prior conversation participants.
         return conn.execute(
-            "SELECT * FROM users WHERE role IN ('admin', 'customer') "
-            "ORDER BY CASE WHEN role='admin' THEN 0 ELSE 1 END, account_number ASC",
+            "SELECT * FROM users WHERE role='customer' "
+            "AND username IS NOT NULL AND account_number IS NOT NULL "
+            "ORDER BY account_number ASC, id ASC",
         ).fetchall()
 
     return []
@@ -869,7 +883,9 @@ def api_get_conversations():
     """Get conversations allowed for the current user's role."""
     try:
         conn = connect_db()
-        current_user = fetch_user_by_username(conn, session['username'])
+        current_user = conn.execute(
+            "SELECT * FROM users WHERE id=?", (session['user_id'],)
+        ).fetchone()
         counterparts = _get_messaging_counterparts(conn, current_user) if current_user else []
         conversations = get_user_conversations(conn, session['username'])
         allowed_usernames = {counterpart['username'] for counterpart in counterparts}
@@ -994,12 +1010,16 @@ def api_get_messageable_users():
     """Get the users current user is permitted to message."""
     try:
         conn = connect_db()
-        current_user = fetch_user_by_username(conn, session['username'])
+        current_user = conn.execute(
+            "SELECT * FROM users WHERE id=?", (session['user_id'],)
+        ).fetchone()
         
         if not current_user:
             return jsonify({'status': 'error', 'message': 'User not found'}), 404
         
         messageable_users = []
+        # Build the response directly from verified rows; expose only the
+        # contact fields needed by the secure messaging interface.
         for counterpart in _get_messaging_counterparts(conn, current_user):
             status = get_user_online_status(conn, counterpart['username'])
             messageable_users.append({
@@ -1392,28 +1412,55 @@ def _stats_payload(conn):
     # Use a single query with subqueries for better performance
     stats_query = """
         SELECT 
+            (SELECT COUNT(*) FROM users) as total_users,
+            (SELECT COUNT(*) FROM users WHERE role='customer') as customer_users,
+            (SELECT COUNT(*) FROM users WHERE role IN ('admin', 'compliance')) as staff_users,
+            (SELECT COUNT(*) FROM users WHERE kyc_status IS NULL OR kyc_status!='verified') as kyc_pending,
+            (SELECT COUNT(*) FROM users WHERE pep_flag=1) as pep_customers,
             (SELECT COUNT(*) FROM transactions) as total_transactions,
             (SELECT COUNT(*) FROM transactions WHERE risk_level!='normal') as suspicious_transactions,
+            (SELECT COUNT(*) FROM transactions WHERE risk_level IN ('suspicious','super_suspicious','high_risk','critical')) as flagged_transactions,
             (SELECT COUNT(*) FROM alerts WHERE status='open') as open_alerts,
+            (SELECT COUNT(*) FROM alerts) as total_alerts,
             (SELECT COUNT(*) FROM transactions WHERE risk_level IN ('super_suspicious','high_risk','critical') AND timestamp>=?) as high_risk_today,
             (SELECT COUNT(*) FROM sar_reports WHERE status='draft') as pending_sars,
+            (SELECT COUNT(*) FROM sar_reports WHERE status='filed') as filed_sars,
             (SELECT COUNT(*) FROM ctr_reports WHERE status='pending') as pending_ctrs
+            ,(SELECT COUNT(*) FROM ctr_reports WHERE status='filed') as filed_ctrs
     """
     row = conn.execute(stats_query, (today_start,)).fetchone()
 
     return {
 
+        "total_users": row["total_users"],
+
+        "customer_users": row["customer_users"],
+
+        "staff_users": row["staff_users"],
+
+        "kyc_pending": row["kyc_pending"],
+
+        "pep_customers": row["pep_customers"],
+
         "total_transactions": row["total_transactions"],
 
         "suspicious_transactions": row["suspicious_transactions"],
 
+        "flagged_transactions": row["flagged_transactions"],
+
         "open_alerts": row["open_alerts"],
+
+        "total_alerts": row["total_alerts"],
 
         "high_risk_today": row["high_risk_today"],
 
         "pending_sars": row["pending_sars"],
 
+        "filed_sars": row["filed_sars"],
+
         "pending_ctrs": row["pending_ctrs"],
+
+        "filed_ctrs": row["filed_ctrs"],
 
         "timestamp": datetime.now(timezone.utc).isoformat(),
 
@@ -3826,19 +3873,26 @@ def admin_dashboard():
 
     ).fetchall()
 
-    system_stats = {
-
-        "total_users": get_db().execute("SELECT COUNT(*) as c FROM users").fetchone()["c"],
-
-        "total_transactions": get_db().execute("SELECT COUNT(*) as c FROM transactions").fetchone()["c"],
-
-        "open_alerts": get_db().execute("SELECT COUNT(*) as c FROM alerts WHERE status='open'").fetchone()["c"],
-
-        "pending_sars": get_db().execute("SELECT COUNT(*) as c FROM sar_reports WHERE status='draft'").fetchone()["c"],
-
-        "pending_ctrs": get_db().execute("SELECT COUNT(*) as c FROM ctr_reports WHERE status='pending'").fetchone()["c"],
-
-    }
+    # Keep the dashboard's supervisory totals in one auditable snapshot. The
+    # prior view omitted core KYC, PEP, risk and report-queue information.
+    system_stats = dict(get_db().execute(
+        """
+        SELECT
+            (SELECT COUNT(*) FROM users) AS total_users,
+            (SELECT COUNT(*) FROM users WHERE role='customer') AS customer_users,
+            (SELECT COUNT(*) FROM users WHERE role IN ('admin', 'compliance')) AS staff_users,
+            (SELECT COUNT(*) FROM users WHERE kyc_status IS NULL OR kyc_status != 'verified') AS kyc_pending,
+            (SELECT COUNT(*) FROM users WHERE pep_flag=1) AS pep_customers,
+            (SELECT COUNT(*) FROM transactions) AS total_transactions,
+            (SELECT COUNT(*) FROM transactions WHERE risk_level IN ('suspicious','super_suspicious','high_risk','critical')) AS flagged_transactions,
+            (SELECT COUNT(*) FROM alerts WHERE status='open') AS open_alerts,
+            (SELECT COUNT(*) FROM alerts) AS total_alerts,
+            (SELECT COUNT(*) FROM sar_reports WHERE status='draft') AS pending_sars,
+            (SELECT COUNT(*) FROM sar_reports WHERE status='filed') AS filed_sars,
+            (SELECT COUNT(*) FROM ctr_reports WHERE status='pending') AS pending_ctrs,
+            (SELECT COUNT(*) FROM ctr_reports WHERE status='filed') AS filed_ctrs
+        """
+    ).fetchone())
 
     return render_template(
 

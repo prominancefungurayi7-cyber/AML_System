@@ -1,0 +1,430 @@
+{
+  "project_scope": {
+    "approved_domains": [
+      "structuring",
+      "wallet_transaction_network_behaviour",
+      "agent_behaviour"
+    ],
+    "decision_support_only": true,
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "locked_feature_architecture": {
+    "source": "stage10b_feature_specification.json",
+    "feature_count": 30,
+    "structuring": 6,
+    "network": 10,
+    "agent": 14,
+    "change_allowed": false,
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "total_transactions": {
+    "value": 100000,
+    "approval_class": "APPROVED FROM STAGE 10C"
+  },
+  "population": {
+    "proposal": "2,000 synthetic customers, each owning one wallet; 160 agents.",
+    "rationale": "50 transactions per wallet on average supports behavioural history while 160 agents average 469 agent-mediated events and allow disjoint evaluation groups.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "customers": {
+    "count": 2000,
+    "wallet_ownership": "one customer to one wallet in this dataset version",
+    "wallet_transaction_distribution": "bounded over-dispersed discrete distribution, 35\u201375 per wallet, constrained to exactly 100,000 total",
+    "minimum_history": "Scenario-eligible wallets require 12 earlier events; all wallets receive at least 20 baseline normal events where allocation permits.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "wallets": {
+    "count": 2000,
+    "partition_counts": {
+      "train": 1200,
+      "validation": 300,
+      "final_test": 300,
+      "independent": 200
+    },
+    "cross_partition_edges": "prohibited",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "agents": {
+    "count": 160,
+    "partition_counts": {
+      "train": 96,
+      "validation": 24,
+      "final_test": 24,
+      "independent": 16
+    },
+    "agent_mediated_transactions": 75000,
+    "non_agent_mediated_transactions": 25000,
+    "minimum_history": "Agent scenarios require 30 earlier attributable events; otherwise Stage 10B neutral cold start applies.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "class_distribution": {
+    "normal": {
+      "count": 88000,
+      "percentage": 88
+    },
+    "suspicious_pattern_scenario": {
+      "count": 12000,
+      "percentage": 12
+    },
+    "target": "binary ground_truth_label only",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "normal_behaviour": {
+    "catalogue": [
+      "low and irregular wallet use",
+      "moderate repeated household counterparties",
+      "high legitimate volume",
+      "occasional new counterparties",
+      "legitimate bursts",
+      "legitimate recurring agent use",
+      "legitimate agent concentration",
+      "varied directions, amounts and time patterns"
+    ],
+    "hard_negative_rule": "Include benign cases sharing individual high-volume, near-threshold, burst, repeat-counterparty and repeat-agent characteristics with suspicious cases.",
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "suspicious_behaviour": {
+    "total": 12000,
+    "primary_domain_allocation": {
+      "structuring": 4000,
+      "network": 4000,
+      "agent": 4000
+    },
+    "family_event_cap": 1000,
+    "rule": "Each event has one primary scenario family for allocation but may participate in a varied, group-local behavioural sequence.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "structuring_scenarios": [
+    {
+      "family": "variable_fragment_burst",
+      "events": 1000,
+      "wallets": "2\u20138",
+      "transactions_per_sequence": "3\u201312",
+      "spacing": "2\u201355 minutes",
+      "amount": "bounded log-normal around wallet baseline; not fixed to threshold",
+      "signal": "short-window count and accumulated value",
+      "diversity": "varied channel, direction, baseline and duration"
+    },
+    {
+      "family": "similar_amount_repetition",
+      "events": 1000,
+      "wallets": "1\u20135",
+      "transactions_per_sequence": "4\u201315",
+      "spacing": "10 minutes\u20133 days",
+      "amount": "base draw with \u00b10\u20135% variation",
+      "signal": "repeated amount ratio and low dispersion",
+      "diversity": "amount scale overlaps normal repeated payments"
+    },
+    {
+      "family": "distributed_same_day_fragmentation",
+      "events": 1000,
+      "wallets": "2\u201310",
+      "transactions_per_sequence": "3\u201310",
+      "spacing": "20 minutes\u201312 hours",
+      "amount": "mixture of low, medium and high baseline-relative draws",
+      "signal": "same-day count and cumulative activity",
+      "diversity": "some sequences include new, some established counterparties"
+    },
+    {
+      "family": "variable_near_threshold_history",
+      "events": 1000,
+      "wallets": "1\u20136",
+      "transactions_per_sequence": "3\u20139",
+      "spacing": "15 minutes\u20136 days",
+      "amount": "mixture: 40\u201380% near synthetic threshold, remainder not near it",
+      "signal": "historical near-threshold ratio combined with fragmentation",
+      "diversity": "normal cases also contain near-threshold events"
+    }
+  ],
+  "network_scenarios": [
+    {
+      "family": "many_to_one_collection",
+      "events": 1000,
+      "wallets": "4\u201330",
+      "edges": "5\u201380",
+      "duration": "1\u201314 days",
+      "signal": "inbound breadth and concentration",
+      "diversity": "vary hub, amounts, timing and edge density"
+    },
+    {
+      "family": "one_to_many_dispersion",
+      "events": 1000,
+      "wallets": "5\u201335",
+      "edges": "6\u201390",
+      "duration": "1\u201314 days",
+      "signal": "outbound diversity and low concentration",
+      "diversity": "varied recipient persistence and value allocation"
+    },
+    {
+      "family": "reciprocal_relationship_cycle",
+      "events": 1000,
+      "wallets": "2\u201312",
+      "edges": "4\u201350",
+      "duration": "2 hours\u201310 days",
+      "signal": "reciprocal flow ratio",
+      "diversity": "vary cycle length, values and relationship history"
+    },
+    {
+      "family": "wallet_pass_through",
+      "events": 1000,
+      "wallets": "3\u201320",
+      "edges": "6\u201370",
+      "duration": "30 minutes\u20137 days",
+      "signal": "inbound/outbound pass-through",
+      "diversity": "overlap with legitimate high-turnover wallets"
+    },
+    {
+      "family": "counterparty_set_shift",
+      "events": 1000,
+      "wallets": "2\u201315",
+      "edges": "8\u201360",
+      "duration": "14\u201330 days",
+      "signal": "receiver-set change",
+      "diversity": "gradual and abrupt shifts with different prior relationship depths"
+    },
+    {
+      "family": "shared_counterparty_cluster",
+      "events": 1000,
+      "wallets": "4\u201325",
+      "edges": "8\u201375",
+      "duration": "1\u201321 days",
+      "signal": "second-order shared-neighbour concentration",
+      "diversity": "vary cluster density and external counterparties"
+    }
+  ],
+  "agent_scenarios": [
+    {
+      "family": "agent_wallet_growth",
+      "events": 1000,
+      "agents": "1\u20134",
+      "wallets": "8\u201360",
+      "duration": "3\u201321 days",
+      "signal": "agent count/value growth and new wallets",
+      "diversity": "growth magnitude and timing vary"
+    },
+    {
+      "family": "agent_wallet_concentration",
+      "events": 1000,
+      "agents": "1\u20133",
+      "wallets": "3\u201320",
+      "duration": "3\u201321 days",
+      "signal": "wallet HHI and repeat-wallet ratio",
+      "diversity": "includes legitimate concentrated-agent hard negatives"
+    },
+    {
+      "family": "agent_temporal_burst",
+      "events": 1000,
+      "agents": "1\u20135",
+      "wallets": "6\u201350",
+      "duration": "15 minutes\u20133 days",
+      "signal": "burst concentration and hourly z-scores",
+      "diversity": "vary burst size, time and value"
+    },
+    {
+      "family": "agent_value_shift",
+      "events": 1000,
+      "agents": "1\u20134",
+      "wallets": "5\u201340",
+      "duration": "2\u201321 days",
+      "signal": "high-value share and value z-score",
+      "diversity": "baseline-relative values overlap legitimate high value"
+    },
+    {
+      "family": "agent_flow_imbalance",
+      "events": 1000,
+      "agents": "1\u20134",
+      "wallets": "5\u201335",
+      "duration": "1\u201314 days",
+      "signal": "inbound/outbound value ratio",
+      "diversity": "vary direction mix and transaction type"
+    },
+    {
+      "family": "agent_shared_counterparty_coordination",
+      "events": 1000,
+      "agents": "1\u20135",
+      "wallets": "6\u201345",
+      "duration": "1\u201321 days",
+      "signal": "shared-wallet-flow concentration",
+      "diversity": "vary shared counterparties, wallet count and network density"
+    }
+  ],
+  "scenario_parameter_ranges": {
+    "amounts": "Wallet-baseline-scaled bounded log-normal mixtures; use categorical low/medium/high legitimate profiles and overlap normal/suspicious supports.",
+    "spacing": "Log-uniform/bounded random for burst intervals; empirical-style time-of-day and day-of-week distributions with scenario-time overlap.",
+    "counts": "Bounded discrete ranges specified per family.",
+    "network_structure": "Partition-local stochastic relationship graphs with family parameters sampled per instance.",
+    "seed": "Master seed plus recorded deterministic sub-seeds per partition, entity, scenario and sequence.",
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "transaction_direction": {
+    "rule": "Every transaction has exactly one sender_wallet and one receiver_wallet. sender perspective is outgoing; receiver perspective is incoming. transaction_direction is derived per feature perspective, not a categorical identity.",
+    "agent_attribution": "agent_id identifies the servicing agent when the event is agent-mediated; NULL otherwise. Agent inbound/outbound sums follow sender/receiver direction of attributable events.",
+    "reciprocity": "A counterparty is reciprocal only when earlier edges exist in both directions between the same two wallets.",
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "reporting_threshold_governance": {
+    "source": "versioned synthetic research configuration",
+    "value": "10,000 synthetic currency units",
+    "version": "synthetic_reporting_threshold_v1",
+    "metadata": "record threshold value and version in generation_metadata, never X or y",
+    "change_policy": "new value requires a new configuration version and regenerated experiment; it cannot be inferred from labels",
+    "anti_shortcut": "Near-threshold activity is neither necessary nor sufficient for suspiciousness; include normal near-threshold and suspicious non-near-threshold scenarios.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "train_population": {
+    "transactions": 60000,
+    "labels": {
+      "normal": 52800,
+      "suspicious": 7200
+    },
+    "wallets": 1200,
+    "agents": 96,
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "validation_population": {
+    "transactions": 15000,
+    "labels": {
+      "normal": 13200,
+      "suspicious": 1800
+    },
+    "wallets": 300,
+    "agents": 24,
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "final_test_population": {
+    "transactions": 15000,
+    "labels": {
+      "normal": 13200,
+      "suspicious": 1800
+    },
+    "wallets": 300,
+    "agents": 24,
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "independent_population": {
+    "transactions": 10000,
+    "labels": {
+      "normal": 8800,
+      "suspicious": 1200
+    },
+    "wallets": 200,
+    "agents": 16,
+    "independence": "new entities, new scenario instances, new parameter combinations, distinct temporal placement, distinct graph realizations and no copied sequences; a new seed alone is insufficient.",
+    "approval_class": "REQUIRES USER/RESEARCHER APPROVAL"
+  },
+  "isolation_rules": {
+    "wallet_customer": "Immutable partition assignment before generation; one customer/wallet belongs to exactly one partition.",
+    "agents": "Each agent belongs to exactly one partition; no agent history or relationship crosses partitions.",
+    "edges": "All counterparties and scenario participants are partition-local; no cross-partition edges.",
+    "history": "Feature history is calculated only from earlier ordered records within the same partition.",
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "temporal_rules": {
+    "order": "(event_timestamp,event_sequence) lexicographic",
+    "event_sequence": "unique deterministic global integer allocated after planned event ordering, retained as metadata only",
+    "feature_history": "strictly earlier ordered records only",
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "ground_truth_rules": {
+    "assignment": "Scenario engine assigns binary label and metadata before feature extraction.",
+    "forbidden_sources": [
+      "risk_score",
+      "risk_level",
+      "rules",
+      "alerts",
+      "investigations",
+      "feature thresholds",
+      "model predictions"
+    ],
+    "metadata": [
+      "scenario_id",
+      "scenario_type",
+      "scenario_category",
+      "signal_strength",
+      "scenario_source",
+      "affected_wallets",
+      "affected_agent",
+      "generation_metadata"
+    ],
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "feature_matrix_contract": {
+    "X": "exact Stage 10B allow-list of 30 features; fail closed on extra, missing or duplicate columns",
+    "excluded": [
+      "identifiers",
+      "timestamps",
+      "event_sequence",
+      "scenario metadata",
+      "target",
+      "risk/rule/alert/investigation fields",
+      "future information"
+    ],
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "cold_start": {
+    "rule": "Stage 10B neutral/no-evidence policy: counts/sums/ratios/shares/entropy/concentration/dispersion/z-scores=0; new flags=0 until required history; NULL agent=all agent features 0.",
+    "approval_class": "APPROVED FROM STAGE 10B"
+  },
+  "reproducibility": {
+    "controls": [
+      "master seed",
+      "partition sub-seeds",
+      "configuration version",
+      "scenario catalogue version",
+      "threshold version",
+      "generator code hash",
+      "entity allocation manifest",
+      "parameter manifest",
+      "ordered event manifest",
+      "quality report"
+    ],
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "quality_controls": {
+    "hard_requirements": [
+      "100000 unique transactions",
+      "binary labels only",
+      "exact partition and class counts",
+      "unique event sequence",
+      "valid sender/receiver/direction",
+      "no missing required raw fields",
+      "no duplicate IDs",
+      "no group overlap",
+      "no cross-partition edges/agents",
+      "independent non-overlap"
+    ],
+    "anti_template_acceptance": [
+      "no family >1000 suspicious events",
+      "no agent >5% of suspicious events",
+      "no wallet >1% of suspicious events",
+      "no transaction type or 3-hour bin differs by more than 0.20 absolute prevalence between labels without documented review",
+      "scenario ID absent from X",
+      "amount distribution overlap checked by quantile overlap and single-feature AUC review"
+    ],
+    "approval_class": "PROPOSED IN STAGE 10C"
+  },
+  "generalization_checks": [
+    "label-stratified amount/time/type/direction distributions",
+    "wallet and agent activity distributions",
+    "scenario-family and entity concentration",
+    "single-feature AUC and identifier-proxy tests",
+    "duplicate and near-duplicate sequence detection",
+    "feature-label association review",
+    "partition overlap and graph-edge audit",
+    "independent-versus-development parameter and topology comparison"
+  ],
+  "research_justification": "This is a controlled synthetic environment for evaluating temporal structuring, wallet-network and agent-behaviour AML decision support with unseen-entity evaluation. It is not evidence of actual EcoCash customer behaviour or proof that a model detects real money laundering.",
+  "unresolved_items": [
+    "Approval of proposed population and partition numbers",
+    "approval of 88/12 class distribution",
+    "approval of scenario allocation and parameter ranges",
+    "approval of synthetic threshold v1 value",
+    "approval of transaction-direction convention",
+    "approval of agent attribution coverage and partition-local graph policy",
+    "approval of quality-control acceptance thresholds"
+  ],
+  "readiness_status": {
+    "value": "NOT READY FOR DATA GENERATION",
+    "reason": "Concrete proposals are complete, but each numerical and governance decision requiring researcher approval remains unapproved."
+  }
+}

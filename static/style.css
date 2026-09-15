@@ -25,6 +25,7 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --EcoCash-hover: rgba(255, 255, 255, 0.06);
 }
 
 html[data-theme="light"] {
@@ -47,6 +48,7 @@ html[data-theme="light"] {
   --EcoCash-success: #059669;
   --EcoCash-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   --EcoCash-glow: none;
+  --EcoCash-hover: rgba(0, 0, 0, 0.05);
 }
 
 * { box-sizing: border-box; }
@@ -59,7 +61,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   background: var(--EcoCash-bg);
   color: var(--EcoCash-text);
   font-size: 13px;
@@ -1254,19 +1256,20 @@ html[data-theme="light"] .action-link:hover {
   left: 0;
   top: 0;
   height: 100vh;
-  width: 250px;
+  width: 260px;
   background: var(--EcoCash-panel);
-  border: 1px solid var(--EcoCash-border);
-  border-radius: 0 4px 4px 0;
-  padding: 1rem;
+  border-right: 1px solid var(--EcoCash-border);
+  border-radius: 0 6px 6px 0;
+  padding: 1.25rem 1rem;
   z-index: 1000;
   transform: translateX(-100%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
   overflow-y: auto;
   opacity: 0;
   display: flex;
   flex-direction: column;
+  will-change: transform;
 }
 
 .admin-sidebar.open {
@@ -2040,32 +2043,6 @@ html[data-theme="light"] .message-badge {
   gap: 0.25rem;
 }
 
-.sidebar-item {
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem 0.6rem;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--EcoCash-text);
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
-  min-height: auto;
-}
-
-.sidebar-item:hover {
-  background: var(--EcoCash-panel-strong);
-  border-color: var(--EcoCash-border);
-}
-
-.sidebar-item.active {
-  background: var(--EcoCash-green);
-  color: white;
-  border-color: var(--EcoCash-green);
-}
-
 .admin-content {
   width: 100%;
 }
@@ -2133,36 +2110,49 @@ html[data-theme="light"] .message-badge {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  margin: 0.25rem 0;
-  border-radius: 4px;
+  padding: 0.7rem 1rem;
+  margin: 0.125rem 0;
+  border-radius: 6px;
   border: none;
+  border-left: 3px solid transparent;
   background: transparent;
   color: var(--EcoCash-text);
   cursor: pointer;
   text-align: left;
-  font-size: 0.9rem;
-  transition: background 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
 }
 
 .sidebar-item svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   flex-shrink: 0;
-  stroke: var(--EcoCash-text);
+  stroke: var(--EcoCash-muted);
+  transition: stroke 0.15s ease;
 }
 
 .sidebar-item:hover {
   background: var(--EcoCash-hover);
+  border-left-color: var(--EcoCash-border-strong);
+  color: var(--EcoCash-text);
+}
+
+.sidebar-item:hover svg {
+  stroke: var(--EcoCash-text);
 }
 
 .sidebar-item.active {
-  background: var(--EcoCash-green);
-  color: white;
+  background: color-mix(in srgb, var(--EcoCash-green) 20%, transparent);
+  color: var(--EcoCash-text);
+  border-left-color: var(--EcoCash-green);
+  font-weight: 600;
 }
 
 .sidebar-item.active svg {
-  stroke: white;
+  stroke: var(--EcoCash-green);
 }
 
 .back-to-top {
@@ -2198,11 +2188,6 @@ html[data-theme="light"] .message-badge {
   transform: translateY(-2px);
 }
 
-.sidebar-toggle.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .sidebar-toggle svg {
   width: 24px;
   height: 24px;
@@ -2231,8 +2216,82 @@ html[data-theme="light"] .message-badge {
   visibility: visible;
 }
 
+/* ========== Entrance Animations ========== */
+@keyframes tile-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.metric-tile {
+  animation: tile-in 0.35s var(--ease-out) both;
+}
+
+.metric-tile:nth-child(1) { animation-delay: 0ms; }
+.metric-tile:nth-child(2) { animation-delay: 40ms; }
+.metric-tile:nth-child(3) { animation-delay: 80ms; }
+.metric-tile:nth-child(4) { animation-delay: 120ms; }
+.metric-tile:nth-child(5) { animation-delay: 160ms; }
+.metric-tile:nth-child(6) { animation-delay: 200ms; }
+.metric-tile:nth-child(7) { animation-delay: 240ms; }
+.metric-tile:nth-child(8) { animation-delay: 280ms; }
+
+/* Smooth row hover on all data tables */
+.data-table tbody tr {
+  transition: background 0.1s ease;
+}
+
+/* Flash message slide-down animation */
+@keyframes flash-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.flash-messages li {
+  animation: flash-in 0.3s var(--ease-out) both;
+}
+
+/* Sidebar header branding strip */
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--EcoCash-border);
+}
+
+.sidebar-brand__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--EcoCash-muted);
+}
+
+.sidebar-brand__role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--EcoCash-text);
+}
+
+/* Hero banner subtle upgrade */
+.hero-banner {
+  border-left: 4px solid var(--EcoCash-green);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Card entrance */
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: card-in 0.3s var(--ease-out) both;
+}
+
 @media (max-width: 760px) {
   .admin-sidebar {
-    width: 200px;
+    width: 220px;
   }
 }

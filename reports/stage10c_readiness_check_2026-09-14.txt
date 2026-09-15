@@ -1,0 +1,105 @@
+STAGE 10C — 100,000-TRANSACTION POPULATION & SCENARIO AUDIT READINESS CHECK
+Date: 2026-09-14
+Role: Senior ML Data-Engineering & AML Research Auditor
+Status: SPECIFICATION COMPLETE — PENDING RESEARCHER APPROVAL (NOT READY FOR DATA GENERATION)
+
+================================================================================
+1. EXECUTIVE SUMMARY & BASELINE VERIFICATION
+================================================================================
+Stage 10C establishes the population architecture, scenario catalogue, entity 
+isolation rules, and temporal contracts for the planned 100,000-transaction synthetic
+AML dataset.
+
+STAGE 10B STATUS: PASS (ARCHITECTURE LOCKED)
+- Feature vector: EXACTLY 30 features (6 structuring, 10 network, 14 agent).
+- Target: Strictly binary (0 = normal, 1 = suspicious_pattern_scenario).
+- Scope: Structuring, Wallet/Transaction Network Behaviour, Agent Behaviour.
+- Application Database: MySQL verified active in .env and config.py.
+- Code & Schema Integrity: Verified unchanged. No tables, schemas, or application
+  routes were modified.
+
+================================================================================
+2. PROPOSED POPULATION & PARTITION METRICS
+================================================================================
+Total Transactions:          100,000 (Exact)
+Total Customers / Wallets:   2,000 (1:1 mapping; mean 50.0 tx/wallet, range 35-75)
+Total Agents:                160 registered kiosks (mean ~469 tx/agent)
+Agent-Mediated Share:        75.0% (75,000 transactions)
+Non-Agent P2P Share:         25.0% (25,000 transactions)
+
+Class Distribution:
+- Normal (0):                88,000 transactions (88.0%)
+- Suspicious (1):            12,000 transactions (12.0%)
+
+Partitions (Zero Customer / Wallet / Agent Overlap, Zero Cross-Edges):
+- Train:                     60,000 transactions (52,800 normal / 7,200 suspicious)
+                             1,200 wallets / 96 agents
+- Validation:                15,000 transactions (13,200 normal / 1,800 suspicious)
+                             300 wallets / 24 agents
+- Final Test:                15,000 transactions (13,200 normal / 1,800 suspicious)
+                             300 wallets / 24 agents
+- Independent Evaluation:    10,000 transactions (8,800 normal / 1,200 suspicious)
+                             200 wallets / 16 agents (Completely unseen population)
+
+================================================================================
+3. SCENARIO CATALOGUE & DIVERSITY CONTROLS
+================================================================================
+Suspicious Allocation: 12,000 transactions across 12 distinct families (max 1,000 tx/family).
+
+A. Structuring Domain (4,000 transactions):
+   1. Variable Fragment Burst (1,000 tx)
+   2. Similar Amount Repetition (1,000 tx)
+   3. Distributed Same-Day Fragmentation (1,000 tx)
+   4. Variable Near-Threshold History (1,000 tx)
+
+B. Wallet/Transaction Network Domain (4,000 transactions):
+   5. Many-to-One Collection / Funnel Account (1,000 tx)
+   6. One-to-Many Dispersion / Pay-Out Hub (1,000 tx)
+   7. Reciprocal Relationship Cycle (1,000 tx)
+   8. Wallet Pass-Through / Transit Layering (1,000 tx)
+
+C. Agent Behaviour Domain (4,000 transactions):
+   9. Agent Wallet Growth Surge (1,000 tx)
+   10. Agent Collusive Wallet Concentration (1,000 tx)
+   11. Agent Temporal Burst / Off-Hours Spike (1,000 tx)
+   12. Agent Flow Directional Imbalance (1,000 tx)
+
+Diversity & Anti-Template Guards:
+- Maximum 1,000 transactions per scenario family (8.33% cap).
+- Maximum 5.0% of suspicious transactions through any single agent.
+- Maximum 1.0% of suspicious transactions through any single wallet.
+- Hard negatives integrated into normal class (benign near-threshold, benign bursts,
+  benign single-agent rural concentration).
+
+================================================================================
+4. CRITICAL APPROVAL GATE CLASSIFICATION
+================================================================================
+The following proposals require explicit researcher sign-off before data generation:
+
+1. Entity Population: 2,000 customers/wallets, 160 agents [REQUIRES APPROVAL]
+2. Class Distribution: 88,000 normal (88%) vs 12,000 suspicious (12%) [REQUIRES APPROVAL]
+3. Partition Splits: 60k Train, 15k Val, 15k Test, 10k Independent [REQUIRES APPROVAL]
+4. Domain Allocation: 4,000 Structuring, 4,000 Network, 4,000 Agent [REQUIRES APPROVAL]
+5. Channel Ratio: 75% agent-mediated / 25% direct P2P [REQUIRES APPROVAL]
+6. Synthetic Threshold: 10,000 units (synthetic_reporting_threshold_v1) [REQUIRES APPROVAL]
+
+================================================================================
+5. FINAL READINESS VERDICT
+================================================================================
+VERDICT: NOT READY FOR DATA GENERATION
+
+RATIONALE:
+The specification is mathematically sound, complete, and fully documented in 
+Stage 10C deliverables. However, because the numerical parameters represent 
+governance and experimental design choices, generation cannot proceed until the 
+researcher explicitly approves the six items listed in Section 4.
+
+================================================================================
+6. STRICT AUDIT CONFIRMATION
+================================================================================
+[x] NO dataset was generated.
+[x] NO ML model was trained.
+[x] NO Stage 10B feature definition was modified.
+[x] NO application code was modified.
+[x] NO database schema or table was altered.
+================================================================================

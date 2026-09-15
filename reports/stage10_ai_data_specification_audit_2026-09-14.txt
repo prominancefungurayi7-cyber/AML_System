@@ -1,0 +1,213 @@
+STAGE 10 — AI/DATA SPECIFICATION & 30-FEATURE AUDIT
+Date: 2026-09-14
+Mode: READ-ONLY AUDIT (no model training, data generation, or ML code changes performed)
+
+1. EXECUTIVE SUMMARY
+VERDICT: NOT READY FOR DATASET GENERATION.
+
+The required frozen binary 30-feature specification (6 structuring, 10 wallet/
+transaction-network, 14 agent) cannot be established from the repository.
+The authoritative final freeze documents an 18-feature, three-class Gradient
+Boosting model. A separate Stage 24 extraction path contains 32 analytical
+columns after metadata exclusion, not 30, and contains no agent feature set.
+Legacy runtime code also retains rule/risk-derived multi-class labelling.
+
+2. CURRENT PROJECT STATE
+PASS — Flask application: server.py is the operational web application, backed
+by database.py, agents.py, transaction_simulation.py, ai_core.py and AML modules.
+PASS — Zimbabwe mobile-money/EcoCash framing appears in templates, simulator and
+the project documentation. It remains an AML decision-support prototype; it must
+not be represented as proof of money laundering.
+PASS — MySQL is the configured deployment database: config.py defines a MySQL
+DATABASE_URL default and .env supplies a MySQL URL. database.py provides SQLite,
+MySQL and PostgreSQL adapters; this is configuration evidence, not a live server
+connectivity test. No database was changed.
+WARNING — database.py has an agents table and transactions.agent_id, but the
+server.py schema shown in this audit is not identical to database.py. Schema
+authority/migration ownership is therefore ambiguous.
+
+Inspected ML/data assets include ai_core.py; aml_rules.py; behavioral_profiling.py;
+ml_stage11_generator_repair.py; ml_stage11_dataset.csv; ml_stage11_ground_truth.json;
+ml_stage12_primary_split.json; ml_stage14_feature_specification.*;
+ml_stage15_feature_metadata.json; ml_stage16b_feature_extraction.py;
+ml_stage16b_feature_metadata.json; ml_stage16b_model_training.py;
+ml_stage16b_temporal_validation.py; final_project_freeze.md;
+ml_stage24_diverse_generator.py; ml_stage24_feature_extraction.py;
+ml_stage24_populations.py; ml_stage24_independent_generator.py;
+ml_stage24_*features.csv; ml_stage24_diverse_ground_truth.json;
+ml_stage24_quality_audit.py and results; database.py; agents.py;
+transaction_simulation.py; config.py; .env/.env.example; Dockerfile; Procfile.
+
+3. FROZEN FEATURE VERIFICATION
+FAIL — No approved 30-feature manifest or 6/10/14 category mapping was found.
+
+Authoritative freeze (final_project_freeze.md and ml_stage16b_feature_metadata.json):
+18 inputs: amount, sender_avg_amount, sender_max_amount,
+amount_to_sender_avg, amount_z_score, amount_deviation_from_baseline_30d,
+tx_frequency_7d, tx_frequency_30d, frequency_change_vs_avg_7d,
+sender_tx_count_24h, sender_volume_24h, same_day_count,
+rapid_transfer_count, is_new_recipient, unique_recipients_7d, hour,
+is_off_hours, counterparty_change_score_7d.
+
+Stage 24 extractor declares 30 calculated names but its saved feature CSV header
+has 32 analytical fields: the 30 declared fields plus sender_tx_count and
+amount_to_sender_max. The Stage 24 quality result explicitly reports 32 total
+features. Thus it is not a verified 30-feature training matrix.
+
+Stage 24's declared 30 fields are:
+amount; sender_avg_amount; sender_max_amount; amount_to_sender_avg;
+amount_z_score; amount_deviation_from_baseline_30d; tx_frequency_7d;
+tx_frequency_30d; frequency_change_vs_avg_7d; sender_tx_count_24h;
+sender_volume_24h; amount_to_sender_volume_24h; is_new_recipient;
+unique_recipients_7d; counterparty_change_score_7d; hour; is_off_hours;
+time_since_last_transaction_hours; same_day_count; same_day_total;
+rapid_transfer_count; recurring_pattern_score; is_cross_border;
+is_high_risk_country; cross_border_count_7d; cross_border_volume_7d;
+cross_border_ratio_7d; amount_near_threshold_flag;
+same_day_cumulative_amount; structuring_pattern_score.
+
+4. STRUCTURING FEATURE AUDIT
+FAIL — Required count of 6 is not specified or frozen. The Stage 24 candidate
+path contains three direct structuring fields: amount_near_threshold_flag
+(current amount in 8,500–9,999), same_day_cumulative_amount (historical same-day
+total plus current amount), and structuring_pattern_score (prior same-day
+near-threshold count / 3 capped at 1). All use transaction amount/timestamp;
+the code filters history strictly before current time, so each is prediction-time
+safe in that extractor. They are rule-like threshold features and have potential
+rule-concept leakage, though not target-field leakage by themselves.
+
+Other frequency/velocity fields could support structuring, but no approved list
+assigns them to this category. Do not infer a sixth feature or silently recategorise.
+
+5. WALLET/TRANSACTION NETWORK FEATURE AUDIT
+FAIL — Required count of 10 is not specified or frozen. Existing wallet-level
+relationship measures include is_new_recipient, unique_recipients_7d,
+counterparty_change_score_7d, recurring_pattern_score and rapid_transfer_count.
+They derive from prior sender/receiver history. They are not a documented
+10-feature network design, do not establish multi-wallet graph features, and do
+not use shared-agent relationships in the ML matrix.
+
+6. AGENT FEATURE AUDIT
+FAIL / BLOCKER — Required count: 14. Found in ML input: 0.
+agents.py and transaction_simulation.py model agents and agent_id exists in the
+database schema/simulator. Neither the active frozen 18 features nor the Stage
+24 feature headers contain agent_id or any agent aggregate. No agent historical
+feature definitions, agent-level split protocol, or agent-population design was
+found. Agent identity is not currently an ML input (good), but required agent
+behaviour detection and isolation cannot be audited or supported.
+
+7. TARGET / GROUND-TRUTH AUDIT
+FAIL / BLOCKER — The approved target must be binary (0 normal, 1 suspicious
+pattern). The frozen Stage 16B path trains three labels: normal, suspicious and
+super_suspicious. The Stage 24 ground-truth data uses the same multi-class labels.
+
+PASS (limited) — Stage 11/24 ground-truth JSON associates labels with generated
+scenario metadata (scenario_id, scenario_category, aml_typologies), rather than
+reading risk_score or rule output in the Stage 16B trainer.
+
+BLOCKER — ai_core.py retains map_risk_to_ai_label(risk_level, risk_score), and
+train_ai_model calls it. Earlier baseline reports explicitly identify this as
+rule/risk-derived label leakage. Therefore the operational AI path cannot be
+certified as having an independent target.
+
+8. TEMPORAL-SAFETY AUDIT
+PASS (limited to Stage 16B extractor) — each of the 18 frozen inputs is current
+transaction data or filters same-sender history with timestamp < current timestamp.
+PASS (limited to Stage 24 extractor) — it sorts sender history and uses records
+strictly earlier than the current timestamp for rolling measures.
+WARNING — equal timestamps have no defined event ordering and are excluded rather
+than deterministically sequenced. The generator initially creates transactions in
+random timestamp order and recalculates only some raw baseline fields after
+sorting; the downstream extractor recomputes many measures, but the complete
+raw-data temporal contract remains undocumented.
+FAIL — temporal safety cannot be certified for a non-existent frozen 30-feature
+design, and no agent historical features exist to audit.
+
+9. CUSTOMER / WALLET ISOLATION AUDIT
+PASS (historical Stage 16B) — ml_stage12_primary_split.json documents an 80/20
+customer-level holdout with 160 train, 40 test and zero customer overlap.
+PASS (Stage 24 code intent) — ml_stage24_populations.py splits sender_account
+sets before creating train/dev/test frames; ml_stage24_independent_generator.py
+uses a distinct seed and customer_id_offset.
+WARNING — no approved future 100,000-wallet population/split specification exists.
+The methodology does not document treatment of a receiver wallet that also occurs
+in another group, related wallets, or cross-group transaction edges. This must be
+resolved before final data generation.
+
+10. AGENT ISOLATION AUDIT
+FAIL / BLOCKER — No agent feature matrix, agent-level group split, agent overlap
+check, or independent-agent evaluation is implemented. The current ML datasets
+do not carry agent data, so the model cannot evaluate agent generalisation and
+cannot demonstrate that it is not memorising agent identity.
+
+11. LEAKAGE AND NON-ML FIELD EXCLUSION AUDIT
+BLOCKER — Stage 24 save_features excludes only transaction_id, sender_account and
+ground_truth_label. Its result reports 32 fields, not the required 30. The future
+matrix contract does not explicitly exclude customer_id, wallet_id, agent_id,
+receiver_account, scenario metadata, provenance, rule outputs, risk values and
+investigation outcomes.
+WARNING — Stage 24's ground_truth_label is added to a dataframe before feature
+selection; the quality audit correctly flags it as label-derived when it sees it.
+The downstream population writer does remove it, but the pipeline contract is
+fragile and not an auditable allow-list.
+BLOCKER — map_risk_to_ai_label in ai_core.py is a direct risk/rule-derived target
+mechanism on the active AI path.
+WARNING — Stage 24 includes cross-border/high-risk-country fields and scenarios;
+these are outside the specified Stage 10 core scope unless separately approved.
+
+12. 100,000-TRANSACTION DATASET READINESS SPECIFICATION
+UNRESOLVED — Required future raw fields: transaction_id, event timestamp and
+ordering key, sender wallet, receiver wallet, transaction amount/type/channel,
+agent reference where applicable, plus immutable scenario/ground-truth provenance.
+UNRESOLVED — Required ML fields: an approved explicit 30-field allow-list only,
+with 6 structuring, 10 network and 14 agent definitions. Each needs source,
+formula, window, cold-start behaviour and temporal proof.
+UNRESOLVED — Target: independent binary ground_truth_label (0/1) in separate
+metadata; scenario ID/type/source/signal strength must never enter X.
+UNRESOLVED — Isolation: customer/wallet and agent group assignments must be made
+before feature extraction; relationships crossing groups require a documented
+historical-data policy. Independent evaluation requires unseen wallets, agents,
+scenario instances and combinations.
+UNRESOLVED — No approved class distribution, number of customers/wallets, number
+of agents, agent-to-wallet assignment policy, or scenario allocation was found.
+
+13. INDEPENDENT GENERALISATION AND RESEARCH-SCOPE VERIFICATION
+WARNING — Stage 24 has an independent-generator concept (new seed, 100 customers,
+ID offset), but it reuses the same generator and scenario implementation and is
+not the required 100,000-scale approved protocol.
+FAIL — Current data/model documentation includes banking/cross-border, high-risk
+jurisdiction, funnel, layering, rapid-movement, behavioural-change, trade-based
+and shell-company concepts. Agent behaviour is absent from ML inputs. This does
+not demonstrate alignment limited to structuring, wallet/network, and agent scope.
+
+14. BLOCKERS
+1. No frozen 30-feature allow-list or 6/10/14 classification exists.
+2. Active frozen model has 18 features; Stage 24 output has 32 analytical fields.
+3. No agent ML features (0/14), agent split, or agent-isolation evidence exists.
+4. Current labels are three-class, not required binary 0/1.
+5. ai_core.py retains and uses risk/rule-derived map_risk_to_ai_label.
+6. No formally approved 100,000 population, class distribution, agent design,
+   wallet-edge isolation or independent-evaluation specification exists.
+7. Non-ML exclusion is not enforced by a definitive allow-list.
+
+15. WARNINGS
+1. Schema authority differs between server.py and database.py.
+2. Stage 24 scope contains excluded cross-border/high-risk-jurisdiction concepts.
+3. Equal-timestamp ordering and raw generator temporal contract are incomplete.
+4. Existing independent generation reuses the same generator family.
+
+16. REQUIRED DECISIONS BEFORE DATASET GENERATION
+1. Approve a single immutable binary target definition and ground-truth authority.
+2. Approve and document the exact 30-feature allow-list with the 6/10/14 mapping.
+3. Approve the agent data model, 14 agent features, historical windows and
+   agent-isolation/evaluation protocol.
+4. Approve customer/wallet edge-isolation and cross-group history policy.
+5. Approve the 100,000 population, temporal sequence, scenario allocation and
+   independent-evaluation design.
+6. Approve a strict metadata exclusion list and an X-column validation gate.
+
+17. FINAL STAGE 10 VERDICT
+NOT READY FOR DATASET GENERATION.
+Evidence does not support a Stage 10 pass. No dataset was generated, no model was
+trained, and no ML/data architecture, hyperparameters, labels, features or
+historical datasets were modified by this audit.

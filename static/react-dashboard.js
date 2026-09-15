@@ -266,12 +266,14 @@
     const [status, setStatus] = useState("Connected | live monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
       { id: "transactions", label: "Transactions", icon: "list" },
       { id: "alerts", label: "Alerts", icon: "alert" },
       { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "messages", label: "Messages", href: "/messages", icon: "message" },
       { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
@@ -281,6 +283,7 @@
       document.documentElement.dataset.theme = newTheme;
       localStorage.setItem("ecocash-theme", newTheme);
       document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      setTheme(newTheme);
     };
 
     // Listen for sidebar toggle click from header
@@ -425,6 +428,10 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
+        h("div", { className: "sidebar-brand" },
+          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__role" }, "Wallet Customer")
+        ),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
@@ -452,7 +459,7 @@
             h("span", { className: "theme-toggle__track" },
               h("span", { className: "theme-toggle__thumb" })
             ),
-            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
           )
         )
       ),
@@ -511,6 +518,23 @@
     );
   }
 
+  function MessagingSummaryCard({ audience }) {
+    return h("div", { className: "card action-card messaging-summary-card" },
+      h(PanelHeading, { title: "Compliance Communications", meta: h("span", { className: "status-pill" }, "Secure Messaging") }),
+      h("p", { className: "muted-line" }, audience || "Direct secure channel with compliance staff and support teams."),
+      h("div", { style: { marginTop: "1rem" } },
+        h("a", { 
+          href: "/messages", 
+          className: "btn btn-primary", 
+          style: { display: "inline-flex", alignItems: "center", gap: "0.5rem" } 
+        },
+          h(Icon, { name: "message" }),
+          "Open Message Center"
+        )
+      )
+    );
+  }
+
   function AdminDashboard({ initialData }) {
     const [users, setUsers] = useState(initialData.users || []);
     const [activity, setActivity] = useState(initialData.activity || []);
@@ -519,6 +543,7 @@
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -526,6 +551,7 @@
       { id: "transactions", label: "Transactions", icon: "list" },
       { id: "watchlist", label: "Watchlist", icon: "shield" },
       { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "messages", label: "Messages", href: "/messages", icon: "message" },
       { id: "settings", label: "Settings", icon: "settings" },
       { id: "reports", label: "Reports", href: "/reports", icon: "file" },
       { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
@@ -537,6 +563,7 @@
       document.documentElement.dataset.theme = newTheme;
       localStorage.setItem("ecocash-theme", newTheme);
       document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      setTheme(newTheme);
     };
 
     // Listen for sidebar toggle click from header
@@ -610,7 +637,10 @@
 
     const metricItems = [
       { label: "Users", value: stats.total_users || users.length, caption: "registered wallets" },
+      { label: "KYC outstanding", value: stats.kyc_pending || 0, caption: "requires review" },
+      { label: "PEP customers", value: stats.pep_customers || 0, caption: "enhanced due diligence" },
       { label: "Transactions", value: stats.total_transactions || 0, caption: "monitored ledger" },
+      { label: "Flagged transactions", value: stats.flagged_transactions || 0, caption: "AML indicators" },
       { label: "Open alerts", value: stats.open_alerts || 0, caption: "active cases" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "pending review" },
       { label: "Pending CTRs", value: stats.pending_ctrs || 0, caption: "currency reports" },
@@ -734,6 +764,10 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
+        h("div", { className: "sidebar-brand" },
+          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__role" }, "Institutional Admin")
+        ),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
@@ -761,7 +795,7 @@
             h("span", { className: "theme-toggle__track" },
               h("span", { className: "theme-toggle__thumb" })
             ),
-            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
           )
         )
       ),
@@ -774,9 +808,9 @@
       h(PanelHeading, { title: "Recent Activity" }),
       activity.length ? h("ul", null, activity.map((event, index) => (
         h("li", { className: "activity-item", key: `${event.timestamp || ""}-${index}` },
-          h("strong", null, labelize(event.action || "")),
+          h("strong", null, `${event.actor || "system"}: ${labelize(event.action || "")}`),
           h("span", { className: "muted-line block-line" }, shortTime(event.timestamp)),
-          h("p", null, event.detail || "")
+          h("p", null, `${event.detail || ""}${event.ip_address ? ` · ${event.ip_address}` : ""}`)
         )
       ))) : h(EmptyState, null, "No activity recorded yet.")
     );
@@ -787,14 +821,18 @@
       h(PanelHeading, { title: "Recent Transactions" }),
       transactions.length ? h("table", { className: "data-table admin-transactions-table" },
         h("thead", null,
-          h("tr", null, ["Time", "Route", "Amount", "Risk"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["ID", "Time", "Route", "Type / channel", "Amount", "Risk", "CTR / SAR", "Status"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
+            h("td", null, txn.id || ""),
             h("td", null, shortTime(txn.timestamp)),
             h("td", null, `${txn.sender_account || ""} -> ${txn.receiver_account || ""}`),
+            h("td", null, `${labelizeTransactionType(txn.transaction_type)} / ${txn.channel || "online"}`),
             h("td", null, money(txn.amount)),
-            h("td", null, h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)))
+            h("td", null, h("span", { className: riskClass(txn.risk_level) }, `${labelize(txn.risk_level)} (${score(txn.risk_score)})`)),
+            h("td", null, txn.ctr_required && txn.sar_required ? "CTR / SAR" : txn.ctr_required ? "CTR" : txn.sar_required ? "SAR" : "—"),
+            h("td", null, txn.status || "Completed")
           ))
         )
       ) : h(EmptyState, null, "No transactions to show.")
@@ -806,9 +844,9 @@
       h(PanelHeading, { title: "Watchlist" }),
       watchlist.length ? h("ul", null, watchlist.map((entry, index) => (
         h("li", { className: "activity-item", key: entry.id || index },
-          h("strong", null, entry.name || ""),
+          h("strong", null, `${entry.name || ""} (${entry.list_type || "internal"})`),
           h("span", { className: "status-pill block-fit" }, entry.list_type || "internal"),
-          h("p", null, entry.reason || "No reason recorded")
+          h("p", null, `${entry.reason || "No reason recorded"} · ${entry.account_number || entry.id_number || "No account/ID"} · added by ${entry.added_by || "unknown"} ${shortTime(entry.added_at)}`)
         )
       ))) : h(EmptyState, null, "No watchlist entries.")
     );
@@ -820,7 +858,7 @@
       h("table", { className: "data-table" },
         h("thead", null,
           h("tr", null,
-            ["ID", "Username", "Email", "Wallet Number", "Role", "Balance", "KYC", "Created"].map((head) => h("th", { key: head }, head))
+            ["ID", "Username", "Email", "ID Number", "Wallet Number", "Role", "Balance", "KYC", "PEP", "Risk", "Wealth", "Created"].map((head) => h("th", { key: head }, head))
           )
         ),
         h("tbody", null,
@@ -828,10 +866,14 @@
             h("td", null, user.id),
             h("td", null, user.username),
             h("td", null, user.email),
+            h("td", null, user.id_number),
             h("td", null, user.account_number),
             h("td", null, user.role),
             h("td", null, money(user.balance)),
             h("td", null, h("span", { className: user.kyc_status === "verified" ? "status-pill" : "status-pill alert" }, user.kyc_status || "pending")),
+            h("td", null, user.pep_flag ? "Yes" : "No"),
+            h("td", null, labelize(user.risk_rating || "standard")),
+            h("td", null, labelize(user.wealth_segment || "average")),
             h("td", null, user.created_at)
           ))
         )
@@ -847,12 +889,15 @@
     const [status, setStatus] = useState("Connected | live alert monitoring active");
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
     const filterValue = initialData.filter_value || "all";
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
       { id: "alerts", label: "Alerts", icon: "alert" },
+      { id: "transactions", label: "Transactions", icon: "list" },
       { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "messages", label: "Messages", href: "/messages", icon: "message" },
       { id: "reports", label: "Reports", href: "/reports", icon: "file" },
       { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
@@ -863,6 +908,7 @@
       document.documentElement.dataset.theme = newTheme;
       localStorage.setItem("ecocash-theme", newTheme);
       document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      setTheme(newTheme);
     };
 
     // Listen for sidebar toggle click from header
@@ -947,6 +993,8 @@
           );
         case "alerts":
           return h(AlertsPanel, { alerts, page: initialData.alert_page, pageCount: alertPageCount });
+        case "transactions":
+          return h(ComplianceTransactionsPanel, { transactions });
         case "activity":
           return h("section", { className: "card table-card" },
             h(PanelHeading, { title: "Live Compliance Feed", meta: h(LiveStatus, null, status) }),
@@ -968,6 +1016,10 @@
         onClick: () => setSidebarOpen(false)
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
+        h("div", { className: "sidebar-brand" },
+          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__role" }, "Compliance Operations")
+        ),
         h("nav", null,
           sidebarItems.map((item) => item.href ? 
             h("a", {
@@ -995,7 +1047,7 @@
             h("span", { className: "theme-toggle__track" },
               h("span", { className: "theme-toggle__thumb" })
             ),
-            h("span", { className: "theme-toggle__text" }, document.documentElement.dataset.theme === "dark" ? "Dark" : "Light")
+            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
           )
         )
       ),
