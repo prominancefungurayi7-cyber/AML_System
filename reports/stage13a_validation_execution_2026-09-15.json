@@ -1,0 +1,165 @@
+{
+  "status": "PASS",
+  "audit_date": "2026-09-15",
+  "execution_timestamp": "2026-09-15T14:40:49.166872+00:00",
+  "dataset": "ecocash_aml_synthetic_100k_v1",
+  "dataset_location": "data/ecocash_aml_synthetic_100k_v1/",
+  "total_transactions": 100000,
+  "total_labels": 100000,
+  "implementation": "ml_stage13a_extract_features_final.py",
+  "implementation_type": "Indexed feature extraction with O(N log N) complexity",
+  "implementation_verified": true,
+  "execution_platform": "Windows",
+  "python_version": "3.14",
+  "total_execution_time": 1.656,
+  "execution_time_unit": "seconds",
+  
+  "dataset_files_verified": {
+    "transactions.csv": true,
+    "ground_truth.json": true,
+    "entity_metadata.json": true,
+    "generation_manifest.json": true
+  },
+  
+  "tests": {
+    "A_current_event_exclusion": {
+      "status": "PASS",
+      "execution_time": 0.001,
+      "implementation_count": 0.0,
+      "manual_count": 0,
+      "match": true
+    },
+    "B_future_event_exclusion": {
+      "status": "PASS",
+      "execution_time": 0.009,
+      "implementation_count": 0.0,
+      "manual_count": 0,
+      "match": true
+    },
+    "C_equal_timestamp_ordering": {
+      "status": "PASS",
+      "execution_time": 0.107,
+      "same_timestamp_prior": 2,
+      "expected_prior": 2,
+      "match": true
+    },
+    "D_partition_isolation": {
+      "status": "PASS",
+      "execution_time": 0.012,
+      "implementation_count": 0,
+      "manual_count": 0,
+      "match": true
+    },
+    "E_agent_aggregation": {
+      "status": "PASS",
+      "execution_time": 0.061,
+      "agent_id": "A0067",
+      "implementation_count": 40.0,
+      "manual_count": 40,
+      "match": true
+    },
+    "F_current_hour_zscore": {
+      "status": "PASS",
+      "execution_time": 0.082,
+      "tx_zscore": -0.224,
+      "value_zscore": -0.519,
+      "both_finite": true
+    },
+    "G_agent_inbound_outbound": {
+      "status": "PASS",
+      "execution_time": 0.018,
+      "ratio": 1.0,
+      "valid": true
+    },
+    "H_cold_start": {
+      "status": "PASS",
+      "execution_time": 0.014,
+      "all_zero": true
+    },
+    "I_determinism": {
+      "status": "PASS",
+      "execution_time": 0.003,
+      "identical": true
+    },
+    "J_numerical_safety": {
+      "status": "PASS",
+      "execution_time": 1.347,
+      "features_checked": 30000,
+      "has_nan": false,
+      "has_inf": false,
+      "all_finite": true
+    }
+  },
+  
+  "test_summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "not_executed": 0,
+    "pass_rate": 1.0
+  },
+  
+  "individual_execution_times": {
+    "test_a": 0.001,
+    "test_b": 0.009,
+    "test_c": 0.107,
+    "test_d": 0.012,
+    "test_e": 0.061,
+    "test_f": 0.082,
+    "test_g": 0.018,
+    "test_h": 0.014,
+    "test_i": 0.003,
+    "test_j": 1.347
+  },
+  
+  "performance_sanity_check": {
+    "dataset_size_used": 100000,
+    "index_building_time": "<1 second (estimated)",
+    "feature_extraction_speed": "~0.001s per transaction",
+    "estimated_full_extraction_time": "<2 minutes",
+    "complexity": "O(N log N)",
+    "performance_assessment": "Excellent"
+  },
+  
+  "warnings": [],
+  
+  "compliance": {
+    "validation_tests_executed": true,
+    "corrected_implementation_used": true,
+    "no_model_training": true,
+    "no_full_extraction_executed": true,
+    "no_stage11_dataset_modified": true,
+    "no_stage10b_specification_modified": true,
+    "no_application_database_modified": true,
+    "fail_closed_rule": "NO FAIL-CLOSE CONDITIONS TRIGGERED"
+  },
+  
+  "full_extraction_executed": false,
+  "model_training_executed": false,
+  
+  "recommendation": "AUTHORIZE FULL EXTRACTION",
+  
+  "next_steps": [
+    "COMPLETED: Execute validation test suite",
+    "NEXT: Run full 100K extraction using ml_stage13a_extract_features_final.py",
+    "NEXT: Validate output matrices (shape, NaN/infinity, partition sizes)",
+    "NEXT: Proceed to Stage 14 (model training) only after successful full extraction validation"
+  ],
+  
+  "final_summary": {
+    "stage13a_validation_status": "PASS",
+    "test_a_current_event_exclusion": "PASS",
+    "test_b_future_event_exclusion": "PASS",
+    "test_c_equal_timestamp_ordering": "PASS",
+    "test_d_partition_isolation": "PASS",
+    "test_e_agent_aggregation": "PASS",
+    "test_f_current_hour_zscore": "PASS",
+    "test_g_agent_inbound_outbound": "PASS",
+    "test_h_cold_start": "PASS",
+    "test_i_determinism": "PASS",
+    "test_j_numerical_safety": "PASS",
+    "full_100k_extraction": "NOT EXECUTED",
+    "model_training": "NOT EXECUTED",
+    "recommendation": "AUTHORIZE FULL EXTRACTION"
+  }
+}

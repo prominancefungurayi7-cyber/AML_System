@@ -1,0 +1,150 @@
+STAGE 11 DATASET VALIDATION REPORT
+==================================
+
+Date: 2026-09-15
+Dataset Version: ecocash_aml_synthetic_100k_v1
+Status: PASS - ALL VALIDATION CHECKS SUCCESSFUL
+
+SUMMARY
+-------
+Total Validation Checks: 30
+Passed: 30
+Failed: 0
+
+VALIDATION RESULTS
+-----------------
+
+A. TOTALS
+  Total transactions: 100000 (expected: 100000) - PASS
+  Normal transactions: 88000 (expected: 88000) - PASS
+  Suspicious transactions: 12000 (expected: 12000) - PASS
+
+B. CLASS DISTRIBUTION
+  Structuring suspicious: 4000 (expected: 4000) - PASS
+  Network suspicious: 4000 (expected: 4000) - PASS
+  Agent suspicious: 4000 (expected: 4000) - PASS
+
+C. PARTITIONS
+  Train transactions: 60000 (expected: 60000) - PASS
+  Validation transactions: 15000 (expected: 15000) - PASS
+  Final Test transactions: 15000 (expected: 15000) - PASS
+  Independent transactions: 10000 (expected: 10000) - PASS
+  Train wallets: 1200 (expected: 1200) - PASS
+  Train agents: 96 (expected: 96) - PASS
+
+D. PARTITION CLASS COUNTS
+  Train normal: 52800 (expected: 52800) - PASS
+  Train suspicious: 7200 (expected: 7200) - PASS
+  Validation normal: 13200 (expected: 13200) - PASS
+  Validation suspicious: 1800 (expected: 1800) - PASS
+  Final Test normal: 13200 (expected: 13200) - PASS
+  Final Test suspicious: 1800 (expected: 1800) - PASS
+  Independent normal: 8800 (expected: 8800) - PASS
+  Independent suspicious: 1200 (expected: 1200) - PASS
+
+E. ENTITIES
+  Total wallets: 2000 (expected: 2000) - PASS
+  Total agents: 160 (expected: 160) - PASS
+
+F. CHANNELS
+  Agent-mediated: 75000 (expected: 75000 ±750) - PASS
+  Direct P2P: 25000 (expected: 25000 ±750) - PASS
+
+G. ISOLATION
+  Cross-partition edges: 0 (expected: 0) - PASS
+  Wallet partition distribution: {'train': 1200, 'validation': 300, 'final_test': 300, 'independent': 200} - PASS
+  Agent partition distribution: {'train': 96, 'validation': 24, 'final_test': 24, 'independent': 16} - PASS
+
+H. IDENTIFIERS
+  Transaction IDs: PASS (all unique)
+  Event sequences: PASS (all unique)
+  Wallet IDs: PASS (all unique)
+  Agent IDs: PASS (all unique)
+
+I. TRANSACTION VALIDITY
+  All transactions: PASS (sender != receiver, amount > 0, channel consistency)
+
+J. TEMPORAL VALIDITY
+  Event sequence: PASS (sequential)
+  Timestamps: PASS (valid format)
+
+K. SCENARIO DIVERSITY
+  Scenario family distribution:
+    variable_fragment_burst: 1000 - PASS
+    similar_amount_repetition: 1000 - PASS
+    distributed_same_day_fragmentation: 1000 - PASS
+    variable_near_threshold_history: 1000 - PASS
+    many_to_one_collection: 1000 - PASS
+    one_to_many_dispersion: 1000 - PASS
+    reciprocal_relationship_cycle: 1000 - PASS
+    wallet_pass_through: 1000 - PASS
+    agent_wallet_growth: 1000 - PASS
+    agent_wallet_concentration: 1000 - PASS
+    agent_temporal_burst: 1000 - PASS
+    agent_flow_imbalance: 1000 - PASS
+  Max per family: 1000 (8.33% of suspicious class) - PASS
+
+L. SHORTCUT LEAKAGE
+  Normal amount range: $5.03 - $19,999.79
+  Suspicious amount range: $40.25 - $9,949.69
+  Amount overlap: PASS (ranges overlap)
+  Normal agent-mediated: 64951
+  Suspicious agent-mediated: 10049
+  Channel separation: PASS (both classes use both channels)
+
+M. DUPLICATION
+  Exact duplicates: PASS (no duplicate transaction signatures)
+
+N. FEATURE COMPATIBILITY
+  Required fields: PASS (all present)
+  Field types: PASS (valid types)
+  All 30 features computable: PASS
+
+O. INDEPENDENT EVALUATION
+  Independent wallet overlap: 0 (expected: 0) - PASS
+  Independent agent overlap: 0 (expected: 0) - PASS
+
+COMPLIANCE VERIFICATION
+----------------------
+Stage 10B Compliance: PASS
+  - 30-feature architecture unchanged
+  - Temporal contract preserved
+  - Cold-start policy preserved
+  - Feature-matrix contract preserved
+
+Stage 10C Compliance: PASS
+  - Population parameters exact
+  - Class distribution exact
+  - Partition allocation exact
+  - Scenario allocation exact
+  - Channel allocation exact
+  - Isolation rules enforced
+
+Stage 11 Contract Compliance: PASS
+  - NO model training performed
+  - NO feature extraction performed
+  - NO application code modified
+  - NO database schema modified
+  - Binary labels ONLY (0=normal, 1=suspicious)
+  - Ground truth independently generated
+  - STRICT partition isolation enforced
+  - EXACT specification compliance
+  - Reproducibility controls implemented
+
+GENERATED FILES
+--------------
+1. data/ecocash_aml_synthetic_100k_v1/transactions.csv
+2. data/ecocash_aml_synthetic_100k_v1/ground_truth.json
+3. data/ecocash_aml_synthetic_100k_v1/entity_metadata.json
+4. data/ecocash_aml_synthetic_100k_v1/generation_manifest.json
+
+FINAL STATUS
+-----------
+STAGE 11 STATUS: PASS - DATASET GENERATED AND VALIDATED
+DATASET VERSION: ecocash_aml_synthetic_100k_v1
+READY FOR FEATURE EXTRACTION: YES
+
+COMPLIANCE: FULLY COMPLIANT WITH STAGE 10B, STAGE 10C, AND STAGE 11 SPECIFICATIONS
+
+Generated with: ml_stage11_generate_100k_dataset_v2.py
+Validated with: ml_stage11_validate_dataset.py

@@ -1,0 +1,312 @@
+{
+  "stage11_status": "PASS",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "generation_timestamp": "2026-09-15T12:59:41.759224+00:00",
+  "stage10b_status": "PASS",
+  "stage10c_status": "PASS",
+  "locked_feature_architecture": {
+    "source": "stage10b_final_30_feature_specification_2026-09-14.md",
+    "feature_count": 30,
+    "structuring": 6,
+    "network": 10,
+    "agent": 14,
+    "change_allowed": false
+  },
+  "total_transactions": {
+    "value": 100000,
+    "expected": 100000,
+    "status": "PASS"
+  },
+  "class_distribution": {
+    "normal": {
+      "count": 88000,
+      "expected": 88000,
+      "percentage": 88.0,
+      "status": "PASS"
+    },
+    "suspicious_pattern_scenario": {
+      "count": 12000,
+      "expected": 12000,
+      "percentage": 12.0,
+      "status": "PASS"
+    }
+  },
+  "suspicious_domain_allocation": {
+    "structuring": {
+      "count": 4000,
+      "expected": 4000,
+      "status": "PASS"
+    },
+    "network": {
+      "count": 4000,
+      "expected": 4000,
+      "status": "PASS"
+    },
+    "agent": {
+      "count": 4000,
+      "expected": 4000,
+      "status": "PASS"
+    }
+  },
+  "scenario_families": [
+    {
+      "family": "variable_fragment_burst",
+      "category": "structuring",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "similar_amount_repetition",
+      "category": "structuring",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "distributed_same_day_fragmentation",
+      "category": "structuring",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "variable_near_threshold_history",
+      "category": "structuring",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "many_to_one_collection",
+      "category": "network",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "one_to_many_dispersion",
+      "category": "network",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "reciprocal_relationship_cycle",
+      "category": "network",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "wallet_pass_through",
+      "category": "network",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "agent_wallet_growth",
+      "category": "agent",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "agent_wallet_concentration",
+      "category": "agent",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "agent_temporal_burst",
+      "category": "agent",
+      "count": 1000,
+      "status": "PASS"
+    },
+    {
+      "family": "agent_flow_imbalance",
+      "category": "agent",
+      "count": 1000,
+      "status": "PASS"
+    }
+  ],
+  "partition_allocation": {
+    "train": {
+      "transactions": 60000,
+      "normal": 52800,
+      "suspicious": 7200,
+      "wallets": 1200,
+      "agents": 96,
+      "status": "PASS"
+    },
+    "validation": {
+      "transactions": 15000,
+      "normal": 13200,
+      "suspicious": 1800,
+      "wallets": 300,
+      "agents": 24,
+      "status": "PASS"
+    },
+    "final_test": {
+      "transactions": 15000,
+      "normal": 13200,
+      "suspicious": 1800,
+      "wallets": 300,
+      "agents": 24,
+      "status": "PASS"
+    },
+    "independent": {
+      "transactions": 10000,
+      "normal": 8800,
+      "suspicious": 1200,
+      "wallets": 200,
+      "agents": 16,
+      "status": "PASS"
+    }
+  },
+  "entity_counts": {
+    "wallets": {
+      "total": 2000,
+      "expected": 2000,
+      "status": "PASS"
+    },
+    "agents": {
+      "total": 160,
+      "expected": 160,
+      "status": "PASS"
+    }
+  },
+  "channel_allocation": {
+    "agent_mediated": {
+      "count": 75000,
+      "expected": 75000,
+      "percentage": 75.0,
+      "status": "PASS"
+    },
+    "direct_p2p": {
+      "count": 25000,
+      "expected": 25000,
+      "percentage": 25.0,
+      "status": "PASS"
+    }
+  },
+  "isolation_validation": {
+    "cross_partition_edges": {
+      "count": 0,
+      "expected": 0,
+      "status": "PASS"
+    },
+    "wallet_overlap": {
+      "count": 0,
+      "expected": 0,
+      "status": "PASS"
+    },
+    "agent_overlap": {
+      "count": 0,
+      "expected": 0,
+      "status": "PASS"
+    }
+  },
+  "identifier_validation": {
+    "transaction_ids": {
+      "unique": true,
+      "status": "PASS"
+    },
+    "event_sequences": {
+      "unique": true,
+      "sequential": true,
+      "status": "PASS"
+    },
+    "wallet_ids": {
+      "unique": true,
+      "status": "PASS"
+    },
+    "agent_ids": {
+      "unique": true,
+      "status": "PASS"
+    }
+  },
+  "transaction_validity": {
+    "sender_not_equal_receiver": true,
+    "amount_positive": true,
+    "channel_consistency": true,
+    "status": "PASS"
+  },
+  "temporal_validity": {
+    "event_sequence_sequential": true,
+    "timestamps_valid": true,
+    "status": "PASS"
+  },
+  "shortcut_leakage_checks": {
+    "amount_overlap": {
+      "normal_range": "$5.03 - $19,999.79",
+      "suspicious_range": "$40.25 - $9,949.69",
+      "overlap": true,
+      "status": "PASS"
+    },
+    "channel_separation": {
+      "normal_agent_mediated": 64951,
+      "suspicious_agent_mediated": 10049,
+      "both_classes_use_both_channels": true,
+      "status": "PASS"
+    }
+  },
+  "duplication_checks": {
+    "exact_duplicate_transactions": 0,
+    "status": "PASS"
+  },
+  "feature_compatibility": {
+    "required_fields_present": true,
+    "field_types_valid": true,
+    "all_30_features_computable": true,
+    "status": "PASS"
+  },
+  "independent_evaluation": {
+    "unseen_wallets": 200,
+    "unseen_agents": 16,
+    "wallet_overlap": 0,
+    "agent_overlap": 0,
+    "status": "PASS"
+  },
+  "reproducibility": {
+    "random_seed": 42,
+    "master_seed": 42,
+    "dataset_version": "ecocash_aml_synthetic_100k_v1",
+    "stage10b_specification_version": "2026-09-14",
+    "stage10c_specification_version": "2026-09-14",
+    "synthetic_threshold_version": "synthetic_reporting_threshold_v1",
+    "synthetic_threshold_value": 10000,
+    "status": "PASS"
+  },
+  "compliance_verification": {
+    "no_model_training": true,
+    "no_feature_extraction": true,
+    "no_application_code_modified": true,
+    "no_database_schema_modified": true,
+    "no_feature_specification_changed": true,
+    "binary_labels_only": true,
+    "ground_truth_independent": true,
+    "strict_partition_isolation": true,
+    "exact_specification_compliance": true,
+    "status": "PASS"
+  },
+  "generated_files": [
+    "data/ecocash_aml_synthetic_100k_v1/transactions.csv",
+    "data/ecocash_aml_synthetic_100k_v1/ground_truth.json",
+    "data/ecocash_aml_synthetic_100k_v1/entity_metadata.json",
+    "data/ecocash_aml_synthetic_100k_v1/generation_manifest.json"
+  ],
+  "validation_summary": {
+    "total_checks": 30,
+    "passed": 30,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "known_limitations": [
+    "Synthetic data does not represent actual EcoCash customer behaviour",
+    "Limited to structuring, network, and agent behaviour domains",
+    "Decision-support only, does not prove money laundering occurred",
+    "Synthetic threshold is research configuration, not real regulatory threshold",
+    "180-day synthetic period may not capture all real-world patterns"
+  ],
+  "next_steps": [
+    "Feature extraction for 30 Stage 10B features",
+    "Feature matrix validation",
+    "Model training with train/validation partitions",
+    "Model evaluation on final test and independent partitions",
+    "Generalization audit on unseen entities"
+  ],
+  "final_status": "READY FOR FEATURE EXTRACTION"
+}

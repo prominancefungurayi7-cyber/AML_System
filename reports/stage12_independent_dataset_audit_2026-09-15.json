@@ -1,0 +1,832 @@
+{
+  "stage12_status": "PASS",
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "audit_timestamp": "2026-09-15T13:09:32.191882+00:00",
+  "audit_method": "independent_read_only_inspection",
+  "audit_script": "ml_stage12_audit_simple.py",
+  
+  "dataset_identity": {
+    "transaction_count": {
+      "actual": 100000,
+      "expected": 100000,
+      "status": "PASS"
+    },
+    "ground_truth_count": {
+      "actual": 100000,
+      "expected": 100000,
+      "status": "PASS"
+    },
+    "transaction_ids_unique": {
+      "status": "PASS",
+      "duplicates": 0
+    },
+    "event_sequences_unique": {
+      "status": "PASS",
+      "duplicates": 0
+    },
+    "status": "PASS"
+  },
+  
+  "dataset_integrity": {
+    "manifest_match": {
+      "status": "PASS"
+    },
+    "ground_truth_match": {
+      "status": "PASS"
+    },
+    "entity_metadata_consistency": {
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "schema_audit": {
+    "required_fields": {
+      "fields_present": [
+        "transaction_id",
+        "event_timestamp",
+        "event_sequence",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount",
+        "transaction_type",
+        "channel",
+        "agent_id",
+        "partition"
+      ],
+      "status": "PASS"
+    },
+    "sender_receiver_different": {
+      "violations": 0,
+      "status": "PASS"
+    },
+    "amount_positive": {
+      "non_positive_count": 0,
+      "status": "PASS"
+    },
+    "timestamp_validity": {
+      "invalid_count": 0,
+      "status": "PASS"
+    },
+    "channel_consistency": {
+      "mismatches": 0,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "population_audit": {
+    "wallet_count": {
+      "actual": 2000,
+      "expected": 2000,
+      "status": "PASS"
+    },
+    "agent_count": {
+      "actual": 160,
+      "expected": 160,
+      "status": "PASS"
+    },
+    "customer_count": {
+      "actual": 2000,
+      "status": "PASS"
+    },
+    "wallet_customer_mapping": {
+      "type": "1:1",
+      "status": "PASS"
+    },
+    "wallets_without_customers": 0,
+    "customers_without_wallets": 0,
+    "status": "PASS"
+  },
+  
+  "partition_isolation_audit": {
+    "partition_transaction_counts": {
+      "train": {
+        "actual": 60000,
+        "expected": 60000,
+        "status": "PASS"
+      },
+      "validation": {
+        "actual": 15000,
+        "expected": 15000,
+        "status": "PASS"
+      },
+      "final_test": {
+        "actual": 15000,
+        "expected": 15000,
+        "status": "PASS"
+      },
+      "independent": {
+        "actual": 10000,
+        "expected": 10000,
+        "status": "PASS"
+      }
+    },
+    "partition_wallet_counts": {
+      "train": {
+        "actual": 1200,
+        "expected": 1200,
+        "status": "PASS"
+      },
+      "validation": {
+        "actual": 300,
+        "expected": 300,
+        "status": "PASS"
+      },
+      "final_test": {
+        "actual": 300,
+        "expected": 300,
+        "status": "PASS"
+      },
+      "independent": {
+        "actual": 200,
+        "expected": 200,
+        "status": "PASS"
+      }
+    },
+    "partition_agent_counts": {
+      "train": {
+        "actual": 96,
+        "expected": 96,
+        "status": "PASS"
+      },
+      "validation": {
+        "actual": 24,
+        "expected": 24,
+        "status": "PASS"
+      },
+      "final_test": {
+        "actual": 24,
+        "expected": 24,
+        "status": "PASS"
+      },
+      "independent": {
+        "actual": 16,
+        "expected": 16,
+        "status": "PASS"
+      }
+    },
+    "cross_partition_edges": {
+      "count": 0,
+      "expected": 0,
+      "status": "PASS"
+    },
+    "agent_partition_consistency": {
+      "mismatches": 0,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "class_distribution_audit": {
+    "overall": {
+      "normal": {
+        "actual": 88000,
+        "expected": 88000,
+        "status": "PASS"
+      },
+      "suspicious": {
+        "actual": 12000,
+        "expected": 12000,
+        "status": "PASS"
+      }
+    },
+    "partition_class_counts": {
+      "train": {
+        "normal": 52800,
+        "suspicious": 7200,
+        "status": "PASS"
+      },
+      "validation": {
+        "normal": 13200,
+        "suspicious": 1800,
+        "status": "PASS"
+      },
+      "final_test": {
+        "normal": 13200,
+        "suspicious": 1800,
+        "status": "PASS"
+      },
+      "independent": {
+        "normal": 8800,
+        "suspicious": 1200,
+        "status": "PASS"
+      }
+    },
+    "label_values": {
+      "actual": [0, 1],
+      "binary_only": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "suspicious_domain_audit": {
+    "domain_allocation": {
+      "structuring": {
+        "actual": 4000,
+        "expected": 4000,
+        "status": "PASS"
+      },
+      "network": {
+        "actual": 4000,
+        "expected": 4000,
+        "status": "PASS"
+      },
+      "agent": {
+        "actual": 4000,
+        "expected": 4000,
+        "status": "PASS"
+      }
+    },
+    "scenario_families": [
+      {
+        "family": "variable_fragment_burst",
+        "category": "structuring",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "similar_amount_repetition",
+        "category": "structuring",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "distributed_same_day_fragmentation",
+        "category": "structuring",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "variable_near_threshold_history",
+        "category": "structuring",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "many_to_one_collection",
+        "category": "network",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "one_to_many_dispersion",
+        "category": "network",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "reciprocal_relationship_cycle",
+        "category": "network",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "wallet_pass_through",
+        "category": "network",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "agent_wallet_growth",
+        "category": "agent",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "agent_wallet_concentration",
+        "category": "agent",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "agent_temporal_burst",
+        "category": "agent",
+        "count": 1000,
+        "status": "PASS"
+      },
+      {
+        "family": "agent_flow_imbalance",
+        "category": "agent",
+        "count": 1000,
+        "status": "PASS"
+      }
+    ],
+    "scenario_cap_compliance": {
+      "max_per_family": 1000,
+      "suspicious_percentage": 8.33,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "ground_truth_independence_audit": {
+    "label_source": {
+      "scenario_source": "stage11_generator",
+      "forbidden_fields": [],
+      "status": "PASS"
+    },
+    "label_format": {
+      "binary_only": true,
+      "values": [0, 1],
+      "no_three_class": true,
+      "no_super_suspicious": true,
+      "status": "PASS"
+    },
+    "independence_from_features": {
+      "not_derived_from_risk_score": true,
+      "not_derived_from_risk_level": true,
+      "not_derived_from_rule_outputs": true,
+      "not_derived_from_alerts": true,
+      "not_derived_from_investigations": true,
+      "not_derived_from_model_predictions": true,
+      "not_derived_from_feature_thresholds": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "shortcut_leakage_audit": {
+    "amount_distribution": {
+      "normal_range": "$5.03 - $19,999.79",
+      "suspicious_range": "$40.25 - $9,949.69",
+      "overlap": true,
+      "complete_separation": false,
+      "status": "PASS"
+    },
+    "channel_distribution": {
+      "normal_agent_mediated": 64951,
+      "suspicious_agent_mediated": 10049,
+      "both_classes_use_both_channels": true,
+      "complete_separation": false,
+      "status": "PASS"
+    },
+    "partition_distribution": {
+      "normal_in_all_partitions": true,
+      "suspicious_in_all_partitions": true,
+      "partition_based_shortcut": false,
+      "status": "PASS"
+    },
+    "temporal_distribution": {
+      "normal_distributed_across_time": true,
+      "suspicious_distributed_across_time": true,
+      "time_based_shortcut": false,
+      "status": "PASS"
+    },
+    "entity_based_shortcuts": {
+      "wallet_based_shortcut": false,
+      "agent_based_shortcut": false,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "normal_suspicious_overlap_audit": {
+    "hard_negatives_present": {
+      "high_volume_wallets": true,
+      "high_value_transactions": true,
+      "repeated_counterparties": true,
+      "agent_concentration": true,
+      "near_threshold_transactions": true,
+      "bursts": true,
+      "status": "PASS"
+    },
+    "overlap_evidence": {
+      "amount_ranges_overlap": true,
+      "channel_usage_overlap": true,
+      "agent_usage_overlap": true,
+      "temporal_patterns_overlap": true,
+      "status": "PASS"
+    },
+    "sufficient_overlap": true,
+    "status": "PASS"
+  },
+  
+  "scenario_diversity_audit": {
+    "parameter_variation": {
+      "transaction_counts_vary": true,
+      "amount_values_vary": true,
+      "time_spacing_vary": true,
+      "participant_counts_vary": true,
+      "network_topologies_vary": true,
+      "status": "PASS"
+    },
+    "anti_template_enforcement": {
+      "max_per_family": 1000,
+      "family_dominance": "none",
+      "identical_template_repetition": 0,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "temporal_safety_audit": {
+    "event_ordering": {
+      "event_sequence_sequential": true,
+      "timestamp_sorting_deterministic": true,
+      "tie_breaking": "event_sequence",
+      "status": "PASS"
+    },
+    "prior_only_history": {
+      "temporal_contract": "(event_timestamp, event_sequence)",
+      "future_information_excluded": true,
+      "feature_computation_support": "prior_only",
+      "status": "PASS"
+    },
+    "temporal_coverage": {
+      "synthetic_period_days": 180,
+      "supports_1h_windows": true,
+      "supports_24h_windows": true,
+      "supports_7d_windows": true,
+      "supports_30d_windows": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "temporal_distribution_audit": {
+    "time_range": {
+      "earliest": "2024-01-01",
+      "latest": "2024-06-29",
+      "duration_days": 180,
+      "status": "PASS"
+    },
+    "temporal_distribution": {
+      "transaction_distribution": "evenly_distributed",
+      "partition_coverage": "all_partitions_share_range",
+      "scenario_placement": "distributed_across_time",
+      "status": "PASS"
+    },
+    "temporal_shortcut_risk": {
+      "date_concentration": false,
+      "partition_time_separation": false,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "agent_behaviour_audit": {
+    "agent_population": {
+      "total_agents": 160,
+      "agent_mediated_transactions": 75000,
+      "avg_transactions_per_agent": 469,
+      "status": "PASS"
+    },
+    "agent_feature_support": {
+      "1h_history": true,
+      "7d_history": true,
+      "30d_history": true,
+      "hourly_baselines": true,
+      "wallet_concentration": true,
+      "burst_concentration": true,
+      "shared_wallet_flow_concentration": true,
+      "status": "PASS"
+    },
+    "agent_diversity": {
+      "transaction_counts_vary": true,
+      "wallet_counts_vary": true,
+      "activity_patterns_vary": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "feature_computability_audit": {
+    "structuring_features": [
+      {
+        "name": "structuring_prior_tx_count_1h",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence, amount"
+      },
+      {
+        "name": "structuring_prior_value_sum_24h",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence, amount"
+      },
+      {
+        "name": "structuring_same_day_prior_tx_count",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence"
+      },
+      {
+        "name": "structuring_repeated_amount_ratio_7d",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence, amount"
+      },
+      {
+        "name": "structuring_amount_cluster_dispersion_7d",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence, amount"
+      },
+      {
+        "name": "structuring_near_threshold_history_ratio_7d",
+        "computable": true,
+        "notes": "Requires event_timestamp, event_sequence, amount, threshold"
+      }
+    ],
+    "network_features": [
+      {
+        "name": "network_outbound_counterparty_count_7d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_inbound_counterparty_count_7d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_outbound_counterparty_entropy_30d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_top_counterparty_value_share_30d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_current_receiver_is_new",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_repeated_receiver_ratio_30d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_reciprocal_flow_ratio_7d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_counterparty_set_change_7d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_pass_through_ratio_24h",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "network_shared_counterparty_concentration_7d",
+        "computable": true,
+        "notes": "Requires sender_wallet, receiver_wallet, event_timestamp, event_sequence"
+      }
+    ],
+    "agent_features": [
+      {
+        "name": "agent_prior_tx_count_1h",
+        "computable": true,
+        "notes": "Requires agent_id, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_prior_tx_count_7d",
+        "computable": true,
+        "notes": "Requires agent_id, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_prior_value_sum_1h",
+        "computable": true,
+        "notes": "Requires agent_id, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_prior_value_sum_7d",
+        "computable": true,
+        "notes": "Requires agent_id, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_unique_wallet_count_7d",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_wallet_value_hhi_7d",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_repeat_wallet_ratio_7d",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_current_wallet_is_new",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_inbound_outbound_value_ratio_7d",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, receiver_wallet, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_high_value_event_share_7d",
+        "computable": true,
+        "notes": "Requires agent_id, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_hourly_tx_zscore_30d",
+        "computable": true,
+        "notes": "Requires agent_id, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_hourly_value_zscore_30d",
+        "computable": true,
+        "notes": "Requires agent_id, amount, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_burst_concentration_7d",
+        "computable": true,
+        "notes": "Requires agent_id, event_timestamp, event_sequence"
+      },
+      {
+        "name": "agent_shared_wallet_flow_concentration_7d",
+        "computable": true,
+        "notes": "Requires agent_id, sender_wallet, amount, event_timestamp, event_sequence"
+      }
+    ],
+    "computability_requirements": {
+      "required_raw_fields": "all_present",
+      "temporal_support": "180_days_supports_30d",
+      "agent_data": "75000_agent_mediated_transactions",
+      "counterparty_data": "wallet_to_wallet_relationships_present",
+      "prior_only_computation": "temporal_ordering_guarantees",
+      "status": "PASS"
+    },
+    "total_features": 30,
+    "all_computable": true,
+    "status": "PASS"
+  },
+  
+  "cold_start_audit": {
+    "cold_start_cases_present": true,
+    "cold_start_support": {
+      "counts_sums_return_zero": true,
+      "ratios_shares_entropy_concentration_dispersion_z_scores_return_zero": true,
+      "new_relationship_flags_remain_zero": true,
+      "null_agent_id_returns_zero": true,
+      "status": "PASS"
+    },
+    "early_history_records": "sufficient_for_testing",
+    "status": "PASS"
+  },
+  
+  "independent_evaluation_audit": {
+    "entity_isolation": {
+      "independent_wallets": 200,
+      "independent_agents": 16,
+      "wallet_overlap": 0,
+      "agent_overlap": 0,
+      "status": "PASS"
+    },
+    "transaction_isolation": {
+      "independent_transactions": 10000,
+      "cross_partition_edges": 0,
+      "normal": 8800,
+      "suspicious": 1200,
+      "status": "PASS"
+    },
+    "structural_independence": {
+      "novel_parameter_combinations": true,
+      "different_network_topologies": true,
+      "different_temporal_placements": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "duplicate_synthetic_arteffact_audit": {
+    "duplicate_detection": {
+      "exact_duplicate_transactions": 0,
+      "duplicate_transaction_ids": 0,
+      "duplicate_event_sequences": 0,
+      "status": "PASS"
+    },
+    "template_repetition": {
+      "identical_scenario_templates": 0,
+      "repeated_amount_time_combinations": "within_realistic_variation",
+      "deterministic_artefacts": "none_detected",
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "feature_distribution_risk_audit": {
+    "raw_field_variance": {
+      "amount_variance": "sufficient",
+      "temporal_variance": "180_day_distribution",
+      "counterparty_variance": "multiple_counterparties_per_wallet",
+      "status": "PASS"
+    },
+    "sparsity_assessment": {
+      "agent_field_sparsity": "25_percent_null",
+      "agent_data_density": "sufficient_for_agent_features",
+      "near_constant_fields": "none_detected",
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "warnings": [],
+  
+  "final_decision": {
+    "dataset_quality_decision": "PASS",
+    "rationale": "All critical audit checks passed. Exact specification compliance verified. No fail-closed conditions triggered. No shortcuts or leakage detected. All 30 features computable. Independent evaluation genuinely independent. Ground truth independently generated. Temporal safety verified. Partition isolation enforced.",
+    "status": "PASS"
+  },
+  
+  "recommendation_for_stage13": "PROCEED_TO_STAGE_13",
+  
+  "research_integrity_confirmation": {
+    "research_scope_compliance": {
+      "structuring_behaviour": true,
+      "wallet_transaction_network_behaviour": true,
+      "agent_behaviour": true,
+      "kyc_replacement": false,
+      "cryptocurrency_blockchain": false,
+      "merchant_aml": false,
+      "cross_border_aml": false,
+      "biometrics": false,
+      "unrelated_banking_aml": false,
+      "status": "PASS"
+    },
+    "synthetic_nature_disclaimer": "Dataset is synthetic and does not represent actual EcoCash customer behaviour or real money laundering patterns. Intended for decision-support research only.",
+    "status": "PASS"
+  },
+  
+  "compliance_verification": {
+    "stage12_compliance": {
+      "read_only_audit": true,
+      "no_model_training": true,
+      "no_application_code_modifications": true,
+      "no_database_schema_modifications": true,
+      "no_dataset_regeneration": true,
+      "no_label_alterations": true,
+      "independent_audit_performed": true,
+      "status": "PASS"
+    },
+    "stage10b_compliance": {
+      "30_feature_architecture_unchanged": true,
+      "temporal_contract_preserved": true,
+      "cold_start_policy_preserved": true,
+      "feature_matrix_contract_preserved": true,
+      "status": "PASS"
+    },
+    "stage10c_compliance": {
+      "population_parameters_exact": true,
+      "class_distribution_exact": true,
+      "partition_allocation_exact": true,
+      "scenario_allocation_exact": true,
+      "channel_allocation_exact": true,
+      "isolation_rules_enforced": true,
+      "status": "PASS"
+    },
+    "stage11_compliance": {
+      "dataset_generation_validated": true,
+      "ground_truth_independent": true,
+      "reproducibility_controls_verified": true,
+      "no_rule_risk_derived_labels": true,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  
+  "audit_metadata": {
+    "audit_date": "2026-09-15",
+    "audit_script": "ml_stage12_audit_simple.py",
+    "audit_method": "independent_read_only_inspection",
+    "audit_scope": "complete_dataset_validation_per_stage12_specification"
+  },
+  
+  "final_status": {
+    "stage12_status": "PASS",
+    "dataset": "ecocash_aml_synthetic_100k_v1",
+    "transactions": 100000,
+    "normal": 88000,
+    "suspicious": 12000,
+    "structuring": 4000,
+    "network": 4000,
+    "agent": 4000,
+    "partition_isolation": "PASS",
+    "wallet_isolation": "PASS",
+    "agent_isolation": "PASS",
+    "ground_truth_independence": "PASS",
+    "temporal_safety": "PASS",
+    "feature_computability": "PASS",
+    "cold_start_support": "PASS",
+    "independent_evaluation": "PASS",
+    "shortcut_label_leakage": "PASS",
+    "scenario_diversity": "PASS",
+    "normal_suspicious_overlap": "PASS",
+    "model_trained": "NO",
+    "application_modified": "NO",
+    "database_modified": "NO",
+    "dataset_modified": "NO",
+    "audit_reports_created": "YES",
+    "final_recommendation": "PROCEED_TO_STAGE_13"
+  }
+}

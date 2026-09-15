@@ -1,0 +1,48 @@
+{
+  "dataset_version": "ecocash_aml_synthetic_100k_v1",
+  "generation_timestamp": "2026-09-15T12:59:50.811716+00:00",
+  "random_seed": 42,
+  "master_seed": 42,
+  "stage10b_specification_version": "2026-09-14",
+  "stage10c_specification_version": "2026-09-14",
+  "synthetic_threshold_version": "synthetic_reporting_threshold_v1",
+  "synthetic_threshold_value": 10000,
+  "total_transactions": 100000,
+  "normal_count": 88000,
+  "suspicious_count": 12000,
+  "total_wallets": 2000,
+  "total_agents": 160,
+  "partition_allocation": {
+    "train": {
+      "transactions": 60000,
+      "wallets": 1200,
+      "agents": 96
+    },
+    "validation": {
+      "transactions": 15000,
+      "wallets": 300,
+      "agents": 24
+    },
+    "final_test": {
+      "transactions": 15000,
+      "wallets": 300,
+      "agents": 24
+    },
+    "independent": {
+      "transactions": 10000,
+      "wallets": 200,
+      "agents": 16
+    }
+  },
+  "channel_allocation": {
+    "agent_mediated": 75000,
+    "direct_p2p": 25000
+  },
+  "suspicious_domain_allocation": {
+    "structuring": 4000,
+    "network": 4000,
+    "agent": 4000
+  },
+  "scenario_families": 12,
+  "max_tx_per_family": 1000
+}
