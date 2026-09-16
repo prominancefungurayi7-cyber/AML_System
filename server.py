@@ -143,6 +143,9 @@ from transaction_simulation import (
     SUSPICIOUS_TRANSACTION_SCENARIOS,
     SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS,
     PROFILE_FEATURE_DEFAULTS,
+    generate_structuring_scenario,
+    generate_network_scenario,
+    generate_agent_scenario,
 )
 
 # Import from modularized components
@@ -4016,12 +4019,15 @@ def generate_transactions():
 
 
 
-        generated = {"normal": 0, "flagged": 0, "critical": 0}
+        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+
+        # Get agents for simulation
+        agents = get_db().execute("SELECT id, agent_code, agent_name, location, region, city FROM agents WHERE status='active'").fetchall()
 
         # Batch insert transactions first for performance
         transactions_to_process = []
         for label in _simulation_plan(count):
-            transactions = _simulation_transaction(label, users)
+            transactions = _simulation_transaction(label, users, agents)
             for (
                 sender, recipient, tx_type, amount, timestamp,
                 channel, description, _scenario_reason, dest_country, agent_id,
@@ -4029,20 +4035,22 @@ def generate_transactions():
                 sender_account = sender["account_number"]
                 receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
 
+                # STAGE 17E: Remove label contamination - do not insert generated_label
+                # Simulated transactions must go through real Stage 13 + Stage 14 pipeline
                 get_db().execute(
                     """
                     INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-                        currency, channel, timestamp, status, risk_score, risk_level, description,
-                        destination_country, generated_label, agent_id)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+                        currency, channel, timestamp, risk_score, risk_level, description,
+                        destination_country, agent_id)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?)
                     """,
                     (
-                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 'Completed', 0, 'normal', description, dest_country, label, agent_id,
+                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id,
                     ),
                 )
 
                 transaction_id = get_last_insert_id(get_db())
-                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label, _scenario_reason))
+                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
 
                 if tx_type == "deposit":
                     get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
@@ -4060,37 +4068,39 @@ def generate_transactions():
 
         get_db().commit()
 
-        # Train AI model first with existing data before processing new transactions
-        # This ensures new transactions are processed with a properly trained model
-        _train_ai_model_from_db(get_db(), emit_events=False)
-
-        # Process transactions in batch for AML rules and AI
+        # STAGE 17E: Remove legacy AI training - use Stage 13 + Stage 14 pipeline only
+        # Process transactions in batch through real application pipeline
         # Evaluate chronologically so every score uses only information that
-        # was available at that point in time.
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, label, scenario_reason in sorted(
+        # was available at that point in time (Stage 13 temporal safety)
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
             transactions_to_process, key=lambda item: item[5]
         ):
 
+            # STAGE 17E: Use real application pipeline with Stage 13 + Stage 14
+            # No generated_label or scenario_reason - let Stage 14 make the decision
             risk_score, risk_level, reason, alert_id = process_transaction_event(
                 get_db(), transaction_id, sender_account, receiver_account,
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
-                generated_label=label,
-                scenario_reason=scenario_reason,
+                generated_label=None,  # STAGE 17E: No label contamination
+                scenario_reason=None,  # STAGE 17E: No scenario contamination
             )
 
-            if risk_level in ("normal", "low"):
+            # STAGE 17E: Use Stage 14 binary classification results
+            if risk_level == "normal":
                 generated["normal"] += 1
+            elif risk_level == "suspicious_pattern":
+                generated["suspicious_pattern"] += 1
             elif risk_level in ("critical", "high_risk"):
-                generated["critical"] += 1
+                generated["high_risk"] += 1
             else:
-                generated["flagged"] += 1
+                generated["normal"] += 1  # Default to normal for unknown levels
 
         get_db().commit()
 
         # Only broadcast balances for affected accounts
         affected_accounts = set()
-        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country, _label in transactions_to_process:
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in transactions_to_process:
             affected_accounts.add(sender_account)
             if tx_type == "transfer":
                 affected_accounts.add(receiver_account)
@@ -4101,34 +4111,27 @@ def generate_transactions():
         broadcast_event("transaction_batch", {
             "count": count,
             "normal": generated["normal"],
-            "flagged": generated["flagged"],
-            "critical": generated["critical"],
+            "suspicious_pattern": generated["suspicious_pattern"],
+            "high_risk": generated["high_risk"],
             "timestamp": datetime.now(timezone.utc).isoformat(),
         })
 
         broadcast_stats(get_db())
 
-        # Retrain AI model with the new transactions to include them in training
-        import threading
-        def train_in_background():
-            try:
-                _train_ai_model_from_db(get_db())
-            except Exception as e:
-                if app:
-                    app.logger.error(f"Background AI training failed: {e}")
-        threading.Thread(target=train_in_background, daemon=True).start()
+        # STAGE 17E: Remove background AI training - Stage 14 model is frozen
+        # No retraining should occur during simulation
 
         record_activity(
             admin_user["username"],
             "generate_transactions",
             (
-                f"Generated {count} transactions: "
-                f"{generated['normal']} normal, {generated['flagged']} flagged, "
-                f"{generated['critical']} critical/high-risk"
+                f"Generated {count} transactions through Stage 13 + Stage 14 pipeline: "
+                f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
+                f"{generated['high_risk']} high_risk"
             ),
         )
 
-        app.logger.info(f"Transaction generation completed: {count} transactions generated")
+        app.logger.info(f"Transaction generation completed: {count} transactions generated through Stage 13 + Stage 14 pipeline")
         flash(f"Generated {count} transactions: {generated['normal']} normal, {generated['flagged']} flagged, {generated['critical']} critical.")
 
         return redirect(url_for("admin_dashboard"))
@@ -4141,6 +4144,378 @@ def generate_transactions():
 
         flash(f"Transaction generation failed: {str(e)}")
 
+        return redirect(url_for("admin_dashboard"))
+
+
+@app.route("/admin/generate-structuring-scenario", methods=["POST"])
+@login_required("admin")
+def generate_structuring_scenario():
+    """
+    Generate structuring-style transaction sequence for Stage 13 feature testing.
+    
+    STAGE 17E: This endpoint creates transactions that exercise Stage 13 structuring features
+    through the real application pipeline (Stage 13 + Stage 14).
+    """
+    admin_user = get_user_by_id(session["user_id"])
+    
+    try:
+        count = int(request.form.get("count", 5))
+    except ValueError:
+        count = 5
+    
+    try:
+        users = get_db().execute(
+            "SELECT id, username, account_number, balance, wealth_segment FROM users WHERE role='customer' ORDER BY id"
+        ).fetchall()
+        
+        if not users:
+            flash("No customer accounts are available for scenario generation.")
+            return redirect(url_for("admin_dashboard"))
+        
+        # Get agents for simulation
+        agents = get_db().execute("SELECT id, agent_code, agent_name, location, region, city FROM agents WHERE status='active'").fetchall()
+        
+        # Generate structuring scenario transactions
+        sender_wallet = random.choice(users)
+        transactions_to_process = []
+        
+        # Use the new structuring scenario generator
+        structuring_txs = generate_structuring_scenario(get_db(), sender_wallet, None, count)
+        
+        for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in structuring_txs:
+            sender_account = sender["account_number"]
+            receiver_account = recipient["account_number"]
+            
+            # Insert transaction without label contamination
+            get_db().execute(
+                """
+                INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                    currency, channel, timestamp, risk_score, risk_level, description,
+                    destination_country, agent_id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
+            )
+            
+            transaction_id = get_last_insert_id(get_db())
+            transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
+            
+            # Update balance for Cash-In
+            if "Cash-In" in description:
+                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+            elif "Cash-Out" in description:
+                get_db().execute(
+                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                    (amount, amount, sender["id"]),
+                )
+        
+        get_db().commit()
+        
+        # Process through real Stage 13 + Stage 14 pipeline
+        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
+            transactions_to_process, key=lambda item: item[5]
+        ):
+            risk_score, risk_level, reason, alert_id = process_transaction_event(
+                get_db(), transaction_id, sender_account, receiver_account,
+                amount, tx_type, timestamp, account_number=sender_account,
+                destination_country=dest_country,
+                generated_label=None,  # No label contamination
+                scenario_reason=None,  # No scenario contamination
+            )
+            
+            if risk_level == "normal":
+                generated["normal"] += 1
+            elif risk_level == "suspicious_pattern":
+                generated["suspicious_pattern"] += 1
+            elif risk_level in ("critical", "high_risk"):
+                generated["high_risk"] += 1
+            else:
+                generated["normal"] += 1
+        
+        get_db().commit()
+        
+        # Broadcast updates
+        for account in set([tx[6] for tx in transactions_to_process]):
+            broadcast_user_balance(get_db(), account)
+        
+        broadcast_event("transaction_batch", {
+            "count": count,
+            "normal": generated["normal"],
+            "suspicious_pattern": generated["suspicious_pattern"],
+            "high_risk": generated["high_risk"],
+            "scenario_type": "structuring",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+        
+        broadcast_stats(get_db())
+        
+        record_activity(
+            admin_user["username"],
+            "generate_structuring_scenario",
+            f"Generated structuring scenario with {count} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
+            f"{generated['high_risk']} high_risk"
+        )
+        
+        flash(f"Generated structuring scenario: {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        return redirect(url_for("admin_dashboard"))
+        
+    except Exception as e:
+        get_db().rollback()
+        app.logger.error(f"Structuring scenario generation failed: {e}")
+        flash(f"Structuring scenario generation failed: {str(e)}")
+        return redirect(url_for("admin_dashboard"))
+
+
+@app.route("/admin/generate-network-scenario", methods=["POST"])
+@login_required("admin")
+def generate_network_scenario():
+    """
+    Generate network-style transaction sequence for Stage 13 feature testing.
+    
+    STAGE 17E: This endpoint creates transactions that exercise Stage 13 network features
+    through the real application pipeline (Stage 13 + Stage 14).
+    """
+    admin_user = get_user_by_id(session["user_id"])
+    
+    try:
+        count = int(request.form.get("count", 10))
+        scenario_type = request.form.get("scenario_type", "many_to_one")
+    except ValueError:
+        count = 10
+        scenario_type = "many_to_one"
+    
+    try:
+        users = get_db().execute(
+            "SELECT id, username, account_number, balance, wealth_segment FROM users WHERE role='customer' ORDER BY id"
+        ).fetchall()
+        
+        if len(users) < 3:
+            flash("Need at least 3 customer accounts for network scenario generation.")
+            return redirect(url_for("admin_dashboard"))
+        
+        # Generate network scenario transactions
+        transactions_to_process = []
+        
+        # Use the new network scenario generator
+        network_txs = generate_network_scenario(get_db(), users, scenario_type, count)
+        
+        for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in network_txs:
+            sender_account = sender["account_number"]
+            receiver_account = recipient["account_number"]
+            
+            # Insert transaction without label contamination
+            get_db().execute(
+                """
+                INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                    currency, channel, timestamp, risk_score, risk_level, description,
+                    destination_country, agent_id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
+            )
+            
+            transaction_id = get_last_insert_id(get_db())
+            transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
+            
+            # Update balances for wallet-to-wallet transfers
+            get_db().execute(
+                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                (amount, amount, sender["id"]),
+            )
+            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
+        
+        get_db().commit()
+        
+        # Process through real Stage 13 + Stage 14 pipeline
+        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
+            transactions_to_process, key=lambda item: item[5]
+        ):
+            risk_score, risk_level, reason, alert_id = process_transaction_event(
+                get_db(), transaction_id, sender_account, receiver_account,
+                amount, tx_type, timestamp, account_number=sender_account,
+                destination_country=dest_country,
+                generated_label=None,  # No label contamination
+                scenario_reason=None,  # No scenario contamination
+            )
+            
+            if risk_level == "normal":
+                generated["normal"] += 1
+            elif risk_level == "suspicious_pattern":
+                generated["suspicious_pattern"] += 1
+            elif risk_level in ("critical", "high_risk"):
+                generated["high_risk"] += 1
+            else:
+                generated["normal"] += 1
+        
+        get_db().commit()
+        
+        # Broadcast updates
+        affected_accounts = set()
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in transactions_to_process:
+            affected_accounts.add(sender_account)
+            affected_accounts.add(receiver_account)
+        
+        for account in affected_accounts:
+            broadcast_user_balance(get_db(), account)
+        
+        broadcast_event("transaction_batch", {
+            "count": count,
+            "normal": generated["normal"],
+            "suspicious_pattern": generated["suspicious_pattern"],
+            "high_risk": generated["high_risk"],
+            "scenario_type": f"network_{scenario_type}",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+        
+        broadcast_stats(get_db())
+        
+        record_activity(
+            admin_user["username"],
+            "generate_network_scenario",
+            f"Generated network scenario ({scenario_type}) with {count} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
+            f"{generated['high_risk']} high_risk"
+        )
+        
+        flash(f"Generated network scenario ({scenario_type}): {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        return redirect(url_for("admin_dashboard"))
+        
+    except Exception as e:
+        get_db().rollback()
+        app.logger.error(f"Network scenario generation failed: {e}")
+        flash(f"Network scenario generation failed: {str(e)}")
+        return redirect(url_for("admin_dashboard"))
+
+
+@app.route("/admin/generate-agent-scenario", methods=["POST"])
+@login_required("admin")
+def generate_agent_scenario():
+    """
+    Generate agent-mediated transaction sequence for Stage 13 feature testing.
+    
+    STAGE 17E: This endpoint creates transactions that exercise Stage 13 agent features
+    through the real application pipeline (Stage 13 + Stage 14).
+    """
+    admin_user = get_user_by_id(session["user_id"])
+    
+    try:
+        count = int(request.form.get("count", 15))
+        scenario_type = request.form.get("scenario_type", "concentration")
+    except ValueError:
+        count = 15
+        scenario_type = "concentration"
+    
+    try:
+        users = get_db().execute(
+            "SELECT id, username, account_number, balance, wealth_segment FROM users WHERE role='customer' ORDER BY id"
+        ).fetchall()
+        
+        if not users:
+            flash("No customer accounts are available for agent scenario generation.")
+            return redirect(url_for("admin_dashboard"))
+        
+        # Get agents for simulation
+        agents = get_db().execute("SELECT id, agent_code, agent_name, location, region, city FROM agents WHERE status='active'").fetchall()
+        
+        if not agents:
+            flash("No active agents available for agent scenario generation.")
+            return redirect(url_for("admin_dashboard"))
+        
+        # Generate agent scenario transactions
+        transactions_to_process = []
+        
+        # Use the new agent scenario generator
+        agent_txs = generate_agent_scenario(get_db(), users, agents, scenario_type, count)
+        
+        for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in agent_txs:
+            sender_account = sender["account_number"]
+            receiver_account = recipient["account_number"]
+            
+            # Insert transaction without label contamination
+            get_db().execute(
+                """
+                INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                    currency, channel, timestamp, risk_score, risk_level, description,
+                    destination_country, agent_id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
+            )
+            
+            transaction_id = get_last_insert_id(get_db())
+            transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
+            
+            # Update balance for Cash-In
+            if "Cash-In" in description:
+                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+            elif "Cash-Out" in description:
+                get_db().execute(
+                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+                    (amount, amount, sender["id"]),
+                )
+        
+        get_db().commit()
+        
+        # Process through real Stage 13 + Stage 14 pipeline
+        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        
+        for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
+            transactions_to_process, key=lambda item: item[5]
+        ):
+            risk_score, risk_level, reason, alert_id = process_transaction_event(
+                get_db(), transaction_id, sender_account, receiver_account,
+                amount, tx_type, timestamp, account_number=sender_account,
+                destination_country=dest_country,
+                generated_label=None,  # No label contamination
+                scenario_reason=None,  # No scenario contamination
+            )
+            
+            if risk_level == "normal":
+                generated["normal"] += 1
+            elif risk_level == "suspicious_pattern":
+                generated["suspicious_pattern"] += 1
+            elif risk_level in ("critical", "high_risk"):
+                generated["high_risk"] += 1
+            else:
+                generated["normal"] += 1
+        
+        get_db().commit()
+        
+        # Broadcast updates
+        for account in set([tx[6] for tx in transactions_to_process]):
+            broadcast_user_balance(get_db(), account)
+        
+        broadcast_event("transaction_batch", {
+            "count": count,
+            "normal": generated["normal"],
+            "suspicious_pattern": generated["suspicious_pattern"],
+            "high_risk": generated["high_risk"],
+            "scenario_type": f"agent_{scenario_type}",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+        
+        broadcast_stats(get_db())
+        
+        record_activity(
+            admin_user["username"],
+            "generate_agent_scenario",
+            f"Generated agent scenario ({scenario_type}) with {count} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
+            f"{generated['high_risk']} high_risk"
+        )
+        
+        flash(f"Generated agent scenario ({scenario_type}): {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        return redirect(url_for("admin_dashboard"))
+        
+    except Exception as e:
+        get_db().rollback()
+        app.logger.error(f"Agent scenario generation failed: {e}")
+        flash(f"Agent scenario generation failed: {str(e)}")
         return redirect(url_for("admin_dashboard"))
 
 
