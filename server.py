@@ -739,8 +739,15 @@ def handle_send_message(data):
         ).fetchone()
         receiver_user = fetch_user_by_username(conn, receiver)
         
-        if not sender_user or not receiver_user:
-            socketio.emit('message_error', {'message': 'User not found'}, to=request.sid)
+        if not sender_user:
+            app.logger.error(f"Sender user not found for session user_id: {session['user_id']}")
+            socketio.emit('message_error', {'message': 'Sender account not found'}, to=request.sid)
+            conn.close()
+            return
+        
+        if not receiver_user:
+            app.logger.error(f"Receiver user not found for username: {receiver}")
+            socketio.emit('message_error', {'message': 'Recipient not found'}, to=request.sid)
             conn.close()
             return
 
@@ -751,12 +758,19 @@ def handle_send_message(data):
             can_message = False
             reason = 'This is not your assigned secure messaging contact'
         if not can_message:
+            app.logger.warning(f"Messaging not allowed: {sender} ({sender_user['role']}) -> {receiver} ({receiver_user['role']}): {reason}")
             socketio.emit('message_error', {'message': reason}, to=request.sid)
             conn.close()
             return
         
         # Get or create conversation
         conv = get_or_create_conversation(conn, sender, receiver)
+        
+        if not conv or conv.get('id') is None:
+            app.logger.error(f"Failed to get or create conversation between {sender} and {receiver}")
+            socketio.emit('message_error', {'message': 'Could not create conversation'}, to=request.sid)
+            conn.close()
+            return
         
         # Send message
         msg = send_message(conn, conv['id'], sender, receiver, content, sender_user['role'])
@@ -1500,7 +1514,7 @@ def send_otp_email_async(email, otp_code):
     for this result; otherwise it can claim a code was sent when delivery has
     already failed.
     """
-    subject = "StanPro Bank - Verification Code"
+    subject = "Epocash - Verification Code"
     body = f"""
 Your verification code is: {otp_code}
 
@@ -1508,16 +1522,16 @@ This code will expire in 10 minutes.
 
 If you did not request this code, please ignore this email.
 
-StanPro Bank AML Intelligence Platform
+Epocash AML Intelligence Platform
 """
     html_body = f"""
 <html>
 <body>
-    <h2>StanPro Bank - Verification Code</h2>
+    <h2>Epocash - Verification Code</h2>
     <p>Your verification code is: <strong>{otp_code}</strong></p>
     <p>This code will expire in 10 minutes.</p>
     <p>If you did not request this code, please ignore this email.</p>
-    <p><em>StanPro Bank AML Intelligence Platform</em></p>
+    <p><em>Epocash AML Intelligence Platform</em></p>
 </body>
 </html>
 """
@@ -2242,25 +2256,25 @@ def process_transaction_event(
             if stage14_is_suspicious:
                 ai_level = "suspicious_pattern"
                 ai_confidence = stage14_probability
-                ai_reason = f"Stage 14 AML model detected suspicious pattern (probability: {stage14_probability:.2%}, threshold: 0.35)"
+                ai_reason = f"AML model detected suspicious pattern (probability: {stage14_probability:.2%}, threshold: 0.35)"
             else:
                 ai_level = "normal"
                 ai_confidence = 1.0 - stage14_probability
-                ai_reason = f"Stage 14 AML model: normal transaction (probability: {stage14_probability:.2%})"
+                ai_reason = f"AML model: normal transaction (probability: {stage14_probability:.2%})"
             
-            app.logger.info(f"Stage 14 prediction for transaction {transaction_id}: "
+            app.logger.info(f"AML model prediction for transaction {transaction_id}: "
                           f"probability={stage14_probability:.4f}, "
                           f"is_suspicious={stage14_is_suspicious}, "
                           f"ai_level={ai_level}")
         else:
-            app.logger.warning(f"Stage 14 model service not available for transaction {transaction_id}")
+            app.logger.warning(f"AML model service not available for transaction {transaction_id}")
             ai_level = None
             ai_confidence = 0.0
     except Exception as e:
-        app.logger.error(f"Stage 14 prediction failed for transaction {transaction_id}: {e}")
+        app.logger.error(f"AML model prediction failed for transaction {transaction_id}: {e}")
         ai_level = None
         ai_confidence = 0.0
-        ai_reason = f"Stage 14 AI prediction error: {str(e)}"
+        ai_reason = f"AI prediction error: {str(e)}"
     
     # Convert Stage 14 binary prediction to risk score for compatibility
     # Stage 14 threshold is 0.35 - map probability to 0-100 scale
@@ -2323,7 +2337,7 @@ def process_transaction_event(
     ctr_required = 1 if transaction_type in ("deposit", "withdraw") and float(amount) >= CTR_THRESHOLD else 0
     sar_required = 1 if any(rule["rule_id"] == "R07" for rule in triggered) else 0
     
-    # SAR required for suspicious patterns from Stage 14
+    # SAR required for suspicious patterns from AI model
     if stage14_is_suspicious:
         sar_required = 1
 
@@ -2414,11 +2428,11 @@ def process_transaction_event(
                 "reason": reason,
                 "timestamp": timestamp,
             }
-            # Add Stage 14 specific information if available
+            # Add AI model information if available
             if stage14_probability is not None:
-                alert_data["stage14_probability"] = stage14_probability
-                alert_data["stage14_is_suspicious"] = stage14_is_suspicious
-                alert_data["ai_model"] = "Stage 14 AML"
+                alert_data["ai_probability"] = stage14_probability
+                alert_data["ai_is_suspicious"] = stage14_is_suspicious
+                alert_data["ai_model"] = "AML"
             
             broadcast_event("alert", alert_data)
 
@@ -2593,7 +2607,7 @@ def health():
 
         "status": "ok",
 
-        "service": "stanpro-aml",
+        "service": "epocash-aml",
 
         "timestamp": datetime.now(timezone.utc).isoformat(),
 
@@ -2693,13 +2707,13 @@ def send_otp_email(recipient_email, otp):
 
     msg = EmailMessage()
 
-    msg["Subject"] = "StanPro Bank — Your verification code"
+    msg["Subject"] = "Epocash — Your verification code"
 
     msg["From"] = sender_email
 
     msg["To"] = recipient_email
 
-    msg.set_content(f"Your StanPro Bank verification code is: {otp}\n\nThis code expires in 10 minutes.")
+    msg.set_content(f"Your Epocash verification code is: {otp}\n\nThis code expires in 10 minutes.")
 
     try:
         print(f"[EMAIL] Connecting to SMTP server...")
@@ -2837,7 +2851,7 @@ def register():
 
             record_activity(pending["username"], "register", f"New {pending['role']} registered")
 
-            flash("Account created. Welcome to StanPro Bank AML Portal.")
+            flash("Account created. Welcome to Epocash AML Portal.")
 
             return redirect(url_for("dashboard_redirect"))
 
@@ -3859,6 +3873,7 @@ def admin_dashboard():
                 if updated:
 
                     broadcast_event("user", _user_balance_payload(updated))
+                    broadcast_user_balance(get_db(), updated["account_number"])
 
                 record_activity(admin_user["username"], "update_user", f"Updated user {user_id}: kyc={kyc or 'unchanged'}")
 
@@ -4037,17 +4052,40 @@ def generate_transactions():
 
                 # STAGE 17E: Remove label contamination - do not insert generated_label
                 # Simulated transactions must go through real Stage 13 + Stage 14 pipeline
-                get_db().execute(
-                    """
-                    INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-                        currency, channel, timestamp, risk_score, risk_level, description,
-                        destination_country, agent_id)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?)
-                    """,
-                    (
-                        sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id,
-                    ),
+                # Handle NULL agent_id properly for MySQL
+                from database import is_mysql_database_url
+                db = get_db()
+                insert_params = (
+                    sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id if agent_id is not None else None, 'Completed',
                 )
+
+                if is_mysql_database_url(app.config["DATABASE"]):
+                    # Use raw MySQL connection for direct parameter handling
+                    conn = db.connection
+                    cursor = conn.cursor(dictionary=True, buffered=True)
+                    cursor.execute(
+                        """
+                        INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                            currency, channel, timestamp, risk_score, risk_level, description,
+                            destination_country, agent_id, status)
+                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        """,
+                        insert_params,
+                    )
+                    transaction_id = cursor.lastrowid
+                    cursor.close()
+                else:
+                    # Use database adapter for SQLite/PostgreSQL
+                    db.execute(
+                        """
+                        INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
+                            currency, channel, timestamp, risk_score, risk_level, description,
+                            destination_country, agent_id, status)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                        """,
+                        insert_params,
+                    )
+                    transaction_id = get_last_insert_id(db)
 
                 transaction_id = get_last_insert_id(get_db())
                 transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
