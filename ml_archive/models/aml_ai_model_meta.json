@@ -1,0 +1,44 @@
+{
+  "model_type": "GradientBoostingClassifier",
+  "configuration": {
+    "learning_rate": 0.01,
+    "max_depth": 3,
+    "n_estimators": 500,
+    "random_state": 42
+  },
+  "feature_count": 18,
+  "feature_names": [
+    "amount",
+    "sender_avg_amount",
+    "sender_max_amount",
+    "amount_to_sender_avg",
+    "amount_z_score",
+    "amount_deviation_from_baseline_30d",
+    "tx_frequency_7d",
+    "tx_frequency_30d",
+    "frequency_change_vs_avg_7d",
+    "sender_tx_count_24h",
+    "sender_volume_24h",
+    "same_day_count",
+    "rapid_transfer_count",
+    "is_new_recipient",
+    "unique_recipients_7d",
+    "hour",
+    "is_off_hours",
+    "counterparty_change_score_7d"
+  ],
+  "label_classes": [
+    "normal",
+    "super_suspicious",
+    "suspicious"
+  ],
+  "training_timestamp": "2026-09-02T19:18:00.205726",
+  "stage": "16B",
+  "metrics": {
+    "macro_f1": 0.5015,
+    "weighted_f1": 0.7344,
+    "suspicious_recall": 0.2176,
+    "super_suspicious_recall": 0.254
+  },
+  "notes": "Stage 16B frozen model with 18-feature set"
+}

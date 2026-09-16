@@ -38,8 +38,8 @@ from sklearn.preprocessing import StandardScaler
 # ML Model Configuration
 # ============================================================================
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "aml_ai_model.pkl")
-METADATA_PATH = os.path.join(os.path.dirname(__file__), "aml_ai_model_meta.json")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "ml_archive", "models", "aml_ai_model.pkl")
+METADATA_PATH = os.path.join(os.path.dirname(__file__), "ml_archive", "models", "aml_ai_model_meta.json")
 MODEL_VERSION = "2.0.0"
 LABELS = ("normal", "suspicious", "super_suspicious")
 

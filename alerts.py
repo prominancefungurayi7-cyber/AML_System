@@ -20,12 +20,12 @@ from datetime import datetime, timezone
 from utils import get_last_insert_id
 
 
-def create_alert_if_needed(conn, transaction_id, account_number, risk_score, risk_level, reason, rules_json, timestamp):
+def create_alert_if_needed(conn, transaction_id, account_number, risk_score, risk_level, reason, rules_json, timestamp, database_url=None):
     """
     Create an alert if the transaction meets suspicious criteria.
-    
+
     Updated for Stage 14 binary classification: suspicious_pattern now triggers alerts.
-    
+
     Args:
         conn: Database connection
         transaction_id: Transaction ID
@@ -35,7 +35,8 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
         reason: Alert reason
         rules_json: JSON string of triggered rules
         timestamp: Transaction timestamp
-    
+        database_url: Optional database URL for last insert ID detection
+
     Returns:
         Alert ID if created, None otherwise
     """
@@ -53,7 +54,7 @@ def create_alert_if_needed(conn, transaction_id, account_number, risk_score, ris
             """,
             (transaction_id, account_number, risk_score, risk_level, reason, rules_json, 'open', timestamp),
         )
-        return get_last_insert_id(conn)
+        return get_last_insert_id(conn, database_url)
     return None
 
 

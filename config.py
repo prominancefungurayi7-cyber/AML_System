@@ -22,7 +22,9 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    DATABASE_URL = str(BASE_DIR / "test_aml.db")
+    # Note: Test databases archived to data/archive/databases/
+    # For testing, use MySQL with test database or create new test database
+    DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("MYSQL_URL") or DEFAULT_MYSQL_DATABASE_URL
 
 
 class ProductionConfig(Config):

@@ -677,7 +677,8 @@ class TestAlertIntegration(unittest.TestCase):
         # Create alert for suspicious transaction
         alert_id = create_alert_if_needed(
             conn, 1, "WALLET001", 75, "suspicious_pattern",
-            "Stage 14 detected suspicious pattern", "[]", datetime.now(timezone.utc).isoformat()
+            "Stage 14 detected suspicious pattern", "[]", datetime.now(timezone.utc).isoformat(),
+            database_url="sqlite:///" + db_file
         )
         
         # Should create alert
