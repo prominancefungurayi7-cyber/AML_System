@@ -903,8 +903,11 @@ def _get_messaging_counterparts(conn, user):
     return []
 
 
-def _is_authorized_messaging_counterpart(conn, user, username):
-    return any(counterpart["username"] == username for counterpart in _get_messaging_counterparts(conn, user))
+def _is_authorized_messaging_counterpart(conn, user, receiver_user):
+    """Check if receiver_user is an authorized messaging counterpart for user."""
+    if not receiver_user:
+        return False
+    return any(counterpart["username"] == receiver_user["username"] for counterpart in _get_messaging_counterparts(conn, user))
 
 
 @app.route('/api/conversations', methods=['GET'])
@@ -945,7 +948,7 @@ def api_get_messages(conversation_id):
             conversation['id'] == conversation_id
             for conversation in get_user_conversations(conn, session['username'])
             if current_user and _is_authorized_messaging_counterpart(
-                conn, current_user, conversation['other_participant']
+                conn, current_user, fetch_user_by_username(conn, conversation['other_participant'])
             )
         )
         if not allowed:
@@ -979,7 +982,7 @@ def api_can_message(username):
         
         can_message, reason = can_user_message(sender_user['role'], receiver_user['role'])
         if can_message:
-            can_message = _is_authorized_messaging_counterpart(conn, sender_user, username)
+            can_message = _is_authorized_messaging_counterpart(conn, sender_user, receiver_user)
             if not can_message:
                 reason = 'This is not your assigned secure messaging contact'
         conn.close()
@@ -3616,7 +3619,7 @@ def alert_detail(alert_id):
 
         return redirect(url_for("compliance_dashboard"))
 
-
+    app.logger.info(f"Alert #{alert_id} loaded, transaction_id: {alert.get('transaction_id')}, account_number: {alert.get('account_number')}")
 
     transaction = get_db().execute(
 
@@ -3624,6 +3627,9 @@ def alert_detail(alert_id):
 
     ).fetchone()
 
+    if not transaction:
+        app.logger.warning(f"Transaction not found for alert #{alert_id}, transaction_id: {alert.get('transaction_id')}")
+    
     account_number = alert["account_number"]
 
     account_user = get_db().execute(
@@ -3631,6 +3637,9 @@ def alert_detail(alert_id):
         "SELECT * FROM users WHERE account_number=?", (account_number,)
 
     ).fetchone()
+    
+    if not account_user:
+        app.logger.warning(f"Account user not found for alert #{alert_id}, account_number: {account_number}")
 
 
 
