@@ -1,0 +1,17 @@
+{
+  "objective_verbatim_match": true,
+  "objectives": 5,
+  "numbered_sections": 11,
+  "matched_reference_ids": [
+    1,
+    2,
+    3
+  ],
+  "fonts_sizes_margins_checked": true,
+  "protected_files_unchanged": 290,
+  "word_pages": 8,
+  "word_problem_definition_lines": 7,
+  "word_gantt_first_page": 6,
+  "word_gantt_last_page": 6,
+  "document_sha256": "bf6b6551df9d45b196c7096f7a9fa60026f9b9c900f8d2601b44289e93e85880"
+}
