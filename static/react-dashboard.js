@@ -281,8 +281,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("ecocash-theme", newTheme);
-      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("epocash-theme", newTheme);
+      document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
       setTheme(newTheme);
     };
 
@@ -382,7 +382,7 @@
             h(StatGrid, { items: metricItems }),
             h("section", { className: "grid" },
               h("div", { className: "card account-card" },
-                h("p", { className: "status-pill" }, "EcoCash Wallet"),
+                h("p", { className: "status-pill" }, "EpoCash Wallet"),
                 h("h3", null, accountNumber),
                 h("p", { className: "metric" }, money(balance)),
                 h("p", { className: "muted-line" }, "Wallet balance updates automatically after every mobile-money transaction.")
@@ -429,7 +429,7 @@
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
           h("span", { className: "sidebar-brand__role" }, "Wallet Customer")
         ),
         h("nav", null,
@@ -561,8 +561,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("ecocash-theme", newTheme);
-      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("epocash-theme", newTheme);
+      document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
       setTheme(newTheme);
     };
 
@@ -654,7 +654,7 @@
             h("section", { className: "react-dashboard-grid" },
               h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Mobile-Money Transaction Simulator", meta: h("span", { className: "status-pill" }, "Wallet users only") }),
-                h("p", { className: "muted-line" }, "Generate realistic cash-ins, cash-outs, and wallet transfers using registered EcoCash wallets."),
+                h("p", { className: "muted-line" }, "Generate realistic cash-ins, cash-outs, and wallet transfers using registered EpoCash wallets."),
                 h("form", { method: "post", action: "/admin/generate-transactions" },
                   h("label", null, "Number of Transactions"),
                   h("select", { name: "count", defaultValue: "100" },
@@ -765,7 +765,7 @@
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
           h("span", { className: "sidebar-brand__role" }, "Institutional Admin")
         ),
         h("nav", null,
@@ -906,8 +906,8 @@
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("ecocash-theme", newTheme);
-      document.cookie = `ecocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      localStorage.setItem("epocash-theme", newTheme);
+      document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
       setTheme(newTheme);
     };
 
@@ -1017,7 +1017,7 @@
       }),
       h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EcoCash AML"),
+          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
           h("span", { className: "sidebar-brand__role" }, "Compliance Operations")
         ),
         h("nav", null,

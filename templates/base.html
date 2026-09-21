@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="en" data-theme="{{ request.cookies.get('ecocash-theme', 'dark') }}">
+<html lang="en" data-theme="{{ request.cookies.get('epocash-theme', 'dark') }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EcoCash Mobile Money | AML Intelligence</title>
+    <title>EpoCash Mobile Money | AML Intelligence</title>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script>
       (() => {
         const getCookieTheme = () => {
           const themeCookie = document.cookie
             .split("; ")
-            .find((row) => row.startsWith("ecocash-theme="));
+            .find((row) => row.startsWith("epocash-theme="));
           return themeCookie ? decodeURIComponent(themeCookie.split("=")[1]) : "";
         };
-        const savedTheme = localStorage.getItem("ecocash-theme") || getCookieTheme();
+        const savedTheme = localStorage.getItem("epocash-theme") || getCookieTheme();
         const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
         const theme = savedTheme || (prefersLight ? "light" : "dark");
         document.documentElement.dataset.theme = theme;
-        document.cookie = `ecocash-theme=${encodeURIComponent(theme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
+        document.cookie = `epocash-theme=${encodeURIComponent(theme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
       })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
             </svg>
           </button>
           <div class="brand-mark brand-mark--stacked">
-            <span>EcoCash</span>
+            <span>EpoCash</span>
             <span>Mobile Money</span>
           </div>
           <div>

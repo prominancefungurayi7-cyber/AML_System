@@ -1,6 +1,6 @@
-# EcoCash AML Decision-Support System
+# EpoCash AML Decision-Support System
 
-EcoCash-style mobile-money AML decision-support prototype for detecting suspicious transaction patterns.
+EpoCash-style mobile-money AML decision-support prototype for detecting suspicious transaction patterns.
 
 ## Project Overview
 
@@ -36,7 +36,7 @@ Investigation / Dashboard
 - **Backend:** Flask with Flask-SocketIO
 - **Database:** MySQL 8.0
 - **AI Model:** Stage 14 frozen Gradient Boosting model
-- **Dataset:** 100,000 synthetic EcoCash-style transactions
+- **Dataset:** 100,000 synthetic EpoCash-style transactions
 - **Real-time:** Socket.IO with threading async mode
 
 ## Run Locally
@@ -74,7 +74,7 @@ The first app start creates the MySQL tables and seeds staff accounts:
 ## Transaction Simulation
 
 The system includes a transaction simulator that exercises the real application pipeline:
-- EcoCash transaction types (Cash-In, Cash-Out, Wallet-to-Wallet Transfer)
+- EpoCash transaction types (Cash-In, Cash-Out, Wallet-to-Wallet Transfer)
 - Agent-mediated transactions
 - Structuring, network, and agent scenario generation
 - All simulated transactions pass through Stage 13 + Stage 14
