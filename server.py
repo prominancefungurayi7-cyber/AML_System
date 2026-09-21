@@ -177,6 +177,7 @@ from alerts import (
 from realtime import RealtimeBroker
 from ai_stage13_features import Stage13FeatureService
 from ai_stage14_model import Stage14ModelService, get_stage14_model_service
+from ai_explanations import explain_features
 from utils import (
     serialize_value,
     serialize_row,
@@ -2264,6 +2265,10 @@ def process_transaction_event(
                 ai_level = "normal"
                 ai_confidence = 1.0 - stage14_probability
                 ai_reason = f"AML model: normal transaction (probability: {stage14_probability:.2%})"
+
+            explanation = getattr(stage14_prediction, "explanation", "")
+            if explanation:
+                ai_reason += ". " + explanation
             
             app.logger.info(f"AML model prediction for transaction {transaction_id}: "
                           f"probability={stage14_probability:.4f}, "
@@ -3781,9 +3786,30 @@ def alert_detail(alert_id):
 
 
 
+    ai_review_reason = transaction.get("ai_reason") if transaction else None
+    explanation_reconstructed = False
+    # Older records only stored a probability. Reconstruct descriptive evidence
+    # from strictly earlier history without rescoring or rewriting the record.
+    if transaction and transaction.get("ai_risk_level") == "suspicious_pattern" and not any(
+        marker in (ai_review_reason or "")
+        for marker in ("Observed indicators:", "Possible activity:")
+    ):
+        try:
+            features = Stage13FeatureService(get_db()).generate_features(dict(transaction))
+            ai_review_reason = (ai_review_reason or "") + ". " + explain_features(features, True)
+            explanation_reconstructed = True
+        except Exception:
+            app.logger.exception("Could not reconstruct explanation for alert %s", alert_id)
+            ai_review_reason = (ai_review_reason or "AI explanation unavailable.") + (
+                " Historical evidence could not be loaded; possible activity is undetermined."
+            )
+
     return render_template(
 
         "alert_detail.html",
+
+        ai_review_reason=ai_review_reason,
+        explanation_reconstructed=explanation_reconstructed,
 
         alert=alert,
 

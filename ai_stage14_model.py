@@ -26,6 +26,7 @@ import joblib
 import numpy as np
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
+from ai_explanations import explain_features
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,7 @@ class ModelPrediction:
     is_suspicious: bool
     threshold: float
     model_version: str = "stage14_frozen"
+    explanation: str = ""
 
 
 class Stage14ModelService:
@@ -184,7 +186,8 @@ class Stage14ModelService:
                 probability=float(probability),
                 prediction=int(prediction),
                 is_suspicious=is_suspicious,
-                threshold=STAGE14_THRESHOLD
+                threshold=STAGE14_THRESHOLD,
+                explanation=explain_features(features, is_suspicious)
             )
             
         except Exception as e:

@@ -86,6 +86,21 @@
 
 {% if transaction %}
 <section class="card table-card">
+  <h3>AI Assessment and Possible Activity</h3>
+  <p>{{ ai_review_reason or transaction.ai_reason or 'No AI explanation was recorded for this transaction. Review the alert reason and available transaction history.' }}</p>
+  {% if explanation_reconstructed %}
+    <p class="muted-line">Historical indicators reconstructed from currently available records preceding this transaction. The original AI decision is unchanged.</p>
+  {% endif %}
+  {% if rules %}
+    <h4>Rule and Screening Findings</h4>
+    <ul>
+      {% for rule in rules if rule.reason %}
+        <li><strong>{{ rule.typology or 'Review indicator' }}:</strong> {{ rule.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+<section class="card table-card">
   <h3>Transaction Details</h3>
   <ul>
     <li><strong>Type:</strong>
@@ -100,7 +115,6 @@
     <li><strong>Channel:</strong> {{ transaction.channel or 'online' }}</li>
     <li><strong>Destination:</strong> {{ transaction.destination_country or 'ZW' }}</li>
     <li><strong>AI risk level:</strong> {{ transaction.ai_risk_level or 'unavailable' }} ({{ "%.0f"|format((transaction.ai_confidence or 0) * 100) }}% confidence)</li>
-    {% if transaction.ai_reason %}<li><strong>AI rationale:</strong> {{ transaction.ai_reason }}</li>{% endif %}
     {% if transaction.ctr_required %}<li><strong>CTR required:</strong> Yes</li>{% endif %}
     {% if transaction.sar_required %}<li><strong>SAR required:</strong> Yes</li>{% endif %}
   </ul>
