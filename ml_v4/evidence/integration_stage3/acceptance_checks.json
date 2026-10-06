@@ -1,0 +1,166 @@
+{
+  "requested_checks": {
+    "1": {
+      "status": "PASS",
+      "evidence": "test_preload_rejections[path,hash]"
+    },
+    "2": {
+      "status": "PASS",
+      "evidence": "test_preload_rejections[runtime]"
+    },
+    "3": {
+      "status": "PASS",
+      "evidence": "FrozenModel in model fixture; test_saved_parity"
+    },
+    "4": {
+      "status": "PASS",
+      "evidence": "test_schema_nan_and_sentinels; test_stage17_cold_all_40"
+    },
+    "5": {
+      "status": "PASS",
+      "evidence": "test_schema_nan_and_sentinels; loader output_columns check"
+    },
+    "6": {
+      "status": "PASS",
+      "evidence": "23 retained Stage17 cases from unchanged function bodies"
+    },
+    "7": {
+      "status": "PASS",
+      "evidence": "test_replay_future_order_private; test_stage17_path_same_time_keys"
+    },
+    "8": {
+      "status": "PASS",
+      "evidence": "test_replay_future_order_private; test_stage17_invariance_rename_and_future_append"
+    },
+    "9": {
+      "status": "PASS",
+      "evidence": "test_schema_nan_and_sentinels"
+    },
+    "10": {
+      "status": "PASS",
+      "evidence": "test_stage17_wallet_and_calendar_manual"
+    },
+    "11": {
+      "status": "PASS",
+      "evidence": "test_stage17_calendar_lower_boundary_and_translation; calendar_median_nonzero"
+    },
+    "12": {
+      "status": "PASS",
+      "evidence": "test_stage17_network_baseline_directions"
+    },
+    "13": {
+      "status": "PASS",
+      "evidence": "test_stage17_graph_chronology_and_lengths; graph_selection_spread_and_key_tie"
+    },
+    "14": {
+      "status": "PASS",
+      "evidence": "test_stage17_network_paths_and_funding_manual; no_w2w_anchor_and_24h_open_boundary"
+    },
+    "15": {
+      "status": "PASS",
+      "evidence": "test_stage17_a1_exact_age_and_support; agent_weekly_even_median_and_returning_customer"
+    },
+    "16": {
+      "status": "PASS",
+      "evidence": "test_stage17_top2_independent_and_assisted_cash_exclusion; a2_historical_distinct_gate"
+    },
+    "17": {
+      "status": "PASS",
+      "evidence": "test_stage17_agent_manual_all_primitives"
+    },
+    "18": {
+      "status": "PASS",
+      "evidence": "test_stage17_agent_manual_all_primitives; incoming_observation_and_signed_skew"
+    },
+    "19": {
+      "status": "PASS",
+      "evidence": "test_schema_nan_and_sentinels; saved preprocessing parity"
+    },
+    "20": {
+      "status": "PASS",
+      "evidence": "test_schema_nan_and_sentinels"
+    },
+    "21": {
+      "status": "PASS",
+      "evidence": "test_saved_parity"
+    },
+    "22": {
+      "status": "PASS",
+      "evidence": "test_saved_parity (64 fixed rows each from Train and Validation)"
+    },
+    "23": {
+      "status": "PASS",
+      "evidence": "test_threshold[below]"
+    },
+    "24": {
+      "status": "PASS",
+      "evidence": "test_threshold[exact]; test_class_one_meaning_no_blending"
+    },
+    "25": {
+      "status": "PASS",
+      "evidence": "test_threshold[above]"
+    },
+    "26": {
+      "status": "PASS",
+      "evidence": "test_history_failures_no_model[unknown]"
+    },
+    "27": {
+      "status": "PASS",
+      "evidence": "test_history_failures_no_model[incomplete]"
+    },
+    "28": {
+      "status": "PASS",
+      "evidence": "test_success_contract_cold_start"
+    },
+    "29": {
+      "status": "PASS",
+      "evidence": "test_history_failures_no_model[stale_source,stale_scope]"
+    },
+    "30": {
+      "status": "PASS",
+      "evidence": "test_history_failures_no_model[graph_missing,trigger_missing]; test_resource_exhaustion_no_prediction"
+    },
+    "31": {
+      "status": "PASS",
+      "evidence": "test_no_prohibited_imports_and_preservation"
+    },
+    "32": {
+      "status": "PASS",
+      "evidence": "test_no_prohibited_imports_and_preservation; test_replay_future_order_private"
+    },
+    "33": {
+      "status": "PASS",
+      "evidence": "autouse no_fits instruments Pipeline, FrozenPreprocessor, imputer, scaler, XGB fit; service source has no fit calls"
+    },
+    "34": {
+      "status": "PASS",
+      "evidence": "test_restart (two fresh processes, identical feature bytes/probability)"
+    },
+    "35": {
+      "status": "PASS",
+      "evidence": "test_model_error_never_normal; test_estimator_invalid_output"
+    },
+    "36": {
+      "status": "PASS",
+      "evidence": "test_success_contract_cold_start"
+    },
+    "37": {
+      "status": "PASS",
+      "evidence": "test_class_one_meaning_no_blending"
+    },
+    "38": {
+      "status": "PASS",
+      "evidence": "test_class_one_meaning_no_blending; disconnected API"
+    },
+    "39": {
+      "status": "PASS",
+      "evidence": "test_threshold; fixed THRESHOLD=.50"
+    },
+    "40": {
+      "status": "PASS",
+      "evidence": "test_no_prohibited_imports_and_preservation; final before/after hashes"
+    }
+  },
+  "tests_passed": 54,
+  "scope": "Local isolated fixtures and development parity; not live-event effectiveness"
+}

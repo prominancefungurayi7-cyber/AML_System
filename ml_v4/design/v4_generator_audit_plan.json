@@ -1,0 +1,104 @@
+{
+  "checks": [
+    {
+      "id": "T01",
+      "required_test": "Hand-derived equality/lower-bound/upper-bound fixtures for all 12;35d vs28d and exact baseline minimum counts; current once; state update after output.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Causal windows"
+    },
+    {
+      "id": "T02",
+      "required_test": "Append or alter future events, including equal-time higher IDs; earlier targets/features unchanged. Equal-time lower IDs may change later decisions according to strict key order.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Future invariance"
+    },
+    {
+      "id": "T03",
+      "required_test": "Identical allowed observable history/current fields produce identical labels after all private provenance mutations. Change or remove X/model outputs: evaluator unchanged.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Ground-truth independence"
+    },
+    {
+      "id": "T04",
+      "required_test": "Static import/interface audit: extractor cannot call evaluator; evaluator cannot read X/provenance/predictions; compare independent hand implementation of every predicate on small fixtures.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Software boundary"
+    },
+    {
+      "id": "T05",
+      "required_test": "Ordered path, reversed edge order, future edge, equal-time IDs,1/5 permitted prior edges,6 rejected, self-cycle rejection, absent path, multiple competing paths, inclusive ratio equalities and just-outside amounts; topology-count feature never monetary-filters paths.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "N3"
+    },
+    {
+      "id": "T06",
+      "required_test": "Cash-In/Out signs and inventories; receiver-serviced assisted W2W counted once; direct W2W no agent; no W2W cash float; current cash inclusion; disjoint baselines; missingness vs valid zeros/negative changes.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Agent roles"
+    },
+    {
+      "id": "T07",
+      "required_test": "Disjoint opaque entities across partitions, all edges local, reset state, separate histories, no combined Train/Validation extraction; development loader denies holdout access and path escapes.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Isolation"
+    },
+    {
+      "id": "T08",
+      "required_test": "Bijective wallet/agent ID renaming leaves features/labels invariant; monotone ID renaming preserves ties. Random ID ranges, irrelevant timestamps/scheduling blocks, channel, cents, sequence positions, strengths and origins get association audits. Calendar time changes may legitimately affect S3; test translations by whole UTC days with consistent histories.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Identity/schedule shortcuts"
+    },
+    {
+      "id": "T09",
+      "required_test": "Raw growth AUC/AP without sign selection against H7/H8/routine/legitimate-growth/near-boundary target 0 separately and as union; missing/eligible/age strata; quantiles/tails, repeat agents, all-origin positives, each failed gate, family prevalence. No numeric AUC target or seed tuning.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Overlap and A1"
+    },
+    {
+      "id": "T10",
+      "required_test": "Marker-aware both-class ranges, conditional family distributions, archetype/profile mixtures, coverage, wallet repetition/retention/acquisition, cash and graph support. Trace strong separation to direct components vs population assumptions; independent review required for a shortcut finding.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "All features/populations"
+    },
+    {
+      "id": "T11",
+      "required_test": "Count actual predicate-positive scored decision points and subjects/clusters against objectives. Scenario counts separately. Report all-origin labels. Preserve draws failing objectives; no relabeling, row selection or repeated generation.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Support/prevalence"
+    },
+    {
+      "id": "T12",
+      "required_test": "Positive amounts, no W2W self-edge, valid channel/agent/serviced wallet, integer ledgers, conservation and no negative wallet/e-float/cash inventories. Initial inventories/rejections excluded from X and target.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Accounting"
+    },
+    {
+      "id": "T13",
+      "required_test": "Same manifest, streams, versions and environment reproduce canonical bytes exactly. Independent target and feature replay matches saved output; evaluator tested separately from feature calculation.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Reproducibility"
+    },
+    {
+      "id": "T14",
+      "required_test": "Synthetic unit fixture performance budget before generation: peak memory<=4GiB and single-thread topology enumeration completes a6200-event unit within 10min on recorded hardware. Fail/stop, never silently truncate paths or edit target for speed.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "Operational cost"
+    },
+    {
+      "id": "T15",
+      "required_test": "Check explicit protected file list and named public commitment metadata. Never enumerate/open/hash V3 holdout trees; protection claim excludes their unread bytes.",
+      "status": "REQUIRED IN FUTURE IMPLEMENTATION; NOT EXECUTED IN DESIGN STAGE",
+      "topic": "V3 preservation"
+    }
+  ],
+  "design_version": "v4.stage 15.design.1",
+  "schema_version": 1,
+  "stage15_validation": "Check JSON structure, internal cross-references, all 12 alignments,40 unique feature fields/noD, counts and preservation only. These checks are not execution of T01..T14.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "three_axes": {
+    "learning_difficulty": "Measured only after dataset acceptance. High scores permitted; no target/feature weakening to manufacture error.",
+    "population_realism": "Declared synthetic processes, coverage/overlap, operational feasibility and shortcut traceability; no empirical realism certification.",
+    "predicate_correctness": "Exact causal tests, schema and independent evaluator fixtures; any mismatch blocks generation."
+  },
+  "trigger_policy": "Any hidden field/future leakage, label inconsistency or unexplained deterministic origin signature blocks training. Strong legitimate component discrimination demands written scientific review, not automatic feature deletion or repeated generation. Archive the original diagnosis and authorize a new version only for a substantive reason."
+}

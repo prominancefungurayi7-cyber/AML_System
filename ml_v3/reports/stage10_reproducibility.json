@@ -1,0 +1,33 @@
+{
+  "protection": {
+    "after_count": 83,
+    "before_count": 83,
+    "changed": [],
+    "result": "PASS"
+  },
+  "reproducibility": {
+    "feature_count": 32,
+    "feature_order_identical": true,
+    "numeric_values_identical": true,
+    "output_hashes": {
+      "train": {
+        "X.csv": "bfcce0de1d31dec266080d6510d73d909387eb802de3f5c8c848a4ec12b66076",
+        "feature_names.json": "07f0d1b3c07980b5cad5c3c73fa7f5105b68721a3c27d587427776230d32d1c6",
+        "row_ids.csv": "9c0f0031ec2f9e47f4283ee6dfa0268f68bbabdd9a4558c7217dd4cdb3a83c16",
+        "y.csv": "87649361df2fd9ab75bb5c5e0b8f4889efc74262ad3ebe9b7da8570f11563321"
+      },
+      "validation": {
+        "X.csv": "af658f9a64c25d7d564f4d6d445fffd8bfbe6a5b78d5b5fc550a6467a4b5a8a6",
+        "feature_names.json": "07f0d1b3c07980b5cad5c3c73fa7f5105b68721a3c27d587427776230d32d1c6",
+        "row_ids.csv": "faf5ae1be1a094504805f5f0a1721308e98a286b22585e7d33ad33fc95a004d2",
+        "y.csv": "adb5ab90732288e1b496c897b57afdfe9f6151d807e530fd47e87435166488ea"
+      }
+    },
+    "result": "PASS",
+    "row_order_identical": true,
+    "targets_identical": true,
+    "train_rows": 60000,
+    "validation_rows": 15000
+  },
+  "result": "PASS"
+}

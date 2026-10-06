@@ -1,0 +1,17 @@
+{
+  "oracle": {
+    "feature_count": 32,
+    "forbidden_feature_names": [],
+    "result": "PASS"
+  },
+  "private_metadata": {
+    "identical_observable_histories_equal": true,
+    "result": "PASS"
+  },
+  "temporal": {
+    "current_change_does_not_change_prior_state": true,
+    "equal_timestamp_id_order": true,
+    "future_transaction_does_not_change_prefix": true,
+    "result": "PASS"
+  }
+}

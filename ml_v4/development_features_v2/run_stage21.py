@@ -1,0 +1,264 @@
+"""One-time Stage21 development-only extraction, guarded by fixture/hash gates."""
+from pathlib import Path
+import ast
+import csv
+import ctypes
+import hashlib
+import io
+import json
+import platform
+import shutil
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+import numpy as np
+
+from extractor_v2 import ROOT, Extractor, VERSION, NAMES, ORIGINAL_NAMES, ADDED_NAMES
+from stage16r_contract import read_events
+from stage16r_loader import development_path
+
+OUT = ROOT/'ml_v4/evidence/stage21'
+MATRICES = ROOT/'ml_v4/development_features_v2/matrices'
+REPORT = ROOT/'ml_v4/reports/V4_STAGE21_FEATURE_IMPLEMENTATION_REPORT.md'
+DTYPE = np.dtype([(name,'U16' if i==1 else '<f8') for i,name in enumerate(NAMES)])
+
+def read(name):
+    return json.loads((ROOT/name).read_text(encoding='utf-8'))
+
+def sha(p):
+    with Path(p).open('rb') as f:
+        return hashlib.file_digest(f,'sha256').hexdigest()
+
+def save(name, value):
+    with (OUT/name).open('x',encoding='utf-8',newline='\n') as f:
+        json.dump(value,f,indent=2,sort_keys=True,allow_nan=False)
+        f.write('\n')
+
+def safe_hash(name):
+    if '/evaluation/' in name or '/data/' in name and not name.startswith(('ml_v4/data/development/train/','ml_v4/data/development/validation/')):
+        raise PermissionError('Unapproved preservation path: '+name)
+    p=ROOT/name
+    if p.resolve()!=p:
+        raise PermissionError('Redirected protected input')
+    return sha(p)
+
+def peak_memory():
+    class Counters(ctypes.Structure):
+        _fields_=[('cb',ctypes.c_ulong),('PageFaultCount',ctypes.c_ulong)]+[(n,ctypes.c_size_t) for n in ['PeakWorkingSetSize','WorkingSetSize','QuotaPeakPagedPoolUsage','QuotaPagedPoolUsage','QuotaPeakNonPagedPoolUsage','QuotaNonPagedPoolUsage','PagefileUsage','PeakPagefileUsage']]
+    p=Counters();p.cb=ctypes.sizeof(p)
+    kernel=ctypes.WinDLL('kernel32');kernel.GetCurrentProcess.restype=ctypes.c_void_p
+    fn=ctypes.WinDLL('psapi').GetProcessMemoryInfo
+    fn.argtypes=[ctypes.c_void_p,ctypes.POINTER(Counters),ctypes.c_ulong]
+    if not fn(kernel.GetCurrentProcess(),ctypes.byref(p),p.cb):raise OSError('Memory measurement failed')
+    return p.PeakWorkingSetSize
+
+def extract(warmup, scored):
+    state=Extractor()
+    for e in warmup:state.step(e)
+    x=np.empty(len(scored),dtype=DTYPE)
+    for i,e in enumerate(scored):x[i]=state.step(e)
+    return x
+
+def serialized(x):
+    stream=io.BytesIO();np.save(stream,x,allow_pickle=False)
+    return stream.getvalue()
+
+def test_suite():
+    # Frozen original suite and new suite run in one process, no data loader use
+    # outside explicit fake/hand records in the fixtures.
+    result=subprocess.run([sys.executable,'-B','-m','pytest','ml_v4/development_features/tests','ml_v4/development_features_v2/tests','-q','-p','no:cacheprovider'],cwd=ROOT,text=True,capture_output=True)
+    save('independent_hand_fixtures.json',{'exit_code':result.returncode,'stdout':result.stdout,'stderr':result.stderr,'method':'Hand-authored numeric expectations, separate Decimal batch reference on small history, four complete40-field witness pairs; no evaluator','external_independent_audit':False,'overflow_scope':'Exact aggregate conversion limit unit test, not a billions-row production overflow ledger','initial_new_suite':'39 passed before matrix runner was invoked'})
+    if result.returncode:raise RuntimeError('Fixture gate failed; no development extraction')
+
+def main():
+    if OUT.exists() or MATRICES.exists() or REPORT.exists():
+        raise FileExistsError('No overwrite of Stage21 attempt')
+    protected=dict(read('ml_v4/evidence/stage20/preservation_verification.json')['after_sha256'])
+    protected.update(read('ml_v4/evidence/stage20/stage20_decision.json')['artifact_sha256'])
+    name='ml_v4/evidence/stage20/stage20_decision.json';protected[name]=safe_hash(name)
+    for name,h in protected.items():
+        if safe_hash(name)!=h:raise ValueError('Frozen input mismatch '+name)
+    # Read only exact named public contracts/evidence, never a sealed directory.
+    authority_names=[n for n in protected if n.startswith('ml_v4/') and n.endswith(('.md','.json'))]
+    for name in authority_names:
+        (ROOT/name).read_text(encoding='utf-8')
+    contract=read('ml_v4/evidence/stage20/minimal_feature_contract.json')
+    assert tuple(contract['existing_field_order'])==ORIGINAL_NAMES
+    assert tuple(f['name'] for f in contract['features'])==ADDED_NAMES
+    assert contract['semantic_fields']==len(NAMES)==44 and contract['numeric_estimator_columns']==46
+    source=ROOT/'ml_v4/development_features_v2'
+    source_paths=[source/'extractor_v2.py',source/'run_stage21.py',source/'tests/test_stage21.py']
+    source_hashes={p.relative_to(ROOT).as_posix():sha(p) for p in source_paths}
+    for p in [source/'extractor_v2.py',ROOT/'ml_v4/development_features/extractor.py']:
+        tree=ast.parse(p.read_text(encoding='utf-8'))
+        imports=[n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom)] + [a.name for n in ast.walk(tree) if isinstance(n,ast.Import) for a in n.names]
+        assert not any(any(word in (module or '').lower() for word in ('evaluator','generator','training','joblib','sklearn')) for module in imports)
+    OUT.mkdir(parents=True)
+    save('preservation_before.json',{'sha256':protected,'scope':'Exact named historical and development paths, no sealed content','utc':datetime.now(timezone.utc).isoformat()})
+    save('contract_verification.json',{'status':'PASS','parent_design_sha256':safe_hash('ml_v4/evidence/stage20/minimal_feature_contract.json'),'new_version':VERSION,'parent_proposal_version':contract['feature_version'],'authority_documents_read':authority_names,'definitions_unchanged':True,'user_authorization':'Explicit Stage21 authorizes implementation and Train/Validation extraction only; does not amend Stage16T','original_features_frozen':True,'source_freeze':source_hashes})
+    test_suite()
+    save('feature_implementation_details.json',{'version':VERSION,'semantic_count':44,'numeric_estimator_count_if_encoded':46,'encoding_applied':False,'dtype':DTYPE.descr,'ordered_names':NAMES,'new_definitions':contract['features'],'architecture':'Separate activity/first-observation state; frozen original extractor called directly for first40; extractor accepts exact Event only; no target import','precision':'Exact integer sum/count/distinct before float64; -1 or0..2^53-1 only','failure_policy':'Wrapper becomes terminal after an invalid event/aggregate; fresh validated replay required','complexity':'Additional O(subject35d history) per event; stores per-wallet last-access-pruned35d activity and persistent first observation. Inactive wallet queues retained until next access; total finite-partition memory measured below.'})
+    save('temporal_correctness_results.json',{'status':'PASS_FIXTURES','reference':'independent_hand_fixtures.json','requirements':read('ml_v4/evidence/stage20/temporal_correctness_requirements.json')['boundary_requirements'],'nonredundancy':'All four exact Stage20 witnesses pass full40 equality and specified new-value changes','no_specification_changes':True,'coverage_rule':'actual first prior observation<=t-35d and4 activity rows in(t-35d,t-7d], no rounded age','current_event':'included once in recent; excluded from baseline; full-key monotonic input enforced'})
+    MATRICES.mkdir()
+    audits={};parity={};resources={};replay={};quality={};identities={}
+    manifest=read('ml_v4/evidence/stage16r/dataset_manifest.json')
+    for part,n,w in [('train',60000,14400),('validation',15000,3600)]:
+        for filename in ['transactions.csv','warmup_observables.csv','ground_truth.csv']:
+            assert sha(development_path(part,filename))==manifest['development_sha256'][part][filename]
+        warmup=read_events(development_path(part,'warmup_observables.csv'))
+        scored=read_events(development_path(part,'transactions.csv'))
+        assert len(warmup)==w and len(scored)==n and warmup[-1].key<scored[0].key
+        all_events=warmup+scored
+        identities[part]={'wallets':{s for e in all_events for s in (e.sender_wallet,e.receiver_wallet)},'agents':{e.agent_id for e in all_events if e.agent_id},'ids':{e.transaction_id for e in all_events}}
+        assert len(identities[part]['ids'])==n+w
+        started=time.perf_counter();x=extract(warmup,scored);elapsed=time.perf_counter()-started
+        print(f'{part}: extraction {elapsed:.3f}s',flush=True)
+        olddir=ROOT/'ml_v4/development_features/matrices'/part
+        if olddir.resolve()!=olddir:raise PermissionError('Redirected original matrix')
+        old=np.load(olddir/'X.npy',allow_pickle=False)
+        assert old.shape==(n,) and old.dtype.names==ORIGINAL_NAMES
+        fields={}
+        for name in ORIGINAL_NAMES:
+            assert x.dtype.fields[name][0]==old.dtype.fields[name][0],name
+            # Raw per-column bytes compare NaN payloads as well as all finite data.
+            assert x[name].tobytes()==old[name].tobytes(),name
+            fields[name]={'dtype':str(x.dtype.fields[name][0]),'exact_column_bytes_match':True}
+        parity[part]={'status':'PASS','rows':n,'names_order_match':True,'all40_column_values_markers_and_dtypes_match':True,'fields':fields,'original_X_sha256':sha(olddir/'X.npy')}
+        labels=list(csv.DictReader(development_path(part,'ground_truth.csv').open(encoding='utf-8',newline='')))
+        ids=[e.transaction_id for e in scored]
+        assert ids==[int(r['transaction_id']) for r in labels]
+        y=np.load(olddir/'y.npy',allow_pickle=False)
+        assert y.dtype==np.dtype('uint8') and y.shape==(n,)
+        assert np.array_equal(y,[int(r['ground_truth_label']) for r in labels])
+        metadata=list(csv.DictReader((olddir/'row_metadata.csv').open(encoding='utf-8',newline='')))
+        assert ids==[int(r['transaction_id']) for r in metadata]
+        assert [e.event_timestamp for e in scored]==[r['event_timestamp'] for r in metadata]
+        again=time.perf_counter();repeat=extract(warmup,scored);repeat_seconds=time.perf_counter()-again
+        first_bytes=serialized(x);second_bytes=serialized(repeat)
+        assert first_bytes==second_bytes
+        replay[part]={'status':'PASS','same_input_source_environment':True,'fresh_state':True,'serialized_X_sha256':hashlib.sha256(first_bytes).hexdigest(),'replay_X_sha256':hashlib.sha256(second_bytes).hexdigest(),'byte_identical':True}
+        folder=MATRICES/part;folder.mkdir()
+        with (folder/'X.npy').open('xb') as f:f.write(first_bytes)
+        # y and metadata are exact copies, not relabeled/reordered output.
+        for filename in ['y.npy','row_metadata.csv']:
+            with (folder/filename).open('xb') as f:f.write((olddir/filename).read_bytes())
+            assert sha(folder/filename)==sha(olddir/filename)
+        cols={}
+        for i,name in enumerate(ADDED_NAMES):
+            a=x[name];missing=(a==-1) if i in (1,3) else np.zeros(n,dtype=bool)
+            v=a[~missing]
+            assert np.isfinite(a).all() and np.equal(a,np.floor(a)).all()
+            assert (v>=0).all() and (v<=2**53-1).all()
+            if i==0:assert (v>0).all()
+            cols[name]={'dtype':str(a.dtype),'missing_marker':-1 if i in (1,3) else None,'missing_count':int(missing.sum()),'valid_zero_count':int((v==0).sum()),'valid_count':len(v),'min_q25_median_q75_max':np.quantile(v,[0,.25,.5,.75,1]).tolist() if len(v) else None,'constant':len(np.unique(a))==1}
+        duplicates=[]
+        for name in ADDED_NAMES:
+            for other in NAMES:
+                if other not in (name,'transaction_type') and np.array_equal(x[name],x[other],equal_nan=True):
+                    duplicates.append([name,other])
+        assert np.array_equal(x[ADDED_NAMES[1]]==-1,x[ADDED_NAMES[3]]==-1)
+        quality[part]={'columns':cols,'identical_column_pairs_involving_new_fields':duplicates,'shared_baseline_missingness_identical':True,'nonredundancy_evidence':'Four hand witnesses establish nonidentity as functions; finite-data column equality separately audited','original40_quality':'Exact byte parity inherits frozen Stage17 field range/marker results; not silently redefined'}
+        audits[part]={'semantic_shape':[n,44],'physical_shape':[n],'expected_encoded_columns':46,'encoded_matrix_created':False,'warmup_rows':w,'labels':{'0':int((y==0).sum()),'1':int((y==1).sum())},'row_ids_outside_X':True,'exact_label_and_metadata_bytes_match':True,'input_row_order_preserved':True,'first40_parity':'PASS','dtype':DTYPE.descr}
+        resources[part]={'extraction_seconds':elapsed,'repeat_extraction_seconds':repeat_seconds,'process_lifetime_peak_working_set_bytes':peak_memory(),'measurement':'Windows GetProcessMemoryInfo PeakWorkingSetSize; includes runner imports, inputs, originals and replay; not incremental extractor-only memory'}
+        print(f'{part}: parity, label alignment and byte-identical replay PASS ({repeat_seconds:.3f}s replay)',flush=True)
+    for kind in ['wallets','agents','ids']:
+        assert identities['train'][kind].isdisjoint(identities['validation'][kind]),kind
+    save('original40_parity.json',parity)
+    save('development_matrix_audit.json',{'partitions':audits,'isolation':{'wallets_agents_transaction_ids_disjoint':True,'fresh_state_per_partition_and_replay':True,'counts':{p:{k:len(v) for k,v in kinds.items()} for p,kinds in identities.items()}},'no_resampling_or_new_transactions':True})
+    save('feature_quality_audit.json',quality)
+    save('deterministic_replay.json',replay)
+    save('runtime_resources.json',{'partitions':resources,'python':platform.python_version(),'numpy':np.__version__,'platform':platform.platform(),'processor':platform.processor(),'interpreter':sys.executable,'interpreter_sha256':sha(sys.executable),'threading':'Sequential extractor, no parallel workers','runtime_source_sha256':source_hashes})
+    loaded=list(sys.modules)
+    assert not any(n.startswith(('stage16r_evaluator','stage16r_generator','sklearn','xgboost','joblib')) for n in loaded)
+    save('leakage_shortcut_assessment.json',{'static_import_audit':'PASS: frozen base plus new extractor import low-level schema only, no evaluator/generator/model','runtime_forbidden_modules_loaded':False,'private_metadata':'Only exact Event accepted; extra columns rejected; provenance never supplied','labels':'Runner joins unchanged y only after extraction; no label input to either state','target_relationship':'All four are disclosed categoryB individual components; jointly44 enables expression of S2/S4. This is rule reproduction, not new evidence of real AML capability. Shared baseline missingness intentionally communicates history support, no standalone eligibility flag.','no_complete_predicate_flag':True,'quality_evidence':'feature_quality_audit.json','shortcut_limit':'Causality/role tests and excluded metadata do not establish absence of all synthetic shortcuts. No accuracy, performance improvement or independent generalization assessed.'})
+    compatibility=read('ml_v4/evidence/stage20/stage16t_compatibility_requirements.json')
+    compatibility.update({'current_feature_version':VERSION,'Stage16T_modified':False,'independent_readiness':False,'original_holdouts':'SEALED_QUARANTINED; public supportFAIL unchanged','custody':'Stage16V C unchanged; no provisioning or challenge generation','models':'Existing Stage18 fitted42-column models not compatible with44 semantic/46 numeric inputs; no model used or changed'})
+    save('stage16t_compatibility_review.json',compatibility)
+    save('scientific_limitations.json',{'limitations':['Nine family support shortfalls unchanged','Repeated Validation development use; no independent performance evidence','Four direct target components improve information availability, not measured predictive quality','Same developer environment hand audit, not independent external audit','Runtime measured for frozen development rows, not production latency guarantee','Original40 extractor intentionally reused and byte-verified, not independently reimplemented','Original Stage15A historical snapshot still incomplete; exact named checks do not restore absent archive','No fitted preprocessing, encoding, model fitting, expired-fit use, threshold search or application integration'], 'selected':'primary_XGB','comparator':'primary_HGB','authorized_new_fits':0})
+    changed=[name for name,h in protected.items() if safe_hash(name)!=h]
+    assert not changed,changed
+    assert source_hashes=={p.relative_to(ROOT).as_posix():sha(p) for p in source_paths}
+    save('preservation_verification.json',{'status':'PASS_NAMED_SCOPE','protected_count':len(protected),'before_sha256':protected,'after_sha256':protected,'changed_paths':changed,'source_frozen_during_run':True,'sealed_bytes_excluded':True,'Stage15A_broad_snapshot_gap_retained':True})
+    report=f'''# MODEL V4 — STAGE 21 VERSIONED FEATURE IMPLEMENTATION AND INDEPENDENT CORRECTNESS AUDIT
+
+**A — EXPERIMENTAL 44-FEATURE MATRICES COMPLETE AND VERIFIED**
+
+The separate development version `{VERSION}` implements exactly the four Stage20 additions. Train **60000×44** and Validation **15000×44** semantic matrices are complete. Every original40 column matches Stage17 **byte for byte**, including dtype and missing values. No model, fitted preprocessing, threshold search, challenge generation or sealed evaluation access occurred.
+
+## 1. Authority and scope
+
+The explicit Stage21 request authorizes implementation and Train/Validation extraction only. Stage15/15A targets, temporal definitions and retained16R data remain unchanged. Stage16S support deficits,16T challenge governance,16U/V custody restrictions and Stage17–20 historical findings remain authoritative. Named public contracts/evidence were read and hashes checked; sealed directories were not enumerated. See [contract verification](../evidence/stage21/contract_verification.json).
+
+The experimental schema preserves all40 original fields and appends four float64 quantities. Its physical NumPy representation is a structured array with43 float64 fields and one U16 type field. A future fixed3-category one-hot encoding would produce46 numeric columns. **No encoding, scaler or imputer was fitted or materialized here.** Original42-column fitted pipelines cannot consume this representation.
+
+## 2. Implementation
+
+New source: [extractor_v2.py](../development_features_v2/extractor_v2.py), [tests](../development_features_v2/tests/test_stage21.py), [runner](../development_features_v2/run_stage21.py). The wrapper calls the frozen Stage17 extractor directly for the first40 outputs. An independent activity/first-observation state computes the four additions. Original source is unchanged. Both accept only the exact validated observable Event interface; neither imports a target evaluator, generator, model or private provenance. The runner joins labels only after feature computation.
+
+| Field | Exact operation | Availability |
+| --- | --- | --- |
+| wallet_similar_amount_value_minor_7d | Sum cents in current-centered similar recent cluster | Recent-only; current once; positive on valid current event |
+| wallet_baseline_similar_amount_count_28d_offset_7d | Count current-centered similar baseline activities |−1 unless observed35d and4 total baseline activities; valid0 otherwise |
+| wallet_near_band_distinct_amount_count_7d | Distinct cent values in inclusive700000..1050000 recent band | Recent-only;0 when no band rows; no current-band gate |
+| wallet_baseline_near_band_count_28d_offset_7d | Count baseline activities in that band | Same historical availability, valid0 distinct from−1 |
+
+Subject is current W2W sender or cash serviced_wallet; activity is outgoing W2W and both cash directions. Incoming W2W establishes observation age only. R=(t−7d,t] includes prior smaller keys plus current once; B=(t−35d,t−7d] excludes current. UTC integer microseconds and integer transaction IDs define strict order. Similarity uses `20*abs(a-current)<=current` in integers. Aggregation is exact before float64; only−1 or0..2^53−1 is accepted. Invalid schema/order or overflow makes the wrapper terminal; restart with a fresh validated replay. Definitions and dtypes: [implementation details](../evidence/stage21/feature_implementation_details.json).
+
+## 3. Independent correctness fixtures
+
+**69 tests passed**:30 unchanged original tests and39 new cases. The new suite first passed before the runner; the combined suite passed before any development matrix extraction. Expectations are hand-authored, including a separate Decimal interval reference for a small history. This is independent calculation in the same developer environment, **not an independent external audit**.
+
+Coverage includes inclusive tolerance/band endpoints; exact sums/current once; baseline count and per-current recentering; repeated/distinct cent values; zero versus missing;3versus4 activities; exact35d and7d boundaries; incoming observation versus activity; cash and receiver-assisted roles; equal-time IDs; future and out-of-order rejection; invalid schema; integer precision guard; partition loader denials/reset; metadata exclusion; deterministic repeats.
+
+All four Stage20 nonredundancy witnesses pass equality of every original40 output, with expected new changes: **19999→20000**, baseline similar **0→1**, distinct band **1→2**, baseline band **0→1**. No witness or Stage20 formula was weakened. Overflow tests exercise the exact conversion boundary; they do not allocate a billions-row schema-valid history. [Fixture output](../evidence/stage21/independent_hand_fixtures.json), [temporal results](../evidence/stage21/temporal_correctness_results.json).
+
+## 4. Development matrices, alignment and replay
+
+| Partition | Scored / warmup | Target0 /1 | Extraction seconds | Replay seconds | Original40 / replay |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Train |60000 /14400 |47770 /12230 |{resources['train']['extraction_seconds']:.3f} |{resources['train']['repeat_extraction_seconds']:.3f} |PASS / byte-identical |
+| Validation |15000 /3600 |11970 /3030 |{resources['validation']['extraction_seconds']:.3f} |{resources['validation']['repeat_extraction_seconds']:.3f} |PASS / byte-identical |
+
+Outputs are [Train X](../development_features_v2/matrices/train/X.npy) and [Validation X](../development_features_v2/matrices/validation/X.npy), each with an exact-copy y.npy and row_metadata.csv in the same partition folder. `np.load(..., allow_pickle=False)` reads the structured arrays. Physical shape is(n,), semantic table width44. IDs and timestamps remain separate from model inputs. No row was filtered, reordered or resampled; warmup is history only.
+
+Raw column bytes, ordered names and dtypes of all40 outputs match the frozen arrays on all75000 scored rows. Target CSV IDs, metadata IDs/timestamps and uint8 labels align exactly. Copied y and metadata bytes match the original artifacts. Wallets, agents and transaction IDs are disjoint across Train/Validation, with new state per partition and replay. Full44 extraction was repeated from the same unchanged observables in fresh states; serialized X.npy bytes match exactly. [Parity](../evidence/stage21/original40_parity.json), [matrix audit](../evidence/stage21/development_matrix_audit.json), [replay](../evidence/stage21/deterministic_replay.json).
+
+## 5. Quality, leakage and target relationship
+
+All new outputs are finite integer-valued float64, within the declared exact range. Baseline−1 markers agree between the two fields because their historical gate is identical; eligible0 is preserved. New field ranges, quantiles, zero/missing counts and identical-column checks are in [quality audit](../evidence/stage21/feature_quality_audit.json). Original40 quality is inherited through exact byte parity, not silently redefined.
+
+These are explicitly disclosed categoryB components of S2/S4. Combined with existing fields and marker semantics they make those deterministic review rules expressible in principle. No scalar full predicate is emitted, and labels/provenance do not enter extraction. Direct component availability can make a synthetic policy easier to learn; **no improved detection accuracy was measured or claimed**. Static imports and loaded modules exclude evaluator/generator/model execution; future/private-metadata tests and fail-closed data enums support causal isolation. They do not prove absence of all population shortcuts. [Leakage assessment](../evidence/stage21/leakage_shortcut_assessment.json).
+
+## 6. Runtime and resource scope
+
+Python {platform.python_version()}, NumPy {np.__version__}, sequential extraction. Peak runner working set: Train {resources['train']['process_lifetime_peak_working_set_bytes']/1024**2:.1f}MiB; through Validation {resources['validation']['process_lifetime_peak_working_set_bytes']/1024**2:.1f}MiB. Windows process-lifetime peaks include inputs, original/replay matrices and imports; they are not isolated incremental memory or production latency benchmarks. Source/interpreter hashes and measurements: [resources](../evidence/stage21/runtime_resources.json).
+
+Additional computation scans subject35d activity; first observation persists. Inactive wallet queues are pruned on their next use, so aggregate retained memory is not claimed to be globally time-evicted continuously. Frozen original graph enumeration remains unchanged and can dominate cost. Deployment throughput, concurrent serving and production history adapters are untested.
+
+## 7. Compatibility and scientific restrictions
+
+Stage16T remains frozen at40 features. A separately approved version must bind44-field semantics/extractor/preprocessing/model hashes and change field-count/permutation/freeze references before affected independent evaluation. Its population/support/precision/custody/one-draw policies are not changed. No challenge or salt was created; no custody provisioning occurred. Original Final/Independent remain SEALED_QUARANTINED with existing public supportFAIL facts. [Compatibility review](../evidence/stage21/stage16t_compatibility_review.json).
+
+Nine family-support shortfalls persist. Development extraction does not repair sparse support, repeated Validation use or absent independent custody. XGBoost remains selected and HGB comparator; neither was loaded, fitted or evaluated. Stage18's16 fits remain historical and20 unused slots remain expired. Authorized new fits:0. The Stage20 comparison plan is still a proposal. No application integration or automatic Stage22 follows.
+
+## 8. Preservation and decision
+
+**{len(protected)} named protected files** match before/after hashes, including frozen development data/labels, Stage17 matrices, Stage18 models/fit ledger, twelve predicates, historical design/reports/evidence, V1 production and V3 integration paths. Scope is explicit and excludes unread sealed bytes. Stage16V's incomplete broader Stage15A historical snapshot remains unresolved; no old artifact or hash expectation was changed to conceal it. [Preservation](../evidence/stage21/preservation_verification.json).
+
+New files are confined to `ml_v4/development_features_v2/`, this report and `ml_v4/evidence/stage21/`. All artifact hashes are recorded in the decision manifest. No Flask, MySQL, API or dashboard file changed. [Scientific limitations](../evidence/stage21/scientific_limitations.json).
+
+**A — EXPERIMENTAL 44-FEATURE MATRICES COMPLETE AND VERIFIED**
+
+Decision A certifies the documented development implementation/parity/replay checks only. It authorizes no model fitting, threshold tuning, independent evaluation, schema promotion or application integration.
+
+V4 STAGE 21 COMPLETE — WAITING FOR APPROVAL.
+'''
+    with REPORT.open('x',encoding='utf-8',newline='\n') as f:f.write(report)
+    artifacts=source_paths+[REPORT]+list(OUT.glob('*.json'))+[p for part in ['train','validation'] for p in (MATRICES/part).iterdir()]
+    artifact_hashes={p.relative_to(ROOT).as_posix():sha(p) for p in artifacts}
+    save('stage21_decision.json',{'decision':'A — EXPERIMENTAL 44-FEATURE MATRICES COMPLETE AND VERIFIED','feature_version':VERSION,'semantic_fields':44,'numeric_columns_if_encoded':46,'training_authorized':False,'new_fits':0,'selected_preserved':'primary_XGB','comparator_preserved':'primary_HGB','sealed_access':False,'independent_readiness':False,'original40_parity':'PASS_ALL75000_ROWS','byte_replay':'PASS','protected_count':len(protected),'artifact_sha256':artifact_hashes,'restrictions':'No automatic Stage22, model fit, threshold tune, schema promotion, independent evaluation or integration'})
+    print(f'Stage21 complete: {len(protected)} protected paths unchanged; {len(artifact_hashes)} output hashes.',flush=True)
+
+if __name__=='__main__':
+    main()

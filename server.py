@@ -32,6 +32,14 @@ New capabilities vs prototype:
 
 """
 
+# Explicit local synthetic testing exits before production imports/startup.
+if __name__ == "__main__":
+    import os as _experimental_os
+    if _experimental_os.environ.get("AML_EXPERIMENTAL_TEST_MODE", "OFF") == "ON":
+        from experimental_v3.web import main as _experimental_main
+        _experimental_main()
+        raise SystemExit(0)
+
 import json
 
 import logging
@@ -685,6 +693,8 @@ def handle_heartbeat():
 
 @socketio.on('disconnect')
 def handle_disconnect():
+    from v4_shadow import forget_socket
+    forget_socket(request.sid)
     if 'user_id' in session:
         user_id = session.get('user_id')
         role = session.get('role', 'unknown')
@@ -3066,6 +3076,8 @@ def login():
 @app.route("/logout")
 
 def logout():
+    from v4_shadow import forget_user
+    forget_user(session.get('user_id'))
 
     if "user_id" in session:
 
@@ -3277,7 +3289,29 @@ def create_transaction():
 
     user = get_user_by_id(session["user_id"])
 
+    # Explicit prospective mobile-money envelope. Legacy banking submissions
+    # remain separate and are never silently backfilled into canonical history.
+    canonical_event = None
+    if "canonical_version" in request.form or request.form.get("type") in ("wallet_to_wallet", "cash_in", "cash_out"):
+        if os.environ.get("CANONICAL_MOBILE_MONEY_ENABLED", "ON") != "ON":
+            flash("Mobile-money submissions are temporarily disabled.")
+            return redirect(url_for("customer_dashboard"))
+        from canonical_mobile_money import prepare_ingestion, LEGACY_TYPES
+        try:
+            if any(len(request.form.getlist(k)) != 1 for k in request.form):
+                raise ValueError("Duplicate mobile-money fields")
+            canonical_event = prepare_ingestion(
+                request.form.to_dict(), user["account_number"],
+                datetime.now(timezone.utc).isoformat(timespec="microseconds"),
+            )
+        except (ValueError, TypeError) as exc:
+            flash(str(exc))
+            return redirect(url_for("customer_dashboard"))
+
     tx_type = request.form.get("type")
+
+    if canonical_event is not None:
+        tx_type = LEGACY_TYPES[canonical_event.transaction_type]
 
     amount_str = request.form.get("amount", "0")
 
@@ -3297,7 +3331,9 @@ def create_transaction():
 
     try:
 
-        amount = float(amount_str)
+        # Canonical cents were parsed from decimal text before this legacy
+        # compatibility value is made. This float never supplies canonical X.
+        amount = float(Decimal(canonical_event.amount_minor) / 100) if canonical_event is not None else float(amount_str)
 
     except ValueError:
 
@@ -3353,7 +3389,7 @@ def create_transaction():
 
 
 
-    timestamp = datetime.now(timezone.utc).isoformat()
+    timestamp = canonical_event.event_timestamp if canonical_event is not None else datetime.now(timezone.utc).isoformat()
 
     sender_account = user["account_number"]
 
@@ -3378,6 +3414,17 @@ def create_transaction():
     )
 
     transaction_id = get_last_insert_id(get_db())
+
+    if canonical_event is not None:
+        from canonical_mobile_money import with_id
+        from canonical_mobile_money_store import persist
+        try:
+            persist(get_db(), with_id(canonical_event, transaction_id))
+        except Exception:
+            get_db().rollback()
+            app.logger.exception("Canonical event persistence failed")
+            flash("Mobile-money transaction was not saved. Canonical data validation or storage failed.")
+            return redirect(url_for("customer_dashboard"))
 
 
 
@@ -3412,6 +3459,10 @@ def create_transaction():
 
     get_db().commit()
 
+    if canonical_event is not None:
+        from v4_shadow import after_commit
+        after_commit(app, connect_db, transaction_id, socketio)
+
     broadcast_user_balance(get_db(), sender_account)
 
     if tx_type == "transfer":
@@ -3428,7 +3479,8 @@ def create_transaction():
         except Exception as e:
             if app:
                 app.logger.error(f"Background AI training failed: {e}")
-    threading.Thread(target=train_in_background, daemon=True).start()
+    if canonical_event is None:
+        threading.Thread(target=train_in_background, daemon=True).start()
 
     record_activity(user["username"], f"{tx_type}", f"${amount:.2f} — risk: {risk_level}")
 
@@ -4605,6 +4657,15 @@ def clear_transactions():
 
     conn = get_db()
 
+    # Canonical history is not disposable demo state. Keep the existing clear
+    # workflow for legacy-only databases, but do not partially erase a ledger.
+    from canonical_mobile_money_store import inspect as inspect_canonical, TABLE as canonical_table
+    if inspect_canonical(conn)['exists'] and conn.execute(
+        'SELECT transaction_id FROM ' + canonical_table + ' LIMIT 1'
+    ).fetchone():
+        flash("Canonical mobile-money history exists. Bulk clearing is disabled; use a separately reviewed retention procedure.")
+        return redirect(url_for("admin_dashboard"))
+
     for table in ("sar_reports", "ctr_reports", "alerts", "transactions", "activity_log"):
 
         conn.execute(f"DELETE FROM {table}")
@@ -4989,6 +5050,10 @@ def ensure_ai_model_ready():
 
 
 
+
+
+from v4_shadow import install as install_v4_shadow
+install_v4_shadow(app, socketio, get_db)
 
 
 def initialize_startup():

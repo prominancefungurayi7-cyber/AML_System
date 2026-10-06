@@ -1,0 +1,16 @@
+test_direct_event_is_numerically_safe ... ok
+test_exact_order_and_output_width ... ok
+test_no_forbidden_imports_or_holdout_literals ... ok
+test_cash_not_network_edge_and_agent_manual_values ... ok
+test_hourly_zscore_manual ... ok
+test_wallet_structuring_and_network_manual_values ... ok
+test_current_exclusion_and_permitted_input ... ok
+test_future_exclusion ... ok
+test_partition_and_metadata_independence ... ok
+test_same_timestamp_lower_id_only ... ok
+test_only_development_feature_roots_are_named ... ok
+test_stage3_sources_are_v2_local_and_do_not_import_application ... ok
+
+Ran 12 tests in 0.057s
+
+OK

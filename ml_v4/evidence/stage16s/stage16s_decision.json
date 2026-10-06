@@ -1,0 +1,16 @@
+{
+  "all_three_domains_retained": true,
+  "authorizes": "Audit findings and a recommendation only. May inform a separately requested, versioned extension design.",
+  "blocked": [
+    "new transactions or regeneration",
+    "relabeling or predicate changes",
+    "features/model training/threshold work",
+    "opening or releasing quarantined holdouts",
+    "claiming original full-family evaluation policy satisfied"
+  ],
+  "decision": "B \u2014 ADDITIONAL INDEPENDENT CHALLENGE EVALUATION REQUIRED",
+  "model_validated": false,
+  "new_experiment_condition": "A new full experiment is required if the original population-wide all-family evaluation claim must be retained without a qualified extension.",
+  "original_objective_met": false,
+  "stage16r_decision_preserved": true
+}

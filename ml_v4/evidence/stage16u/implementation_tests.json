@@ -1,0 +1,44 @@
+{
+  "protocol_version": "v4.challenge.protocol.1",
+  "stage": "16U",
+  "scope": "Deterministic hand-authored fixtures and source checks only. No candidate challenge unit was scheduled and no dataset, features, labels file, model or secret stream was created.",
+  "commands": [
+    "python -B -m pytest ml_v4/tests/test_stage16u.py ml_v4/tests/test_stage16r.py -q -p no:cacheprovider",
+    ".venv\\Scripts\\python.exe -B -m pytest ml_v4/tests/test_stage16u.py ml_v4/tests/test_stage16r.py -q -p no:cacheprovider"
+  ],
+  "results": {
+    "system_python": {"passed": 42, "failed": 0, "numpy": "2.4.3", "python": "3.14.3"},
+    "project_venv": {"passed": 42, "failed": 0, "numpy": "2.5.0", "python": "3.14.3"}
+  },
+  "coverage": {
+    "all_12_hand_derived_predicate_fixtures": "PASS; inherited Stage 16R evaluator fixtures",
+    "temporal_boundaries_and_equal_time_ids": "PASS",
+    "future_invariance_and_observable_only_replay": "PASS",
+    "agent_servicing_and_assisted_wallet_transfer": "PASS",
+    "cash_in_cash_out_and_ledger_conservation": "PASS",
+    "N3_chronological_simple_paths_and_amount_edges": "PASS",
+    "N4_prior_W2W_anchor_and_residual": "PASS",
+    "A1_35_day_observation_and_12_service_boundary": "PASS",
+    "S4_conditional_amount_bounds_and_rounding": "PASS",
+    "challenge_family_and_hard_origin_event_writers_on_small_fixture_universe": "PASS",
+    "context_roles_enter_observable_history": "PASS",
+    "private_provenance_excluded_from_observable_schema": "PASS",
+    "stream_derivation_arm_unit_and_stream_separation": "PASS",
+    "global_arm_unit_entity_transaction_id_and_horizon_validator_on_tiny_hand_fixture": "PASS",
+    "hard_origin_H1_to_H8_provenance_mapping": "PASS",
+    "support_gate_evaluator_synthetic_audit_records_only": "PASS",
+    "production_custody_and_generation_entrypoints_fail_closed": "PASS",
+    "scored_horizon_exclusive_end_boundary": "PASS; added in Stage 16U"
+  },
+  "limitations": [
+    "No full 24-unit materialization or generated-dataset byte replay was run; these would be candidate production draws or pilots, which the request prohibits.",
+    "The two environments use different NumPy versions. Fixture compatibility passed, but cross-version byte-for-byte RNG reproduction was not tested or claimed.",
+    "Stage 15A's historical validator was attempted read-only but stops on a missing archived path ml_archive/models/aml_ai_model.pkl. Its Stage 15A artifact hash set and the Stage 16T challenge artifact hash set were independently checked and matched; Stage 15's 20 listed design artifacts also matched.",
+    "No production custodian process or immutable authorization/access log exists in this workspace. The in-memory lifecycle class is a fixture, not an execution control."
+  ],
+  "dataset_generated": false,
+  "features_constructed": false,
+  "models_trained": 0,
+  "thresholds_tuned": false,
+  "holdout_contents_accessed": false
+}

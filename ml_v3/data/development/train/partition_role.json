@@ -1,0 +1,6 @@
+{
+  "feature_exploration_allowed": true,
+  "partition": "train",
+  "role": "development",
+  "training_allowed": true
+}

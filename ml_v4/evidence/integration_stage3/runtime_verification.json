@@ -1,0 +1,25 @@
+{
+  "frozen_versions": {
+    "python": "3.14.3",
+    "joblib": "1.5.3",
+    "numpy": "2.4.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "threadpoolctl": "3.6.0",
+    "xgboost": "3.4.1"
+  },
+  "supporting_versions": {
+    "narwhals": "2.22.1",
+    "mysql-connector-python": "9.7.0",
+    "python-dotenv": "1.2.2"
+  },
+  "interpreter": "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\.venv_inference_stage3\\Scripts\\python.exe",
+  "python": "3.14.3",
+  "prefix": "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\.venv_inference_stage3",
+  "base_prefix": "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314",
+  "system_site_packages": false,
+  "verified_distribution_files": 4545,
+  "native_inference_threads": 1,
+  "method": "Offline installed-file copies; not historical wheel provenance",
+  "preparation_note": "Initial isolated import failed closed because sklearn requires narwhals; copied installed narwhals 2.22.1 and verified package origin before successful model loading. No application environment installation occurred."
+}

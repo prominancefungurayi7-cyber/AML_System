@@ -1,0 +1,5 @@
+{
+  "result": "PASS",
+  "test_methods": 2,
+  "log": "test_fixed_threshold_confusion_orientation (test_stage11_preprocessing.PreprocessingTests.test_fixed_threshold_confusion_orientation) ... ok\ntest_marker_specificity_and_train_only_transforms (test_stage11_preprocessing.PreprocessingTests.test_marker_specificity_and_train_only_transforms) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.227s\n\nOK\n"
+}

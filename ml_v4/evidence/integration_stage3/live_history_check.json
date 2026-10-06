@@ -1,0 +1,18 @@
+{
+  "gate_result": "EVENT_UNAVAILABLE",
+  "history_status": "COMPLETE_VERIFIED",
+  "scope_revision": 1,
+  "scope_version": "prototype.observation.v1",
+  "scope_start": "2026-10-05T21:14:03.854863Z",
+  "source_revision": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "canonical_event_count": 0,
+  "entity_count": 0,
+  "complete_through_key": null,
+  "attestation_timestamp": "2026-10-05T21:14:03.939574Z",
+  "graph_scope": "All post-boundary prototype transactions, no entity or edge filters",
+  "checked_at": "2026-10-06T08:35:50.122085Z",
+  "issues": [],
+  "database_writes": 0,
+  "features_extracted": 0,
+  "predictions": 0
+}

@@ -1,0 +1,442 @@
+{
+  "A": {
+    "agent_only": {
+      "fn": 256,
+      "low_support": false,
+      "recall": 0.9180275376240794,
+      "support": 3123,
+      "tp": 2867
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "network_only": {
+      "fn": 68,
+      "low_support": false,
+      "recall": 0.907859078590786,
+      "support": 738,
+      "tp": 670
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "B": {
+    "agent_only": {
+      "fn": 1868,
+      "low_support": false,
+      "recall": 0.40185718860070446,
+      "support": 3123,
+      "tp": 1255
+    },
+    "agent_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9943820224719101,
+      "support": 712,
+      "tp": 708
+    },
+    "network_only": {
+      "fn": 64,
+      "low_support": false,
+      "recall": 0.9132791327913279,
+      "support": 738,
+      "tp": 674
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9951456310679612,
+      "support": 824,
+      "tp": 820
+    }
+  },
+  "C": {
+    "agent_only": {
+      "fn": 1396,
+      "low_support": false,
+      "recall": 0.552993916106308,
+      "support": 3123,
+      "tp": 1727
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "network_only": {
+      "fn": 63,
+      "low_support": false,
+      "recall": 0.9146341463414634,
+      "support": 738,
+      "tp": 675
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "D": {
+    "agent_only": {
+      "fn": 2566,
+      "low_support": false,
+      "recall": 0.17835414665385846,
+      "support": 3123,
+      "tp": 557
+    },
+    "agent_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9929775280898876,
+      "support": 712,
+      "tp": 707
+    },
+    "network_only": {
+      "fn": 57,
+      "low_support": false,
+      "recall": 0.9227642276422764,
+      "support": 738,
+      "tp": 681
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9939320388349514,
+      "support": 824,
+      "tp": 819
+    }
+  },
+  "E": {
+    "agent_only": {
+      "fn": 257,
+      "low_support": false,
+      "recall": 0.9177073326929235,
+      "support": 3123,
+      "tp": 2866
+    },
+    "agent_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9929775280898876,
+      "support": 712,
+      "tp": 707
+    },
+    "network_only": {
+      "fn": 540,
+      "low_support": false,
+      "recall": 0.2682926829268293,
+      "support": 738,
+      "tp": 198
+    },
+    "network_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9906191369606003,
+      "support": 533,
+      "tp": 528
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "F": {
+    "agent_only": {
+      "fn": 245,
+      "low_support": false,
+      "recall": 0.9215497918667948,
+      "support": 3123,
+      "tp": 2878
+    },
+    "agent_overlap": {
+      "fn": 17,
+      "low_support": false,
+      "recall": 0.976123595505618,
+      "support": 712,
+      "tp": 695
+    },
+    "network_only": {
+      "fn": 62,
+      "low_support": false,
+      "recall": 0.9159891598915989,
+      "support": 738,
+      "tp": 676
+    },
+    "network_overlap": {
+      "fn": 1,
+      "low_support": false,
+      "recall": 0.99812382739212,
+      "support": 533,
+      "tp": 532
+    },
+    "structuring_only": {
+      "fn": 113,
+      "low_support": false,
+      "recall": 0.4744186046511628,
+      "support": 215,
+      "tp": 102
+    },
+    "structuring_overlap": {
+      "fn": 18,
+      "low_support": false,
+      "recall": 0.9781553398058253,
+      "support": 824,
+      "tp": 806
+    }
+  },
+  "G": {
+    "agent_only": {
+      "fn": 2738,
+      "low_support": false,
+      "recall": 0.12327889849503683,
+      "support": 3123,
+      "tp": 385
+    },
+    "agent_overlap": {
+      "fn": 93,
+      "low_support": false,
+      "recall": 0.8693820224719101,
+      "support": 712,
+      "tp": 619
+    },
+    "network_only": {
+      "fn": 507,
+      "low_support": false,
+      "recall": 0.3130081300813008,
+      "support": 738,
+      "tp": 231
+    },
+    "network_overlap": {
+      "fn": 88,
+      "low_support": false,
+      "recall": 0.8348968105065666,
+      "support": 533,
+      "tp": 445
+    },
+    "structuring_only": {
+      "fn": 2,
+      "low_support": false,
+      "recall": 0.9906976744186047,
+      "support": 215,
+      "tp": 213
+    },
+    "structuring_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9939320388349514,
+      "support": 824,
+      "tp": 819
+    }
+  },
+  "H": {
+    "agent_only": {
+      "fn": 2723,
+      "low_support": false,
+      "recall": 0.12808197246237593,
+      "support": 3123,
+      "tp": 400
+    },
+    "agent_overlap": {
+      "fn": 147,
+      "low_support": false,
+      "recall": 0.7935393258426966,
+      "support": 712,
+      "tp": 565
+    },
+    "network_only": {
+      "fn": 44,
+      "low_support": false,
+      "recall": 0.940379403794038,
+      "support": 738,
+      "tp": 694
+    },
+    "network_overlap": {
+      "fn": 1,
+      "low_support": false,
+      "recall": 0.99812382739212,
+      "support": 533,
+      "tp": 532
+    },
+    "structuring_only": {
+      "fn": 90,
+      "low_support": false,
+      "recall": 0.5813953488372093,
+      "support": 215,
+      "tp": 125
+    },
+    "structuring_overlap": {
+      "fn": 146,
+      "low_support": false,
+      "recall": 0.8228155339805825,
+      "support": 824,
+      "tp": 678
+    }
+  },
+  "I": {
+    "agent_only": {
+      "fn": 217,
+      "low_support": false,
+      "recall": 0.9305155299391611,
+      "support": 3123,
+      "tp": 2906
+    },
+    "agent_overlap": {
+      "fn": 48,
+      "low_support": false,
+      "recall": 0.9325842696629213,
+      "support": 712,
+      "tp": 664
+    },
+    "network_only": {
+      "fn": 712,
+      "low_support": false,
+      "recall": 0.03523035230352303,
+      "support": 738,
+      "tp": 26
+    },
+    "network_overlap": {
+      "fn": 274,
+      "low_support": false,
+      "recall": 0.48592870544090055,
+      "support": 533,
+      "tp": 259
+    },
+    "structuring_only": {
+      "fn": 183,
+      "low_support": false,
+      "recall": 0.14883720930232558,
+      "support": 215,
+      "tp": 32
+    },
+    "structuring_overlap": {
+      "fn": 291,
+      "low_support": false,
+      "recall": 0.6468446601941747,
+      "support": 824,
+      "tp": 533
+    }
+  },
+  "J": {
+    "agent_only": {
+      "fn": 250,
+      "low_support": false,
+      "recall": 0.919948767211015,
+      "support": 3123,
+      "tp": 2873
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "network_only": {
+      "fn": 74,
+      "low_support": false,
+      "recall": 0.8997289972899729,
+      "support": 738,
+      "tp": 664
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  }
+}

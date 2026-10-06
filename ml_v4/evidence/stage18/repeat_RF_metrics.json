@@ -1,0 +1,2773 @@
+{
+  "artifact_sha256": "5bea8c0b52aa89dbf91a6669b1670909c564cc9b8c95193bdafcb38041db6977",
+  "family": "RF",
+  "fit_seconds": 18.129752699984238,
+  "id": "repeat_RF",
+  "peak_process_working_set_bytes": 544825344,
+  "preprocessing_columns": [
+    "amount_minor",
+    "transaction_type=wallet_to_wallet",
+    "transaction_type=cash_in",
+    "transaction_type=cash_out",
+    "wallet_count_1h",
+    "wallet_value_1h",
+    "wallet_max_value_share_1h",
+    "wallet_activity_acceleration_1h",
+    "wallet_similar_amount_count_7d",
+    "wallet_similar_amount_share_7d",
+    "wallet_count_utc_day",
+    "wallet_active_hours_utc_day",
+    "wallet_day_count_growth",
+    "wallet_near_band_count_7d",
+    "network_in_count_24h",
+    "network_in_distinct_24h",
+    "network_in_acceleration_24h",
+    "network_out_count_24h",
+    "network_out_distinct_24h",
+    "network_out_acceleration_24h",
+    "prior_return_path_min_length_7d",
+    "prior_return_path_count_7d",
+    "prior_path_min_max_log_change_7d",
+    "current_to_selected_path_first_value_ratio",
+    "wallet_pass_through_fraction_24h",
+    "wallet_prior_funding_residual_minor_24h",
+    "agent_wallet_growth_ratio_7d",
+    "agent_distinct_wallets_7d",
+    "agent_new_wallet_count_7d",
+    "agent_new_wallet_share_7d",
+    "agent_top2_count_share_24h",
+    "agent_top2_share_change_24h",
+    "agent_service_acceleration_1h",
+    "agent_distinct_wallets_1h",
+    "agent_cash_in_count_24h",
+    "agent_cash_out_count_24h",
+    "agent_cash_in_value_24h",
+    "agent_cash_out_value_24h",
+    "agent_cash_distinct_wallets_24h",
+    "agent_cash_value_skew_change",
+    "wallet_observed_coverage_days",
+    "agent_observed_coverage_days"
+  ],
+  "train": {
+    "FN": 174,
+    "FP": 42,
+    "TN": 47728,
+    "TP": 12056,
+    "accuracy": 0.9964,
+    "average_precision": 0.999817735660439,
+    "balanced_accuracy": 0.9924467386055867,
+    "brier_score": 0.008977721530337717,
+    "calibration_bins": [
+      {
+        "count": 44034,
+        "lower": 0.0,
+        "mean_probability": 0.012791783982784645,
+        "observed_positive_fraction": 0.0,
+        "upper": 0.1
+      },
+      {
+        "count": 2350,
+        "lower": 0.1,
+        "mean_probability": 0.13936402527939024,
+        "observed_positive_fraction": 0.0,
+        "upper": 0.2
+      },
+      {
+        "count": 826,
+        "lower": 0.2,
+        "mean_probability": 0.24358788803257164,
+        "observed_positive_fraction": 0.002421307506053269,
+        "upper": 0.3
+      },
+      {
+        "count": 396,
+        "lower": 0.3,
+        "mean_probability": 0.34549975947987654,
+        "observed_positive_fraction": 0.0707070707070707,
+        "upper": 0.4
+      },
+      {
+        "count": 296,
+        "lower": 0.4,
+        "mean_probability": 0.44822109263378496,
+        "observed_positive_fraction": 0.4864864864864865,
+        "upper": 0.5
+      },
+      {
+        "count": 396,
+        "lower": 0.5,
+        "mean_probability": 0.5540308246329811,
+        "observed_positive_fraction": 0.898989898989899,
+        "upper": 0.6
+      },
+      {
+        "count": 643,
+        "lower": 0.6,
+        "mean_probability": 0.6545777539895601,
+        "observed_positive_fraction": 0.9968895800933126,
+        "upper": 0.7
+      },
+      {
+        "count": 1153,
+        "lower": 0.7,
+        "mean_probability": 0.7544197722029723,
+        "observed_positive_fraction": 1.0,
+        "upper": 0.8
+      },
+      {
+        "count": 1943,
+        "lower": 0.8,
+        "mean_probability": 0.855198508001559,
+        "observed_positive_fraction": 1.0,
+        "upper": 0.9
+      },
+      {
+        "count": 7963,
+        "lower": 0.9,
+        "mean_probability": 0.9660409622927427,
+        "observed_positive_fraction": 1.0,
+        "upper": 1.0
+      }
+    ],
+    "confusion_matrix": [
+      [
+        47728,
+        42
+      ],
+      [
+        174,
+        12056
+      ]
+    ],
+    "false_positive_rate": 0.0008792128951224618,
+    "log_loss": 0.049522189246862865,
+    "macro_f1": 0.9944318139041264,
+    "normal_recall": 0.9991207871048775,
+    "positive_f1": 0.9911213416639263,
+    "positive_precision": 0.9965283517936849,
+    "positive_recall": 0.985772690106296,
+    "precision_undefined": false,
+    "probability_quantiles": [
+      0.0,
+      0.0,
+      5.3897928515163197e-05,
+      0.01,
+      0.1263406385281385,
+      0.9953125,
+      1.0
+    ],
+    "roc_auc": 0.9999530679080104,
+    "threshold": 0.5
+  },
+  "train_rows_fitted": 60000,
+  "train_slices": {
+    "domain_fpr": "Single union classifier has one FPR; no domain-specific predicted heads. Report domain-only recall and origin-slice union-target0 FPR.",
+    "domain_only": {
+      "agent": {
+        "denominator": 7158,
+        "numerator": 7095,
+        "rate": 0.9911986588432523,
+        "wilson95": [
+          0.9887559849165578,
+          0.993114376472055
+        ]
+      },
+      "network": {
+        "denominator": 2041,
+        "numerator": 1992,
+        "rate": 0.9759921607055365,
+        "wilson95": [
+          0.9684031619720646,
+          0.9817926869386777
+        ]
+      },
+      "structuring": {
+        "denominator": 1658,
+        "numerator": 1597,
+        "rate": 0.9632086851628469,
+        "wilson95": [
+          0.953023839576089,
+          0.971251975880691
+        ]
+      }
+    },
+    "domains": {
+      "agent": {
+        "denominator": 7678,
+        "numerator": 7615,
+        "rate": 0.9917947382130763,
+        "wilson95": [
+          0.9895165143687834,
+          0.9935810803538154
+        ]
+      },
+      "network": {
+        "denominator": 3111,
+        "numerator": 3061,
+        "rate": 0.9839279974284796,
+        "wilson95": [
+          0.9788747500823103,
+          0.9877875675135508
+        ]
+      },
+      "structuring": {
+        "denominator": 2867,
+        "numerator": 2805,
+        "rate": 0.978374607603767,
+        "wilson95": [
+          0.9723751943811737,
+          0.9830937524252262
+        ]
+      }
+    },
+    "families": {
+      "A1": {
+        "denominator": 5773,
+        "numerator": 5773,
+        "rate": 1.0,
+        "wilson95": [
+          0.9993349999418367,
+          0.9999999999999999
+        ]
+      },
+      "A2": {
+        "denominator": 755,
+        "numerator": 698,
+        "rate": 0.9245033112582781,
+        "wilson95": [
+          0.9034343981269327,
+          0.9412741681931004
+        ]
+      },
+      "A3": {
+        "denominator": 883,
+        "numerator": 883,
+        "rate": 1.0,
+        "wilson95": [
+          0.9956682230513316,
+          0.9999999999999998
+        ]
+      },
+      "A4": {
+        "denominator": 812,
+        "numerator": 806,
+        "rate": 0.9926108374384236,
+        "wilson95": [
+          0.983973250617395,
+          0.9966092546140124
+        ]
+      },
+      "N1": {
+        "denominator": 414,
+        "numerator": 405,
+        "rate": 0.9782608695652174,
+        "wilson95": [
+          0.9592057734029272,
+          0.9885217865145152
+        ]
+      },
+      "N2": {
+        "denominator": 1690,
+        "numerator": 1682,
+        "rate": 0.9952662721893492,
+        "wilson95": [
+          0.9906865916524027,
+          0.9975994440666397
+        ]
+      },
+      "N3": {
+        "denominator": 550,
+        "numerator": 542,
+        "rate": 0.9854545454545455,
+        "wilson95": [
+          0.9715629356451425,
+          0.9926116586792997
+        ]
+      },
+      "N4": {
+        "denominator": 559,
+        "numerator": 534,
+        "rate": 0.9552772808586762,
+        "wilson95": [
+          0.9348131904288177,
+          0.9695265030124633
+        ]
+      },
+      "S1": {
+        "denominator": 456,
+        "numerator": 454,
+        "rate": 0.9956140350877193,
+        "wilson95": [
+          0.9841507611223012,
+          0.9987964102514936
+        ]
+      },
+      "S2": {
+        "denominator": 112,
+        "numerator": 93,
+        "rate": 0.8303571428571429,
+        "wilson95": [
+          0.7501814829768544,
+          0.8886218484688441
+        ]
+      },
+      "S3": {
+        "denominator": 2292,
+        "numerator": 2291,
+        "rate": 0.9995636998254799,
+        "wilson95": [
+          0.9975325934551582,
+          0.9999229801349363
+        ]
+      },
+      "S4": {
+        "denominator": 128,
+        "numerator": 88,
+        "rate": 0.6875,
+        "wilson95": [
+          0.602727327674739,
+          0.7613459238634704
+        ]
+      }
+    },
+    "hard_origin_fpr": {
+      "H1": {
+        "denominator": 1015,
+        "numerator": 1,
+        "rate": 0.0009852216748768472,
+        "wilson95": [
+          0.0001739325188095421,
+          0.005559637841882442
+        ]
+      },
+      "H2": {
+        "denominator": 1192,
+        "numerator": 1,
+        "rate": 0.0008389261744966443,
+        "wilson95": [
+          0.00014810261285902676,
+          0.0047368252906358835
+        ]
+      },
+      "H3": {
+        "denominator": 1208,
+        "numerator": 1,
+        "rate": 0.0008278145695364238,
+        "wilson95": [
+          0.0001461407881541651,
+          0.004674291189094347
+        ]
+      },
+      "H4": {
+        "denominator": 1213,
+        "numerator": 1,
+        "rate": 0.0008244023083264633,
+        "wilson95": [
+          0.00014553833276202428,
+          0.004655086497947249
+        ]
+      },
+      "H5": {
+        "denominator": 968,
+        "numerator": 2,
+        "rate": 0.002066115702479339,
+        "wilson95": [
+          0.0005667745597778698,
+          0.007502030068466074
+        ]
+      },
+      "H6": {
+        "denominator": 1259,
+        "numerator": 1,
+        "rate": 0.0007942811755361397,
+        "wilson95": [
+          0.00014022028630068795,
+          0.004485538003575097
+        ]
+      },
+      "H7": {
+        "denominator": 991,
+        "numerator": 0,
+        "rate": 0.0,
+        "wilson95": [
+          -2.168404344971009e-19,
+          0.0038615192609557144
+        ]
+      },
+      "H8": {
+        "denominator": 976,
+        "numerator": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.0039206337024270035
+        ]
+      },
+      "background": {
+        "denominator": 21937,
+        "numerator": 3,
+        "rate": 0.00013675525368099558,
+        "wilson95": [
+          4.650935094985465e-05,
+          0.0004020422670518905
+        ]
+      }
+    },
+    "multi_domain": {
+      "denominator": 1373,
+      "numerator": 1372,
+      "rate": 0.9992716678805535,
+      "wilson95": [
+        0.9958858229168188,
+        0.9998714232326291
+      ]
+    },
+    "pre_onset_union_target0_fpr": {
+      "denominator": 1057,
+      "numerator": 0,
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.0036212757870732063
+      ]
+    },
+    "type_specific_fpr": "Recorded in shortcut slices",
+    "units": {
+      "0": {
+        "families": {
+          "A1": {
+            "denominator": 451,
+            "numerator": 451,
+            "rate": 1.0,
+            "wilson95": [
+              0.9915539827491594,
+              1.0000000000000002
+            ]
+          },
+          "A2": {
+            "denominator": 92,
+            "numerator": 81,
+            "rate": 0.8804347826086957,
+            "wilson95": [
+              0.7984624277438817,
+              0.9319093523599564
+            ]
+          },
+          "A3": {
+            "denominator": 47,
+            "numerator": 47,
+            "rate": 1.0,
+            "wilson95": [
+              0.9244398288016114,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 66,
+            "numerator": 65,
+            "rate": 0.9848484848484849,
+            "wilson95": [
+              0.9190388760177447,
+              0.9973204284655434
+            ]
+          },
+          "N1": {
+            "denominator": 38,
+            "numerator": 37,
+            "rate": 0.9736842105263158,
+            "wilson95": [
+              0.8650482156319974,
+              0.9953395324464698
+            ]
+          },
+          "N2": {
+            "denominator": 158,
+            "numerator": 158,
+            "rate": 1.0,
+            "wilson95": [
+              0.9762632104477463,
+              0.9999999999999999
+            ]
+          },
+          "N3": {
+            "denominator": 45,
+            "numerator": 42,
+            "rate": 0.9333333333333333,
+            "wilson95": [
+              0.8214312561135918,
+              0.977068383537853
+            ]
+          },
+          "N4": {
+            "denominator": 39,
+            "numerator": 38,
+            "rate": 0.9743589743589743,
+            "wilson95": [
+              0.8681871352137286,
+              0.9954594139347627
+            ]
+          },
+          "S1": {
+            "denominator": 51,
+            "numerator": 51,
+            "rate": 1.0,
+            "wilson95": [
+              0.9299509861127319,
+              0.9999999999999999
+            ]
+          },
+          "S2": {
+            "denominator": 15,
+            "numerator": 12,
+            "rate": 0.8,
+            "wilson95": [
+              0.5481406466534955,
+              0.9295257935638959
+            ]
+          },
+          "S3": {
+            "denominator": 215,
+            "numerator": 215,
+            "rate": 1.0,
+            "wilson95": [
+              0.9824457507164999,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 21,
+            "numerator": 16,
+            "rate": 0.7619047619047619,
+            "wilson95": [
+              0.5490841802765406,
+              0.8937214361088773
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3944,
+          "numerator": 7,
+          "rate": 0.0017748478701825558,
+          "wilson95": [
+            0.0008599984380721691,
+            0.0036593318207710428
+          ]
+        },
+        "recall": {
+          "denominator": 1056,
+          "numerator": 1031,
+          "rate": 0.9763257575757576,
+          "wilson95": [
+            0.9652846516496529,
+            0.9839137946087313
+          ]
+        }
+      },
+      "1": {
+        "families": {
+          "A1": {
+            "denominator": 486,
+            "numerator": 486,
+            "rate": 1.0,
+            "wilson95": [
+              0.9921574647804513,
+              0.9999999999999999
+            ]
+          },
+          "A2": {
+            "denominator": 65,
+            "numerator": 60,
+            "rate": 0.9230769230769231,
+            "wilson95": [
+              0.8322385378144039,
+              0.9666969895411486
+            ]
+          },
+          "A3": {
+            "denominator": 96,
+            "numerator": 96,
+            "rate": 1.0,
+            "wilson95": [
+              0.9615230525151842,
+              1.0000000000000002
+            ]
+          },
+          "A4": {
+            "denominator": 44,
+            "numerator": 44,
+            "rate": 1.0,
+            "wilson95": [
+              0.9197016822179859,
+              0.9999999999999999
+            ]
+          },
+          "N1": {
+            "denominator": 63,
+            "numerator": 63,
+            "rate": 1.0,
+            "wilson95": [
+              0.9425268096514744,
+              0.9999999999999999
+            ]
+          },
+          "N2": {
+            "denominator": 134,
+            "numerator": 133,
+            "rate": 0.9925373134328358,
+            "wilson95": [
+              0.9589394518225883,
+              0.9986814695828513
+            ]
+          },
+          "N3": {
+            "denominator": 41,
+            "numerator": 41,
+            "rate": 1.0,
+            "wilson95": [
+              0.9143295511310926,
+              1.0
+            ]
+          },
+          "N4": {
+            "denominator": 49,
+            "numerator": 46,
+            "rate": 0.9387755102040817,
+            "wilson95": [
+              0.8347925657791229,
+              0.9789602350444708
+            ]
+          },
+          "S1": {
+            "denominator": 20,
+            "numerator": 20,
+            "rate": 1.0,
+            "wilson95": [
+              0.8388698745050667,
+              1.0
+            ]
+          },
+          "S2": {
+            "denominator": 12,
+            "numerator": 11,
+            "rate": 0.9166666666666666,
+            "wilson95": [
+              0.6461140782014047,
+              0.9851352905492264
+            ]
+          },
+          "S3": {
+            "denominator": 196,
+            "numerator": 196,
+            "rate": 1.0,
+            "wilson95": [
+              0.9807767752059631,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 10,
+            "numerator": 8,
+            "rate": 0.8,
+            "wilson95": [
+              0.49015684672072335,
+              0.9433190520193067
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3951,
+          "numerator": 1,
+          "rate": 0.0002531004808909137,
+          "wilson95": [
+            4.4678697691277833e-05,
+            0.0014323968949190558
+          ]
+        },
+        "recall": {
+          "denominator": 1049,
+          "numerator": 1037,
+          "rate": 0.988560533841754,
+          "wilson95": [
+            0.9801114991417806,
+            0.9934442570137513
+          ]
+        }
+      },
+      "10": {
+        "families": {
+          "A1": {
+            "denominator": 516,
+            "numerator": 516,
+            "rate": 1.0,
+            "wilson95": [
+              0.9926100566018572,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 60,
+            "numerator": 51,
+            "rate": 0.85,
+            "wilson95": [
+              0.7388517410884038,
+              0.9190265075770431
+            ]
+          },
+          "A3": {
+            "denominator": 78,
+            "numerator": 78,
+            "rate": 1.0,
+            "wilson95": [
+              0.9530605462258804,
+              1.0000000000000002
+            ]
+          },
+          "A4": {
+            "denominator": 87,
+            "numerator": 87,
+            "rate": 1.0,
+            "wilson95": [
+              0.957711004649852,
+              1.0
+            ]
+          },
+          "N1": {
+            "denominator": 30,
+            "numerator": 30,
+            "rate": 1.0,
+            "wilson95": [
+              0.8864829086095221,
+              1.0
+            ]
+          },
+          "N2": {
+            "denominator": 162,
+            "numerator": 162,
+            "rate": 1.0,
+            "wilson95": [
+              0.976835727585841,
+              1.0
+            ]
+          },
+          "N3": {
+            "denominator": 49,
+            "numerator": 49,
+            "rate": 1.0,
+            "wilson95": [
+              0.9272997032640949,
+              0.9999999999999999
+            ]
+          },
+          "N4": {
+            "denominator": 37,
+            "numerator": 37,
+            "rate": 1.0,
+            "wilson95": [
+              0.9059390425448564,
+              1.0000000000000002
+            ]
+          },
+          "S1": {
+            "denominator": 28,
+            "numerator": 28,
+            "rate": 1.0,
+            "wilson95": [
+              0.8793527963418923,
+              1.0
+            ]
+          },
+          "S2": {
+            "denominator": 15,
+            "numerator": 12,
+            "rate": 0.8,
+            "wilson95": [
+              0.5481406466534955,
+              0.9295257935638959
+            ]
+          },
+          "S3": {
+            "denominator": 198,
+            "numerator": 198,
+            "rate": 1.0,
+            "wilson95": [
+              0.9809672535295005,
+              1.0000000000000002
+            ]
+          },
+          "S4": {
+            "denominator": 8,
+            "numerator": 4,
+            "rate": 0.5,
+            "wilson95": [
+              0.21521252682444186,
+              0.7847874731755582
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3921,
+          "numerator": 2,
+          "rate": 0.000510073960724305,
+          "wilson95": [
+            0.00013988889600227293,
+            0.0018580516068705053
+          ]
+        },
+        "recall": {
+          "denominator": 1079,
+          "numerator": 1063,
+          "rate": 0.9851714550509731,
+          "wilson95": [
+            0.9760481937169191,
+            0.9908522282838611
+          ]
+        }
+      },
+      "11": {
+        "families": {
+          "A1": {
+            "denominator": 517,
+            "numerator": 517,
+            "rate": 1.0,
+            "wilson95": [
+              0.9926242450679823,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 50,
+            "numerator": 47,
+            "rate": 0.94,
+            "wilson95": [
+              0.8378265662912299,
+              0.9793854036353695
+            ]
+          },
+          "A3": {
+            "denominator": 58,
+            "numerator": 58,
+            "rate": 1.0,
+            "wilson95": [
+              0.9378800031047062,
+              0.9999999999999999
+            ]
+          },
+          "A4": {
+            "denominator": 57,
+            "numerator": 57,
+            "rate": 1.0,
+            "wilson95": [
+              0.936858991216536,
+              0.9999999999999999
+            ]
+          },
+          "N1": {
+            "denominator": 28,
+            "numerator": 26,
+            "rate": 0.9285714285714286,
+            "wilson95": [
+              0.7735426157408214,
+              0.9801883525522292
+            ]
+          },
+          "N2": {
+            "denominator": 112,
+            "numerator": 112,
+            "rate": 1.0,
+            "wilson95": [
+              0.9668374746205164,
+              1.0
+            ]
+          },
+          "N3": {
+            "denominator": 42,
+            "numerator": 42,
+            "rate": 1.0,
+            "wilson95": [
+              0.9161983874908382,
+              1.0000000000000002
+            ]
+          },
+          "N4": {
+            "denominator": 47,
+            "numerator": 44,
+            "rate": 0.9361702127659575,
+            "wilson95": [
+              0.828371220656221,
+              0.9780550129792271
+            ]
+          },
+          "S1": {
+            "denominator": 34,
+            "numerator": 34,
+            "rate": 1.0,
+            "wilson95": [
+              0.8984820937803899,
+              1.0
+            ]
+          },
+          "S2": {
+            "denominator": 17,
+            "numerator": 14,
+            "rate": 0.8235294117647058,
+            "wilson95": [
+              0.5897007098262422,
+              0.9380898628745101
+            ]
+          },
+          "S3": {
+            "denominator": 157,
+            "numerator": 157,
+            "rate": 1.0,
+            "wilson95": [
+              0.9761156317768538,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 7,
+            "numerator": 6,
+            "rate": 0.8571428571428571,
+            "wilson95": [
+              0.48686549668097007,
+              0.9743210440510253
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4040,
+          "numerator": 1,
+          "rate": 0.00024752475247524753,
+          "wilson95": [
+            4.369440914857531e-05,
+            0.0014008725590531467
+          ]
+        },
+        "recall": {
+          "denominator": 960,
+          "numerator": 948,
+          "rate": 0.9875,
+          "wilson95": [
+            0.9782786327653578,
+            0.9928352930083378
+          ]
+        }
+      },
+      "2": {
+        "families": {
+          "A1": {
+            "denominator": 450,
+            "numerator": 450,
+            "rate": 1.0,
+            "wilson95": [
+              0.9915353726939092,
+              1.0000000000000002
+            ]
+          },
+          "A2": {
+            "denominator": 26,
+            "numerator": 22,
+            "rate": 0.8461538461538461,
+            "wilson95": [
+              0.6646841558168644,
+              0.9385006600107053
+            ]
+          },
+          "A3": {
+            "denominator": 62,
+            "numerator": 62,
+            "rate": 1.0,
+            "wilson95": [
+              0.9416539087749995,
+              1.0000000000000002
+            ]
+          },
+          "A4": {
+            "denominator": 68,
+            "numerator": 68,
+            "rate": 1.0,
+            "wilson95": [
+              0.9465268034119508,
+              1.0
+            ]
+          },
+          "N1": {
+            "denominator": 24,
+            "numerator": 24,
+            "rate": 1.0,
+            "wilson95": [
+              0.8620194241710247,
+              1.0
+            ]
+          },
+          "N2": {
+            "denominator": 120,
+            "numerator": 120,
+            "rate": 1.0,
+            "wilson95": [
+              0.9689797289440706,
+              1.0
+            ]
+          },
+          "N3": {
+            "denominator": 51,
+            "numerator": 51,
+            "rate": 1.0,
+            "wilson95": [
+              0.9299509861127319,
+              0.9999999999999999
+            ]
+          },
+          "N4": {
+            "denominator": 45,
+            "numerator": 42,
+            "rate": 0.9333333333333333,
+            "wilson95": [
+              0.8214312561135918,
+              0.977068383537853
+            ]
+          },
+          "S1": {
+            "denominator": 29,
+            "numerator": 29,
+            "rate": 1.0,
+            "wilson95": [
+              0.8830264055344442,
+              1.0
+            ]
+          },
+          "S2": {
+            "denominator": 1,
+            "numerator": 1,
+            "rate": 1.0,
+            "wilson95": [
+              0.20654329147389294,
+              1.0
+            ]
+          },
+          "S3": {
+            "denominator": 224,
+            "numerator": 224,
+            "rate": 1.0,
+            "wilson95": [
+              0.983139163348572,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 8,
+            "numerator": 7,
+            "rate": 0.875,
+            "wilson95": [
+              0.5291051942301386,
+              0.9775830911367038
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4062,
+          "numerator": 3,
+          "rate": 0.0007385524372230429,
+          "wilson95": [
+            0.00025120100673477436,
+            0.0021693556622707283
+          ]
+        },
+        "recall": {
+          "denominator": 938,
+          "numerator": 930,
+          "rate": 0.9914712153518124,
+          "wilson95": [
+            0.9832610183088563,
+            0.9956721696072436
+          ]
+        }
+      },
+      "3": {
+        "families": {
+          "A1": {
+            "denominator": 403,
+            "numerator": 403,
+            "rate": 1.0,
+            "wilson95": [
+              0.99055750444399,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 58,
+            "numerator": 55,
+            "rate": 0.9482758620689655,
+            "wilson95": [
+              0.8586037466498081,
+              0.9822541871682043
+            ]
+          },
+          "A3": {
+            "denominator": 68,
+            "numerator": 68,
+            "rate": 1.0,
+            "wilson95": [
+              0.9465268034119508,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 75,
+            "numerator": 75,
+            "rate": 1.0,
+            "wilson95": [
+              0.9512744540953,
+              1.0
+            ]
+          },
+          "N1": {
+            "denominator": 38,
+            "numerator": 37,
+            "rate": 0.9736842105263158,
+            "wilson95": [
+              0.8650482156319974,
+              0.9953395324464698
+            ]
+          },
+          "N2": {
+            "denominator": 158,
+            "numerator": 158,
+            "rate": 1.0,
+            "wilson95": [
+              0.9762632104477463,
+              0.9999999999999999
+            ]
+          },
+          "N3": {
+            "denominator": 48,
+            "numerator": 48,
+            "rate": 1.0,
+            "wilson95": [
+              0.9258973488472576,
+              0.9999999999999999
+            ]
+          },
+          "N4": {
+            "denominator": 46,
+            "numerator": 43,
+            "rate": 0.9347826086956522,
+            "wilson95": [
+              0.8249699089621865,
+              0.9775725455336564
+            ]
+          },
+          "S1": {
+            "denominator": 31,
+            "numerator": 31,
+            "rate": 1.0,
+            "wilson95": [
+              0.889740999265246,
+              0.9999999999999999
+            ]
+          },
+          "S2": {
+            "denominator": 15,
+            "numerator": 11,
+            "rate": 0.7333333333333333,
+            "wilson95": [
+              0.4804911034231324,
+              0.8910272389681718
+            ]
+          },
+          "S3": {
+            "denominator": 170,
+            "numerator": 170,
+            "rate": 1.0,
+            "wilson95": [
+              0.9779017220274089,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 16,
+            "numerator": 11,
+            "rate": 0.6875,
+            "wilson95": [
+              0.4440393186673406,
+              0.8583556494803894
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4045,
+          "numerator": 2,
+          "rate": 0.0004944375772558715,
+          "wilson95": [
+            0.0001356002524772748,
+            0.001801151237133976
+          ]
+        },
+        "recall": {
+          "denominator": 955,
+          "numerator": 939,
+          "rate": 0.9832460732984293,
+          "wilson95": [
+            0.9729583840261299,
+            0.9896615106467753
+          ]
+        }
+      },
+      "4": {
+        "families": {
+          "A1": {
+            "denominator": 562,
+            "numerator": 562,
+            "rate": 1.0,
+            "wilson95": [
+              0.9932108208374923,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 92,
+            "numerator": 91,
+            "rate": 0.9891304347826086,
+            "wilson95": [
+              0.9409707111384389,
+              0.9980787204236383
+            ]
+          },
+          "A3": {
+            "denominator": 56,
+            "numerator": 56,
+            "rate": 1.0,
+            "wilson95": [
+              0.9358038555118846,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 55,
+            "numerator": 54,
+            "rate": 0.9818181818181818,
+            "wilson95": [
+              0.9039399953951678,
+              0.9967833024077472
+            ]
+          },
+          "N1": {
+            "denominator": 35,
+            "numerator": 34,
+            "rate": 0.9714285714285714,
+            "wilson95": [
+              0.8546659090672868,
+              0.9949386386341466
+            ]
+          },
+          "N2": {
+            "denominator": 110,
+            "numerator": 109,
+            "rate": 0.990909090909091,
+            "wilson95": [
+              0.9502931300620922,
+              0.9983934660504014
+            ]
+          },
+          "N3": {
+            "denominator": 46,
+            "numerator": 44,
+            "rate": 0.9565217391304348,
+            "wilson95": [
+              0.8546747708094659,
+              0.9879948064111691
+            ]
+          },
+          "N4": {
+            "denominator": 57,
+            "numerator": 52,
+            "rate": 0.9122807017543859,
+            "wilson95": [
+              0.8105488754539574,
+              0.9619488892333616
+            ]
+          },
+          "S1": {
+            "denominator": 37,
+            "numerator": 36,
+            "rate": 0.972972972972973,
+            "wilson95": [
+              0.8617562156243666,
+              0.9952131489450924
+            ]
+          },
+          "S2": {
+            "denominator": 12,
+            "numerator": 12,
+            "rate": 1.0,
+            "wilson95": [
+              0.7574992425007574,
+              1.0
+            ]
+          },
+          "S3": {
+            "denominator": 157,
+            "numerator": 157,
+            "rate": 1.0,
+            "wilson95": [
+              0.9761156317768538,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 22,
+            "numerator": 16,
+            "rate": 0.7272727272727273,
+            "wilson95": [
+              0.5184787630099802,
+              0.8684941798418556
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3929,
+          "numerator": 6,
+          "rate": 0.0015271061338763044,
+          "wilson95": [
+            0.0007000589418745416,
+            0.003327970053750403
+          ]
+        },
+        "recall": {
+          "denominator": 1071,
+          "numerator": 1053,
+          "rate": 0.9831932773109243,
+          "wilson95": [
+            0.9735896207043433,
+            0.9893429639667375
+          ]
+        }
+      },
+      "5": {
+        "families": {
+          "A1": {
+            "denominator": 567,
+            "numerator": 567,
+            "rate": 1.0,
+            "wilson95": [
+              0.993270287239052,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 55,
+            "numerator": 51,
+            "rate": 0.9272727272727272,
+            "wilson95": [
+              0.827398219083632,
+              0.9713564034963114
+            ]
+          },
+          "A3": {
+            "denominator": 72,
+            "numerator": 72,
+            "rate": 1.0,
+            "wilson95": [
+              0.9493470601886036,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 75,
+            "numerator": 73,
+            "rate": 0.9733333333333334,
+            "wilson95": [
+              0.9078833515671513,
+              0.9926564649763995
+            ]
+          },
+          "N1": {
+            "denominator": 52,
+            "numerator": 51,
+            "rate": 0.9807692307692307,
+            "wilson95": [
+              0.8987925373197556,
+              0.9965972795909344
+            ]
+          },
+          "N2": {
+            "denominator": 133,
+            "numerator": 131,
+            "rate": 0.9849624060150376,
+            "wilson95": [
+              0.94682928627284,
+              0.9958665021423787
+            ]
+          },
+          "N3": {
+            "denominator": 37,
+            "numerator": 37,
+            "rate": 1.0,
+            "wilson95": [
+              0.9059390425448564,
+              1.0000000000000002
+            ]
+          },
+          "N4": {
+            "denominator": 38,
+            "numerator": 37,
+            "rate": 0.9736842105263158,
+            "wilson95": [
+              0.8650482156319974,
+              0.9953395324464698
+            ]
+          },
+          "S1": {
+            "denominator": 42,
+            "numerator": 42,
+            "rate": 1.0,
+            "wilson95": [
+              0.9161983874908382,
+              1.0000000000000002
+            ]
+          },
+          "S2": {
+            "denominator": 7,
+            "numerator": 6,
+            "rate": 0.8571428571428571,
+            "wilson95": [
+              0.48686549668097007,
+              0.9743210440510253
+            ]
+          },
+          "S3": {
+            "denominator": 182,
+            "numerator": 182,
+            "rate": 1.0,
+            "wilson95": [
+              0.9793286325558971,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 10,
+            "numerator": 5,
+            "rate": 0.5,
+            "wilson95": [
+              0.23658959361548731,
+              0.7634104063845126
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3906,
+          "numerator": 3,
+          "rate": 0.0007680491551459293,
+          "wilson95": [
+            0.0002612349032240762,
+            0.002255900317803804
+          ]
+        },
+        "recall": {
+          "denominator": 1094,
+          "numerator": 1078,
+          "rate": 0.9853747714808044,
+          "wilson95": [
+            0.9763747413301161,
+            0.9909779259399164
+          ]
+        }
+      },
+      "6": {
+        "families": {
+          "A1": {
+            "denominator": 429,
+            "numerator": 429,
+            "rate": 1.0,
+            "wilson95": [
+              0.9911246978109314,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 58,
+            "numerator": 57,
+            "rate": 0.9827586206896551,
+            "wilson95": [
+              0.9085892732270167,
+              0.9969500401154581
+            ]
+          },
+          "A3": {
+            "denominator": 88,
+            "numerator": 88,
+            "rate": 1.0,
+            "wilson95": [
+              0.9581714604275188,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 72,
+            "numerator": 71,
+            "rate": 0.9861111111111112,
+            "wilson95": [
+              0.9254321971571302,
+              0.9975441113595678
+            ]
+          },
+          "N1": {
+            "denominator": 27,
+            "numerator": 26,
+            "rate": 0.9629629629629629,
+            "wilson95": [
+              0.8171614606584348,
+              0.9934320234669025
+            ]
+          },
+          "N2": {
+            "denominator": 166,
+            "numerator": 165,
+            "rate": 0.9939759036144579,
+            "wilson95": [
+              0.9666697658034148,
+              0.9989358337670086
+            ]
+          },
+          "N3": {
+            "denominator": 48,
+            "numerator": 46,
+            "rate": 0.9583333333333334,
+            "wilson95": [
+              0.8602408885222853,
+              0.9884983479210344
+            ]
+          },
+          "N4": {
+            "denominator": 40,
+            "numerator": 39,
+            "rate": 0.975,
+            "wilson95": [
+              0.8711834051199223,
+              0.9955732825922052
+            ]
+          },
+          "S1": {
+            "denominator": 38,
+            "numerator": 38,
+            "rate": 1.0,
+            "wilson95": [
+              0.90818706741616,
+              0.9999999999999999
+            ]
+          },
+          "S2": {
+            "denominator": 0,
+            "numerator": 0,
+            "rate": null,
+            "reason": "empty support",
+            "wilson95": null
+          },
+          "S3": {
+            "denominator": 196,
+            "numerator": 195,
+            "rate": 0.9948979591836735,
+            "wilson95": [
+              0.9716700296884005,
+              0.9990988192399507
+            ]
+          },
+          "S4": {
+            "denominator": 1,
+            "numerator": 0,
+            "rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.7934567085261071
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4070,
+          "numerator": 4,
+          "rate": 0.0009828009828009828,
+          "wilson95": [
+            0.00038225022357856364,
+            0.0025244901857687215
+          ]
+        },
+        "recall": {
+          "denominator": 930,
+          "numerator": 922,
+          "rate": 0.9913978494623656,
+          "wilson95": [
+            0.9831178259710687,
+            0.9956348875512249
+          ]
+        }
+      },
+      "7": {
+        "families": {
+          "A1": {
+            "denominator": 368,
+            "numerator": 368,
+            "rate": 1.0,
+            "wilson95": [
+              0.9896687191535319,
+              0.9999999999999999
+            ]
+          },
+          "A2": {
+            "denominator": 94,
+            "numerator": 86,
+            "rate": 0.9148936170212766,
+            "wilson95": [
+              0.8409618787007068,
+              0.9562450353317701
+            ]
+          },
+          "A3": {
+            "denominator": 95,
+            "numerator": 95,
+            "rate": 1.0,
+            "wilson95": [
+              0.9611337736337738,
+              1.0000000000000002
+            ]
+          },
+          "A4": {
+            "denominator": 106,
+            "numerator": 105,
+            "rate": 0.9905660377358491,
+            "wilson95": [
+              0.9484851921062201,
+              0.9983327712155086
+            ]
+          },
+          "N1": {
+            "denominator": 32,
+            "numerator": 32,
+            "rate": 1.0,
+            "wilson95": [
+              0.8928172849426366,
+              1.0
+            ]
+          },
+          "N2": {
+            "denominator": 175,
+            "numerator": 173,
+            "rate": 0.9885714285714285,
+            "wilson95": [
+              0.9592930545274383,
+              0.9968603236575031
+            ]
+          },
+          "N3": {
+            "denominator": 54,
+            "numerator": 53,
+            "rate": 0.9814814814814815,
+            "wilson95": [
+              0.902283346415128,
+              0.996723596684648
+            ]
+          },
+          "N4": {
+            "denominator": 60,
+            "numerator": 58,
+            "rate": 0.9666666666666667,
+            "wilson95": [
+              0.8863601247107462,
+              0.9908108735098498
+            ]
+          },
+          "S1": {
+            "denominator": 47,
+            "numerator": 47,
+            "rate": 1.0,
+            "wilson95": [
+              0.9244398288016114,
+              1.0
+            ]
+          },
+          "S2": {
+            "denominator": 3,
+            "numerator": 3,
+            "rate": 1.0,
+            "wilson95": [
+              0.43849391955098227,
+              1.0
+            ]
+          },
+          "S3": {
+            "denominator": 205,
+            "numerator": 205,
+            "rate": 1.0,
+            "wilson95": [
+              0.9816051974319293,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 11,
+            "numerator": 8,
+            "rate": 0.7272727272727273,
+            "wilson95": [
+              0.4343497069897537,
+              0.9025411942607853
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3956,
+          "numerator": 6,
+          "rate": 0.0015166835187057635,
+          "wilson95": [
+            0.0006952797517104441,
+            0.003305284311256114
+          ]
+        },
+        "recall": {
+          "denominator": 1044,
+          "numerator": 1027,
+          "rate": 0.9837164750957854,
+          "wilson95": [
+            0.9740772246379671,
+            0.9898089199854186
+          ]
+        }
+      },
+      "8": {
+        "families": {
+          "A1": {
+            "denominator": 470,
+            "numerator": 470,
+            "rate": 1.0,
+            "wilson95": [
+              0.991892649357929,
+              1.0
+            ]
+          },
+          "A2": {
+            "denominator": 46,
+            "numerator": 43,
+            "rate": 0.9347826086956522,
+            "wilson95": [
+              0.8249699089621865,
+              0.9775725455336564
+            ]
+          },
+          "A3": {
+            "denominator": 90,
+            "numerator": 90,
+            "rate": 1.0,
+            "wilson95": [
+              0.9590629315783191,
+              0.9999999999999999
+            ]
+          },
+          "A4": {
+            "denominator": 35,
+            "numerator": 35,
+            "rate": 1.0,
+            "wilson95": [
+              0.9010957324106112,
+              1.0
+            ]
+          },
+          "N1": {
+            "denominator": 33,
+            "numerator": 31,
+            "rate": 0.9393939393939394,
+            "wilson95": [
+              0.8039341828220181,
+              0.9832194695709291
+            ]
+          },
+          "N2": {
+            "denominator": 136,
+            "numerator": 135,
+            "rate": 0.9926470588235294,
+            "wilson95": [
+              0.9595261451733299,
+              0.9987008774007824
+            ]
+          },
+          "N3": {
+            "denominator": 43,
+            "numerator": 43,
+            "rate": 1.0,
+            "wilson95": [
+              0.9179874299767729,
+              1.0
+            ]
+          },
+          "N4": {
+            "denominator": 54,
+            "numerator": 53,
+            "rate": 0.9814814814814815,
+            "wilson95": [
+              0.902283346415128,
+              0.996723596684648
+            ]
+          },
+          "S1": {
+            "denominator": 50,
+            "numerator": 49,
+            "rate": 0.98,
+            "wilson95": [
+              0.8950431352816304,
+              0.9964608319110235
+            ]
+          },
+          "S2": {
+            "denominator": 6,
+            "numerator": 4,
+            "rate": 0.6666666666666666,
+            "wilson95": [
+              0.29998832134152864,
+              0.9032306674407831
+            ]
+          },
+          "S3": {
+            "denominator": 220,
+            "numerator": 220,
+            "rate": 1.0,
+            "wilson95": [
+              0.9828378639180564,
+              1.0
+            ]
+          },
+          "S4": {
+            "denominator": 2,
+            "numerator": 1,
+            "rate": 0.5,
+            "wilson95": [
+              0.09452865480086614,
+              0.9054713451991339
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4012,
+          "numerator": 5,
+          "rate": 0.0012462612163509472,
+          "wilson95": [
+            0.0005324342463113624,
+            0.002914315246995346
+          ]
+        },
+        "recall": {
+          "denominator": 988,
+          "numerator": 977,
+          "rate": 0.9888663967611336,
+          "wilson95": [
+            0.9801738165272801,
+            0.9937720232116461
+          ]
+        }
+      },
+      "9": {
+        "families": {
+          "A1": {
+            "denominator": 554,
+            "numerator": 554,
+            "rate": 1.0,
+            "wilson95": [
+              0.9931134572968382,
+              0.9999999999999999
+            ]
+          },
+          "A2": {
+            "denominator": 59,
+            "numerator": 54,
+            "rate": 0.9152542372881356,
+            "wilson95": [
+              0.8164797538583944,
+              0.9632585086938003
+            ]
+          },
+          "A3": {
+            "denominator": 73,
+            "numerator": 73,
+            "rate": 1.0,
+            "wilson95": [
+              0.950006246616416,
+              0.9999999999999999
+            ]
+          },
+          "A4": {
+            "denominator": 72,
+            "numerator": 72,
+            "rate": 1.0,
+            "wilson95": [
+              0.9493470601886036,
+              1.0
+            ]
+          },
+          "N1": {
+            "denominator": 14,
+            "numerator": 14,
+            "rate": 1.0,
+            "wilson95": [
+              0.7846829880728186,
+              1.0
+            ]
+          },
+          "N2": {
+            "denominator": 126,
+            "numerator": 126,
+            "rate": 1.0,
+            "wilson95": [
+              0.9704131803674632,
+              1.0
+            ]
+          },
+          "N3": {
+            "denominator": 46,
+            "numerator": 46,
+            "rate": 1.0,
+            "wilson95": [
+              0.9229238226702192,
+              1.0
+            ]
+          },
+          "N4": {
+            "denominator": 47,
+            "numerator": 45,
+            "rate": 0.9574468085106383,
+            "wilson95": [
+              0.8575121280614056,
+              0.9882519706294303
+            ]
+          },
+          "S1": {
+            "denominator": 49,
+            "numerator": 49,
+            "rate": 1.0,
+            "wilson95": [
+              0.9272997032640949,
+              0.9999999999999999
+            ]
+          },
+          "S2": {
+            "denominator": 9,
+            "numerator": 7,
+            "rate": 0.7777777777777778,
+            "wilson95": [
+              0.4525833436728054,
+              0.9367762376877727
+            ]
+          },
+          "S3": {
+            "denominator": 172,
+            "numerator": 172,
+            "rate": 1.0,
+            "wilson95": [
+              0.9781530650312552,
+              0.9999999999999999
+            ]
+          },
+          "S4": {
+            "denominator": 12,
+            "numerator": 6,
+            "rate": 0.5,
+            "wilson95": [
+              0.2537781703934222,
+              0.7462218296065778
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3934,
+          "numerator": 2,
+          "rate": 0.0005083884087442806,
+          "wilson95": [
+            0.0001394265929795317,
+            0.0018519181071221685
+          ]
+        },
+        "recall": {
+          "denominator": 1066,
+          "numerator": 1051,
+          "rate": 0.9859287054409006,
+          "wilson95": [
+            0.9769132705731891,
+            0.9914543831056359
+          ]
+        }
+      }
+    }
+  },
+  "validation": {
+    "FN": 364,
+    "FP": 154,
+    "TN": 11816,
+    "TP": 2666,
+    "accuracy": 0.9654666666666667,
+    "average_precision": 0.9801951116707743,
+    "balanced_accuracy": 0.9335012448613282,
+    "brier_score": 0.026694792727836175,
+    "calibration_bins": [
+      {
+        "count": 10339,
+        "lower": 0.0,
+        "mean_probability": 0.014973619164331722,
+        "observed_positive_fraction": 0.0009672115291614276,
+        "upper": 0.1
+      },
+      {
+        "count": 859,
+        "lower": 0.1,
+        "mean_probability": 0.14277163457668401,
+        "observed_positive_fraction": 0.05355064027939464,
+        "upper": 0.2
+      },
+      {
+        "count": 424,
+        "lower": 0.2,
+        "mean_probability": 0.24300621754984197,
+        "observed_positive_fraction": 0.1320754716981132,
+        "upper": 0.3
+      },
+      {
+        "count": 289,
+        "lower": 0.3,
+        "mean_probability": 0.3454317493275852,
+        "observed_positive_fraction": 0.33217993079584773,
+        "upper": 0.4
+      },
+      {
+        "count": 269,
+        "lower": 0.4,
+        "mean_probability": 0.45285993935170626,
+        "observed_positive_fraction": 0.5799256505576208,
+        "upper": 0.5
+      },
+      {
+        "count": 232,
+        "lower": 0.5,
+        "mean_probability": 0.5505234836610147,
+        "observed_positive_fraction": 0.6724137931034483,
+        "upper": 0.6
+      },
+      {
+        "count": 235,
+        "lower": 0.6,
+        "mean_probability": 0.6501350113393198,
+        "observed_positive_fraction": 0.8085106382978723,
+        "upper": 0.7
+      },
+      {
+        "count": 339,
+        "lower": 0.7,
+        "mean_probability": 0.7546676080683605,
+        "observed_positive_fraction": 0.9292035398230089,
+        "upper": 0.8
+      },
+      {
+        "count": 547,
+        "lower": 0.8,
+        "mean_probability": 0.8597825097586138,
+        "observed_positive_fraction": 0.9835466179159049,
+        "upper": 0.9
+      },
+      {
+        "count": 1467,
+        "lower": 0.9,
+        "mean_probability": 0.9528881673203212,
+        "observed_positive_fraction": 1.0,
+        "upper": 1.0
+      }
+    ],
+    "confusion_matrix": [
+      [
+        11816,
+        154
+      ],
+      [
+        364,
+        2666
+      ]
+    ],
+    "false_positive_rate": 0.012865497076023392,
+    "log_loss": 0.10104131910711313,
+    "macro_f1": 0.9450018580453363,
+    "normal_recall": 0.9871345029239766,
+    "positive_f1": 0.9114529914529914,
+    "positive_precision": 0.9453900709219858,
+    "positive_recall": 0.8798679867986798,
+    "precision_undefined": false,
+    "probability_quantiles": [
+      0.0,
+      0.0,
+      8.827636635894758e-05,
+      0.0171875,
+      0.20884788495316156,
+      0.9859375,
+      1.0
+    ],
+    "roc_auc": 0.9943729924370884,
+    "threshold": 0.5
+  },
+  "validation_slices": {
+    "domain_fpr": "Single union classifier has one FPR; no domain-specific predicted heads. Report domain-only recall and origin-slice union-target0 FPR.",
+    "domain_only": {
+      "agent": {
+        "denominator": 1787,
+        "numerator": 1661,
+        "rate": 0.9294907666480134,
+        "wilson95": [
+          0.9166767588842334,
+          0.9404621416193063
+        ]
+      },
+      "network": {
+        "denominator": 493,
+        "numerator": 346,
+        "rate": 0.7018255578093306,
+        "wilson95": [
+          0.660009697627628,
+          0.7405203707080348
+        ]
+      },
+      "structuring": {
+        "denominator": 391,
+        "numerator": 313,
+        "rate": 0.8005115089514067,
+        "wilson95": [
+          0.7580620594125336,
+          0.8371133223101623
+        ]
+      }
+    },
+    "domains": {
+      "agent": {
+        "denominator": 1941,
+        "numerator": 1810,
+        "rate": 0.9325090159711489,
+        "wilson95": [
+          0.9204723040457994,
+          0.9428370780653197
+        ]
+      },
+      "network": {
+        "denominator": 776,
+        "numerator": 618,
+        "rate": 0.7963917525773195,
+        "wilson95": [
+          0.7666312816337391,
+          0.8232320957495654
+        ]
+      },
+      "structuring": {
+        "denominator": 684,
+        "numerator": 596,
+        "rate": 0.8713450292397661,
+        "wilson95": [
+          0.8441633644462968,
+          0.8943787650207201
+        ]
+      }
+    },
+    "families": {
+      "A1": {
+        "denominator": 1467,
+        "numerator": 1466,
+        "rate": 0.9993183367416496,
+        "wilson95": [
+          0.996148733603513,
+          0.9998796626561522
+        ]
+      },
+      "A2": {
+        "denominator": 148,
+        "numerator": 105,
+        "rate": 0.7094594594594594,
+        "wilson95": [
+          0.6317508743286968,
+          0.7765693751944904
+        ]
+      },
+      "A3": {
+        "denominator": 255,
+        "numerator": 255,
+        "rate": 1.0,
+        "wilson95": [
+          0.9851584907526456,
+          1.0
+        ]
+      },
+      "A4": {
+        "denominator": 222,
+        "numerator": 135,
+        "rate": 0.6081081081081081,
+        "wilson95": [
+          0.5425736790060176,
+          0.669964666453809
+        ]
+      },
+      "N1": {
+        "denominator": 101,
+        "numerator": 74,
+        "rate": 0.7326732673267327,
+        "wilson95": [
+          0.6390037155312416,
+          0.8092916176189582
+        ]
+      },
+      "N2": {
+        "denominator": 429,
+        "numerator": 378,
+        "rate": 0.8811188811188811,
+        "wilson95": [
+          0.8470587332606923,
+          0.9084139384972905
+        ]
+      },
+      "N3": {
+        "denominator": 130,
+        "numerator": 103,
+        "rate": 0.7923076923076923,
+        "wilson95": [
+          0.7146820162899945,
+          0.8531533951217041
+        ]
+      },
+      "N4": {
+        "denominator": 144,
+        "numerator": 87,
+        "rate": 0.6041666666666666,
+        "wilson95": [
+          0.5225833437386467,
+          0.6803365380808142
+        ]
+      },
+      "S1": {
+        "denominator": 132,
+        "numerator": 117,
+        "rate": 0.8863636363636364,
+        "wilson95": [
+          0.8209594301059018,
+          0.9299151178970664
+        ]
+      },
+      "S2": {
+        "denominator": 23,
+        "numerator": 1,
+        "rate": 0.043478260869565216,
+        "wilson95": [
+          0.0077164669621267445,
+          0.20991586494059142
+        ]
+      },
+      "S3": {
+        "denominator": 546,
+        "numerator": 507,
+        "rate": 0.9285714285714286,
+        "wilson95": [
+          0.9038429882158105,
+          0.947311235109598
+        ]
+      },
+      "S4": {
+        "denominator": 16,
+        "numerator": 4,
+        "rate": 0.25,
+        "wilson95": [
+          0.10181901984237346,
+          0.49498768929398645
+        ]
+      }
+    },
+    "hard_origin_fpr": {
+      "H1": {
+        "denominator": 245,
+        "numerator": 6,
+        "rate": 0.024489795918367346,
+        "wilson95": [
+          0.011270980874658696,
+          0.05239040050208861
+        ]
+      },
+      "H2": {
+        "denominator": 302,
+        "numerator": 4,
+        "rate": 0.013245033112582781,
+        "wilson95": [
+          0.005162382676085065,
+          0.03355569884062163
+        ]
+      },
+      "H3": {
+        "denominator": 294,
+        "numerator": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.012898131087128192
+        ]
+      },
+      "H4": {
+        "denominator": 294,
+        "numerator": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.012898131087128192
+        ]
+      },
+      "H5": {
+        "denominator": 240,
+        "numerator": 14,
+        "rate": 0.058333333333333334,
+        "wilson95": [
+          0.03506211241962322,
+          0.09552102023698665
+        ]
+      },
+      "H6": {
+        "denominator": 309,
+        "numerator": 6,
+        "rate": 0.019417475728155338,
+        "wilson95": [
+          0.008928721406924706,
+          0.04170904543738245
+        ]
+      },
+      "H7": {
+        "denominator": 218,
+        "numerator": 4,
+        "rate": 0.01834862385321101,
+        "wilson95": [
+          0.007157862987647368,
+          0.04622076392452781
+        ]
+      },
+      "H8": {
+        "denominator": 231,
+        "numerator": 1,
+        "rate": 0.004329004329004329,
+        "wilson95": [
+          0.0007645650631054376,
+          0.0241100738424377
+        ]
+      },
+      "background": {
+        "denominator": 5495,
+        "numerator": 8,
+        "rate": 0.0014558689717925387,
+        "wilson95": [
+          0.0007378944266717058,
+          0.0028704291882511177
+        ]
+      }
+    },
+    "multi_domain": {
+      "denominator": 359,
+      "numerator": 346,
+      "rate": 0.9637883008356546,
+      "wilson95": [
+        0.9390380315209269,
+        0.9787178156586688
+      ]
+    },
+    "pre_onset_union_target0_fpr": {
+      "denominator": 296,
+      "numerator": 0,
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.012812098121141296
+      ]
+    },
+    "type_specific_fpr": "Recorded in shortcut slices",
+    "units": {
+      "0": {
+        "families": {
+          "A1": {
+            "denominator": 484,
+            "numerator": 483,
+            "rate": 0.9979338842975206,
+            "wilson95": [
+              0.9883904253531249,
+              0.9996351960780937
+            ]
+          },
+          "A2": {
+            "denominator": 49,
+            "numerator": 31,
+            "rate": 0.6326530612244898,
+            "wilson95": [
+              0.49266811386889864,
+              0.7533501747521878
+            ]
+          },
+          "A3": {
+            "denominator": 89,
+            "numerator": 89,
+            "rate": 1.0,
+            "wilson95": [
+              0.9586219970358116,
+              1.0
+            ]
+          },
+          "A4": {
+            "denominator": 89,
+            "numerator": 56,
+            "rate": 0.6292134831460674,
+            "wilson95": [
+              0.5254685409761142,
+              0.7222652335387585
+            ]
+          },
+          "N1": {
+            "denominator": 29,
+            "numerator": 22,
+            "rate": 0.7586206896551724,
+            "wilson95": [
+              0.578920477816713,
+              0.8778173181493787
+            ]
+          },
+          "N2": {
+            "denominator": 128,
+            "numerator": 116,
+            "rate": 0.90625,
+            "wilson95": [
+              0.8432686438028733,
+              0.945556734529914
+            ]
+          },
+          "N3": {
+            "denominator": 51,
+            "numerator": 40,
+            "rate": 0.7843137254901961,
+            "wilson95": [
+              0.6537337712118703,
+              0.8750618875581144
+            ]
+          },
+          "N4": {
+            "denominator": 58,
+            "numerator": 34,
+            "rate": 0.5862068965517241,
+            "wilson95": [
+              0.4579817755925391,
+              0.7037216732186171
+            ]
+          },
+          "S1": {
+            "denominator": 36,
+            "numerator": 32,
+            "rate": 0.8888888888888888,
+            "wilson95": [
+              0.7468487098496367,
+              0.9559343109125816
+            ]
+          },
+          "S2": {
+            "denominator": 15,
+            "numerator": 0,
+            "rate": 0.0,
+            "wilson95": [
+              -1.3877787807814457e-17,
+              0.20388926630434784
+            ]
+          },
+          "S3": {
+            "denominator": 185,
+            "numerator": 168,
+            "rate": 0.9081081081081082,
+            "wilson95": [
+              0.857776207175809,
+              0.9418357427335331
+            ]
+          },
+          "S4": {
+            "denominator": 4,
+            "numerator": 1,
+            "rate": 0.25,
+            "wilson95": [
+              0.045586062644636216,
+              0.6993639475573634
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3973,
+          "numerator": 47,
+          "rate": 0.01182985149760886,
+          "wilson95": [
+            0.008908082530445383,
+            0.015694758075526952
+          ]
+        },
+        "recall": {
+          "denominator": 1027,
+          "numerator": 884,
+          "rate": 0.8607594936708861,
+          "wilson95": [
+            0.8382382425506147,
+            0.880591886151991
+          ]
+        }
+      },
+      "1": {
+        "families": {
+          "A1": {
+            "denominator": 479,
+            "numerator": 479,
+            "rate": 1.0,
+            "wilson95": [
+              0.9920437675626956,
+              1.0000000000000002
+            ]
+          },
+          "A2": {
+            "denominator": 62,
+            "numerator": 52,
+            "rate": 0.8387096774193549,
+            "wilson95": [
+              0.7279343069043936,
+              0.9099602764593157
+            ]
+          },
+          "A3": {
+            "denominator": 93,
+            "numerator": 93,
+            "rate": 1.0,
+            "wilson95": [
+              0.9603310973796383,
+              0.9999999999999999
+            ]
+          },
+          "A4": {
+            "denominator": 75,
+            "numerator": 48,
+            "rate": 0.64,
+            "wilson95": [
+              0.5270045111400723,
+              0.7393523360066117
+            ]
+          },
+          "N1": {
+            "denominator": 32,
+            "numerator": 23,
+            "rate": 0.71875,
+            "wilson95": [
+              0.546251630618882,
+              0.8443559315435214
+            ]
+          },
+          "N2": {
+            "denominator": 164,
+            "numerator": 143,
+            "rate": 0.8719512195121951,
+            "wilson95": [
+              0.8121738693536251,
+              0.9147019468921684
+            ]
+          },
+          "N3": {
+            "denominator": 39,
+            "numerator": 32,
+            "rate": 0.8205128205128205,
+            "wilson95": [
+              0.6733164837555724,
+              0.9102284818853
+            ]
+          },
+          "N4": {
+            "denominator": 37,
+            "numerator": 21,
+            "rate": 0.5675675675675675,
+            "wilson95": [
+              0.40913906334200717,
+              0.713285131596487
+            ]
+          },
+          "S1": {
+            "denominator": 61,
+            "numerator": 55,
+            "rate": 0.9016393442622951,
+            "wilson95": [
+              0.8015516580247642,
+              0.9541360486326903
+            ]
+          },
+          "S2": {
+            "denominator": 3,
+            "numerator": 1,
+            "rate": 0.3333333333333333,
+            "wilson95": [
+              0.0614903152761605,
+              0.7923450448735121
+            ]
+          },
+          "S3": {
+            "denominator": 166,
+            "numerator": 156,
+            "rate": 0.9397590361445783,
+            "wilson95": [
+              0.8926715772016495,
+              0.9669529199768981
+            ]
+          },
+          "S4": {
+            "denominator": 9,
+            "numerator": 2,
+            "rate": 0.2222222222222222,
+            "wilson95": [
+              0.06322376231222723,
+              0.5474166563271946
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 3984,
+          "numerator": 58,
+          "rate": 0.014558232931726908,
+          "wilson95": [
+            0.011279024312825724,
+            0.018772720972142463
+          ]
+        },
+        "recall": {
+          "denominator": 1016,
+          "numerator": 907,
+          "rate": 0.8927165354330708,
+          "wilson95": [
+            0.8721858624399973,
+            0.9102885924165215
+          ]
+        }
+      },
+      "2": {
+        "families": {
+          "A1": {
+            "denominator": 504,
+            "numerator": 504,
+            "rate": 1.0,
+            "wilson95": [
+              0.9924354365613216,
+              1.0000000000000002
+            ]
+          },
+          "A2": {
+            "denominator": 37,
+            "numerator": 22,
+            "rate": 0.5945945945945946,
+            "wilson95": [
+              0.4348568313132931,
+              0.7365370416005986
+            ]
+          },
+          "A3": {
+            "denominator": 73,
+            "numerator": 73,
+            "rate": 1.0,
+            "wilson95": [
+              0.950006246616416,
+              0.9999999999999999
+            ]
+          },
+          "A4": {
+            "denominator": 58,
+            "numerator": 31,
+            "rate": 0.5344827586206896,
+            "wilson95": [
+              0.40799953310272974,
+              0.6566818464217328
+            ]
+          },
+          "N1": {
+            "denominator": 40,
+            "numerator": 29,
+            "rate": 0.725,
+            "wilson95": [
+              0.5716474916687543,
+              0.8389214656685692
+            ]
+          },
+          "N2": {
+            "denominator": 137,
+            "numerator": 119,
+            "rate": 0.8686131386861314,
+            "wilson95": [
+              0.8018671373892712,
+              0.9152505323901123
+            ]
+          },
+          "N3": {
+            "denominator": 40,
+            "numerator": 31,
+            "rate": 0.775,
+            "wilson95": [
+              0.6249660359590695,
+              0.8768404674532148
+            ]
+          },
+          "N4": {
+            "denominator": 49,
+            "numerator": 32,
+            "rate": 0.6530612244897959,
+            "wilson95": [
+              0.5131093521943979,
+              0.7707579039068555
+            ]
+          },
+          "S1": {
+            "denominator": 35,
+            "numerator": 30,
+            "rate": 0.8571428571428571,
+            "wilson95": [
+              0.7062411969132573,
+              0.9373986119514649
+            ]
+          },
+          "S2": {
+            "denominator": 5,
+            "numerator": 0,
+            "rate": 0.0,
+            "wilson95": [
+              -2.7755575615628914e-17,
+              0.43449149475208104
+            ]
+          },
+          "S3": {
+            "denominator": 195,
+            "numerator": 183,
+            "rate": 0.9384615384615385,
+            "wilson95": [
+              0.895530219710787,
+              0.9644507902991909
+            ]
+          },
+          "S4": {
+            "denominator": 3,
+            "numerator": 1,
+            "rate": 0.3333333333333333,
+            "wilson95": [
+              0.0614903152761605,
+              0.7923450448735121
+            ]
+          }
+        },
+        "fpr": {
+          "denominator": 4013,
+          "numerator": 49,
+          "rate": 0.01221031647146773,
+          "wilson95": [
+            0.009248609673402537,
+            0.01610504131447809
+          ]
+        },
+        "recall": {
+          "denominator": 987,
+          "numerator": 875,
+          "rate": 0.8865248226950354,
+          "wilson95": [
+            0.8652202327638698,
+            0.9048322155790336
+          ]
+        }
+      }
+    }
+  },
+  "warnings": []
+}

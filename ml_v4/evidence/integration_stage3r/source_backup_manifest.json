@@ -1,0 +1,19 @@
+{
+  "archive": "approved_stage3_source_backup.zip",
+  "sha256": "acc772f58bc745dacc8eeb445b0393c9ee1c50458f41db34d30c471de8acf2d4",
+  "entries": {
+    "ml_v4/frozen_inference/cli.py": "68655d04195fe062f523d33012396e701a394879ee24fa3d0bf22cf8fad49efa",
+    "ml_v4/frozen_inference/history.py": "5f58a425a1ce67047c84d8c017d100d23fa391671e27acbc4beb09cab01f1a67",
+    "ml_v4/frozen_inference/launch.py": "07d946c4295479722b7ba72146b452ff5304c1f024f487fefaeb1de196278699",
+    "ml_v4/frozen_inference/README.md": "de603ee36456acf319ae33581e66d9f88321b926b4b8c2921d3d4217d9f94ced",
+    "ml_v4/frozen_inference/service.py": "fe2b2971f799a359c1bfdf5d92c56664a39b00caffbb03ddee46843f1208ba48",
+    "ml_v4/frozen_inference/__init__.py": "c0c7c346d9aaec186b08a43a891d79147a45bcfcb17449b1c295df4daba36475",
+    "ml_v4/frozen_inference/tests/test_service.py": "1242fba7e2fa9043f4403591633722546dd84f81ba30cedbdd6eca75eb2503e5",
+    "ml_v4/evidence/integration_stage3/copy_dependencies.py": "cb08d7d21b06612478bff252af557d9e9a3aeddbd09f6aa356d7e18a73c546b6",
+    "ml_v4/evidence/integration_stage3/finalize.py": "61d3a70a59eaa5aa14e89fb327e4e471554fc49f2c2ad1f23179131916708228",
+    "ml_v4/evidence/integration_stage3/live_check.py": "b25a8f48b031c069a664970414dd1b4cf0ee691d1b7caca4aba8f5414761ced8",
+    "ml_v4/evidence/integration_stage3/prepare.py": "bf21b761e30ce2cc692c8c6a12ea6ad59a2b9e62a23603cff0f4a08d19da834a",
+    "ml_v4/evidence/integration_stage3/run_tests.py": "cc64f68c22a5d1eac9edc85de9d6f95ae988e936f0f1f6b171de00fdb0ec644a"
+  },
+  "model_data_credentials_runtime_included": false
+}

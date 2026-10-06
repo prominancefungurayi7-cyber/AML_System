@@ -1,0 +1,213 @@
+"""Explicit Stage2A.2 audit; no application startup or model execution.
+
+Run inspect first. Activate runs isolated, uncommitted fixtures then existing
+Stage2A scope/attestation functions. Never installs or changes triggers.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+from urllib.parse import urlparse, unquote
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+OUT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+
+def sha(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+def save(name, data):
+    path = OUT / name
+    if path.exists():
+        raise ValueError('Evidence already exists: ' + name)
+    path.write_text(json.dumps(data, indent=2, default=str) + '\n', encoding='utf-8')
+
+def protected():
+    old = ROOT / 'ml_v4/evidence/integration_stage2a1'
+    expected = json.loads((old / 'before_sha256.json').read_text())
+    expected.update(json.loads((old / 'decision.json').read_text(encoding='utf-8'))['artifact_sha256'])
+    expected['ml_v4/evidence/integration_stage2a1/decision.json'] = sha(old / 'decision.json')
+    assert all(sha(ROOT / p) == h for p, h in expected.items()), 'Protected hash mismatch'
+    return expected
+
+def connect():
+    from dotenv import dotenv_values
+    import mysql.connector
+    from database import DatabaseAdapter
+    env = dotenv_values(ROOT / '.env')
+    p = urlparse(os.environ.get('DATABASE_URL') or os.environ.get('MYSQL_URL') or env.get('DATABASE_URL') or env.get('MYSQL_URL') or '')
+    assert p.scheme in ('mysql', 'mysql+mysqlconnector') and p.path == '/aml'
+    return DatabaseAdapter(mysql.connector.connect(host=p.hostname, port=p.port or 3306,
+        user=unquote(p.username or ''), password=unquote(p.password or ''),
+        database='aml', connection_timeout=5), 'mysql')
+
+def metadata(c):
+    from canonical_history_journal import triggers, ensure
+    from canonical_history_store import TABLES
+    from canonical_mobile_money_store import inspect
+    assert c.execute('SELECT DATABASE() AS db').fetchone()['db'] == 'aml'
+    rows = [dict(r) for r in c.execute("SELECT TRIGGER_NAME,EVENT_OBJECT_TABLE,EVENT_MANIPULATION,ACTION_TIMING,ACTION_STATEMENT FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA=DATABASE() ORDER BY TRIGGER_NAME").fetchall()]
+    cmm = [r for r in rows if r['TRIGGER_NAME'].lower().startswith('cmm_')]
+    want = triggers('mysql')
+    assert {r['TRIGGER_NAME'] for r in cmm} == set(want), 'Unexpected/missing CMM trigger'
+    for r in cmm:
+        table, op, body = want[r['TRIGGER_NAME']]
+        assert (r['EVENT_OBJECT_TABLE'], r['EVENT_MANIPULATION'], r['ACTION_TIMING'], r['ACTION_STATEMENT']) == (table, op, 'AFTER', body), 'Trigger definition mismatch'
+    tables = {}
+    for t in [*TABLES, 'cmm_source_changes']:
+        tables[t] = [dict(r) for r in c.execute('SHOW COLUMNS FROM ' + t).fetchall()]
+        engine = c.execute('SELECT ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME=?', (t,)).fetchone()
+        assert engine and engine['ENGINE'] == 'InnoDB'
+    assert [r['Field'] for r in tables['cmm_source_changes']] == ['change_id','transaction_id','operation','event_timestamp','recorded_at']
+    assert [r['Type'].lower() for r in tables['cmm_source_changes']] == ['bigint','bigint','varchar(32)','varchar(255)','varchar(40)']
+    assert all(r['Null'] == 'NO' for r in tables['cmm_source_changes'])
+    ensure(c)
+    canonical = inspect(c)
+    assert canonical['exists']
+    return {'triggers': cmm, 'exact_bodies_match': True, 'unexpected_cmm_triggers': [], 'tables': tables, 'canonical_schema': canonical}
+
+def fingerprints(c):
+    return {t: {'rows': len(rows), 'sha256': hashlib.sha256(json.dumps(rows, sort_keys=True, default=str).encode()).hexdigest()}
+            for t, key in [('transactions','id'),('canonical_mobile_money_events','transaction_id'),('cmm_source_changes','change_id')]
+            for rows in [[dict(r) for r in c.execute('SELECT * FROM ' + t + ' ORDER BY ' + key).fetchall()]]}
+
+def main(mode):
+    baseline = protected()
+    if mode == 'inspect':
+        save('before_sha256.json', baseline)
+    else:
+        assert baseline == json.loads((OUT / 'before_sha256.json').read_text())
+    from canonical_history_store import migrate, create_scope, attest, assess
+    from canonical_history import freshness, now, window_coverage
+    from canonical_mobile_money import event_from_dict
+    from canonical_mobile_money_store import persist
+    from canonical_history_journal import ensure
+    c = connect()
+    result = {'mode': mode, 'database': 'aml', 'status': 'FAIL', 'privilege_method': 'Ordinary configured application connection; manual root installation reported by user', 'trigger_mutations': 0}
+    try:
+        assert c.execute("SELECT GET_LOCK('cmm_history_admin_v1',5) AS acquired").fetchone()['acquired'] == 1
+        result['metadata_before'] = metadata(c)
+        result['scope_rows_before'] = [dict(r) for r in c.execute('SELECT * FROM cmm_observation_scopes').fetchall()]
+        result['engine'] = c.execute('SELECT VERSION() AS version').fetchone()
+        result['source_before'] = fingerprints(c)
+        c.rollback()
+        if mode == 'inspect':
+            result['status'] = 'PASS'
+            return
+        assert result['scope_rows_before'] == [], 'Scope exists; do not reset it'
+        # Existing-schema migration paths inspect only; missing tables already rejected.
+        assert migrate(c) == []
+        ensure(c)
+        assert migrate(c) == []
+        result['idempotency'] = 'PASS: two unchanged history migrations and repeated trigger inspection; no trigger apply'
+        c.rollback()
+        marker = 'CMM_STAGE2A2_DISPOSABLE_' + uuid.uuid4().hex
+        stamp = now()
+        test = {'mechanism': 'One uncommitted InnoDB transaction, always rolled back; no journal DELETE; auto-increment gaps retained', 'fixture_marker': marker}
+        result['capture_test'] = test
+        try:
+            c.execute('START TRANSACTION')
+            c.execute('INSERT INTO transactions (sender_account,receiver_account,amount,transaction_type,currency,channel,timestamp,status,description) VALUES (?,?,?,?,?,?,?,?,?)',
+                      (marker + '_A', marker + '_B', 10.5, 'transfer', 'USD', 'mobile', stamp, 'CMM_TEST_ONLY', marker))
+            tx = int(c.execute('SELECT LAST_INSERT_ID() AS id').fetchone()['id'])
+            test['transaction_id'] = tx
+            def journal():
+                return [dict(r) for r in c.execute('SELECT * FROM cmm_source_changes WHERE transaction_id=? ORDER BY change_id', (tx,)).fetchall()]
+            assert [r['operation'] for r in journal()] == ['SOURCE_INSERT']
+            c.execute('UPDATE transactions SET amount=? WHERE id=?', (10.51, tx))
+            assert [r['operation'] for r in journal()] == ['SOURCE_INSERT','SOURCE_UPDATE']
+            old = journal()
+            c.execute('UPDATE transactions SET risk_score=?,description=? WHERE id=?', (25, marker + '_operational', tx))
+            assert journal() == old
+            test['operational_only_update'] = 'PASS'
+            e = event_from_dict(dict(transaction_id=tx,event_timestamp=stamp,sender_wallet=marker+'_A',receiver_wallet=marker+'_B',amount_minor=1051,currency='USD',transaction_type='wallet_to_wallet',channel='direct_wallet',agent_id='',serviced_wallet='',agent_flow_direction='none'))
+            persist(c,e)
+            c.execute('UPDATE canonical_mobile_money_events SET amount_minor=? WHERE transaction_id=?', (1052,tx))
+            c.execute('DELETE FROM canonical_mobile_money_events WHERE transaction_id=?', (tx,))
+            c.execute('DELETE FROM transactions WHERE id=?', (tx,))
+            rows = journal()
+            assert [r['operation'] for r in rows] == ['SOURCE_INSERT','SOURCE_UPDATE','CANONICAL_INSERT','CANONICAL_UPDATE','CANONICAL_DELETE','SOURCE_DELETE']
+            assert len({r['change_id'] for r in rows}) == 6 and all(a['change_id'] < b['change_id'] for a,b in zip(rows,rows[1:]))
+            test['observed_journal'] = rows
+            # Leave another parent+canonical insert alive at rollback: verify rollback
+            # removes business rows as well as journal entries, not only explicit deletes.
+            c.execute('INSERT INTO transactions (sender_account,receiver_account,amount,transaction_type,currency,channel,timestamp,status,description) VALUES (?,?,?,?,?,?,?,?,?)',
+                      (marker+'_A',marker+'_B',10.51,'transfer','USD','mobile',stamp,'CMM_TEST_ONLY',marker))
+            tx2 = int(c.execute('SELECT LAST_INSERT_ID() AS id').fetchone()['id'])
+            raw = dict(transaction_id=tx2,event_timestamp=stamp,sender_wallet=marker+'_A',receiver_wallet=marker+'_B',amount_minor=1051,currency='USD',transaction_type='wallet_to_wallet',channel='direct_wallet',agent_id='',serviced_wallet='',agent_flow_direction='none')
+            persist(c,event_from_dict(raw))
+            test['rollback_transaction_id'] = tx2
+            assert c.execute('SELECT COUNT(*) AS n FROM cmm_source_changes WHERE transaction_id=?',(tx2,)).fetchone()['n'] == 2
+        finally:
+            c.rollback()
+        # New independent connection observes committed state after rollback.
+        other = connect()
+        try:
+            for t, key in [('transactions','id'),('canonical_mobile_money_events','transaction_id'),('cmm_source_changes','transaction_id')]:
+                assert other.execute('SELECT COUNT(*) AS n FROM '+t+' WHERE '+key+' IN (?,?)',(tx,tx2)).fetchone()['n'] == 0
+            test['rollback_and_cleanup'] = 'PASS: independent connection sees no fixture business or journal rows'
+        finally:
+            other.rollback()
+            other.close()
+        test['status'] = 'PASS'
+        result['source_after_tests'] = fingerprints(c)
+        assert result['source_before'] == result['source_after_tests'], 'Concurrent source change or integrity failure; stop before boundary'
+        result['metadata_after_tests'] = metadata(c)
+        assert result['metadata_before'] == result['metadata_after_tests']
+        assert migrate(c) == []
+        c.rollback()
+        # Persist test evidence before the separately committed boundary action.
+        save('capture_test.json', {k:v for k,v in result.items() if k != 'status'})
+        assert all(sha(ROOT/p) == h for p,h in baseline.items())
+        identity = c.execute('SELECT CURRENT_USER() AS identity').fetchone()['identity']
+        result['boundary_gate_passed_at'] = now()
+        c.rollback()
+        c.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
+        c.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT')
+        scope = create_scope(c, 'controlled-prototype-v1', 'configured-db-identity:'+identity,
+                             'ml_v4/evidence/integration_stage2a2/capture_test.json')
+        assert scope['status'] == 'UNKNOWN' and scope['start_timestamp'] >= result['boundary_gate_passed_at']
+        c.commit()
+        result['scope'] = scope
+        save('observation_boundary.json', scope)
+        c.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
+        c.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT')
+        a = attest(c, scope['scope_id'], 'configured-db-identity:'+identity,
+                   'ml_v4/evidence/integration_stage2a2/capture_test.json')
+        c.commit()
+        save('first_attestation.json', a)
+        c.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
+        c.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT')
+        s,current,previous = assess(c,scope['scope_id'])
+        result['history_status'] = freshness(s,current,previous)
+        result['attestation'] = {k:v for k,v in a.items() if k not in ('entities','fingerprint','protected_fingerprint','journal_fingerprint')}
+        result['entity_count'] = len(a['entities'])
+        result['window_coverage'] = window_coverage(s,now())
+        result['source_after'] = fingerprints(c)
+        assert result['source_after'] == result['source_before'], 'Source changed; preservation not certified'
+        c.rollback()
+        result['metadata_final'] = metadata(c)
+        assert result['metadata_final'] == result['metadata_before']
+        result['status'] = 'PASS'
+    except Exception as exc:
+        result['error_type'] = type(exc).__name__
+        result['error_number'] = getattr(exc,'errno',None)
+        # Assertion/ValueError messages are fixed local checks; connector text may include secrets.
+        if isinstance(exc,(AssertionError,ValueError)):
+            result['check_error'] = str(exc)
+        raise
+    finally:
+        c.rollback()
+        c.execute("SELECT RELEASE_LOCK('cmm_history_admin_v1')")
+        c.close()
+        result['protected_files_unchanged'] = all(sha(ROOT/p) == h for p,h in baseline.items())
+        save(mode+'_execution.json',result)
+        print(json.dumps({k:result[k] for k in ('mode','status','history_status','error_type','error_number','check_error') if k in result}))
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('mode',choices=['inspect','activate'])
+    main(parser.parse_args().mode)

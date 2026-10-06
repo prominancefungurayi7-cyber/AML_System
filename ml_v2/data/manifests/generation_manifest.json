@@ -1,0 +1,745 @@
+{
+  "actual_rows": {
+    "final_test": 15000,
+    "independent": 10000,
+    "train": 60000,
+    "validation": 15000
+  },
+  "audit_status": "pending independent structural audit",
+  "custody": "user-approved software-level separation; not external custody or OS confinement",
+  "dataset": "epocash_aml_synthetic_100k_v2",
+  "design_hashes": {
+    "allocation_manifest.json": "5be96ab6f4c26e087a42abcb69e1830f71ff8e66754b3809ddbc562408ea5442",
+    "dataset_schema.json": "35aef7a6901b23130b14a58bd2ba3605bd80e731790afd508df7644c61184f81",
+    "scenario_manifest.json": "0ad8883cca704c39da2e55838828eba5861e742877fdcac3f8a61dca9b40ff85"
+  },
+  "file_hashes": {
+    "development/train/agents.csv": "575cee41d76c1391b104a6094e015239c64c0f8acbf2694739f5cff8300ae29b",
+    "development/train/episode_plans.json": "1438a522845dd94fe607d3265b7778b28820eb904ef774513ec213cc0b280de7",
+    "development/train/ground_truth.csv": "1afdd1b6310a8099c5a2548a65cb541d641e2d28a627df5cc9f95ced3f0b12cc",
+    "development/train/membership_commitment.json": "94c8d59f6eb7b02398f8388d1eadb3e220c8e2241fc5d42822a48a52ad245c6f",
+    "development/train/partition_role.json": "f2c474dfad7ea9dbb628b7d0edd01ea4ff6da75bf3c40178fc1d270f59545dd6",
+    "development/train/transactions.csv": "1ebb78b90fece174c4a598f3df2c5ca8d0eebf533aa7f3c69cd8e8cfacc21f76",
+    "development/train/wallets.csv": "707c16fdc6f67b3385a139bb008080900888284826f8e84d3a5bdfc551f339af",
+    "development/validation/agents.csv": "2af3c7f0f1f387c74ff9ab84e938f738d1909624e3a8d1385aa112363c408441",
+    "development/validation/episode_plans.json": "32c7f866d77c1fb5d87718e915ce02f63c92ff04960d324a78a0b3fd469551a5",
+    "development/validation/ground_truth.csv": "c0cedd9c10f4be180bf7396e52a09c38c689e8d16baa57f064afb5d13636e764",
+    "development/validation/membership_commitment.json": "9a95256933453182edd2c3c15be036a11373dc275ed7f416a253e7ff0b6ac09c",
+    "development/validation/partition_role.json": "44c3d968c84b2b77ae61269e15700b9a651a48e34336100be13421d8c0b1ef43",
+    "development/validation/transactions.csv": "7ef7e87eae13153e5a21032ec179ea8747b5bd849708ee6b5a3937d94e07d0c2",
+    "development/validation/wallets.csv": "b14e68603701420021bad79ea6d2123214cc816d03e48424d1f05aba33c2da54",
+    "holdout/final_test/agents.csv": "d7553a2890afd3839bf782f79b3730303b4ad19c469d77a5e7d97d47b82e70a4",
+    "holdout/final_test/episode_plans.json": "185509218dbc2533a8769907b009a20f4b20619d9e48d5807b41e4314eb3b5c6",
+    "holdout/final_test/ground_truth.csv": "bd5c2c71e3852564386c9043359f18b8d401e3270db47f82c8aca032b99e7bc7",
+    "holdout/final_test/membership_commitment.json": "fd016af7a4e764536260ebc7c92c42b3690ec6b6e5c512c39b85cec5899206a4",
+    "holdout/final_test/partition_role.json": "e2be8a69260f0ace6b7787f0b02c80d72e4c325ba9b092b2b39338bb3cbc3530",
+    "holdout/final_test/transactions.csv": "b50f2f7ac2aa60ce15234d4550874326b4932fa88d3742ac4f7a44c125d6f80c",
+    "holdout/final_test/wallets.csv": "749b69192bb30daa2bfa9e059f931494019109dd9422394bd66290e837cd6f20",
+    "holdout/independent/agents.csv": "a54f70745d1b6d68a0a2573ce7edc436d52f94a7d82ab93fb1988ee18517ed80",
+    "holdout/independent/episode_plans.json": "25842045e04df8efa577a5e207f576fe38bddccdfeb762842ea5ce975a61d900",
+    "holdout/independent/ground_truth.csv": "479c43eb83e8b5c40dd372811c89ddb53ac518986af092f5d5df59329f39de43",
+    "holdout/independent/membership_commitment.json": "3366f56b7b126679943c5181def9b3026aa671e8aa9043de2618c1343efe14af",
+    "holdout/independent/partition_role.json": "f60ac7e4782f484db71aed7aeae6745bca4612595c62ea1593e35db1ec1d1b13",
+    "holdout/independent/transactions.csv": "6fa6511cd8f9293c9f564e0edc1d9e00b7594be0fb94eb9bc92a665a71fb8483",
+    "holdout/independent/wallets.csv": "2bb975b6cc441d5fad51e6e73e91a04cd7970be51e80295064be009a112b6cbe"
+  },
+  "generator_version": 1,
+  "horizon_end_exclusive": "2025-06-30T00:00:00.000000Z",
+  "horizon_start": "2025-01-01T00:00:00.000000Z",
+  "independent_generation_specification_version": 1,
+  "monetary_unit": "USD cents",
+  "partition_roles": {
+    "final_test": "holdout",
+    "independent": "holdout",
+    "train": "development",
+    "validation": "development"
+  },
+  "schema_version": 1,
+  "seed": 20260921,
+  "seed_streams": "SHA256(seed:partition), separate entity streams, label-independent global tie stream",
+  "source_hashes": {
+    "src/contracts.py": "57beade2dc06cbbc51f4b3ae4f4f883ebeb0fc36d036ba98ad92214dd6252331",
+    "src/dataset_audit.py": "2e15fe205e1f8b44ab8b9c72caebb1cc991a1e15e632fd04751481f3d690f301",
+    "src/dataset_generator.py": "187738ab57e2bd48072e256f941501b4e425ae08986be2ea2a37a1957b496d92",
+    "src/prepare_design.py": "5424774db289bc1644297131c4cebcaf7d094191363c2e1b429b24ff4370a5a2",
+    "src/run_stage2.py": "568ce5211044629bea6cb80cc0f0613225bdf4b46604b7744e9a1a78d555f72d"
+  },
+  "targets": {
+    "final_test": {
+      "agent_bands": [
+        12,
+        7,
+        5
+      ],
+      "agents": 24,
+      "family_categories": {
+        "A1": [
+          38,
+          37,
+          75,
+          0
+        ],
+        "A2": [
+          38,
+          37,
+          75,
+          0
+        ],
+        "A3": [
+          37,
+          38,
+          75,
+          0
+        ],
+        "A4": [
+          37,
+          38,
+          75,
+          0
+        ],
+        "N1": [
+          25,
+          25,
+          17,
+          83
+        ],
+        "N2": [
+          25,
+          25,
+          17,
+          83
+        ],
+        "N3": [
+          0,
+          0,
+          25,
+          125
+        ],
+        "N4": [
+          25,
+          25,
+          16,
+          84
+        ],
+        "S1": [
+          57,
+          56,
+          19,
+          18
+        ],
+        "S2": [
+          56,
+          56,
+          19,
+          19
+        ],
+        "S3": [
+          56,
+          56,
+          19,
+          19
+        ],
+        "S4": [
+          56,
+          57,
+          18,
+          19
+        ]
+      },
+      "family_strength": {
+        "moderate": 75,
+        "strong": 45,
+        "weak": 30
+      },
+      "hard_categories": {
+        "H1": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H2": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H3": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H4": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H5": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H6": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H7": [
+          275,
+          275,
+          275,
+          0
+        ],
+        "H8": [
+          275,
+          275,
+          275,
+          0
+        ]
+      },
+      "normal": 13200,
+      "normal_blocks": [
+        2200,
+        2200,
+        2200,
+        2200,
+        2200,
+        2200
+      ],
+      "positive_blocks": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "routine_categories": [
+        1922,
+        1925,
+        1514,
+        1239
+      ],
+      "suspicious": 1800,
+      "transactions": 15000,
+      "wallet_profiles": [
+        180,
+        75,
+        30,
+        15
+      ],
+      "wallets": 300
+    },
+    "independent": {
+      "agent_bands": [
+        8,
+        5,
+        3
+      ],
+      "agents": 16,
+      "family_categories": {
+        "A1": [
+          25,
+          25,
+          50,
+          0
+        ],
+        "A2": [
+          25,
+          25,
+          50,
+          0
+        ],
+        "A3": [
+          25,
+          25,
+          50,
+          0
+        ],
+        "A4": [
+          25,
+          25,
+          50,
+          0
+        ],
+        "N1": [
+          17,
+          17,
+          11,
+          55
+        ],
+        "N2": [
+          17,
+          17,
+          11,
+          55
+        ],
+        "N3": [
+          0,
+          0,
+          17,
+          83
+        ],
+        "N4": [
+          16,
+          16,
+          11,
+          57
+        ],
+        "S1": [
+          38,
+          37,
+          13,
+          12
+        ],
+        "S2": [
+          38,
+          37,
+          13,
+          12
+        ],
+        "S3": [
+          37,
+          38,
+          12,
+          13
+        ],
+        "S4": [
+          37,
+          38,
+          12,
+          13
+        ]
+      },
+      "family_strength": {
+        "moderate": 50,
+        "strong": 30,
+        "weak": 20
+      },
+      "hard_categories": {
+        "H1": [
+          138,
+          138,
+          137,
+          137
+        ],
+        "H2": [
+          138,
+          138,
+          137,
+          137
+        ],
+        "H3": [
+          138,
+          138,
+          137,
+          137
+        ],
+        "H4": [
+          46,
+          46,
+          137,
+          321
+        ],
+        "H5": [
+          46,
+          46,
+          137,
+          321
+        ],
+        "H6": [
+          46,
+          46,
+          137,
+          321
+        ],
+        "H7": [
+          184,
+          183,
+          183,
+          0
+        ],
+        "H8": [
+          184,
+          183,
+          183,
+          0
+        ]
+      },
+      "normal": 8800,
+      "normal_blocks": [
+        1467,
+        1467,
+        1467,
+        1467,
+        1466,
+        1466
+      ],
+      "positive_blocks": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "routine_categories": [
+        1280,
+        1282,
+        1012,
+        826
+      ],
+      "suspicious": 1200,
+      "transactions": 10000,
+      "wallet_profiles": [
+        120,
+        50,
+        20,
+        10
+      ],
+      "wallets": 200
+    },
+    "train": {
+      "agent_bands": [
+        48,
+        29,
+        19
+      ],
+      "agents": 96,
+      "family_categories": {
+        "A1": [
+          150,
+          150,
+          300,
+          0
+        ],
+        "A2": [
+          150,
+          150,
+          300,
+          0
+        ],
+        "A3": [
+          150,
+          150,
+          300,
+          0
+        ],
+        "A4": [
+          150,
+          150,
+          300,
+          0
+        ],
+        "N1": [
+          100,
+          100,
+          67,
+          333
+        ],
+        "N2": [
+          100,
+          100,
+          67,
+          333
+        ],
+        "N3": [
+          0,
+          0,
+          100,
+          500
+        ],
+        "N4": [
+          100,
+          100,
+          66,
+          334
+        ],
+        "S1": [
+          225,
+          225,
+          75,
+          75
+        ],
+        "S2": [
+          225,
+          225,
+          75,
+          75
+        ],
+        "S3": [
+          225,
+          225,
+          75,
+          75
+        ],
+        "S4": [
+          225,
+          225,
+          75,
+          75
+        ]
+      },
+      "family_strength": {
+        "moderate": 300,
+        "strong": 180,
+        "weak": 120
+      },
+      "hard_categories": {
+        "H1": [
+          825,
+          825,
+          825,
+          825
+        ],
+        "H2": [
+          825,
+          825,
+          825,
+          825
+        ],
+        "H3": [
+          825,
+          825,
+          825,
+          825
+        ],
+        "H4": [
+          275,
+          275,
+          825,
+          1925
+        ],
+        "H5": [
+          275,
+          275,
+          825,
+          1925
+        ],
+        "H6": [
+          275,
+          275,
+          825,
+          1925
+        ],
+        "H7": [
+          1100,
+          1100,
+          1100,
+          0
+        ],
+        "H8": [
+          1100,
+          1100,
+          1100,
+          0
+        ]
+      },
+      "normal": 52800,
+      "normal_blocks": [
+        8800,
+        8800,
+        8800,
+        8800,
+        8800,
+        8800
+      ],
+      "positive_blocks": [
+        1200,
+        1200,
+        1200,
+        1200,
+        1200,
+        1200
+      ],
+      "routine_categories": [
+        7700,
+        7700,
+        6050,
+        4950
+      ],
+      "suspicious": 7200,
+      "transactions": 60000,
+      "wallet_profiles": [
+        720,
+        300,
+        120,
+        60
+      ],
+      "wallets": 1200
+    },
+    "validation": {
+      "agent_bands": [
+        12,
+        7,
+        5
+      ],
+      "agents": 24,
+      "family_categories": {
+        "A1": [
+          38,
+          37,
+          75,
+          0
+        ],
+        "A2": [
+          38,
+          37,
+          75,
+          0
+        ],
+        "A3": [
+          37,
+          38,
+          75,
+          0
+        ],
+        "A4": [
+          37,
+          38,
+          75,
+          0
+        ],
+        "N1": [
+          25,
+          25,
+          17,
+          83
+        ],
+        "N2": [
+          25,
+          25,
+          17,
+          83
+        ],
+        "N3": [
+          0,
+          0,
+          25,
+          125
+        ],
+        "N4": [
+          25,
+          25,
+          16,
+          84
+        ],
+        "S1": [
+          57,
+          56,
+          19,
+          18
+        ],
+        "S2": [
+          56,
+          56,
+          19,
+          19
+        ],
+        "S3": [
+          56,
+          56,
+          19,
+          19
+        ],
+        "S4": [
+          56,
+          57,
+          18,
+          19
+        ]
+      },
+      "family_strength": {
+        "moderate": 75,
+        "strong": 45,
+        "weak": 30
+      },
+      "hard_categories": {
+        "H1": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H2": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H3": [
+          207,
+          206,
+          206,
+          206
+        ],
+        "H4": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H5": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H6": [
+          69,
+          69,
+          206,
+          481
+        ],
+        "H7": [
+          275,
+          275,
+          275,
+          0
+        ],
+        "H8": [
+          275,
+          275,
+          275,
+          0
+        ]
+      },
+      "normal": 13200,
+      "normal_blocks": [
+        2200,
+        2200,
+        2200,
+        2200,
+        2200,
+        2200
+      ],
+      "positive_blocks": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "routine_categories": [
+        1922,
+        1925,
+        1514,
+        1239
+      ],
+      "suspicious": 1800,
+      "transactions": 15000,
+      "wallet_profiles": [
+        180,
+        75,
+        30,
+        15
+      ],
+      "wallets": 300
+    }
+  }
+}

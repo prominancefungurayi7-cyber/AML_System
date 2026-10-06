@@ -1,0 +1,15 @@
+{
+  "access": "Separate challenge-only fail-closed entry point requires recorded authorization, requester/scope/UTC, frozen model/preprocessor/feature/threshold/metric/bootstrap/protocol hashes and seal compatibility. Reject fitting, transforms fitted on challenge, writeback and original-holdout paths. Development loader accepts only existing Train/Validation. Log all authorized attempts. No developer-controlled filenames or traversal escapes.",
+  "freeze": "Future Train-only transforms and fit, Validation-only selection under separately approved model plan; maximum36 fits inherited. Feature schema, preprocessing, model, threshold, calibration, optional diagnostics, all metric/slice/bootstrap code frozen before challenge scores/support details are released. Initial threshold0.50; any optimized threshold or calibration must be separately authorized and completed using development data only before freeze. No challenge-informed early stopping.",
+  "isolation": "Require separate OS account or remote isolated execution with no developer read permission and no shared working-directory plaintext. Custodian staff/process has no model-selection role. Do not reuse Stage16R current-user DPAPI as sufficient independent custody for the new challenge. If unavailable, generation is BLOCKED; do not weaken access to proceed.",
+  "one_evaluation": "One frozen primary model; optional predeclared diagnostic artifacts only, not an algorithm leaderboard. Custodian computes sealed predictions/features only at the authorized later evaluation stage. Result-informed later development retires independence of this challenge; future claims need fresh evaluation. No generation/features/models now.",
+  "original_holdouts": "Remain SEALED_QUARANTINED with existing public support FAIL certificates. No old status change, private counts, re-evaluation or reinterpretation. New challenge never repairs these certificates.",
+  "protocol_version": "v4.challenge.protocol.1",
+  "public_pre_freeze_certificates": [
+    "technical_schema_accounting_isolation_PASS_FAIL",
+    "causal_target_replay_PASS_FAIL",
+    "all_support_objectives_PASS_FAIL",
+    "seal_integrity_PASS_FAIL"
+  ],
+  "sealing": "Custodian generates exactly once after approval and implementation gates; seals raw history/scored ledgers, truth, provenance, private ID registry, salt, code/environment and private hash manifest. Public salted commitment root, schema/protocol/code hashes and fixed aggregate certificates only. No rows, prevalence, family identities of failures, detailed counts or labels before authorized release."
+}

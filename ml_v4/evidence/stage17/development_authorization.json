@@ -1,0 +1,17 @@
+{
+  "allowed": [
+    "frozen implementation",
+    "hand fixtures",
+    "Train/Validation extraction and diagnostics"
+  ],
+  "blocked": [
+    "training",
+    "threshold selection",
+    "challenge generation",
+    "quarantined evaluation access",
+    "Stage18 progression"
+  ],
+  "custody_decision_unchanged": "Stage16V C; challenge progression blocked",
+  "scope": "Explicit user Stage17 development-only authorization supersedes earlier feature-work stop for Train/Validation only.",
+  "started_utc": "2026-10-04T14:40:25.119524+00:00"
+}

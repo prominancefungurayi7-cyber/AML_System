@@ -1,0 +1,148 @@
+{
+  "train": {
+    "columns": {
+      "wallet_baseline_near_band_count_28d_offset_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          13.0
+        ],
+        "missing_count": 11830,
+        "missing_marker": -1,
+        "valid_count": 48170,
+        "valid_zero_count": 42414
+      },
+      "wallet_baseline_similar_amount_count_28d_offset_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          12.0
+        ],
+        "missing_count": 11830,
+        "missing_marker": -1,
+        "valid_count": 48170,
+        "valid_zero_count": 34727
+      },
+      "wallet_near_band_distinct_amount_count_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          12.0
+        ],
+        "missing_count": 0,
+        "missing_marker": null,
+        "valid_count": 60000,
+        "valid_zero_count": 54245
+      },
+      "wallet_similar_amount_value_minor_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          1.0,
+          1957.75,
+          4619.0,
+          12399.75,
+          4614253.0
+        ],
+        "missing_count": 0,
+        "missing_marker": null,
+        "valid_count": 60000,
+        "valid_zero_count": 0
+      }
+    },
+    "identical_column_pairs_involving_new_fields": [
+      [
+        "wallet_near_band_distinct_amount_count_7d",
+        "wallet_near_band_count_7d"
+      ]
+    ],
+    "nonredundancy_evidence": "Four hand witnesses establish nonidentity as functions; finite-data column equality separately audited",
+    "original40_quality": "Exact byte parity inherits frozen Stage17 field range/marker results; not silently redefined",
+    "shared_baseline_missingness_identical": true
+  },
+  "validation": {
+    "columns": {
+      "wallet_baseline_near_band_count_28d_offset_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          8.0
+        ],
+        "missing_count": 3190,
+        "missing_marker": -1,
+        "valid_count": 11810,
+        "valid_zero_count": 10393
+      },
+      "wallet_baseline_similar_amount_count_28d_offset_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          11.0
+        ],
+        "missing_count": 3190,
+        "missing_marker": -1,
+        "valid_count": 11810,
+        "valid_zero_count": 8553
+      },
+      "wallet_near_band_distinct_amount_count_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          8.0
+        ],
+        "missing_count": 0,
+        "missing_marker": null,
+        "valid_count": 15000,
+        "valid_zero_count": 13570
+      },
+      "wallet_similar_amount_value_minor_7d": {
+        "constant": false,
+        "dtype": "float64",
+        "min_q25_median_q75_max": [
+          2.0,
+          1997.75,
+          4634.5,
+          12576.5,
+          3353069.0
+        ],
+        "missing_count": 0,
+        "missing_marker": null,
+        "valid_count": 15000,
+        "valid_zero_count": 0
+      }
+    },
+    "identical_column_pairs_involving_new_fields": [
+      [
+        "wallet_near_band_distinct_amount_count_7d",
+        "wallet_near_band_count_7d"
+      ]
+    ],
+    "nonredundancy_evidence": "Four hand witnesses establish nonidentity as functions; finite-data column equality separately audited",
+    "original40_quality": "Exact byte parity inherits frozen Stage17 field range/marker results; not silently redefined",
+    "shared_baseline_missingness_identical": true
+  }
+}

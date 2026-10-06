@@ -1,0 +1,53 @@
+{
+  "accounting": "Inherit integer cents, schema, cash/float transitions and fixed Stage 15 opening capacities. Accounting failure stops and retains the draw, with no funding injection or replacement. No balances become features or labels.",
+  "arms": {
+    "reference_challenge": {
+      "scored": 24000,
+      "units": 12,
+      "warmup": 28800
+    },
+    "shifted_challenge": {
+      "scored": 24000,
+      "units": 12,
+      "warmup": 28800
+    }
+  },
+  "budget": {
+    "agents": 192,
+    "agents_per_unit": 8,
+    "family_events_per_family_per_unit": 120,
+    "family_events_per_unit": 1440,
+    "hard_events_per_matched_family_per_unit": 30,
+    "hard_origin_events_per_unit": 360,
+    "local_units": 24,
+    "routine_events_per_unit": 200,
+    "scored_events": 48000,
+    "scored_per_unit": 2000,
+    "total_events": 105600,
+    "wallets": 2400,
+    "wallets_per_unit": 100,
+    "warmup_events": 57600,
+    "warmup_per_unit": 2400
+  },
+  "dataset_id": "mobile_money_v4_independent_challenge_1",
+  "exposure_change": "2000 scored events per 100-wallet/8-agent unit over 180d is lower than V4 5000, with more structured opportunity share and denser warm-up. This intentional challenge population is not a same-distribution replication of V4. Later baseline eligibility may still be inadequate.",
+  "horizon": {
+    "date_policy": "Scoring starts exactly 56 UTC days later, ends 180 days after that, exclusive. Absolute calendar time is not a feature.",
+    "scored_days": 180,
+    "start": "2028-01-01T00:00:00Z",
+    "warmup_days": 56
+  },
+  "identity": "Fresh opaque 128-bit wallet/agent IDs and unique random positive 63-bit transaction IDs, never model inputs. No cross-unit/arm/V4 event or history. Custodian alone checks against pre-existing private ID registries under its existing authority; this stage neither opens old seals nor creates that registry. If registry is unavailable, require isolated custodian registry access approval or block generation; developers must not obtain private IDs.",
+  "overrides": "Challenge-only population/budget/history/episode recipes below explicitly supersede inherited generation choices. All original V4 files remain unchanged. Frozen predicate, temporal, feature and observable contracts retain authority.",
+  "population_laws": "Inherit Stage 15 local catchments, weekly retention, preferences, overlapping activity/profile/archetype distributions, shocks and active-candidate restrictions, with exactly one of each archetype per reference unit. All units have disjoint entities and state. Ten randomly selected wallets per unit first appear uniformly during scored days 0..60. Warm-up uses the other 90; private activation never substitutes for observed coverage.",
+  "protocol_version": "v4.challenge.protocol.1",
+  "rationale": "24 units provide 12 independent community clusters per arm, versus three in V4 Validation. 48000 scored rows are a bounded enriched study, not another 100k population. 200 positive rows per family would consume 5% of scored rows if disjoint, but this arithmetic is not a yield prediction. 56d warm-up and 2400 history rows per unit address observed eligibility attrition. This is the smallest proposed budget for these deliberately limited objectives, not a proven mathematical minimum or a power guarantee. No pilot draw or support-driven budget escalation.",
+  "shift": "Shifted arm uses Stage 15 Independent profile mix, type/assisted probabilities, 1.15 ordinary amount multiplier and seasonal amplitude, and the Stage 15A bounded S4/H3 motif shift. Across 96 shifted agents use counts [6,12,12,18,18,12,12,6], randomly permuted into 12 units. Keep per-unit size/budgets/horizon and target unchanged. Other population and challenge recipe laws are identical across arms. This is a joint shift comparison, not a causal estimate of any single factor.",
+  "status": "DESIGN_ONLY; no seed instantiated or data created",
+  "warmup_allocation": {
+    "agent_service": 800,
+    "directed_network": 400,
+    "method": "All are real observable events. Randomly permute the 90 initially active wallets and cycle focal subjects for wallet/network allocations; permute 8 agents and cycle for service allocation. Timestamp uniformly over the 56d interval; counterparties/type/amounts use the population laws. Wallet activity uses ordinary type probabilities; network uses W2W; agent services use ordinary cash/assisted type weights. Every scheduled event is counted once, not one event in two quotas. No family motif or target-based rejection. Labels, if stored diagnostically, are excluded from scored metrics.",
+    "wallet_activity": 1200
+  }
+}

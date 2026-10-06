@@ -1,0 +1,75 @@
+{
+  "accounting_policy": "Model a closed synthetic ledger with each wallet opening at USD 1000000 electronic value and each agent at USD 2000000 electronic float and USD 2000000 cash. These deliberately ample fixed inventories are simulator safeguards, not realistic wealth estimates. They are identical across origins and excluded from observables supplied to X and the target. Apply Cash-In/Out/W2W transitions exactly and forbid any negative inventory. No unrecorded top-ups. If a fixed-seed proposed event is infeasible, stop that materialization and report capacity failure; do not resample for target or silently alter amounts. Capacity adequacy must be tested before generation and empirically checked afterward.",
+  "additional_warmup_events": 24000,
+  "amount_process": "For background and all recipe origins use a shared mixture: 90% lognormal USD median 35, log-SD 1.0; 10% lognormal median 1800, log-SD 1.0; truncate by rejection to [0.01,15000], round half-up to cents. Recipe-specific amount relations are allowed but use the same rounding, jitter and cents distribution across origins. No origin-specific precision.",
+  "currency": "USD synthetic accounting unit, integer cents",
+  "dataset_id": "mobile_money_aml_synthetic_100k_v4",
+  "design_version": "v4.stage 15.design.1",
+  "excluded_claims": [
+    "criminal intent or guilt",
+    "measured operator distributions",
+    "real-world detection effectiveness",
+    "regulatory certification"
+  ],
+  "observable_fields": [
+    "transaction_id",
+    "event_timestamp",
+    "sender_wallet",
+    "receiver_wallet",
+    "amount_minor",
+    "currency",
+    "transaction_type",
+    "channel",
+    "agent_id",
+    "serviced_wallet",
+    "agent_flow_direction"
+  ],
+  "private_diagnostic_fields": [
+    "scenario_id",
+    "scenario_family",
+    "campaign_id",
+    "origin",
+    "strength",
+    "archetype",
+    "profile",
+    "population_unit",
+    "activation_schedule",
+    "intended_onset"
+  ],
+  "research_task": "Predict a causal observable suspicious-pattern review target for human review in a generic Zimbabwean mobile-money setting.",
+  "scale_justification": "100000 model-scored rows retained. Explicit 24% history overhead supplies 42 days of observable prehistory; it does not enlarge the scored benchmark or imply complete eligibility.",
+  "schema_version": 1,
+  "scope": [
+    "structuring",
+    "network",
+    "agent"
+  ],
+  "scored_transactions": 100000,
+  "stage15_permissions": {
+    "access_V3_holdouts": false,
+    "construct_features": false,
+    "evaluate_targets": false,
+    "fit": false,
+    "generate": false
+  },
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "target": "y(T)=1 iff at least one of the 12 eligible observable predicates is true; otherwise 0. Ineligibility is separately recorded for audit, never interpreted as proof of normality.",
+  "threshold_language": "All numeric cutoffs are synthetic analytical assumptions. S4 uses a SYNTHETIC ANALYTICAL THRESHOLD of USD 10000, not a Zimbabwe reporting requirement.",
+  "total_observable_ledger_events": 124000,
+  "transaction_mix": {
+    "assisted_share_of_W2W": 0.35,
+    "background_type_probabilities": {
+      "cash_in": 0.25,
+      "cash_out": 0.25,
+      "wallet_to_wallet": 0.5
+    },
+    "recipe_exceptions": "Graph opportunities require W2W; cash opportunities require cash. Apply the same exceptions to matched hard-origin opportunities; audit channel/type associations.",
+    "serviced_endpoint": "sender/receiver each 0.5; sampled before target evaluation"
+  },
+  "transaction_rules": {
+    "assisted_W2W": "Transfers electronic value between wallets; agent service history updates once; neither agent cash nor electronic float changes.",
+    "cash_in": "sender=receiver=serviced_wallet; named agent; agent channel; wallet electronic balance increases, agent electronic float decreases and physical cash increases.",
+    "cash_out": "sender=receiver=serviced_wallet; named agent; agent channel; wallet electronic balance decreases, agent electronic float increases and physical cash decreases.",
+    "wallet_to_wallet": "sender != receiver; positive amount; direct_wallet has no agent/serviced wallet, or agent channel has a named agent and serviced_wallet equal to exactly one endpoint; one agent service."
+  }
+}

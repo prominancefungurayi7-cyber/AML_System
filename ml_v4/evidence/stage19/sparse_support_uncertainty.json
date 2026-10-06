@@ -1,0 +1,480 @@
+{
+  "nine_shortfalls_retained": [
+    "S1",
+    "S2",
+    "S4",
+    "N1",
+    "N3",
+    "N4",
+    "A2",
+    "A3",
+    "A4"
+  ],
+  "partitions": {
+    "train": {
+      "A1": {
+        "actual": 5773,
+        "clusters": 2273,
+        "maximum_positive_cluster_share": 0.002944742768058202,
+        "maximum_positive_subject_share": 0.020613199376407414,
+        "minimum": 1200,
+        "required_percent": 481.0833333333333,
+        "selected_recall": {
+          "denominator": 5773,
+          "numerator": 5772,
+          "rate": 0.999826779837173,
+          "wilson95": [
+            0.9990193674790573,
+            0.999969422519962
+          ]
+        },
+        "subjects": 90,
+        "units": 12
+      },
+      "A2": {
+        "actual": 755,
+        "clusters": 339,
+        "maximum_positive_cluster_share": 0.018543046357615896,
+        "maximum_positive_subject_share": 0.059602649006622516,
+        "minimum": 1200,
+        "required_percent": 62.916666666666664,
+        "selected_recall": {
+          "denominator": 755,
+          "numerator": 610,
+          "rate": 0.8079470198675497,
+          "wilson95": [
+            0.7783173506473177,
+            0.8344587544054364
+          ]
+        },
+        "subjects": 74,
+        "units": 12
+      },
+      "A3": {
+        "actual": 883,
+        "clusters": 249,
+        "maximum_positive_cluster_share": 0.015855039637599093,
+        "maximum_positive_subject_share": 0.056625141562853906,
+        "minimum": 1200,
+        "required_percent": 73.58333333333333,
+        "selected_recall": {
+          "denominator": 883,
+          "numerator": 883,
+          "rate": 1.0,
+          "wilson95": [
+            0.9956682230513316,
+            0.9999999999999998
+          ]
+        },
+        "subjects": 77,
+        "units": 12
+      },
+      "A4": {
+        "actual": 812,
+        "clusters": 466,
+        "maximum_positive_cluster_share": 0.009852216748768473,
+        "maximum_positive_subject_share": 0.07881773399014778,
+        "minimum": 1200,
+        "required_percent": 67.66666666666667,
+        "selected_recall": {
+          "denominator": 812,
+          "numerator": 591,
+          "rate": 0.7278325123152709,
+          "wilson95": [
+            0.6961996049065485,
+            0.7573198037629775
+          ]
+        },
+        "subjects": 75,
+        "units": 12
+      },
+      "N1": {
+        "actual": 414,
+        "clusters": 187,
+        "maximum_positive_cluster_share": 0.024154589371980676,
+        "maximum_positive_subject_share": 0.028985507246376812,
+        "minimum": 1200,
+        "required_percent": 34.5,
+        "selected_recall": {
+          "denominator": 414,
+          "numerator": 356,
+          "rate": 0.8599033816425121,
+          "wilson95": [
+            0.8231499428820414,
+            0.8900389784699735
+          ]
+        },
+        "subjects": 116,
+        "units": 12
+      },
+      "N2": {
+        "actual": 1690,
+        "clusters": 582,
+        "maximum_positive_cluster_share": 0.00650887573964497,
+        "maximum_positive_subject_share": 0.0242603550295858,
+        "minimum": 1200,
+        "required_percent": 140.83333333333334,
+        "selected_recall": {
+          "denominator": 1690,
+          "numerator": 1561,
+          "rate": 0.9236686390532545,
+          "wilson95": [
+            0.9100260086141445,
+            0.935389524928071
+          ]
+        },
+        "subjects": 333,
+        "units": 12
+      },
+      "N3": {
+        "actual": 550,
+        "clusters": 453,
+        "maximum_positive_cluster_share": 0.01090909090909091,
+        "maximum_positive_subject_share": 0.01818181818181818,
+        "minimum": 1200,
+        "required_percent": 45.833333333333336,
+        "selected_recall": {
+          "denominator": 550,
+          "numerator": 516,
+          "rate": 0.9381818181818182,
+          "wilson95": [
+            0.9148565375113362,
+            0.9554283959425611
+          ]
+        },
+        "subjects": 355,
+        "units": 12
+      },
+      "N4": {
+        "actual": 559,
+        "clusters": 348,
+        "maximum_positive_cluster_share": 0.02146690518783542,
+        "maximum_positive_subject_share": 0.026833631484794274,
+        "minimum": 1200,
+        "required_percent": 46.583333333333336,
+        "selected_recall": {
+          "denominator": 559,
+          "numerator": 461,
+          "rate": 0.8246869409660107,
+          "wilson95": [
+            0.790979381191994,
+            0.8539622862327308
+          ]
+        },
+        "subjects": 258,
+        "units": 12
+      },
+      "S1": {
+        "actual": 456,
+        "clusters": 147,
+        "maximum_positive_cluster_share": 0.03289473684210526,
+        "maximum_positive_subject_share": 0.04824561403508772,
+        "minimum": 1200,
+        "required_percent": 38.0,
+        "selected_recall": {
+          "denominator": 456,
+          "numerator": 443,
+          "rate": 0.9714912280701754,
+          "wilson95": [
+            0.9518394854468425,
+            0.9832651244884046
+          ]
+        },
+        "subjects": 132,
+        "units": 12
+      },
+      "S2": {
+        "actual": 112,
+        "clusters": 43,
+        "maximum_positive_cluster_share": 0.07142857142857142,
+        "maximum_positive_subject_share": 0.07142857142857142,
+        "minimum": 1200,
+        "required_percent": 9.333333333333334,
+        "selected_recall": {
+          "denominator": 112,
+          "numerator": 68,
+          "rate": 0.6071428571428571,
+          "wilson95": [
+            0.5145809444311987,
+            0.6925985144160546
+          ]
+        },
+        "subjects": 37,
+        "units": 11
+      },
+      "S3": {
+        "actual": 2292,
+        "clusters": 673,
+        "maximum_positive_cluster_share": 0.006544502617801047,
+        "maximum_positive_subject_share": 0.017015706806282723,
+        "minimum": 1200,
+        "required_percent": 191.0,
+        "selected_recall": {
+          "denominator": 2292,
+          "numerator": 2084,
+          "rate": 0.9092495636998255,
+          "wilson95": [
+            0.896794478767,
+            0.9203350653618284
+          ]
+        },
+        "subjects": 397,
+        "units": 12
+      },
+      "S4": {
+        "actual": 128,
+        "clusters": 57,
+        "maximum_positive_cluster_share": 0.046875,
+        "maximum_positive_subject_share": 0.0546875,
+        "minimum": 1200,
+        "required_percent": 10.666666666666666,
+        "selected_recall": {
+          "denominator": 128,
+          "numerator": 42,
+          "rate": 0.328125,
+          "wilson95": [
+            0.25282858521157203,
+            0.41343760087840264
+          ]
+        },
+        "subjects": 54,
+        "units": 12
+      }
+    },
+    "validation": {
+      "A1": {
+        "actual": 1467,
+        "clusters": 570,
+        "maximum_positive_cluster_share": 0.010906612133605999,
+        "maximum_positive_subject_share": 0.08316291751874574,
+        "minimum": 300,
+        "required_percent": 489.0,
+        "selected_recall": {
+          "denominator": 1467,
+          "numerator": 1467,
+          "rate": 1.0,
+          "wilson95": [
+            0.9973881619883473,
+            1
+          ]
+        },
+        "subjects": 23,
+        "units": 3
+      },
+      "A2": {
+        "actual": 148,
+        "clusters": 60,
+        "maximum_positive_cluster_share": 0.07432432432432433,
+        "maximum_positive_subject_share": 0.14864864864864866,
+        "minimum": 300,
+        "required_percent": 49.333333333333336,
+        "selected_recall": {
+          "denominator": 148,
+          "numerator": 109,
+          "rate": 0.7364864864864865,
+          "wilson95": [
+            0.6601763937497572,
+            0.8008303395828736
+          ]
+        },
+        "subjects": 20,
+        "units": 3
+      },
+      "A3": {
+        "actual": 255,
+        "clusters": 80,
+        "maximum_positive_cluster_share": 0.050980392156862744,
+        "maximum_positive_subject_share": 0.19607843137254902,
+        "minimum": 300,
+        "required_percent": 85.0,
+        "selected_recall": {
+          "denominator": 255,
+          "numerator": 255,
+          "rate": 1.0,
+          "wilson95": [
+            0.9851584907526456,
+            1
+          ]
+        },
+        "subjects": 18,
+        "units": 3
+      },
+      "A4": {
+        "actual": 222,
+        "clusters": 138,
+        "maximum_positive_cluster_share": 0.04504504504504504,
+        "maximum_positive_subject_share": 0.21621621621621623,
+        "minimum": 300,
+        "required_percent": 74.0,
+        "selected_recall": {
+          "denominator": 222,
+          "numerator": 151,
+          "rate": 0.6801801801801802,
+          "wilson95": [
+            0.6162079912713478,
+            0.7380225844950301
+          ]
+        },
+        "subjects": 17,
+        "units": 3
+      },
+      "N1": {
+        "actual": 101,
+        "clusters": 42,
+        "maximum_positive_cluster_share": 0.07920792079207921,
+        "maximum_positive_subject_share": 0.0891089108910891,
+        "minimum": 300,
+        "required_percent": 33.666666666666664,
+        "selected_recall": {
+          "denominator": 101,
+          "numerator": 77,
+          "rate": 0.7623762376237624,
+          "wilson95": [
+            0.6707230292337555,
+            0.8348014953824273
+          ]
+        },
+        "subjects": 28,
+        "units": 3
+      },
+      "N2": {
+        "actual": 429,
+        "clusters": 147,
+        "maximum_positive_cluster_share": 0.02564102564102564,
+        "maximum_positive_subject_share": 0.0675990675990676,
+        "minimum": 300,
+        "required_percent": 143.0,
+        "selected_recall": {
+          "denominator": 429,
+          "numerator": 381,
+          "rate": 0.8881118881118881,
+          "wilson95": [
+            0.8547708451951814,
+            0.9145637104482687
+          ]
+        },
+        "subjects": 86,
+        "units": 3
+      },
+      "N3": {
+        "actual": 130,
+        "clusters": 111,
+        "maximum_positive_cluster_share": 0.03076923076923077,
+        "maximum_positive_subject_share": 0.038461538461538464,
+        "minimum": 300,
+        "required_percent": 43.333333333333336,
+        "selected_recall": {
+          "denominator": 130,
+          "numerator": 122,
+          "rate": 0.9384615384615385,
+          "wilson95": [
+            0.883262024591287,
+            0.9684910925262609
+          ]
+        },
+        "subjects": 87,
+        "units": 3
+      },
+      "N4": {
+        "actual": 144,
+        "clusters": 91,
+        "maximum_positive_cluster_share": 0.05555555555555555,
+        "maximum_positive_subject_share": 0.0625,
+        "minimum": 300,
+        "required_percent": 48.0,
+        "selected_recall": {
+          "denominator": 144,
+          "numerator": 123,
+          "rate": 0.8541666666666666,
+          "wilson95": [
+            0.7873314674040637,
+            0.9025961307821031
+          ]
+        },
+        "subjects": 74,
+        "units": 3
+      },
+      "S1": {
+        "actual": 132,
+        "clusters": 34,
+        "maximum_positive_cluster_share": 0.11363636363636363,
+        "maximum_positive_subject_share": 0.12121212121212122,
+        "minimum": 300,
+        "required_percent": 44.0,
+        "selected_recall": {
+          "denominator": 132,
+          "numerator": 126,
+          "rate": 0.9545454545454546,
+          "wilson95": [
+            0.9043778572359823,
+            0.9790039639439801
+          ]
+        },
+        "subjects": 31,
+        "units": 3
+      },
+      "S2": {
+        "actual": 23,
+        "clusters": 7,
+        "maximum_positive_cluster_share": 0.34782608695652173,
+        "maximum_positive_subject_share": 0.34782608695652173,
+        "minimum": 300,
+        "required_percent": 7.666666666666667,
+        "selected_recall": {
+          "denominator": 23,
+          "numerator": 11,
+          "rate": 0.4782608695652174,
+          "wilson95": [
+            0.2923686953994572,
+            0.6703757013578151
+          ]
+        },
+        "subjects": 7,
+        "units": 3
+      },
+      "S3": {
+        "actual": 546,
+        "clusters": 156,
+        "maximum_positive_cluster_share": 0.02197802197802198,
+        "maximum_positive_subject_share": 0.056776556776556776,
+        "minimum": 300,
+        "required_percent": 182.0,
+        "selected_recall": {
+          "denominator": 546,
+          "numerator": 492,
+          "rate": 0.9010989010989011,
+          "wilson95": [
+            0.8731865848785458,
+            0.9234064702849776
+          ]
+        },
+        "subjects": 104,
+        "units": 3
+      },
+      "S4": {
+        "actual": 16,
+        "clusters": 12,
+        "maximum_positive_cluster_share": 0.1875,
+        "maximum_positive_subject_share": 0.1875,
+        "minimum": 300,
+        "required_percent": 5.333333333333333,
+        "selected_recall": {
+          "denominator": 16,
+          "numerator": 4,
+          "rate": 0.25,
+          "wilson95": [
+            0.10181901984237346,
+            0.49498768929398645
+          ]
+        },
+        "subjects": 12,
+        "units": 3
+      }
+    }
+  },
+  "uncertainty": "Wilson bounds are descriptive independence-based; clustered sparse data and repeated Validation use prohibit precise generalization claims. No row bootstrap.",
+  "unit_counts": {
+    "train": 12,
+    "validation": 3
+  }
+}

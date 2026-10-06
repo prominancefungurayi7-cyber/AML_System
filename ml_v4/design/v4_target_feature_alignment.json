@@ -1,0 +1,590 @@
+{
+  "coverage_fix": "A1 target and growth/newness features require 35d and >=12 baseline services. Coverage feature caps at 35, not28.",
+  "design_version": "v4.stage 15.design.1",
+  "exceptions": "S3 uses calendar intervals explicitly. N3/N4 have no baseline eligibility. Cash change feature may describe an assisted W2W current service although A4 current cash-role condition remains false.",
+  "families": [
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current subject activity once",
+      "family": "S1",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_count_1h",
+          "window": "1h"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_value_1h",
+          "window": "1h"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_max_value_share_1h",
+          "window": "1h"
+        },
+        {
+          "eligibility": "Same S1 baseline coverage and >=4 baseline events; no recent predicate gates",
+          "missing": "-1 if baseline-ineligible",
+          "name": "wallet_activity_acceleration_1h",
+          "window": "1h + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 on first observation; never private activation",
+          "name": "wallet_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "wallet_count_1h",
+        "wallet_value_1h",
+        "wallet_max_value_share_1h",
+        "wallet_activity_acceleration_1h",
+        "wallet_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "B_1h",
+      "target_coverage": "28d+1h",
+      "target_recent": "1h"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current subject activity once",
+      "family": "S2",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_similar_amount_count_7d",
+          "window": "7d"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_similar_amount_share_7d",
+          "window": "7d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 on first observation; never private activation",
+          "name": "wallet_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "wallet_similar_amount_count_7d",
+        "wallet_similar_amount_share_7d",
+        "wallet_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "B_7d",
+      "target_coverage": "35d",
+      "target_recent": "7d"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current subject activity once",
+      "family": "S3",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_count_utc_day",
+          "window": "UTC day to current"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_active_hours_utc_day",
+          "window": "UTC day to current"
+        },
+        {
+          "eligibility": "Same S3 baseline coverage and >=4 baseline events; no recent predicate gates",
+          "missing": "-1 if baseline-ineligible",
+          "name": "wallet_day_count_growth",
+          "window": "UTC day + prior28 calendar days"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 on first observation; never private activation",
+          "name": "wallet_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "wallet_count_utc_day",
+        "wallet_active_hours_utc_day",
+        "wallet_day_count_growth",
+        "wallet_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "[d-28d,d)",
+      "target_coverage": "first observation <=d-28d",
+      "target_recent": "UTC [d,t]"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current subject activity once",
+      "family": "S4",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "Recent-only; no baseline eligibility gate",
+          "missing": "0 only when mathematically zero; current ensures nonempty activity",
+          "name": "wallet_near_band_count_7d",
+          "window": "7d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 on first observation; never private activation",
+          "name": "wallet_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "wallet_near_band_count_7d",
+        "wallet_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "B_7d",
+      "target_coverage": "35d",
+      "target_recent": "7d"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current W2W edge once; non-W2W inapplicable",
+      "family": "N1",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing",
+          "name": "transaction_type",
+          "window": "current"
+        },
+        {
+          "eligibility": "Current W2W; no baseline gate",
+          "missing": "0 for non-W2W",
+          "name": "network_in_count_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "Current W2W; no baseline gate",
+          "missing": "0 for non-W2W",
+          "name": "network_in_distinct_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "Same N1 coverage 29d and >=4 directed baseline edges; no recent gates",
+          "missing": "-1 if non-W2W or baseline-ineligible",
+          "name": "network_in_acceleration_24h",
+          "window": "24h + preceding28d"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "transaction_type",
+        "network_in_count_24h",
+        "network_in_distinct_24h",
+        "network_in_acceleration_24h"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "B_24h",
+      "target_coverage": "29d",
+      "target_recent": "24h"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current W2W edge once; non-W2W inapplicable",
+      "family": "N2",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing",
+          "name": "transaction_type",
+          "window": "current"
+        },
+        {
+          "eligibility": "Current W2W; no baseline gate",
+          "missing": "0 for non-W2W",
+          "name": "network_out_count_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "Current W2W; no baseline gate",
+          "missing": "0 for non-W2W",
+          "name": "network_out_distinct_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "Same N2 coverage 29d and >=4 directed baseline edges; no recent gates",
+          "missing": "-1 if non-W2W or baseline-ineligible",
+          "name": "network_out_acceleration_24h",
+          "window": "24h + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 on first observation; never private activation",
+          "name": "wallet_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "transaction_type",
+        "network_out_count_24h",
+        "network_out_distinct_24h",
+        "network_out_acceleration_24h",
+        "wallet_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 4,
+      "target_baseline": "B_24h",
+      "target_coverage": "29d",
+      "target_recent": "24h"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current closes path; excluded from prior path",
+      "family": "N3",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing",
+          "name": "transaction_type",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "-1 for no path or non-W2W",
+          "name": "prior_return_path_min_length_7d",
+          "window": "prior7d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 for no path/non-W2W",
+          "name": "prior_return_path_count_7d",
+          "window": "prior7d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "-1 for no path/non-W2W",
+          "name": "prior_path_min_max_log_change_7d",
+          "window": "prior7d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "-1 for no path/non-W2W",
+          "name": "current_to_selected_path_first_value_ratio",
+          "window": "prior7d + current"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "transaction_type",
+        "prior_return_path_min_length_7d",
+        "prior_return_path_count_7d",
+        "prior_path_min_max_log_change_7d",
+        "current_to_selected_path_first_value_ratio"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 0,
+      "target_baseline": "none",
+      "target_coverage": "none",
+      "target_recent": "prior 7d"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current outward amount once",
+      "family": "N4",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing",
+          "name": "transaction_type",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "-1 if current not outward or no prior W2W anchor",
+          "name": "wallet_pass_through_fraction_24h",
+          "window": "anchor..current within 24h"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "NaN if current not outward or no anchor; numeric -1 may be a valid residual",
+          "name": "wallet_prior_funding_residual_minor_24h",
+          "window": "anchor..current within 24h"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "transaction_type",
+        "wallet_pass_through_fraction_24h",
+        "wallet_prior_funding_residual_minor_24h"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 0,
+      "target_baseline": "none",
+      "target_coverage": "none",
+      "target_recent": "prior 24h then anchor..current"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current service once; amount unused",
+      "family": "A1",
+      "feature_history": [
+        {
+          "eligibility": "A1 coverage 35d and >=12 baseline services; no recent trigger gate",
+          "missing": "-1 absent agent or A1 baseline-ineligible",
+          "name": "agent_wallet_growth_ratio_7d",
+          "window": "7d + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent",
+          "name": "agent_distinct_wallets_7d",
+          "window": "7d"
+        },
+        {
+          "eligibility": "A1 coverage 35d and >=12 baseline services; no recent trigger gate",
+          "missing": "-1 absent agent or A1 baseline-ineligible",
+          "name": "agent_new_wallet_count_7d",
+          "window": "7d + preceding28d"
+        },
+        {
+          "eligibility": "A1 coverage 35d and >=12 baseline services; no recent trigger gate",
+          "missing": "-1 absent agent or A1 baseline-ineligible",
+          "name": "agent_new_wallet_share_7d",
+          "window": "7d + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 absent agent or first service",
+          "name": "agent_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "agent_wallet_growth_ratio_7d",
+        "agent_distinct_wallets_7d",
+        "agent_new_wallet_count_7d",
+        "agent_new_wallet_share_7d",
+        "agent_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 12,
+      "target_baseline": "B_7d; four separate preceding 7d buckets",
+      "target_coverage": "35d",
+      "target_recent": "7d"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current service once",
+      "family": "A2",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent",
+          "name": "agent_top2_count_share_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "A2 coverage 29d, >=20 baseline services, >=5 baseline wallets; no recent trigger gate",
+          "missing": "-3 absent agent or A2 baseline-ineligible; valid range[-1,1]",
+          "name": "agent_top2_share_change_24h",
+          "window": "24h + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 absent agent or first service",
+          "name": "agent_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "agent_top2_count_share_24h",
+        "agent_top2_share_change_24h",
+        "agent_observed_coverage_days"
+      ],
+      "minimum_distinct": 5,
+      "minimum_events": 20,
+      "target_baseline": "B_24h",
+      "target_coverage": "29d",
+      "target_recent": "24h"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current service once",
+      "family": "A3",
+      "feature_history": [
+        {
+          "eligibility": "A3 coverage 28d+1h and >=12 baseline services; no recent trigger gate",
+          "missing": "-1 absent agent or A3 baseline-ineligible",
+          "name": "agent_service_acceleration_1h",
+          "window": "1h + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent",
+          "name": "agent_distinct_wallets_1h",
+          "window": "1h"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 absent agent or first service",
+          "name": "agent_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "agent_service_acceleration_1h",
+        "agent_distinct_wallets_1h",
+        "agent_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": 12,
+      "target_baseline": "B_1h",
+      "target_coverage": "28d+1h",
+      "target_recent": "1h"
+    },
+    {
+      "alignment": "Baseline-derived components share exact target window and historical gate; recent-only components deliberately require less history. No silent longer feature horizon. General observed-coverage scalars describe context; they impose no extra eligibility.",
+      "current": "Current Cash-In/Cash-Out once; current W2W inapplicable",
+      "family": "A4",
+      "feature_history": [
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing; schema rejects absent/nonpositive amount",
+          "name": "amount_minor",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "Never missing",
+          "name": "transaction_type",
+          "window": "current"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent or no cash-in",
+          "name": "agent_cash_in_count_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent or no cash-out",
+          "name": "agent_cash_out_count_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent or no cash-in",
+          "name": "agent_cash_in_value_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent or no cash-out",
+          "name": "agent_cash_out_value_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "No baseline gate; no recent trigger gate",
+          "missing": "0 absent agent or no cash",
+          "name": "agent_cash_distinct_wallets_24h",
+          "window": "24h"
+        },
+        {
+          "eligibility": "A4 historical gate: coverage 29d, >=12 baseline services and >=8 baseline cash; no current-role gate for this feature; no recent trigger gate",
+          "missing": "-3 absent agent or A4 baseline-ineligible; valid range[-2,2]",
+          "name": "agent_cash_value_skew_change",
+          "window": "24h + preceding28d"
+        },
+        {
+          "eligibility": "No baseline gate; emit recent observed quantity even at cold start.",
+          "missing": "0 absent agent or first service",
+          "name": "agent_observed_coverage_days",
+          "window": "all prior; scalar first observation retained"
+        }
+      ],
+      "feature_names": [
+        "amount_minor",
+        "transaction_type",
+        "agent_cash_in_count_24h",
+        "agent_cash_out_count_24h",
+        "agent_cash_in_value_24h",
+        "agent_cash_out_value_24h",
+        "agent_cash_distinct_wallets_24h",
+        "agent_cash_value_skew_change",
+        "agent_observed_coverage_days"
+      ],
+      "minimum_distinct": null,
+      "minimum_events": "12 services including >=8 cash events",
+      "target_baseline": "B_24h",
+      "target_coverage": "29d",
+      "target_recent": "24h"
+    }
+  ],
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

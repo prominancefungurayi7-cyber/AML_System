@@ -1,0 +1,42 @@
+{
+  "mysql_lock_contention": "PASS",
+  "fixed_child_invocation": "PASS",
+  "missing_event_error": {
+    "decision": "inference_error",
+    "transaction_id": "9223372036854775807",
+    "source_revision": null,
+    "event_timestamp": null,
+    "scope_revision": null,
+    "history_status": "UNKNOWN",
+    "feature_version": "v4.features.1",
+    "threshold": 0.5,
+    "history_complete_through": null,
+    "error_code": "EVENT_UNAVAILABLE",
+    "suspicious_probability": null,
+    "observation_scope": null,
+    "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+    "prediction": null,
+    "inference_id": "640e531a-f18f-4297-b8fe-7fd2da1068a4",
+    "model_version": "v4.development.freeze.stage23.1",
+    "inference_timestamp": "2026-10-06T09:26:19.157953Z",
+    "status": "inference_error",
+    "contract_version": "v4.inference.1"
+  },
+  "before": {
+    "cmm_history_attestations": "33370af896d4db5257f1f534950eadee7dd399c8e7b42fd445215d13af1f22a0",
+    "cmm_observation_scopes": "5f143f1dbca09bab21005d87a4bc84fa0e4ef8f8c5d003186c14410f76dc6df4",
+    "cmm_source_changes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "v4_shadow_results": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "after": {
+    "cmm_history_attestations": "33370af896d4db5257f1f534950eadee7dd399c8e7b42fd445215d13af1f22a0",
+    "cmm_observation_scopes": "5f143f1dbca09bab21005d87a4bc84fa0e4ef8f8c5d003186c14410f76dc6df4",
+    "cmm_source_changes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "v4_shadow_results": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "source_transactions_submitted": 0,
+  "new_attestations": 0,
+  "predictions": 0
+}

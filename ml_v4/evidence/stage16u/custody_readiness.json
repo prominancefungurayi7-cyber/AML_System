@@ -1,0 +1,30 @@
+{
+  "status": "BLOCKED",
+  "production_generation_authorized": false,
+  "observed_execution_identity": "proe\\codexsandboxoffline",
+  "workspace_owner": "PROE\\PROMINENT",
+  "workspace_acl_observation": "The current workspace grants Modify rights to the shared PROE\\CodexSandboxUsers group and FullControl to PROE\\PROMINENT, SYSTEM and local Administrators. Current execution can read and write the challenge source tree. This is a shared developer workspace, not an independent custody boundary.",
+  "custodian_identity_verified": false,
+  "developer_plaintext_denial_verified": false,
+  "separate_runtime_verified": false,
+  "shared_plaintext_workspace_absent": false,
+  "immutable_authorization_log_verified": false,
+  "custodian_id_registry_verified": false,
+  "controlled_execution_entrypoint": "The repository's production entrypoint raises PermissionError. It does not create a dataset. No externally administered custodian entrypoint is provisioned.",
+  "existing_v4_holds": {
+    "status": "SEALED_QUARANTINED",
+    "public_final_test_support_policy": "FAIL",
+    "public_independent_evaluation_support_policy": "FAIL",
+    "private_counts_requested_or_accessed": false,
+    "sealed_contents_accessed": false
+  },
+  "required_configuration": [
+    "Provision a separately administered custodian identity or remote isolated runtime whose operators have no model-selection role.",
+    "Place challenge plaintext, 256-bit salt and private ID registry in a custodian-controlled volume not mounted or readable by the developer or shared Codex sandbox group; verify ACLs using both identities before any draw.",
+    "Provide an append-only authorization and access register controlled by the custodian, with request scope, requester, UTC time, frozen artifact hashes and every attempted operation.",
+    "Deploy a fixed custodian-only execution entrypoint that accepts no developer-selected path, refuses original V4 holdout paths, atomically consumes one draw authorization, and retains failures without replacement.",
+    "Have the custodian resolve IDs against its protected registry without exporting the registry or any IDs.",
+    "Pin and record the custodian OS, Python, NumPy PCG64DXSM version, source tree, dependencies, serialization and hardware before authorizing the one draw."
+  ],
+  "production_generation": "BLOCKED_UNTIL_ALL_REQUIRED_CONFIGURATION_IS_INDEPENDENTLY_VERIFIED"
+}

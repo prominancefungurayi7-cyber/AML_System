@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "external_independent_audit": false,
+  "final_suite": {
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "..............................                                           [100%]\n30 passed in 0.16s\n"
+  },
+  "independent_expected_values": true,
+  "initial_fixture_corrections": [
+    "A3/A4 hand baseline date corrected to fall inside baseline",
+    "NaN equality assertions made marker-aware; feature definitions unchanged",
+    "Weekly median fixture moved fourth group off the shared week boundary; all four expected weekly counts independently specified."
+  ],
+  "method": "Separately hand-calculated fixtures in same developer environment; no evaluator or shared compound rule oracle.",
+  "stage_order": "Initial 22-test suite passed before extraction; expanded 30-test suite passed before final decision. Extractor unchanged after extraction.",
+  "stderr": "",
+  "stdout": "......................                                                   [100%]\n22 passed in 0.12s\n"
+}

@@ -1,0 +1,62 @@
+{
+  "artifact_hash_count": 13,
+  "changed_paths": [],
+  "evidence_hashes": {
+    "agent_feature_comparison": "b4cf2b49a4d60ceb9a19e1f2fc9afd37f5e8df7d37d8f6b67b2c32f1589895a7",
+    "decision": "5f354ecca3e5d894c5ffdf242ef644af1208fe7c7f02f19ca0f96bbe831db292",
+    "eligibility_analysis": "21ecb49c2011d583593c3820c931cbf77b4036c3fbeb73b47c5dac41c5c1731e",
+    "family_dependence": "af5c375ec6b01866e956f58c7ac325ead190c60b777b63d38361f308f126e23f",
+    "family_removal": "1741a841b68b9e6a5f0c2e5baf7b07c709456ef37dfd3dec68bbcf5056443126",
+    "feature_contract": "63fe60c5c60da0d542e32369e10e93a22fe41df83cb54eab6353bd1cfa51aad4",
+    "generator_audit": "fee0236f73dd7da0935ee9a47ec57554eb51748094a95b899caeffe53c89ae5f",
+    "growth_distributions": "0ad586e53202b40a56317c7d51defa0602d28232ed38201d75cd8983dbb7964c",
+    "interactions": "abf1db9bf52b72e4325d5338f71fe3fdba4040bc0443bb43f73c6e0a5b7b549e",
+    "model_family_comparison": "ee8714f956ad6d84cbfe8b9b2aa8b2f3d091f07c91839aac7af81870664ae6a3",
+    "negative_overlap": "7dc5da16d760f061c6a2dd8897f40aac50d58856c7c263efdca446064c9f6ca2",
+    "protection": "f9776b1d261af409f592e2b631abc97622ea2dccd0ed29c498a07b41d0f4620a",
+    "proxy_risk": "dd04c76398af8f2857924e8a503d0d33aa578c5967e47dcc912cb7cfaee025e4",
+    "shuffle_test": "befc4c67688e4183ba3283037d7a9ca307175ec68a44f472f5d977603f1b3148",
+    "univariate_power": "f66df1b194783dabccbdf4630e9374b8931992e2bac718ba53d70de3b8647df1"
+  },
+  "family_removal_fits": 4,
+  "limits": "No fit repeated during verification. Permutation importance not repeated; its recorded configuration and source are hashed. A1 primitive reconstruction is independent of the target materializer, but not a full audit of all predicates.",
+  "model_reloads": {
+    "D1_train": 0.0,
+    "D1_validation": 0.0,
+    "D2_train": 0.0,
+    "D2_validation": 0.0,
+    "D3_train": 0.0,
+    "D3_validation": 0.0,
+    "D4_train": 0.0,
+    "D4_validation": 0.0
+  },
+  "new_fit_count": 5,
+  "plan_hash": "dc840c5e01f934b9c26dc11eb947341bbf380840019e181f22270d55c2802817",
+  "protected_files": 660,
+  "recomputed_checks": [
+    "family/domain/normal slice counts",
+    "growth statistics including P99",
+    "all interaction supports/target counts/reference means",
+    "all agent univariate raw scores",
+    "shuffle permutation and split",
+    "saved primitives agree with official growth and frozen A1"
+  ],
+  "recomputed_metric_sets": 46,
+  "result": "PASS",
+  "shuffle_fits": 1,
+  "shuffle_reload_exact": true,
+  "source_hashes": {
+    "audit_stage14.py": "3f554535791319084ec7937a76ca209c7232bb6b09ae8cf2b5f538a150d64a6e",
+    "report_stage14.py": "8942fc95a4329c706b32aeb841c4d496621848738b1df7c4384e90d8541f2341",
+    "run_stage14.py": "ae3d14c91ecd199cd881960ad6037893787f95db77d8bef2bfbcbaf3ceabb0d4",
+    "stage14_growth_diagnosis.py": "a90000799a1c1904a008592cbbe7c02aacde2203434308bfb5aaa06ddc51f233",
+    "verify_stage14.py": "f39f83ed46d64e9313db6d2e4c4bf749351ca20026f09993785f080dc5565b89"
+  },
+  "test_source_hash": "770815468353d469dc17c6d596f5875cf02c0b4b55fbc8299212d574b2190ac3",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "log": "test_frozen_train_bins (test_stage14_diagnosis.DiagnosisTests.test_frozen_train_bins) ... ok\ntest_growth_coverage_and_tied_keys (test_stage14_diagnosis.DiagnosisTests.test_growth_coverage_and_tied_keys) ... ok\ntest_marker_and_quantile (test_stage14_diagnosis.DiagnosisTests.test_marker_and_quantile) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.005s\n\nOK\n",
+    "methods": 3
+  }
+}

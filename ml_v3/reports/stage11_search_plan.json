@@ -1,0 +1,488 @@
+{
+  "configurations": [
+    {
+      "family": "logistic",
+      "name": "s11_01_logistic",
+      "params": {
+        "C": 1.0,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "initial baseline",
+      "preprocessing": "robust",
+      "weight": "none"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_02_random_forest",
+      "params": {
+        "max_depth": 12,
+        "max_features": 0.7,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 2
+      },
+      "phase": "initial baseline",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_03_gradient_boosting",
+      "params": {
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_samples_leaf": 10,
+        "n_estimators": 150,
+        "subsample": 1.0
+      },
+      "phase": "initial baseline",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_04_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 6,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "phase": "initial baseline",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_05_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 4,
+        "min_child_weight": 5,
+        "n_estimators": 200,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 3.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "initial baseline",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "logistic",
+      "name": "s11_06_logistic",
+      "params": {
+        "C": 1.0,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "compact comparison",
+      "preprocessing": "robust",
+      "weight": "moderate"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_07_random_forest",
+      "params": {
+        "max_depth": 12,
+        "max_features": 0.7,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 2
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "moderate"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_08_gradient_boosting",
+      "params": {
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_samples_leaf": 10,
+        "n_estimators": 150,
+        "subsample": 1.0
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "moderate"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_09_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 6,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "moderate"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_10_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 4,
+        "min_child_weight": 5,
+        "n_estimators": 200,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 3.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "moderate"
+    },
+    {
+      "family": "logistic",
+      "name": "s11_11_logistic",
+      "params": {
+        "C": 1.0,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "compact comparison",
+      "preprocessing": "robust",
+      "weight": "balanced"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_12_random_forest",
+      "params": {
+        "max_depth": 12,
+        "max_features": 0.7,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 2
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "balanced"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_13_gradient_boosting",
+      "params": {
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_samples_leaf": 10,
+        "n_estimators": 150,
+        "subsample": 1.0
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "balanced"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_14_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 6,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "balanced"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_15_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 4,
+        "min_child_weight": 5,
+        "n_estimators": 200,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 3.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "balanced"
+    },
+    {
+      "family": "logistic",
+      "name": "s11_16_logistic",
+      "params": {
+        "C": 0.1,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "compact comparison",
+      "preprocessing": "robust",
+      "weight": "none"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_17_random_forest",
+      "params": {
+        "max_depth": 12,
+        "max_features": 0.7,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 2
+      },
+      "phase": "compact comparison",
+      "preprocessing": "clipped",
+      "weight": "none"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_18_gradient_boosting",
+      "params": {
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_samples_leaf": 10,
+        "n_estimators": 150,
+        "subsample": 1.0
+      },
+      "phase": "compact comparison",
+      "preprocessing": "clipped",
+      "weight": "none"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_19_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 6,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "phase": "compact comparison",
+      "preprocessing": "clipped",
+      "weight": "none"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_20_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 4,
+        "min_child_weight": 5,
+        "n_estimators": 200,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 3.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "compact comparison",
+      "preprocessing": "clipped",
+      "weight": "none"
+    },
+    {
+      "family": "logistic",
+      "name": "s11_21_logistic",
+      "params": {
+        "C": 10.0,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "compact comparison",
+      "preprocessing": "robust",
+      "weight": "none"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_22_random_forest",
+      "params": {
+        "max_depth": 12,
+        "max_features": 0.7,
+        "min_samples_leaf": 5,
+        "n_estimators": 200,
+        "n_jobs": 2
+      },
+      "phase": "compact comparison",
+      "preprocessing": "imputed",
+      "weight": "none"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_23_gradient_boosting",
+      "params": {
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_samples_leaf": 10,
+        "n_estimators": 150,
+        "subsample": 1.0
+      },
+      "phase": "compact comparison",
+      "preprocessing": "imputed",
+      "weight": "none"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_24_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 6,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "phase": "compact comparison",
+      "preprocessing": "imputed",
+      "weight": "none"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_25_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 4,
+        "min_child_weight": 5,
+        "n_estimators": 200,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 3.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "compact comparison",
+      "preprocessing": "imputed",
+      "weight": "none"
+    },
+    {
+      "family": "logistic",
+      "name": "s11_26_logistic",
+      "params": {
+        "C": 1.0,
+        "max_iter": 4000,
+        "solver": "lbfgs",
+        "tol": 1e-05
+      },
+      "phase": "compact comparison",
+      "preprocessing": "robust_sentinel",
+      "weight": "none"
+    },
+    {
+      "family": "random_forest",
+      "name": "s11_27_random_forest",
+      "params": {
+        "max_depth": 16,
+        "max_features": 0.7,
+        "min_samples_leaf": 10,
+        "n_estimators": 250,
+        "n_jobs": 2
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "gradient_boosting",
+      "name": "s11_28_gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "min_samples_leaf": 10,
+        "n_estimators": 200,
+        "subsample": 1.0
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "hist_gradient_boosting",
+      "name": "s11_29_hist_gradient_boosting",
+      "params": {
+        "early_stopping": false,
+        "l2_regularization": 3.0,
+        "learning_rate": 0.07,
+        "max_depth": 5,
+        "max_iter": 250,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 20
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "none"
+    },
+    {
+      "family": "xgboost",
+      "name": "s11_30_xgboost",
+      "params": {
+        "colsample_bytree": 0.8,
+        "eval_metric": "logloss",
+        "learning_rate": 0.07,
+        "max_depth": 3,
+        "min_child_weight": 10,
+        "n_estimators": 250,
+        "n_jobs": 2,
+        "reg_alpha": 0.05,
+        "reg_lambda": 5.0,
+        "subsample": 0.8,
+        "tree_method": "hist"
+      },
+      "phase": "compact comparison",
+      "preprocessing": "raw",
+      "weight": "none"
+    }
+  ],
+  "feature_version": "v3_stage10a_features_1",
+  "frozen_at_utc": "2026-09-28T16:46:21.383363+00:00",
+  "runtime_environment": {
+    "executable": "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "numpy": "2.4.3",
+    "pandas": "3.0.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  },
+  "seed": 20260928,
+  "selection": "Highest Validation Macro F1 per converged model family, plus highest recall with FPR<=.10 and highest AP. Primary: highest Macro F1 with recall>=.70, FPR<=.10 and Train-Val Macro F1 gap<=.10 if available; otherwise highest Macro F1 flagged for tradeoff review. Domain/family diagnostics must qualify any recommendation.",
+  "severe_gap_rule": "Train minus Validation >.10 Macro F1 or >.15 suspicious F1/recall/AP/ROC-AUC.",
+  "source_hashes": {
+    "run_stage11.py": "5ed8bbc13d2dcd76e7ff1ab33805096ac1d20a3733dd0a77dcee4333084f7ce1",
+    "stage11_models.py": "44c783aa5aba2d0efd50f0bea48fa0220a56e96fd790397d45602ea619a515dc",
+    "stage11_preprocessing.py": "dc42812f056ebb2892854109d189c42850f729b17afc4e9d12773000a6cabf59",
+    "stage11_protection.py": "5f32000607e08f11356be615213858532435ca86df6abefd7cff4ddccd1a36bd"
+  },
+  "threshold": 0.5,
+  "xgboost_unavailable_reason": null
+}

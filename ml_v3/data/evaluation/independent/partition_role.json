@@ -1,0 +1,6 @@
+{
+  "feature_exploration_allowed": false,
+  "partition": "independent",
+  "role": "HOLDOUT",
+  "training_allowed": false
+}

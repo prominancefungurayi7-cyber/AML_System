@@ -1,0 +1,122 @@
+{
+  "s11_08_gradient_boosting": {
+    "agent": {
+      "fn": 411,
+      "recall": 0.8928292046936115,
+      "support": 3835,
+      "tp": 3424
+    },
+    "network": {
+      "fn": 91,
+      "recall": 0.9284028324154209,
+      "support": 1271,
+      "tp": 1180
+    },
+    "structuring": {
+      "fn": 4,
+      "recall": 0.9961501443695862,
+      "support": 1039,
+      "tp": 1035
+    }
+  },
+  "s11_09_hist_gradient_boosting": {
+    "agent": {
+      "fn": 256,
+      "recall": 0.9332464146023468,
+      "support": 3835,
+      "tp": 3579
+    },
+    "network": {
+      "fn": 68,
+      "recall": 0.946498819826908,
+      "support": 1271,
+      "tp": 1203
+    },
+    "structuring": {
+      "fn": 5,
+      "recall": 0.9951876804619827,
+      "support": 1039,
+      "tp": 1034
+    }
+  },
+  "s11_14_hist_gradient_boosting": {
+    "agent": {
+      "fn": 242,
+      "recall": 0.936897001303781,
+      "support": 3835,
+      "tp": 3593
+    },
+    "network": {
+      "fn": 62,
+      "recall": 0.9512195121951219,
+      "support": 1271,
+      "tp": 1209
+    },
+    "structuring": {
+      "fn": 4,
+      "recall": 0.9961501443695862,
+      "support": 1039,
+      "tp": 1035
+    }
+  },
+  "s11_15_xgboost": {
+    "agent": {
+      "fn": 273,
+      "recall": 0.9288135593220339,
+      "support": 3835,
+      "tp": 3562
+    },
+    "network": {
+      "fn": 65,
+      "recall": 0.9488591660110149,
+      "support": 1271,
+      "tp": 1206
+    },
+    "structuring": {
+      "fn": 5,
+      "recall": 0.9951876804619827,
+      "support": 1039,
+      "tp": 1034
+    }
+  },
+  "s11_16_logistic": {
+    "agent": {
+      "fn": 648,
+      "recall": 0.8310299869621903,
+      "support": 3835,
+      "tp": 3187
+    },
+    "network": {
+      "fn": 459,
+      "recall": 0.6388670338316287,
+      "support": 1271,
+      "tp": 812
+    },
+    "structuring": {
+      "fn": 98,
+      "recall": 0.9056785370548605,
+      "support": 1039,
+      "tp": 941
+    }
+  },
+  "s11_27_random_forest": {
+    "agent": {
+      "fn": 344,
+      "recall": 0.9102998696219036,
+      "support": 3835,
+      "tp": 3491
+    },
+    "network": {
+      "fn": 110,
+      "recall": 0.9134539732494099,
+      "support": 1271,
+      "tp": 1161
+    },
+    "structuring": {
+      "fn": 6,
+      "recall": 0.9942252165543792,
+      "support": 1039,
+      "tp": 1033
+    }
+  }
+}

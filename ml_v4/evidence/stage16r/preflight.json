@@ -1,0 +1,76 @@
+{
+  "amendment_interpretation": "Use frozen LARGE_CONDITIONAL, bounded shift and E/M/R count and context clauses; no target changes",
+  "checked_utc": "2026-09-30T08:12:51.278627+00:00",
+  "design_sha256": {
+    "ml_v4/design/V4_STAGE15_CONTROLLED_REDESIGN_SPECIFICATION.md": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+    "ml_v4/design/amendments/V4_STAGE15A_IMPLEMENTATION_CLARIFICATION.md": "93f6a8d23770c104942f5d44f6ef7e218725094f2621f971e370b657496940d4",
+    "ml_v4/design/amendments/v4_stage15a_amount_law.json": "20018476976acdc994a757dea6de85e5c1161fc03442e58c3651ffe2fac1738c",
+    "ml_v4/design/amendments/v4_stage15a_consistency_tests.json": "efc0b63ac1540cde69d1bc6e7bc5e3b5571065a4a16eb553dc840fc6c19381a8",
+    "ml_v4/design/amendments/v4_stage15a_decision.json": "7452d0d81276e15279062dc15b69b867c6ef7fbc2f6113720094fe1e8130b829",
+    "ml_v4/design/amendments/v4_stage15a_episode_mapping.json": "06970282d5ef7d6f84980d2bd0bea5c059f98145f5b314bce7391b9f081a3466",
+    "ml_v4/design/amendments/v4_stage15a_manifest.json": "4132f325f3904559cac3a8673614643b16ae6a83054d1a2dc822902b10892fec",
+    "ml_v4/design/amendments/v4_stage15a_precedence.json": "cefef2a6230207bdea9d6e7a4a2a2d9c4cf5c95f69a3959fdd2700a0c33d483e",
+    "ml_v4/design/amendments/validate_stage15a.py": "b683af7fdd6d04f4805b1b58c85efefd9278f4442f455e93d9c1b87a5de05754",
+    "ml_v4/design/v4_acceptance_gates.json": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+    "ml_v4/design/v4_agent_population_spec.json": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+    "ml_v4/design/v4_dataset_spec.json": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+    "ml_v4/design/v4_evaluation_metrics.json": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+    "ml_v4/design/v4_family_support_policy.json": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+    "ml_v4/design/v4_feature_spec.json": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+    "ml_v4/design/v4_generator_audit_plan.json": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+    "ml_v4/design/v4_hard_negative_spec.json": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+    "ml_v4/design/v4_holdout_policy.json": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+    "ml_v4/design/v4_model_development_policy.json": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+    "ml_v4/design/v4_partition_spec.json": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+    "ml_v4/design/v4_reproducibility_spec.json": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+    "ml_v4/design/v4_stage15_decision.json": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+    "ml_v4/design/v4_stage15_protection.json": "8cc5bda6a6bb40dc66cfa5bfe08e3cbad293eeb579e1a1b60955a6a4a100a807",
+    "ml_v4/design/v4_stage15_verification.json": "1a613441a289a36dd55da2c57ba539ae0db3e2312d45f280634e72186ea3ddce",
+    "ml_v4/design/v4_target_feature_alignment.json": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+    "ml_v4/design/v4_target_predicates.json": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+    "ml_v4/design/v4_temporal_contract.json": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+    "ml_v4/design/v4_v3_comparison.json": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+    "ml_v4/design/v4_wallet_population_spec.json": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc"
+  },
+  "existing_production_dataset": false,
+  "implementation_choices": {
+    "a1_near_boundary_audit": "Eligible target0, exactly three of four A1 gates pass; failed count within one wallet, novelty in [0.4,0.5), or growth in [1.25,1.5). Fixed before production.",
+    "background_cluster": "population unit x UTC day; episode IDs otherwise",
+    "background_time": "Fixed unit budget, uniform ordinary event times plus declared recurring/activation opportunities; evolving agent weights redistribute service opportunities within the unit.",
+    "hard_mechanisms": "H1 dominant/two-hour activity; H2 prior observable amount anchoring and recurring subjects; H3 matched conditional amounts and regular temporal spacing; H4 two-payer comparison; H5 ordinary repeated relationships; H6 chronological reversal opportunities; H7 returning observed customers/two-wallet bursts; H8 historical concentration or cash direction. No target acceptance filters.",
+    "observable_enums": {
+      "agent_flow_direction": [
+        "none",
+        "cash_in",
+        "cash_out"
+      ],
+      "transaction_type": [
+        "wallet_to_wallet",
+        "cash_in",
+        "cash_out"
+      ]
+    },
+    "population_diagnostics": "Subject profile for each scored decision row; all agents including zero-positive agents retained."
+  },
+  "no_new_blocking_contradiction_identified": true,
+  "prior_failed_stage16_draw_consumed": false,
+  "protected_count": 754,
+  "software": {
+    "numpy": "2.4.3",
+    "python": "3.14.3"
+  },
+  "source_sha256": {
+    "ml_v4/evaluation/stage16r_authorized_loader.py": "b1937b7a232d2f59586af60737c37d2e7a22007ff6e56d913de04a4dcb173588",
+    "ml_v4/evaluation/stage16r_custodian.py": "5f7cb289cdab3a8c8fa25cef593b7b8b528e8d4d3e8810b84ea3be68d32d8fa1",
+    "ml_v4/evaluation/stage16r_seal.py": "f7d2c678c01ba495331145ef136a2290dbc4dabcc8684672360dbde5087ecc38",
+    "ml_v4/generation/run_stage16r.py": "1e3087fda2984873f4bd6fc499403d50ad8d4fc4ea227545f0dc0d50b509a870",
+    "ml_v4/generation/stage16r_audit.py": "83123223c4757176a3a0868724aaddc912d94985164df5de079eb4e8eccc8335",
+    "ml_v4/generation/stage16r_contract.py": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d",
+    "ml_v4/generation/stage16r_evaluator.py": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+    "ml_v4/generation/stage16r_generator.py": "563e7d24d11bae63df040b3b9af428943e3602fa28830bc5e505388ad3a6903d",
+    "ml_v4/generation/stage16r_loader.py": "5ebeb543174036448be0193973656bc217bc5214dbc5372f9ef0dcec67b29034",
+    "ml_v4/tests/test_stage16r.py": "ddb28b3a59898750a8796c0a81a7f586cc75265e47358b3b486234f71c171138"
+  },
+  "stage15a_tests_pass": 12,
+  "status": "PASS"
+}

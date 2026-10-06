@@ -1,0 +1,18 @@
+{
+  "apply_requested": false,
+  "engine": "mysql",
+  "historical_rows_modified": false,
+  "rollback": "Disable canonical ingestion; retain schema and rows. MySQL DDL auto-commits.",
+  "runtime": {
+    "version": "8.0.46"
+  },
+  "before": {
+    "engine": "mysql",
+    "exists": false
+  },
+  "after": {
+    "engine": "mysql",
+    "exists": false
+  },
+  "status": "PASS"
+}

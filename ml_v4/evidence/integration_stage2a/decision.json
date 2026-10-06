@@ -1,0 +1,26 @@
+{
+  "decision": "B — HISTORY FOUNDATION PARTIALLY READY; LIMITED WORK REMAINS",
+  "tests_passed": 80,
+  "protected_count": 413,
+  "mysql_capture_ready": false,
+  "mysql_error": 1419,
+  "administrator_handoff_required": true,
+  "no_inference_authorization": true,
+  "artifact_sha256": {
+    "canonical_history.py": "ae5e7b8bfe8d51c0380ff5fd9209954f85ce38291ac5bed80c782f51bffb0b43",
+    "canonical_history_store.py": "74dc937637cc57e023548aded2dabd1dc626f5f4270deba8c55e157d6d54a588",
+    "canonical_history_journal.py": "b3bf98a6ea2c1b462a497653927d26fd6c72befb06e3330a965ea1dc83c43f01",
+    "manage_canonical_history.py": "01a5be9ae8a2caa2afbbc27d547354a52eb4e42d74b6bcba9d51643bd0283a09",
+    "tests/test_canonical_history.py": "6215c72f533be237675d2028940b65b2b7715d380517ab7e6e5ae18f4a94261d",
+    "ml_v4/reports/V4_INTEGRATION_STAGE2A_HISTORY_COMPLETENESS_REPORT.md": "0db531fb4a16551fa376d72d3ea237a3336c3efad4390a10241c99ed94b530bf",
+    "ml_v4/evidence/integration_stage2a/admin_capture_triggers.sql": "6a39ddc6c5663573ff2203c47997929dbc1f785851cd26361770cf40a12ed310",
+    "ml_v4/evidence/integration_stage2a/before_sha256.json": "5344955eb4000989b0d3bc70aa26da3742a18ee020d9532c03fa69374ba15c04",
+    "ml_v4/evidence/integration_stage2a/database_after.json": "d1b33aff5993ffa24fd857f4e4003a3bfa2b72a2b1e021fb61404340e5262288",
+    "ml_v4/evidence/integration_stage2a/database_discovery.json": "7719fa8372331ece81a99c26b2443580620d9abd151cbcf145c5bd02b8a7847f",
+    "ml_v4/evidence/integration_stage2a/finalize.py": "6dd4641c3f96716dba5505f1a80f37c99f1491bb2c2dcbead765c06dd57838d5",
+    "ml_v4/evidence/integration_stage2a/migration_execution.json": "7b449f82ace92648907ef639ddd2ce91a0392fee8e079378bb6282ddbcbc0388",
+    "ml_v4/evidence/integration_stage2a/migration_postconditions.json": "b731c2067514ff930db595c0f408803120798b1f72f014bfb49f0bde866a76aa",
+    "ml_v4/evidence/integration_stage2a/preservation_verification.json": "04149a4d9fda205e1daf011871f6da0e9aeb9c63da27b18e83ae785ee984dfee",
+    "ml_v4/evidence/integration_stage2a/test_results.txt": "d8b0bd3b127d6241254ece3a2e0e0e0ccc766be6a36215138c01b9669699812b"
+  }
+}

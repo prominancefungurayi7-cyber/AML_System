@@ -1,0 +1,6 @@
+{
+  "feature_exploration_allowed": true,
+  "partition": "validation",
+  "role": "development",
+  "training_allowed": true
+}

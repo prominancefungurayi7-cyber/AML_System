@@ -1,0 +1,28 @@
+{
+  "roots": [
+    "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System",
+    "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system",
+    "C:\\Users\\PROMINENT\\.codex\\tmp",
+    "C:\\Users\\PROMINENT\\.codex\\.tmp",
+    "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp"
+  ],
+  "candidate_filenames_examined": 222,
+  "exact_file_matches": [],
+  "exclusions": [
+    ".git",
+    ".venv",
+    ".venv_inference_stage3",
+    "__pycache__",
+    "artifacts",
+    "data",
+    "datasets",
+    "final_test",
+    "generation",
+    "independent_evaluation",
+    "matrices",
+    "models",
+    "node_modules",
+    "sealed"
+  ],
+  "archive_contents_not_expanded": true
+}

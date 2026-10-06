@@ -1,0 +1,59 @@
+{
+  "artifact_sha256": {
+    "ml_v4/development_features/extractor.py": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717",
+    "ml_v4/development_features/finalize_stage17.py": "3a14f3f224d64a58d26573fa0df54f4a39eaee1feedfc461080e4db047b17f23",
+    "ml_v4/development_features/matrices/train/X.npy": "951df849aa10fe8d90fc58f8546d2b26604b12dbf6ee1e3ce97e78b9e18cee71",
+    "ml_v4/development_features/matrices/train/row_metadata.csv": "df5bc095c3013701adc0190a8e245cffe3fe2e97f58ec6e02d6577df38c18b60",
+    "ml_v4/development_features/matrices/train/y.npy": "b5fabe11fecb4b7783211e8a113c2fa3bf9050a97a64e6eae9303c1552630543",
+    "ml_v4/development_features/matrices/validation/X.npy": "a2efa261c67bf8b65fccf2a1ede4efce81ac6ef5d92bc9b22794f549cac7e3a8",
+    "ml_v4/development_features/matrices/validation/row_metadata.csv": "cac115219b577d7d3e67098cd12fa82c2d5d4546e48f3139ceb66366f0006d82",
+    "ml_v4/development_features/matrices/validation/y.npy": "27a0c76111ad477d77e0cd7542186ad4791aea0882a5eb8cdc3c554aa760ca06",
+    "ml_v4/development_features/run_stage17.py": "1ff770c3786f42a2796bb29f90f5d38c307c9fdfb073c05ab628a53954826f7b",
+    "ml_v4/development_features/tests/test_features.py": "f5fdd906bf93b3afd5bc2d642b4fb7ced8c8050f7c25e1a606948ce7a587b4a9",
+    "ml_v4/evidence/stage17/development_authorization.json": "01b03996ef0bdd32e61ca541a77f18a161beaf9621cfbcfffb6b70d4bf78a288",
+    "ml_v4/evidence/stage17/development_matrix_audit.json": "774e92caf5b33a1a3ded88a638b621dc271baf4758b00d4dc45a514fd1e67366",
+    "ml_v4/evidence/stage17/feature_quality_audit.json": "7e3cdf2f2d6d80d46a15350d501298c23db8c3fa453d6b8fb03b6c4af0d80274",
+    "ml_v4/evidence/stage17/feature_schema_audit.json": "92c0eeda073868bd1d05b6791a5bbe1afb149318cdf77101c1c8d83d41c0d530",
+    "ml_v4/evidence/stage17/independent_fixture_tests.json": "48e66bd8a27555524f140aa74cb99dfaa86249f81b539f704db26eec8f2b2156",
+    "ml_v4/evidence/stage17/leakage_audit.json": "6bacfea05916e45d0f0ca1243af4c2cf2db3633f89a5da472147492ac07a3f20",
+    "ml_v4/evidence/stage17/preservation_verification.json": "8702bdc0aeccb0102680c0a8a991ec6d556e02f5998c851a5995a3d8a035a7b5",
+    "ml_v4/evidence/stage17/temporal_correctness_tests.json": "01f65dd6c46836cd6bca48a14ddfd0cb51b51902206eb156a64ccde8cf9ad579",
+    "ml_v4/reports/V4_STAGE17_FEATURE_EXTRACTION_REPORT.md": "527c005b6d6c5e6c4811b6eca079c4d59bff4bf408aa2f390ec5c4c84f05ba18"
+  },
+  "automatic_stage18": false,
+  "challenge_custody": "BLOCKED; Stage16V C unchanged",
+  "decision": "A \u2014 DEVELOPMENT FEATURES COMPLETE AND VERIFIED FOR MODEL TRAINING",
+  "external_independent_audit": false,
+  "family_support_shortfalls_retained": [
+    "S1",
+    "S2",
+    "S4",
+    "N1",
+    "N3",
+    "N4",
+    "A2",
+    "A3",
+    "A4"
+  ],
+  "historical_preservation_gap_retained": true,
+  "manifest_self_hash_excluded": true,
+  "models_trained": 0,
+  "new_transactions_generated": 0,
+  "original_evaluations": "SEALED_QUARANTINED; not accessed",
+  "preserved_inventory_count": 107,
+  "pytest_cases": 30,
+  "required_tests_and_audits": "PASS",
+  "scope": "Technical development-feature readiness only; no training or independent evaluation authorization.",
+  "semantic_dimensions": {
+    "train": [
+      60000,
+      40
+    ],
+    "validation": [
+      15000,
+      40
+    ]
+  },
+  "stage": "17",
+  "threshold_search": false
+}

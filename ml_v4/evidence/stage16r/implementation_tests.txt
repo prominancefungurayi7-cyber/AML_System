@@ -1,0 +1,22 @@
+test_amounts_conditional_shift_rounding (test_stage16r.Contracts.test_amounts_conditional_shift_rounding) ... ok
+test_identity_renaming (test_stage16r.Contracts.test_identity_renaming) ... ok
+test_loader_fails_closed (test_stage16r.Contracts.test_loader_fails_closed) ... ok
+test_motif_counts_and_hard_mapping (test_stage16r.Contracts.test_motif_counts_and_hard_mapping) ... ok
+test_seal_primitive_on_non_dataset_bytes (test_stage16r.Contracts.test_seal_primitive_on_non_dataset_bytes) ... ok
+test_source_independence (test_stage16r.Contracts.test_source_independence) ... ok
+test_a2_a3_a4 (test_stage16r.Predicates.test_a2_a3_a4) ... ok
+test_a4_assisted_roles (test_stage16r.Predicates.test_a4_assisted_roles) ... ok
+test_agent_a1_exact_35day_and_baseline (test_stage16r.Predicates.test_agent_a1_exact_35day_and_baseline) ... ok
+test_future_and_provenance_independence (test_stage16r.Predicates.test_future_and_provenance_independence) ... ok
+test_n3_equal_time_and_future (test_stage16r.Predicates.test_n3_equal_time_and_future) ... ok
+test_n3_paths_and_amount_boundaries (test_stage16r.Predicates.test_n3_paths_and_amount_boundaries) ... ok
+test_n4_funding_and_residual (test_stage16r.Predicates.test_n4_funding_and_residual) ... ok
+test_network_collection_dispersion (test_stage16r.Predicates.test_network_collection_dispersion) ... ok
+test_s3_midnight_and_calendar_translation (test_stage16r.Predicates.test_s3_midnight_and_calendar_translation) ... ok
+test_structuring_positive_and_count_boundaries (test_stage16r.Predicates.test_structuring_positive_and_count_boundaries) ... ok
+test_window_endpoints_current_once_and_partition_reset (test_stage16r.Predicates.test_window_endpoints_current_once_and_partition_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.106s
+
+OK

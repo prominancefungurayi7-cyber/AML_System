@@ -1,0 +1,5006 @@
+{
+  "train": {
+    "S2": {
+      "FN": 44,
+      "TP": 68,
+      "concentration": {
+        "cluster": {
+          "false_negatives": 44,
+          "maximum_fn_share": 0.06818181818181818,
+          "missed_groups": 27,
+          "positive_groups": 43,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "episode:0:159",
+              "miss_rate": 0.5,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "episode:11:158",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "episode:1:15",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "episode:3:13",
+              "miss_rate": 0.42857142857142855,
+              "positive_support": 7
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "episode:9:20",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "episode:0:157",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "episode:0:162",
+              "miss_rate": 0.5,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "episode:10:157",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "episode:10:158",
+              "miss_rate": 0.25,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "episode:5:14",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            }
+          ],
+          "top5_fn_share": 0.3409090909090909
+        },
+        "day": {
+          "false_negatives": 44,
+          "maximum_fn_share": 0.11363636363636363,
+          "missed_groups": 27,
+          "positive_groups": 53,
+          "top10": [
+            {
+              "false_negatives": 5,
+              "fn_share": 0.11363636363636363,
+              "key": "2027-06-21",
+              "miss_rate": 1.0,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "2027-02-19",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "2027-03-22",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "2027-06-23",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-04-13",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-04-14",
+              "miss_rate": 0.3333333333333333,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-06-10",
+              "miss_rate": 0.5,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-06-12",
+              "miss_rate": 0.3333333333333333,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-06-24",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "2027-06-29",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            }
+          ],
+          "top5_fn_share": 0.36363636363636365
+        },
+        "subject": {
+          "false_negatives": 44,
+          "maximum_fn_share": 0.09090909090909091,
+          "missed_groups": 26,
+          "positive_groups": 37,
+          "top10": [
+            {
+              "false_negatives": 4,
+              "fn_share": 0.09090909090909091,
+              "key": "4b3b6cfc8f33ef1b423c131ec2dc7ff2",
+              "miss_rate": 0.8,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "077ab363ded21a522c498e6510219923",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "07a70841d8f77b0544d5c3abd7a3bfc4",
+              "miss_rate": 0.5,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "6a32c8b59eb5435d5ff987bf3e81e67a",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "b8e3524994a64e045da31dbd925e2adf",
+              "miss_rate": 0.42857142857142855,
+              "positive_support": 7
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "3e9a3d865e9604a18e3d810cfa69e33e",
+              "miss_rate": 0.5,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "3eb0b4c8d506e1b7f986182ee62728e1",
+              "miss_rate": 0.25,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "400caae13b4ba8bcabe32a5f3382f7e7",
+              "miss_rate": 0.5,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "666d3cadf019a50cc58e49b073d3c268",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "72af8d6c5abbeca92f43e521eebbcb5a",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            }
+          ],
+          "top5_fn_share": 0.36363636363636365
+        },
+        "unit": {
+          "false_negatives": 44,
+          "maximum_fn_share": 0.20454545454545456,
+          "missed_groups": 9,
+          "positive_groups": 11,
+          "top10": [
+            {
+              "false_negatives": 9,
+              "fn_share": 0.20454545454545456,
+              "key": "0",
+              "miss_rate": 0.6,
+              "positive_support": 15
+            },
+            {
+              "false_negatives": 7,
+              "fn_share": 0.1590909090909091,
+              "key": "1",
+              "miss_rate": 0.5833333333333334,
+              "positive_support": 12
+            },
+            {
+              "false_negatives": 6,
+              "fn_share": 0.13636363636363635,
+              "key": "9",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 9
+            },
+            {
+              "false_negatives": 5,
+              "fn_share": 0.11363636363636363,
+              "key": "11",
+              "miss_rate": 0.29411764705882354,
+              "positive_support": 17
+            },
+            {
+              "false_negatives": 5,
+              "fn_share": 0.11363636363636363,
+              "key": "3",
+              "miss_rate": 0.3333333333333333,
+              "positive_support": 15
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.09090909090909091,
+              "key": "10",
+              "miss_rate": 0.26666666666666666,
+              "positive_support": 15
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "5",
+              "miss_rate": 0.42857142857142855,
+              "positive_support": 7
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.06818181818181818,
+              "key": "8",
+              "miss_rate": 0.5,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.045454545454545456,
+              "key": "4",
+              "miss_rate": 0.16666666666666666,
+              "positive_support": 12
+            }
+          ],
+          "top5_fn_share": 0.7272727272727273
+        }
+      },
+      "detected_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            3.25,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5,
+            2.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            365.0,
+            15418.5,
+            806151.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5,
+            2.0,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            285.5,
+            8446.0,
+            1377355.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.9055838453740945,
+            -1.0510781219248895,
+            -0.24217728521849022,
+            0.7728399889386321,
+            1.9856279949606634
+          ],
+          "missing_count": 24,
+          "rows": 68,
+          "valid_n": 44
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            8.0,
+            16.0,
+            33.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            4.0,
+            6.0,
+            9.0,
+            15.0
+          ],
+          "missing_count": 25,
+          "rows": 68,
+          "valid_n": 43
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.08333333333333333,
+            0.3333333333333333,
+            0.42857142857142855,
+            0.6125,
+            1.0
+          ],
+          "missing_count": 25,
+          "rows": 68,
+          "valid_n": 43
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            5.0
+          ],
+          "missing_count": 24,
+          "rows": 68,
+          "valid_n": 44
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.4,
+            0.7,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.06666666666666667,
+            0.25882936507936505,
+            0.5038759689922481,
+            0.7926829268292683,
+            0.8846153846153846
+          ],
+          "missing_count": 25,
+          "rows": 68,
+          "valid_n": 43
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.3333333333333333,
+            0.8441295546558705,
+            1.0769230769230769,
+            1.3696741854636592,
+            2.2222222222222223
+          ],
+          "missing_count": 25,
+          "rows": 68,
+          "valid_n": 43
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            2913.0,
+            4484.5,
+            6791.0,
+            8422.25,
+            45389.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 68,
+          "rows": 68,
+          "valid_n": 0
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 49,
+          "rows": 68,
+          "valid_n": 19
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            3.0,
+            4.0,
+            8.0
+          ],
+          "missing_count": 45,
+          "rows": 68,
+          "valid_n": 23
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 68,
+          "rows": 68,
+          "valid_n": 0
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 68,
+          "rows": 68,
+          "valid_n": 0
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 17,
+            "cash_out": 19,
+            "wallet_to_wallet": 32
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            4.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            5.25,
+            10.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            5.25,
+            10.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.3448945615982242,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            0.18037723223620927,
+            0.63038303397533,
+            0.7483851584797957,
+            1.8158464566929133,
+            16.972006220839813
+          ],
+          "missing_count": 63,
+          "rows": 68,
+          "valid_n": 5
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            -4550.0,
+            643.0,
+            4621.0,
+            6657.0,
+            23911.0
+          ],
+          "missing_count": 63,
+          "rows": 68,
+          "valid_n": 5
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            4.0,
+            6.0,
+            7.0,
+            9.0,
+            12.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.6,
+            0.6363636363636364,
+            0.7,
+            0.7833333333333333,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            2913.0,
+            4495.75,
+            6874.0,
+            8451.0,
+            45389.0
+          ],
+          "missing_count": 0,
+          "rows": 68,
+          "valid_n": 68
+        }
+      },
+      "detected_probability": {
+        "min_q25_median_q75_max": [
+          0.5004383325576782,
+          0.6316945105791092,
+          0.7351595759391785,
+          0.9877267926931381,
+          0.9999892711639404
+        ],
+        "valid_n": 68
+      },
+      "exclusive_family": {
+        "FN": 44,
+        "support": 92
+      },
+      "missed_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            2.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            11813.5,
+            600511.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            11503.0,
+            811881.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.1805395619962256,
+            -0.5045467722370524,
+            0.04128972897660152,
+            0.8767303525297161,
+            1.8232245520740116
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            8.0,
+            16.25,
+            27.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            4.0,
+            5.0,
+            7.0,
+            12.0
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.2907894736842105,
+            0.3900928792569659,
+            0.5,
+            1.0
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5357142857142857,
+            0.7625,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.17366946778711484,
+            0.44877344877344877,
+            0.5814102564102563,
+            0.8103146853146853,
+            0.8961038961038961
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.17391304347826086,
+            0.5862968231389284,
+            0.9455882352941176,
+            1.1534391534391535,
+            1.6296296296296295
+          ],
+          "missing_count": 16,
+          "rows": 44,
+          "valid_n": 28
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            1685.0,
+            4354.75,
+            7693.0,
+            10916.5,
+            601534.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 44,
+          "rows": 44,
+          "valid_n": 0
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 30,
+          "rows": 44,
+          "valid_n": 14
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 26,
+          "rows": 44,
+          "valid_n": 18
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 44,
+          "rows": 44,
+          "valid_n": 0
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 44,
+          "rows": 44,
+          "valid_n": 0
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 12,
+            "cash_out": 9,
+            "wallet_to_wallet": 23
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            3.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            3.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            3.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.5003513308412265,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            0.009804638743982115,
+            0.9158589809150457,
+            1.3066304692120747,
+            1.806680308139342,
+            3.040569702201122
+          ],
+          "missing_count": 40,
+          "rows": 44,
+          "valid_n": 4
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            -7994.0,
+            -1091.0,
+            2395.0,
+            112046.5,
+            437446.0
+          ],
+          "missing_count": 40,
+          "rows": 44,
+          "valid_n": 4
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            4.0,
+            4.0,
+            5.0,
+            6.0,
+            12.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.6,
+            0.6666666666666666,
+            0.7207792207792207,
+            0.821969696969697,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            1685.0,
+            4354.75,
+            8360.0,
+            11545.25,
+            601534.0
+          ],
+          "missing_count": 0,
+          "rows": 44,
+          "valid_n": 44
+        }
+      },
+      "missed_probability": {
+        "min_q25_median_q75_max": [
+          0.08460148423910141,
+          0.23921287432312965,
+          0.28841257095336914,
+          0.3747873827815056,
+          0.49085018038749695
+        ],
+        "valid_n": 44
+      },
+      "overlap_among_fn": {
+        "A1": 0,
+        "A2": 0,
+        "A3": 0,
+        "A4": 0,
+        "N1": 0,
+        "N2": 0,
+        "N3": 0,
+        "N4": 0,
+        "S1": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "saved_eligibility_positive": {
+        "True": 112
+      },
+      "support": 112,
+      "type_rows": {
+        "cash_in": {
+          "FN": 12,
+          "positive": 29
+        },
+        "cash_out": {
+          "FN": 9,
+          "positive": 28
+        },
+        "wallet_to_wallet": {
+          "FN": 23,
+          "positive": 55
+        }
+      }
+    },
+    "S4": {
+      "FN": 86,
+      "TP": 42,
+      "concentration": {
+        "cluster": {
+          "false_negatives": 86,
+          "maximum_fn_share": 0.05813953488372093,
+          "missed_groups": 51,
+          "positive_groups": 57,
+          "top10": [
+            {
+              "false_negatives": 5,
+              "fn_share": 0.05813953488372093,
+              "key": "episode:0:161",
+              "miss_rate": 0.8333333333333334,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "episode:3:44",
+              "miss_rate": 0.8,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "episode:5:40",
+              "miss_rate": 1.0,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:0:54",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:10:45",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:1:168",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:3:11",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:4:164",
+              "miss_rate": 0.6,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "episode:9:51",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "episode:0:170",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            }
+          ],
+          "top5_fn_share": 0.22093023255813954
+        },
+        "day": {
+          "false_negatives": 86,
+          "maximum_fn_share": 0.046511627906976744,
+          "missed_groups": 65,
+          "positive_groups": 78,
+          "top10": [
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "2027-05-26",
+              "miss_rate": 0.8,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "2027-05-03",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "2027-05-25",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "2027-06-29",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-02-16",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-02-28",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-03-03",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-03-28",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-04-23",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.023255813953488372,
+              "key": "2027-04-30",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            }
+          ],
+          "top5_fn_share": 0.1744186046511628
+        },
+        "subject": {
+          "false_negatives": 86,
+          "maximum_fn_share": 0.05813953488372093,
+          "missed_groups": 50,
+          "positive_groups": 54,
+          "top10": [
+            {
+              "false_negatives": 5,
+              "fn_share": 0.05813953488372093,
+              "key": "b65fcb0006661919fe25cb3b805addb7",
+              "miss_rate": 0.7142857142857143,
+              "positive_support": 7
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "29fd49f5953718e2c90af30775f4877f",
+              "miss_rate": 1.0,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "e15055c170db80801c811a72d9abdb8d",
+              "miss_rate": 0.8,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "0dd94a2b76e1d004060cb28ff26ae92e",
+              "miss_rate": 0.5,
+              "positive_support": 6
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "141bb10989df894e6dc88864e5b05e37",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "1efcaae147359159d7f7dcddfcc8429e",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "2b31d213a4fc5d1b00de0f812009270e",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "7d970c80990bb47b6b3f32392a1bb7c7",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "c95d69f1ad41697417105102cfbd567a",
+              "miss_rate": 0.6,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.03488372093023256,
+              "key": "d41eddadcb3e9efddb7e8c1b8b152a99",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            }
+          ],
+          "top5_fn_share": 0.22093023255813954
+        },
+        "unit": {
+          "false_negatives": 86,
+          "maximum_fn_share": 0.1511627906976744,
+          "missed_groups": 12,
+          "positive_groups": 12,
+          "top10": [
+            {
+              "false_negatives": 13,
+              "fn_share": 0.1511627906976744,
+              "key": "4",
+              "miss_rate": 0.5909090909090909,
+              "positive_support": 22
+            },
+            {
+              "false_negatives": 12,
+              "fn_share": 0.13953488372093023,
+              "key": "0",
+              "miss_rate": 0.5714285714285714,
+              "positive_support": 21
+            },
+            {
+              "false_negatives": 11,
+              "fn_share": 0.12790697674418605,
+              "key": "3",
+              "miss_rate": 0.6875,
+              "positive_support": 16
+            },
+            {
+              "false_negatives": 8,
+              "fn_share": 0.09302325581395349,
+              "key": "1",
+              "miss_rate": 0.8,
+              "positive_support": 10
+            },
+            {
+              "false_negatives": 8,
+              "fn_share": 0.09302325581395349,
+              "key": "5",
+              "miss_rate": 0.8,
+              "positive_support": 10
+            },
+            {
+              "false_negatives": 8,
+              "fn_share": 0.09302325581395349,
+              "key": "7",
+              "miss_rate": 0.7272727272727273,
+              "positive_support": 11
+            },
+            {
+              "false_negatives": 7,
+              "fn_share": 0.08139534883720931,
+              "key": "10",
+              "miss_rate": 0.875,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 7,
+              "fn_share": 0.08139534883720931,
+              "key": "9",
+              "miss_rate": 0.5833333333333334,
+              "positive_support": 12
+            },
+            {
+              "false_negatives": 5,
+              "fn_share": 0.05813953488372093,
+              "key": "2",
+              "miss_rate": 0.625,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.046511627906976744,
+              "key": "11",
+              "miss_rate": 0.5714285714285714,
+              "positive_support": 7
+            }
+          ],
+          "top5_fn_share": 0.6046511627906976
+        }
+      },
+      "detected_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            2.0,
+            3.0,
+            3.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            2.0,
+            3.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            304812.5,
+            837965.75,
+            1755302.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            9.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            17302.0,
+            767214.0,
+            2099331.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.601314558138967,
+            -0.9216839470321564,
+            -0.18025733714770115,
+            0.9188558913651528,
+            1.9556451676869653
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            9.25,
+            14.0,
+            20.0,
+            34.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            2.0,
+            5.0,
+            7.0,
+            10.0,
+            21.0
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.10526315789473684,
+            0.31046195652173914,
+            0.5,
+            0.5785714285714285,
+            1.0
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.34615384615384615,
+            0.5833333333333333,
+            0.75,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.14182939362795477,
+            0.29201066761040473,
+            0.5009157509157509,
+            0.6553185096153846,
+            0.8656716417910447
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.35294117647058826,
+            0.9594155844155845,
+            1.1375,
+            1.6291866028708133,
+            3.1
+          ],
+          "missing_count": 6,
+          "rows": 42,
+          "valid_n": 36
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            700152.0,
+            750005.25,
+            804158.5,
+            942978.75,
+            1037521.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": [
+            60.014509327424776,
+            130.4505898019358,
+            200.8866702764468,
+            271.3227507509578,
+            341.75883122546884
+          ],
+          "missing_count": 40,
+          "rows": 42,
+          "valid_n": 2
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.25,
+            5.0
+          ],
+          "missing_count": 30,
+          "rows": 42,
+          "valid_n": 12
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            2.5,
+            4.0,
+            4.5,
+            7.0
+          ],
+          "missing_count": 27,
+          "rows": 42,
+          "valid_n": 15
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.75,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.75,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.17571077362275367,
+            0.35142154724550734,
+            0.527132320868261,
+            0.7028430944910147
+          ],
+          "missing_count": 40,
+          "rows": 42,
+          "valid_n": 2
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0
+          ],
+          "missing_count": 40,
+          "rows": 42,
+          "valid_n": 2
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 15,
+            "cash_out": 12,
+            "wallet_to_wallet": 15
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            4.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            2.0,
+            2.0,
+            4.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            2.0,
+            2.0,
+            4.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.5369565332942529,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            12.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            0.7077290853989645,
+            16.157878761834887,
+            80.84392076512431,
+            198.29752222294138,
+            2510.730627306273
+          ],
+          "missing_count": 36,
+          "rows": 42,
+          "valid_n": 6
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            -1030053.0,
+            -494589.25,
+            2224.5,
+            451096.75,
+            1103093.0
+          ],
+          "missing_count": 36,
+          "rows": 42,
+          "valid_n": 6
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            2.0,
+            2.0,
+            3.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.07692307692307693,
+            0.16666666666666666,
+            0.2,
+            0.3333333333333333,
+            0.5
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            700152.0,
+            758495.5,
+            814476.0,
+            965702.5,
+            1447830.0
+          ],
+          "missing_count": 0,
+          "rows": 42,
+          "valid_n": 42
+        }
+      },
+      "detected_probability": {
+        "min_q25_median_q75_max": [
+          0.500481903553009,
+          0.7403246760368347,
+          0.9931835830211639,
+          0.999431923031807,
+          0.9999860525131226
+        ],
+        "valid_n": 42
+      },
+      "exclusive_family": {
+        "FN": 86,
+        "support": 99
+      },
+      "missed_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            3654.0,
+            753060.25,
+            1932948.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1077.0,
+            773655.75,
+            2101331.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.9091177634893597,
+            -0.8630259558299651,
+            -0.41762078050044216,
+            0.8087987063718374,
+            1.83789062862142
+          ],
+          "missing_count": 30,
+          "rows": 86,
+          "valid_n": 56
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            11.5,
+            18.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            4.0,
+            7.0,
+            8.0,
+            11.0
+          ],
+          "missing_count": 30,
+          "rows": 86,
+          "valid_n": 56
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.10526315789473684,
+            0.2824675324675324,
+            0.37797619047619047,
+            0.5,
+            0.8181818181818182
+          ],
+          "missing_count": 30,
+          "rows": 86,
+          "valid_n": 56
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 30,
+          "rows": 86,
+          "valid_n": 56
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.42857142857142855,
+            0.7291666666666666,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.16114790286975716,
+            0.30241564749761474,
+            0.4724186704384724,
+            0.831974921630094,
+            0.9069767441860465
+          ],
+          "missing_count": 31,
+          "rows": 86,
+          "valid_n": 55
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.4444444444444444,
+            0.8,
+            1.1428571428571428,
+            1.303921568627451,
+            2.2666666666666666
+          ],
+          "missing_count": 30,
+          "rows": 86,
+          "valid_n": 56
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            701204.0,
+            763151.25,
+            852388.5,
+            927546.25,
+            1047608.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": [
+            162.050936329588,
+            195.53103227671443,
+            229.0111282238408,
+            262.4912241709672,
+            295.9713201180936
+          ],
+          "missing_count": 84,
+          "rows": 86,
+          "valid_n": 2
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 60,
+          "rows": 86,
+          "valid_n": 26
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 50,
+          "rows": 86,
+          "valid_n": 36
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.45293324810123936,
+            0.9058664962024787,
+            1.358799744303718,
+            1.8117329924049574
+          ],
+          "missing_count": 84,
+          "rows": 86,
+          "valid_n": 2
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.75,
+            2.5,
+            3.25,
+            4.0
+          ],
+          "missing_count": 84,
+          "rows": 86,
+          "valid_n": 2
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 25,
+            "cash_out": 20,
+            "wallet_to_wallet": 41
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.75,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            3.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            3.0,
+            5.0
+          ],
+          "missing_count": 1,
+          "rows": 86,
+          "valid_n": 85
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.5057631122711426,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            3.0,
+            3.0,
+            4.0,
+            5.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            1.2658966941449703,
+            58.592457173810004,
+            59.65038257798705,
+            150.14207360226467,
+            1267.9778597785978
+          ],
+          "missing_count": 81,
+          "rows": 86,
+          "valid_n": 5
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            813.0,
+            5652.0,
+            14769.0,
+            15291.0,
+            827562.0
+          ],
+          "missing_count": 81,
+          "rows": 86,
+          "valid_n": 5
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.09090909090909091,
+            0.14285714285714285,
+            0.2,
+            0.3,
+            0.5
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            701748.0,
+            768585.5,
+            860415.0,
+            950009.5,
+            1999142.0
+          ],
+          "missing_count": 0,
+          "rows": 86,
+          "valid_n": 86
+        }
+      },
+      "missed_probability": {
+        "min_q25_median_q75_max": [
+          0.08594459295272827,
+          0.19531488046050072,
+          0.26933152973651886,
+          0.34632325172424316,
+          0.48014119267463684
+        ],
+        "valid_n": 86
+      },
+      "overlap_among_fn": {
+        "A1": 0,
+        "A2": 0,
+        "A3": 0,
+        "A4": 0,
+        "N1": 0,
+        "N2": 0,
+        "N3": 0,
+        "N4": 0,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0
+      },
+      "saved_eligibility_positive": {
+        "True": 128
+      },
+      "support": 128,
+      "type_rows": {
+        "cash_in": {
+          "FN": 25,
+          "positive": 40
+        },
+        "cash_out": {
+          "FN": 20,
+          "positive": 32
+        },
+        "wallet_to_wallet": {
+          "FN": 41,
+          "positive": 56
+        }
+      }
+    }
+  },
+  "validation": {
+    "S2": {
+      "FN": 12,
+      "TP": 11,
+      "concentration": {
+        "cluster": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 6,
+          "positive_groups": 7,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "episode:0:148",
+              "miss_rate": 0.375,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "episode:1:156",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "episode:0:22",
+              "miss_rate": 0.4,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "episode:2:153",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:2:154",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:2:158",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            }
+          ],
+          "top5_fn_share": 0.9166666666666666
+        },
+        "day": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 8,
+          "positive_groups": 15,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "2027-07-01",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "2027-07-02",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-05-29",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-05-30",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-06-01",
+              "miss_rate": 0.5,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-06-20",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-07-03",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-07-04",
+              "miss_rate": 0.5,
+              "positive_support": 2
+            }
+          ],
+          "top5_fn_share": 0.75
+        },
+        "subject": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 6,
+          "positive_groups": 7,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "6e6df0e1706fd31c371ff443e7e8ceaf",
+              "miss_rate": 0.375,
+              "positive_support": 8
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "dea2efd9738c5aa019f684cb40c9cd95",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "5599749cc2f2a30f38febb8dcfc1666a",
+              "miss_rate": 0.4,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "956aa23b2d6653b9c299472545d5b67b",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "a5c33f6ad4e9dc83fc39a9ed8a44c4b5",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "afc0e8a12e8f48f98f56c3dca4891588",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            }
+          ],
+          "top5_fn_share": 0.9166666666666666
+        },
+        "unit": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.4166666666666667,
+          "missed_groups": 3,
+          "positive_groups": 3,
+          "top10": [
+            {
+              "false_negatives": 5,
+              "fn_share": 0.4166666666666667,
+              "key": "0",
+              "miss_rate": 0.3333333333333333,
+              "positive_support": 15
+            },
+            {
+              "false_negatives": 4,
+              "fn_share": 0.3333333333333333,
+              "key": "2",
+              "miss_rate": 0.8,
+              "positive_support": 5
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "1",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            }
+          ],
+          "top5_fn_share": 1.0
+        }
+      },
+      "detected_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            8.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            5035.0,
+            8753.0,
+            18413.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.5,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1996.0,
+            1463984.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.414828852586529,
+            -0.9634783440744391,
+            -0.6887221652780663,
+            0.7892113229714849,
+            1.2469465138559808
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            5.5,
+            9.0,
+            19.0,
+            38.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            4.0,
+            5.0,
+            5.0,
+            6.0,
+            11.0
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.18421052631578946,
+            0.2631578947368421,
+            0.5555555555555556,
+            0.6666666666666666,
+            0.8
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.45833333333333337,
+            0.6666666666666666,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.29942528735632185,
+            0.4732394366197183,
+            0.7037037037037037,
+            0.8297872340425532,
+            0.898989898989899
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.6101694915254238,
+            0.8181818181818182,
+            1.0,
+            1.1875,
+            1.3333333333333333
+          ],
+          "missing_count": 2,
+          "rows": 11,
+          "valid_n": 9
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            3251.0,
+            5036.0,
+            8369.0,
+            11230.5,
+            11571.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 11,
+          "rows": 11,
+          "valid_n": 0
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 7,
+          "rows": 11,
+          "valid_n": 4
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.75,
+            2.0
+          ],
+          "missing_count": 5,
+          "rows": 11,
+          "valid_n": 6
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 11,
+          "rows": 11,
+          "valid_n": 0
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 11,
+          "rows": 11,
+          "valid_n": 0
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 3,
+            "cash_out": 2,
+            "wallet_to_wallet": 6
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 11,
+          "rows": 11,
+          "valid_n": 0
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 11,
+          "rows": 11,
+          "valid_n": 0
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            11.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.6666666666666666,
+            0.6794871794871795,
+            0.6923076923076923,
+            0.7166666666666666,
+            0.8181818181818182
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            3251.0,
+            5036.0,
+            8369.0,
+            11230.5,
+            11571.0
+          ],
+          "missing_count": 0,
+          "rows": 11,
+          "valid_n": 11
+        }
+      },
+      "detected_probability": {
+        "min_q25_median_q75_max": [
+          0.5299072861671448,
+          0.5576895177364349,
+          0.6105884909629822,
+          0.6394276320934296,
+          0.9844980835914612
+        ],
+        "valid_n": 11
+      },
+      "exclusive_family": {
+        "FN": 12,
+        "support": 23
+      },
+      "missed_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            3.5,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            2650.0,
+            5321.25,
+            513842.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1831.5,
+            11108.75,
+            24385.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.41296756552716,
+            -1.3379028723125987,
+            -0.037718002909509496,
+            0.5930562752407047,
+            0.9201721289804666
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            18.0,
+            25.25,
+            44.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            4.0,
+            6.0,
+            7.0,
+            9.0,
+            10.0
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.18181818181818182,
+            0.23076923076923078,
+            0.33384615384615385,
+            0.39764492753623193,
+            0.5454545454545454
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.4722222222222222,
+            0.6666666666666666,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.3268765133171913,
+            0.37220730797912005,
+            0.4670298165137614,
+            0.6374263622974963,
+            0.8715596330275229
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.6341463414634146,
+            1.0406162464985995,
+            1.091587854654057,
+            1.2896341463414633,
+            1.5714285714285714
+          ],
+          "missing_count": 4,
+          "rows": 12,
+          "valid_n": 8
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            2948.0,
+            3167.75,
+            4997.0,
+            10924.25,
+            12125.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 12,
+          "rows": 12,
+          "valid_n": 0
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.25,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            2.0,
+            2.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            2.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            2.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 12,
+          "rows": 12,
+          "valid_n": 0
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 12,
+          "rows": 12,
+          "valid_n": 0
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 3,
+            "cash_out": 2,
+            "wallet_to_wallet": 7
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.25,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.25,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.25,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.5014845605700713,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            0.0034077340154843446,
+            1.2729874853397776,
+            2.5425672366640706,
+            3.812146987988364,
+            5.081726739312657
+          ],
+          "missing_count": 10,
+          "rows": 12,
+          "valid_n": 2
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            2386.0,
+            222464.0,
+            442542.0,
+            662620.0,
+            882698.0
+          ],
+          "missing_count": 10,
+          "rows": 12,
+          "valid_n": 2
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            4.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.6,
+            0.625,
+            0.6904761904761905,
+            0.7444444444444445,
+            0.9
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            2948.0,
+            3167.75,
+            7515.5,
+            10924.25,
+            12125.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        }
+      },
+      "missed_probability": {
+        "min_q25_median_q75_max": [
+          0.10605131089687347,
+          0.15327848121523857,
+          0.25046707689762115,
+          0.3312070816755295,
+          0.4813540577888489
+        ],
+        "valid_n": 12
+      },
+      "overlap_among_fn": {
+        "A1": 0,
+        "A2": 0,
+        "A3": 0,
+        "A4": 0,
+        "N1": 0,
+        "N2": 0,
+        "N3": 0,
+        "N4": 0,
+        "S1": 0,
+        "S3": 0,
+        "S4": 0
+      },
+      "saved_eligibility_positive": {
+        "True": 23
+      },
+      "support": 23,
+      "type_rows": {
+        "cash_in": {
+          "FN": 3,
+          "positive": 6
+        },
+        "cash_out": {
+          "FN": 2,
+          "positive": 4
+        },
+        "wallet_to_wallet": {
+          "FN": 7,
+          "positive": 13
+        }
+      }
+    },
+    "S4": {
+      "FN": 12,
+      "TP": 4,
+      "concentration": {
+        "cluster": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 8,
+          "positive_groups": 12,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "episode:1:41",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "episode:0:155",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "episode:1:58",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:0:42",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:1:167",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:1:40",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:2:49",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "episode:2:50",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            }
+          ],
+          "top5_fn_share": 0.75
+        },
+        "day": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 9,
+          "positive_groups": 12,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "2027-03-19",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "2027-05-25",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-04-16",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-06-04",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-06-05",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-06-15",
+              "miss_rate": 0.5,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-07-14",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-07-27",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "2027-08-05",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            }
+          ],
+          "top5_fn_share": 0.6666666666666666
+        },
+        "subject": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.25,
+          "missed_groups": 8,
+          "positive_groups": 12,
+          "top10": [
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "4920bfd87acb93c4d8b0fb174610116a",
+              "miss_rate": 1.0,
+              "positive_support": 3
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "1189b48fca15bee7bbbebb176b52f49e",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "7931712401163e815251df3326e94953",
+              "miss_rate": 1.0,
+              "positive_support": 2
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "1efd3e25022cbfd7a2a15a4bc893d886",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "48c91839f610c378a24c6cd745e54ff3",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "a6b83686634826789ba89a7741abe8e9",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "cd4d0ab8b83f522262533decdb2aad82",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            },
+            {
+              "false_negatives": 1,
+              "fn_share": 0.08333333333333333,
+              "key": "dea2efd9738c5aa019f684cb40c9cd95",
+              "miss_rate": 1.0,
+              "positive_support": 1
+            }
+          ],
+          "top5_fn_share": 0.75
+        },
+        "unit": {
+          "false_negatives": 12,
+          "maximum_fn_share": 0.5833333333333334,
+          "missed_groups": 3,
+          "positive_groups": 3,
+          "top10": [
+            {
+              "false_negatives": 7,
+              "fn_share": 0.5833333333333334,
+              "key": "1",
+              "miss_rate": 0.7777777777777778,
+              "positive_support": 9
+            },
+            {
+              "false_negatives": 3,
+              "fn_share": 0.25,
+              "key": "0",
+              "miss_rate": 0.75,
+              "positive_support": 4
+            },
+            {
+              "false_negatives": 2,
+              "fn_share": 0.16666666666666666,
+              "key": "2",
+              "miss_rate": 0.6666666666666666,
+              "positive_support": 3
+            }
+          ],
+          "top5_fn_share": 1.0
+        }
+      },
+      "detected_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            1.5,
+            4.0,
+            6.25,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.75,
+            3.5,
+            6.25,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            2636.25,
+            42961.0,
+            488558.0,
+            1707011.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5,
+            1.75,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            8731.5,
+            224344.5,
+            844989.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.5963949839892146,
+            -0.7256110628423017,
+            0.14517285830461138,
+            0.1593647289957117,
+            0.17355659968681197
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.75,
+            1.0,
+            1.25,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            12.0,
+            16.5,
+            17.0,
+            17.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            6.0,
+            6.5,
+            7.0,
+            8.0,
+            9.0
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.35294117647058826,
+            0.38235294117647056,
+            0.4117647058823529,
+            0.48713235294117646,
+            0.5625
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            26.25,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.2916666666666667,
+            0.3944444444444445,
+            0.48750000000000004,
+            0.75
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.25882352941176473,
+            0.2646456828345374,
+            0.27046783625730997,
+            0.42690058479532167,
+            0.5833333333333334
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            0.918918918918919,
+            0.9451737451737452,
+            0.9714285714285714,
+            1.426890756302521,
+            1.8823529411764706
+          ],
+          "missing_count": 1,
+          "rows": 4,
+          "valid_n": 3
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            760593.0,
+            817908.0,
+            841001.0,
+            872720.75,
+            955916.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 4,
+          "rows": 4,
+          "valid_n": 0
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "missing_count": 2,
+          "rows": 4,
+          "valid_n": 2
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.5,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            4.0,
+            4.75,
+            5.5,
+            6.25,
+            7.0
+          ],
+          "missing_count": 2,
+          "rows": 4,
+          "valid_n": 2
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            2.0,
+            4.75,
+            7.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            3.5,
+            5.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 4,
+          "rows": 4,
+          "valid_n": 0
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 4,
+          "rows": 4,
+          "valid_n": 0
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 1,
+            "cash_out": 1,
+            "wallet_to_wallet": 2
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.25,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.25,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.5,
+            2.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.9976882075624315,
+            0.9994220518906078,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            3.0,
+            3.75,
+            4.0,
+            4.5,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 4,
+          "rows": 4,
+          "valid_n": 0
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": null,
+          "missing_count": 4,
+          "rows": 4,
+          "valid_n": 0
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.08333333333333333,
+            0.09583333333333334,
+            0.1,
+            0.11071428571428571,
+            0.14285714285714285
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            760593.0,
+            817908.0,
+            841001.0,
+            873274.5,
+            958131.0
+          ],
+          "missing_count": 0,
+          "rows": 4,
+          "valid_n": 4
+        }
+      },
+      "detected_probability": {
+        "min_q25_median_q75_max": [
+          0.902054488658905,
+          0.9634812772274017,
+          0.9846941530704498,
+          0.9886994361877441,
+          0.9985034465789795
+        ],
+        "valid_n": 4
+      },
+      "exclusive_family": {
+        "FN": 12,
+        "support": 12
+      },
+      "missed_features": {
+        "agent_cash_distinct_wallets_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            3.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_in_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            5775.0,
+            834571.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_out_value_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            215211.5,
+            922054.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_cash_value_skew_change": {
+          "min_q25_median_q75_max": [
+            -1.5999872124136905,
+            -0.7381480603657274,
+            0.5568775979922655,
+            0.7701789976372068,
+            0.9318495242947661
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "agent_distinct_wallets_1h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_distinct_wallets_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            14.75,
+            25.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_new_wallet_count_7d": {
+          "min_q25_median_q75_max": [
+            6.0,
+            7.0,
+            8.0,
+            8.0,
+            9.0
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "agent_new_wallet_share_7d": {
+          "min_q25_median_q75_max": [
+            0.36,
+            0.3888888888888889,
+            0.47058823529411764,
+            0.5714285714285714,
+            0.6666666666666666
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "agent_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_service_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "agent_top2_count_share_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.5,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "agent_top2_share_change_24h": {
+          "min_q25_median_q75_max": [
+            0.2222222222222222,
+            0.37,
+            0.37719298245614036,
+            0.5066666666666667,
+            0.7027027027027027
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "min_q25_median_q75_max": [
+            1.0625,
+            1.125,
+            1.1612903225806452,
+            1.2173913043478262,
+            1.2820512820512822
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "amount_minor": {
+          "min_q25_median_q75_max": [
+            783071.0,
+            790389.25,
+            841699.0,
+            935218.5,
+            1029559.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "min_q25_median_q75_max": [
+            649.8514522821577,
+            649.8514522821577,
+            649.8514522821577,
+            649.8514522821577,
+            649.8514522821577
+          ],
+          "missing_count": 11,
+          "rows": 12,
+          "valid_n": 1
+        },
+        "network_in_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 7,
+          "rows": 12,
+          "valid_n": 5
+        },
+        "network_in_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_in_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_out_acceleration_24h": {
+          "min_q25_median_q75_max": [
+            2.0,
+            2.0,
+            2.5,
+            3.0,
+            3.0
+          ],
+          "missing_count": 8,
+          "rows": 12,
+          "valid_n": 4
+        },
+        "network_out_count_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.5,
+            2.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "network_out_distinct_24h": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "prior_path_min_max_log_change_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "missing_count": 11,
+          "rows": 12,
+          "valid_n": 1
+        },
+        "prior_return_path_count_7d": {
+          "min_q25_median_q75_max": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "prior_return_path_min_length_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 11,
+          "rows": 12,
+          "valid_n": 1
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 2,
+            "cash_out": 3,
+            "wallet_to_wallet": 7
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.25,
+            3.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_activity_acceleration_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_count_1h": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_count_utc_day": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            3.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_day_count_growth": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            3.0,
+            4.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_max_value_share_1h": {
+          "min_q25_median_q75_max": [
+            0.5118316985277492,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_near_band_count_7d": {
+          "min_q25_median_q75_max": [
+            3.0,
+            3.0,
+            4.0,
+            4.0,
+            6.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_observed_coverage_days": {
+          "min_q25_median_q75_max": [
+            35.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_pass_through_fraction_24h": {
+          "min_q25_median_q75_max": [
+            3.572251388794192,
+            4.0976344719328655,
+            4.623017555071538,
+            189.22345760714927,
+            373.823897659227
+          ],
+          "missing_count": 9,
+          "rows": 12,
+          "valid_n": 3
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "min_q25_median_q75_max": [
+            -1432388.0,
+            -1113176.0,
+            -793964.0,
+            -690324.0,
+            -586684.0
+          ],
+          "missing_count": 9,
+          "rows": 12,
+          "valid_n": 3
+        },
+        "wallet_similar_amount_count_7d": {
+          "min_q25_median_q75_max": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_similar_amount_share_7d": {
+          "min_q25_median_q75_max": [
+            0.07692307692307693,
+            0.13839285714285715,
+            0.18333333333333335,
+            0.2222222222222222,
+            0.4
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        },
+        "wallet_value_1h": {
+          "min_q25_median_q75_max": [
+            783071.0,
+            790389.25,
+            867677.0,
+            1017610.75,
+            1925903.0
+          ],
+          "missing_count": 0,
+          "rows": 12,
+          "valid_n": 12
+        }
+      },
+      "missed_probability": {
+        "min_q25_median_q75_max": [
+          0.024309948086738586,
+          0.1117143053561449,
+          0.14087487012147903,
+          0.19743697345256805,
+          0.31473493576049805
+        ],
+        "valid_n": 12
+      },
+      "overlap_among_fn": {
+        "A1": 0,
+        "A2": 0,
+        "A3": 0,
+        "A4": 0,
+        "N1": 0,
+        "N2": 0,
+        "N3": 0,
+        "N4": 0,
+        "S1": 0,
+        "S2": 0,
+        "S3": 0
+      },
+      "saved_eligibility_positive": {
+        "True": 16
+      },
+      "support": 16,
+      "type_rows": {
+        "cash_in": {
+          "FN": 2,
+          "positive": 3
+        },
+        "cash_out": {
+          "FN": 3,
+          "positive": 4
+        },
+        "wallet_to_wallet": {
+          "FN": 7,
+          "positive": 9
+        }
+      }
+    }
+  }
+}

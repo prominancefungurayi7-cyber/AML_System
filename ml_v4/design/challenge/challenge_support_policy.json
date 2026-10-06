@@ -1,0 +1,240 @@
+{
+  "cluster_definition": "Independent resampling cluster is whole local unit. Episode cluster=(unit,scenario_id); non-episode cluster=(unit,UTC day). Subjects and episodes within a unit are dependent; never sum them as independent sample size.",
+  "family_objectives": {
+    "A1": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "A2": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "A3": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "A4": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "N1": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "N2": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "N3": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "N4": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "S1": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "S2": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "S3": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    },
+    "S4": {
+      "distinct_subjects": 40,
+      "episode_or_background_clusters": 50,
+      "local_units": 12,
+      "max_30day_bin_share": 0.4,
+      "max_subject_share": 0.1,
+      "max_unit_share": 0.2,
+      "minimum_positive_rows_in_each_of_at_least_4_fixed_30day_bins": 20,
+      "per_arm_positive_points": 80,
+      "per_arm_units": 8,
+      "positive_decision_points": 200
+    }
+  },
+  "negative_objectives": {
+    "A1": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "A2": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "A3": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "A4": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "N1": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "N2": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "N3": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "N4": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "S1": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "S2": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "S3": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    },
+    "S4": {
+      "distinct_subjects": 30,
+      "local_units": 12,
+      "near_boundary_target0_rows": 50,
+      "near_boundary_units": 8,
+      "union_target0_matched_hard_rows": 200
+    }
+  },
+  "no_prevalence_gate": "Challenge prevalence is measured, not targeted. No acceptance loop for class balance. Metrics undefined on empty classes are null with reasons; binary comparison requires both classes and adequate negative support.",
+  "protocol_version": "v4.challenge.protocol.1",
+  "rationale": "200 independent Bernoulli observations have worst-case normal-approximation 95% half-width 1.96*sqrt(.25/200)=0.0693. This is only planning intuition; correlation worsens precision. Forty subjects, fifty episode/day clusters and twelve represented units guard concentration, not a claimed effective sample size. Each arm has twelve available unit clusters, so arm comparisons remain exploratory and uncertainty may be wide. Do not claim the original 300-row policy has been relaxed: these are new challenge objectives for a different estimand. If tighter original precision is required, this design is insufficient.",
+  "support_failure": "Retain first complete draw, publish only predeclared aggregate support PASS/FAIL before freeze, preserve detailed counts privately. Do not regenerate, relax rules, drop families, add events or change seeds. Failed technical correctness blocks all evaluation. Failed support blocks a full-family adequacy claim and automatic progression to feature/model work; a separate user decision may permit an explicitly qualified protocol without changing data/targets. Actual counts and failed objectives are released in the final frozen evaluation report, or in a separately authorized retirement audit after ending use as independent evidence, never as tuning feedback.",
+  "uncertainty_gate": "Support PASS alone does not establish adequate precision. If simultaneous family-recall interval width exceeds0.20, withhold a precise family conclusion even if counts pass; display estimate, counts and limitation. Arm/slice intervals require >=8 represented units; otherwise exploratory counts only."
+}

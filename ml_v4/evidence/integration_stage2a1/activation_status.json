@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-05T20:53:40.474804+00:00",
+  "decision": "C",
+  "privilege_method_used": "NONE",
+  "credential_discovery_scope": "Nonempty configuration key names in process environment and workspace .env only; values not exported",
+  "database_configuration_keys": [
+    "DATABASE_URL"
+  ],
+  "authorized_admin_identity_available": false,
+  "prior_blocker": "Stage2A MySQL error 1419; no triggers installed in recorded postconditions",
+  "database_connection_this_stage": false,
+  "installation": "NOT_RUN",
+  "mysql_capture_test": "NOT_RUN",
+  "rollback_test": "NOT_RUN",
+  "migration_idempotency": "NOT_RUN",
+  "observation_boundary": "NOT_CREATED",
+  "first_attestation": "NOT_RUN",
+  "freshness_source_revision_watermark_entities_graph": "NOT_VERIFIED",
+  "history_status": "UNKNOWN; no new completeness claim",
+  "database_mutations": 0,
+  "model_operations": 0
+}

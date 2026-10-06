@@ -1,0 +1,409 @@
+{
+  "train": {
+    "A1": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.0015082956259426848,
+        "negative_available": 663,
+        "negative_in_positive_middle90": 0.0015082956259426848,
+        "negative_mean": 1.0371110734204088,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 11040,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.400644789356152,
+        "range_overlap": [
+          1.5,
+          1.6666666666666667
+        ],
+        "rank_auc": 0.9996710849891797
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.0,
+        "negative_available": 743,
+        "negative_in_positive_middle90": 0.0,
+        "negative_mean": 1.0456977505855545,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 11040,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.400644789356152,
+        "range_overlap": null,
+        "rank_auc": 1.0
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.008222084696313324,
+        "negative_available": 11311,
+        "negative_in_positive_middle90": 0.007691627619131818,
+        "negative_mean": 0.9347750555893033,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 11040,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.400644789356152,
+        "range_overlap": [
+          1.5,
+          3.3333333333333335
+        ],
+        "rank_auc": 0.9975669565922106
+      }
+    },
+    "A2": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.0015082956259426848,
+        "negative_available": 663,
+        "negative_in_positive_middle90": 0.942684766214178,
+        "negative_mean": 1.0371110734204088,
+        "positive_at_or_above_existing_A1_ratio": 0.29926610491981515,
+        "positive_available": 3679,
+        "positive_in_negative_middle90": 0.6322370209296004,
+        "positive_mean": 1.4014673977692573,
+        "range_overlap": [
+          0.2777777777777778,
+          1.6666666666666667
+        ],
+        "rank_auc": 0.6069744016116911
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.0,
+        "negative_available": 743,
+        "negative_in_positive_middle90": 0.955585464333782,
+        "negative_mean": 1.0456977505855545,
+        "positive_at_or_above_existing_A1_ratio": 0.29926610491981515,
+        "positive_available": 3679,
+        "positive_in_negative_middle90": 0.6145691764066322,
+        "positive_mean": 1.4014673977692573,
+        "range_overlap": [
+          0.36363636363636365,
+          1.490909090909091
+        ],
+        "rank_auc": 0.6012871058574419
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.008222084696313324,
+        "negative_available": 11311,
+        "negative_in_positive_middle90": 0.8692423304747591,
+        "negative_mean": 0.9347750555893033,
+        "positive_at_or_above_existing_A1_ratio": 0.29926610491981515,
+        "positive_available": 3679,
+        "positive_in_negative_middle90": 0.6586028812177223,
+        "positive_mean": 1.4014673977692573,
+        "range_overlap": [
+          0.25,
+          3.3333333333333335
+        ],
+        "rank_auc": 0.6812051012024583
+      }
+    },
+    "A3": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.0015082956259426848,
+        "negative_available": 663,
+        "negative_in_positive_middle90": 0.8567119155354449,
+        "negative_mean": 1.0371110734204088,
+        "positive_at_or_above_existing_A1_ratio": 0.5407990996060776,
+        "positive_available": 1777,
+        "positive_in_negative_middle90": 0.4350028137310073,
+        "positive_mean": 1.959851331050721,
+        "range_overlap": [
+          0.3448275862068966,
+          1.6666666666666667
+        ],
+        "rank_auc": 0.7818395095365533
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.0,
+        "negative_available": 743,
+        "negative_in_positive_middle90": 0.8546433378196501,
+        "negative_mean": 1.0456977505855545,
+        "positive_at_or_above_existing_A1_ratio": 0.5407990996060776,
+        "positive_available": 1777,
+        "positive_in_negative_middle90": 0.4181204276871131,
+        "positive_mean": 1.959851331050721,
+        "range_overlap": [
+          0.36363636363636365,
+          1.490909090909091
+        ],
+        "rank_auc": 0.7777989428248344
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.008222084696313324,
+        "negative_available": 11311,
+        "negative_in_positive_middle90": 0.7023251701883123,
+        "negative_mean": 0.9347750555893033,
+        "positive_at_or_above_existing_A1_ratio": 0.5407990996060776,
+        "positive_available": 1777,
+        "positive_in_negative_middle90": 0.4248733821046708,
+        "positive_mean": 1.959851331050721,
+        "range_overlap": [
+          0.3448275862068966,
+          3.3333333333333335
+        ],
+        "rank_auc": 0.8278322002371485
+      }
+    },
+    "A4": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.0015082956259426848,
+        "negative_available": 663,
+        "negative_in_positive_middle90": 0.9004524886877828,
+        "negative_mean": 1.0371110734204088,
+        "positive_at_or_above_existing_A1_ratio": 0.3112633181126332,
+        "positive_available": 1314,
+        "positive_in_negative_middle90": 0.6400304414003044,
+        "positive_mean": 1.4235100807521337,
+        "range_overlap": [
+          0.4745762711864407,
+          1.6666666666666667
+        ],
+        "rank_auc": 0.6717563035048935
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.0,
+        "negative_available": 743,
+        "negative_in_positive_middle90": 0.8990578734858681,
+        "negative_mean": 1.0456977505855545,
+        "positive_at_or_above_existing_A1_ratio": 0.3112633181126332,
+        "positive_available": 1314,
+        "positive_in_negative_middle90": 0.6248097412480974,
+        "positive_mean": 1.4235100807521337,
+        "range_overlap": [
+          0.4745762711864407,
+          1.490909090909091
+        ],
+        "rank_auc": 0.6656388084834406
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.008222084696313324,
+        "negative_available": 11311,
+        "negative_in_positive_middle90": 0.7736716470692246,
+        "negative_mean": 0.9347750555893033,
+        "positive_at_or_above_existing_A1_ratio": 0.3112633181126332,
+        "positive_available": 1314,
+        "positive_in_negative_middle90": 0.6438356164383562,
+        "positive_mean": 1.4235100807521337,
+        "range_overlap": [
+          0.4745762711864407,
+          3.3333333333333335
+        ],
+        "rank_auc": 0.7401728520357131
+      }
+    },
+    "overall": {
+      "negative_at_or_above_existing_A1_ratio": 0.0066273932253313695,
+      "negative_available": 20370,
+      "negative_in_positive_middle90": 0.7750122729504173,
+      "negative_mean": 0.957674336112311,
+      "positive_at_or_above_existing_A1_ratio": 0.6666867797019248,
+      "positive_available": 16573,
+      "positive_in_negative_middle90": 0.3096602908344898,
+      "positive_mean": 1.9370493761049687,
+      "range_overlap": [
+        0.16666666666666666,
+        3.3333333333333335
+      ],
+      "rank_auc": 0.8490732526519215
+    }
+  },
+  "validation": {
+    "A1": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.006535947712418301,
+        "negative_available": 153,
+        "negative_in_positive_middle90": 0.006535947712418301,
+        "negative_mean": 1.0711851228782228,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 2648,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.2637532532824642,
+        "range_overlap": [
+          1.5,
+          1.75
+        ],
+        "rank_auc": 0.998014286278459
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.05069124423963134,
+        "negative_available": 217,
+        "negative_in_positive_middle90": 0.04608294930875576,
+        "negative_mean": 1.0771765460895617,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 2648,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.2637532532824642,
+        "range_overlap": [
+          1.5,
+          2.0714285714285716
+        ],
+        "rank_auc": 0.9811387082851852
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.020635994587280108,
+        "negative_available": 2956,
+        "negative_in_positive_middle90": 0.019282814614343707,
+        "negative_mean": 0.9489829718444414,
+        "positive_at_or_above_existing_A1_ratio": 1.0,
+        "positive_available": 2648,
+        "positive_in_negative_middle90": 0.0,
+        "positive_mean": 2.2637532532824642,
+        "range_overlap": [
+          1.5,
+          3.142857142857143
+        ],
+        "rank_auc": 0.9946105315012939
+      }
+    },
+    "A2": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.006535947712418301,
+        "negative_available": 153,
+        "negative_in_positive_middle90": 0.9150326797385621,
+        "negative_mean": 1.0711851228782228,
+        "positive_at_or_above_existing_A1_ratio": 0.27101769911504425,
+        "positive_available": 904,
+        "positive_in_negative_middle90": 0.6969026548672567,
+        "positive_mean": 1.3228366836838785,
+        "range_overlap": [
+          0.45454545454545453,
+          1.75
+        ],
+        "rank_auc": 0.5400218346925791
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.05069124423963134,
+        "negative_available": 217,
+        "negative_in_positive_middle90": 0.9400921658986175,
+        "negative_mean": 1.0771765460895617,
+        "positive_at_or_above_existing_A1_ratio": 0.27101769911504425,
+        "positive_available": 904,
+        "positive_in_negative_middle90": 0.6935840707964602,
+        "positive_mean": 1.3228366836838785,
+        "range_overlap": [
+          0.5098039215686274,
+          2.0714285714285716
+        ],
+        "rank_auc": 0.547477162432201
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.020635994587280108,
+        "negative_available": 2956,
+        "negative_in_positive_middle90": 0.8623139377537212,
+        "negative_mean": 0.9489829718444414,
+        "positive_at_or_above_existing_A1_ratio": 0.27101769911504425,
+        "positive_available": 904,
+        "positive_in_negative_middle90": 0.702433628318584,
+        "positive_mean": 1.3228366836838785,
+        "range_overlap": [
+          0.4,
+          3.142857142857143
+        ],
+        "rank_auc": 0.6332618448154046
+      }
+    },
+    "A3": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.006535947712418301,
+        "negative_available": 153,
+        "negative_in_positive_middle90": 0.7516339869281046,
+        "negative_mean": 1.0711851228782228,
+        "positive_at_or_above_existing_A1_ratio": 0.5493273542600897,
+        "positive_available": 446,
+        "positive_in_negative_middle90": 0.38565022421524664,
+        "positive_mean": 1.9015465813780026,
+        "range_overlap": [
+          0.6274509803921569,
+          1.75
+        ],
+        "rank_auc": 0.8063981945543538
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.05069124423963134,
+        "negative_available": 217,
+        "negative_in_positive_middle90": 0.7142857142857143,
+        "negative_mean": 1.0771765460895617,
+        "positive_at_or_above_existing_A1_ratio": 0.5493273542600897,
+        "positive_available": 446,
+        "positive_in_negative_middle90": 0.4484304932735426,
+        "positive_mean": 1.9015465813780026,
+        "range_overlap": [
+          0.6274509803921569,
+          2.0714285714285716
+        ],
+        "rank_auc": 0.8041526316877106
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.020635994587280108,
+        "negative_available": 2956,
+        "negative_in_positive_middle90": 0.5974289580514208,
+        "negative_mean": 0.9489829718444414,
+        "positive_at_or_above_existing_A1_ratio": 0.5493273542600897,
+        "positive_available": 446,
+        "positive_in_negative_middle90": 0.40358744394618834,
+        "positive_mean": 1.9015465813780026,
+        "range_overlap": [
+          0.6274509803921569,
+          3.142857142857143
+        ],
+        "rank_auc": 0.8620700771251903
+      }
+    },
+    "A4": {
+      "H7": {
+        "negative_at_or_above_existing_A1_ratio": 0.006535947712418301,
+        "negative_available": 153,
+        "negative_in_positive_middle90": 0.8823529411764706,
+        "negative_mean": 1.0711851228782228,
+        "positive_at_or_above_existing_A1_ratio": 0.25903614457831325,
+        "positive_available": 332,
+        "positive_in_negative_middle90": 0.7228915662650602,
+        "positive_mean": 1.3400631912722545,
+        "range_overlap": [
+          0.5581395348837209,
+          1.75
+        ],
+        "rank_auc": 0.5705075202771872
+      },
+      "H8": {
+        "negative_at_or_above_existing_A1_ratio": 0.05069124423963134,
+        "negative_available": 217,
+        "negative_in_positive_middle90": 0.9078341013824884,
+        "negative_mean": 1.0771765460895617,
+        "positive_at_or_above_existing_A1_ratio": 0.25903614457831325,
+        "positive_available": 332,
+        "positive_in_negative_middle90": 0.7289156626506024,
+        "positive_mean": 1.3400631912722545,
+        "range_overlap": [
+          0.5581395348837209,
+          2.0714285714285716
+        ],
+        "rank_auc": 0.5806035200710676
+      },
+      "routine": {
+        "negative_at_or_above_existing_A1_ratio": 0.020635994587280108,
+        "negative_available": 2956,
+        "negative_in_positive_middle90": 0.8217185385656293,
+        "negative_mean": 0.9489829718444414,
+        "positive_at_or_above_existing_A1_ratio": 0.25903614457831325,
+        "positive_available": 332,
+        "positive_in_negative_middle90": 0.7289156626506024,
+        "positive_mean": 1.3400631912722545,
+        "range_overlap": [
+          0.5581395348837209,
+          3.142857142857143
+        ],
+        "rank_auc": 0.6697288137665682
+      }
+    },
+    "overall": {
+      "negative_at_or_above_existing_A1_ratio": 0.0225346687211094,
+      "negative_available": 5192,
+      "negative_in_positive_middle90": 0.8168335901386748,
+      "negative_mean": 0.9817234126155326,
+      "positive_at_or_above_existing_A1_ratio": 0.6582401555663587,
+      "positive_available": 4114,
+      "positive_in_negative_middle90": 0.3232863393291201,
+      "positive_mean": 1.8221409496221705,
+      "range_overlap": [
+        0.19047619047619047,
+        3.142857142857143
+      ],
+      "rank_auc": 0.8301699194302892
+    }
+  }
+}

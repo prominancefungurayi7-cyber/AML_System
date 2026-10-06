@@ -1,0 +1,227 @@
+{
+  "cluster_uncertainty": "Three communities do not support stable population precision. Report unit-specific rates and raw family counts; Wilson bounds ignore dependence. No precise independent-generalization claim or row-wise bootstrap.",
+  "families": {
+    "train": {
+      "A1": {
+        "decision_points": 5773,
+        "distinct_clusters": 2273,
+        "distinct_subjects": 90,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.002944742768058202,
+        "maximum_subject_share": 0.020613199376407414,
+        "minimum_objective": 1200
+      },
+      "A2": {
+        "decision_points": 755,
+        "distinct_clusters": 339,
+        "distinct_subjects": 74,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.018543046357615896,
+        "maximum_subject_share": 0.059602649006622516,
+        "minimum_objective": 1200
+      },
+      "A3": {
+        "decision_points": 883,
+        "distinct_clusters": 249,
+        "distinct_subjects": 77,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.015855039637599093,
+        "maximum_subject_share": 0.056625141562853906,
+        "minimum_objective": 1200
+      },
+      "A4": {
+        "decision_points": 812,
+        "distinct_clusters": 466,
+        "distinct_subjects": 75,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.009852216748768473,
+        "maximum_subject_share": 0.07881773399014778,
+        "minimum_objective": 1200
+      },
+      "N1": {
+        "decision_points": 414,
+        "distinct_clusters": 187,
+        "distinct_subjects": 116,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.024154589371980676,
+        "maximum_subject_share": 0.028985507246376812,
+        "minimum_objective": 1200
+      },
+      "N2": {
+        "decision_points": 1690,
+        "distinct_clusters": 582,
+        "distinct_subjects": 333,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.00650887573964497,
+        "maximum_subject_share": 0.0242603550295858,
+        "minimum_objective": 1200
+      },
+      "N3": {
+        "decision_points": 550,
+        "distinct_clusters": 453,
+        "distinct_subjects": 355,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.01090909090909091,
+        "maximum_subject_share": 0.01818181818181818,
+        "minimum_objective": 1200
+      },
+      "N4": {
+        "decision_points": 559,
+        "distinct_clusters": 348,
+        "distinct_subjects": 258,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.02146690518783542,
+        "maximum_subject_share": 0.026833631484794274,
+        "minimum_objective": 1200
+      },
+      "S1": {
+        "decision_points": 456,
+        "distinct_clusters": 147,
+        "distinct_subjects": 132,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.03289473684210526,
+        "maximum_subject_share": 0.04824561403508772,
+        "minimum_objective": 1200
+      },
+      "S2": {
+        "decision_points": 112,
+        "distinct_clusters": 43,
+        "distinct_subjects": 37,
+        "distinct_units": 11,
+        "maximum_cluster_share": 0.07142857142857142,
+        "maximum_subject_share": 0.07142857142857142,
+        "minimum_objective": 1200
+      },
+      "S3": {
+        "decision_points": 2292,
+        "distinct_clusters": 673,
+        "distinct_subjects": 397,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.006544502617801047,
+        "maximum_subject_share": 0.017015706806282723,
+        "minimum_objective": 1200
+      },
+      "S4": {
+        "decision_points": 128,
+        "distinct_clusters": 57,
+        "distinct_subjects": 54,
+        "distinct_units": 12,
+        "maximum_cluster_share": 0.046875,
+        "maximum_subject_share": 0.0546875,
+        "minimum_objective": 1200
+      }
+    },
+    "validation": {
+      "A1": {
+        "decision_points": 1467,
+        "distinct_clusters": 570,
+        "distinct_subjects": 23,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.010906612133605999,
+        "maximum_subject_share": 0.08316291751874574,
+        "minimum_objective": 300
+      },
+      "A2": {
+        "decision_points": 148,
+        "distinct_clusters": 60,
+        "distinct_subjects": 20,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.07432432432432433,
+        "maximum_subject_share": 0.14864864864864866,
+        "minimum_objective": 300
+      },
+      "A3": {
+        "decision_points": 255,
+        "distinct_clusters": 80,
+        "distinct_subjects": 18,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.050980392156862744,
+        "maximum_subject_share": 0.19607843137254902,
+        "minimum_objective": 300
+      },
+      "A4": {
+        "decision_points": 222,
+        "distinct_clusters": 138,
+        "distinct_subjects": 17,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.04504504504504504,
+        "maximum_subject_share": 0.21621621621621623,
+        "minimum_objective": 300
+      },
+      "N1": {
+        "decision_points": 101,
+        "distinct_clusters": 42,
+        "distinct_subjects": 28,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.07920792079207921,
+        "maximum_subject_share": 0.0891089108910891,
+        "minimum_objective": 300
+      },
+      "N2": {
+        "decision_points": 429,
+        "distinct_clusters": 147,
+        "distinct_subjects": 86,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.02564102564102564,
+        "maximum_subject_share": 0.0675990675990676,
+        "minimum_objective": 300
+      },
+      "N3": {
+        "decision_points": 130,
+        "distinct_clusters": 111,
+        "distinct_subjects": 87,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.03076923076923077,
+        "maximum_subject_share": 0.038461538461538464,
+        "minimum_objective": 300
+      },
+      "N4": {
+        "decision_points": 144,
+        "distinct_clusters": 91,
+        "distinct_subjects": 74,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.05555555555555555,
+        "maximum_subject_share": 0.0625,
+        "minimum_objective": 300
+      },
+      "S1": {
+        "decision_points": 132,
+        "distinct_clusters": 34,
+        "distinct_subjects": 31,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.11363636363636363,
+        "maximum_subject_share": 0.12121212121212122,
+        "minimum_objective": 300
+      },
+      "S2": {
+        "decision_points": 23,
+        "distinct_clusters": 7,
+        "distinct_subjects": 7,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.34782608695652173,
+        "maximum_subject_share": 0.34782608695652173,
+        "minimum_objective": 300
+      },
+      "S3": {
+        "decision_points": 546,
+        "distinct_clusters": 156,
+        "distinct_subjects": 104,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.02197802197802198,
+        "maximum_subject_share": 0.056776556776556776,
+        "minimum_objective": 300
+      },
+      "S4": {
+        "decision_points": 16,
+        "distinct_clusters": 12,
+        "distinct_subjects": 12,
+        "distinct_units": 3,
+        "maximum_cluster_share": 0.1875,
+        "maximum_subject_share": 0.1875,
+        "minimum_objective": 300
+      }
+    }
+  },
+  "source": "Stage16S development_support_review.json; existing diagnostics, not generator reconstruction",
+  "validation_units": 3
+}

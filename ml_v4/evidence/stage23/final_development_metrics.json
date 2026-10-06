@@ -1,0 +1,367 @@
+{
+  "evaluation_status": "Reused development Validation, not independent test",
+  "no_recalculation_with_model": true,
+  "source": "Unmodified Stage18 saved primary_XGB metrics; exact match to Stage22 A40 saved results",
+  "threshold": 0.5,
+  "train": {
+    "FN": 1027,
+    "FP": 452,
+    "TN": 47318,
+    "TP": 11203,
+    "accuracy": 0.97535,
+    "average_precision": 0.989247484620885,
+    "balanced_accuracy": 0.9532820798624371,
+    "brier_score": 0.01794353872537613,
+    "calibration_bins": [
+      {
+        "count": 45003,
+        "lower": 0.0,
+        "mean_probability": 0.013439490459859371,
+        "observed_positive_fraction": 0.0019776459347154635,
+        "upper": 0.1
+      },
+      {
+        "count": 1238,
+        "lower": 0.1,
+        "mean_probability": 0.14119647443294525,
+        "observed_positive_fraction": 0.08966074313408724,
+        "upper": 0.2
+      },
+      {
+        "count": 786,
+        "lower": 0.2,
+        "mean_probability": 0.24928726255893707,
+        "observed_positive_fraction": 0.2786259541984733,
+        "upper": 0.3
+      },
+      {
+        "count": 685,
+        "lower": 0.3,
+        "mean_probability": 0.3500101566314697,
+        "observed_positive_fraction": 0.38686131386861317,
+        "upper": 0.4
+      },
+      {
+        "count": 633,
+        "lower": 0.4,
+        "mean_probability": 0.44921788573265076,
+        "observed_positive_fraction": 0.5418641390205371,
+        "upper": 0.5
+      },
+      {
+        "count": 571,
+        "lower": 0.5,
+        "mean_probability": 0.5507152080535889,
+        "observed_positive_fraction": 0.7005253940455342,
+        "upper": 0.6
+      },
+      {
+        "count": 585,
+        "lower": 0.6,
+        "mean_probability": 0.6503745913505554,
+        "observed_positive_fraction": 0.7299145299145299,
+        "upper": 0.7
+      },
+      {
+        "count": 714,
+        "lower": 0.7,
+        "mean_probability": 0.754442036151886,
+        "observed_positive_fraction": 0.8921568627450981,
+        "upper": 0.8
+      },
+      {
+        "count": 1100,
+        "lower": 0.8,
+        "mean_probability": 0.8546403646469116,
+        "observed_positive_fraction": 0.9672727272727273,
+        "upper": 0.9
+      },
+      {
+        "count": 8685,
+        "lower": 0.9,
+        "mean_probability": 0.984876275062561,
+        "observed_positive_fraction": 0.9988485895221646,
+        "upper": 1.0
+      }
+    ],
+    "confusion_matrix": [
+      [
+        47318,
+        452
+      ],
+      [
+        1027,
+        11203
+      ]
+    ],
+    "false_positive_rate": 0.009462005442746493,
+    "log_loss": 0.06714700907468796,
+    "macro_f1": 0.9613452375685043,
+    "normal_recall": 0.9905379945572536,
+    "positive_f1": 0.9380782918149466,
+    "positive_precision": 0.9612183612183612,
+    "positive_recall": 0.9160261651676206,
+    "precision_undefined": false,
+    "probability_quantiles": [
+      0.0023127098102122545,
+      0.0036932022776454687,
+      0.005421869922429323,
+      0.011171802878379822,
+      0.09987295046448708,
+      0.9992547714710236,
+      0.9999959468841553
+    ],
+    "roc_auc": 0.9968705397267603,
+    "threshold": 0.5
+  },
+  "validation": {
+    "FN": 292,
+    "FP": 118,
+    "TN": 11852,
+    "TP": 2738,
+    "accuracy": 0.9726666666666667,
+    "average_precision": 0.9859722854404002,
+    "balanced_accuracy": 0.9468861923786364,
+    "brier_score": 0.02014017291367054,
+    "calibration_bins": [
+      {
+        "count": 11263,
+        "lower": 0.0,
+        "mean_probability": 0.013430503197014332,
+        "observed_positive_fraction": 0.002397229867708426,
+        "upper": 0.1
+      },
+      {
+        "count": 343,
+        "lower": 0.1,
+        "mean_probability": 0.142390176653862,
+        "observed_positive_fraction": 0.13702623906705538,
+        "upper": 0.2
+      },
+      {
+        "count": 206,
+        "lower": 0.2,
+        "mean_probability": 0.25024065375328064,
+        "observed_positive_fraction": 0.3155339805825243,
+        "upper": 0.3
+      },
+      {
+        "count": 180,
+        "lower": 0.3,
+        "mean_probability": 0.3500816822052002,
+        "observed_positive_fraction": 0.4,
+        "upper": 0.4
+      },
+      {
+        "count": 152,
+        "lower": 0.4,
+        "mean_probability": 0.4482574462890625,
+        "observed_positive_fraction": 0.5328947368421053,
+        "upper": 0.5
+      },
+      {
+        "count": 159,
+        "lower": 0.5,
+        "mean_probability": 0.5508550405502319,
+        "observed_positive_fraction": 0.710691823899371,
+        "upper": 0.6
+      },
+      {
+        "count": 136,
+        "lower": 0.6,
+        "mean_probability": 0.6512842774391174,
+        "observed_positive_fraction": 0.7941176470588235,
+        "upper": 0.7
+      },
+      {
+        "count": 170,
+        "lower": 0.7,
+        "mean_probability": 0.756597638130188,
+        "observed_positive_fraction": 0.8764705882352941,
+        "upper": 0.8
+      },
+      {
+        "count": 241,
+        "lower": 0.8,
+        "mean_probability": 0.8555885553359985,
+        "observed_positive_fraction": 0.950207468879668,
+        "upper": 0.9
+      },
+      {
+        "count": 2150,
+        "lower": 0.9,
+        "mean_probability": 0.9856314659118652,
+        "observed_positive_fraction": 0.9948837209302326,
+        "upper": 1.0
+      }
+    ],
+    "confusion_matrix": [
+      [
+        11852,
+        118
+      ],
+      [
+        292,
+        2738
+      ]
+    ],
+    "false_positive_rate": 0.009857978279030911,
+    "log_loss": 0.07305558025836945,
+    "macro_f1": 0.9566703080517052,
+    "normal_recall": 0.9901420217209691,
+    "positive_f1": 0.9303431872239212,
+    "positive_precision": 0.9586834733893558,
+    "positive_recall": 0.9036303630363036,
+    "precision_undefined": false,
+    "probability_quantiles": [
+      0.0027302424423396587,
+      0.003708630334585905,
+      0.00542449438944459,
+      0.010991544928401709,
+      0.09687996841967106,
+      0.9994559228420258,
+      0.9999876022338867
+    ],
+    "roc_auc": 0.9960458213741173,
+    "threshold": 0.5
+  },
+  "validation_domains": {
+    "agent": {
+      "denominator": 1941,
+      "numerator": 1831,
+      "rate": 0.9433281813498197,
+      "wilson95": [
+        0.9321391267076711,
+        0.9527658444735296
+      ]
+    },
+    "network": {
+      "denominator": 776,
+      "numerator": 675,
+      "rate": 0.8698453608247423,
+      "wilson95": [
+        0.8443374237372777,
+        0.8917094863018892
+      ]
+    },
+    "structuring": {
+      "denominator": 684,
+      "numerator": 600,
+      "rate": 0.8771929824561403,
+      "wilson95": [
+        0.8504675581487502,
+        0.8997051560342826
+      ]
+    }
+  },
+  "validation_families": {
+    "A1": {
+      "denominator": 1467,
+      "numerator": 1467,
+      "rate": 1.0,
+      "wilson95": [
+        0.9973881619883473,
+        1.0
+      ]
+    },
+    "A2": {
+      "denominator": 148,
+      "numerator": 109,
+      "rate": 0.7364864864864865,
+      "wilson95": [
+        0.6601763937497572,
+        0.8008303395828736
+      ]
+    },
+    "A3": {
+      "denominator": 255,
+      "numerator": 255,
+      "rate": 1.0,
+      "wilson95": [
+        0.9851584907526456,
+        1.0
+      ]
+    },
+    "A4": {
+      "denominator": 222,
+      "numerator": 151,
+      "rate": 0.6801801801801802,
+      "wilson95": [
+        0.6162079912713478,
+        0.7380225844950301
+      ]
+    },
+    "N1": {
+      "denominator": 101,
+      "numerator": 77,
+      "rate": 0.7623762376237624,
+      "wilson95": [
+        0.6707230292337555,
+        0.8348014953824273
+      ]
+    },
+    "N2": {
+      "denominator": 429,
+      "numerator": 381,
+      "rate": 0.8881118881118881,
+      "wilson95": [
+        0.8547708451951814,
+        0.9145637104482687
+      ]
+    },
+    "N3": {
+      "denominator": 130,
+      "numerator": 122,
+      "rate": 0.9384615384615385,
+      "wilson95": [
+        0.883262024591287,
+        0.9684910925262609
+      ]
+    },
+    "N4": {
+      "denominator": 144,
+      "numerator": 123,
+      "rate": 0.8541666666666666,
+      "wilson95": [
+        0.7873314674040637,
+        0.9025961307821031
+      ]
+    },
+    "S1": {
+      "denominator": 132,
+      "numerator": 126,
+      "rate": 0.9545454545454546,
+      "wilson95": [
+        0.9043778572359823,
+        0.9790039639439801
+      ]
+    },
+    "S2": {
+      "denominator": 23,
+      "numerator": 11,
+      "rate": 0.4782608695652174,
+      "wilson95": [
+        0.2923686953994572,
+        0.6703757013578151
+      ]
+    },
+    "S3": {
+      "denominator": 546,
+      "numerator": 492,
+      "rate": 0.9010989010989011,
+      "wilson95": [
+        0.8731865848785458,
+        0.9234064702849776
+      ]
+    },
+    "S4": {
+      "denominator": 16,
+      "numerator": 4,
+      "rate": 0.25,
+      "wilson95": [
+        0.10181901984237346,
+        0.49498768929398645
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "source_sha256": "f5fdd906bf93b3afd5bc2d642b4fb7ced8c8050f7c25e1a606948ce7a587b4a9",
+  "method": "AST extracts unchanged function bodies; original test module is not imported",
+  "included": [
+    "test_cold_all_40",
+    "test_wallet_and_calendar_manual",
+    "test_agent_manual_all_primitives",
+    "test_top2_independent_and_assisted_cash_exclusion",
+    "test_network_paths_and_funding_manual",
+    "test_network_baseline_directions",
+    "test_residual_negative_one_not_missing",
+    "test_a1_exact_age_and_support",
+    "test_ties_future_reset_and_duplicates",
+    "test_graph_chronology_and_lengths",
+    "test_graph_selection_spread_and_key_tie",
+    "test_calendar_lower_boundary_and_translation",
+    "test_incoming_observation_and_signed_skew",
+    "test_no_w2w_anchor_and_24h_open_boundary",
+    "test_invariance_rename_and_future_append",
+    "test_path_same_time_keys",
+    "test_seven_day_amount_boundaries",
+    "test_calendar_median_nonzero",
+    "test_agent_weekly_even_median_and_returning_customer",
+    "test_a2_historical_distinct_gate",
+    "test_timestamp_schema_rejection"
+  ],
+  "excluded": [
+    "test_access",
+    "test_loader_resolved_escape_rejected",
+    "test_private_fields_rejected"
+  ],
+  "reason": "Excluded partition-loader tests and mixed private/loader case; private-field rejection tested separately in new service tests"
+}

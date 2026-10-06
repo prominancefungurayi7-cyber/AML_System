@@ -1,0 +1,7 @@
+{
+  "dataset": "mobile_money_aml_synthetic_100k_v3",
+  "evaluation_identifier": "v3-evaluation-sealed-20260922",
+  "private_manifest_commitment": "8e4d3dec80a0d2cc42a01c73ce800aa6af7cb486880f2216e2831d4f4c247b50",
+  "raw_file_contents": "not included",
+  "structural_audit": "PASS"
+}

@@ -1,0 +1,115 @@
+{
+  "custodian_support_pass": false,
+  "decision": "B — V4 DATASET CONDITIONALLY APPROVED; DEVELOPMENT ISSUE MUST BE RESOLVED",
+  "development_prevalence_pass": true,
+  "development_support_pass": false,
+  "gates": [
+    {
+      "id": "G1",
+      "name": "authoritative Stage 15 + 15A consistency",
+      "status": "PASS"
+    },
+    {
+      "id": "G2",
+      "name": "exact dataset sizes",
+      "status": "PASS"
+    },
+    {
+      "id": "G3",
+      "name": "entity isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "G4",
+      "name": "observable schema",
+      "status": "PASS"
+    },
+    {
+      "id": "G5",
+      "name": "accounting validity",
+      "status": "PASS"
+    },
+    {
+      "id": "G6",
+      "name": "observable-only evaluator",
+      "status": "PASS"
+    },
+    {
+      "id": "G7",
+      "name": "exact target replay",
+      "status": "PASS"
+    },
+    {
+      "id": "G8",
+      "name": "temporal safety",
+      "status": "PASS"
+    },
+    {
+      "id": "G9",
+      "name": "A1 35d alignment",
+      "status": "PASS"
+    },
+    {
+      "id": "G10",
+      "name": "development prevalence",
+      "status": "PASS"
+    },
+    {
+      "id": "G11",
+      "name": "family support",
+      "status": "REVIEW_REQUIRED"
+    },
+    {
+      "id": "G12",
+      "name": "hard-origin semantics",
+      "status": "PASS"
+    },
+    {
+      "id": "G13",
+      "name": "A1 overlap audit",
+      "status": "PASS"
+    },
+    {
+      "id": "G14",
+      "name": "N3/A4/S2/S4 audit",
+      "status": "PASS"
+    },
+    {
+      "id": "G15",
+      "name": "generator shortcut audit",
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "G16",
+      "name": "reproducibility",
+      "status": "PASS"
+    },
+    {
+      "id": "G17",
+      "name": "sealed holdouts and loader isolation",
+      "status": "PASS"
+    },
+    {
+      "id": "G18",
+      "name": "historical preservation",
+      "status": "PASS"
+    },
+    {
+      "id": "G19",
+      "name": "S4/H3 amount implementation",
+      "status": "PASS"
+    },
+    {
+      "id": "G20",
+      "name": "episode/motif/context implementation",
+      "status": "PASS"
+    }
+  ],
+  "holdout_detailed_results_exposed": false,
+  "new_feature_vectors": 0,
+  "new_model_fits": 0,
+  "production_draws": 1,
+  "reproducibility_replay_is_not_candidate": true,
+  "shortcut_review_required": false,
+  "training_authorized": false
+}

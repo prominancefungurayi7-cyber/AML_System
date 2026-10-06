@@ -1,0 +1,12 @@
+{
+  "decision": "C \u2014 APPLICATION/PROCESS INTEGRATION NOT YET SAFE",
+  "blocker": "Twelve Stage3 manifest-bound source/documentation files absent",
+  "shadow_integration_activated": false,
+  "model_operations": 0,
+  "tests_executed": false,
+  "artifact_sha256": {
+    "ml_v4/evidence/integration_stage4/preflight_integrity.json": "390abdb9bdbf853d94a8008157177263825679f5ab99c0304f7862d92bf90cdd",
+    "ml_v4/evidence/integration_stage4/preservation_verification.json": "feadfe6b4858c44af8fac171691b45a8e1775cf66680b9eab6eff160d52e97c8",
+    "ml_v4/reports/V4_INTEGRATION_STAGE4_SHADOW_APPLICATION_REPORT.md": "d408ecdbe0802b83caab351fe79e853b8a3cbb38dcf9748dec09bbf700b737ec"
+  }
+}

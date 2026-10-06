@@ -1,0 +1,10 @@
+{
+  "accounting": "Keep Stage18 ledger unchanged. New linked ledger records all attempts including failures; remaining ceiling is not permission. Four slots include two fresh40 baselines and two44 candidates; no automatic diagnostic/repeat slots.",
+  "currently_authorized_new_fits": 0,
+  "expired_slots": 20,
+  "historical_started_completed": 16,
+  "proposed_cumulative_attempt_ceiling": 20,
+  "proposed_new_fit_ceiling": 4,
+  "required": "Explicit new authorization naming four prospective slots and resolving the Stage18 expiry while retaining the inherited36 ceiling; amend policy prospectively, never describe expired slots as available or reset the ledger. If refused, no fits.",
+  "validation_reuse": "Stage19 errors motivated design and Stage20 choices. Validation reused for hypothesis generation; future metrics exploratory. No thresholdsearch, seedshopping or p-value promotion. Retire challenge independence if its results guide later work."
+}

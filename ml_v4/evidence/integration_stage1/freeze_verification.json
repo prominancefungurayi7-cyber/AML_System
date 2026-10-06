@@ -1,0 +1,78 @@
+{
+  "freeze": "v4.development.freeze.stage23.1",
+  "checks": {
+    "HGB_comparator": {
+      "path": "ml_v4/development_training/artifacts/primary_HGB_EXPERIMENTAL.joblib",
+      "expected": "156b499c6b6e5751d638ebedc142cc0b318bd0344d86a2943c3705f3197ac82b",
+      "actual": "156b499c6b6e5751d638ebedc142cc0b318bd0344d86a2943c3705f3197ac82b"
+    },
+    "dataset_manifest": {
+      "path": "ml_v4/evidence/stage16r/dataset_manifest.json",
+      "expected": "bebc7afa5bc9d788b9e337265ba9981f4d89abe24689ee25666c7a1265d41a4b",
+      "actual": "bebc7afa5bc9d788b9e337265ba9981f4d89abe24689ee25666c7a1265d41a4b"
+    },
+    "extractor_source": {
+      "path": "ml_v4/development_features/extractor.py",
+      "expected": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717",
+      "actual": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717"
+    },
+    "feature_specification": {
+      "path": "ml_v4/design/v4_feature_spec.json",
+      "expected": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+      "actual": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204"
+    },
+    "observable_contract_source": {
+      "path": "ml_v4/generation/stage16r_contract.py",
+      "expected": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d",
+      "actual": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d"
+    },
+    "pipeline": {
+      "path": "ml_v4/development_training/artifacts/primary_XGB_EXPERIMENTAL.joblib",
+      "expected": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+      "actual": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+    },
+    "preprocessing_specification": {
+      "path": "ml_v4/evidence/stage18/preprocessing_specification.json",
+      "expected": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1",
+      "actual": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1"
+    },
+    "preprocessor_source": {
+      "path": "ml_v4/development_training/preprocessing.py",
+      "expected": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d",
+      "actual": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d"
+    },
+    "selection_record": {
+      "path": "ml_v4/evidence/stage18/development_selection.json",
+      "expected": "60df51b5cc081f99ac4a94b2347b5d9a1243d9c1a2b4dd67d5f07d71d02ed920",
+      "actual": "60df51b5cc081f99ac4a94b2347b5d9a1243d9c1a2b4dd67d5f07d71d02ed920"
+    },
+    "standalone_fitted_preprocessor": {
+      "path": "ml_v4/development_training/artifacts/selected_preprocessor_EXPERIMENTAL.joblib",
+      "expected": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41",
+      "actual": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41"
+    },
+    "target_evaluator_source": {
+      "path": "ml_v4/generation/stage16r_evaluator.py",
+      "expected": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+      "actual": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af"
+    },
+    "target_specification": {
+      "path": "ml_v4/design/v4_target_predicates.json",
+      "expected": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+      "actual": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8"
+    },
+    "temporal_specification": {
+      "path": "ml_v4/design/v4_temporal_contract.json",
+      "expected": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+      "actual": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60"
+    },
+    "training_plan": {
+      "path": "ml_v4/evidence/stage18/frozen_training_plan.json",
+      "expected": "4a3823500b6a6a8b776c28dc3210cd11f538d9e7d32fcf251b6b21dac2a08389",
+      "actual": "4a3823500b6a6a8b776c28dc3210cd11f538d9e7d32fcf251b6b21dac2a08389"
+    }
+  },
+  "method": "Byte hashing only; no deserialization or model execution",
+  "historical_checks": 344,
+  "live_database_access": false
+}

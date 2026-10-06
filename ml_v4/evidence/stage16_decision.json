@@ -1,0 +1,131 @@
+{
+  "attempt": "preflight_only",
+  "blocking_findings": [
+    "B01"
+  ],
+  "created_utc": "2026-09-29T16:08:51.768388+00:00",
+  "dataset_id": "mobile_money_aml_synthetic_100k_v4",
+  "dataset_status": "UNDETERMINED; NOT_GENERATED",
+  "decision": "D — STAGE 16 IMPLEMENTATION FAILED; DATASET STATUS UNDETERMINED",
+  "feature_vectors": 0,
+  "gates": [
+    {
+      "gate": 1,
+      "name": "Stage 15 authoritative artifacts consistent",
+      "reason": "B01 unresolved amount-law conflict",
+      "status": "FAIL"
+    },
+    {
+      "gate": 2,
+      "name": "100000 scored plus 24000 warm-up events",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 3,
+      "name": "Partition/entity isolation",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 4,
+      "name": "Observable schema",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 5,
+      "name": "Accounting validity",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 6,
+      "name": "Observable-only universal evaluator",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 7,
+      "name": "Exact observable-only target replay",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 8,
+      "name": "Temporal safety tests",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 9,
+      "name": "A1 target/feature 35d alignment implemented",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 10,
+      "name": "Development prevalence assessed",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 11,
+      "name": "Family support assessed without regeneration",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 12,
+      "name": "H1-H8 origins, no forced negative labels",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 13,
+      "name": "A1 overlap audit",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 14,
+      "name": "N3/A4/S2/S4 support audits",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 15,
+      "name": "Generator shortcut audit",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 16,
+      "name": "Dataset reproducibility",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 17,
+      "name": "Fresh sealed holdouts and loader isolation",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 18,
+      "name": "Historical preservation",
+      "reason": "Explicit before/after protection hashes",
+      "status": "PASS"
+    }
+  ],
+  "generated_scored_rows": 0,
+  "generated_warmup_rows": 0,
+  "generation_authorized_by_request": true,
+  "generation_permitted_after_preflight": false,
+  "holdout_seals_created": 0,
+  "model_fits": 0,
+  "next_action": "Approve a versioned design amendment resolving B01 and Q01, then rerun implementation preflight. Existing design and this failed attempt remain preserved.",
+  "schema_version": 1,
+  "stage": 16,
+  "status": "STOPPED_AT_PREFLIGHT"
+}

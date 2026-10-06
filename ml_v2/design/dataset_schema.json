@@ -1,0 +1,277 @@
+{
+  "amount_minor_max": 2500000,
+  "amount_minor_min": 100,
+  "columns": {
+    "agents": {
+      "activation_timestamp": {
+        "nullable": false,
+        "type": "utc_datetime"
+      },
+      "activity_band": {
+        "nullable": false,
+        "type": "string"
+      },
+      "agent_id": {
+        "nullable": false,
+        "type": "string"
+      },
+      "initial_float_minor": {
+        "nullable": false,
+        "type": "int64"
+      },
+      "partition": {
+        "nullable": false,
+        "type": "string"
+      }
+    },
+    "ground_truth": {
+      "episode_id": {
+        "nullable": true,
+        "type": "string"
+      },
+      "episode_phase": {
+        "nullable": false,
+        "type": "string"
+      },
+      "label_basis": {
+        "nullable": false,
+        "type": "string"
+      },
+      "normal_episode_id": {
+        "nullable": true,
+        "type": "string"
+      },
+      "normal_family": {
+        "nullable": true,
+        "type": "string"
+      },
+      "primary_domain": {
+        "nullable": true,
+        "type": "string"
+      },
+      "primary_family": {
+        "nullable": true,
+        "type": "string"
+      },
+      "signal_strength": {
+        "nullable": true,
+        "type": "string"
+      },
+      "target": {
+        "nullable": false,
+        "type": "uint8"
+      },
+      "transaction_id": {
+        "nullable": false,
+        "type": "uint64"
+      }
+    },
+    "transactions": {
+      "agent_flow_direction": {
+        "nullable": false,
+        "type": "string"
+      },
+      "agent_id": {
+        "nullable": true,
+        "type": "string"
+      },
+      "amount_minor": {
+        "nullable": false,
+        "type": "int64"
+      },
+      "channel": {
+        "nullable": false,
+        "type": "string"
+      },
+      "currency": {
+        "nullable": false,
+        "type": "string"
+      },
+      "event_sequence": {
+        "nullable": false,
+        "type": "uint64"
+      },
+      "event_timestamp": {
+        "nullable": false,
+        "type": "utc_datetime"
+      },
+      "receiver_wallet": {
+        "nullable": false,
+        "type": "string"
+      },
+      "sender_wallet": {
+        "nullable": false,
+        "type": "string"
+      },
+      "serviced_wallet": {
+        "nullable": true,
+        "type": "string"
+      },
+      "transaction_id": {
+        "nullable": false,
+        "type": "uint64"
+      },
+      "transaction_type": {
+        "nullable": false,
+        "type": "string"
+      }
+    },
+    "wallets": {
+      "activation_timestamp": {
+        "nullable": false,
+        "type": "utc_datetime"
+      },
+      "activity_band": {
+        "nullable": false,
+        "type": "string"
+      },
+      "customer_id": {
+        "nullable": false,
+        "type": "string"
+      },
+      "initial_balance_minor": {
+        "nullable": false,
+        "type": "int64"
+      },
+      "partition": {
+        "nullable": false,
+        "type": "string"
+      },
+      "profile_type": {
+        "nullable": false,
+        "type": "string"
+      },
+      "wallet_id": {
+        "nullable": false,
+        "type": "string"
+      }
+    }
+  },
+  "constraints": {
+    "cash_in": "same customer endpoints; agent; outbound float",
+    "cash_out": "same customer endpoints; agent; inbound float",
+    "event_sequence": "equals transaction_id",
+    "ground_truth": "one-to-one; binary target; no metadata in events",
+    "transaction_id": "uint64 globally 1..100000",
+    "wallet_to_wallet": "different endpoints; agent or direct_wallet; float direction none"
+  },
+  "csv_null": "",
+  "encoding": "UTF-8",
+  "enums": {
+    "agent_flow_direction": [
+      "outbound",
+      "inbound",
+      "none"
+    ],
+    "channel": [
+      "agent",
+      "direct_wallet"
+    ],
+    "currency": [
+      "USD"
+    ],
+    "episode_phase": [
+      "early",
+      "established",
+      "late",
+      "not_applicable"
+    ],
+    "normal_family": [
+      "routine",
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "H5",
+      "H6",
+      "H7",
+      "H8"
+    ],
+    "partition": [
+      "train",
+      "validation",
+      "final_test",
+      "independent"
+    ],
+    "primary_domain": [
+      "structuring",
+      "network",
+      "agent"
+    ],
+    "primary_family": [
+      "variable_fragment_burst",
+      "similar_amount_repetition",
+      "distributed_same_day_fragmentation",
+      "variable_near_threshold_history",
+      "many_to_one_collection",
+      "one_to_many_dispersion",
+      "reciprocal_relationship_cycle",
+      "wallet_pass_through",
+      "agent_wallet_growth",
+      "agent_wallet_concentration",
+      "agent_temporal_burst",
+      "agent_flow_imbalance"
+    ],
+    "signal_strength": [
+      "weak",
+      "moderate",
+      "strong"
+    ],
+    "target": [
+      0,
+      1
+    ],
+    "transaction_type": [
+      "cash_in",
+      "cash_out",
+      "wallet_to_wallet"
+    ]
+  },
+  "monetary_unit": "USD cents",
+  "tables": {
+    "agents": [
+      "agent_id",
+      "partition",
+      "activity_band",
+      "initial_float_minor",
+      "activation_timestamp"
+    ],
+    "ground_truth": [
+      "transaction_id",
+      "target",
+      "primary_domain",
+      "primary_family",
+      "episode_id",
+      "normal_family",
+      "normal_episode_id",
+      "signal_strength",
+      "episode_phase",
+      "label_basis"
+    ],
+    "transactions": [
+      "transaction_id",
+      "event_sequence",
+      "event_timestamp",
+      "sender_wallet",
+      "receiver_wallet",
+      "amount_minor",
+      "currency",
+      "transaction_type",
+      "channel",
+      "agent_id",
+      "serviced_wallet",
+      "agent_flow_direction"
+    ],
+    "wallets": [
+      "wallet_id",
+      "customer_id",
+      "partition",
+      "profile_type",
+      "activity_band",
+      "initial_balance_minor",
+      "activation_timestamp"
+    ]
+  },
+  "timestamp_format": "%Y-%m-%dT%H:%M:%S.%fZ",
+  "version": 1
+}

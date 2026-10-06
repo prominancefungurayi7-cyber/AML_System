@@ -1,0 +1,2864 @@
+{
+  "diagnostic_model": {
+    "columns": [
+      "wallet_count_acceleration_1h",
+      "receiver_inflow_acceleration_24h",
+      "sender_outflow_acceleration_24h",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_change"
+    ],
+    "domain_independence": {
+      "agent_only": {
+        "fn": 2489,
+        "low_support": false,
+        "recall": 0.20300992635286583,
+        "support": 3123,
+        "tp": 634
+      },
+      "agent_overlap": {
+        "fn": 510,
+        "low_support": false,
+        "recall": 0.28370786516853935,
+        "support": 712,
+        "tp": 202
+      },
+      "network_only": {
+        "fn": 622,
+        "low_support": false,
+        "recall": 0.15718157181571815,
+        "support": 738,
+        "tp": 116
+      },
+      "network_overlap": {
+        "fn": 383,
+        "low_support": false,
+        "recall": 0.28142589118198874,
+        "support": 533,
+        "tp": 150
+      },
+      "structuring_only": {
+        "fn": 202,
+        "low_support": false,
+        "recall": 0.06046511627906977,
+        "support": 215,
+        "tp": 13
+      },
+      "structuring_overlap": {
+        "fn": 667,
+        "low_support": false,
+        "recall": 0.19053398058252427,
+        "support": 824,
+        "tp": 157
+      }
+    },
+    "domains": {
+      "agent": {
+        "fn": 2999,
+        "recall": 0.21799217731421122,
+        "support": 3835,
+        "tp": 836
+      },
+      "network": {
+        "fn": 1005,
+        "recall": 0.20928402832415421,
+        "support": 1271,
+        "tp": 266
+      },
+      "structuring": {
+        "fn": 869,
+        "recall": 0.16361886429258904,
+        "support": 1039,
+        "tp": 170
+      }
+    },
+    "families": {
+      "A1": {
+        "fn": 2139,
+        "recall": 0.22076502732240438,
+        "support": 2745,
+        "tp": 606
+      },
+      "A2": {
+        "fn": 709,
+        "recall": 0.23763440860215054,
+        "support": 930,
+        "tp": 221
+      },
+      "A3": {
+        "fn": 365,
+        "recall": 0.24742268041237114,
+        "support": 485,
+        "tp": 120
+      },
+      "A4": {
+        "fn": 274,
+        "recall": 0.18694362017804153,
+        "support": 337,
+        "tp": 63
+      },
+      "N1": {
+        "fn": 280,
+        "recall": 0.11392405063291139,
+        "support": 316,
+        "tp": 36
+      },
+      "N2": {
+        "fn": 627,
+        "recall": 0.1480978260869565,
+        "support": 736,
+        "tp": 109
+      },
+      "N3": {
+        "fn": 22,
+        "recall": 0.4634146341463415,
+        "support": 41,
+        "tp": 19
+      },
+      "N4": {
+        "fn": 122,
+        "recall": 0.5060728744939271,
+        "support": 247,
+        "tp": 125
+      },
+      "S1": {
+        "fn": 227,
+        "recall": 0.17753623188405798,
+        "support": 276,
+        "tp": 49
+      },
+      "S2": {
+        "fn": 1,
+        "recall": 0.0,
+        "support": 1,
+        "tp": 0
+      },
+      "S3": {
+        "fn": 687,
+        "recall": 0.15601965601965603,
+        "support": 814,
+        "tp": 127
+      },
+      "S4": {
+        "fn": 7,
+        "recall": 0.125,
+        "support": 8,
+        "tp": 1
+      }
+    },
+    "fit_seconds": 0.4545243000029586,
+    "name": "missingness_only",
+    "normal_fpr": {
+      "H1": {
+        "false_positive_rate": 0.06722689075630252,
+        "fp": 16,
+        "support": 238,
+        "tn": 222
+      },
+      "H2": {
+        "false_positive_rate": 0.0855614973262032,
+        "fp": 32,
+        "support": 374,
+        "tn": 342
+      },
+      "H3": {
+        "false_positive_rate": 0.05172413793103448,
+        "fp": 21,
+        "support": 406,
+        "tn": 385
+      },
+      "H4": {
+        "false_positive_rate": 0.18835616438356165,
+        "fp": 55,
+        "support": 292,
+        "tn": 237
+      },
+      "H5": {
+        "false_positive_rate": 0.13551401869158877,
+        "fp": 29,
+        "support": 214,
+        "tn": 185
+      },
+      "H6": {
+        "false_positive_rate": 0.15566037735849056,
+        "fp": 66,
+        "support": 424,
+        "tn": 358
+      },
+      "H7": {
+        "false_positive_rate": 0.0807799442896936,
+        "fp": 29,
+        "support": 359,
+        "tn": 330
+      },
+      "H8": {
+        "false_positive_rate": 0.05217391304347826,
+        "fp": 24,
+        "support": 460,
+        "tn": 436
+      },
+      "campaign_member_target0": {
+        "false_positive_rate": 0.09521158129175947,
+        "fp": 171,
+        "support": 1796,
+        "tn": 1625
+      },
+      "routine": {
+        "false_positive_rate": 0.07915273132664437,
+        "fp": 426,
+        "support": 5382,
+        "tn": 4956
+      }
+    },
+    "parameters": {
+      "early_stopping": false,
+      "l2_regularization": 2.0,
+      "learning_rate": 0.07,
+      "max_depth": 3,
+      "max_iter": 100,
+      "max_leaf_nodes": 7,
+      "min_samples_leaf": 30,
+      "random_state": 20260928
+    },
+    "seed": 20260928,
+    "started_at_utc": "2026-09-28T21:37:05.850055+00:00",
+    "train": {
+      "accuracy": 0.6717,
+      "average_precision": 0.4728030631890364,
+      "balanced_accuracy": 0.5554818051951304,
+      "confusion_matrix": [
+        [
+          36278,
+          3503
+        ],
+        [
+          16195,
+          4024
+        ]
+      ],
+      "false_positive_rate": 0.08805711269198864,
+      "macro_f1": 0.5382703157220757,
+      "normal_f1": 0.7864808030004119,
+      "normal_precision": 0.6913650829950642,
+      "normal_recall": 0.9119428873080113,
+      "roc_auc": 0.6924022984244198,
+      "suspicious_f1": 0.2900598284437396,
+      "suspicious_precision": 0.5346087418626279,
+      "suspicious_recall": 0.19902072308224936,
+      "threshold": 0.5
+    },
+    "validation": {
+      "accuracy": 0.6714666666666667,
+      "average_precision": 0.4644009858147695,
+      "balanced_accuracy": 0.5548260238433044,
+      "confusion_matrix": [
+        [
+          9076,
+          869
+        ],
+        [
+          4059,
+          996
+        ]
+      ],
+      "false_positive_rate": 0.0873805932629462,
+      "macro_f1": 0.5371715370513219,
+      "normal_f1": 0.7864818024263431,
+      "normal_precision": 0.6909783022459078,
+      "normal_recall": 0.9126194067370538,
+      "roc_auc": 0.6827589626228132,
+      "suspicious_f1": 0.2878612716763006,
+      "suspicious_precision": 0.5340482573726542,
+      "suspicious_recall": 0.1970326409495549,
+      "threshold": 0.5
+    },
+    "warnings": []
+  },
+  "feature_missingness": {
+    "train": {
+      "agent_cash_value_skew_change": {
+        "marker": -3,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.4726190476190476,
+            "available_count": 397,
+            "missing_count": 443,
+            "missing_rate": 0.5273809523809524,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.5130434782608696,
+            "available_count": 708,
+            "missing_count": 672,
+            "missing_rate": 0.48695652173913045,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.4844796104686549,
+            "available_count": 796,
+            "missing_count": 847,
+            "missing_rate": 0.515520389531345,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.5222312045270816,
+            "available_count": 646,
+            "missing_count": 591,
+            "missing_rate": 0.47776879547291834,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.5265654648956357,
+            "available_count": 555,
+            "missing_count": 499,
+            "missing_rate": 0.47343453510436434,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.4758999389871873,
+            "available_count": 780,
+            "missing_count": 859,
+            "missing_rate": 0.5241000610128127,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.4616949152542373,
+            "available_count": 681,
+            "missing_count": 794,
+            "missing_rate": 0.5383050847457627,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.46511627906976744,
+            "available_count": 780,
+            "missing_count": 897,
+            "missing_rate": 0.5348837209302325,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9867159149818558,
+            "available_count": 15227,
+            "missing_count": 205,
+            "missing_rate": 0.013284085018144116,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5385650827836855,
+            "available_count": 4001,
+            "missing_count": 3428,
+            "missing_rate": 0.46143491721631447,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.47854203409758966,
+            "available_count": 2442,
+            "missing_count": 2661,
+            "missing_rate": 0.5214579659024103,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.6333666666666666,
+            "available_count": 38002,
+            "missing_count": 21998,
+            "missing_rate": 0.3666333333333333,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.5460363432522072,
+            "available_count": 11689,
+            "missing_count": 9718,
+            "missing_rate": 0.45396365674779277,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.7300771208226221,
+            "available_count": 3124,
+            "missing_count": 1155,
+            "missing_rate": 0.2699228791773779,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.5287197405796737,
+            "available_count": 21033,
+            "missing_count": 18748,
+            "missing_rate": 0.4712802594203263,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8392601018843662,
+            "available_count": 16969,
+            "missing_count": 3250,
+            "missing_rate": 0.1607398981156338,
+            "support": 20219
+          }
+        }
+      },
+      "agent_new_wallet_share_7d": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.44642857142857145,
+            "available_count": 375,
+            "missing_count": 465,
+            "missing_rate": 0.5535714285714286,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.505072463768116,
+            "available_count": 697,
+            "missing_count": 683,
+            "missing_rate": 0.49492753623188407,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.4808277541083384,
+            "available_count": 790,
+            "missing_count": 853,
+            "missing_rate": 0.5191722458916616,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.5060630557801131,
+            "available_count": 626,
+            "missing_count": 611,
+            "missing_rate": 0.4939369442198868,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.5284629981024668,
+            "available_count": 557,
+            "missing_count": 497,
+            "missing_rate": 0.4715370018975332,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.4722391702257474,
+            "available_count": 774,
+            "missing_count": 865,
+            "missing_rate": 0.5277608297742525,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.44949152542372883,
+            "available_count": 663,
+            "missing_count": 812,
+            "missing_rate": 0.5505084745762712,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.4430530709600477,
+            "available_count": 743,
+            "missing_count": 934,
+            "missing_rate": 0.5569469290399522,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9647485743908761,
+            "available_count": 14888,
+            "missing_count": 544,
+            "missing_rate": 0.0352514256091239,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5160856104455512,
+            "available_count": 3834,
+            "missing_count": 3595,
+            "missing_rate": 0.48391438955444877,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.46502057613168724,
+            "available_count": 2373,
+            "missing_count": 2730,
+            "missing_rate": 0.5349794238683128,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.6157166666666667,
+            "available_count": 36943,
+            "missing_count": 23057,
+            "missing_rate": 0.3842833333333333,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.5283785677582099,
+            "available_count": 11311,
+            "missing_count": 10096,
+            "missing_rate": 0.4716214322417901,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.7148866557606918,
+            "available_count": 3059,
+            "missing_count": 1220,
+            "missing_rate": 0.28511334423930823,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.5120534928734823,
+            "available_count": 20370,
+            "missing_count": 19411,
+            "missing_rate": 0.48794650712651766,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8196745635293535,
+            "available_count": 16573,
+            "missing_count": 3646,
+            "missing_rate": 0.18032543647064642,
+            "support": 20219
+          }
+        }
+      },
+      "agent_service_acceleration_1h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.4726190476190476,
+            "available_count": 397,
+            "missing_count": 443,
+            "missing_rate": 0.5273809523809524,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.5195652173913043,
+            "available_count": 717,
+            "missing_count": 663,
+            "missing_rate": 0.48043478260869565,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.48630553864881315,
+            "available_count": 799,
+            "missing_count": 844,
+            "missing_rate": 0.5136944613511869,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.5238480194017785,
+            "available_count": 648,
+            "missing_count": 589,
+            "missing_rate": 0.4761519805982215,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.532258064516129,
+            "available_count": 561,
+            "missing_count": 493,
+            "missing_rate": 0.46774193548387094,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.4881025015253203,
+            "available_count": 800,
+            "missing_count": 839,
+            "missing_rate": 0.5118974984746797,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.4616949152542373,
+            "available_count": 681,
+            "missing_count": 794,
+            "missing_rate": 0.5383050847457627,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.46511627906976744,
+            "available_count": 780,
+            "missing_count": 897,
+            "missing_rate": 0.5348837209302325,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9959823742871955,
+            "available_count": 15370,
+            "missing_count": 62,
+            "missing_rate": 0.004017625712804562,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5395073361152242,
+            "available_count": 4008,
+            "missing_count": 3421,
+            "missing_rate": 0.4604926638847759,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.4808935920047031,
+            "available_count": 2454,
+            "missing_count": 2649,
+            "missing_rate": 0.5191064079952968,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.63845,
+            "available_count": 38307,
+            "missing_count": 21693,
+            "missing_rate": 0.36155,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.5506609987387303,
+            "available_count": 11788,
+            "missing_count": 9619,
+            "missing_rate": 0.4493390012612697,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.7340500116849731,
+            "available_count": 3141,
+            "missing_count": 1138,
+            "missing_rate": 0.26594998831502686,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.5323898343430281,
+            "available_count": 21179,
+            "missing_count": 18602,
+            "missing_rate": 0.46761016565697194,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8471239922844849,
+            "available_count": 17128,
+            "missing_count": 3091,
+            "missing_rate": 0.1528760077155151,
+            "support": 20219
+          }
+        }
+      },
+      "agent_top2_share_change_24h": {
+        "marker": -3,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.4607142857142857,
+            "available_count": 387,
+            "missing_count": 453,
+            "missing_rate": 0.5392857142857143,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.49782608695652175,
+            "available_count": 687,
+            "missing_count": 693,
+            "missing_rate": 0.5021739130434782,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.465611685940353,
+            "available_count": 765,
+            "missing_count": 878,
+            "missing_rate": 0.534388314059647,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.5222312045270816,
+            "available_count": 646,
+            "missing_count": 591,
+            "missing_rate": 0.47776879547291834,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.5037950664136622,
+            "available_count": 531,
+            "missing_count": 523,
+            "missing_rate": 0.49620493358633777,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.46186699206833437,
+            "available_count": 757,
+            "missing_count": 882,
+            "missing_rate": 0.5381330079316656,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.4589830508474576,
+            "available_count": 677,
+            "missing_count": 798,
+            "missing_rate": 0.5410169491525424,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.46332737030411447,
+            "available_count": 777,
+            "missing_count": 900,
+            "missing_rate": 0.5366726296958855,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9614437532400207,
+            "available_count": 14837,
+            "missing_count": 595,
+            "missing_rate": 0.03855624675997926,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5241620675730246,
+            "available_count": 3894,
+            "missing_count": 3535,
+            "missing_rate": 0.47583793242697536,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.46756809719772685,
+            "available_count": 2386,
+            "missing_count": 2717,
+            "missing_rate": 0.5324319028022731,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.6164333333333334,
+            "available_count": 36986,
+            "missing_count": 23014,
+            "missing_rate": 0.38356666666666667,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.5290792731349558,
+            "available_count": 11326,
+            "missing_count": 10081,
+            "missing_rate": 0.47092072686504416,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.7160551530731479,
+            "available_count": 3064,
+            "missing_count": 1215,
+            "missing_rate": 0.28394484692685207,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.513989090269224,
+            "available_count": 20447,
+            "missing_count": 19334,
+            "missing_rate": 0.486010909730776,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8179929769029131,
+            "available_count": 16539,
+            "missing_count": 3680,
+            "missing_rate": 0.1820070230970869,
+            "support": 20219
+          }
+        }
+      },
+      "agent_wallet_growth_ratio_7d": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.44642857142857145,
+            "available_count": 375,
+            "missing_count": 465,
+            "missing_rate": 0.5535714285714286,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.505072463768116,
+            "available_count": 697,
+            "missing_count": 683,
+            "missing_rate": 0.49492753623188407,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.4808277541083384,
+            "available_count": 790,
+            "missing_count": 853,
+            "missing_rate": 0.5191722458916616,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.5060630557801131,
+            "available_count": 626,
+            "missing_count": 611,
+            "missing_rate": 0.4939369442198868,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.5284629981024668,
+            "available_count": 557,
+            "missing_count": 497,
+            "missing_rate": 0.4715370018975332,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.4722391702257474,
+            "available_count": 774,
+            "missing_count": 865,
+            "missing_rate": 0.5277608297742525,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.44949152542372883,
+            "available_count": 663,
+            "missing_count": 812,
+            "missing_rate": 0.5505084745762712,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.4430530709600477,
+            "available_count": 743,
+            "missing_count": 934,
+            "missing_rate": 0.5569469290399522,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9647485743908761,
+            "available_count": 14888,
+            "missing_count": 544,
+            "missing_rate": 0.0352514256091239,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5160856104455512,
+            "available_count": 3834,
+            "missing_count": 3595,
+            "missing_rate": 0.48391438955444877,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.46502057613168724,
+            "available_count": 2373,
+            "missing_count": 2730,
+            "missing_rate": 0.5349794238683128,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.6157166666666667,
+            "available_count": 36943,
+            "missing_count": 23057,
+            "missing_rate": 0.3842833333333333,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.5283785677582099,
+            "available_count": 11311,
+            "missing_count": 10096,
+            "missing_rate": 0.4716214322417901,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.7148866557606918,
+            "available_count": 3059,
+            "missing_count": 1220,
+            "missing_rate": 0.28511334423930823,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.5120534928734823,
+            "available_count": 20370,
+            "missing_count": 19411,
+            "missing_rate": 0.48794650712651766,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8196745635293535,
+            "available_count": 16573,
+            "missing_count": 3646,
+            "missing_rate": 0.18032543647064642,
+            "support": 20219
+          }
+        }
+      },
+      "current_return_amount_ratio": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.0011904761904761906,
+            "available_count": 1,
+            "missing_count": 839,
+            "missing_rate": 0.9988095238095238,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.004347826086956522,
+            "available_count": 6,
+            "missing_count": 1374,
+            "missing_rate": 0.9956521739130435,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.002434570906877663,
+            "available_count": 4,
+            "missing_count": 1639,
+            "missing_rate": 0.9975654290931223,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.002425222312045271,
+            "available_count": 3,
+            "missing_count": 1234,
+            "missing_rate": 0.9975747776879548,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.024667931688804556,
+            "available_count": 26,
+            "missing_count": 1028,
+            "missing_rate": 0.9753320683111955,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.16046369737644905,
+            "available_count": 263,
+            "missing_count": 1376,
+            "missing_rate": 0.839536302623551,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.0047457627118644066,
+            "available_count": 7,
+            "missing_count": 1468,
+            "missing_rate": 0.9952542372881356,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.00655933214072749,
+            "available_count": 11,
+            "missing_count": 1666,
+            "missing_rate": 0.9934406678592725,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.013608087091757388,
+            "available_count": 210,
+            "missing_count": 15222,
+            "missing_rate": 0.9863919129082426,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.03795934849912505,
+            "available_count": 282,
+            "missing_count": 7147,
+            "missing_rate": 0.9620406515008749,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.05604546345287086,
+            "available_count": 286,
+            "missing_count": 4817,
+            "missing_rate": 0.9439545365471291,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.019033333333333333,
+            "available_count": 1142,
+            "missing_count": 58858,
+            "missing_rate": 0.9809666666666667,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.00434437333582473,
+            "available_count": 93,
+            "missing_count": 21314,
+            "missing_rate": 0.9956556266641753,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.022668847861649917,
+            "available_count": 97,
+            "missing_count": 4182,
+            "missing_rate": 0.9773311521383501,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.017495789447223548,
+            "available_count": 696,
+            "missing_count": 39085,
+            "missing_rate": 0.9825042105527765,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.0220584598644839,
+            "available_count": 446,
+            "missing_count": 19773,
+            "missing_rate": 0.9779415401355162,
+            "support": 20219
+          }
+        }
+      },
+      "receiver_inflow_acceleration_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.5547619047619048,
+            "available_count": 466,
+            "missing_count": 374,
+            "missing_rate": 0.4452380952380952,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.717391304347826,
+            "available_count": 990,
+            "missing_count": 390,
+            "missing_rate": 0.2826086956521739,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.6701156421180767,
+            "available_count": 1101,
+            "missing_count": 542,
+            "missing_rate": 0.32988435788192333,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.6345998383185125,
+            "available_count": 785,
+            "missing_count": 452,
+            "missing_rate": 0.3654001616814875,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.6470588235294118,
+            "available_count": 682,
+            "missing_count": 372,
+            "missing_rate": 0.35294117647058826,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.6912751677852349,
+            "available_count": 1133,
+            "missing_count": 506,
+            "missing_rate": 0.3087248322147651,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.7383050847457627,
+            "available_count": 1089,
+            "missing_count": 386,
+            "missing_rate": 0.26169491525423727,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.6732259988073942,
+            "available_count": 1129,
+            "missing_count": 548,
+            "missing_rate": 0.32677400119260586,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.8961897356143079,
+            "available_count": 13830,
+            "missing_count": 1602,
+            "missing_rate": 0.10381026438569207,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.6353479606945753,
+            "available_count": 4720,
+            "missing_count": 2709,
+            "missing_rate": 0.36465203930542467,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.8242210464432687,
+            "available_count": 4206,
+            "missing_count": 897,
+            "missing_rate": 0.17577895355673134,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.7545666666666667,
+            "available_count": 45274,
+            "missing_count": 14726,
+            "missing_rate": 0.24543333333333334,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.7222871023496987,
+            "available_count": 15462,
+            "missing_count": 5945,
+            "missing_rate": 0.2777128976503013,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.9034821219911194,
+            "available_count": 3866,
+            "missing_count": 413,
+            "missing_rate": 0.09651787800888058,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.6927176290188783,
+            "available_count": 27557,
+            "missing_count": 12224,
+            "missing_rate": 0.30728237098112166,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8762550076660567,
+            "available_count": 17717,
+            "missing_count": 2502,
+            "missing_rate": 0.12374499233394332,
+            "support": 20219
+          }
+        }
+      },
+      "sender_outflow_acceleration_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.5214285714285715,
+            "available_count": 438,
+            "missing_count": 402,
+            "missing_rate": 0.4785714285714286,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.7094202898550724,
+            "available_count": 979,
+            "missing_count": 401,
+            "missing_rate": 0.29057971014492756,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.6542909312233719,
+            "available_count": 1075,
+            "missing_count": 568,
+            "missing_rate": 0.3457090687766281,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.6135812449474535,
+            "available_count": 759,
+            "missing_count": 478,
+            "missing_rate": 0.38641875505254647,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.5929791271347249,
+            "available_count": 625,
+            "missing_count": 429,
+            "missing_rate": 0.40702087286527516,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.6449054301403294,
+            "available_count": 1057,
+            "missing_count": 582,
+            "missing_rate": 0.35509456985967053,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.679322033898305,
+            "available_count": 1002,
+            "missing_count": 473,
+            "missing_rate": 0.3206779661016949,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.6374478234943352,
+            "available_count": 1069,
+            "missing_count": 608,
+            "missing_rate": 0.3625521765056649,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.8462286158631416,
+            "available_count": 13059,
+            "missing_count": 2373,
+            "missing_rate": 0.15377138413685848,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.617714362632925,
+            "available_count": 4589,
+            "missing_count": 2840,
+            "missing_rate": 0.382285637367075,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.8252008622378992,
+            "available_count": 4211,
+            "missing_count": 892,
+            "missing_rate": 0.17479913776210074,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.7159,
+            "available_count": 42954,
+            "missing_count": 17046,
+            "missing_rate": 0.2841,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.6790302237585837,
+            "available_count": 14536,
+            "missing_count": 6871,
+            "missing_rate": 0.32096977624141637,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.8749707875671886,
+            "available_count": 3744,
+            "missing_count": 535,
+            "missing_rate": 0.1250292124328114,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.6568210954978507,
+            "available_count": 26129,
+            "missing_count": 13652,
+            "missing_rate": 0.3431789045021493,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.8321380879370889,
+            "available_count": 16825,
+            "missing_count": 3394,
+            "missing_rate": 0.16786191206291112,
+            "support": 20219
+          }
+        }
+      },
+      "wallet_count_acceleration_1h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.6107142857142858,
+            "available_count": 513,
+            "missing_count": 327,
+            "missing_rate": 0.3892857142857143,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.7818840579710145,
+            "available_count": 1079,
+            "missing_count": 301,
+            "missing_rate": 0.21811594202898552,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.7096774193548387,
+            "available_count": 1166,
+            "missing_count": 477,
+            "missing_rate": 0.2903225806451613,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.7130153597413096,
+            "available_count": 882,
+            "missing_count": 355,
+            "missing_rate": 0.28698464025869036,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.7049335863377609,
+            "available_count": 743,
+            "missing_count": 311,
+            "missing_rate": 0.29506641366223907,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.7620500305064063,
+            "available_count": 1249,
+            "missing_count": 390,
+            "missing_rate": 0.23794996949359365,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.7986440677966101,
+            "available_count": 1178,
+            "missing_count": 297,
+            "missing_rate": 0.20135593220338982,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.7394156231365534,
+            "available_count": 1240,
+            "missing_count": 437,
+            "missing_rate": 0.26058437686344665,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.9889191290824261,
+            "available_count": 15261,
+            "missing_count": 171,
+            "missing_rate": 0.011080870917573872,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.7074976443666712,
+            "available_count": 5256,
+            "missing_count": 2173,
+            "missing_rate": 0.2925023556333288,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.882618067803253,
+            "available_count": 4504,
+            "missing_count": 599,
+            "missing_rate": 0.11738193219674702,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.83085,
+            "available_count": 49851,
+            "missing_count": 10149,
+            "missing_rate": 0.16915,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.7987107021067875,
+            "available_count": 17098,
+            "missing_count": 4309,
+            "missing_rate": 0.2012892978932125,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.9971956064501052,
+            "available_count": 4267,
+            "missing_count": 12,
+            "missing_rate": 0.002804393549894835,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.7642844574042885,
+            "available_count": 30404,
+            "missing_count": 9377,
+            "missing_rate": 0.2357155425957115,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.9618180918937633,
+            "available_count": 19447,
+            "missing_count": 772,
+            "missing_rate": 0.03818190810623671,
+            "support": 20219
+          }
+        }
+      },
+      "wallet_observed_onward_funding_share_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.45476190476190476,
+            "available_count": 382,
+            "missing_count": 458,
+            "missing_rate": 0.5452380952380952,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.4,
+            "available_count": 552,
+            "missing_count": 828,
+            "missing_rate": 0.6,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.37492391965916005,
+            "available_count": 616,
+            "missing_count": 1027,
+            "missing_rate": 0.62507608034084,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.635408245755861,
+            "available_count": 786,
+            "missing_count": 451,
+            "missing_rate": 0.36459175424413903,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.7666034155597723,
+            "available_count": 808,
+            "missing_count": 246,
+            "missing_rate": 0.2333965844402277,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.7071384990848079,
+            "available_count": 1159,
+            "missing_count": 480,
+            "missing_rate": 0.2928615009151922,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.3694915254237288,
+            "available_count": 545,
+            "missing_count": 930,
+            "missing_rate": 0.6305084745762712,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.3780560524746571,
+            "available_count": 634,
+            "missing_count": 1043,
+            "missing_rate": 0.6219439475253429,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.5442586832555728,
+            "available_count": 8399,
+            "missing_count": 7033,
+            "missing_rate": 0.45574131674442714,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5263157894736842,
+            "available_count": 3910,
+            "missing_count": 3519,
+            "missing_rate": 0.47368421052631576,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.44013325494806976,
+            "available_count": 2246,
+            "missing_count": 2857,
+            "missing_rate": 0.5598667450519302,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.47173333333333334,
+            "available_count": 28304,
+            "missing_count": 31696,
+            "missing_rate": 0.5282666666666667,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.39388984911477554,
+            "available_count": 8432,
+            "missing_count": 12975,
+            "missing_rate": 0.6061101508852245,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.49053517176910494,
+            "available_count": 2099,
+            "missing_count": 2180,
+            "missing_rate": 0.5094648282308951,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.44805309067142607,
+            "available_count": 17824,
+            "missing_count": 21957,
+            "missing_rate": 0.5519469093285739,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.5183243483851823,
+            "available_count": 10480,
+            "missing_count": 9739,
+            "missing_rate": 0.48167565161481773,
+            "support": 20219
+          }
+        }
+      },
+      "wallet_prior_funding_age_hours": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.1488095238095238,
+            "available_count": 125,
+            "missing_count": 715,
+            "missing_rate": 0.8511904761904762,
+            "support": 840
+          },
+          "H2": {
+            "availability_rate": 0.16521739130434782,
+            "available_count": 228,
+            "missing_count": 1152,
+            "missing_rate": 0.8347826086956521,
+            "support": 1380
+          },
+          "H3": {
+            "availability_rate": 0.14120511259890445,
+            "available_count": 232,
+            "missing_count": 1411,
+            "missing_rate": 0.8587948874010956,
+            "support": 1643
+          },
+          "H4": {
+            "availability_rate": 0.2991107518189167,
+            "available_count": 370,
+            "missing_count": 867,
+            "missing_rate": 0.7008892481810832,
+            "support": 1237
+          },
+          "H5": {
+            "availability_rate": 0.357685009487666,
+            "available_count": 377,
+            "missing_count": 677,
+            "missing_rate": 0.642314990512334,
+            "support": 1054
+          },
+          "H6": {
+            "availability_rate": 0.4612568639414277,
+            "available_count": 756,
+            "missing_count": 883,
+            "missing_rate": 0.5387431360585723,
+            "support": 1639
+          },
+          "H7": {
+            "availability_rate": 0.17559322033898306,
+            "available_count": 259,
+            "missing_count": 1216,
+            "missing_rate": 0.8244067796610169,
+            "support": 1475
+          },
+          "H8": {
+            "availability_rate": 0.16040548598688134,
+            "available_count": 269,
+            "missing_count": 1408,
+            "missing_rate": 0.8395945140131187,
+            "support": 1677
+          },
+          "agent": {
+            "availability_rate": 0.21371176775531364,
+            "available_count": 3298,
+            "missing_count": 12134,
+            "missing_rate": 0.7862882322446864,
+            "support": 15432
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.24902409476376364,
+            "available_count": 1850,
+            "missing_count": 5579,
+            "missing_rate": 0.7509759052362364,
+            "support": 7429
+          },
+          "network": {
+            "availability_rate": 0.44013325494806976,
+            "available_count": 2246,
+            "missing_count": 2857,
+            "missing_rate": 0.5598667450519302,
+            "support": 5103
+          },
+          "overall": {
+            "availability_rate": 0.21773333333333333,
+            "available_count": 13064,
+            "missing_count": 46936,
+            "missing_rate": 0.7822666666666667,
+            "support": 60000
+          },
+          "routine": {
+            "availability_rate": 0.16008782174055217,
+            "available_count": 3427,
+            "missing_count": 17980,
+            "missing_rate": 0.8399121782594479,
+            "support": 21407
+          },
+          "structuring": {
+            "availability_rate": 0.28394484692685207,
+            "available_count": 1215,
+            "missing_count": 3064,
+            "missing_rate": 0.7160551530731479,
+            "support": 4279
+          },
+          "target_0": {
+            "availability_rate": 0.19841130187778086,
+            "available_count": 7893,
+            "missing_count": 31888,
+            "missing_rate": 0.8015886981222191,
+            "support": 39781
+          },
+          "target_1": {
+            "availability_rate": 0.25574954250952076,
+            "available_count": 5171,
+            "missing_count": 15048,
+            "missing_rate": 0.7442504574904792,
+            "support": 20219
+          }
+        }
+      }
+    },
+    "validation": {
+      "agent_cash_value_skew_change": {
+        "marker": -3,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.3739495798319328,
+            "available_count": 89,
+            "missing_count": 149,
+            "missing_rate": 0.6260504201680672,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.45454545454545453,
+            "available_count": 170,
+            "missing_count": 204,
+            "missing_rate": 0.5454545454545454,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.47044334975369456,
+            "available_count": 191,
+            "missing_count": 215,
+            "missing_rate": 0.5295566502463054,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6232876712328768,
+            "available_count": 182,
+            "missing_count": 110,
+            "missing_rate": 0.3767123287671233,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.3598130841121495,
+            "available_count": 77,
+            "missing_count": 137,
+            "missing_rate": 0.6401869158878505,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4834905660377358,
+            "available_count": 205,
+            "missing_count": 219,
+            "missing_rate": 0.5165094339622641,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.4178272980501393,
+            "available_count": 150,
+            "missing_count": 209,
+            "missing_rate": 0.5821727019498607,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.5,
+            "available_count": 230,
+            "missing_count": 230,
+            "missing_rate": 0.5,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.9809647979139504,
+            "available_count": 3762,
+            "missing_count": 73,
+            "missing_rate": 0.019035202086049544,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5417594654788419,
+            "available_count": 973,
+            "missing_count": 823,
+            "missing_rate": 0.45824053452115815,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.44531864673485444,
+            "available_count": 566,
+            "missing_count": 705,
+            "missing_rate": 0.5546813532651456,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.6348,
+            "available_count": 9522,
+            "missing_count": 5478,
+            "missing_rate": 0.3652,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.5700483091787439,
+            "available_count": 3068,
+            "missing_count": 2314,
+            "missing_rate": 0.42995169082125606,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.7160731472569779,
+            "available_count": 744,
+            "missing_count": 295,
+            "missing_rate": 0.28392685274302215,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.5364504776269482,
+            "available_count": 5335,
+            "missing_count": 4610,
+            "missing_rate": 0.4635495223730518,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8282888229475767,
+            "available_count": 4187,
+            "missing_count": 868,
+            "missing_rate": 0.17171117705242334,
+            "support": 5055
+          }
+        }
+      },
+      "agent_new_wallet_share_7d": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.3739495798319328,
+            "available_count": 89,
+            "missing_count": 149,
+            "missing_rate": 0.6260504201680672,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.45454545454545453,
+            "available_count": 170,
+            "missing_count": 204,
+            "missing_rate": 0.5454545454545454,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.4630541871921182,
+            "available_count": 188,
+            "missing_count": 218,
+            "missing_rate": 0.5369458128078818,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6198630136986302,
+            "available_count": 181,
+            "missing_count": 111,
+            "missing_rate": 0.3801369863013699,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.3598130841121495,
+            "available_count": 77,
+            "missing_count": 137,
+            "missing_rate": 0.6401869158878505,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4834905660377358,
+            "available_count": 205,
+            "missing_count": 219,
+            "missing_rate": 0.5165094339622641,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.42618384401114207,
+            "available_count": 153,
+            "missing_count": 206,
+            "missing_rate": 0.5738161559888579,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.4717391304347826,
+            "available_count": 217,
+            "missing_count": 243,
+            "missing_rate": 0.5282608695652173,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.965058670143416,
+            "available_count": 3701,
+            "missing_count": 134,
+            "missing_rate": 0.034941329856584095,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.532293986636971,
+            "available_count": 956,
+            "missing_count": 840,
+            "missing_rate": 0.46770601336302897,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.4366640440597954,
+            "available_count": 555,
+            "missing_count": 716,
+            "missing_rate": 0.5633359559402046,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.6204,
+            "available_count": 9306,
+            "missing_count": 5694,
+            "missing_rate": 0.3796,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.5492382014121144,
+            "available_count": 2956,
+            "missing_count": 2426,
+            "missing_rate": 0.45076179858788556,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.7074109720885466,
+            "available_count": 735,
+            "missing_count": 304,
+            "missing_rate": 0.2925890279114533,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.522071392659628,
+            "available_count": 5192,
+            "missing_count": 4753,
+            "missing_rate": 0.47792860734037207,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8138476755687438,
+            "available_count": 4114,
+            "missing_count": 941,
+            "missing_rate": 0.18615232443125618,
+            "support": 5055
+          }
+        }
+      },
+      "agent_service_acceleration_1h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.3739495798319328,
+            "available_count": 89,
+            "missing_count": 149,
+            "missing_rate": 0.6260504201680672,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.48128342245989303,
+            "available_count": 180,
+            "missing_count": 194,
+            "missing_rate": 0.5187165775401069,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.47044334975369456,
+            "available_count": 191,
+            "missing_count": 215,
+            "missing_rate": 0.5295566502463054,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6335616438356164,
+            "available_count": 185,
+            "missing_count": 107,
+            "missing_rate": 0.3664383561643836,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.3878504672897196,
+            "available_count": 83,
+            "missing_count": 131,
+            "missing_rate": 0.6121495327102804,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4834905660377358,
+            "available_count": 205,
+            "missing_count": 219,
+            "missing_rate": 0.5165094339622641,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.4233983286908078,
+            "available_count": 152,
+            "missing_count": 207,
+            "missing_rate": 0.5766016713091922,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.5,
+            "available_count": 230,
+            "missing_count": 230,
+            "missing_rate": 0.5,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.9989569752281616,
+            "available_count": 3831,
+            "missing_count": 4,
+            "missing_rate": 0.0010430247718383311,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5478841870824054,
+            "available_count": 984,
+            "missing_count": 812,
+            "missing_rate": 0.4521158129175947,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.45239968528717545,
+            "available_count": 575,
+            "missing_count": 696,
+            "missing_rate": 0.5476003147128246,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.6433333333333333,
+            "available_count": 9650,
+            "missing_count": 5350,
+            "missing_rate": 0.3566666666666667,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.5743218134522482,
+            "available_count": 3091,
+            "missing_count": 2291,
+            "missing_rate": 0.42567818654775175,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.7314725697786333,
+            "available_count": 760,
+            "missing_count": 279,
+            "missing_rate": 0.2685274302213667,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.5419808949220714,
+            "available_count": 5390,
+            "missing_count": 4555,
+            "missing_rate": 0.4580191050779286,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8427299703264095,
+            "available_count": 4260,
+            "missing_count": 795,
+            "missing_rate": 0.1572700296735905,
+            "support": 5055
+          }
+        }
+      },
+      "agent_top2_share_change_24h": {
+        "marker": -3,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.3739495798319328,
+            "available_count": 89,
+            "missing_count": 149,
+            "missing_rate": 0.6260504201680672,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.40641711229946526,
+            "available_count": 152,
+            "missing_count": 222,
+            "missing_rate": 0.5935828877005348,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.47044334975369456,
+            "available_count": 191,
+            "missing_count": 215,
+            "missing_rate": 0.5295566502463054,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6232876712328768,
+            "available_count": 182,
+            "missing_count": 110,
+            "missing_rate": 0.3767123287671233,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.3598130841121495,
+            "available_count": 77,
+            "missing_count": 137,
+            "missing_rate": 0.6401869158878505,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4834905660377358,
+            "available_count": 205,
+            "missing_count": 219,
+            "missing_rate": 0.5165094339622641,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.40668523676880225,
+            "available_count": 146,
+            "missing_count": 213,
+            "missing_rate": 0.5933147632311978,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.4956521739130435,
+            "available_count": 228,
+            "missing_count": 232,
+            "missing_rate": 0.5043478260869565,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.9551499348109518,
+            "available_count": 3663,
+            "missing_count": 172,
+            "missing_rate": 0.04485006518904824,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.522271714922049,
+            "available_count": 938,
+            "missing_count": 858,
+            "missing_rate": 0.477728285077951,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.4374508261211644,
+            "available_count": 556,
+            "missing_count": 715,
+            "missing_rate": 0.5625491738788355,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.6190666666666667,
+            "available_count": 9286,
+            "missing_count": 5714,
+            "missing_rate": 0.38093333333333335,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.5568561872909699,
+            "available_count": 2997,
+            "missing_count": 2385,
+            "missing_rate": 0.4431438127090301,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.6987487969201155,
+            "available_count": 726,
+            "missing_count": 313,
+            "missing_rate": 0.3012512030798845,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.5233785822021116,
+            "available_count": 5205,
+            "missing_count": 4740,
+            "missing_rate": 0.4766214177978884,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8073194856577646,
+            "available_count": 4081,
+            "missing_count": 974,
+            "missing_rate": 0.1926805143422354,
+            "support": 5055
+          }
+        }
+      },
+      "agent_wallet_growth_ratio_7d": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.3739495798319328,
+            "available_count": 89,
+            "missing_count": 149,
+            "missing_rate": 0.6260504201680672,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.45454545454545453,
+            "available_count": 170,
+            "missing_count": 204,
+            "missing_rate": 0.5454545454545454,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.4630541871921182,
+            "available_count": 188,
+            "missing_count": 218,
+            "missing_rate": 0.5369458128078818,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6198630136986302,
+            "available_count": 181,
+            "missing_count": 111,
+            "missing_rate": 0.3801369863013699,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.3598130841121495,
+            "available_count": 77,
+            "missing_count": 137,
+            "missing_rate": 0.6401869158878505,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4834905660377358,
+            "available_count": 205,
+            "missing_count": 219,
+            "missing_rate": 0.5165094339622641,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.42618384401114207,
+            "available_count": 153,
+            "missing_count": 206,
+            "missing_rate": 0.5738161559888579,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.4717391304347826,
+            "available_count": 217,
+            "missing_count": 243,
+            "missing_rate": 0.5282608695652173,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.965058670143416,
+            "available_count": 3701,
+            "missing_count": 134,
+            "missing_rate": 0.034941329856584095,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.532293986636971,
+            "available_count": 956,
+            "missing_count": 840,
+            "missing_rate": 0.46770601336302897,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.4366640440597954,
+            "available_count": 555,
+            "missing_count": 716,
+            "missing_rate": 0.5633359559402046,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.6204,
+            "available_count": 9306,
+            "missing_count": 5694,
+            "missing_rate": 0.3796,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.5492382014121144,
+            "available_count": 2956,
+            "missing_count": 2426,
+            "missing_rate": 0.45076179858788556,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.7074109720885466,
+            "available_count": 735,
+            "missing_count": 304,
+            "missing_rate": 0.2925890279114533,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.522071392659628,
+            "available_count": 5192,
+            "missing_count": 4753,
+            "missing_rate": 0.47792860734037207,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8138476755687438,
+            "available_count": 4114,
+            "missing_count": 941,
+            "missing_rate": 0.18615232443125618,
+            "support": 5055
+          }
+        }
+      },
+      "current_return_amount_ratio": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.01680672268907563,
+            "available_count": 4,
+            "missing_count": 234,
+            "missing_rate": 0.9831932773109243,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.01871657754010695,
+            "available_count": 7,
+            "missing_count": 367,
+            "missing_rate": 0.9812834224598931,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.019704433497536946,
+            "available_count": 8,
+            "missing_count": 398,
+            "missing_rate": 0.9802955665024631,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.010273972602739725,
+            "available_count": 3,
+            "missing_count": 289,
+            "missing_rate": 0.9897260273972602,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.07476635514018691,
+            "available_count": 16,
+            "missing_count": 198,
+            "missing_rate": 0.9252336448598131,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.18396226415094338,
+            "available_count": 78,
+            "missing_count": 346,
+            "missing_rate": 0.8160377358490566,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.013927576601671309,
+            "available_count": 5,
+            "missing_count": 354,
+            "missing_rate": 0.9860724233983287,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.015217391304347827,
+            "available_count": 7,
+            "missing_count": 453,
+            "missing_rate": 0.9847826086956522,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.020338983050847456,
+            "available_count": 78,
+            "missing_count": 3757,
+            "missing_rate": 0.9796610169491525,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.05456570155902005,
+            "available_count": 98,
+            "missing_count": 1698,
+            "missing_rate": 0.9454342984409799,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.08418568056648308,
+            "available_count": 107,
+            "missing_count": 1164,
+            "missing_rate": 0.9158143194335169,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.03233333333333333,
+            "available_count": 485,
+            "missing_count": 14515,
+            "missing_rate": 0.9676666666666667,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.015979189892233372,
+            "available_count": 86,
+            "missing_count": 5296,
+            "missing_rate": 0.9840208101077667,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.023099133782483156,
+            "available_count": 24,
+            "missing_count": 1015,
+            "missing_rate": 0.9769008662175168,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.03137254901960784,
+            "available_count": 312,
+            "missing_count": 9633,
+            "missing_rate": 0.9686274509803922,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.034223541048466866,
+            "available_count": 173,
+            "missing_count": 4882,
+            "missing_rate": 0.9657764589515332,
+            "support": 5055
+          }
+        }
+      },
+      "receiver_inflow_acceleration_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.453781512605042,
+            "available_count": 108,
+            "missing_count": 130,
+            "missing_rate": 0.5462184873949579,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.6524064171122995,
+            "available_count": 244,
+            "missing_count": 130,
+            "missing_rate": 0.34759358288770054,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.6330049261083743,
+            "available_count": 257,
+            "missing_count": 149,
+            "missing_rate": 0.3669950738916256,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.7842465753424658,
+            "available_count": 229,
+            "missing_count": 63,
+            "missing_rate": 0.21575342465753425,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.514018691588785,
+            "available_count": 110,
+            "missing_count": 104,
+            "missing_rate": 0.48598130841121495,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.6533018867924528,
+            "available_count": 277,
+            "missing_count": 147,
+            "missing_rate": 0.3466981132075472,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.6935933147632312,
+            "available_count": 249,
+            "missing_count": 110,
+            "missing_rate": 0.3064066852367688,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.6608695652173913,
+            "available_count": 304,
+            "missing_count": 156,
+            "missing_rate": 0.3391304347826087,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.8970013037809648,
+            "available_count": 3440,
+            "missing_count": 395,
+            "missing_rate": 0.10299869621903521,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.6442093541202673,
+            "available_count": 1157,
+            "missing_count": 639,
+            "missing_rate": 0.35579064587973275,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.8001573564122738,
+            "available_count": 1017,
+            "missing_count": 254,
+            "missing_rate": 0.1998426435877262,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.7586666666666667,
+            "available_count": 11380,
+            "missing_count": 3620,
+            "missing_rate": 0.24133333333333334,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.750278706800446,
+            "available_count": 4038,
+            "missing_count": 1344,
+            "missing_rate": 0.24972129319955408,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.9104908565928778,
+            "available_count": 946,
+            "missing_count": 93,
+            "missing_rate": 0.08950914340712224,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.7011563599798893,
+            "available_count": 6973,
+            "missing_count": 2972,
+            "missing_rate": 0.2988436400201106,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8718100890207715,
+            "available_count": 4407,
+            "missing_count": 648,
+            "missing_rate": 0.1281899109792285,
+            "support": 5055
+          }
+        }
+      },
+      "sender_outflow_acceleration_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.4117647058823529,
+            "available_count": 98,
+            "missing_count": 140,
+            "missing_rate": 0.5882352941176471,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.6844919786096256,
+            "available_count": 256,
+            "missing_count": 118,
+            "missing_rate": 0.3155080213903743,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.6379310344827587,
+            "available_count": 259,
+            "missing_count": 147,
+            "missing_rate": 0.3620689655172414,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.6917808219178082,
+            "available_count": 202,
+            "missing_count": 90,
+            "missing_rate": 0.3082191780821918,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.49065420560747663,
+            "available_count": 105,
+            "missing_count": 109,
+            "missing_rate": 0.5093457943925234,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.6108490566037735,
+            "available_count": 259,
+            "missing_count": 165,
+            "missing_rate": 0.3891509433962264,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.6657381615598886,
+            "available_count": 239,
+            "missing_count": 120,
+            "missing_rate": 0.3342618384401114,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.6260869565217392,
+            "available_count": 288,
+            "missing_count": 172,
+            "missing_rate": 0.3739130434782609,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.8471968709256845,
+            "available_count": 3249,
+            "missing_count": 586,
+            "missing_rate": 0.1528031290743155,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.6442093541202673,
+            "available_count": 1157,
+            "missing_count": 639,
+            "missing_rate": 0.35579064587973275,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.8127458693941778,
+            "available_count": 1033,
+            "missing_count": 238,
+            "missing_rate": 0.1872541306058222,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.7195333333333334,
+            "available_count": 10793,
+            "missing_count": 4207,
+            "missing_rate": 0.28046666666666664,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.6932367149758454,
+            "available_count": 3731,
+            "missing_count": 1651,
+            "missing_rate": 0.30676328502415456,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.8633301251203079,
+            "available_count": 897,
+            "missing_count": 142,
+            "missing_rate": 0.136669874879692,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.6630467571644042,
+            "available_count": 6594,
+            "missing_count": 3351,
+            "missing_rate": 0.3369532428355958,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.8306627101879327,
+            "available_count": 4199,
+            "missing_count": 856,
+            "missing_rate": 0.16933728981206725,
+            "support": 5055
+          }
+        }
+      },
+      "wallet_count_acceleration_1h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.46638655462184875,
+            "available_count": 111,
+            "missing_count": 127,
+            "missing_rate": 0.5336134453781513,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.7165775401069518,
+            "available_count": 268,
+            "missing_count": 106,
+            "missing_rate": 0.28342245989304815,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.6896551724137931,
+            "available_count": 280,
+            "missing_count": 126,
+            "missing_rate": 0.3103448275862069,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.8527397260273972,
+            "available_count": 249,
+            "missing_count": 43,
+            "missing_rate": 0.14726027397260275,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.5841121495327103,
+            "available_count": 125,
+            "missing_count": 89,
+            "missing_rate": 0.4158878504672897,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.7264150943396226,
+            "available_count": 308,
+            "missing_count": 116,
+            "missing_rate": 0.27358490566037735,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.766016713091922,
+            "available_count": 275,
+            "missing_count": 84,
+            "missing_rate": 0.233983286908078,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.7152173913043478,
+            "available_count": 329,
+            "missing_count": 131,
+            "missing_rate": 0.2847826086956522,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.9864406779661017,
+            "available_count": 3783,
+            "missing_count": 52,
+            "missing_rate": 0.013559322033898305,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.7121380846325167,
+            "available_count": 1279,
+            "missing_count": 517,
+            "missing_rate": 0.2878619153674833,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.8607395751376868,
+            "available_count": 1094,
+            "missing_count": 177,
+            "missing_rate": 0.13926042486231313,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.8314666666666667,
+            "available_count": 12472,
+            "missing_count": 2528,
+            "missing_rate": 0.16853333333333334,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.8210702341137124,
+            "available_count": 4419,
+            "missing_count": 963,
+            "missing_rate": 0.17892976588628762,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 1.0,
+            "available_count": 1039,
+            "missing_count": 0,
+            "missing_rate": 0.0,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.7685268979386627,
+            "available_count": 7643,
+            "missing_count": 2302,
+            "missing_rate": 0.23147310206133737,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.9552917903066271,
+            "available_count": 4829,
+            "missing_count": 226,
+            "missing_rate": 0.0447082096933729,
+            "support": 5055
+          }
+        }
+      },
+      "wallet_observed_onward_funding_share_24h": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.4957983193277311,
+            "available_count": 118,
+            "missing_count": 120,
+            "missing_rate": 0.5042016806722689,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.35561497326203206,
+            "available_count": 133,
+            "missing_count": 241,
+            "missing_rate": 0.6443850267379679,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.3793103448275862,
+            "available_count": 154,
+            "missing_count": 252,
+            "missing_rate": 0.6206896551724138,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.613013698630137,
+            "available_count": 179,
+            "missing_count": 113,
+            "missing_rate": 0.386986301369863,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.7616822429906542,
+            "available_count": 163,
+            "missing_count": 51,
+            "missing_rate": 0.2383177570093458,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.6792452830188679,
+            "available_count": 288,
+            "missing_count": 136,
+            "missing_rate": 0.32075471698113206,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.403899721448468,
+            "available_count": 145,
+            "missing_count": 214,
+            "missing_rate": 0.596100278551532,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.39565217391304347,
+            "available_count": 182,
+            "missing_count": 278,
+            "missing_rate": 0.6043478260869565,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.5400260756192959,
+            "available_count": 2071,
+            "missing_count": 1764,
+            "missing_rate": 0.45997392438070406,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.5161469933184856,
+            "available_count": 927,
+            "missing_count": 869,
+            "missing_rate": 0.4838530066815145,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.44531864673485444,
+            "available_count": 566,
+            "missing_count": 705,
+            "missing_rate": 0.5546813532651456,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.46826666666666666,
+            "available_count": 7024,
+            "missing_count": 7976,
+            "missing_rate": 0.5317333333333333,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.39371980676328505,
+            "available_count": 2119,
+            "missing_count": 3263,
+            "missing_rate": 0.606280193236715,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.47256977863330124,
+            "available_count": 491,
+            "missing_count": 548,
+            "missing_rate": 0.5274302213666987,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.4432378079436903,
+            "available_count": 4408,
+            "missing_count": 5537,
+            "missing_rate": 0.5567621920563097,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.5175074183976262,
+            "available_count": 2616,
+            "missing_count": 2439,
+            "missing_rate": 0.4824925816023739,
+            "support": 5055
+          }
+        }
+      },
+      "wallet_prior_funding_age_hours": {
+        "marker": -1,
+        "slices": {
+          "H1": {
+            "availability_rate": 0.23109243697478993,
+            "available_count": 55,
+            "missing_count": 183,
+            "missing_rate": 0.7689075630252101,
+            "support": 238
+          },
+          "H2": {
+            "availability_rate": 0.13368983957219252,
+            "available_count": 50,
+            "missing_count": 324,
+            "missing_rate": 0.8663101604278075,
+            "support": 374
+          },
+          "H3": {
+            "availability_rate": 0.14039408866995073,
+            "available_count": 57,
+            "missing_count": 349,
+            "missing_rate": 0.8596059113300493,
+            "support": 406
+          },
+          "H4": {
+            "availability_rate": 0.2773972602739726,
+            "available_count": 81,
+            "missing_count": 211,
+            "missing_rate": 0.7226027397260274,
+            "support": 292
+          },
+          "H5": {
+            "availability_rate": 0.4158878504672897,
+            "available_count": 89,
+            "missing_count": 125,
+            "missing_rate": 0.5841121495327103,
+            "support": 214
+          },
+          "H6": {
+            "availability_rate": 0.4481132075471698,
+            "available_count": 190,
+            "missing_count": 234,
+            "missing_rate": 0.5518867924528302,
+            "support": 424
+          },
+          "H7": {
+            "availability_rate": 0.1894150417827298,
+            "available_count": 68,
+            "missing_count": 291,
+            "missing_rate": 0.8105849582172702,
+            "support": 359
+          },
+          "H8": {
+            "availability_rate": 0.14782608695652175,
+            "available_count": 68,
+            "missing_count": 392,
+            "missing_rate": 0.8521739130434782,
+            "support": 460
+          },
+          "agent": {
+            "availability_rate": 0.20964797913950456,
+            "available_count": 804,
+            "missing_count": 3031,
+            "missing_rate": 0.7903520208604954,
+            "support": 3835
+          },
+          "campaign_member_target0": {
+            "availability_rate": 0.23942093541202672,
+            "available_count": 430,
+            "missing_count": 1366,
+            "missing_rate": 0.7605790645879733,
+            "support": 1796
+          },
+          "network": {
+            "availability_rate": 0.44531864673485444,
+            "available_count": 566,
+            "missing_count": 705,
+            "missing_rate": 0.5546813532651456,
+            "support": 1271
+          },
+          "overall": {
+            "availability_rate": 0.21426666666666666,
+            "available_count": 3214,
+            "missing_count": 11786,
+            "missing_rate": 0.7857333333333333,
+            "support": 15000
+          },
+          "routine": {
+            "availability_rate": 0.1551467855815682,
+            "available_count": 835,
+            "missing_count": 4547,
+            "missing_rate": 0.8448532144184319,
+            "support": 5382
+          },
+          "structuring": {
+            "availability_rate": 0.2492781520692974,
+            "available_count": 259,
+            "missing_count": 780,
+            "missing_rate": 0.7507218479307026,
+            "support": 1039
+          },
+          "target_0": {
+            "availability_rate": 0.1933634992458522,
+            "available_count": 1923,
+            "missing_count": 8022,
+            "missing_rate": 0.8066365007541478,
+            "support": 9945
+          },
+          "target_1": {
+            "availability_rate": 0.2553907022749753,
+            "available_count": 1291,
+            "missing_count": 3764,
+            "missing_rate": 0.7446092977250247,
+            "support": 5055
+          }
+        }
+      }
+    }
+  },
+  "preregistered_rule": "Strong if Validation ROC-AUC >=.80 AND Macro F1 >=.70; moderate if ROC-AUC >=.70 OR Macro F1 >=.65; otherwise low. Descriptive heuristic, not proof of generator causality.",
+  "shortcut_signal": "low"
+}

@@ -1,0 +1,164 @@
+{
+  "apply_requested": true,
+  "engine": "mysql",
+  "historical_rows_modified": false,
+  "rollback": "Disable canonical ingestion; retain schema and rows. MySQL DDL auto-commits.",
+  "runtime": {
+    "version": "8.0.46"
+  },
+  "before": {
+    "engine": "mysql",
+    "exists": false
+  },
+  "migration": {
+    "changed": true,
+    "schema": {
+      "engine": "mysql",
+      "exists": true,
+      "columns": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "currency",
+        "transaction_type",
+        "channel",
+        "agent_id",
+        "serviced_wallet",
+        "agent_flow_direction",
+        "canonical_version",
+        "history_status"
+      ],
+      "indexes": {
+        "PRIMARY": [
+          "transaction_id"
+        ],
+        "cmm_agent_time_id": [
+          "agent_id",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_receiver_time_id": [
+          "receiver_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_sender_time_id": [
+          "sender_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_serviced_time_id": [
+          "serviced_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_time_id": [
+          "event_timestamp",
+          "transaction_id"
+        ]
+      }
+    }
+  },
+  "repeat": {
+    "changed": false,
+    "schema": {
+      "engine": "mysql",
+      "exists": true,
+      "columns": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "currency",
+        "transaction_type",
+        "channel",
+        "agent_id",
+        "serviced_wallet",
+        "agent_flow_direction",
+        "canonical_version",
+        "history_status"
+      ],
+      "indexes": {
+        "PRIMARY": [
+          "transaction_id"
+        ],
+        "cmm_agent_time_id": [
+          "agent_id",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_receiver_time_id": [
+          "receiver_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_sender_time_id": [
+          "sender_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_serviced_time_id": [
+          "serviced_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_time_id": [
+          "event_timestamp",
+          "transaction_id"
+        ]
+      }
+    }
+  },
+  "after": {
+    "engine": "mysql",
+    "exists": true,
+    "columns": [
+      "transaction_id",
+      "event_timestamp",
+      "sender_wallet",
+      "receiver_wallet",
+      "amount_minor",
+      "currency",
+      "transaction_type",
+      "channel",
+      "agent_id",
+      "serviced_wallet",
+      "agent_flow_direction",
+      "canonical_version",
+      "history_status"
+    ],
+    "indexes": {
+      "PRIMARY": [
+        "transaction_id"
+      ],
+      "cmm_agent_time_id": [
+        "agent_id",
+        "event_timestamp",
+        "transaction_id"
+      ],
+      "cmm_receiver_time_id": [
+        "receiver_wallet",
+        "event_timestamp",
+        "transaction_id"
+      ],
+      "cmm_sender_time_id": [
+        "sender_wallet",
+        "event_timestamp",
+        "transaction_id"
+      ],
+      "cmm_serviced_time_id": [
+        "serviced_wallet",
+        "event_timestamp",
+        "transaction_id"
+      ],
+      "cmm_time_id": [
+        "event_timestamp",
+        "transaction_id"
+      ]
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,99 @@
+{
+  "attempt": "preflight_only",
+  "authoritative_files": 19,
+  "authoritative_sha256": {
+    "V4_STAGE15_CONTROLLED_REDESIGN_SPECIFICATION.md": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+    "v4_acceptance_gates.json": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+    "v4_agent_population_spec.json": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+    "v4_dataset_spec.json": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+    "v4_evaluation_metrics.json": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+    "v4_family_support_policy.json": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+    "v4_feature_spec.json": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+    "v4_generator_audit_plan.json": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+    "v4_hard_negative_spec.json": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+    "v4_holdout_policy.json": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+    "v4_model_development_policy.json": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+    "v4_partition_spec.json": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+    "v4_reproducibility_spec.json": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+    "v4_stage15_decision.json": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+    "v4_target_feature_alignment.json": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+    "v4_target_predicates.json": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+    "v4_temporal_contract.json": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+    "v4_v3_comparison.json": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+    "v4_wallet_population_spec.json": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc"
+  },
+  "checks": {
+    "100000_scored_design_total": true,
+    "12_alignment_rows": true,
+    "12_unique_predicates": true,
+    "180_day_scored_horizon": true,
+    "24000_warmup_design_total": true,
+    "40_unique_features": true,
+    "42_day_warmup": true,
+    "A1_design_35d_and_12_baseline_services": true,
+    "all_19_authoritative_files_present_and_hash_match_stage15": true,
+    "feature_history_cross_references": true,
+    "master_seed": true,
+    "predicate_alignment_cross_references": true,
+    "stage15_decision_is_A": true,
+    "unit_arithmetic": true
+  },
+  "created_utc": "2026-09-29T16:08:51.768388+00:00",
+  "dataset_id": "mobile_money_aml_synthetic_100k_v4",
+  "findings": [
+    {
+      "classification": "Unresolved amount-law conflict",
+      "clauses": [
+        "For background and all recipe origins use a shared mixture: 90% lognormal USD median 35, log-SD 1.0; 10% lognormal median 1800, log-SD 1.0; truncate by rejection to [0.01,15000], round half-up to cents. Recipe-specific amount relations are allowed but use the same rounding, jitter and cents distribution across origins. No origin-specific precision.",
+        "5..12 payments over 1..7d; recipe amounts drawn continuous USD 5000..13000, with common cent rounding; earlier same-profile large-payment history may defeat rate change. No forced positive label."
+      ],
+      "id": "B01",
+      "not_inferred": "Continuous does not imply uniform. No uniform S4 distribution is assumed here.",
+      "reason": "The shared mixture for all recipe origins has support below USD 5000 and above USD 13000, whereas S4 recipe amounts are confined to USD 5000..13000. The permission for recipe-specific amount relations does not specify whether this absolute range conditions the mixture or replaces it, nor define a replacement density. Both choices affect opportunity support and shortcuts. Common cent rounding does not settle the amount law.",
+      "required_resolution": "Version an explicit precedence and sampling rule for S4 and its matched H3 mechanism, including whether the shared mixture is conditioned on the range, how Independent scaling/bounds apply, and which rounding/jitter rules are shared. Keep existing Stage 15 bytes unchanged.",
+      "severity": "BLOCKING",
+      "sources": [
+        "v4_dataset_spec.json#/amount_process",
+        "v4_family_support_policy.json#/family_recipe_design/S4",
+        "report sections 18 and 22"
+      ]
+    },
+    {
+      "classification": "Episode versus motif size is not resolved",
+      "clauses": [
+        "Event budgets allocated before targets. Episode sizes are discrete uniform8..20 conditioned only on completing the budget, with any residual<8 assigned to background and reported. Continuous start times uniform over fitting intervals; no forced30d blocks. Same episode-size law for positive-intended and hard origins. Strength U(0.1,0.9), never label input.",
+        "4..12 subject events across5..60min; value dispersion from a common Dirichlet(1,1,...) allocation; total amount sampled from shared value process; both dominant and diffuse payments possible.",
+        "6..16 subject events over 3..20h with independent inter-arrival jitter, across3..8 proposed occupied hours; may cross UTC midnight. Full daily counts remain causal.",
+        "5..16 services over 0.25..3h to 2..8 wallets; bursts can span the 1h boundary; activity count baseline uses preceding28d."
+      ],
+      "id": "Q01",
+      "reason": "The common episode law assigns 8..20 events, while named recipes specify 4..12, 6..16 or 5..16 events/services. Preparatory/pre-onset events are allowed in the budget, so this need not be a mathematical contradiction. However, the mapping of a 20-event episode to a maximum-12-event motif, and a maximum-16-event motif to an 8-event episode, is unspecified. Silently truncating, splitting, padding or overriding a range changes the population law.",
+      "required_resolution": "State whether recipe counts describe a motif within the full episode; define count sampling conditional on the episode budget and the roles, timing, amounts and provenance of remaining events, with matched hard-origin treatment.",
+      "severity": "CLARIFICATION_REQUIRED",
+      "sources": [
+        "v4_family_support_policy.json#/opportunity_recipe",
+        "v4_family_support_policy.json#/family_recipe_design",
+        "report section 22"
+      ]
+    },
+    {
+      "classification": "Design-version spelling differs in evidence",
+      "id": "M01",
+      "reason": "The authoritative JSON specs consistently use the spaced version string; auxiliary Stage 15 verification uses the unspaced spelling. Exact content hashes still identify the inspected artifacts. This is not the generation stop reason.",
+      "severity": "NONBLOCKING_METADATA",
+      "sources": [
+        "v4_stage15_verification.json#/design_version",
+        "v4_dataset_spec.json#/design_version"
+      ],
+      "values": [
+        "v4.stage15.design.1",
+        "v4.stage 15.design.1"
+      ]
+    }
+  ],
+  "mutual_consistency": "FAIL",
+  "review_scope": "Structural cross-checks and generator-contract review; not a certification of all semantics or a working implementation",
+  "schema_version": 1,
+  "stage": 16,
+  "status": "FAIL"
+}

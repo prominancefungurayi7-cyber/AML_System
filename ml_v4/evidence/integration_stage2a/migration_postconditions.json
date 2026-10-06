@@ -1,0 +1,25 @@
+{
+  "state_table_idempotent_repeat": [],
+  "state_row_counts": {
+    "cmm_observation_scopes": 0,
+    "cmm_history_attestations": 0,
+    "cmm_entity_history": 0,
+    "cmm_source_changes": 0
+  },
+  "required_capture_triggers": [
+    "cmm_tx_insert",
+    "cmm_tx_update",
+    "cmm_tx_delete",
+    "cmm_ce_insert",
+    "cmm_ce_update",
+    "cmm_ce_delete"
+  ],
+  "installed_capture_triggers": [],
+  "migration_blocker": {
+    "mysql_error": 1419,
+    "meaning": "Trigger creation denied: required privilege unavailable with binary logging enabled",
+    "weakened_binary_logging": false,
+    "new_scope_established": false,
+    "attestation_issued": false
+  }
+}

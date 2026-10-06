@@ -1,0 +1,18 @@
+{
+  "all_validation_slice_counts_recomputed": true,
+  "changed_protected_paths": [],
+  "diagnostic_artifact_hashes_checked": 41,
+  "diagnostic_fits": 20,
+  "frozen_feature_hashes_checked": true,
+  "preregistered_source_hashes_match": true,
+  "protected_count": 536,
+  "recomputed_metric_sets": 40,
+  "result": "PASS",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "log": "test_dependence_uses_worst_declared_change_not_precision (test_stage12_robustness.Stage12DiagnosticsTests.test_dependence_uses_worst_declared_change_not_precision) ... ok\ntest_overlapping_slices_and_threshold_tie (test_stage12_robustness.Stage12DiagnosticsTests.test_overlapping_slices_and_threshold_tie) ... ok\ntest_signed_observations_and_empty_missing_groups (test_stage12_robustness.Stage12DiagnosticsTests.test_signed_observations_and_empty_missing_groups) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.016s\n\nOK\n",
+    "methods": 3
+  },
+  "verification_source_sha256": "16b88c3fef961492d2038afad1ddfaf832f267526b2355b2b02a5dceed296df3"
+}

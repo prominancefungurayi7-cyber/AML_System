@@ -1,0 +1,13 @@
+{
+  "authorization": "Explicit user Stage22: exactly four additional development-only attempts",
+  "cumulative_limit_this_stage": 20,
+  "expired_Stage18_slots_remain_expired": 20,
+  "historical_attempts": 16,
+  "inherited_ceiling": 36,
+  "ledger_parent": "ml_v4/evidence/stage18/fit_ledger.jsonl",
+  "ledger_parent_sha256": "26a58318d9fd8050ac48aa1e71cc3d7cfc1fb900f0b669352cc1e4864bfdcb1d",
+  "new_attempt_limit": 4,
+  "no_promotion": true,
+  "replacements_allowed": false,
+  "utc": "2026-10-04T22:11:00.898668+00:00"
+}

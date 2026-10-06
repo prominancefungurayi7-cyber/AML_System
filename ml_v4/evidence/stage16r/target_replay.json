@@ -1,0 +1,22 @@
+{
+  "train": {
+    "binary_mismatches": 0,
+    "family_evidence_mismatches": 0,
+    "inputs": [
+      "warmup_observables.csv",
+      "transactions.csv"
+    ],
+    "rows": 60000,
+    "status": "PASS"
+  },
+  "validation": {
+    "binary_mismatches": 0,
+    "family_evidence_mismatches": 0,
+    "inputs": [
+      "warmup_observables.csv",
+      "transactions.csv"
+    ],
+    "rows": 15000,
+    "status": "PASS"
+  }
+}

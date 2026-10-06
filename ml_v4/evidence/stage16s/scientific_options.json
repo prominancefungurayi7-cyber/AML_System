@@ -1,0 +1,46 @@
+{
+  "options": [
+    {
+      "benefits": "No new draw; useful binary/domain development evidence and transparent sparse-family estimates.",
+      "comparability": "Only frozen V4 development population; no claim to original compliant final evaluation.",
+      "leakage_risks": "Treating repeatedly reviewed Validation as independent final evidence; relaxing gates after outcomes.",
+      "limitations": "Cannot meet original all-family or failed holdout support policy; family estimates remain imprecise and unit dependence remains.",
+      "name": "Preserve V4 with restricted claims",
+      "new_version": "Dataset unchanged; revised research-claim/evaluation protocol must be versioned.",
+      "option": "A",
+      "policy_compatibility": "Preservation and qualified claims fit shortfall policy, but training remains blocked absent explicit approved scope and evaluation plan."
+    },
+    {
+      "benefits": "Independent measurement of sparse families using justified coverage and explicit uncertainty.",
+      "comparability": "Separate report and denominators; never pool with V4 population metrics or rank as the same benchmark.",
+      "leakage_risks": "Challenge examples, seeds or errors feeding training; choosing cases by model success; repeated accept-until-support loops.",
+      "limitations": "Enriched challenge prevalence does not estimate population precision/AP or repair frozen holdout failure. Cannot guarantee plausible support in advance.",
+      "name": "Separately versioned external family challenge evaluation",
+      "new_version": "New challenge-set identifier, manifest, protocol, independent entities/streams and custodian seal; V4 unchanged.",
+      "option": "B",
+      "policy_compatibility": "Explicitly contemplated by Stage 15 shortfall_resolution; requires approval and preregistration before execution."
+    },
+    {
+      "benefits": "Can address population/history/opportunity design together and seek all-family coverage under a fresh declared protocol.",
+      "comparability": "New population version and fresh evaluation; original V4 preserved as historical evidence.",
+      "leakage_risks": "Seed shopping or recycling failed evaluation feedback into a claimed untouched benchmark.",
+      "limitations": "Cost, synthetic realism and support remain uncertain; repeated generation is not a scientific remedy by itself.",
+      "name": "Future full experiment",
+      "new_version": "Yes: new experiment, design and fresh holdouts.",
+      "option": "C",
+      "policy_compatibility": "Allowed only through versioned authorization and compatibility declaration, never a silent overwrite."
+    },
+    {
+      "benefits": "Retains all three domains and the first draw; uses a separately justified challenge evaluation where current family coverage is sparse.",
+      "comparability": "Two explicitly distinct evidence tracks; separate population and challenge conclusions with no pooled prevalence.",
+      "leakage_risks": "Blending datasets/metrics or tuning to extension outcomes. Freeze extension design and eventual model before evaluation; no developer access to challenge outcomes during selection.",
+      "limitations": "Does not restore the original population-level Final/Independent claim; successful extension adequacy remains unproven.",
+      "name": "Preserved V4 development plus justified independent extension",
+      "new_version": "Versioned extension and research/evaluation protocol; no change to existing V4 bytes.",
+      "option": "D",
+      "policy_compatibility": "Combines the declared preservation/challenge pathway; holdout quarantine and G11 remain in force until a separately approved successor protocol defines eligible claims."
+    }
+  ],
+  "original_policy": "Cannot be satisfied by the existing failed sealed support certificates; no gate is relaxed.",
+  "recommendation": "Option D implemented only through a separately approved Option B challenge protocol; no implementation in Stage 16S. If unchanged original population-wide/full-family final claims are mandatory, choose a new experiment (Option C)."
+}

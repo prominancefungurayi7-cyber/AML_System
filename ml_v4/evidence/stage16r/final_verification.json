@@ -1,0 +1,40 @@
+{
+  "artifact_sha256": {
+    "ml_v4/evidence/stage16r/dataset_integrity.json": "c739995b0f410ebd1116c88ab7e5f276a37a88672418cc9c7c488f52b23d5980",
+    "ml_v4/evidence/stage16r/dataset_manifest.json": "bebc7afa5bc9d788b9e337265ba9981f4d89abe24689ee25666c7a1265d41a4b",
+    "ml_v4/evidence/stage16r/decision.json": "0a28761b36b483bd3956d704b5c8a011377b5c5748f4faca4ef3b2993c5bb040",
+    "ml_v4/evidence/stage16r/holdout_public_certificate.json": "d586484e494e32d85ee33dddff72f9b09b2fe870b7e06a9b21b8fcb32071ffd9",
+    "ml_v4/evidence/stage16r/implementation_tests.txt": "fd5bf45eb288a1f888718a2fb948e5be5de1376ff80ebad56be0f353c293af5e",
+    "ml_v4/evidence/stage16r/operational_fixture.json": "6f218a9981bbab3c5325cb1b1e78dd7adfd6fe0809826c8f03bfc2aea358f4c5",
+    "ml_v4/evidence/stage16r/preflight.json": "dca94c8a3f6023b59a3d89e27fd0918dd6840292e9122ba32ee1633821963b83",
+    "ml_v4/evidence/stage16r/protection.json": "05b4d9b50eec3f7ef237f82c8cc9251ef0bf918d80306420df27cd9ace31d968",
+    "ml_v4/evidence/stage16r/protection_before.json": "9e8017534dcc46602d444d0a7f8d96179e151cc8cb1d3fe129129ecb52e99da0",
+    "ml_v4/evidence/stage16r/reproducibility.json": "d2f77934885b1f5de45f263321e8d0f613bc2b45c665bfb0477924b4b03213db",
+    "ml_v4/evidence/stage16r/target_replay.json": "7adbdee2b36e35e98c37d246c5da452cd41481a5136b0cff3232fcd651e0bb1d",
+    "ml_v4/evidence/stage16r/train_a1_primitives.json": "6ca3dccacd7c4032eb94c3960247226101b2992d25e5b006842e4f3e66462d29",
+    "ml_v4/evidence/stage16r/train_audit.json": "0c630b113227759f57a1552d2de0e0e7ba6daf336a1b7052746b45dc60869a6a",
+    "ml_v4/evidence/stage16r/validation_a1_primitives.json": "6de843a1d3f45bbdc5884ae34576e856e90e7a236b613f1ac610268eed149ec2",
+    "ml_v4/evidence/stage16r/validation_audit.json": "7ef48e4bb1f0ffb47bc0a5cad787c89242debb8c981065b313626b86d4444ff3",
+    "ml_v4/reports/V4_STAGE16R_DATASET_GENERATION_AUDIT.md": "97993b2632724f7e109c9c66fc0bbd2d2c61f2c4f9fb43bd3fed335ffbdf523f"
+  },
+  "changed_paths": [],
+  "new_feature_matrices": 0,
+  "new_model_fits": 0,
+  "production_draws": 1,
+  "protected_count": 754,
+  "scope": "Integrity/replay/reproducibility and evidence checks; decision retains population-review qualifications",
+  "sealed_detailed_data_exposed": false,
+  "source_sha256": {
+    "ml_v4/evaluation/stage16r_authorized_loader.py": "b1937b7a232d2f59586af60737c37d2e7a22007ff6e56d913de04a4dcb173588",
+    "ml_v4/evaluation/stage16r_custodian.py": "5f7cb289cdab3a8c8fa25cef593b7b8b528e8d4d3e8810b84ea3be68d32d8fa1",
+    "ml_v4/evaluation/stage16r_seal.py": "f7d2c678c01ba495331145ef136a2290dbc4dabcc8684672360dbde5087ecc38",
+    "ml_v4/generation/run_stage16r.py": "1e3087fda2984873f4bd6fc499403d50ad8d4fc4ea227545f0dc0d50b509a870",
+    "ml_v4/generation/stage16r_audit.py": "83123223c4757176a3a0868724aaddc912d94985164df5de079eb4e8eccc8335",
+    "ml_v4/generation/stage16r_contract.py": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d",
+    "ml_v4/generation/stage16r_evaluator.py": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+    "ml_v4/generation/stage16r_generator.py": "563e7d24d11bae63df040b3b9af428943e3602fa28830bc5e505388ad3a6903d",
+    "ml_v4/generation/stage16r_loader.py": "5ebeb543174036448be0193973656bc217bc5214dbc5372f9ef0dcec67b29034",
+    "ml_v4/tests/test_stage16r.py": "ddb28b3a59898750a8796c0a81a7f586cc75265e47358b3b486234f71c171138"
+  },
+  "status": "PASS"
+}

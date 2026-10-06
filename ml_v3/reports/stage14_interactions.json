@@ -1,0 +1,3808 @@
+{
+  "train": {
+    "agent_cash_count_skew_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.3333333333333333,
+        0.0,
+        0.2
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 249,
+          "positive_rate": 0.09904534606205251,
+          "reference_mean_score": 0.11766006140610429,
+          "reference_review_rate": 0.09148766905330151,
+          "support": 2514
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 111,
+          "positive_rate": 0.09203980099502487,
+          "reference_mean_score": 0.10201065238177277,
+          "reference_review_rate": 0.08043117744610281,
+          "support": 1206
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 2936,
+          "positive_rate": 0.1809330128797683,
+          "reference_mean_score": 0.18801345993987778,
+          "reference_review_rate": 0.18321316324644113,
+          "support": 16227
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 350,
+          "positive_rate": 0.11254019292604502,
+          "reference_mean_score": 0.12795865502573273,
+          "reference_review_rate": 0.10160771704180065,
+          "support": 3110
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 572,
+          "positive_rate": 0.1897810218978102,
+          "reference_mean_score": 0.20782119173622213,
+          "reference_review_rate": 0.17319177173191772,
+          "support": 3014
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 257,
+          "positive_rate": 0.2745726495726496,
+          "reference_mean_score": 0.2958317375243235,
+          "reference_review_rate": 0.25427350427350426,
+          "support": 936
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 282,
+          "positive_rate": 0.130374479889043,
+          "reference_mean_score": 0.1548733913511451,
+          "reference_review_rate": 0.12575127138233935,
+          "support": 2163
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 532,
+          "positive_rate": 0.17177914110429449,
+          "reference_mean_score": 0.18916163901729277,
+          "reference_review_rate": 0.1569260574749758,
+          "support": 3097
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 731,
+          "positive_rate": 0.2714444857036762,
+          "reference_mean_score": 0.28553570392133165,
+          "reference_review_rate": 0.25176383215744524,
+          "support": 2693
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 311,
+          "positive_rate": 0.24741447891805887,
+          "reference_mean_score": 0.26976075807323463,
+          "reference_review_rate": 0.23389021479713604,
+          "support": 1257
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 322,
+          "positive_rate": 0.16205334675390035,
+          "reference_mean_score": 0.18175215808988285,
+          "reference_review_rate": 0.15047810770005032,
+          "support": 1987
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 687,
+          "positive_rate": 0.21060698957694665,
+          "reference_mean_score": 0.2353144460869081,
+          "reference_review_rate": 0.19405272838749232,
+          "support": 3262
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 1099,
+          "positive_rate": 0.43318880567599527,
+          "reference_mean_score": 0.4487036876665243,
+          "reference_review_rate": 0.4233346472211273,
+          "support": 2537
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 587,
+          "positive_rate": 0.4171997157071784,
+          "reference_mean_score": 0.4257420781310717,
+          "reference_review_rate": 0.4093816631130064,
+          "support": 1407
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 732,
+          "positive_rate": 0.3605911330049261,
+          "reference_mean_score": 0.37610120589217777,
+          "reference_review_rate": 0.35911330049261087,
+          "support": 2030
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 1327,
+          "positive_rate": 0.39921780986762934,
+          "reference_mean_score": 0.4145870364047505,
+          "reference_review_rate": 0.3850782190132371,
+          "support": 3324
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 2437,
+          "positive_rate": 0.98584142394822,
+          "reference_mean_score": 0.9867108058675056,
+          "reference_review_rate": 0.991504854368932,
+          "support": 2472
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 1547,
+          "positive_rate": 0.9961365099806826,
+          "reference_mean_score": 0.9959351754940868,
+          "reference_review_rate": 0.9980682549903412,
+          "support": 1553
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 1978,
+          "positive_rate": 0.9894947473736868,
+          "reference_mean_score": 0.9908491118188198,
+          "reference_review_rate": 0.9954977488744372,
+          "support": 1999
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 3172,
+          "positive_rate": 0.987546699875467,
+          "reference_mean_score": 0.989642852565624,
+          "reference_review_rate": 0.9934620174346201,
+          "support": 3212
+        }
+      ]
+    },
+    "agent_cash_value_skew_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.8515955026789485,
+        0.0,
+        0.6277177614931346
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 276,
+          "positive_rate": 0.09507406131588013,
+          "reference_mean_score": 0.11063197389518828,
+          "reference_review_rate": 0.07888391319324836,
+          "support": 2903
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 165,
+          "positive_rate": 0.10956175298804781,
+          "reference_mean_score": 0.11923563855600745,
+          "reference_review_rate": 0.10159362549800798,
+          "support": 1506
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 2898,
+          "positive_rate": 0.18448023426061494,
+          "reference_mean_score": 0.19236885106538254,
+          "reference_review_rate": 0.1893818829970081,
+          "support": 15709
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 307,
+          "positive_rate": 0.1044572984008166,
+          "reference_mean_score": 0.11739105119177158,
+          "reference_review_rate": 0.08812521265736645,
+          "support": 2939
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 532,
+          "positive_rate": 0.1625916870415648,
+          "reference_mean_score": 0.18539801837478836,
+          "reference_review_rate": 0.1491442542787286,
+          "support": 3272
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 427,
+          "positive_rate": 0.30874909616775126,
+          "reference_mean_score": 0.3291731911170436,
+          "reference_review_rate": 0.292118582791034,
+          "support": 1383
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 261,
+          "positive_rate": 0.17216358839050133,
+          "reference_mean_score": 0.18837382297952263,
+          "reference_review_rate": 0.16226912928759896,
+          "support": 1516
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 423,
+          "positive_rate": 0.13919052319842054,
+          "reference_mean_score": 0.15684526642668234,
+          "reference_review_rate": 0.12504113195129976,
+          "support": 3039
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 746,
+          "positive_rate": 0.2455562870309414,
+          "reference_mean_score": 0.2592855725132247,
+          "reference_review_rate": 0.2238314680710994,
+          "support": 3038
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 425,
+          "positive_rate": 0.2618607516943931,
+          "reference_mean_score": 0.28747459218995386,
+          "reference_review_rate": 0.24645717806531114,
+          "support": 1623
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 325,
+          "positive_rate": 0.21200260926288322,
+          "reference_mean_score": 0.23359206378980313,
+          "reference_review_rate": 0.2035225048923679,
+          "support": 1533
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 555,
+          "positive_rate": 0.18469217970049917,
+          "reference_mean_score": 0.2077859296535951,
+          "reference_review_rate": 0.17038269550748752,
+          "support": 3005
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 1148,
+          "positive_rate": 0.3902107409925221,
+          "reference_mean_score": 0.40682690563340257,
+          "reference_review_rate": 0.3803535010197145,
+          "support": 2942
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 833,
+          "positive_rate": 0.4773638968481375,
+          "reference_mean_score": 0.48786707772177423,
+          "reference_review_rate": 0.47335243553008594,
+          "support": 1745
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 579,
+          "positive_rate": 0.3831899404367968,
+          "reference_mean_score": 0.40293406308088014,
+          "reference_review_rate": 0.3812045003309067,
+          "support": 1511
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 1185,
+          "positive_rate": 0.38225806451612904,
+          "reference_mean_score": 0.39416352909604024,
+          "reference_review_rate": 0.3670967741935484,
+          "support": 3100
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 2809,
+          "positive_rate": 0.9873462214411248,
+          "reference_mean_score": 0.9881213238225334,
+          "reference_review_rate": 0.9929701230228472,
+          "support": 2845
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 1818,
+          "positive_rate": 0.9978046103183315,
+          "reference_mean_score": 0.9966170586978715,
+          "reference_review_rate": 0.9983534577387486,
+          "support": 1822
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 1637,
+          "positive_rate": 0.9909200968523002,
+          "reference_mean_score": 0.9919079790760447,
+          "reference_review_rate": 0.9957627118644068,
+          "support": 1652
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 2870,
+          "positive_rate": 0.9838875557079191,
+          "reference_mean_score": 0.9871797147607609,
+          "reference_review_rate": 0.9917723688721289,
+          "support": 2917
+        }
+      ]
+    },
+    "agent_cash_value_skew_change": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.8038074566075203,
+        -0.05330640761686421,
+        0.8184013669121508
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 3159,
+          "positive_rate": 0.1451212789415656,
+          "reference_mean_score": 0.15250874159734032,
+          "reference_review_rate": 0.1517824329290702,
+          "support": 21768
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 135,
+          "positive_rate": 0.3629032258064516,
+          "reference_mean_score": 0.4224144386529562,
+          "reference_review_rate": 0.24193548387096775,
+          "support": 372
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 119,
+          "positive_rate": 0.43272727272727274,
+          "reference_mean_score": 0.44459922787132106,
+          "reference_review_rate": 0.28363636363636363,
+          "support": 275
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 119,
+          "positive_rate": 0.3888888888888889,
+          "reference_mean_score": 0.4475608354424093,
+          "reference_review_rate": 0.28431372549019607,
+          "support": 306
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 114,
+          "positive_rate": 0.3392857142857143,
+          "reference_mean_score": 0.39137265220832046,
+          "reference_review_rate": 0.16964285714285715,
+          "support": 336
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.005014919713267467,
+          "reference_review_rate": 0.0,
+          "support": 25
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 445,
+          "positive_rate": 0.18297697368421054,
+          "reference_mean_score": 0.20495703061710124,
+          "reference_review_rate": 0.17023026315789475,
+          "support": 2432
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 463,
+          "positive_rate": 0.19931123547137322,
+          "reference_mean_score": 0.22347294142231702,
+          "reference_review_rate": 0.18510546706844597,
+          "support": 2323
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 405,
+          "positive_rate": 0.18889925373134328,
+          "reference_mean_score": 0.2021251914634436,
+          "reference_review_rate": 0.17444029850746268,
+          "support": 2144
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 330,
+          "positive_rate": 0.14435695538057744,
+          "reference_mean_score": 0.1631808376507154,
+          "reference_review_rate": 0.13123359580052493,
+          "support": 2286
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 2,
+          "positive_rate": 0.03571428571428571,
+          "reference_mean_score": 0.05805909297762508,
+          "reference_review_rate": 0.03571428571428571,
+          "support": 56
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 558,
+          "positive_rate": 0.24388111888111888,
+          "reference_mean_score": 0.2614773847182883,
+          "reference_review_rate": 0.22508741258741258,
+          "support": 2288
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 537,
+          "positive_rate": 0.23856063971568192,
+          "reference_mean_score": 0.2588102232244352,
+          "reference_review_rate": 0.22123500666370502,
+          "support": 2251
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 514,
+          "positive_rate": 0.22396514161220044,
+          "reference_mean_score": 0.2441045834834388,
+          "reference_review_rate": 0.21220043572984748,
+          "support": 2295
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 440,
+          "positive_rate": 0.19055868341273277,
+          "reference_mean_score": 0.21327881671866908,
+          "reference_review_rate": 0.17410134257254223,
+          "support": 2309
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 3,
+          "positive_rate": 0.08108108108108109,
+          "reference_mean_score": 0.1277618459629023,
+          "reference_review_rate": 0.08108108108108109,
+          "support": 37
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 858,
+          "positive_rate": 0.3979591836734694,
+          "reference_mean_score": 0.4168858821213751,
+          "reference_review_rate": 0.39053803339517623,
+          "support": 2156
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 1041,
+          "positive_rate": 0.4341117597998332,
+          "reference_mean_score": 0.44525179086232325,
+          "reference_review_rate": 0.4261884904086739,
+          "support": 2398
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 884,
+          "positive_rate": 0.38005159071367156,
+          "reference_mean_score": 0.39721159713842685,
+          "reference_review_rate": 0.3748925193465176,
+          "support": 2326
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 959,
+          "positive_rate": 0.40277194456110876,
+          "reference_mean_score": 0.4131843750208975,
+          "reference_review_rate": 0.3863922721545569,
+          "support": 2381
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 86,
+          "positive_rate": 0.7678571428571429,
+          "reference_mean_score": 0.7970564513033908,
+          "reference_review_rate": 0.8035714285714286,
+          "support": 112
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 2238,
+          "positive_rate": 0.9933422103861518,
+          "reference_mean_score": 0.9938134787279554,
+          "reference_review_rate": 0.9986684420772304,
+          "support": 2253
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 2243,
+          "positive_rate": 0.9955614735907679,
+          "reference_mean_score": 0.9948252004723495,
+          "reference_review_rate": 0.9982245894363071,
+          "support": 2253
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 2404,
+          "positive_rate": 0.9897076986414162,
+          "reference_mean_score": 0.9908908893934365,
+          "reference_review_rate": 0.9946480032935364,
+          "support": 2429
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 2163,
+          "positive_rate": 0.9881224303334856,
+          "reference_mean_score": 0.9907397987631209,
+          "reference_review_rate": 0.9945180447693011,
+          "support": 2189
+        }
+      ]
+    },
+    "agent_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        3.8909215700578708,
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 2719,
+          "positive_rate": 0.18126666666666666,
+          "reference_mean_score": 0.18867483719166456,
+          "reference_review_rate": 0.18846666666666667,
+          "support": 15000
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 308,
+          "positive_rate": 0.04755287941948433,
+          "reference_mean_score": 0.05673355364553904,
+          "reference_review_rate": 0.05388297051103906,
+          "support": 6477
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 619,
+          "positive_rate": 0.39177215189873416,
+          "reference_mean_score": 0.4241027138510538,
+          "reference_review_rate": 0.27848101265822783,
+          "support": 1580
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 1643,
+          "positive_rate": 0.1783930510314875,
+          "reference_mean_score": 0.19805606077576796,
+          "reference_review_rate": 0.16482084690553747,
+          "support": 9210
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 2051,
+          "positive_rate": 0.22295901728448744,
+          "reference_mean_score": 0.24315405857357247,
+          "reference_review_rate": 0.2069790194586368,
+          "support": 9199
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 3745,
+          "positive_rate": 0.40277479027747903,
+          "reference_mean_score": 0.41718144939889235,
+          "reference_review_rate": 0.39352548935254894,
+          "support": 9298
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 9134,
+          "positive_rate": 0.9889562581203984,
+          "reference_mean_score": 0.9901772040508224,
+          "reference_review_rate": 0.9941533131225638,
+          "support": 9236
+        }
+      ]
+    },
+    "agent_new_wallet_share_7d": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.8076923076923077,
+        0.875,
+        0.95
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 3646,
+          "positive_rate": 0.15812985210565123,
+          "reference_mean_score": 0.1677437686048397,
+          "reference_review_rate": 0.15682872880253285,
+          "support": 23057
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 608,
+          "positive_rate": 0.20219487861656135,
+          "reference_mean_score": 0.22151547915781503,
+          "reference_review_rate": 0.18290655138011308,
+          "support": 3007
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 367,
+          "positive_rate": 0.19604700854700854,
+          "reference_mean_score": 0.22298462882349132,
+          "reference_review_rate": 0.18643162393162394,
+          "support": 1872
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 359,
+          "positive_rate": 0.19126265316995206,
+          "reference_mean_score": 0.2101015415575646,
+          "reference_review_rate": 0.17208311134789558,
+          "support": 1877
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 309,
+          "positive_rate": 0.12591687041564792,
+          "reference_mean_score": 0.14108046261456744,
+          "reference_review_rate": 0.12061939690301549,
+          "support": 2454
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 719,
+          "positive_rate": 0.2415994623655914,
+          "reference_mean_score": 0.26251297576582305,
+          "reference_review_rate": 0.22547043010752688,
+          "support": 2976
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 581,
+          "positive_rate": 0.238799835593917,
+          "reference_mean_score": 0.25870220219873885,
+          "reference_review_rate": 0.2198931360460337,
+          "support": 2433
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 425,
+          "positive_rate": 0.20334928229665072,
+          "reference_mean_score": 0.22877318605806324,
+          "reference_review_rate": 0.18803827751196173,
+          "support": 2090
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 326,
+          "positive_rate": 0.19176470588235295,
+          "reference_mean_score": 0.20469244242842366,
+          "reference_review_rate": 0.17941176470588235,
+          "support": 1700
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 849,
+          "positive_rate": 0.379695885509839,
+          "reference_mean_score": 0.39914026058165847,
+          "reference_review_rate": 0.38014311270125223,
+          "support": 2236
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 1054,
+          "positive_rate": 0.4149606299212598,
+          "reference_mean_score": 0.4317458587165357,
+          "reference_review_rate": 0.40551181102362205,
+          "support": 2540
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 1065,
+          "positive_rate": 0.42753914090726614,
+          "reference_mean_score": 0.4403731767086248,
+          "reference_review_rate": 0.41308711360899236,
+          "support": 2491
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 777,
+          "positive_rate": 0.3825701624815362,
+          "reference_mean_score": 0.3903847511221702,
+          "reference_review_rate": 0.36927621861152143,
+          "support": 2031
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 936,
+          "positive_rate": 0.9699481865284975,
+          "reference_mean_score": 0.9776123776715991,
+          "reference_review_rate": 0.9844559585492227,
+          "support": 965
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 1778,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9980778835543214,
+          "reference_review_rate": 1.0,
+          "support": 1778
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 3335,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9985673038685025,
+          "reference_review_rate": 1.0,
+          "support": 3335
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 3085,
+          "positive_rate": 0.9768841038632046,
+          "reference_mean_score": 0.9807081307154096,
+          "reference_review_rate": 0.9876504116529449,
+          "support": 3158
+        }
+      ]
+    },
+    "agent_service_acceleration_1h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        1.0,
+        2.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 3032,
+          "positive_rate": 0.1406764719528604,
+          "reference_mean_score": 0.14846438920654279,
+          "reference_review_rate": 0.1474040736788382,
+          "support": 21553
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 424,
+          "positive_rate": 0.3677363399826539,
+          "reference_mean_score": 0.39897284566028596,
+          "reference_review_rate": 0.22289679098005205,
+          "support": 1153
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 190,
+          "positive_rate": 0.5413105413105413,
+          "reference_mean_score": 0.5920210857745399,
+          "reference_review_rate": 0.5185185185185185,
+          "support": 351
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.0027377980867514034,
+          "reference_review_rate": 0.0,
+          "support": 20
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 751,
+          "positive_rate": 0.10657017170427133,
+          "reference_mean_score": 0.12622060657875814,
+          "reference_review_rate": 0.09110259684972329,
+          "support": 7047
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 892,
+          "positive_rate": 0.4162389174055063,
+          "reference_mean_score": 0.4361012362214555,
+          "reference_review_rate": 0.4087727484834344,
+          "support": 2143
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 1,
+          "positive_rate": 0.03225806451612903,
+          "reference_mean_score": 0.03485443120033192,
+          "reference_review_rate": 0.03225806451612903,
+          "support": 31
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 884,
+          "positive_rate": 0.136,
+          "reference_mean_score": 0.15522637470109046,
+          "reference_review_rate": 0.11476923076923078,
+          "support": 6500
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 1166,
+          "positive_rate": 0.4370314842578711,
+          "reference_mean_score": 0.45979095273388126,
+          "reference_review_rate": 0.43365817091454273,
+          "support": 2668
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.05520133540695985,
+          "reference_review_rate": 0.0,
+          "support": 17
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 2082,
+          "positive_rate": 0.3295346628679962,
+          "reference_mean_score": 0.34404691688605943,
+          "reference_review_rate": 0.3159227603672048,
+          "support": 6318
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 1663,
+          "positive_rate": 0.5612554843064461,
+          "reference_mean_score": 0.5752029270748766,
+          "reference_review_rate": 0.5612554843064461,
+          "support": 2963
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 58,
+          "positive_rate": 0.8055555555555556,
+          "reference_mean_score": 0.8326962164449275,
+          "reference_review_rate": 0.8333333333333334,
+          "support": 72
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 5852,
+          "positive_rate": 0.9863475476150345,
+          "reference_mean_score": 0.9879305001997882,
+          "reference_review_rate": 0.9932580482049553,
+          "support": 5933
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 3224,
+          "positive_rate": 0.9978334880841845,
+          "reference_mean_score": 0.997812092647483,
+          "reference_review_rate": 0.9993809965954813,
+          "support": 3231
+        }
+      ]
+    },
+    "agent_service_count_1h_inclusive": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        1.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 2709,
+          "positive_rate": 0.19294871794871796,
+          "reference_mean_score": 0.20063980070933557,
+          "reference_review_rate": 0.20056980056980056,
+          "support": 14040
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 937,
+          "positive_rate": 0.10391482754796495,
+          "reference_mean_score": 0.1165227094114138,
+          "reference_review_rate": 0.08872130420317179,
+          "support": 9017
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 1643,
+          "positive_rate": 0.1783930510314875,
+          "reference_mean_score": 0.19805606077576796,
+          "reference_review_rate": 0.16482084690553747,
+          "support": 9210
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 2051,
+          "positive_rate": 0.22295901728448744,
+          "reference_mean_score": 0.24315405857357247,
+          "reference_review_rate": 0.2069790194586368,
+          "support": 9199
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 3745,
+          "positive_rate": 0.40277479027747903,
+          "reference_mean_score": 0.41718144939889235,
+          "reference_review_rate": 0.39352548935254894,
+          "support": 9298
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 9134,
+          "positive_rate": 0.9889562581203984,
+          "reference_mean_score": 0.9901772040508224,
+          "reference_review_rate": 0.9941533131225638,
+          "support": 9236
+        }
+      ]
+    },
+    "agent_top2_count_share_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.15384615384615385,
+        0.5,
+        0.8
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 2722,
+          "positive_rate": 0.19107117787449107,
+          "reference_mean_score": 0.19863584377020135,
+          "reference_review_rate": 0.1984416678365857,
+          "support": 14246
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 225,
+          "positive_rate": 0.09183673469387756,
+          "reference_mean_score": 0.10272746507325327,
+          "reference_review_rate": 0.08489795918367347,
+          "support": 2450
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 422,
+          "positive_rate": 0.13341764147960797,
+          "reference_mean_score": 0.14391274943710575,
+          "reference_review_rate": 0.12519759721783116,
+          "support": 3163
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 277,
+          "positive_rate": 0.0866166353971232,
+          "reference_mean_score": 0.10350954548857581,
+          "reference_review_rate": 0.05784865540963102,
+          "support": 3198
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 9,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9834991495993933,
+          "reference_review_rate": 1.0,
+          "support": 9
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 196,
+          "positive_rate": 0.1556791104050834,
+          "reference_mean_score": 0.1687789701554402,
+          "reference_review_rate": 0.13423351866560762,
+          "support": 1259
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 678,
+          "positive_rate": 0.20945319740500462,
+          "reference_mean_score": 0.23999653919319267,
+          "reference_review_rate": 0.19060858819894966,
+          "support": 3237
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 760,
+          "positive_rate": 0.16153028692879914,
+          "reference_mean_score": 0.17553311511251105,
+          "reference_review_rate": 0.1536663124335813,
+          "support": 4705
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 30,
+          "positive_rate": 0.5,
+          "reference_mean_score": 0.46853809118537876,
+          "reference_review_rate": 0.4666666666666667,
+          "support": 60
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 407,
+          "positive_rate": 0.17100840336134454,
+          "reference_mean_score": 0.19045651692852966,
+          "reference_review_rate": 0.1546218487394958,
+          "support": 2380
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 1042,
+          "positive_rate": 0.26883384932920534,
+          "reference_mean_score": 0.29164781914184557,
+          "reference_review_rate": 0.2476780185758514,
+          "support": 3876
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 572,
+          "positive_rate": 0.19840443981963232,
+          "reference_mean_score": 0.21677018455202104,
+          "reference_review_rate": 0.19007977800901837,
+          "support": 2883
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 74,
+          "positive_rate": 0.5034013605442177,
+          "reference_mean_score": 0.5076335263458884,
+          "reference_review_rate": 0.4965986394557823,
+          "support": 147
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 1245,
+          "positive_rate": 0.4035656401944895,
+          "reference_mean_score": 0.41797740007530343,
+          "reference_review_rate": 0.3915721231766613,
+          "support": 3085
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 1579,
+          "positive_rate": 0.42756566477118874,
+          "reference_mean_score": 0.44242868977247884,
+          "reference_review_rate": 0.4148388843758462,
+          "support": 3693
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 847,
+          "positive_rate": 0.35693215339233036,
+          "reference_mean_score": 0.3712522366523304,
+          "reference_review_rate": 0.35651074589127685,
+          "support": 2373
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 454,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9992586286998973,
+          "reference_review_rate": 1.0,
+          "support": 454
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 3305,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9987493252852759,
+          "reference_review_rate": 1.0,
+          "support": 3305
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 2981,
+          "positive_rate": 0.9953255425709516,
+          "reference_mean_score": 0.9970224139287097,
+          "reference_review_rate": 0.9993322203672788,
+          "support": 2995
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 2394,
+          "positive_rate": 0.9645447219983884,
+          "reference_mean_score": 0.9688414945202738,
+          "reference_review_rate": 0.9790491539081386,
+          "support": 2482
+        }
+      ]
+    },
+    "agent_top2_share_change_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.24112480943858952,
+        0.4469726352079293,
+        0.658994239439633
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 3164,
+          "positive_rate": 0.14472600859939622,
+          "reference_mean_score": 0.1525752935068319,
+          "reference_review_rate": 0.15135852163571495,
+          "support": 21862
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 104,
+          "positive_rate": 0.4406779661016949,
+          "reference_mean_score": 0.47223487026689426,
+          "reference_review_rate": 0.2923728813559322,
+          "support": 236
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 106,
+          "positive_rate": 0.3970037453183521,
+          "reference_mean_score": 0.41296023704734547,
+          "reference_review_rate": 0.21348314606741572,
+          "support": 267
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 152,
+          "positive_rate": 0.48562300319488816,
+          "reference_mean_score": 0.5436076645516374,
+          "reference_review_rate": 0.4185303514376997,
+          "support": 313
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 120,
+          "positive_rate": 0.316622691292876,
+          "reference_mean_score": 0.36994721476553977,
+          "reference_review_rate": 0.13192612137203166,
+          "support": 379
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 9,
+          "positive_rate": 0.04568527918781726,
+          "reference_mean_score": 0.05698046420022189,
+          "reference_review_rate": 0.04568527918781726,
+          "support": 197
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 156,
+          "positive_rate": 0.15709969788519637,
+          "reference_mean_score": 0.17311539033018025,
+          "reference_review_rate": 0.13997985901309165,
+          "support": 993
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 237,
+          "positive_rate": 0.13181312569521692,
+          "reference_mean_score": 0.15327373230790037,
+          "reference_review_rate": 0.11624026696329255,
+          "support": 1798
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 641,
+          "positive_rate": 0.24474990454371898,
+          "reference_mean_score": 0.279687905631449,
+          "reference_review_rate": 0.2279495990836197,
+          "support": 2619
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 600,
+          "positive_rate": 0.16652789342214822,
+          "reference_mean_score": 0.1756532861951541,
+          "reference_review_rate": 0.1565362198168193,
+          "support": 3603
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 20,
+          "positive_rate": 0.09259259259259259,
+          "reference_mean_score": 0.11695359568571193,
+          "reference_review_rate": 0.10185185185185185,
+          "support": 216
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 322,
+          "positive_rate": 0.16640826873385012,
+          "reference_mean_score": 0.18379157523104986,
+          "reference_review_rate": 0.1467700258397933,
+          "support": 1935
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 472,
+          "positive_rate": 0.18789808917197454,
+          "reference_mean_score": 0.2123020097450729,
+          "reference_review_rate": 0.17714968152866242,
+          "support": 2512
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 862,
+          "positive_rate": 0.35154975530179444,
+          "reference_mean_score": 0.37214055551829295,
+          "reference_review_rate": 0.32218597063621535,
+          "support": 2452
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 375,
+          "positive_rate": 0.17994241842610365,
+          "reference_mean_score": 0.19677745655835938,
+          "reference_review_rate": 0.17418426103646834,
+          "support": 2084
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 46,
+          "positive_rate": 0.19246861924686193,
+          "reference_mean_score": 0.2114640766433619,
+          "reference_review_rate": 0.18410041841004185,
+          "support": 239
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 1141,
+          "positive_rate": 0.42181146025878,
+          "reference_mean_score": 0.4332012655887364,
+          "reference_review_rate": 0.4081330868761553,
+          "support": 2705
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 941,
+          "positive_rate": 0.36067458796473745,
+          "reference_mean_score": 0.37896861112537933,
+          "reference_review_rate": 0.35185894978919124,
+          "support": 2609
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 1051,
+          "positive_rate": 0.5014312977099237,
+          "reference_mean_score": 0.5146051798274195,
+          "reference_review_rate": 0.48520992366412213,
+          "support": 2096
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 566,
+          "positive_rate": 0.3432383262583384,
+          "reference_mean_score": 0.35734518825422684,
+          "reference_review_rate": 0.3493026076409945,
+          "support": 1649
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 441,
+          "positive_rate": 0.882,
+          "reference_mean_score": 0.8962932802682415,
+          "reference_review_rate": 0.91,
+          "support": 500
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 3376,
+          "positive_rate": 0.9994079336885732,
+          "reference_mean_score": 0.9989334937492615,
+          "reference_review_rate": 1.0,
+          "support": 3378
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 2058,
+          "positive_rate": 0.9990291262135922,
+          "reference_mean_score": 0.9977097427761507,
+          "reference_review_rate": 0.9995145631067961,
+          "support": 2060
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 1744,
+          "positive_rate": 0.9875424688561721,
+          "reference_mean_score": 0.991841730104089,
+          "reference_review_rate": 0.9971687429218573,
+          "support": 1766
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 1515,
+          "positive_rate": 0.9889033942558747,
+          "reference_mean_score": 0.9894635176968526,
+          "reference_review_rate": 0.9980417754569191,
+          "support": 1532
+        }
+      ]
+    },
+    "receiver_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 648,
+          "positive_rate": 0.06620351450756028,
+          "reference_mean_score": 0.0736366624897071,
+          "reference_review_rate": 0.07263996730690642,
+          "support": 9788
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 2998,
+          "positive_rate": 0.22594016127816716,
+          "reference_mean_score": 0.237162741749381,
+          "reference_review_rate": 0.2189313437335142,
+          "support": 13269
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 6,
+          "positive_rate": 0.15,
+          "reference_mean_score": 0.1475984863012473,
+          "reference_review_rate": 0.1,
+          "support": 40
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 1637,
+          "positive_rate": 0.17851690294438385,
+          "reference_mean_score": 0.19827615924675823,
+          "reference_review_rate": 0.16510359869138494,
+          "support": 9170
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 5,
+          "positive_rate": 0.22727272727272727,
+          "reference_mean_score": 0.1801261459558988,
+          "reference_review_rate": 0.13636363636363635,
+          "support": 22
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 2046,
+          "positive_rate": 0.2229486760379209,
+          "reference_mean_score": 0.24330515523670737,
+          "reference_review_rate": 0.20714830554647487,
+          "support": 9177
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 10,
+          "positive_rate": 0.37037037037037035,
+          "reference_mean_score": 0.34025823157792473,
+          "reference_review_rate": 0.37037037037037035,
+          "support": 27
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 3735,
+          "positive_rate": 0.4028691619027074,
+          "reference_mean_score": 0.4174054734395747,
+          "reference_review_rate": 0.3935929241721497,
+          "support": 9271
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 38,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9925096830134565,
+          "reference_review_rate": 1.0,
+          "support": 38
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 9096,
+          "positive_rate": 0.9889106327462491,
+          "reference_mean_score": 0.9901675678037489,
+          "reference_review_rate": 0.9941291585127201,
+          "support": 9198
+        }
+      ]
+    },
+    "wallet_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 635,
+          "positive_rate": 0.0649682832003274,
+          "reference_mean_score": 0.07265177691585845,
+          "reference_review_rate": 0.07151626764886433,
+          "support": 9774
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 3011,
+          "positive_rate": 0.2266807197169314,
+          "reference_mean_score": 0.237715094869095,
+          "reference_review_rate": 0.21960400511932546,
+          "support": 13283
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 3,
+          "positive_rate": 0.058823529411764705,
+          "reference_mean_score": 0.08155889289331023,
+          "reference_review_rate": 0.0196078431372549,
+          "support": 51
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 1640,
+          "positive_rate": 0.1790588492193471,
+          "reference_mean_score": 0.19870475119633846,
+          "reference_review_rate": 0.16562943552789605,
+          "support": 9159
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 4,
+          "positive_rate": 0.21052631578947367,
+          "reference_mean_score": 0.15118371222373578,
+          "reference_review_rate": 0.10526315789473684,
+          "support": 19
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 2047,
+          "positive_rate": 0.2229847494553377,
+          "reference_mean_score": 0.24334441114227043,
+          "reference_review_rate": 0.20718954248366014,
+          "support": 9180
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 5,
+          "positive_rate": 0.2631578947368421,
+          "reference_mean_score": 0.3078950560665806,
+          "reference_review_rate": 0.2631578947368421,
+          "support": 19
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 3740,
+          "positive_rate": 0.40306067464166395,
+          "reference_mean_score": 0.4174052279820709,
+          "reference_review_rate": 0.3937924345295829,
+          "support": 9279
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 33,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9918954358087452,
+          "reference_review_rate": 1.0,
+          "support": 33
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 9101,
+          "positive_rate": 0.9889166576116484,
+          "reference_mean_score": 0.9901710428373037,
+          "reference_review_rate": 0.9941323481473433,
+          "support": 9203
+        }
+      ]
+    }
+  },
+  "validation": {
+    "agent_cash_count_skew_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.3333333333333333,
+        0.0,
+        0.2
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 57,
+          "positive_rate": 0.09193548387096774,
+          "reference_mean_score": 0.1143656400456982,
+          "reference_review_rate": 0.08387096774193549,
+          "support": 620
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 28,
+          "positive_rate": 0.11067193675889328,
+          "reference_mean_score": 0.1291090926194078,
+          "reference_review_rate": 0.1067193675889328,
+          "support": 253
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 753,
+          "positive_rate": 0.1871737509321402,
+          "reference_mean_score": 0.192506132737865,
+          "reference_review_rate": 0.1871737509321402,
+          "support": 4023
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 103,
+          "positive_rate": 0.12907268170426064,
+          "reference_mean_score": 0.1411011022351171,
+          "reference_review_rate": 0.12280701754385964,
+          "support": 798
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 162,
+          "positive_rate": 0.21287779237844942,
+          "reference_mean_score": 0.2155118783167811,
+          "reference_review_rate": 0.18528252299605782,
+          "support": 761
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 62,
+          "positive_rate": 0.2818181818181818,
+          "reference_mean_score": 0.31840811058893154,
+          "reference_review_rate": 0.2909090909090909,
+          "support": 220
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 64,
+          "positive_rate": 0.1219047619047619,
+          "reference_mean_score": 0.1438866626046055,
+          "reference_review_rate": 0.10666666666666667,
+          "support": 525
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 159,
+          "positive_rate": 0.20280612244897958,
+          "reference_mean_score": 0.21468934401525255,
+          "reference_review_rate": 0.17346938775510204,
+          "support": 784
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 164,
+          "positive_rate": 0.23871906841339155,
+          "reference_mean_score": 0.2439790889456629,
+          "reference_review_rate": 0.1965065502183406,
+          "support": 687
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 85,
+          "positive_rate": 0.26479750778816197,
+          "reference_mean_score": 0.2738799431415794,
+          "reference_review_rate": 0.2398753894080997,
+          "support": 321
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 99,
+          "positive_rate": 0.2,
+          "reference_mean_score": 0.22674717744625192,
+          "reference_review_rate": 0.2,
+          "support": 495
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 191,
+          "positive_rate": 0.25603217158176944,
+          "reference_mean_score": 0.28456901780165345,
+          "reference_review_rate": 0.25335120643431636,
+          "support": 746
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 240,
+          "positive_rate": 0.36363636363636365,
+          "reference_mean_score": 0.3938086540836495,
+          "reference_review_rate": 0.3560606060606061,
+          "support": 660
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 126,
+          "positive_rate": 0.3853211009174312,
+          "reference_mean_score": 0.41577847792318856,
+          "reference_review_rate": 0.40061162079510704,
+          "support": 327
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 196,
+          "positive_rate": 0.3663551401869159,
+          "reference_mean_score": 0.38026287191851904,
+          "reference_review_rate": 0.3794392523364486,
+          "support": 535
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 324,
+          "positive_rate": 0.351409978308026,
+          "reference_mean_score": 0.38578180833466647,
+          "reference_review_rate": 0.3524945770065076,
+          "support": 922
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 641,
+          "positive_rate": 0.9610194902548725,
+          "reference_mean_score": 0.9918580556686465,
+          "reference_review_rate": 0.9985007496251874,
+          "support": 667
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 406,
+          "positive_rate": 0.9620853080568721,
+          "reference_mean_score": 0.9971854812680986,
+          "reference_review_rate": 1.0,
+          "support": 422
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 463,
+          "positive_rate": 0.9566115702479339,
+          "reference_mean_score": 0.9886894623270425,
+          "reference_review_rate": 0.993801652892562,
+          "support": 484
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 732,
+          "positive_rate": 0.976,
+          "reference_mean_score": 0.9910160787659282,
+          "reference_review_rate": 0.9986666666666667,
+          "support": 750
+        }
+      ]
+    },
+    "agent_cash_value_skew_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.8515955026789485,
+        0.0,
+        0.6277177614931346
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 63,
+          "positive_rate": 0.09038737446197992,
+          "reference_mean_score": 0.11660730254584854,
+          "reference_review_rate": 0.08464849354375897,
+          "support": 697
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 34,
+          "positive_rate": 0.10932475884244373,
+          "reference_mean_score": 0.10862238723004161,
+          "reference_review_rate": 0.0932475884244373,
+          "support": 311
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 768,
+          "positive_rate": 0.19433198380566802,
+          "reference_mean_score": 0.19860282836759846,
+          "reference_review_rate": 0.1966093117408907,
+          "support": 3952
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 76,
+          "positive_rate": 0.10354223433242507,
+          "reference_mean_score": 0.12355166054134725,
+          "reference_review_rate": 0.0885558583106267,
+          "support": 734
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 125,
+          "positive_rate": 0.1528117359413203,
+          "reference_mean_score": 0.17702587603383224,
+          "reference_review_rate": 0.14180929095354522,
+          "support": 818
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 102,
+          "positive_rate": 0.3322475570032573,
+          "reference_mean_score": 0.31943512559077614,
+          "reference_review_rate": 0.2768729641693811,
+          "support": 307
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 72,
+          "positive_rate": 0.18604651162790697,
+          "reference_mean_score": 0.21543633750658817,
+          "reference_review_rate": 0.18863049095607234,
+          "support": 387
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 148,
+          "positive_rate": 0.19023136246786632,
+          "reference_mean_score": 0.1949404299960393,
+          "reference_review_rate": 0.15809768637532134,
+          "support": 778
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 154,
+          "positive_rate": 0.20157068062827224,
+          "reference_mean_score": 0.21160983085473786,
+          "reference_review_rate": 0.1662303664921466,
+          "support": 764
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 98,
+          "positive_rate": 0.2699724517906336,
+          "reference_mean_score": 0.2917373210082817,
+          "reference_review_rate": 0.24517906336088155,
+          "support": 363
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 132,
+          "positive_rate": 0.33249370277078083,
+          "reference_mean_score": 0.3539144351562117,
+          "reference_review_rate": 0.3350125944584383,
+          "support": 397
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 155,
+          "positive_rate": 0.21379310344827587,
+          "reference_mean_score": 0.2372177198813842,
+          "reference_review_rate": 0.2082758620689655,
+          "support": 725
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 229,
+          "positive_rate": 0.3343065693430657,
+          "reference_mean_score": 0.37451020084863423,
+          "reference_review_rate": 0.3386861313868613,
+          "support": 685
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 164,
+          "positive_rate": 0.41309823677581864,
+          "reference_mean_score": 0.4382623556504391,
+          "reference_review_rate": 0.42065491183879095,
+          "support": 397
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 215,
+          "positive_rate": 0.4308617234468938,
+          "reference_mean_score": 0.4454047000676276,
+          "reference_review_rate": 0.4408817635270541,
+          "support": 499
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 278,
+          "positive_rate": 0.32213209733487835,
+          "reference_mean_score": 0.35019484313879096,
+          "reference_review_rate": 0.3186558516801854,
+          "support": 863
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 610,
+          "positive_rate": 0.957613814756672,
+          "reference_mean_score": 0.9908144156635208,
+          "reference_review_rate": 0.9984301412872841,
+          "support": 637
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 553,
+          "positive_rate": 0.9735915492957746,
+          "reference_mean_score": 0.9968166920496935,
+          "reference_review_rate": 1.0,
+          "support": 568
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 393,
+          "positive_rate": 0.9656019656019657,
+          "reference_mean_score": 0.9893374891255003,
+          "reference_review_rate": 0.9926289926289926,
+          "support": 407
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 686,
+          "positive_rate": 0.9648382559774965,
+          "reference_mean_score": 0.9903914671320565,
+          "reference_review_rate": 0.9985935302390999,
+          "support": 711
+        }
+      ]
+    },
+    "agent_cash_value_skew_change": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        -0.8038074566075203,
+        -0.05330640761686421,
+        0.8184013669121508
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 833,
+          "positive_rate": 0.1539456662354463,
+          "reference_mean_score": 0.16128848675293803,
+          "reference_review_rate": 0.15967473664756976,
+          "support": 5411
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 12,
+          "positive_rate": 0.18461538461538463,
+          "reference_mean_score": 0.3832744606353061,
+          "reference_review_rate": 0.15384615384615385,
+          "support": 65
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 27,
+          "positive_rate": 0.43548387096774194,
+          "reference_mean_score": 0.36243041762017786,
+          "reference_review_rate": 0.16129032258064516,
+          "support": 62
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 44,
+          "positive_rate": 0.4782608695652174,
+          "reference_mean_score": 0.44727138548998685,
+          "reference_review_rate": 0.32608695652173914,
+          "support": 92
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 25,
+          "positive_rate": 0.390625,
+          "reference_mean_score": 0.4587133395332046,
+          "reference_review_rate": 0.25,
+          "support": 64
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.00961160046252013,
+          "reference_review_rate": 0.0,
+          "support": 9
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 106,
+          "positive_rate": 0.15429403202328967,
+          "reference_mean_score": 0.1816754345885092,
+          "reference_review_rate": 0.1470160116448326,
+          "support": 687
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 121,
+          "positive_rate": 0.24543610547667344,
+          "reference_mean_score": 0.24607280175920831,
+          "reference_review_rate": 0.2150101419878296,
+          "support": 493
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 94,
+          "positive_rate": 0.19542619542619544,
+          "reference_mean_score": 0.2206103897477012,
+          "reference_review_rate": 0.18295218295218296,
+          "support": 481
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 126,
+          "positive_rate": 0.2032258064516129,
+          "reference_mean_score": 0.20255846871227223,
+          "reference_review_rate": 0.16451612903225807,
+          "support": 620
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.028000009069457734,
+          "reference_review_rate": 0.0,
+          "support": 12
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 92,
+          "positive_rate": 0.15206611570247933,
+          "reference_mean_score": 0.17296802116314136,
+          "reference_review_rate": 0.12396694214876033,
+          "support": 605
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 168,
+          "positive_rate": 0.3010752688172043,
+          "reference_mean_score": 0.313864945225672,
+          "reference_review_rate": 0.2777777777777778,
+          "support": 558
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 158,
+          "positive_rate": 0.2841726618705036,
+          "reference_mean_score": 0.29882121014407365,
+          "reference_review_rate": 0.2697841726618705,
+          "support": 556
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 121,
+          "positive_rate": 0.2335907335907336,
+          "reference_mean_score": 0.2582906385742889,
+          "reference_review_rate": 0.23166023166023167,
+          "support": 518
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 3,
+          "positive_rate": 0.23076923076923078,
+          "reference_mean_score": 0.16553010123225814,
+          "reference_review_rate": 0.15384615384615385,
+          "support": 13
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 171,
+          "positive_rate": 0.32325141776937616,
+          "reference_mean_score": 0.35920315672952385,
+          "reference_review_rate": 0.32514177693761814,
+          "support": 529
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 220,
+          "positive_rate": 0.3992740471869328,
+          "reference_mean_score": 0.4294185484596951,
+          "reference_review_rate": 0.40834845735027225,
+          "support": 551
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 300,
+          "positive_rate": 0.398406374501992,
+          "reference_mean_score": 0.4198349271093595,
+          "reference_review_rate": 0.40239043824701193,
+          "support": 753
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 192,
+          "positive_rate": 0.3210702341137124,
+          "reference_mean_score": 0.35131949196736506,
+          "reference_review_rate": 0.3210702341137124,
+          "support": 598
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 32,
+          "positive_rate": 0.9696969696969697,
+          "reference_mean_score": 0.9272450912664213,
+          "reference_review_rate": 0.9696969696969697,
+          "support": 33
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 507,
+          "positive_rate": 0.9458955223880597,
+          "reference_mean_score": 0.9925808223068563,
+          "reference_review_rate": 0.9981343283582089,
+          "support": 536
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 634,
+          "positive_rate": 0.9814241486068112,
+          "reference_mean_score": 0.9935162851491599,
+          "reference_review_rate": 0.9984520123839009,
+          "support": 646
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 594,
+          "positive_rate": 0.9705882352941176,
+          "reference_mean_score": 0.9926287110370002,
+          "reference_review_rate": 0.9967320261437909,
+          "support": 612
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 475,
+          "positive_rate": 0.9576612903225806,
+          "reference_mean_score": 0.9924327720515949,
+          "reference_review_rate": 1.0,
+          "support": 496
+        }
+      ]
+    },
+    "agent_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        3.8909215700578708,
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 700,
+          "positive_rate": 0.1853813559322034,
+          "reference_mean_score": 0.19069065083718412,
+          "reference_review_rate": 0.1888241525423729,
+          "support": 3776
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 91,
+          "positive_rate": 0.05848329048843188,
+          "reference_mean_score": 0.06754350545189594,
+          "reference_review_rate": 0.06426735218508997,
+          "support": 1556
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 150,
+          "positive_rate": 0.4143646408839779,
+          "reference_mean_score": 0.4571175602340884,
+          "reference_review_rate": 0.32320441988950277,
+          "support": 362
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 447,
+          "positive_rate": 0.19519650655021833,
+          "reference_mean_score": 0.20869487655197,
+          "reference_review_rate": 0.17336244541484716,
+          "support": 2290
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 539,
+          "positive_rate": 0.23966207203201423,
+          "reference_mean_score": 0.25791793506893973,
+          "reference_review_rate": 0.2223210315695865,
+          "support": 2249
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 886,
+          "positive_rate": 0.3625204582651391,
+          "reference_mean_score": 0.39075480267473883,
+          "reference_review_rate": 0.3657937806873977,
+          "support": 2444
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 2242,
+          "positive_rate": 0.9651312957382695,
+          "reference_mean_score": 0.9918938248243044,
+          "reference_review_rate": 0.9978476108480413,
+          "support": 2323
+        }
+      ]
+    },
+    "agent_new_wallet_share_7d": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.8076923076923077,
+        0.875,
+        0.95
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 941,
+          "positive_rate": 0.1652616789603091,
+          "reference_mean_score": 0.17397649259731252,
+          "reference_review_rate": 0.16332982086406744,
+          "support": 5694
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 403,
+          "positive_rate": 0.2102243088158581,
+          "reference_mean_score": 0.22625069739511353,
+          "reference_review_rate": 0.1883150756390193,
+          "support": 1917
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 10,
+          "positive_rate": 0.12987012987012986,
+          "reference_mean_score": 0.16091614043193775,
+          "reference_review_rate": 0.12987012987012986,
+          "support": 77
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 5,
+          "positive_rate": 0.1388888888888889,
+          "reference_mean_score": 0.1678833794227879,
+          "reference_review_rate": 0.1388888888888889,
+          "support": 36
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 29,
+          "positive_rate": 0.11153846153846154,
+          "reference_mean_score": 0.09905513817345775,
+          "reference_review_rate": 0.08076923076923077,
+          "support": 260
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 492,
+          "positive_rate": 0.25585023400936036,
+          "reference_mean_score": 0.2735986817268269,
+          "reference_review_rate": 0.23712948517940718,
+          "support": 1923
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 22,
+          "positive_rate": 0.18487394957983194,
+          "reference_mean_score": 0.19998821821177515,
+          "reference_review_rate": 0.16806722689075632,
+          "support": 119
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 8,
+          "positive_rate": 0.09523809523809523,
+          "reference_mean_score": 0.1441205516832844,
+          "reference_review_rate": 0.09523809523809523,
+          "support": 84
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 17,
+          "positive_rate": 0.13821138211382114,
+          "reference_mean_score": 0.14652395691674994,
+          "reference_review_rate": 0.13008130081300814,
+          "support": 123
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 742,
+          "positive_rate": 0.3553639846743295,
+          "reference_mean_score": 0.38674433961460053,
+          "reference_review_rate": 0.3620689655172414,
+          "support": 2088
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 61,
+          "positive_rate": 0.4326241134751773,
+          "reference_mean_score": 0.4494004913752528,
+          "reference_review_rate": 0.425531914893617,
+          "support": 141
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 49,
+          "positive_rate": 0.3983739837398374,
+          "reference_mean_score": 0.4217331130497825,
+          "reference_review_rate": 0.3821138211382114,
+          "support": 123
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 34,
+          "positive_rate": 0.3695652173913043,
+          "reference_mean_score": 0.35047733079067095,
+          "reference_review_rate": 0.33695652173913043,
+          "support": 92
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 1353,
+          "positive_rate": 0.952146375791696,
+          "reference_mean_score": 0.9923541678980998,
+          "reference_review_rate": 0.9992962702322308,
+          "support": 1421
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 380,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9965763798701748,
+          "reference_review_rate": 1.0,
+          "support": 380
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 344,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9982616974518727,
+          "reference_review_rate": 1.0,
+          "support": 344
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 165,
+          "positive_rate": 0.9269662921348315,
+          "reference_mean_score": 0.9659159225255566,
+          "reference_review_rate": 0.9775280898876404,
+          "support": 178
+        }
+      ]
+    },
+    "agent_service_acceleration_1h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        1.0,
+        2.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 795,
+          "positive_rate": 0.14887640449438203,
+          "reference_mean_score": 0.15455525280140536,
+          "reference_review_rate": 0.15224719101123596,
+          "support": 5340
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 82,
+          "positive_rate": 0.3253968253968254,
+          "reference_mean_score": 0.38912335666965614,
+          "reference_review_rate": 0.1984126984126984,
+          "support": 252
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 64,
+          "positive_rate": 0.6274509803921569,
+          "reference_mean_score": 0.6591962059690137,
+          "reference_review_rate": 0.6568627450980392,
+          "support": 102
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.003701770258825224,
+          "reference_review_rate": 0.0,
+          "support": 3
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 207,
+          "positive_rate": 0.11748013620885357,
+          "reference_mean_score": 0.1338538129019994,
+          "reference_review_rate": 0.09534619750283768,
+          "support": 1762
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 240,
+          "positive_rate": 0.45714285714285713,
+          "reference_mean_score": 0.4610471307807844,
+          "reference_review_rate": 0.4361904761904762,
+          "support": 525
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.002814018779600927,
+          "reference_review_rate": 0.0,
+          "support": 3
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 230,
+          "positive_rate": 0.14612452350698857,
+          "reference_mean_score": 0.1651972796866497,
+          "reference_review_rate": 0.12325285895806862,
+          "support": 1574
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 309,
+          "positive_rate": 0.45982142857142855,
+          "reference_mean_score": 0.47623285072458355,
+          "reference_review_rate": 0.45535714285714285,
+          "support": 672
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.21758412888797862,
+          "reference_review_rate": 0.3333333333333333,
+          "support": 3
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 480,
+          "positive_rate": 0.28486646884273,
+          "reference_mean_score": 0.3156649258734089,
+          "reference_review_rate": 0.285459940652819,
+          "support": 1685
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 406,
+          "positive_rate": 0.5370370370370371,
+          "reference_mean_score": 0.5588050069493434,
+          "reference_review_rate": 0.544973544973545,
+          "support": 756
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.009441444420851833,
+          "reference_review_rate": 0.0,
+          "support": 1
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 1392,
+          "positive_rate": 0.9547325102880658,
+          "reference_mean_score": 0.9895701901696623,
+          "reference_review_rate": 0.9972565157750343,
+          "support": 1458
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 850,
+          "positive_rate": 0.9837962962962963,
+          "reference_mean_score": 0.9969520559665173,
+          "reference_review_rate": 1.0,
+          "support": 864
+        }
+      ]
+    },
+    "agent_service_count_1h_inclusive": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        1.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 700,
+          "positive_rate": 0.19943019943019943,
+          "reference_mean_score": 0.2045122478172016,
+          "reference_review_rate": 0.20313390313390314,
+          "support": 3510
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 241,
+          "positive_rate": 0.11034798534798534,
+          "reference_mean_score": 0.12490117170820504,
+          "reference_review_rate": 0.09935897435897435,
+          "support": 2184
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 447,
+          "positive_rate": 0.19519650655021833,
+          "reference_mean_score": 0.20869487655197,
+          "reference_review_rate": 0.17336244541484716,
+          "support": 2290
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 539,
+          "positive_rate": 0.23966207203201423,
+          "reference_mean_score": 0.25791793506893973,
+          "reference_review_rate": 0.2223210315695865,
+          "support": 2249
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 886,
+          "positive_rate": 0.3625204582651391,
+          "reference_mean_score": 0.39075480267473883,
+          "reference_review_rate": 0.3657937806873977,
+          "support": 2444
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 2242,
+          "positive_rate": 0.9651312957382695,
+          "reference_mean_score": 0.9918938248243044,
+          "reference_review_rate": 0.9978476108480413,
+          "support": 2323
+        }
+      ]
+    },
+    "agent_top2_count_share_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.15384615384615385,
+        0.5,
+        0.8
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 709,
+          "positive_rate": 0.2010777084515031,
+          "reference_mean_score": 0.20561279850523428,
+          "reference_review_rate": 0.20391378332387974,
+          "support": 3526
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 84,
+          "positive_rate": 0.15356489945155394,
+          "reference_mean_score": 0.13615017412036903,
+          "reference_review_rate": 0.12614259597806216,
+          "support": 547
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 75,
+          "positive_rate": 0.10204081632653061,
+          "reference_mean_score": 0.13413794442049878,
+          "reference_review_rate": 0.11292517006802721,
+          "support": 735
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 73,
+          "positive_rate": 0.08239277652370203,
+          "reference_mean_score": 0.10447617034619971,
+          "reference_review_rate": 0.06659142212189616,
+          "support": 886
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": null,
+          "reference_mean_score": null,
+          "reference_review_rate": null,
+          "support": 0
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 36,
+          "positive_rate": 0.14814814814814814,
+          "reference_mean_score": 0.16154608743859875,
+          "reference_review_rate": 0.12757201646090535,
+          "support": 243
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 233,
+          "positive_rate": 0.2532608695652174,
+          "reference_mean_score": 0.26942761702305074,
+          "reference_review_rate": 0.2184782608695652,
+          "support": 920
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 178,
+          "positive_rate": 0.15794143744454303,
+          "reference_mean_score": 0.1692831946718945,
+          "reference_review_rate": 0.14640638864241348,
+          "support": 1127
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 3,
+          "positive_rate": 0.375,
+          "reference_mean_score": 0.29472617276068636,
+          "reference_review_rate": 0.25,
+          "support": 8
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 140,
+          "positive_rate": 0.26217228464419473,
+          "reference_mean_score": 0.26809497621219736,
+          "reference_review_rate": 0.23782771535580524,
+          "support": 534
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 248,
+          "positive_rate": 0.2663802363050483,
+          "reference_mean_score": 0.28781747313710004,
+          "reference_review_rate": 0.24489795918367346,
+          "support": 931
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 148,
+          "positive_rate": 0.19072164948453607,
+          "reference_mean_score": 0.2146634559278435,
+          "reference_review_rate": 0.18427835051546393,
+          "support": 776
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 13,
+          "positive_rate": 0.8125,
+          "reference_mean_score": 0.8133869340229998,
+          "reference_review_rate": 0.8125,
+          "support": 16
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 340,
+          "positive_rate": 0.3781979977753059,
+          "reference_mean_score": 0.3955908491877107,
+          "reference_review_rate": 0.3681868743047831,
+          "support": 899
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 302,
+          "positive_rate": 0.334070796460177,
+          "reference_mean_score": 0.3770799186280129,
+          "reference_review_rate": 0.3418141592920354,
+          "support": 904
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 231,
+          "positive_rate": 0.3696,
+          "reference_mean_score": 0.39275860309314886,
+          "reference_review_rate": 0.3856,
+          "support": 625
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 88,
+          "positive_rate": 0.9565217391304348,
+          "reference_mean_score": 0.9978758045630928,
+          "reference_review_rate": 1.0,
+          "support": 92
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 845,
+          "positive_rate": 0.9746251441753172,
+          "reference_mean_score": 0.9975681369103171,
+          "reference_review_rate": 1.0,
+          "support": 867
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 772,
+          "positive_rate": 0.9613947696139477,
+          "reference_mean_score": 0.9966175406015568,
+          "reference_review_rate": 1.0,
+          "support": 803
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 537,
+          "positive_rate": 0.9572192513368984,
+          "reference_mean_score": 0.9753820343008196,
+          "reference_review_rate": 0.9910873440285205,
+          "support": 561
+        }
+      ]
+    },
+    "agent_top2_share_change_24h": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        0.24112480943858952,
+        0.4469726352079293,
+        0.658994239439633
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": -1,
+          "positive": 835,
+          "positive_rate": 0.15411590992986343,
+          "reference_mean_score": 0.16166930834049023,
+          "reference_review_rate": 0.16002214839424142,
+          "support": 5418
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 60,
+          "positive_rate": 0.6,
+          "reference_mean_score": 0.49593236474326746,
+          "reference_review_rate": 0.4,
+          "support": 100
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 18,
+          "positive_rate": 0.2903225806451613,
+          "reference_mean_score": 0.38365838806646846,
+          "reference_review_rate": 0.16129032258064516,
+          "support": 62
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 2,
+          "positive": 16,
+          "positive_rate": 0.3018867924528302,
+          "reference_mean_score": 0.4047206893531935,
+          "reference_review_rate": 0.18867924528301888,
+          "support": 53
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 3,
+          "positive": 12,
+          "positive_rate": 0.19672131147540983,
+          "reference_mean_score": 0.32569808508449616,
+          "reference_review_rate": 0.04918032786885246,
+          "support": 61
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": -1,
+          "positive": 2,
+          "positive_rate": 0.0392156862745098,
+          "reference_mean_score": 0.052789842568485186,
+          "reference_review_rate": 0.0392156862745098,
+          "support": 51
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 28,
+          "positive_rate": 0.14583333333333334,
+          "reference_mean_score": 0.15666362483123486,
+          "reference_review_rate": 0.125,
+          "support": 192
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 61,
+          "positive_rate": 0.12348178137651822,
+          "reference_mean_score": 0.1504296727995179,
+          "reference_review_rate": 0.10323886639676114,
+          "support": 494
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 2,
+          "positive": 229,
+          "positive_rate": 0.3338192419825073,
+          "reference_mean_score": 0.34401969977874663,
+          "reference_review_rate": 0.29737609329446063,
+          "support": 686
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 3,
+          "positive": 127,
+          "positive_rate": 0.14648212226066898,
+          "reference_mean_score": 0.1555130299356856,
+          "reference_review_rate": 0.13379469434832755,
+          "support": 867
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": -1,
+          "positive": 2,
+          "positive_rate": 0.028985507246376812,
+          "reference_mean_score": 0.06494034416147662,
+          "reference_review_rate": 0.014492753623188406,
+          "support": 69
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 124,
+          "positive_rate": 0.2749445676274945,
+          "reference_mean_score": 0.2724182838495306,
+          "reference_review_rate": 0.2394678492239468,
+          "support": 451
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 97,
+          "positive_rate": 0.1611295681063123,
+          "reference_mean_score": 0.19038126776299868,
+          "reference_review_rate": 0.15448504983388706,
+          "support": 602
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 2,
+          "positive": 213,
+          "positive_rate": 0.3685121107266436,
+          "reference_mean_score": 0.39390634048293216,
+          "reference_review_rate": 0.3460207612456747,
+          "support": 578
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 3,
+          "positive": 103,
+          "positive_rate": 0.18761384335154827,
+          "reference_mean_score": 0.20114484192041052,
+          "reference_review_rate": 0.1785063752276867,
+          "support": 549
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": -1,
+          "positive": 21,
+          "positive_rate": 0.4117647058823529,
+          "reference_mean_score": 0.3786190110588869,
+          "reference_review_rate": 0.37254901960784315,
+          "support": 51
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 332,
+          "positive_rate": 0.4197218710493047,
+          "reference_mean_score": 0.43247411502625027,
+          "reference_review_rate": 0.40581542351453853,
+          "support": 791
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 183,
+          "positive_rate": 0.2621776504297994,
+          "reference_mean_score": 0.30452156075288644,
+          "reference_review_rate": 0.2707736389684814,
+          "support": 698
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 2,
+          "positive": 203,
+          "positive_rate": 0.4211618257261411,
+          "reference_mean_score": 0.45973212765809635,
+          "reference_review_rate": 0.42946058091286304,
+          "support": 482
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 3,
+          "positive": 147,
+          "positive_rate": 0.34834123222748814,
+          "reference_mean_score": 0.3778701617312256,
+          "reference_review_rate": 0.3744075829383886,
+          "support": 422
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": -1,
+          "positive": 114,
+          "positive_rate": 0.912,
+          "reference_mean_score": 0.9586455432729889,
+          "reference_review_rate": 0.984,
+          "support": 125
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 890,
+          "positive_rate": 0.9801762114537445,
+          "reference_mean_score": 0.9979035212787399,
+          "reference_review_rate": 1.0,
+          "support": 908
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 491,
+          "positive_rate": 0.9533980582524272,
+          "reference_mean_score": 0.9959511528590366,
+          "reference_review_rate": 0.9980582524271845,
+          "support": 515
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 2,
+          "positive": 392,
+          "positive_rate": 0.9560975609756097,
+          "reference_mean_score": 0.9890236937020531,
+          "reference_review_rate": 0.9951219512195122,
+          "support": 410
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 3,
+          "positive": 355,
+          "positive_rate": 0.9726027397260274,
+          "reference_mean_score": 0.9858293334147786,
+          "reference_review_rate": 1.0,
+          "support": 365
+        }
+      ]
+    },
+    "receiver_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 193,
+          "positive_rate": 0.0791957324579401,
+          "reference_mean_score": 0.07979212275466578,
+          "reference_review_rate": 0.07304062371768567,
+          "support": 2437
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 748,
+          "positive_rate": 0.22965919557875344,
+          "reference_mean_score": 0.2444484942265818,
+          "reference_review_rate": 0.23088731961928155,
+          "support": 3257
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.11369397157631955,
+          "reference_review_rate": 0.1,
+          "support": 10
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 447,
+          "positive_rate": 0.19605263157894737,
+          "reference_mean_score": 0.2091115471878281,
+          "reference_review_rate": 0.1736842105263158,
+          "support": 2280
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 1,
+          "positive_rate": 0.25,
+          "reference_mean_score": 0.2658709531745972,
+          "reference_review_rate": 0.25,
+          "support": 4
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 538,
+          "positive_rate": 0.23964365256124723,
+          "reference_mean_score": 0.25790376488077826,
+          "reference_review_rate": 0.222271714922049,
+          "support": 2245
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.2853488813096003,
+          "reference_review_rate": 0.0,
+          "support": 2
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 886,
+          "positive_rate": 0.3628173628173628,
+          "reference_mean_score": 0.39084113021066436,
+          "reference_review_rate": 0.36609336609336607,
+          "support": 2442
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 11,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9940736725715502,
+          "reference_review_rate": 1.0,
+          "support": 11
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 2231,
+          "positive_rate": 0.9649653979238755,
+          "reference_mean_score": 0.9918834535763723,
+          "reference_review_rate": 0.9978373702422145,
+          "support": 2312
+        }
+      ]
+    },
+    "wallet_history_coverage_days": {
+      "growth_edges": [
+        0.8484848484848485,
+        1.1538461538461537,
+        1.6238207547169812
+      ],
+      "other_edges": [
+        28.0
+      ],
+      "rows": [
+        {
+          "growth_bin": -1,
+          "other_bin": 0,
+          "positive": 193,
+          "positive_rate": 0.07922824302134647,
+          "reference_mean_score": 0.08091440660442005,
+          "reference_review_rate": 0.07430213464696224,
+          "support": 2436
+        },
+        {
+          "growth_bin": -1,
+          "other_bin": 1,
+          "positive": 748,
+          "positive_rate": 0.22958870472682627,
+          "reference_mean_score": 0.24355882577063542,
+          "reference_review_rate": 0.22989564149785144,
+          "support": 3258
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.12943128438759846,
+          "reference_review_rate": 0.125,
+          "support": 8
+        },
+        {
+          "growth_bin": 0,
+          "other_bin": 1,
+          "positive": 447,
+          "positive_rate": 0.19588080631025417,
+          "reference_mean_score": 0.20897275066998708,
+          "reference_review_rate": 0.17353198948290974,
+          "support": 2282
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 0,
+          "positive": 1,
+          "positive_rate": 0.25,
+          "reference_mean_score": 0.2803963657790394,
+          "reference_review_rate": 0.25,
+          "support": 4
+        },
+        {
+          "growth_bin": 1,
+          "other_bin": 1,
+          "positive": 538,
+          "positive_rate": 0.23964365256124723,
+          "reference_mean_score": 0.25787788441288617,
+          "reference_review_rate": 0.222271714922049,
+          "support": 2245
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 0,
+          "positive": 0,
+          "positive_rate": 0.0,
+          "reference_mean_score": 0.20183052924029168,
+          "reference_review_rate": 0.0,
+          "support": 3
+        },
+        {
+          "growth_bin": 2,
+          "other_bin": 1,
+          "positive": 886,
+          "positive_rate": 0.362965997541991,
+          "reference_mean_score": 0.3909869914581486,
+          "reference_review_rate": 0.3662433428922573,
+          "support": 2441
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 0,
+          "positive": 12,
+          "positive_rate": 1.0,
+          "reference_mean_score": 0.9397170647963762,
+          "reference_review_rate": 1.0,
+          "support": 12
+        },
+        {
+          "growth_bin": 3,
+          "other_bin": 1,
+          "positive": 2230,
+          "positive_rate": 0.9649502379922111,
+          "reference_mean_score": 0.9921647556422774,
+          "reference_review_rate": 0.9978364344439636,
+          "support": 2311
+        }
+      ]
+    }
+  }
+}

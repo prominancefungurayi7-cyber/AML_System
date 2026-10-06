@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "candidate_metrics_recomputed": 60,
+  "normal_slice_counts_reconcile": true,
+  "positive_slice_counts_reconcile": true,
+  "protected_files_unchanged": 450,
+  "model_and_score_artifact_hashes_verified": 61,
+  "report_links_verified": true,
+  "frozen_stage10a_input_hashes_verified": true
+}

@@ -1,0 +1,23 @@
+{
+  "dataset":"mobile_money_aml_synthetic_100k_v3",
+  "seed":20260922,
+  "initial_liquidity": {"agent_minor": 5000000000, "wallet_minor": 250000000},
+  "families": {
+    "A1":{"domain":"agent","name":"agent_wallet_growth","min_events":6,"max_events":30,"min_seconds":86400,"max_seconds":604800},
+    "A2":{"domain":"agent","name":"agent_wallet_concentration","min_events":6,"max_events":30,"min_seconds":21600,"max_seconds":604800},
+    "A3":{"domain":"agent","name":"agent_temporal_burst","min_events":6,"max_events":30,"min_seconds":900,"max_seconds":7200},
+    "A4":{"domain":"agent","name":"agent_flow_imbalance","min_events":6,"max_events":30,"min_seconds":21600,"max_seconds":604800},
+    "N1":{"domain":"network","name":"many_to_one_collection","min_events":5,"max_events":24,"min_seconds":1800,"max_seconds":432000},
+    "N2":{"domain":"network","name":"one_to_many_dispersion","min_events":5,"max_events":24,"min_seconds":1200,"max_seconds":259200},
+    "N3":{"domain":"network","name":"reciprocal_relationship_cycle","min_events":4,"max_events":24,"min_seconds":3600,"max_seconds":604800},
+    "N4":{"domain":"network","name":"wallet_pass_through","min_events":4,"max_events":20,"min_seconds":300,"max_seconds":172800},
+    "S1":{"domain":"structuring","name":"variable_fragment_burst","min_events":4,"max_events":18,"min_seconds":600,"max_seconds":10800},
+    "S2":{"domain":"structuring","name":"similar_amount_repetition","min_events":5,"max_events":24,"min_seconds":7200,"max_seconds":864000},
+    "S3":{"domain":"structuring","name":"distributed_same_day_fragmentation","min_events":6,"max_events":30,"min_seconds":14400,"max_seconds":64800},
+    "S4":{"domain":"structuring","name":"variable_near_threshold_history","min_events":4,"max_events":20,"min_seconds":172800,"max_seconds":1209600}
+  },
+  "strength_settings":{"weak":{"coordination":0.25},"moderate":{"coordination":0.55},"strong":{"coordination":0.8}},
+  "hard_counterparts":{"H1":"S1/S3","H2":"S2","H3":"S4","H4":"N1","H5":"N2/N4","H6":"N3","H7":"A1/A3","H8":"A2/A4"},
+  "activation_policy":"shared entity activation independent of origin",
+  "horizon_days":180,"horizon_start":"2025-01-01T00:00:00.000000Z","synthetic_threshold_minor":1000000,"version":1
+}

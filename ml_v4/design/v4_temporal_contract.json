@@ -1,0 +1,30 @@
+{
+  "agent_subject": "Named current agent; each Cash-In/Cash-Out or assisted W2W contributes one service using explicit serviced_wallet, including receiver-serviced W2W.",
+  "baseline": "B_L(H,T)={e in prior H: t-L-28d<time(e)<=t-L}. Excludes current and all recent events.",
+  "cold_start": "Baseline-ineligible family evaluates false, with eligible=false and reason recorded in diagnostics. Other eligible families may still make y=1. Recent-only descriptors remain valid; baseline-dependent descriptors emit their declared marker.",
+  "coverage": "Eligibility requires first prior observed wallet participation or agent service <= baseline lower boundary, plus family-specific baseline counts. Private activation is never coverage. First observation exactly at lower boundary establishes observation age but is excluded from an open-lower baseline count.",
+  "day_exception": "UTC calendar S3: recent [d,t] restricted by prior keys plus current; baseline [d-28d,d), d=UTC midnight. Its28 daily bins are [d-k*1day,d-(k-1)*1day), k=1..28. This half-open calendar exception is explicit.",
+  "design_version": "v4.stage 15.design.1",
+  "forbidden_sharing": [
+    "family predicates or witnesses",
+    "predicate-specific eligibility flags as model inputs",
+    "target-derived path choice",
+    "feature matrix as evaluator input"
+  ],
+  "history_retention": "Keep last 35d event state plus first-observed timestamp. Calendar S3 never needs more than 29d before current. Full raw ledger retained separately.",
+  "maximum_required_history_days": 35,
+  "numeric": "Amounts, sums, counts and predicate comparisons use integers/rationals; no floating-point threshold tolerance. Features may use float64 after exact aggregation. Median includes empty buckets; even median averages the two central values. Floors explicitly defined per formula.",
+  "ordering": "key=(UTC timestamp at integer microsecond precision, integer transaction_id); process increasing key; require unique IDs.",
+  "prior": "Only key(e)<key(T). Same-time smaller IDs are prior; same-time larger IDs are future. Emit all targets/features before state update.",
+  "recent": "R_L(H,T)={e in prior H: t-L<time(e)<=t}, plus T once only for the current role listed by each predicate/feature.",
+  "schema_version": 1,
+  "shared_utilities": [
+    "observable schema validation",
+    "UTC parsing and integer keys",
+    "strict-prior window membership",
+    "integer sum/count and distinct-set utilities",
+    "median with zero buckets"
+  ],
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "wallet_subject": "Current sender for W2W; serviced_wallet for cash. Structuring activity contains prior W2W sent by subject and prior Cash-In/Cash-Out of subject, once per event. Incoming W2W establishes wallet observation age and inflow history, but is not structuring activity."
+}

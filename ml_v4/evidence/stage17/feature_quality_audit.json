@@ -1,0 +1,1949 @@
+{
+  "duplicate_rows_interpretation": "Repeated feature vectors allowed; IDs and original rows retained. No row deduplication or balancing.",
+  "marker_aware_comparison": {
+    "agent_cash_distinct_wallets_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        2.0,
+        3.0,
+        16.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        2.0,
+        3.0,
+        18.0
+      ]
+    },
+    "agent_cash_in_count_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        16.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        19.0
+      ]
+    },
+    "agent_cash_in_value_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        922.5,
+        12660.0,
+        3350735.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1068.0,
+        14196.0,
+        2775077.0
+      ]
+    },
+    "agent_cash_out_count_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        21.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        14.0
+      ]
+    },
+    "agent_cash_out_value_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        973.5,
+        12813.75,
+        2718455.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        705.0,
+        13071.0,
+        3050374.0
+      ]
+    },
+    "agent_cash_value_skew_change": {
+      "train_valid_quantiles": [
+        -1.9775260063410927,
+        -0.7310423047749496,
+        0.026141724638277294,
+        0.7771194313896322,
+        1.9949954861247399
+      ],
+      "validation_minus_train_missing_fraction": 0.006750000000000034,
+      "validation_valid_quantiles": [
+        -1.9878586945623475,
+        -0.7275559699504006,
+        0.013912870879195325,
+        0.7930216493959378,
+        1.9744854940690129
+      ]
+    },
+    "agent_distinct_wallets_1h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        10.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        8.0
+      ]
+    },
+    "agent_distinct_wallets_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        11.0,
+        19.0,
+        50.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        11.0,
+        19.0,
+        46.0
+      ]
+    },
+    "agent_new_wallet_count_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        4.0,
+        6.0,
+        9.0,
+        23.0
+      ],
+      "validation_minus_train_missing_fraction": 0.007566666666666666,
+      "validation_valid_quantiles": [
+        0.0,
+        5.0,
+        6.0,
+        9.0,
+        23.0
+      ]
+    },
+    "agent_new_wallet_share_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        0.3076923076923077,
+        0.42857142857142855,
+        0.5652173913043478,
+        1.0
+      ],
+      "validation_minus_train_missing_fraction": 0.007566666666666666,
+      "validation_valid_quantiles": [
+        0.0,
+        0.3076923076923077,
+        0.42105263157894735,
+        0.5666666666666667,
+        1.0
+      ]
+    },
+    "agent_observed_coverage_days": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        35.0,
+        35.0,
+        35.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        35.0,
+        35.0,
+        35.0
+      ]
+    },
+    "agent_service_acceleration_1h": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        21.0
+      ],
+      "validation_minus_train_missing_fraction": 0.006983333333333341,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        17.0
+      ]
+    },
+    "agent_top2_count_share_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        0.5,
+        0.7142857142857143,
+        1.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        0.42857142857142855,
+        0.6666666666666666,
+        1.0
+      ]
+    },
+    "agent_top2_share_change_24h": {
+      "train_valid_quantiles": [
+        -0.09595959595959595,
+        0.2981366459627329,
+        0.484297520661157,
+        0.8,
+        0.9310344827586207
+      ],
+      "validation_minus_train_missing_fraction": 0.010766666666666647,
+      "validation_valid_quantiles": [
+        -0.11666666666666667,
+        0.2846668956043956,
+        0.4666666666666667,
+        0.782608695652174,
+        0.9238095238095239
+      ]
+    },
+    "agent_wallet_growth_ratio_7d": {
+      "train_valid_quantiles": [
+        0.09523809523809523,
+        0.8484848484848485,
+        1.1176470588235294,
+        1.4736842105263157,
+        8.0
+      ],
+      "validation_minus_train_missing_fraction": 0.007566666666666666,
+      "validation_valid_quantiles": [
+        0.13333333333333333,
+        0.8571428571428571,
+        1.1111111111111112,
+        1.4362980769230769,
+        5.142857142857143
+      ]
+    },
+    "amount_minor": {
+      "train_valid_quantiles": [
+        1.0,
+        1810.0,
+        4065.0,
+        10551.25,
+        1494631.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        2.0,
+        1872.75,
+        4020.5,
+        10891.0,
+        1446590.0
+      ]
+    },
+    "current_to_selected_path_first_value_ratio": {
+      "train_valid_quantiles": [
+        7.08630170638145e-05,
+        0.23874755381604695,
+        0.9159779614325069,
+        3.2650273224043715,
+        9903.381818181819
+      ],
+      "validation_minus_train_missing_fraction": -0.0014499999999999513,
+      "validation_valid_quantiles": [
+        1.0015294785894459e-05,
+        0.2674333293521473,
+        1.0522440889140592,
+        2.84093567251462,
+        4632.931937172775
+      ]
+    },
+    "network_in_acceleration_24h": {
+      "train_valid_quantiles": [
+        0.7368421052631579,
+        1.0,
+        1.0,
+        2.0,
+        14.0
+      ],
+      "validation_minus_train_missing_fraction": 0.005249999999999977,
+      "validation_valid_quantiles": [
+        0.9032258064516129,
+        1.0,
+        1.0,
+        2.0,
+        12.0
+      ]
+    },
+    "network_in_count_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        14.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        12.0
+      ]
+    },
+    "network_in_distinct_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        10.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        9.0
+      ]
+    },
+    "network_out_acceleration_24h": {
+      "train_valid_quantiles": [
+        0.6666666666666666,
+        1.0,
+        1.0,
+        2.0,
+        20.0
+      ],
+      "validation_minus_train_missing_fraction": -0.001083333333333325,
+      "validation_valid_quantiles": [
+        0.8484848484848485,
+        1.0,
+        1.0,
+        3.0,
+        14.0
+      ]
+    },
+    "network_out_count_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        20.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        14.0
+      ]
+    },
+    "network_out_distinct_24h": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        16.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        12.0
+      ]
+    },
+    "prior_path_min_max_log_change_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        1.2158140979204524,
+        8.881169671028417
+      ],
+      "validation_minus_train_missing_fraction": -0.0014499999999999513,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        1.0660821359252157,
+        6.748319825974884
+      ]
+    },
+    "prior_return_path_count_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        20.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        13.0
+      ]
+    },
+    "prior_return_path_min_length_7d": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "validation_minus_train_missing_fraction": -0.0014499999999999513,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        5.0
+      ]
+    },
+    "wallet_active_hours_utc_day": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        14.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        13.0
+      ]
+    },
+    "wallet_activity_acceleration_1h": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        19.0
+      ],
+      "validation_minus_train_missing_fraction": 0.007750000000000007,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        18.0
+      ]
+    },
+    "wallet_count_1h": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        19.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        18.0
+      ]
+    },
+    "wallet_count_utc_day": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        27.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        20.0
+      ]
+    },
+    "wallet_day_count_growth": {
+      "train_valid_quantiles": [
+        0.5,
+        1.0,
+        1.0,
+        2.0,
+        27.0
+      ],
+      "validation_minus_train_missing_fraction": 0.01238333333333333,
+      "validation_valid_quantiles": [
+        0.6666666666666666,
+        1.0,
+        1.0,
+        2.0,
+        20.0
+      ]
+    },
+    "wallet_max_value_share_1h": {
+      "train_valid_quantiles": [
+        0.12340147258283278,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.1807494489346069,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "wallet_near_band_count_7d": {
+      "train_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        12.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        8.0
+      ]
+    },
+    "wallet_observed_coverage_days": {
+      "train_valid_quantiles": [
+        0.0,
+        35.0,
+        35.0,
+        35.0,
+        35.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.0,
+        35.0,
+        35.0,
+        35.0,
+        35.0
+      ]
+    },
+    "wallet_pass_through_fraction_24h": {
+      "train_valid_quantiles": [
+        2.4555402766382787e-05,
+        0.2654173130485368,
+        1.0477323620843755,
+        4.651999390867611,
+        4576.565891472868
+      ],
+      "validation_minus_train_missing_fraction": 0.0026000000000000467,
+      "validation_valid_quantiles": [
+        3.4214587047041634e-06,
+        0.21653743196170191,
+        0.9080924429099482,
+        3.402363817176236,
+        7527.628272251309
+      ]
+    },
+    "wallet_prior_funding_residual_minor_24h": {
+      "train_valid_quantiles": [
+        -4741603.0,
+        228.75,
+        3700.5,
+        14616.0,
+        2487195.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0026000000000000467,
+      "validation_valid_quantiles": [
+        -2315918.0,
+        702.5,
+        4270.5,
+        21350.25,
+        1446590.0
+      ]
+    },
+    "wallet_similar_amount_count_7d": {
+      "train_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        12.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        11.0
+      ]
+    },
+    "wallet_similar_amount_share_7d": {
+      "train_valid_quantiles": [
+        0.0196078431372549,
+        0.14285714285714285,
+        0.3333333333333333,
+        0.5,
+        1.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        0.02702702702702703,
+        0.15,
+        0.3333333333333333,
+        0.5,
+        1.0
+      ]
+    },
+    "wallet_value_1h": {
+      "train_valid_quantiles": [
+        1.0,
+        2169.0,
+        5116.0,
+        15180.25,
+        3116819.0
+      ],
+      "validation_minus_train_missing_fraction": 0.0,
+      "validation_valid_quantiles": [
+        2.0,
+        2165.75,
+        4980.0,
+        15457.25,
+        2318430.0
+      ]
+    }
+  },
+  "partitions": {
+    "train": {
+      "columns": {
+        "agent_cash_distinct_wallets_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 16.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            2.0,
+            3.0,
+            16.0
+          ]
+        },
+        "agent_cash_in_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 16.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            16.0
+          ]
+        },
+        "agent_cash_in_value_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 3350735.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            922.5,
+            12660.0,
+            3350735.0
+          ]
+        },
+        "agent_cash_out_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 21.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            21.0
+          ]
+        },
+        "agent_cash_out_value_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 2718455.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            973.5,
+            12813.75,
+            2718455.0
+          ]
+        },
+        "agent_cash_value_skew_change": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 18875,
+          "missing_fraction": 0.3145833333333333,
+          "valid_count": 41125,
+          "valid_max": 1.9949954861247399,
+          "valid_min": -1.9775260063410927,
+          "valid_quantiles": [
+            -1.9775260063410927,
+            -0.7310423047749496,
+            0.026141724638277294,
+            0.7771194313896322,
+            1.9949954861247399
+          ]
+        },
+        "agent_distinct_wallets_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 10.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            10.0
+          ]
+        },
+        "agent_distinct_wallets_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 50.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            11.0,
+            19.0,
+            50.0
+          ]
+        },
+        "agent_new_wallet_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 18858,
+          "missing_fraction": 0.3143,
+          "valid_count": 41142,
+          "valid_max": 23.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            4.0,
+            6.0,
+            9.0,
+            23.0
+          ]
+        },
+        "agent_new_wallet_share_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 18858,
+          "missing_fraction": 0.3143,
+          "valid_count": 41142,
+          "valid_max": 1.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.3076923076923077,
+            0.42857142857142855,
+            0.5652173913043478,
+            1.0
+          ]
+        },
+        "agent_observed_coverage_days": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 35.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ]
+        },
+        "agent_service_acceleration_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 18837,
+          "missing_fraction": 0.31395,
+          "valid_count": 41163,
+          "valid_max": 21.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            21.0
+          ]
+        },
+        "agent_top2_count_share_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 1.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.5,
+            0.7142857142857143,
+            1.0
+          ]
+        },
+        "agent_top2_share_change_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 19346,
+          "missing_fraction": 0.32243333333333335,
+          "valid_count": 40654,
+          "valid_max": 0.9310344827586207,
+          "valid_min": -0.09595959595959595,
+          "valid_quantiles": [
+            -0.09595959595959595,
+            0.2981366459627329,
+            0.484297520661157,
+            0.8,
+            0.9310344827586207
+          ]
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 18858,
+          "missing_fraction": 0.3143,
+          "valid_count": 41142,
+          "valid_max": 8.0,
+          "valid_min": 0.09523809523809523,
+          "valid_quantiles": [
+            0.09523809523809523,
+            0.8484848484848485,
+            1.1176470588235294,
+            1.4736842105263157,
+            8.0
+          ]
+        },
+        "amount_minor": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 1494631.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1810.0,
+            4065.0,
+            10551.25,
+            1494631.0
+          ]
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 57971,
+          "missing_fraction": 0.9661833333333333,
+          "valid_count": 2029,
+          "valid_max": 9903.381818181819,
+          "valid_min": 7.08630170638145e-05,
+          "valid_quantiles": [
+            7.08630170638145e-05,
+            0.23874755381604695,
+            0.9159779614325069,
+            3.2650273224043715,
+            9903.381818181819
+          ]
+        },
+        "network_in_acceleration_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 39601,
+          "missing_fraction": 0.6600166666666667,
+          "valid_count": 20399,
+          "valid_max": 14.0,
+          "valid_min": 0.7368421052631579,
+          "valid_quantiles": [
+            0.7368421052631579,
+            1.0,
+            1.0,
+            2.0,
+            14.0
+          ]
+        },
+        "network_in_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 14.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            14.0
+          ]
+        },
+        "network_in_distinct_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 10.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            10.0
+          ]
+        },
+        "network_out_acceleration_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 41053,
+          "missing_fraction": 0.6842166666666667,
+          "valid_count": 18947,
+          "valid_max": 20.0,
+          "valid_min": 0.6666666666666666,
+          "valid_quantiles": [
+            0.6666666666666666,
+            1.0,
+            1.0,
+            2.0,
+            20.0
+          ]
+        },
+        "network_out_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 20.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            20.0
+          ]
+        },
+        "network_out_distinct_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 16.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            16.0
+          ]
+        },
+        "prior_path_min_max_log_change_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 57971,
+          "missing_fraction": 0.9661833333333333,
+          "valid_count": 2029,
+          "valid_max": 8.881169671028417,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            1.2158140979204524,
+            8.881169671028417
+          ]
+        },
+        "prior_return_path_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 20.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            20.0
+          ]
+        },
+        "prior_return_path_min_length_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 57971,
+          "missing_fraction": 0.9661833333333333,
+          "valid_count": 2029,
+          "valid_max": 5.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            5.0
+          ]
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 13952,
+            "cash_out": 14629,
+            "wallet_to_wallet": 31419
+          },
+          "dtype": "<U16"
+        },
+        "wallet_active_hours_utc_day": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 14.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            14.0
+          ]
+        },
+        "wallet_activity_acceleration_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 9155,
+          "missing_fraction": 0.15258333333333332,
+          "valid_count": 50845,
+          "valid_max": 19.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            19.0
+          ]
+        },
+        "wallet_count_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 19.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            19.0
+          ]
+        },
+        "wallet_count_utc_day": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 27.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            27.0
+          ]
+        },
+        "wallet_day_count_growth": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 10129,
+          "missing_fraction": 0.16881666666666667,
+          "valid_count": 49871,
+          "valid_max": 27.0,
+          "valid_min": 0.5,
+          "valid_quantiles": [
+            0.5,
+            1.0,
+            1.0,
+            2.0,
+            27.0
+          ]
+        },
+        "wallet_max_value_share_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 1.0,
+          "valid_min": 0.12340147258283278,
+          "valid_quantiles": [
+            0.12340147258283278,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "wallet_near_band_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 12.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        "wallet_observed_coverage_days": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 35.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ]
+        },
+        "wallet_pass_through_fraction_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 49076,
+          "missing_fraction": 0.8179333333333333,
+          "valid_count": 10924,
+          "valid_max": 4576.565891472868,
+          "valid_min": 2.4555402766382787e-05,
+          "valid_quantiles": [
+            2.4555402766382787e-05,
+            0.2654173130485368,
+            1.0477323620843755,
+            4.651999390867611,
+            4576.565891472868
+          ]
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 49076,
+          "missing_fraction": 0.8179333333333333,
+          "valid_count": 10924,
+          "valid_max": 2487195.0,
+          "valid_min": -4741603.0,
+          "valid_quantiles": [
+            -4741603.0,
+            228.75,
+            3700.5,
+            14616.0,
+            2487195.0
+          ]
+        },
+        "wallet_similar_amount_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 12.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            12.0
+          ]
+        },
+        "wallet_similar_amount_share_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 1.0,
+          "valid_min": 0.0196078431372549,
+          "valid_quantiles": [
+            0.0196078431372549,
+            0.14285714285714285,
+            0.3333333333333333,
+            0.5,
+            1.0
+          ]
+        },
+        "wallet_value_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 60000,
+          "valid_max": 3116819.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            2169.0,
+            5116.0,
+            15180.25,
+            3116819.0
+          ]
+        }
+      },
+      "duplicate_feature_rows": 75,
+      "identical_column_pairs": []
+    },
+    "validation": {
+      "columns": {
+        "agent_cash_distinct_wallets_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 18.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            2.0,
+            3.0,
+            18.0
+          ]
+        },
+        "agent_cash_in_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 19.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            19.0
+          ]
+        },
+        "agent_cash_in_value_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 2775077.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1068.0,
+            14196.0,
+            2775077.0
+          ]
+        },
+        "agent_cash_out_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 14.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            14.0
+          ]
+        },
+        "agent_cash_out_value_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 3050374.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            705.0,
+            13071.0,
+            3050374.0
+          ]
+        },
+        "agent_cash_value_skew_change": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4820,
+          "missing_fraction": 0.32133333333333336,
+          "valid_count": 10180,
+          "valid_max": 1.9744854940690129,
+          "valid_min": -1.9878586945623475,
+          "valid_quantiles": [
+            -1.9878586945623475,
+            -0.7275559699504006,
+            0.013912870879195325,
+            0.7930216493959378,
+            1.9744854940690129
+          ]
+        },
+        "agent_distinct_wallets_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 8.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            8.0
+          ]
+        },
+        "agent_distinct_wallets_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 46.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            11.0,
+            19.0,
+            46.0
+          ]
+        },
+        "agent_new_wallet_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4828,
+          "missing_fraction": 0.3218666666666667,
+          "valid_count": 10172,
+          "valid_max": 23.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            5.0,
+            6.0,
+            9.0,
+            23.0
+          ]
+        },
+        "agent_new_wallet_share_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4828,
+          "missing_fraction": 0.3218666666666667,
+          "valid_count": 10172,
+          "valid_max": 1.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.3076923076923077,
+            0.42105263157894735,
+            0.5666666666666667,
+            1.0
+          ]
+        },
+        "agent_observed_coverage_days": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 35.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            35.0,
+            35.0,
+            35.0
+          ]
+        },
+        "agent_service_acceleration_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4814,
+          "missing_fraction": 0.32093333333333335,
+          "valid_count": 10186,
+          "valid_max": 17.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            17.0
+          ]
+        },
+        "agent_top2_count_share_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 1.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.42857142857142855,
+            0.6666666666666666,
+            1.0
+          ]
+        },
+        "agent_top2_share_change_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4998,
+          "missing_fraction": 0.3332,
+          "valid_count": 10002,
+          "valid_max": 0.9238095238095239,
+          "valid_min": -0.11666666666666667,
+          "valid_quantiles": [
+            -0.11666666666666667,
+            0.2846668956043956,
+            0.4666666666666667,
+            0.782608695652174,
+            0.9238095238095239
+          ]
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 4828,
+          "missing_fraction": 0.3218666666666667,
+          "valid_count": 10172,
+          "valid_max": 5.142857142857143,
+          "valid_min": 0.13333333333333333,
+          "valid_quantiles": [
+            0.13333333333333333,
+            0.8571428571428571,
+            1.1111111111111112,
+            1.4362980769230769,
+            5.142857142857143
+          ]
+        },
+        "amount_minor": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 1446590.0,
+          "valid_min": 2.0,
+          "valid_quantiles": [
+            2.0,
+            1872.75,
+            4020.5,
+            10891.0,
+            1446590.0
+          ]
+        },
+        "current_to_selected_path_first_value_ratio": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 14471,
+          "missing_fraction": 0.9647333333333333,
+          "valid_count": 529,
+          "valid_max": 4632.931937172775,
+          "valid_min": 1.0015294785894459e-05,
+          "valid_quantiles": [
+            1.0015294785894459e-05,
+            0.2674333293521473,
+            1.0522440889140592,
+            2.84093567251462,
+            4632.931937172775
+          ]
+        },
+        "network_in_acceleration_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 9979,
+          "missing_fraction": 0.6652666666666667,
+          "valid_count": 5021,
+          "valid_max": 12.0,
+          "valid_min": 0.9032258064516129,
+          "valid_quantiles": [
+            0.9032258064516129,
+            1.0,
+            1.0,
+            2.0,
+            12.0
+          ]
+        },
+        "network_in_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 12.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            12.0
+          ]
+        },
+        "network_in_distinct_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 9.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            9.0
+          ]
+        },
+        "network_out_acceleration_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 10247,
+          "missing_fraction": 0.6831333333333334,
+          "valid_count": 4753,
+          "valid_max": 14.0,
+          "valid_min": 0.8484848484848485,
+          "valid_quantiles": [
+            0.8484848484848485,
+            1.0,
+            1.0,
+            3.0,
+            14.0
+          ]
+        },
+        "network_out_count_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 14.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            14.0
+          ]
+        },
+        "network_out_distinct_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 12.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            12.0
+          ]
+        },
+        "prior_path_min_max_log_change_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 14471,
+          "missing_fraction": 0.9647333333333333,
+          "valid_count": 529,
+          "valid_max": 6.748319825974884,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            1.0660821359252157,
+            6.748319825974884
+          ]
+        },
+        "prior_return_path_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 13.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            13.0
+          ]
+        },
+        "prior_return_path_min_length_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 14471,
+          "missing_fraction": 0.9647333333333333,
+          "valid_count": 529,
+          "valid_max": 5.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            5.0
+          ]
+        },
+        "transaction_type": {
+          "counts": {
+            "cash_in": 3553,
+            "cash_out": 3575,
+            "wallet_to_wallet": 7872
+          },
+          "dtype": "<U16"
+        },
+        "wallet_active_hours_utc_day": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 13.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            13.0
+          ]
+        },
+        "wallet_activity_acceleration_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 2405,
+          "missing_fraction": 0.16033333333333333,
+          "valid_count": 12595,
+          "valid_max": 18.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            18.0
+          ]
+        },
+        "wallet_count_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 18.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            18.0
+          ]
+        },
+        "wallet_count_utc_day": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 20.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            20.0
+          ]
+        },
+        "wallet_day_count_growth": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 2718,
+          "missing_fraction": 0.1812,
+          "valid_count": 12282,
+          "valid_max": 20.0,
+          "valid_min": 0.6666666666666666,
+          "valid_quantiles": [
+            0.6666666666666666,
+            1.0,
+            1.0,
+            2.0,
+            20.0
+          ]
+        },
+        "wallet_max_value_share_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 1.0,
+          "valid_min": 0.1807494489346069,
+          "valid_quantiles": [
+            0.1807494489346069,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "wallet_near_band_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 8.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            8.0
+          ]
+        },
+        "wallet_observed_coverage_days": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 35.0,
+          "valid_min": 0.0,
+          "valid_quantiles": [
+            0.0,
+            35.0,
+            35.0,
+            35.0,
+            35.0
+          ]
+        },
+        "wallet_pass_through_fraction_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 12308,
+          "missing_fraction": 0.8205333333333333,
+          "valid_count": 2692,
+          "valid_max": 7527.628272251309,
+          "valid_min": 3.4214587047041634e-06,
+          "valid_quantiles": [
+            3.4214587047041634e-06,
+            0.21653743196170191,
+            0.9080924429099482,
+            3.402363817176236,
+            7527.628272251309
+          ]
+        },
+        "wallet_prior_funding_residual_minor_24h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 12308,
+          "missing_fraction": 0.8205333333333333,
+          "valid_count": 2692,
+          "valid_max": 1446590.0,
+          "valid_min": -2315918.0,
+          "valid_quantiles": [
+            -2315918.0,
+            702.5,
+            4270.5,
+            21350.25,
+            1446590.0
+          ]
+        },
+        "wallet_similar_amount_count_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 11.0,
+          "valid_min": 1.0,
+          "valid_quantiles": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            11.0
+          ]
+        },
+        "wallet_similar_amount_share_7d": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 1.0,
+          "valid_min": 0.02702702702702703,
+          "valid_quantiles": [
+            0.02702702702702703,
+            0.15,
+            0.3333333333333333,
+            0.5,
+            1.0
+          ]
+        },
+        "wallet_value_1h": {
+          "constant_including_marker": false,
+          "dtype": "float64",
+          "missing_count": 0,
+          "missing_fraction": 0.0,
+          "valid_count": 15000,
+          "valid_max": 2318430.0,
+          "valid_min": 2.0,
+          "valid_quantiles": [
+            2.0,
+            2165.75,
+            4980.0,
+            15457.25,
+            2318430.0
+          ]
+        }
+      },
+      "duplicate_feature_rows": 2,
+      "identical_column_pairs": []
+    }
+  },
+  "saved_matrix_range_invariants": "PASS: integer-valued counts/amounts, share bounds, coverage 0..35, signed valid skew ranges, nonnegative eligible quantities; valid negative residuals preserved.",
+  "status": "PASS",
+  "support_warning": "Nine family support failures remain; this stage cannot establish model learnability, full-family adequacy or independent evaluation."
+}

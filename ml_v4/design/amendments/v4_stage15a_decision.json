@@ -1,0 +1,24 @@
+{
+  "amendment_version": "v4.stage15a.design.1",
+  "consistency_tests_passed": 12,
+  "created_utc": "2026-09-30T06:36:48.142183+00:00",
+  "decision": "A — STAGE 15A AMENDMENT APPROVED; STAGE 16 MAY BE RETRIED",
+  "execution_authorized_in_this_stage": false,
+  "new_feature_vectors": 0,
+  "new_holdout_seals": 0,
+  "new_labels": 0,
+  "new_model_fits": 0,
+  "new_transactions": 0,
+  "next_boundary": "Stop. A separately authorized Stage 16 retry must use parent plus amendment hashes and a fresh attempt namespace; preserve failed attempt D.",
+  "parent_design_version": "v4.stage15.design.1",
+  "protected_files_unchanged": 746,
+  "resolved_findings": [
+    "B01",
+    "Q01",
+    "M01"
+  ],
+  "schema_version": 1,
+  "scope": "Only amendment clauses A-F; unaffected Stage 15 remains authoritative",
+  "stage16_retried": false,
+  "status": "DESIGN_APPROVED"
+}

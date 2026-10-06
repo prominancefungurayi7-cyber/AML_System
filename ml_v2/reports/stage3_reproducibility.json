@@ -1,0 +1,20 @@
+{
+  "X_identical": true,
+  "feature_order_identical": true,
+  "file_count": 8,
+  "output_hashes": {
+    "train/X.csv": "9edadb81b4ecb006946b21a54d72145617f47f61d3053a78cd2f49664514dd53",
+    "train/feature_names.json": "ca5c6063ab71d065324941b863a8648b374346bcf4af2d390bdf7b42b94118e2",
+    "train/row_ids.csv": "2ffecc29a7190e22b3d37b3c31d711f6a0c2c0a6fefac692abef8eba0056fd3a",
+    "train/y.csv": "a473974af9b6ad282b26b81a06e04b24dd70c951c1f1b7268ef9af35b7c944d6",
+    "validation/X.csv": "d370506893f79a2fce6c2c99bd6f9ea2745d69ee2616d6d646c72e4c7e3376e1",
+    "validation/feature_names.json": "ca5c6063ab71d065324941b863a8648b374346bcf4af2d390bdf7b42b94118e2",
+    "validation/row_ids.csv": "c5c06a843baa226b737dff507c737dadacdc620e3bc70b19c4bdb754e1be29b0",
+    "validation/y.csv": "e8ca53314f5a01f569ca674200ce9f93b229cf758390b2e0c443f6c1d3ac6295"
+  },
+  "result": "PASS",
+  "row_order_identical": true,
+  "runs": 2,
+  "temporary_duplicates_removed_on_exit": true,
+  "y_identical": true
+}

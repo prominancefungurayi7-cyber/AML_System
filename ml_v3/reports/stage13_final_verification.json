@@ -1,0 +1,37 @@
+{
+  "all_slice_counts_recomputed": true,
+  "artifact_hash_count": 36,
+  "new_fits": 15,
+  "new_model_reload_max_differences": {
+    "hgb_R1": 0.0,
+    "hgb_R1_no_growth": 0.0,
+    "hgb_R2": 0.0,
+    "hgb_R2_no_growth": 0.0,
+    "hgb_R3": 0.0,
+    "hgb_R4": 0.0,
+    "hgb_R5": 0.0,
+    "xgb_R0_no_growth": 0.0,
+    "xgb_R1": 0.0,
+    "xgb_R1_no_growth": 0.0,
+    "xgb_R2": 0.0,
+    "xgb_R2_no_growth": 0.0,
+    "xgb_R3": 0.0,
+    "xgb_R4": 0.0,
+    "xgb_R5": 0.0
+  },
+  "official_feature_hashes_and_values_unchanged": true,
+  "plan_hash_and_frozen_source_hashes_match": true,
+  "protected_changes": [],
+  "protected_files": 602,
+  "recomputed_metric_sets": 36,
+  "result": "PASS",
+  "selection_recomputed": true,
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "log": "test_baseline_coverage_minima_and_disjoint_boundaries (test_stage13_features.Stage13Features.test_baseline_coverage_minima_and_disjoint_boundaries) ... ok\ntest_cash_share_bucket_boundaries_and_cancellation (test_stage13_features.Stage13Features.test_cash_share_bucket_boundaries_and_cancellation) ... ok\ntest_empty_and_reciprocal_window (test_stage13_features.Stage13Features.test_empty_and_reciprocal_window) ... ok\ntest_pair_multiplicity_no_self_loop (test_stage13_features.Stage13Features.test_pair_multiplicity_no_self_loop) ... ok\ntest_prefix_future_current_and_private_metadata_independence (test_stage13_features.Stage13Features.test_prefix_future_current_and_private_metadata_independence) ... ok\ntest_two_hop_chronology_ties_and_value_spread (test_stage13_features.Stage13Features.test_two_hop_chronology_ties_and_value_spread) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+    "methods": 6
+  },
+  "total_records_including_reused": 18,
+  "verification_source_sha256": "e45a612697b394fddb1722832d3dc53f3d854b90bf3d16fde22eee7d5215474f"
+}

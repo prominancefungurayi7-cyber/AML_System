@@ -1,0 +1,340 @@
+{
+  "train": {
+    "all40_column_values_markers_and_dtypes_match": true,
+    "fields": {
+      "agent_cash_distinct_wallets_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_in_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_in_value_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_out_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_out_value_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_value_skew_change": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_distinct_wallets_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_distinct_wallets_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_new_wallet_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_new_wallet_share_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_observed_coverage_days": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_service_acceleration_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_top2_count_share_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_top2_share_change_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_wallet_growth_ratio_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "amount_minor": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "current_to_selected_path_first_value_ratio": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_acceleration_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_distinct_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_acceleration_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_distinct_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_path_min_max_log_change_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_return_path_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_return_path_min_length_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "transaction_type": {
+        "dtype": "<U16",
+        "exact_column_bytes_match": true
+      },
+      "wallet_active_hours_utc_day": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_activity_acceleration_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_count_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_count_utc_day": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_day_count_growth": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_max_value_share_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_near_band_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_observed_coverage_days": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_pass_through_fraction_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_prior_funding_residual_minor_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_similar_amount_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_similar_amount_share_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_value_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      }
+    },
+    "names_order_match": true,
+    "original_X_sha256": "951df849aa10fe8d90fc58f8546d2b26604b12dbf6ee1e3ce97e78b9e18cee71",
+    "rows": 60000,
+    "status": "PASS"
+  },
+  "validation": {
+    "all40_column_values_markers_and_dtypes_match": true,
+    "fields": {
+      "agent_cash_distinct_wallets_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_in_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_in_value_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_out_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_out_value_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_cash_value_skew_change": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_distinct_wallets_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_distinct_wallets_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_new_wallet_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_new_wallet_share_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_observed_coverage_days": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_service_acceleration_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_top2_count_share_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_top2_share_change_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "agent_wallet_growth_ratio_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "amount_minor": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "current_to_selected_path_first_value_ratio": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_acceleration_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_in_distinct_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_acceleration_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_count_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "network_out_distinct_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_path_min_max_log_change_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_return_path_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "prior_return_path_min_length_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "transaction_type": {
+        "dtype": "<U16",
+        "exact_column_bytes_match": true
+      },
+      "wallet_active_hours_utc_day": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_activity_acceleration_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_count_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_count_utc_day": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_day_count_growth": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_max_value_share_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_near_band_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_observed_coverage_days": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_pass_through_fraction_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_prior_funding_residual_minor_24h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_similar_amount_count_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_similar_amount_share_7d": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      },
+      "wallet_value_1h": {
+        "dtype": "float64",
+        "exact_column_bytes_match": true
+      }
+    },
+    "names_order_match": true,
+    "original_X_sha256": "a2efa261c67bf8b65fccf2a1ede4efce81ac6ef5d92bc9b22794f549cac7e3a8",
+    "rows": 15000,
+    "status": "PASS"
+  }
+}

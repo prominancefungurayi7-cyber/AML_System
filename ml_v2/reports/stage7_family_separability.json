@@ -1,0 +1,790 @@
+{
+  "families": {
+    "agent_flow_imbalance": {
+      "hard_family": "H8",
+      "oracle_group": {
+        "agent": {
+          "roc_auc": 0.6528565656565656,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "all_30": {
+          "roc_auc": 0.6676525252525253,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.6568161616161616,
+          "auc_direction_free": 0.6568161616161616,
+          "feature": "agent_prior_value_sum_7d",
+          "iqr_overlap": 0.6163360869732302,
+          "normal_median": 98570.39,
+          "positive_median": 168225.925
+        },
+        {
+          "auc": 0.6516888888888889,
+          "auc_direction_free": 0.6516888888888889,
+          "feature": "agent_unique_wallet_count_7d",
+          "iqr_overlap": 0.3153153153153153,
+          "normal_median": 24.0,
+          "positive_median": 30.0
+        },
+        {
+          "auc": 0.6203515151515151,
+          "auc_direction_free": 0.6203515151515151,
+          "feature": "agent_prior_tx_count_7d",
+          "iqr_overlap": 0.4740740740740741,
+          "normal_median": 32.0,
+          "positive_median": 39.0
+        },
+        {
+          "auc": 0.6180727272727272,
+          "auc_direction_free": 0.6180727272727272,
+          "feature": "agent_burst_concentration_7d",
+          "iqr_overlap": 0.6567611211850567,
+          "normal_median": 0.06896551724137931,
+          "positive_median": 0.09090909090909091
+        },
+        {
+          "auc": 0.38447272727272735,
+          "auc_direction_free": 0.6155272727272727,
+          "feature": "agent_repeat_wallet_ratio_7d",
+          "iqr_overlap": 0.4899832640649932,
+          "normal_median": 0.38095238095238093,
+          "positive_median": 0.281650641025641
+        },
+        {
+          "auc": 0.6060606060606061,
+          "auc_direction_free": 0.6060606060606061,
+          "feature": "agent_current_wallet_is_new",
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 1.0
+        }
+      ]
+    },
+    "agent_temporal_burst": {
+      "hard_family": "H7",
+      "oracle_group": {
+        "agent": {
+          "roc_auc": 0.6583595959595958,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "all_30": {
+          "roc_auc": 0.672210101010101,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.7183434343434344,
+          "auc_direction_free": 0.7183434343434344,
+          "feature": "agent_prior_tx_count_1h",
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 1.0,
+          "positive_median": 6.0
+        },
+        {
+          "auc": 0.2938989898989899,
+          "auc_direction_free": 0.7061010101010101,
+          "feature": "agent_inbound_outbound_value_ratio_7d",
+          "iqr_overlap": 0.14265958040470111,
+          "normal_median": 1.0175856651361694,
+          "positive_median": 0.5754944514655778
+        },
+        {
+          "auc": 0.7006141414141416,
+          "auc_direction_free": 0.7006141414141416,
+          "feature": "agent_prior_value_sum_1h",
+          "iqr_overlap": 0.4525117887357498,
+          "normal_median": 126.35,
+          "positive_median": 15979.77
+        },
+        {
+          "auc": 0.6793010101010102,
+          "auc_direction_free": 0.6793010101010102,
+          "feature": "agent_hourly_tx_zscore_30d",
+          "iqr_overlap": 0.4142730998530681,
+          "normal_median": -0.4136683237933827,
+          "positive_median": 1.5682104544545163
+        },
+        {
+          "auc": 0.3476686868686869,
+          "auc_direction_free": 0.6523313131313131,
+          "feature": "agent_shared_wallet_flow_concentration_7d",
+          "iqr_overlap": 0.3979522576934138,
+          "normal_median": 0.10416666666666667,
+          "positive_median": 0.08333333333333333
+        },
+        {
+          "auc": 0.6183353535353536,
+          "auc_direction_free": 0.6183353535353536,
+          "feature": "agent_burst_concentration_7d",
+          "iqr_overlap": 0.39615846338535415,
+          "normal_median": 0.1,
+          "positive_median": 0.1111111111111111
+        }
+      ]
+    },
+    "agent_wallet_concentration": {
+      "hard_family": "H8",
+      "oracle_group": {
+        "agent": {
+          "roc_auc": 0.5427636363636363,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "all_30": {
+          "roc_auc": 0.5709333333333333,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.6341818181818182,
+          "auc_direction_free": 0.6341818181818182,
+          "feature": "agent_inbound_outbound_value_ratio_7d",
+          "iqr_overlap": 0.21795373938539073,
+          "normal_median": 0.7716526542944616,
+          "positive_median": 1.862430278011833
+        },
+        {
+          "auc": 0.621769696969697,
+          "auc_direction_free": 0.621769696969697,
+          "feature": "agent_hourly_tx_zscore_30d",
+          "iqr_overlap": 0.5064725257244056,
+          "normal_median": -1.2553298896104799,
+          "positive_median": -0.9782365327605398
+        },
+        {
+          "auc": 0.6174949494949494,
+          "auc_direction_free": 0.6174949494949494,
+          "feature": "agent_hourly_value_zscore_30d",
+          "iqr_overlap": 0.4043191621368457,
+          "normal_median": -0.556925784538368,
+          "positive_median": -0.5041531008074992
+        },
+        {
+          "auc": 0.5806060606060605,
+          "auc_direction_free": 0.5806060606060605,
+          "feature": "network_current_receiver_is_new",
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.563369696969697,
+          "auc_direction_free": 0.563369696969697,
+          "feature": "agent_burst_concentration_7d",
+          "iqr_overlap": 0.7875,
+          "normal_median": 0.06896551724137931,
+          "positive_median": 0.07692307692307693
+        },
+        {
+          "auc": 0.5602949494949494,
+          "auc_direction_free": 0.5602949494949494,
+          "feature": "network_outbound_counterparty_entropy_30d",
+          "iqr_overlap": 0.8822397508041193,
+          "normal_median": 0.27743252582759526,
+          "positive_median": 0.4774667422483362
+        }
+      ]
+    },
+    "agent_wallet_growth": {
+      "hard_family": "H7",
+      "oracle_group": {
+        "agent": {
+          "roc_auc": 0.6391030303030304,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "all_30": {
+          "roc_auc": 0.6660202020202021,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.2856484848484848,
+          "auc_direction_free": 0.7143515151515152,
+          "feature": "agent_hourly_value_zscore_30d",
+          "iqr_overlap": 0.0337298801660801,
+          "normal_median": -0.4785357321983515,
+          "positive_median": -0.5637492320843196
+        },
+        {
+          "auc": 0.3164444444444444,
+          "auc_direction_free": 0.6835555555555556,
+          "feature": "agent_prior_tx_count_1h",
+          "iqr_overlap": 0.16666666666666666,
+          "normal_median": 1.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.32214545454545457,
+          "auc_direction_free": 0.6778545454545455,
+          "feature": "agent_prior_value_sum_1h",
+          "iqr_overlap": 0.002996480873865111,
+          "normal_median": 126.35,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.33653333333333335,
+          "auc_direction_free": 0.6634666666666666,
+          "feature": "agent_hourly_tx_zscore_30d",
+          "iqr_overlap": 0.23734062481629234,
+          "normal_median": -0.4136683237933827,
+          "positive_median": -1.413368501165996
+        },
+        {
+          "auc": 0.6432,
+          "auc_direction_free": 0.6432,
+          "feature": "agent_prior_tx_count_7d",
+          "iqr_overlap": 0.5581395348837209,
+          "normal_median": 29.0,
+          "positive_median": 46.5
+        },
+        {
+          "auc": 0.6318787878787879,
+          "auc_direction_free": 0.6318787878787879,
+          "feature": "agent_prior_value_sum_7d",
+          "iqr_overlap": 0.440003603002688,
+          "normal_median": 105770.29,
+          "positive_median": 163326.63
+        }
+      ]
+    },
+    "distributed_same_day_fragmentation": {
+      "hard_family": "H1",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.8425696969696969,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "structuring": {
+          "roc_auc": 0.7970424242424243,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.27383434343434343,
+          "auc_direction_free": 0.7261656565656566,
+          "feature": "structuring_prior_tx_count_1h",
+          "iqr_overlap": 0.16666666666666666,
+          "normal_median": 3.0,
+          "positive_median": 1.0
+        },
+        {
+          "auc": 0.6710545454545453,
+          "auc_direction_free": 0.6710545454545453,
+          "feature": "agent_repeat_wallet_ratio_7d",
+          "iqr_overlap": 0.2943967611336033,
+          "normal_median": 0.2857142857142857,
+          "positive_median": 0.4593253968253968
+        },
+        {
+          "auc": 0.334020202020202,
+          "auc_direction_free": 0.665979797979798,
+          "feature": "agent_hourly_tx_zscore_30d",
+          "iqr_overlap": 0.10793740952370132,
+          "normal_median": 0.0,
+          "positive_median": -0.33051305077047477
+        },
+        {
+          "auc": 0.6582545454545454,
+          "auc_direction_free": 0.6582545454545454,
+          "feature": "agent_wallet_value_hhi_7d",
+          "iqr_overlap": 0.16360055216553884,
+          "normal_median": 0.16420782705196876,
+          "positive_median": 0.19795342907009045
+        },
+        {
+          "auc": 0.645179797979798,
+          "auc_direction_free": 0.645179797979798,
+          "feature": "structuring_amount_cluster_dispersion_7d",
+          "iqr_overlap": 0.4337156854946032,
+          "normal_median": 1.1850109572016043,
+          "positive_median": 1.6244327825690756
+        },
+        {
+          "auc": 0.3556888888888889,
+          "auc_direction_free": 0.6443111111111111,
+          "feature": "network_inbound_counterparty_count_7d",
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 0.0
+        }
+      ]
+    },
+    "many_to_one_collection": {
+      "hard_family": "H4",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.5457777777777777,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "network": {
+          "roc_auc": 0.6063717171717171,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.3860767676767677,
+          "auc_direction_free": 0.6139232323232323,
+          "feature": "network_inbound_counterparty_count_7d",
+          "iqr_overlap": 0.5,
+          "normal_median": 5.0,
+          "positive_median": 3.0
+        },
+        {
+          "auc": 0.41390303030303033,
+          "auc_direction_free": 0.5860969696969697,
+          "feature": "network_outbound_counterparty_count_7d",
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        {
+          "auc": 0.4145858585858586,
+          "auc_direction_free": 0.5854141414141414,
+          "feature": "network_shared_counterparty_concentration_7d",
+          "iqr_overlap": 1.0,
+          "normal_median": 0.5,
+          "positive_median": 0.15476190476190477
+        },
+        {
+          "auc": 0.43020606060606065,
+          "auc_direction_free": 0.5697939393939393,
+          "feature": "network_counterparty_set_change_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        {
+          "auc": 0.4465131313131313,
+          "auc_direction_free": 0.5534868686868687,
+          "feature": "structuring_amount_cluster_dispersion_7d",
+          "iqr_overlap": 0.8330665213442311,
+          "normal_median": 0.7576380728554641,
+          "positive_median": 0.6822137347731678
+        },
+        {
+          "auc": 0.5410020202020203,
+          "auc_direction_free": 0.5410020202020203,
+          "feature": "agent_shared_wallet_flow_concentration_7d",
+          "iqr_overlap": 0.7636363636363636,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        }
+      ]
+    },
+    "one_to_many_dispersion": {
+      "hard_family": "H5",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.7781494949494949,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "network": {
+          "roc_auc": 0.6970747474747474,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.2945252525252525,
+          "auc_direction_free": 0.7054747474747475,
+          "feature": "structuring_repeated_amount_ratio_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.3343959595959596,
+          "auc_direction_free": 0.6656040404040404,
+          "feature": "structuring_same_day_prior_tx_count",
+          "iqr_overlap": 0.2857142857142857,
+          "normal_median": 3.0,
+          "positive_median": 1.0
+        },
+        {
+          "auc": 0.33585858585858586,
+          "auc_direction_free": 0.6641414141414141,
+          "feature": "network_outbound_counterparty_count_7d",
+          "iqr_overlap": 0.34782608695652173,
+          "normal_median": 4.0,
+          "positive_median": 2.0
+        },
+        {
+          "auc": 0.33868686868686865,
+          "auc_direction_free": 0.6613131313131313,
+          "feature": "network_pass_through_ratio_24h",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.3618181818181818,
+          "auc_direction_free": 0.6381818181818182,
+          "feature": "network_reciprocal_flow_ratio_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.37712727272727276,
+          "auc_direction_free": 0.6228727272727272,
+          "feature": "network_outbound_counterparty_entropy_30d",
+          "iqr_overlap": 0.5203143732278775,
+          "normal_median": 0.9077672202687177,
+          "positive_median": 0.6499787711300767
+        }
+      ]
+    },
+    "reciprocal_relationship_cycle": {
+      "hard_family": "H6",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.6139474747474748,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "network": {
+          "roc_auc": 0.5297333333333334,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.36580606060606063,
+          "auc_direction_free": 0.6341939393939393,
+          "feature": "agent_prior_value_sum_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.3663272727272728,
+          "auc_direction_free": 0.6336727272727272,
+          "feature": "agent_unique_wallet_count_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.3663757575757576,
+          "auc_direction_free": 0.6336242424242424,
+          "feature": "agent_prior_tx_count_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.3751111111111111,
+          "auc_direction_free": 0.6248888888888888,
+          "feature": "agent_inbound_outbound_value_ratio_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.375139393939394,
+          "auc_direction_free": 0.624860606060606,
+          "feature": "agent_high_value_event_share_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.38248484848484854,
+          "auc_direction_free": 0.6175151515151515,
+          "feature": "agent_burst_concentration_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        }
+      ]
+    },
+    "similar_amount_repetition": {
+      "hard_family": "H2",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.6715474747474748,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "structuring": {
+          "roc_auc": 0.38174949494949495,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.6735757575757575,
+          "auc_direction_free": 0.6735757575757575,
+          "feature": "structuring_amount_cluster_dispersion_7d",
+          "iqr_overlap": 0.4738009226691101,
+          "normal_median": 0.7197316185269326,
+          "positive_median": 1.521127968088387
+        },
+        {
+          "auc": 0.6173454545454546,
+          "auc_direction_free": 0.6173454545454546,
+          "feature": "agent_prior_tx_count_7d",
+          "iqr_overlap": 0.4527027027027027,
+          "normal_median": 17.0,
+          "positive_median": 28.0
+        },
+        {
+          "auc": 0.6073858585858585,
+          "auc_direction_free": 0.6073858585858585,
+          "feature": "agent_unique_wallet_count_7d",
+          "iqr_overlap": 0.5416666666666666,
+          "normal_median": 11.0,
+          "positive_median": 16.0
+        },
+        {
+          "auc": 0.40512727272727267,
+          "auc_direction_free": 0.5948727272727273,
+          "feature": "structuring_repeated_amount_ratio_7d",
+          "iqr_overlap": 0.6428571428571429,
+          "normal_median": 0.3333333333333333,
+          "positive_median": 0.25
+        },
+        {
+          "auc": 0.5900000000000001,
+          "auc_direction_free": 0.5900000000000001,
+          "feature": "structuring_near_threshold_history_ratio_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.41212929292929296,
+          "auc_direction_free": 0.587870707070707,
+          "feature": "agent_hourly_value_zscore_30d",
+          "iqr_overlap": 0.2468220574477715,
+          "normal_median": -0.5007759132221568,
+          "positive_median": -0.5316397815153979
+        }
+      ]
+    },
+    "variable_fragment_burst": {
+      "hard_family": "H1",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.7579797979797981,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "structuring": {
+          "roc_auc": 0.6859636363636364,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.318589898989899,
+          "auc_direction_free": 0.681410101010101,
+          "feature": "structuring_prior_value_sum_24h",
+          "iqr_overlap": 0.3408082552122758,
+          "normal_median": 19079.91,
+          "positive_median": 4363.58
+        },
+        {
+          "auc": 0.3204848484848485,
+          "auc_direction_free": 0.6795151515151515,
+          "feature": "network_outbound_counterparty_count_7d",
+          "iqr_overlap": 0.4,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        },
+        {
+          "auc": 0.35200404040404043,
+          "auc_direction_free": 0.6479959595959596,
+          "feature": "network_outbound_counterparty_entropy_30d",
+          "iqr_overlap": 0.4495478844088639,
+          "normal_median": 1.0200971286718563,
+          "positive_median": 0.6214544464333633
+        },
+        {
+          "auc": 0.6253696969696969,
+          "auc_direction_free": 0.6253696969696969,
+          "feature": "network_top_counterparty_value_share_30d",
+          "iqr_overlap": 0.4786227449451802,
+          "normal_median": 0.5001666184466037,
+          "positive_median": 0.6957468977929335
+        },
+        {
+          "auc": 0.38296161616161617,
+          "auc_direction_free": 0.6170383838383838,
+          "feature": "network_repeated_receiver_ratio_30d",
+          "iqr_overlap": 0.325,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.6109292929292929,
+          "auc_direction_free": 0.6109292929292929,
+          "feature": "agent_prior_tx_count_1h",
+          "iqr_overlap": 0.625,
+          "normal_median": 1.0,
+          "positive_median": 3.0
+        }
+      ]
+    },
+    "variable_near_threshold_history": {
+      "hard_family": "H3",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.7069898989898991,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "structuring": {
+          "roc_auc": 0.4851959595959595,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.29605656565656563,
+          "auc_direction_free": 0.7039434343434343,
+          "feature": "network_outbound_counterparty_count_7d",
+          "iqr_overlap": 0.25,
+          "normal_median": 4.0,
+          "positive_median": 2.0
+        },
+        {
+          "auc": 0.6777616161616161,
+          "auc_direction_free": 0.6777616161616161,
+          "feature": "network_top_counterparty_value_share_30d",
+          "iqr_overlap": 0.46224934458832573,
+          "normal_median": 0.498005379067535,
+          "positive_median": 0.8280506431375518
+        },
+        {
+          "auc": 0.3263111111111111,
+          "auc_direction_free": 0.6736888888888889,
+          "feature": "network_outbound_counterparty_entropy_30d",
+          "iqr_overlap": 0.3684548223415925,
+          "normal_median": 1.0682664295896487,
+          "positive_median": 0.5424136127153588
+        },
+        {
+          "auc": 0.6213050505050506,
+          "auc_direction_free": 0.6213050505050506,
+          "feature": "agent_wallet_value_hhi_7d",
+          "iqr_overlap": 0.4483448361587901,
+          "normal_median": 0.14255223414009568,
+          "positive_median": 0.25020910087781145
+        },
+        {
+          "auc": 0.37873131313131314,
+          "auc_direction_free": 0.6212686868686869,
+          "feature": "network_repeated_receiver_ratio_30d",
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.607680808080808,
+          "auc_direction_free": 0.607680808080808,
+          "feature": "agent_shared_wallet_flow_concentration_7d",
+          "iqr_overlap": 0.3422475961538462,
+          "normal_median": 0.0967741935483871,
+          "positive_median": 0.1111111111111111
+        }
+      ]
+    },
+    "wallet_pass_through": {
+      "hard_family": "H5",
+      "oracle_group": {
+        "all_30": {
+          "roc_auc": 0.7118464646464647,
+          "train_count": 3900,
+          "validation_count": 975
+        },
+        "network": {
+          "roc_auc": 0.757450505050505,
+          "train_count": 3900,
+          "validation_count": 975
+        }
+      },
+      "top_univariate": [
+        {
+          "auc": 0.36465858585858585,
+          "auc_direction_free": 0.6353414141414142,
+          "feature": "network_repeated_receiver_ratio_30d",
+          "iqr_overlap": 0.28,
+          "normal_median": 0.13333333333333333,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.398149494949495,
+          "auc_direction_free": 0.601850505050505,
+          "feature": "network_outbound_counterparty_count_7d",
+          "iqr_overlap": 0.6,
+          "normal_median": 4.0,
+          "positive_median": 3.0
+        },
+        {
+          "auc": 0.599470707070707,
+          "auc_direction_free": 0.599470707070707,
+          "feature": "network_pass_through_ratio_24h",
+          "iqr_overlap": 0.10620021621821388,
+          "normal_median": 0.0,
+          "positive_median": 0.12883617403383762
+        },
+        {
+          "auc": 0.4054383838383838,
+          "auc_direction_free": 0.5945616161616162,
+          "feature": "network_inbound_counterparty_count_7d",
+          "iqr_overlap": 0.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        {
+          "auc": 0.5704,
+          "auc_direction_free": 0.5704,
+          "feature": "network_reciprocal_flow_ratio_7d",
+          "iqr_overlap": 0.5454545454545455,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        {
+          "auc": 0.4405858585858586,
+          "auc_direction_free": 0.5594141414141414,
+          "feature": "structuring_prior_value_sum_24h",
+          "iqr_overlap": 0.38069205137948886,
+          "normal_median": 2946.89,
+          "positive_median": 4508.08
+        }
+      ]
+    }
+  },
+  "method": "Family versus designed hard counterpart on Validation; feature AUC is direction-free for ranking; logistic oracle-group models fit Train only with matched normal episodes. Scenario identity selects diagnostic cohorts, never model inputs.",
+  "protection": {
+    "result": "PASS",
+    "v1_application_file_count": 347,
+    "v2_dataset_feature_stage5_stage6_file_count": 37
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "external_independent_audit": false,
+  "initial_new_suite": "39 passed before matrix runner was invoked",
+  "method": "Hand-authored numeric expectations, separate Decimal batch reference on small history, four complete40-field witness pairs; no evaluator",
+  "overflow_scope": "Exact aggregate conversion limit unit test, not a billions-row production overflow ledger",
+  "stderr": "",
+  "stdout": ".....................................................................    [100%]\n69 passed in 0.32s\n"
+}

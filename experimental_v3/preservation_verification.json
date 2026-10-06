@@ -1,0 +1,16 @@
+{
+  "protected_count": 805,
+  "unexpected_changed_paths": [],
+  "authorized_changed_paths": [
+    "server.py"
+  ],
+  "server_before": "7d780756aad5013ab27f5e46fdcd6a5b1ecb2c8370a47496238231c49e02b370",
+  "server_after": "2f9eab5d1c3571061fd4a2f90fb86536fc8061f94b65ff52f2c21b65cbbc8af3",
+  "server_off_path_restored_bytes_match": true,
+  "v4_challenge_artifact_hashes_match": true,
+  "sealed_data_accessed": false,
+  "production_db_connected": false,
+  "production_alert_writes": 0,
+  "financial_operations": 0,
+  "new_fits": 0
+}

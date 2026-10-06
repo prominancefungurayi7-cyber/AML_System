@@ -1,0 +1,26 @@
+{
+  "version": "mobile_money.history_completeness.proposed.v1",
+  "implemented_default": "UNKNOWN",
+  "canonical_event_is_not_history_attestation": true,
+  "states": {
+    "UNKNOWN": "Default for every new canonical record; no claim of complete prior observations.",
+    "INCOMPLETE": "Known missing interval, ambiguous legacy event, correction or incomplete network coverage. Future replay must fail closed.",
+    "COMPLETE_VERIFIED": "Future separately verified source/ledger scope, first observations and complete ordered coverage through the decision key.",
+    "TRUE_COLD_START_VERIFIED": "Future authoritative evidence that no earlier participation exists in the declared observation scope; not inferred from an empty SELECT."
+  },
+  "required_future_attestation_fields": [
+    "attestation_id", "source_system", "ledger_scope", "wallet_and_agent_scope", "graph_scope",
+    "coverage_start", "complete_through_full_key", "first_observation_references",
+    "known_gap_intervals", "source_snapshot_revision", "verification_authority", "evidence_reference",
+    "verified_at_utc", "revoked_at_utc"
+  ],
+  "promotion_policy": "No public ingestion parameter may assert history completeness. Only a separately authorized verification workflow can persist attestations; no such workflow is activated in Stage2.",
+  "historical_classes": {
+    "CANONICAL_VERIFIED": "A validated stored canonical event of the exact version; says nothing about completeness or independent data provenance.",
+    "LEGACY_CONVERTIBLE": "Reviewed deterministic event candidate with authority reference and reviewer. Not automatically stored, replayed or a completeness certificate.",
+    "LEGACY_AMBIGUOUS": "Default without authoritative conversion; excluded from replay but never silently omitted from a required history."
+  },
+  "no_backfill": true,
+  "no_synthetic_warmup": true,
+  "status": "DEFAULT_UNKNOWN_IMPLEMENTED; ATTESTATION_WORKFLOW_DESIGN_ONLY"
+}

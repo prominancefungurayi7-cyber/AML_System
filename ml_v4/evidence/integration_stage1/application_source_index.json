@@ -1,0 +1,1842 @@
+{
+  "agents.py": [
+    {
+      "name": "create_agent",
+      "line": 25,
+      "end_line": 49,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_by_code",
+      "line": 52,
+      "end_line": 66,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_by_id",
+      "line": 69,
+      "end_line": 83,
+      "decorators": []
+    },
+    {
+      "name": "get_all_agents",
+      "line": 86,
+      "end_line": 101,
+      "decorators": []
+    },
+    {
+      "name": "get_agents_by_region",
+      "line": 104,
+      "end_line": 119,
+      "decorators": []
+    },
+    {
+      "name": "get_agents_by_city",
+      "line": 122,
+      "end_line": 137,
+      "decorators": []
+    },
+    {
+      "name": "update_agent_status",
+      "line": 140,
+      "end_line": 152,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_transaction_count",
+      "line": 155,
+      "end_line": 170,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_transactions",
+      "line": 173,
+      "end_line": 188,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_wallets",
+      "line": 191,
+      "end_line": 211,
+      "decorators": []
+    },
+    {
+      "name": "get_agent_statistics",
+      "line": 214,
+      "end_line": 244,
+      "decorators": []
+    }
+  ],
+  "ai_core.py": [
+    {
+      "name": "CustomerBehavioralProfile",
+      "line": 123,
+      "end_line": 185,
+      "decorators": [
+        "dataclass"
+      ]
+    },
+    {
+      "name": "TransactionAnomaly",
+      "line": 189,
+      "end_line": 211,
+      "decorators": [
+        "dataclass"
+      ]
+    },
+    {
+      "name": "map_risk_to_ai_label",
+      "line": 218,
+      "end_line": 227,
+      "decorators": []
+    },
+    {
+      "name": "_timestamp_hour",
+      "line": 230,
+      "end_line": 234,
+      "decorators": []
+    },
+    {
+      "name": "_value",
+      "line": 237,
+      "end_line": 243,
+      "decorators": []
+    },
+    {
+      "name": "transaction_features",
+      "line": 246,
+      "end_line": 307,
+      "decorators": []
+    },
+    {
+      "name": "_prepare_labelled_rows",
+      "line": 310,
+      "end_line": 320,
+      "decorators": []
+    },
+    {
+      "name": "_augment_with_bootstrap",
+      "line": 323,
+      "end_line": 330,
+      "decorators": []
+    },
+    {
+      "name": "train_ai_model",
+      "line": 333,
+      "end_line": 395,
+      "decorators": []
+    },
+    {
+      "name": "load_ai_model",
+      "line": 398,
+      "end_line": 407,
+      "decorators": []
+    },
+    {
+      "name": "get_model_metadata",
+      "line": 410,
+      "end_line": 421,
+      "decorators": []
+    },
+    {
+      "name": "predict_risk_level",
+      "line": 424,
+      "end_line": 476,
+      "decorators": []
+    },
+    {
+      "name": "delete_ai_model",
+      "line": 479,
+      "end_line": 482,
+      "decorators": []
+    },
+    {
+      "name": "BehavioralProfiler",
+      "line": 489,
+      "end_line": 1269,
+      "decorators": []
+    }
+  ],
+  "ai_explanations.py": [
+    {
+      "name": "explain_features",
+      "line": 9,
+      "end_line": 83,
+      "decorators": []
+    }
+  ],
+  "ai_stage13_features.py": [
+    {
+      "name": "Stage13FeatureService",
+      "line": 31,
+      "end_line": 811,
+      "decorators": []
+    }
+  ],
+  "ai_stage14_model.py": [
+    {
+      "name": "ModelPrediction",
+      "line": 40,
+      "end_line": 47,
+      "decorators": [
+        "dataclass"
+      ]
+    },
+    {
+      "name": "Stage14ModelService",
+      "line": 50,
+      "end_line": 208,
+      "decorators": []
+    },
+    {
+      "name": "get_stage14_model_service",
+      "line": 215,
+      "end_line": 232,
+      "decorators": []
+    },
+    {
+      "name": "reset_model_service",
+      "line": 235,
+      "end_line": 238,
+      "decorators": []
+    }
+  ],
+  "alerts.py": [
+    {
+      "name": "create_alert_if_needed",
+      "line": 23,
+      "end_line": 58,
+      "decorators": []
+    },
+    {
+      "name": "update_customer_risk_rating",
+      "line": 64,
+      "end_line": 101,
+      "decorators": []
+    },
+    {
+      "name": "_generate_sar_ref",
+      "line": 104,
+      "end_line": 112,
+      "decorators": []
+    },
+    {
+      "name": "_generate_ctr_ref",
+      "line": 115,
+      "end_line": 123,
+      "decorators": []
+    },
+    {
+      "name": "get_alert_by_id",
+      "line": 126,
+      "end_line": 137,
+      "decorators": []
+    },
+    {
+      "name": "get_alerts_by_account",
+      "line": 140,
+      "end_line": 155,
+      "decorators": []
+    },
+    {
+      "name": "get_open_alerts",
+      "line": 158,
+      "end_line": 172,
+      "decorators": []
+    },
+    {
+      "name": "update_alert_status",
+      "line": 175,
+      "end_line": 196,
+      "decorators": []
+    },
+    {
+      "name": "get_alert_statistics",
+      "line": 199,
+      "end_line": 221,
+      "decorators": []
+    }
+  ],
+  "aml_rules.py": [
+    {
+      "name": "RuleResult",
+      "line": 20,
+      "end_line": 31,
+      "decorators": [
+        "dataclass(frozen=True)"
+      ]
+    },
+    {
+      "name": "_time",
+      "line": 34,
+      "end_line": 39,
+      "decorators": []
+    },
+    {
+      "name": "_prior",
+      "line": 42,
+      "end_line": 61,
+      "decorators": []
+    },
+    {
+      "name": "assess_rules",
+      "line": 64,
+      "end_line": 116,
+      "decorators": []
+    }
+  ],
+  "behavioral_profiling.py": [
+    {
+      "name": "get_customer_behavioral_profile",
+      "line": 26,
+      "end_line": 49,
+      "decorators": []
+    },
+    {
+      "name": "save_customer_behavioral_profile",
+      "line": 52,
+      "end_line": 77,
+      "decorators": []
+    },
+    {
+      "name": "build_or_update_customer_profile",
+      "line": 80,
+      "end_line": 125,
+      "decorators": []
+    },
+    {
+      "name": "assess_transaction_behavioral_risk",
+      "line": 128,
+      "end_line": 194,
+      "decorators": []
+    }
+  ],
+  "config.py": [
+    {
+      "name": "Config",
+      "line": 9,
+      "end_line": 16,
+      "decorators": []
+    },
+    {
+      "name": "DevelopmentConfig",
+      "line": 19,
+      "end_line": 20,
+      "decorators": []
+    },
+    {
+      "name": "TestingConfig",
+      "line": 23,
+      "end_line": 27,
+      "decorators": []
+    },
+    {
+      "name": "ProductionConfig",
+      "line": 30,
+      "end_line": 31,
+      "decorators": []
+    }
+  ],
+  "database.py": [
+    {
+      "name": "DatabaseAdapter",
+      "line": 21,
+      "end_line": 82,
+      "decorators": []
+    },
+    {
+      "name": "is_postgres_database_url",
+      "line": 85,
+      "end_line": 87,
+      "decorators": []
+    },
+    {
+      "name": "is_mysql_database_url",
+      "line": 90,
+      "end_line": 92,
+      "decorators": []
+    },
+    {
+      "name": "connect_db",
+      "line": 95,
+      "end_line": 130,
+      "decorators": []
+    },
+    {
+      "name": "get_schema_sql",
+      "line": 133,
+      "end_line": 304,
+      "decorators": []
+    }
+  ],
+  "messaging.py": [
+    {
+      "name": "create_messaging_tables_sql",
+      "line": 20,
+      "end_line": 87,
+      "decorators": []
+    },
+    {
+      "name": "get_or_create_conversation",
+      "line": 90,
+      "end_line": 117,
+      "decorators": []
+    },
+    {
+      "name": "send_message",
+      "line": 120,
+      "end_line": 162,
+      "decorators": []
+    },
+    {
+      "name": "mark_message_as_delivered",
+      "line": 165,
+      "end_line": 173,
+      "decorators": []
+    },
+    {
+      "name": "mark_message_as_read",
+      "line": 176,
+      "end_line": 184,
+      "decorators": []
+    },
+    {
+      "name": "mark_conversation_as_read",
+      "line": 187,
+      "end_line": 202,
+      "decorators": []
+    },
+    {
+      "name": "get_conversation_messages",
+      "line": 205,
+      "end_line": 217,
+      "decorators": []
+    },
+    {
+      "name": "get_user_conversations",
+      "line": 220,
+      "end_line": 245,
+      "decorators": []
+    },
+    {
+      "name": "get_unread_count",
+      "line": 248,
+      "end_line": 258,
+      "decorators": []
+    },
+    {
+      "name": "get_unread_by_conversation",
+      "line": 261,
+      "end_line": 268,
+      "decorators": []
+    },
+    {
+      "name": "add_unread_message",
+      "line": 271,
+      "end_line": 293,
+      "decorators": []
+    },
+    {
+      "name": "set_user_online",
+      "line": 296,
+      "end_line": 314,
+      "decorators": []
+    },
+    {
+      "name": "get_user_online_status",
+      "line": 317,
+      "end_line": 330,
+      "decorators": []
+    },
+    {
+      "name": "set_typing_indicator",
+      "line": 333,
+      "end_line": 349,
+      "decorators": []
+    },
+    {
+      "name": "can_user_message",
+      "line": 352,
+      "end_line": 379,
+      "decorators": []
+    },
+    {
+      "name": "delete_message",
+      "line": 382,
+      "end_line": 402,
+      "decorators": []
+    },
+    {
+      "name": "search_conversations",
+      "line": 405,
+      "end_line": 416,
+      "decorators": []
+    }
+  ],
+  "realtime.py": [
+    {
+      "name": "RealtimeBroker",
+      "line": 31,
+      "end_line": 303,
+      "decorators": []
+    }
+  ],
+  "replace_chapter1.py": [],
+  "reports.py": [
+    {
+      "name": "create_sar_report",
+      "line": 21,
+      "end_line": 46,
+      "decorators": []
+    },
+    {
+      "name": "create_ctr_report",
+      "line": 49,
+      "end_line": 75,
+      "decorators": []
+    },
+    {
+      "name": "get_sar_reports",
+      "line": 78,
+      "end_line": 92,
+      "decorators": []
+    },
+    {
+      "name": "get_sar_reports_by_account",
+      "line": 95,
+      "end_line": 110,
+      "decorators": []
+    },
+    {
+      "name": "get_sar_by_id",
+      "line": 113,
+      "end_line": 124,
+      "decorators": []
+    },
+    {
+      "name": "get_ctr_reports",
+      "line": 127,
+      "end_line": 141,
+      "decorators": []
+    },
+    {
+      "name": "get_ctr_reports_by_account",
+      "line": 144,
+      "end_line": 159,
+      "decorators": []
+    },
+    {
+      "name": "get_ctr_by_id",
+      "line": 162,
+      "end_line": 173,
+      "decorators": []
+    },
+    {
+      "name": "update_sar_status",
+      "line": 176,
+      "end_line": 188,
+      "decorators": []
+    },
+    {
+      "name": "update_ctr_status",
+      "line": 191,
+      "end_line": 203,
+      "decorators": []
+    },
+    {
+      "name": "get_report_statistics",
+      "line": 206,
+      "end_line": 229,
+      "decorators": []
+    },
+    {
+      "name": "log_system_activity",
+      "line": 232,
+      "end_line": 249,
+      "decorators": []
+    },
+    {
+      "name": "get_activity_log",
+      "line": 252,
+      "end_line": 272,
+      "decorators": []
+    }
+  ],
+  "reset_database.py": [
+    {
+      "name": "reset_database",
+      "line": 31,
+      "end_line": 334,
+      "decorators": []
+    }
+  ],
+  "run_migration.py": [
+    {
+      "name": "_migrate_mysql",
+      "line": 19,
+      "end_line": 94,
+      "decorators": []
+    },
+    {
+      "name": "_migrate_sqlite",
+      "line": 97,
+      "end_line": 129,
+      "decorators": []
+    },
+    {
+      "name": "main",
+      "line": 132,
+      "end_line": 170,
+      "decorators": []
+    }
+  ],
+  "screening.py": [
+    {
+      "name": "ScreeningHit",
+      "line": 39,
+      "end_line": 48,
+      "decorators": [
+        "dataclass"
+      ]
+    },
+    {
+      "name": "normalize_name",
+      "line": 51,
+      "end_line": 55,
+      "decorators": []
+    },
+    {
+      "name": "fuzzy_name_score",
+      "line": 58,
+      "end_line": 71,
+      "decorators": []
+    },
+    {
+      "name": "_hit_from_watchlist",
+      "line": 74,
+      "end_line": 91,
+      "decorators": []
+    },
+    {
+      "name": "screen_entity",
+      "line": 94,
+      "end_line": 169,
+      "decorators": []
+    },
+    {
+      "name": "screening_summary",
+      "line": 172,
+      "end_line": 194,
+      "decorators": []
+    },
+    {
+      "name": "is_registration_blocked",
+      "line": 197,
+      "end_line": 199,
+      "decorators": []
+    }
+  ],
+  "security.py": [
+    {
+      "name": "check_login_attempts",
+      "line": 29,
+      "end_line": 48,
+      "decorators": []
+    },
+    {
+      "name": "record_login_attempt",
+      "line": 51,
+      "end_line": 86,
+      "decorators": []
+    },
+    {
+      "name": "add_security_headers",
+      "line": 89,
+      "end_line": 103,
+      "decorators": []
+    },
+    {
+      "name": "is_account_locked",
+      "line": 106,
+      "end_line": 124,
+      "decorators": []
+    },
+    {
+      "name": "get_remaining_lockout_time",
+      "line": 127,
+      "end_line": 141,
+      "decorators": []
+    },
+    {
+      "name": "clear_login_attempts",
+      "line": 144,
+      "end_line": 154,
+      "decorators": []
+    }
+  ],
+  "server.py": [
+    {
+      "name": "add_security_headers_wrapper",
+      "line": 280,
+      "end_line": 281,
+      "decorators": [
+        "app.after_request"
+      ]
+    },
+    {
+      "name": "get_db",
+      "line": 288,
+      "end_line": 291,
+      "decorators": []
+    },
+    {
+      "name": "login_required",
+      "line": 294,
+      "end_line": 323,
+      "decorators": []
+    },
+    {
+      "name": "close_db",
+      "line": 327,
+      "end_line": 330,
+      "decorators": [
+        "app.teardown_appcontext"
+      ]
+    },
+    {
+      "name": "init_db",
+      "line": 337,
+      "end_line": 354,
+      "decorators": []
+    },
+    {
+      "name": "_migrate_sqlite",
+      "line": 357,
+      "end_line": 386,
+      "decorators": []
+    },
+    {
+      "name": "_migrate_mysql",
+      "line": 389,
+      "end_line": 453,
+      "decorators": []
+    },
+    {
+      "name": "_migrate_postgres",
+      "line": 456,
+      "end_line": 520,
+      "decorators": []
+    },
+    {
+      "name": "connect_db",
+      "line": 556,
+      "end_line": 557,
+      "decorators": []
+    },
+    {
+      "name": "handle_connect",
+      "line": 618,
+      "end_line": 673,
+      "decorators": [
+        "socketio.on('connect')"
+      ]
+    },
+    {
+      "name": "handle_heartbeat",
+      "line": 677,
+      "end_line": 691,
+      "decorators": [
+        "socketio.on('heartbeat')"
+      ]
+    },
+    {
+      "name": "handle_disconnect",
+      "line": 695,
+      "end_line": 719,
+      "decorators": [
+        "socketio.on('disconnect')"
+      ]
+    },
+    {
+      "name": "handle_send_message",
+      "line": 727,
+      "end_line": 814,
+      "decorators": [
+        "socketio.on('send_message')"
+      ]
+    },
+    {
+      "name": "handle_typing",
+      "line": 818,
+      "end_line": 837,
+      "decorators": [
+        "socketio.on('typing')"
+      ]
+    },
+    {
+      "name": "handle_stop_typing",
+      "line": 841,
+      "end_line": 859,
+      "decorators": [
+        "socketio.on('stop_typing')"
+      ]
+    },
+    {
+      "name": "handle_mark_read",
+      "line": 863,
+      "end_line": 880,
+      "decorators": [
+        "socketio.on('mark_read')"
+      ]
+    },
+    {
+      "name": "_get_messaging_counterparts",
+      "line": 887,
+      "end_line": 912,
+      "decorators": []
+    },
+    {
+      "name": "_is_authorized_messaging_counterpart",
+      "line": 915,
+      "end_line": 919,
+      "decorators": []
+    },
+    {
+      "name": "api_get_conversations",
+      "line": 924,
+      "end_line": 946,
+      "decorators": [
+        "app.route('/api/conversations', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "api_get_messages",
+      "line": 951,
+      "end_line": 976,
+      "decorators": [
+        "app.route('/api/conversations/<int:conversation_id>/messages', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "api_can_message",
+      "line": 981,
+      "end_line": 1010,
+      "decorators": [
+        "app.route('/api/users/<username>/can-message', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "api_get_unread_count",
+      "line": 1015,
+      "end_line": 1028,
+      "decorators": [
+        "app.route('/api/unread-count', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "api_get_user_status",
+      "line": 1033,
+      "end_line": 1046,
+      "decorators": [
+        "app.route('/api/user-status/<username>', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "api_get_messageable_users",
+      "line": 1051,
+      "end_line": 1083,
+      "decorators": [
+        "app.route('/api/messageable-users', methods=['GET'])",
+        "login_required"
+      ]
+    },
+    {
+      "name": "broadcast_event",
+      "line": 1090,
+      "end_line": 1094,
+      "decorators": []
+    },
+    {
+      "name": "_ai_training_rows",
+      "line": 1101,
+      "end_line": 1115,
+      "decorators": []
+    },
+    {
+      "name": "_train_ai_model_from_db",
+      "line": 1118,
+      "end_line": 1153,
+      "decorators": []
+    },
+    {
+      "name": "seed_demo_data",
+      "line": 1161,
+      "end_line": 1240,
+      "decorators": []
+    },
+    {
+      "name": "_seed_wealth_tier_users",
+      "line": 1243,
+      "end_line": 1275,
+      "decorators": []
+    },
+    {
+      "name": "_seed_watchlist",
+      "line": 1281,
+      "end_line": 1331,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_id",
+      "line": 1341,
+      "end_line": 1343,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_username",
+      "line": 1347,
+      "end_line": 1349,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_email",
+      "line": 1353,
+      "end_line": 1355,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_id_number",
+      "line": 1359,
+      "end_line": 1361,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_account_number",
+      "line": 1365,
+      "end_line": 1367,
+      "decorators": []
+    },
+    {
+      "name": "normalize_id_number",
+      "line": 1371,
+      "end_line": 1379,
+      "decorators": []
+    },
+    {
+      "name": "normalize_account_number",
+      "line": 1383,
+      "end_line": 1385,
+      "decorators": []
+    },
+    {
+      "name": "is_valid_id_number",
+      "line": 1389,
+      "end_line": 1391,
+      "decorators": []
+    },
+    {
+      "name": "record_activity",
+      "line": 1395,
+      "end_line": 1423,
+      "decorators": []
+    },
+    {
+      "name": "get_last_insert_id",
+      "line": 1427,
+      "end_line": 1437,
+      "decorators": []
+    },
+    {
+      "name": "broadcast_event",
+      "line": 1441,
+      "end_line": 1444,
+      "decorators": []
+    },
+    {
+      "name": "_stats_payload",
+      "line": 1450,
+      "end_line": 1509,
+      "decorators": []
+    },
+    {
+      "name": "broadcast_stats",
+      "line": 1515,
+      "end_line": 1519,
+      "decorators": []
+    },
+    {
+      "name": "send_otp_email_async",
+      "line": 1522,
+      "end_line": 1557,
+      "decorators": []
+    },
+    {
+      "name": "request_page",
+      "line": 1563,
+      "end_line": 1573,
+      "decorators": []
+    },
+    {
+      "name": "_user_balance_payload",
+      "line": 1579,
+      "end_line": 1595,
+      "decorators": []
+    },
+    {
+      "name": "serialize_value",
+      "line": 1601,
+      "end_line": 1611,
+      "decorators": []
+    },
+    {
+      "name": "serialize_row",
+      "line": 1617,
+      "end_line": 1619,
+      "decorators": []
+    },
+    {
+      "name": "serialize_rows",
+      "line": 1625,
+      "end_line": 1627,
+      "decorators": []
+    },
+    {
+      "name": "broadcast_user_balance",
+      "line": 1633,
+      "end_line": 1645,
+      "decorators": []
+    },
+    {
+      "name": "broadcast_alert_update",
+      "line": 1651,
+      "end_line": 1681,
+      "decorators": []
+    },
+    {
+      "name": "_json_safe",
+      "line": 1687,
+      "end_line": 1699,
+      "decorators": []
+    },
+    {
+      "name": "broadcast_report_event",
+      "line": 1705,
+      "end_line": 1713,
+      "decorators": []
+    },
+    {
+      "name": "_generate_sar_ref",
+      "line": 1717,
+      "end_line": 1721,
+      "decorators": []
+    },
+    {
+      "name": "update_customer_risk_rating",
+      "line": 1724,
+      "end_line": 1750,
+      "decorators": []
+    },
+    {
+      "name": "_generate_ctr_ref",
+      "line": 1753,
+      "end_line": 1755,
+      "decorators": []
+    },
+    {
+      "name": "_ai_training_rows",
+      "line": 1758,
+      "end_line": 1783,
+      "decorators": []
+    },
+    {
+      "name": "_train_ai_model_from_db",
+      "line": 1789,
+      "end_line": 1845,
+      "decorators": []
+    },
+    {
+      "name": "_transaction_payload",
+      "line": 1851,
+      "end_line": 1895,
+      "decorators": []
+    },
+    {
+      "name": "_risk_level_from_score",
+      "line": 1921,
+      "end_line": 1939,
+      "decorators": []
+    },
+    {
+      "name": "_calibrate_generated_transaction_risk",
+      "line": 1943,
+      "end_line": 1961,
+      "decorators": []
+    },
+    {
+      "name": "_combine_rule_ai_risk",
+      "line": 1965,
+      "end_line": 2091,
+      "decorators": []
+    },
+    {
+      "name": "set_rule_engine_enabled",
+      "line": 2100,
+      "end_line": 2103,
+      "decorators": []
+    },
+    {
+      "name": "process_transaction_event",
+      "line": 2105,
+      "end_line": 2467,
+      "decorators": []
+    },
+    {
+      "name": "monitor_transactions",
+      "line": 2477,
+      "end_line": 2548,
+      "decorators": []
+    },
+    {
+      "name": "ensure_background_monitor",
+      "line": 2554,
+      "end_line": 2559,
+      "decorators": []
+    },
+    {
+      "name": "enforce_security_headers",
+      "line": 2565,
+      "end_line": 2566,
+      "decorators": [
+        "app.before_request"
+      ]
+    },
+    {
+      "name": "add_security_headers",
+      "line": 2570,
+      "end_line": 2576,
+      "decorators": [
+        "app.after_request"
+      ]
+    },
+    {
+      "name": "inject_user",
+      "line": 2581,
+      "end_line": 2596,
+      "decorators": [
+        "app.context_processor"
+      ]
+    },
+    {
+      "name": "index",
+      "line": 2608,
+      "end_line": 2610,
+      "decorators": [
+        "app.route('/')"
+      ]
+    },
+    {
+      "name": "health",
+      "line": 2618,
+      "end_line": 2646,
+      "decorators": [
+        "app.route('/health')"
+      ]
+    },
+    {
+      "name": "dashboard_redirect",
+      "line": 2654,
+      "end_line": 2678,
+      "decorators": [
+        "app.route('/dashboard')"
+      ]
+    },
+    {
+      "name": "messages",
+      "line": 2683,
+      "end_line": 2696,
+      "decorators": [
+        "app.route('/messages')",
+        "login_required"
+      ]
+    },
+    {
+      "name": "send_otp_email",
+      "line": 2703,
+      "end_line": 2751,
+      "decorators": []
+    },
+    {
+      "name": "_legacy_background_otp_sender",
+      "line": 2754,
+      "end_line": 2776,
+      "decorators": []
+    },
+    {
+      "name": "register",
+      "line": 2784,
+      "end_line": 2949,
+      "decorators": [
+        "app.route('/register', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "name": "login",
+      "line": 2959,
+      "end_line": 3071,
+      "decorators": [
+        "app.route('/login', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "name": "logout",
+      "line": 3076,
+      "end_line": 3090,
+      "decorators": [
+        "app.route('/logout')"
+      ]
+    },
+    {
+      "name": "forgot_password",
+      "line": 3095,
+      "end_line": 3132,
+      "decorators": [
+        "app.route('/forgot-password', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "name": "reset_password",
+      "line": 3137,
+      "end_line": 3188,
+      "decorators": [
+        "app.route('/reset-password', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "name": "customer_dashboard",
+      "line": 3202,
+      "end_line": 3274,
+      "decorators": [
+        "app.route('/customer')",
+        "login_required('customer')"
+      ]
+    },
+    {
+      "name": "create_transaction",
+      "line": 3284,
+      "end_line": 3463,
+      "decorators": [
+        "app.route('/customer/transaction', methods=['POST'])",
+        "login_required('customer')"
+      ]
+    },
+    {
+      "name": "compliance_dashboard",
+      "line": 3477,
+      "end_line": 3609,
+      "decorators": [
+        "app.route('/compliance')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "_get_next_open_alert_id",
+      "line": 3613,
+      "end_line": 3618,
+      "decorators": []
+    },
+    {
+      "name": "alert_detail",
+      "line": 3625,
+      "end_line": 3832,
+      "decorators": [
+        "app.route('/compliance/alert/<int:alert_id>', methods=['GET', 'POST'])",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "submit_sar",
+      "line": 3842,
+      "end_line": 3870,
+      "decorators": [
+        "app.route('/compliance/sar/<int:sar_id>/submit', methods=['POST'])",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "admin_dashboard",
+      "line": 3884,
+      "end_line": 4038,
+      "decorators": [
+        "app.route('/admin', methods=['GET', 'POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "generate_transactions",
+      "line": 4048,
+      "end_line": 4228,
+      "decorators": [
+        "app.route('/admin/generate-transactions', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "generate_structuring_scenario",
+      "line": 4233,
+      "end_line": 4350,
+      "decorators": [
+        "app.route('/admin/generate-structuring-scenario', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "generate_network_scenario",
+      "line": 4355,
+      "end_line": 4473,
+      "decorators": [
+        "app.route('/admin/generate-network-scenario', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "generate_agent_scenario",
+      "line": 4478,
+      "end_line": 4600,
+      "decorators": [
+        "app.route('/admin/generate-agent-scenario', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "clear_transactions",
+      "line": 4610,
+      "end_line": 4640,
+      "decorators": [
+        "app.route('/admin/clear-transactions', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "clear_watchlist",
+      "line": 4648,
+      "end_line": 4662,
+      "decorators": [
+        "app.route('/admin/clear-watchlist', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "migrate_database",
+      "line": 4670,
+      "end_line": 4703,
+      "decorators": [
+        "app.route('/admin/migrate-database', methods=['POST'])",
+        "login_required('admin')"
+      ]
+    },
+    {
+      "name": "reports",
+      "line": 4713,
+      "end_line": 4787,
+      "decorators": [
+        "app.route('/reports')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "api_ai_model",
+      "line": 4801,
+      "end_line": 4803,
+      "decorators": [
+        "app.route('/api/v1/ai-model')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "api_stats",
+      "line": 4813,
+      "end_line": 4815,
+      "decorators": [
+        "app.route('/api/v1/stats')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "api_transactions",
+      "line": 4825,
+      "end_line": 4850,
+      "decorators": [
+        "app.route('/api/v1/transactions')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "api_agents",
+      "line": 4858,
+      "end_line": 4868,
+      "decorators": [
+        "app.route('/api/v1/agents')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "api_agent_detail",
+      "line": 4876,
+      "end_line": 4886,
+      "decorators": [
+        "app.route('/api/v1/agents/<int:agent_id>')",
+        "login_required('compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "stream",
+      "line": 4896,
+      "end_line": 4942,
+      "decorators": [
+        "app.route('/stream')",
+        "login_required('customer', 'compliance', 'admin')"
+      ]
+    },
+    {
+      "name": "page_not_found",
+      "line": 4954,
+      "end_line": 4956,
+      "decorators": [
+        "app.errorhandler(404)"
+      ]
+    },
+    {
+      "name": "server_error",
+      "line": 4964,
+      "end_line": 4968,
+      "decorators": [
+        "app.errorhandler(500)"
+      ]
+    },
+    {
+      "name": "ensure_ai_model_ready",
+      "line": 4974,
+      "end_line": 4996,
+      "decorators": []
+    },
+    {
+      "name": "initialize_startup",
+      "line": 5002,
+      "end_line": 5006,
+      "decorators": []
+    }
+  ],
+  "test_stage17b_feature_service.py": [
+    {
+      "name": "Stage17BFeatureServiceTests",
+      "line": 33,
+      "end_line": 439,
+      "decorators": []
+    }
+  ],
+  "test_stage17c_model_integration.py": [
+    {
+      "name": "Stage17CModelIntegrationTests",
+      "line": 37,
+      "end_line": 423,
+      "decorators": []
+    }
+  ],
+  "test_stage17d_integration.py": [
+    {
+      "name": "TestStage17DIntegration",
+      "line": 46,
+      "end_line": 902,
+      "decorators": []
+    },
+    {
+      "name": "run_integration_tests",
+      "line": 905,
+      "end_line": 977,
+      "decorators": []
+    }
+  ],
+  "test_stage17e_end_to_end.py": [
+    {
+      "name": "setup_test_database",
+      "line": 41,
+      "end_line": 105,
+      "decorators": []
+    },
+    {
+      "name": "create_test_data",
+      "line": 108,
+      "end_line": 138,
+      "decorators": []
+    },
+    {
+      "name": "test_end_to_end_simulation",
+      "line": 141,
+      "end_line": 348,
+      "decorators": []
+    }
+  ],
+  "test_stage17e_simulation_alignment.py": [
+    {
+      "name": "TestTransactionGeneration",
+      "line": 54,
+      "end_line": 139,
+      "decorators": []
+    },
+    {
+      "name": "TestAMLScenarioGeneration",
+      "line": 142,
+      "end_line": 299,
+      "decorators": []
+    },
+    {
+      "name": "TestStage13Integration",
+      "line": 302,
+      "end_line": 423,
+      "decorators": []
+    },
+    {
+      "name": "TestStage14Integration",
+      "line": 426,
+      "end_line": 442,
+      "decorators": []
+    },
+    {
+      "name": "TestLegacyModelIsolation",
+      "line": 445,
+      "end_line": 468,
+      "decorators": []
+    },
+    {
+      "name": "TestLabelLeakagePrevention",
+      "line": 471,
+      "end_line": 494,
+      "decorators": []
+    },
+    {
+      "name": "TestMySQLCompatibility",
+      "line": 497,
+      "end_line": 526,
+      "decorators": []
+    },
+    {
+      "name": "TestTemporalSafety",
+      "line": 529,
+      "end_line": 642,
+      "decorators": []
+    },
+    {
+      "name": "TestAlertIntegration",
+      "line": 645,
+      "end_line": 740,
+      "decorators": []
+    }
+  ],
+  "transaction_simulation.py": [
+    {
+      "name": "_random_transaction_amount",
+      "line": 43,
+      "end_line": 49,
+      "decorators": []
+    },
+    {
+      "name": "_simulation_plan",
+      "line": 52,
+      "end_line": 72,
+      "decorators": []
+    },
+    {
+      "name": "_simulation_timestamp",
+      "line": 75,
+      "end_line": 90,
+      "decorators": []
+    },
+    {
+      "name": "generate_structuring_scenario",
+      "line": 405,
+      "end_line": 459,
+      "decorators": []
+    },
+    {
+      "name": "generate_network_scenario",
+      "line": 462,
+      "end_line": 549,
+      "decorators": []
+    },
+    {
+      "name": "generate_agent_scenario",
+      "line": 552,
+      "end_line": 643,
+      "decorators": []
+    },
+    {
+      "name": "_scenario_amount",
+      "line": 646,
+      "end_line": 656,
+      "decorators": []
+    },
+    {
+      "name": "_simulation_segment_multiplier",
+      "line": 659,
+      "end_line": 670,
+      "decorators": []
+    },
+    {
+      "name": "_parse_timestamp",
+      "line": 673,
+      "end_line": 678,
+      "decorators": []
+    },
+    {
+      "name": "_simulation_transaction",
+      "line": 681,
+      "end_line": 741,
+      "decorators": []
+    },
+    {
+      "name": "_simulation_reason",
+      "line": 744,
+      "end_line": 752,
+      "decorators": []
+    },
+    {
+      "name": "_history_profile",
+      "line": 755,
+      "end_line": 810,
+      "decorators": []
+    },
+    {
+      "name": "_ai_profile_for_transaction",
+      "line": 813,
+      "end_line": 907,
+      "decorators": []
+    },
+    {
+      "name": "generate_agents",
+      "line": 953,
+      "end_line": 1009,
+      "decorators": []
+    },
+    {
+      "name": "assign_agent_to_transaction",
+      "line": 1012,
+      "end_line": 1062,
+      "decorators": []
+    }
+  ],
+  "transactions.py": [
+    {
+      "name": "set_rule_engine_enabled",
+      "line": 36,
+      "end_line": 44,
+      "decorators": []
+    },
+    {
+      "name": "is_rule_engine_enabled",
+      "line": 47,
+      "end_line": 54,
+      "decorators": []
+    },
+    {
+      "name": "_risk_level_from_score",
+      "line": 57,
+      "end_line": 77,
+      "decorators": []
+    },
+    {
+      "name": "_calibrate_generated_transaction_risk",
+      "line": 80,
+      "end_line": 110,
+      "decorators": []
+    },
+    {
+      "name": "_combine_rule_ai_risk",
+      "line": 113,
+      "end_line": 197,
+      "decorators": []
+    },
+    {
+      "name": "get_transaction_by_id",
+      "line": 200,
+      "end_line": 211,
+      "decorators": []
+    },
+    {
+      "name": "get_transactions_by_account",
+      "line": 214,
+      "end_line": 229,
+      "decorators": []
+    },
+    {
+      "name": "get_all_transactions",
+      "line": 232,
+      "end_line": 247,
+      "decorators": []
+    },
+    {
+      "name": "get_transactions_by_risk_level",
+      "line": 250,
+      "end_line": 265,
+      "decorators": []
+    },
+    {
+      "name": "get_transaction_statistics",
+      "line": 268,
+      "end_line": 293,
+      "decorators": []
+    }
+  ],
+  "users.py": [
+    {
+      "name": "validate_id_number",
+      "line": 48,
+      "end_line": 64,
+      "decorators": []
+    },
+    {
+      "name": "is_username_reserved",
+      "line": 67,
+      "end_line": 77,
+      "decorators": []
+    },
+    {
+      "name": "get_staff_accounts",
+      "line": 80,
+      "end_line": 87,
+      "decorators": []
+    },
+    {
+      "name": "create_user",
+      "line": 90,
+      "end_line": 117,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_account_number",
+      "line": 120,
+      "end_line": 134,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_username",
+      "line": 137,
+      "end_line": 151,
+      "decorators": []
+    },
+    {
+      "name": "get_user_by_id",
+      "line": 154,
+      "end_line": 168,
+      "decorators": []
+    },
+    {
+      "name": "update_user_balance",
+      "line": 171,
+      "end_line": 183,
+      "decorators": []
+    },
+    {
+      "name": "update_user_kyc_status",
+      "line": 186,
+      "end_line": 198,
+      "decorators": []
+    },
+    {
+      "name": "update_user_risk_rating",
+      "line": 201,
+      "end_line": 213,
+      "decorators": []
+    },
+    {
+      "name": "get_all_users",
+      "line": 216,
+      "end_line": 231,
+      "decorators": []
+    },
+    {
+      "name": "get_users_by_role",
+      "line": 234,
+      "end_line": 249,
+      "decorators": []
+    },
+    {
+      "name": "update_user_last_login",
+      "line": 252,
+      "end_line": 264,
+      "decorators": []
+    },
+    {
+      "name": "verify_password",
+      "line": 267,
+      "end_line": 284,
+      "decorators": []
+    }
+  ],
+  "utils.py": [
+    {
+      "name": "get_last_insert_id",
+      "line": 31,
+      "end_line": 62,
+      "decorators": []
+    },
+    {
+      "name": "serialize_value",
+      "line": 65,
+      "end_line": 79,
+      "decorators": []
+    },
+    {
+      "name": "serialize_row",
+      "line": 82,
+      "end_line": 92,
+      "decorators": []
+    },
+    {
+      "name": "serialize_rows",
+      "line": 95,
+      "end_line": 105,
+      "decorators": []
+    },
+    {
+      "name": "_json_safe",
+      "line": 108,
+      "end_line": 123,
+      "decorators": []
+    },
+    {
+      "name": "request_page",
+      "line": 126,
+      "end_line": 141,
+      "decorators": []
+    },
+    {
+      "name": "_user_balance_payload",
+      "line": 144,
+      "end_line": 161,
+      "decorators": []
+    },
+    {
+      "name": "_transaction_payload",
+      "line": 164,
+      "end_line": 196,
+      "decorators": []
+    },
+    {
+      "name": "_stats_payload",
+      "line": 199,
+      "end_line": 218,
+      "decorators": []
+    },
+    {
+      "name": "send_email",
+      "line": 221,
+      "end_line": 298,
+      "decorators": []
+    }
+  ]
+}

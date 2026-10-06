@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "amendment_version": "v4.stage15a.design.1",
+  "parent_design_version": "v4.stage15.design.1",
+  "scope": "D, E: total episode, motif and context counts, matched hard-origin mapping, context roles/timing",
+  "total_episode": {
+    "distribution": "discrete_uniform",
+    "minimum": 8,
+    "maximum": 20,
+    "budget_rule": "With remaining allocated event budget B>=8, draw E uniformly from {8,...,min(20,B)}. Decrement B by E exactly once. If B<8, move those residual events to background and report the transfer. Do not redraw E to accommodate a motif, target or family support.",
+    "all_origins_same_rule": true,
+    "allocation": "Stage 15 opportunity weights, per-unit budgets and largest-remainder ties remain authoritative. E counts motif and context together; neither creates extra budget."
+  },
+  "motif_rule": {
+    "uniform_family_formula": "Given fixed E and inclusive declared range [lo,hi], draw M uniformly from {lo,...,min(hi,E)}. This direct draw is the canonical implementation of conditioning M<=E. Do not draw an initial overlarge M and then clip it; do not redraw E. If a preliminary draw is used, retaining valid draws and resampling invalid draws from this conditional law is distributionally equivalent, but is not the canonical random-call sequence.",
+    "context_count": "R=E-M",
+    "target_dependent": false,
+    "empty_support": "STOP and report a design/implementation error; no fallback count. Exhaustive design checks prove support is nonempty for all declared E.",
+    "new_ranges_rationale": "For N4 the structural minimum is two events (funding then outward); reuse the existing total-episode ceiling 20. For A1/A2/A4 reuse 8..20 rather than introducing another count range. N3 counts follow the 2..6-vertex graph, with at most two optional competing-route edges. These are opportunity counts, not guarantees of positive predicates."
+  },
+  "families": {
+    "S1": {"kind": "conditional_discrete_uniform", "minimum": 4, "maximum": 12},
+    "S2": {"kind": "conditional_discrete_uniform", "minimum": 4, "maximum": 12},
+    "S3": {"kind": "conditional_discrete_uniform", "minimum": 6, "maximum": 16},
+    "S4": {"kind": "conditional_discrete_uniform", "minimum": 5, "maximum": 12},
+    "N1": {"kind": "conditional_discrete_uniform", "minimum": 4, "maximum": 12},
+    "N2": {"kind": "conditional_discrete_uniform", "minimum": 4, "maximum": 12},
+    "N3": {
+      "kind": "graph_count",
+      "vertices_minimum": 2,
+      "vertices_maximum": 6,
+      "vertices_distribution": "discrete_uniform",
+      "primary_events": "V-1 simple-walk edges plus one proposed closing edge: V events. The closing proposal is not evidence of a true target.",
+      "additional_edges_maximum": 2,
+      "additional_distribution": "Given E,V, K is discrete uniform on {0,...,min(2,E-V)}; M=V+K.",
+      "additional_roles": "K=0: no additional route. K=1: one additional observable W2W edge parallel to a randomly selected primary prior edge, with its own key and amount. K=2: an alternative two-edge route between the endpoints of a randomly selected primary prior edge, using one additional active local wallet outside the primary walk. Apply the existing chronology jitter/reversed-order and amount-relation recipe; never choose the route by evaluating a predicate.",
+      "inherited": "2..6 primary vertices, simple-walk topology, proposed returns, reversed-order opportunities and competing paths; frozen evaluator still searches any qualifying chronological simple prior path of 1..5 edges."
+    },
+    "N4": {"kind": "conditional_discrete_uniform", "minimum": 2, "maximum": 20, "decomposition": "One initial proposed incoming W2W funding event and M-1 subsequent mixed outward W2W/Cash-Out events; retain the Stage 15 1..24h duration and proposed outward fraction U(0.1,1.2). Context may add other ordinary funding/activity; no forced positive or negative result."},
+    "A1": {"kind": "conditional_discrete_uniform", "minimum": 8, "maximum": 20, "decomposition": "M acquisition/returning-customer services across the existing 2..28d motif; keep actual baseline history and Stage 15 customer/activity parameters."},
+    "A2": {"kind": "conditional_discrete_uniform", "minimum": 8, "maximum": 20, "decomposition": "M services allocated using existing 2..6 concentration counterparties and 0.35..0.90 share over 2..24h; the rest of the motif may use other active wallets."},
+    "A3": {"kind": "conditional_discrete_uniform", "minimum": 5, "maximum": 16},
+    "A4": {"kind": "conditional_discrete_uniform", "minimum": 8, "maximum": 20, "decomposition": "M mixed cash services using existing 2..8 wallet, direction-probability, amount-relation and 2..24h rules."}
+  },
+  "hard_origins": {
+    "H1": ["S1", "S3"],
+    "H2": ["S2"],
+    "H3": ["S4"],
+    "H4": ["N1"],
+    "H5": ["N2", "N4"],
+    "H6": ["N3"],
+    "H7": ["A1", "A3"],
+    "H8": ["A2", "A4"]
+  },
+  "hard_selection": "For a two-family hard origin, choose one matched recipe with equal probability before motif-count sampling, independently of E, amounts and all evaluated labels. Single-family mappings are deterministic. Inherit that family's exact count distribution and context framework; retain the corresponding Stage 15 hard-origin temporal/history/customer mechanism. A named failed condition is diagnostic, never a target-based acceptance filter.",
+  "context": {
+    "count": "E-M, including zero",
+    "role_probabilities": {"baseline_compatible": "1/4", "interleaved_unrelated": "1/4", "relationship_maintenance": "1/4", "post_motif_ordinary": "1/4"},
+    "role_sampling": "Draw each of R role categories independently; no fixed role quotas or deterministic row positions. Assign before target evaluation.",
+    "amount_law": "BASE for every context role, including S4/H3 context. No context-specific amount exception is introduced. Apply the ordinary Independent multiplier where applicable.",
+    "schema": "Unchanged Stage 15 observable schema; private context role is not an observable field.",
+    "population": "Use the episode's local population unit and current active candidate sets, profile weights, catchments, preferred relations, transaction/channel laws and accounting rules. Do not use private activation as target eligibility.",
+    "roles": {
+      "baseline_compatible": "Ordinary activity of the episode's focal subject(s) using its existing population parameters. This means compatible with its population process, not a guaranteed baseline-window event or a guaranteed negative. No synthetic past is inserted retroactively.",
+      "interleaved_unrelated": "Ordinary activity using other active subjects in the same unit, excluding the episode's primary focal subject(s) where candidates exist; use normal population weights. If none exist, use the ordinary active pool and record the diagnostic fallback. Unrelated denotes generation intent, not absence of target evidence.",
+      "relationship_maintenance": "Ordinary repeat use of a counterparty or serviced wallet observed before this event's full key. Choose among active previously observed partners with normal population weights. If none exist, use normal active relationship selection and record the diagnostic fallback. No future motif event can establish the relationship.",
+      "post_motif_ordinary": "Ordinary activity associated with the focal population after the last motif key, using the same base law and population rules. No future recovery is used to label earlier events."
+    },
+    "timing": {
+      "motif_duration": "d is the motif interval duration governed by its existing Stage 15 family or matched hard-origin temporal recipe. For N3, which lacks a separate duration law, use d~U(1h,7d) for the proposed graph interval in both N3/H6; this supplies the missing enclosing interval and does not change the 7d target window. Sample and order motif timestamps using the inherited recipe, including permitted reversed-order opportunities.",
+      "padding": "When R>0 draw h and t independently U(0.05,0.25); episode duration is (1+h+t)*d. Sample its start s uniformly over starts fitting the scored horizon. The motif interval is [s+h*d, s+(h+1)*d]. Context padding extends the episode envelope, never the motif's family-specific duration. When R=0 use the motif interval as the episode, without padding draws.",
+      "ordinary_roles": "For baseline-compatible, unrelated and relationship-maintenance contexts, draw timestamps independently uniform over the full episode interval. They may precede, interleave or follow the motif; no fixed first/last-row assignment.",
+      "post_role": "Draw timestamps uniform in (end of motif interval, end of episode]. This strictly follows all motif events; the role's chronological meaning is intentional, but its count and absolute row positions are not fixed. Other context roles may occur later too.",
+      "precision_and_order": "Use Stage 15 integer-microsecond timestamps and unique random transaction IDs; sort all events by full key. Sample context instants from the admissible integer-microsecond interval corresponding to its continuous law; exclude the motif-end microsecond for the post role. No deterministic ID block or row-position signature.",
+      "history": "All motif and context events enter one chronological observable stream; context participates in subsequent history and the universal evaluator. Never emit labels from role, intended onset or origin."
+    },
+    "force_label": false,
+    "target_acceptance_filter": false,
+    "visible_to_evaluator": true
+  },
+  "private_provenance": {
+    "existing_fields": {"scenario_id": "episode identifier", "origin": "family/hard/background origin", "scenario_family": "intended or matched family", "strength": "existing Stage 15 episode strength"},
+    "additional_private_fields": ["event_role", "context_role"],
+    "event_role_values": ["motif", "context"],
+    "context_role": "One of the four context roles for context events; null for motif events. Background residual events have no episode/motif/context assignment.",
+    "consumers": "Diagnostics only; never target evaluator, features or model inputs. Do not add columns to observables or binary target files."
+  },
+  "label_policy": "Universal Stage 15 observable predicate union, unchanged. Context, motif and hard-origin events may all be positive or negative; no post-label removal, resampling or overrides.",
+  "randomness": "Use existing Stage 15 named streams in future implementation: episodes for E/M/graph-count/roles/matched-family choices, timestamps for durations/padding/context placement, amounts for amount proposals. No seed is instantiated in Stage 15A."
+}

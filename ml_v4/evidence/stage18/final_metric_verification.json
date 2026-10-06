@@ -1,0 +1,10 @@
+{
+  "confusion_and_macro_f1": "Independent arithmetic from all 32 saved probability arrays matches recorded metrics",
+  "family_denominators": "All primary models match saved Stage16S Train/Validation supports",
+  "fit_ledger": "16 unique starts and 16 completions; plan frozen before first fit; no failures",
+  "frozen_source_hashes": "PASS",
+  "independent_external_audit": false,
+  "status": "PASS",
+  "threshold": 0.5,
+  "wilson_limit": "Descriptive independence-based intervals only. Floating arithmetic can exceed an endpoint by ~2e-16 in raw records; this is not extra probability mass."
+}

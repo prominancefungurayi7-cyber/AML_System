@@ -1,0 +1,14 @@
+{
+  "versions": {
+    "python": "3.14.3",
+    "joblib": "1.5.3",
+    "numpy": "2.4.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "threadpoolctl": "3.6.0",
+    "xgboost": "3.4.1"
+  },
+  "interpreter": "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\.venv_inference_stage3\\Scripts\\python.exe",
+  "prefix": "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\.venv_inference_stage3",
+  "no_environment_modification": true
+}

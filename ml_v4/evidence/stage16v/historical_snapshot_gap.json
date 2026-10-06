@@ -1,0 +1,20 @@
+{
+  "expected_sha256": "55d6ab827505336fa930fd7110c030da4ccd7a389048a4064ca2ef04440352a0",
+  "git_blob_matches": true,
+  "git_exit_code": 0,
+  "git_head_blob_sha256": "55d6ab827505336fa930fd7110c030da4ccd7a389048a4064ca2ef04440352a0",
+  "path": "ml_archive/models/aml_ai_model.pkl",
+  "resolution": "Exact archive bytes must be restored from a verified historical source in a complete preservation checkout; rerun the unchanged validator. A matching Git blob alone does not complete the full snapshot. No historical artifact or check was edited.",
+  "restoration_performed": false,
+  "validator": {
+    "command": [
+      "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-B",
+      "ml_v4/design/amendments/validate_stage15a.py"
+    ],
+    "exit_code": 1,
+    "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\design\\amendments\\validate_stage15a.py\", line 260, in <module>\r\n    main()\r\n    ~~~~^^\r\n  File \"C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\design\\amendments\\validate_stage15a.py\", line 237, in main\r\n    tests, after = validate(before)\r\n                   ~~~~~~~~^^^^^^^^\r\n  File \"C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\design\\amendments\\validate_stage15a.py\", line 210, in validate\r\n    after = snapshot(before)\r\n  File \"C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\design\\amendments\\validate_stage15a.py\", line 48, in snapshot\r\n    if path.resolve(strict=True) != path or not path.is_relative_to(ROOT):\r\n       ~~~~~~~~~~~~^^^^^^^^^^^^^\r\n  File \"C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\pathlib\\__init__.py\", line 938, in resolve\r\n    return self.with_segments(os.path.realpath(self, strict=strict))\r\n                              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\r\n  File \"<frozen ntpath>\", line 694, in realpath\r\nFileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\\\Users\\\\PROMINENT\\\\Desktop\\\\important\\\\My Projects\\\\Last update for AML system\\\\AML System\\\\ml_archive\\\\models\\\\aml_ai_model.pkl'\r\n",
+    "stdout": ""
+  },
+  "working_tree_exists": false
+}

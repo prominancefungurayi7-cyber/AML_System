@@ -1,0 +1,389 @@
+{
+  "causal_limit": "Quantile differences and saved-label consistency cannot allocate FN causes to omitted features or individual gates.",
+  "derived_ratios_status": "Audit summaries from existing fields only; no saved X changes or candidate features",
+  "frozen_omissions": [
+    "S1 distinct amount count is omitted",
+    "S2 cluster value and baseline cluster rate omitted",
+    "S3 daily value omitted",
+    "S4 band share, distinct band amounts and baseline band rate omitted",
+    "N1/N2 recent transferred value omitted",
+    "A2 recent service count and A3 absolute service count omitted",
+    "N3 selected minimum-spread path can miss a different path satisfying the current-to-first ratio; separate summaries do not reconstruct the existential conjunction"
+  ],
+  "observations": {
+    "train": {
+      "A4": {
+        "detected": {
+          "abs_count_skew": {
+            "min_q25_median_q75_max": [
+              0.5,
+              0.6,
+              0.7142857142857143,
+              0.8181818181818182,
+              1.0
+            ],
+            "valid_n": 591
+          },
+          "abs_value_skew": {
+            "min_q25_median_q75_max": [
+              0.6030251745292997,
+              0.8978709091428952,
+              0.9792248230185898,
+              0.9975130512857374,
+              1.0
+            ],
+            "valid_n": 591
+          },
+          "all_six_recent_and_history_marker_components_present": true,
+          "cash_count": {
+            "min_q25_median_q75_max": [
+              6.0,
+              7.0,
+              8.0,
+              10.0,
+              22.0
+            ],
+            "valid_n": 591
+          },
+          "history_change_abs": {
+            "min_q25_median_q75_max": [
+              0.40028173800601896,
+              0.8119677433095421,
+              1.0485785135980845,
+              1.3140211986206722,
+              1.8911581385781795
+            ],
+            "valid_n": 591
+          },
+          "positive_cash_out_direction": 334,
+          "rows": 591
+        },
+        "missed": {
+          "abs_count_skew": {
+            "min_q25_median_q75_max": [
+              0.5,
+              0.5555555555555556,
+              0.6666666666666666,
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_n": 221
+          },
+          "abs_value_skew": {
+            "min_q25_median_q75_max": [
+              0.6017547524545644,
+              0.8608656749804272,
+              0.9333647280433247,
+              0.9788609526518155,
+              1.0
+            ],
+            "valid_n": 221
+          },
+          "all_six_recent_and_history_marker_components_present": true,
+          "cash_count": {
+            "min_q25_median_q75_max": [
+              6.0,
+              6.0,
+              6.0,
+              9.0,
+              23.0
+            ],
+            "valid_n": 221
+          },
+          "history_change_abs": {
+            "min_q25_median_q75_max": [
+              0.40978206998044686,
+              0.6484880149645488,
+              0.8886801111623948,
+              1.163660845689852,
+              1.8424122484615677
+            ],
+            "valid_n": 221
+          },
+          "positive_cash_out_direction": 118,
+          "rows": 221
+        }
+      },
+      "N3": {
+        "all_N3_missed": 34,
+        "incompatible_detected": 15,
+        "incompatible_missed": 24,
+        "meaning": "Diagnostic of saved selected-path summaries only; no new path search/evaluator/model or target alteration.",
+        "positive_rows": 550,
+        "selected_summary_incompatible_with_target_amount_bounds": 39
+      },
+      "missingness_on_family_positives": {
+        "A1": {
+          "agent_distinct_wallets_7d": 0,
+          "agent_new_wallet_count_7d": 0,
+          "agent_new_wallet_share_7d": 0,
+          "agent_observed_coverage_days": 0,
+          "agent_wallet_growth_ratio_7d": 0
+        },
+        "A2": {
+          "agent_observed_coverage_days": 0,
+          "agent_top2_count_share_24h": 0,
+          "agent_top2_share_change_24h": 0
+        },
+        "A3": {
+          "agent_distinct_wallets_1h": 0,
+          "agent_observed_coverage_days": 0,
+          "agent_service_acceleration_1h": 0
+        },
+        "A4": {
+          "agent_cash_distinct_wallets_24h": 0,
+          "agent_cash_in_count_24h": 0,
+          "agent_cash_in_value_24h": 0,
+          "agent_cash_out_count_24h": 0,
+          "agent_cash_out_value_24h": 0,
+          "agent_cash_value_skew_change": 0,
+          "agent_observed_coverage_days": 0,
+          "amount_minor": 0,
+          "transaction_type": 0
+        },
+        "N1": {
+          "amount_minor": 0,
+          "network_in_acceleration_24h": 0,
+          "network_in_count_24h": 0,
+          "network_in_distinct_24h": 0,
+          "transaction_type": 0
+        },
+        "N2": {
+          "amount_minor": 0,
+          "network_out_acceleration_24h": 0,
+          "network_out_count_24h": 0,
+          "network_out_distinct_24h": 0,
+          "transaction_type": 0,
+          "wallet_observed_coverage_days": 0
+        },
+        "N3": {
+          "amount_minor": 0,
+          "current_to_selected_path_first_value_ratio": 0,
+          "prior_path_min_max_log_change_7d": 0,
+          "prior_return_path_count_7d": 0,
+          "prior_return_path_min_length_7d": 0,
+          "transaction_type": 0
+        },
+        "N4": {
+          "amount_minor": 0,
+          "transaction_type": 0,
+          "wallet_pass_through_fraction_24h": 0,
+          "wallet_prior_funding_residual_minor_24h": 0
+        },
+        "S1": {
+          "amount_minor": 0,
+          "wallet_activity_acceleration_1h": 0,
+          "wallet_count_1h": 0,
+          "wallet_max_value_share_1h": 0,
+          "wallet_observed_coverage_days": 0,
+          "wallet_value_1h": 0
+        },
+        "S2": {
+          "amount_minor": 0,
+          "wallet_observed_coverage_days": 0,
+          "wallet_similar_amount_count_7d": 0,
+          "wallet_similar_amount_share_7d": 0
+        },
+        "S3": {
+          "amount_minor": 0,
+          "wallet_active_hours_utc_day": 0,
+          "wallet_count_utc_day": 0,
+          "wallet_day_count_growth": 0,
+          "wallet_observed_coverage_days": 0
+        },
+        "S4": {
+          "amount_minor": 0,
+          "wallet_near_band_count_7d": 0,
+          "wallet_observed_coverage_days": 0
+        }
+      }
+    },
+    "validation": {
+      "A4": {
+        "detected": {
+          "abs_count_skew": {
+            "min_q25_median_q75_max": [
+              0.5,
+              0.6,
+              0.7142857142857143,
+              0.75,
+              1.0
+            ],
+            "valid_n": 151
+          },
+          "abs_value_skew": {
+            "min_q25_median_q75_max": [
+              0.60991984912777,
+              0.8346741218287161,
+              0.9400092682310317,
+              0.9891728972559641,
+              1.0
+            ],
+            "valid_n": 151
+          },
+          "all_six_recent_and_history_marker_components_present": true,
+          "cash_count": {
+            "min_q25_median_q75_max": [
+              6.0,
+              7.0,
+              8.0,
+              10.0,
+              20.0
+            ],
+            "valid_n": 151
+          },
+          "history_change_abs": {
+            "min_q25_median_q75_max": [
+              0.43525813774481803,
+              0.8123946338357186,
+              1.0083056440916327,
+              1.2401800327761827,
+              1.7980331808294978
+            ],
+            "valid_n": 151
+          },
+          "positive_cash_out_direction": 68,
+          "rows": 151
+        },
+        "missed": {
+          "abs_count_skew": {
+            "min_q25_median_q75_max": [
+              0.5,
+              0.5147058823529411,
+              0.6666666666666666,
+              0.6666666666666666,
+              1.0
+            ],
+            "valid_n": 71
+          },
+          "abs_value_skew": {
+            "min_q25_median_q75_max": [
+              0.6206495018760513,
+              0.8644331441472133,
+              0.9589373189180338,
+              0.9880626660376184,
+              1.0
+            ],
+            "valid_n": 71
+          },
+          "all_six_recent_and_history_marker_components_present": true,
+          "cash_count": {
+            "min_q25_median_q75_max": [
+              6.0,
+              6.0,
+              6.0,
+              8.0,
+              21.0
+            ],
+            "valid_n": 71
+          },
+          "history_change_abs": {
+            "min_q25_median_q75_max": [
+              0.40920886262293765,
+              0.6688507836375583,
+              0.817163847617246,
+              1.2502230101037848,
+              1.7581535881494765
+            ],
+            "valid_n": 71
+          },
+          "positive_cash_out_direction": 33,
+          "rows": 71
+        }
+      },
+      "N3": {
+        "all_N3_missed": 8,
+        "incompatible_detected": 3,
+        "incompatible_missed": 4,
+        "meaning": "Diagnostic of saved selected-path summaries only; no new path search/evaluator/model or target alteration.",
+        "positive_rows": 130,
+        "selected_summary_incompatible_with_target_amount_bounds": 7
+      },
+      "missingness_on_family_positives": {
+        "A1": {
+          "agent_distinct_wallets_7d": 0,
+          "agent_new_wallet_count_7d": 0,
+          "agent_new_wallet_share_7d": 0,
+          "agent_observed_coverage_days": 0,
+          "agent_wallet_growth_ratio_7d": 0
+        },
+        "A2": {
+          "agent_observed_coverage_days": 0,
+          "agent_top2_count_share_24h": 0,
+          "agent_top2_share_change_24h": 0
+        },
+        "A3": {
+          "agent_distinct_wallets_1h": 0,
+          "agent_observed_coverage_days": 0,
+          "agent_service_acceleration_1h": 0
+        },
+        "A4": {
+          "agent_cash_distinct_wallets_24h": 0,
+          "agent_cash_in_count_24h": 0,
+          "agent_cash_in_value_24h": 0,
+          "agent_cash_out_count_24h": 0,
+          "agent_cash_out_value_24h": 0,
+          "agent_cash_value_skew_change": 0,
+          "agent_observed_coverage_days": 0,
+          "amount_minor": 0,
+          "transaction_type": 0
+        },
+        "N1": {
+          "amount_minor": 0,
+          "network_in_acceleration_24h": 0,
+          "network_in_count_24h": 0,
+          "network_in_distinct_24h": 0,
+          "transaction_type": 0
+        },
+        "N2": {
+          "amount_minor": 0,
+          "network_out_acceleration_24h": 0,
+          "network_out_count_24h": 0,
+          "network_out_distinct_24h": 0,
+          "transaction_type": 0,
+          "wallet_observed_coverage_days": 0
+        },
+        "N3": {
+          "amount_minor": 0,
+          "current_to_selected_path_first_value_ratio": 0,
+          "prior_path_min_max_log_change_7d": 0,
+          "prior_return_path_count_7d": 0,
+          "prior_return_path_min_length_7d": 0,
+          "transaction_type": 0
+        },
+        "N4": {
+          "amount_minor": 0,
+          "transaction_type": 0,
+          "wallet_pass_through_fraction_24h": 0,
+          "wallet_prior_funding_residual_minor_24h": 0
+        },
+        "S1": {
+          "amount_minor": 0,
+          "wallet_activity_acceleration_1h": 0,
+          "wallet_count_1h": 0,
+          "wallet_max_value_share_1h": 0,
+          "wallet_observed_coverage_days": 0,
+          "wallet_value_1h": 0
+        },
+        "S2": {
+          "amount_minor": 0,
+          "wallet_observed_coverage_days": 0,
+          "wallet_similar_amount_count_7d": 0,
+          "wallet_similar_amount_share_7d": 0
+        },
+        "S3": {
+          "amount_minor": 0,
+          "wallet_active_hours_utc_day": 0,
+          "wallet_count_utc_day": 0,
+          "wallet_day_count_growth": 0,
+          "wallet_observed_coverage_days": 0
+        },
+        "S4": {
+          "amount_minor": 0,
+          "wallet_near_band_count_7d": 0,
+          "wallet_observed_coverage_days": 0
+        }
+      }
+    }
+  }
+}

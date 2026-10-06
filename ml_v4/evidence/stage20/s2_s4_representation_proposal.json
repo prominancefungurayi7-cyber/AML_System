@@ -1,0 +1,12 @@
+{
+  "contract": "minimal_feature_contract.json",
+  "no_guarantee": "Sparse dependent labels and model approximation remain; new components may not improve observed or independent metrics.",
+  "proposals": [
+    "wallet_similar_amount_value_minor_7d",
+    "wallet_baseline_similar_amount_count_28d_offset_7d",
+    "wallet_near_band_distinct_amount_count_7d",
+    "wallet_baseline_near_band_count_28d_offset_7d"
+  ],
+  "rationale": "Prioritize failures11/23 S2 and0/12 exclusive S4; four missing quantities, no recent total-count/share duplication",
+  "support_rejected": "Separate total baseline support field is not necessary to implement the historical gate; raw count for richer context is deferred, not silently encoded."
+}

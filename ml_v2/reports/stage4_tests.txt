@@ -1,0 +1,9 @@
+test_bounded_features_not_clipped (test_stage4_training_contract.Stage4Contract.test_bounded_features_not_clipped) ... ok
+test_clipping_and_scaler_fit_train_only (test_stage4_training_contract.Stage4Contract.test_clipping_and_scaler_fit_train_only) ... ok
+test_metric_definition_and_threshold (test_stage4_training_contract.Stage4Contract.test_metric_definition_and_threshold) ... ok
+test_no_holdout_or_application_access_in_training_source (test_stage4_training_contract.Stage4Contract.test_no_holdout_or_application_access_in_training_source) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.027s
+
+OK

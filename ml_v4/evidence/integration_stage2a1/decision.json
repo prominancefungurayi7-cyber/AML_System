@@ -1,0 +1,13 @@
+{
+  "decision": "C \u2014 AUTHORIZED MYSQL ADMINISTRATOR ACTION STILL REQUIRED",
+  "protected_count": 429,
+  "installation_attempted": false,
+  "artifact_sha256": {
+    "ml_v4/evidence/integration_stage2a1/activation_status.json": "57c3923c8c71267ed013c7eb5e3d8cff0f0f55669a31718370cdf9937a157d44",
+    "ml_v4/evidence/integration_stage2a1/before_sha256.json": "351526dccfd338ec4686fb219f6fe137f5eb93373b3b8b79edfca3414f92f077",
+    "ml_v4/evidence/integration_stage2a1/build_report.py": "e7a88e3846f69c85a7ab67904b7ffb3442e2f7020d69e56e962648cb135a15ca",
+    "ml_v4/evidence/integration_stage2a1/preservation_verification.json": "24d9f49ddcb4c2cd7a09decebbec13ba6d7289b85ff881286740be72c52f5f9e",
+    "ml_v4/evidence/integration_stage2a1/trigger_verification.json": "2b080c39cb8cbd0186330b79c3ac9bdbd82b9b0f008a526569a6caf530e5435b",
+    "ml_v4/reports/V4_INTEGRATION_STAGE2A1_CAPTURE_ACTIVATION_REPORT.md": "63ea3c9047c6dbb096cbd449d350923fd90d85959b9eb6dcda9b43affe54b174"
+  }
+}

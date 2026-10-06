@@ -1,0 +1,78 @@
+{
+  "decision_scope": "Recommendation only; ranking balances evidence and cost, not predicted metric gains.",
+  "implemented_options": [],
+  "options": [
+    {
+      "contract_amendment": "Explicit new feature contract plus Stage16T compatibility amendment before any affected independent evaluation. Preserve v4.features.1 and Stage18.",
+      "expected_benefit": "Address demonstrable S2/S4 historical/value/variation gaps before paying for another fit; keep A4 model comparison as a separate issue.",
+      "independent_evaluation": "Original holdouts remain quarantined. Challenge feature/schema compatibility and freeze rules must be amended before generation/access, with independent custody intact.",
+      "justification": "S2/S4 weak on Train and Validation; S4-only 0/12 in Validation; static irrecoverable components, not accuracy dissatisfaction alone.",
+      "new_dataset_required": "No for design or future re-extraction of same immutable ledger; new feature/experiment version required.",
+      "option": "Preserve XGBoost and complete a versioned feature-amendment design",
+      "rank": 1,
+      "refit_required": "No now; yes to assess any future approved feature version.",
+      "required_data": "Existing frozen design and authorized development diagnostics for design; later independent hand fixtures if implementation is authorized.",
+      "risks": "Extra direct components can make synthetic rule learning easier without improving external validity; support remains sparse; hypothesis formed on reused Validation."
+    },
+    {
+      "contract_amendment": "No to retain; separate selection decision required to switch candidate.",
+      "expected_benefit": "No further fit cost; honest binary development reference and preserved comparator.",
+      "independent_evaluation": "Does not resolve custody/support requirements; no final model promotion.",
+      "justification": "Original fixed selection rule remains valid; HGB rescues A4 errors but adds false positives and loses some network detections.",
+      "new_dataset_required": "No.",
+      "option": "Retain current model with restricted claims and document HGB trade-off",
+      "rank": 2,
+      "refit_required": "No.",
+      "required_data": "Existing artifacts/predictions only.",
+      "risks": "Known S2/S4 and exclusive-family failures remain; cannot meet full-family research objective."
+    },
+    {
+      "contract_amendment": "No if strictly diagnostic; any new model inputs require a versioned amendment.",
+      "expected_benefit": "Trace unresolved examples to representation ambiguity versus learned approximation before specifying implementation changes.",
+      "independent_evaluation": "No challenge/holdout access; later claims need untouched independent evidence.",
+      "justification": "187 Validation positives missed by both XGB/HGB; N3 summaries demonstrably lose some alternatives.",
+      "new_dataset_required": "No.",
+      "option": "Targeted additional observable error review",
+      "rank": 3,
+      "refit_required": "No.",
+      "required_data": "Existing development rows, prior observable histories, annotations and fixed predictions under a separate diagnostic authorization.",
+      "risks": "Further Validation reuse; cannot quantify causal improvement from an inspection; do not search threshold grids."
+    },
+    {
+      "contract_amendment": "Existing Stage16T if current 40 fields retained; explicit compatibility amendment if future feature contract differs.",
+      "expected_benefit": "Independent sparse-family and domain evidence with fresh communities and predeclared uncertainty.",
+      "independent_evaluation": "Cannot proceed locally under developer-controlled custody; no original seal repair or family-count leakage.",
+      "justification": "Original holdout support policies failed; Stage16S/16T already require a separate estimand.",
+      "new_dataset_required": "Separate challenge version, never regeneration of original V4.",
+      "option": "Provision custody and use the separately planned challenge evaluation",
+      "rank": 4,
+      "refit_required": "No on challenge; frozen primary artifact before evaluation.",
+      "required_data": "Authorized independently administered runtime, verified dual-identity access, registry, durable one-draw log and environment freeze; new challenge only after separate approval.",
+      "risks": "Support may still fail; enriched challenge not representative prevalence; current custody unavailable."
+    },
+    {
+      "contract_amendment": "New population/research protocol; frozen target remains unless separately justified and approved.",
+      "expected_benefit": "Increase opportunity and entity/episode diversity for sparse families using a scientifically justified population law.",
+      "independent_evaluation": "Independent future evaluation version compatible with amended population/feature task, no reuse of observed evaluation results.",
+      "justification": "Train S2=112/S4=128 and nine objectives unmet; extra feature information alone cannot supply statistical support.",
+      "new_dataset_required": "Yes, separately named and versioned; preserve original 100k draw.",
+      "option": "Versioned development population experiment only if needed",
+      "rank": 5,
+      "refit_required": "Yes, separately budgeted after authorization.",
+      "required_data": "New prospective population specification, fixed opportunity law/seed policy and one retained draw, subject/cluster objectives and anti-shortcut audit.",
+      "risks": "Unnecessary regeneration, engineered easy positives, origin-specific signatures and misleading prevalence; no support acceptance loop."
+    },
+    {
+      "contract_amendment": "Separate modeling approval must resolve Stage18 unused-slot expiration and inherited 36-fit ceiling; no automatic reset or recycling.",
+      "expected_benefit": "Test whether A4/A2 approximation differences persist under a constrained, family-aware comparison.",
+      "independent_evaluation": "Future assessment must freeze model/threshold before access; no result-informed challenge fitting.",
+      "justification": "HGB rescues 46 A4 and 16 A2 misses, while XGB uniquely detects nine N3 positives; neither dominates.",
+      "new_dataset_required": "Not necessarily; new modeling experiment/version and preserved prior comparison required.",
+      "option": "Future preregistered model comparison and robustness audit",
+      "rank": 6,
+      "refit_required": "Yes for any new model; existing saved-artifact diagnosis needs none.",
+      "required_data": "Approved frozen development representation, explicit utility trade-offs, fit budget and independent evaluation plan.",
+      "risks": "Adaptive Validation tuning, extra fit consumption, apparent improvements on the same synthetic examples."
+    }
+  ]
+}

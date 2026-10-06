@@ -1,0 +1,10 @@
+# Stage 2 uses only the Python standard library.
+# Verified interpreter: CPython 3.14.3 (Windows).
+# Minimum required version: 3.12 (Path.is_junction).
+# No application environment or third-party dependency installation required.
+
+# Stage 4 training used packages already present in the separate system Python:
+numpy==2.4.3
+scikit-learn==1.9.0
+joblib==1.5.3
+xgboost==3.4.1

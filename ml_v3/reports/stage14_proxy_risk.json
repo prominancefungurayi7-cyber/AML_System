@@ -1,0 +1,219 @@
+{
+  "authority": "Frozen labels remain authoritative for reported metrics. Source/design mismatch is diagnosed, not repaired. A1 alone was independently reconstructed on every development row; A2/A3/A4 source differences are static audit findings, not full label re-evaluations.",
+  "component_counts": {
+    "train": {
+      "A1_mismatch_age_max": 34.99219616461806,
+      "A1_mismatch_age_min": 28.007662787627314,
+      "agent_families_without_A1": {
+        "A2": {
+          "growth": {
+            "availability_rate": 0.9728301886792453,
+            "available_count": 2578,
+            "max": 1.490909090909091,
+            "mean": 0.982530220402131,
+            "median": 0.9787234042553191,
+            "min": 0.25,
+            "missing_count": 72,
+            "missing_rate": 0.027169811320754716,
+            "q05": 0.5447174447174447,
+            "q25": 0.7906976744186046,
+            "q75": 1.1891891891891893,
+            "q95": 1.4285714285714286,
+            "q99": 1.4736842105263157,
+            "std": 0.27046208251543646,
+            "support": 2650
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.11418449356256935,
+            "negative": 39781,
+            "positive": 2650,
+            "prevalence": 0.062454337630506,
+            "roc_auc": 0.7418716956468743,
+            "support": 42431
+          }
+        },
+        "A3": {
+          "growth": {
+            "availability_rate": 0.9726190476190476,
+            "available_count": 817,
+            "max": 2.5,
+            "mean": 1.0665138453224356,
+            "median": 1.0588235294117647,
+            "min": 0.3448275862068966,
+            "missing_count": 23,
+            "missing_rate": 0.02738095238095238,
+            "q05": 0.6376811594202898,
+            "q25": 0.8780487804878049,
+            "q75": 1.2777777777777777,
+            "q95": 1.4482758620689655,
+            "q99": 1.4814814814814814,
+            "std": 0.24903371263664847,
+            "support": 840
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.049620915805422855,
+            "negative": 39781,
+            "positive": 840,
+            "prevalence": 0.02067895915905566,
+            "roc_auc": 0.7829558200193679,
+            "support": 40621
+          }
+        },
+        "A4": {
+          "growth": {
+            "availability_rate": 0.9752155172413793,
+            "available_count": 905,
+            "max": 1.492063492063492,
+            "mean": 1.0615553966774494,
+            "median": 1.087719298245614,
+            "min": 0.4745762711864407,
+            "missing_count": 23,
+            "missing_rate": 0.02478448275862069,
+            "q05": 0.6451612903225806,
+            "q25": 0.8695652173913043,
+            "q75": 1.25,
+            "q95": 1.4444444444444444,
+            "q99": 1.4855449735449737,
+            "std": 0.2508967305405542,
+            "support": 928
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.05416633131046199,
+            "negative": 39781,
+            "positive": 928,
+            "prevalence": 0.022795941929303103,
+            "roc_auc": 0.7825698338489436,
+            "support": 40709
+          }
+        }
+      },
+      "available_count": 36943,
+      "available_other_gates_pass": 34330,
+      "denominator_floor_active": 0,
+      "frozen_A1_without_written_A1": 436,
+      "ratio_high_other_gates_fail": 144,
+      "ratio_high_other_gates_pass": 11040,
+      "written_A1_without_frozen_A1": 0
+    },
+    "validation": {
+      "A1_mismatch_age_max": 34.99365233763889,
+      "A1_mismatch_age_min": 28.02338542550926,
+      "agent_families_without_A1": {
+        "A2": {
+          "growth": {
+            "availability_rate": 0.9634317862165963,
+            "available_count": 685,
+            "max": 1.8918918918918919,
+            "mean": 0.9797612727409266,
+            "median": 0.9285714285714286,
+            "min": 0.4,
+            "missing_count": 26,
+            "missing_rate": 0.03656821378340366,
+            "q05": 0.5882352941176471,
+            "q25": 0.7567567567567568,
+            "q75": 1.1666666666666667,
+            "q95": 1.4545454545454546,
+            "q99": 1.7777777777777777,
+            "std": 0.2924626440359571,
+            "support": 711
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.11606779045750565,
+            "negative": 9945,
+            "positive": 711,
+            "prevalence": 0.06672297297297297,
+            "roc_auc": 0.713610794673093,
+            "support": 10656
+          }
+        },
+        "A3": {
+          "growth": {
+            "availability_rate": 0.946058091286307,
+            "available_count": 228,
+            "max": 1.9245283018867925,
+            "mean": 1.2164794798501666,
+            "median": 1.2340425531914894,
+            "min": 0.6274509803921569,
+            "missing_count": 13,
+            "missing_rate": 0.05394190871369295,
+            "q05": 0.7906976744186046,
+            "q25": 1.0,
+            "q75": 1.4166666666666667,
+            "q95": 1.6833059885151755,
+            "q99": 1.8758167115902962,
+            "std": 0.2729350687011198,
+            "support": 241
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.09557520670301206,
+            "negative": 9945,
+            "positive": 241,
+            "prevalence": 0.02365992538778716,
+            "roc_auc": 0.8164243588700508,
+            "support": 10186
+          }
+        },
+        "A4": {
+          "growth": {
+            "availability_rate": 0.9880478087649402,
+            "available_count": 248,
+            "max": 1.6140350877192982,
+            "mean": 1.0110388347465795,
+            "median": 1.0,
+            "min": 0.5581395348837209,
+            "missing_count": 3,
+            "missing_rate": 0.01195219123505976,
+            "q05": 0.6256529850746269,
+            "q25": 0.814625850340136,
+            "q75": 1.2272727272727273,
+            "q95": 1.4085016835016835,
+            "q99": 1.4790831918505942,
+            "std": 0.2544349158340945,
+            "support": 251
+          },
+          "raw_power_vs_target0": {
+            "average_precision": 0.04677919724568505,
+            "negative": 9945,
+            "positive": 251,
+            "prevalence": 0.024617497057669673,
+            "roc_auc": 0.7474321917959134,
+            "support": 10196
+          }
+        }
+      },
+      "available_count": 9306,
+      "available_other_gates_pass": 6620,
+      "denominator_floor_active": 0,
+      "frozen_A1_without_written_A1": 97,
+      "ratio_high_other_gates_fail": 177,
+      "ratio_high_other_gates_pass": 2648,
+      "written_A1_without_frozen_A1": 0
+    }
+  },
+  "conclusion": "HIGH proxy concern",
+  "leakage_distinction": "Decision-time observables are permitted. A near-separable target component is a synthetic task design concern, not evidence of future/private-field leakage.",
+  "predicate_comparison": {
+    "A1": {
+      "differences": "Feature requires first observation <=t-35d, open lower/closed upper windows and full-key prior inclusion. Frozen target requires 28d coverage, closed lower/open upper timestamp windows; same-time prior services excluded from its recent window.",
+      "omitted": "at least 6 recent distinct, 4 new distinct, novelty >=.5; feature never thresholds itself",
+      "shared": "agent service wallet sets; 7d recent; four preceding 7d distinct counts; denominator max(1,median); ratio component 1.5 in target"
+    },
+    "A2": {
+      "differences": "Growth uses distinct-wallet ratio over 7d versus weekly medians; A2 uses event shares. Frozen A2 baseline is [t-28d,t-1d), 27d, and coverage28d, unlike corrected disjoint28d baseline/29d coverage.",
+      "omitted": "24h event concentration, independently pooled baseline top-two comparator, recent >=8, baseline >=20 and >=5 wallets, share>=.65 and change>=.2",
+      "shared": "agent serviced-wallet histories and observation eligibility concept"
+    },
+    "A3": {
+      "differences": "Frozen A3 reuses 7d-offset ab (t-35d..t-7d) for its service denominator despite hourly recent window; corrected architecture uses preceding28d shifted by1h. Growth counts unique wallets rather than services.",
+      "omitted": "one-hour recent >=5 events, >=3 wallets, rate acceleration",
+      "shared": "agent service histories; minimum baseline service support"
+    },
+    "A4": {
+      "differences": "No amount or cash direction enters growth. Frozen A4 uses 27d cash comparator, >=8 cash and >=12 ab7 services plus28dcoverage; corrected architecture uses disjoint28d cash/service comparator plus29dcoverage.",
+      "omitted": "current cash role, >=6 cash events, >=3 cash wallets, signed value/count skews, sign agreement, historical skew change",
+      "shared": "agent history and baseline availability concept"
+    }
+  },
+  "reason": "Growth is exactly the central relative-distinct-wallet component of A1. Other gates are often satisfied in the generated population, so eligible A1 versus relevant negatives is nearly separable. Non-A1 positives, high-growth negatives and unavailable A1 positives prevent exact overall or A1 equivalence.",
+  "scope": "A1 under the frozen synthetic task; not a complete overall target oracle"
+}

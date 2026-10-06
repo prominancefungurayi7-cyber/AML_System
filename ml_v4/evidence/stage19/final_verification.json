@@ -1,0 +1,12 @@
+{
+  "all_development_family_supports_matched": true,
+  "changed_paths": [],
+  "external_independent_audit": false,
+  "new_fits": 0,
+  "new_predictions": 0,
+  "protected_count": 219,
+  "report_priority_counts_checked": true,
+  "selected_unchanged": "primary_XGB",
+  "source_stage18_fit_count": 16,
+  "status": "PASS"
+}

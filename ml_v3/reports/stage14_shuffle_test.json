@@ -1,0 +1,59 @@
+{
+  "chance_AP_reserved": 0.33916666666666667,
+  "chance_ROC_AUC": 0.5,
+  "fit": {
+    "accuracy": 0.7020625,
+    "average_precision": 0.6000281671128673,
+    "balanced_accuracy": 0.5655968679353655,
+    "confusion_matrix": [
+      [
+        31302,
+        549
+      ],
+      [
+        13752,
+        2397
+      ]
+    ],
+    "false_positive_rate": 0.01723650748799096,
+    "macro_f1": 0.5325518936070165,
+    "normal_f1": 0.8140433001755413,
+    "normal_precision": 0.6947662804634439,
+    "normal_recall": 0.982763492512009,
+    "roc_auc": 0.7318455564387666,
+    "suspicious_f1": 0.25106048703849176,
+    "suspicious_precision": 0.8136456211812627,
+    "suspicious_recall": 0.1484302433587219,
+    "threshold": 0.5
+  },
+  "protocol": "Permute all 60000 Train labels with default_rng(20260928). Split rows by independent default_rng(20260929) permutation into 48000 fit and 12000 test rows. Score both against shuffled labels only. No Validation scores for this model.",
+  "reserved_train_test": {
+    "accuracy": 0.6475833333333333,
+    "average_precision": 0.3470923192271051,
+    "balanced_accuracy": 0.5037882144439522,
+    "confusion_matrix": [
+      [
+        7540,
+        390
+      ],
+      [
+        3839,
+        231
+      ]
+    ],
+    "false_positive_rate": 0.04918032786885246,
+    "macro_f1": 0.4397347123770041,
+    "normal_f1": 0.7809829613133772,
+    "normal_precision": 0.6626241321733017,
+    "normal_recall": 0.9508196721311475,
+    "roc_auc": 0.5061732419109468,
+    "suspicious_f1": 0.098486463440631,
+    "suspicious_precision": 0.3719806763285024,
+    "suspicious_recall": 0.05675675675675676,
+    "threshold": 0.5
+  },
+  "seed": 20260928,
+  "started_at_utc": "2026-09-28T22:34:16.793656+00:00",
+  "validation_access_for_shuffle": false,
+  "warnings": []
+}

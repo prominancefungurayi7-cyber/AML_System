@@ -1,0 +1,475 @@
+{
+  "command": "inspect",
+  "claim": "Controlled prototype only; not real operator history or independent custody",
+  "engine": {
+    "version": "8.0.46"
+  },
+  "tables_before": {
+    "transactions": [
+      {
+        "Field": "id",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": "auto_increment"
+      },
+      {
+        "Field": "sender_account",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "receiver_account",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "amount",
+        "Type": "double",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "transaction_type",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "currency",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "USD",
+        "Extra": ""
+      },
+      {
+        "Field": "channel",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "online",
+        "Extra": ""
+      },
+      {
+        "Field": "timestamp",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "status",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "risk_score",
+        "Type": "double",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+      },
+      {
+        "Field": "risk_level",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "MUL",
+        "Default": "normal",
+        "Extra": ""
+      },
+      {
+        "Field": "description",
+        "Type": "longtext",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "rules_triggered",
+        "Type": "longtext",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "ctr_required",
+        "Type": "int",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+      },
+      {
+        "Field": "sar_required",
+        "Type": "int",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+      },
+      {
+        "Field": "reviewed_by",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "reviewed_at",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "rule_score",
+        "Type": "double",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+      },
+      {
+        "Field": "rule_level",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "normal",
+        "Extra": ""
+      },
+      {
+        "Field": "rule_reason",
+        "Type": "longtext",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "ai_risk_level",
+        "Type": "varchar(255)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "ai_confidence",
+        "Type": "double",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+      },
+      {
+        "Field": "ai_reason",
+        "Type": "longtext",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "destination_country",
+        "Type": "varchar(100)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "screening_hits",
+        "Type": "varchar(1000)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "generated_label",
+        "Type": "varchar(50)",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "agent_id",
+        "Type": "bigint",
+        "Null": "YES",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      }
+    ],
+    "canonical_mobile_money_events": [
+      {
+        "Field": "transaction_id",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "event_timestamp",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "sender_wallet",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "receiver_wallet",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "amount_minor",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "currency",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "transaction_type",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "channel",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "agent_id",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "serviced_wallet",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "agent_flow_direction",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "canonical_version",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "history_status",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      }
+    ],
+    "cmm_observation_scopes": [
+      {
+        "Field": "scope_id",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "revision",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "body",
+        "Type": "longtext",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      }
+    ],
+    "cmm_history_attestations": [
+      {
+        "Field": "attestation_id",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "scope_id",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "revision",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "body",
+        "Type": "longtext",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      }
+    ],
+    "cmm_entity_history": [
+      {
+        "Field": "attestation_id",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "entity_key",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "body",
+        "Type": "longtext",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      }
+    ],
+    "cmm_source_changes": [
+      {
+        "Field": "change_id",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": "auto_increment"
+      },
+      {
+        "Field": "transaction_id",
+        "Type": "bigint",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "operation",
+        "Type": "varchar(32)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "event_timestamp",
+        "Type": "varchar(255)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      },
+      {
+        "Field": "recorded_at",
+        "Type": "varchar(40)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+      }
+    ]
+  },
+  "journal_ready": false,
+  "journal_error": "Capture trigger missing: cmm_tx_insert",
+  "scope": null,
+  "current_status": "UNKNOWN",
+  "source_before_sha256": {
+    "transactions": "f02548f673a73603a39dfe10945b0af07692f691d4de50bc78c1b347b86bad25",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "source_after_sha256": {
+    "transactions": "f02548f673a73603a39dfe10945b0af07692f691d4de50bc78c1b347b86bad25",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "source_unchanged": true,
+  "status": "PASS"
+}

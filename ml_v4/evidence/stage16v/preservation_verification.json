@@ -1,0 +1,377 @@
+{
+  "after": {
+    "experimental_v3/service.py": "de39acd2a9add370a52971b1cde4b025bb9c0fd413831a287b570412ae257118",
+    "experimental_v3/web.py": "89fdbb44a72723daf645b6b9a00065a22c3df394d6dd5939413f020a394ec328",
+    "ml_v4/design/V4_STAGE15_CONTROLLED_REDESIGN_SPECIFICATION.md": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+    "ml_v4/design/amendments/V4_STAGE15A_IMPLEMENTATION_CLARIFICATION.md": "93f6a8d23770c104942f5d44f6ef7e218725094f2621f971e370b657496940d4",
+    "ml_v4/design/amendments/v4_stage15a_amount_law.json": "20018476976acdc994a757dea6de85e5c1161fc03442e58c3651ffe2fac1738c",
+    "ml_v4/design/amendments/v4_stage15a_consistency_tests.json": "efc0b63ac1540cde69d1bc6e7bc5e3b5571065a4a16eb553dc840fc6c19381a8",
+    "ml_v4/design/amendments/v4_stage15a_decision.json": "7452d0d81276e15279062dc15b69b867c6ef7fbc2f6113720094fe1e8130b829",
+    "ml_v4/design/amendments/v4_stage15a_episode_mapping.json": "06970282d5ef7d6f84980d2bd0bea5c059f98145f5b314bce7391b9f081a3466",
+    "ml_v4/design/amendments/v4_stage15a_manifest.json": "4132f325f3904559cac3a8673614643b16ae6a83054d1a2dc822902b10892fec",
+    "ml_v4/design/amendments/v4_stage15a_precedence.json": "cefef2a6230207bdea9d6e7a4a2a2d9c4cf5c95f69a3959fdd2700a0c33d483e",
+    "ml_v4/design/amendments/validate_stage15a.py": "b683af7fdd6d04f4805b1b58c85efefd9278f4442f455e93d9c1b87a5de05754",
+    "ml_v4/design/challenge/V4_STAGE16T_CHALLENGE_PROTOCOL.md": "ca937cdd44ff6b070656a37a0ed9a6950a8db086d583c2b40efdd4e2e719fa89",
+    "ml_v4/design/challenge/challenge_custodian_policy.json": "34fda6d653992135f2ce00b295728f41f99cbaa32a32f2c88305a1b5e70496bb",
+    "ml_v4/design/challenge/challenge_decision.json": "0e1977d30f938a76655edb8c0f18fd5cf5b54fe9136b9728d9b1964764a9e353",
+    "ml_v4/design/challenge/challenge_family_opportunities.json": "4ee2d56d0fcd24538f5fe6795ba3c4b003d36271707081b9f79a551dbfa70320",
+    "ml_v4/design/challenge/challenge_hard_negative_spec.json": "a99dfb1fa56e75d9c3cc11b08dfdfabbf59ef5c4827f7b8dda5ff4d295912b53",
+    "ml_v4/design/challenge/challenge_metrics_policy.json": "2ed042ce4ed661a71c5c4cc29f7cf7197d24e7b670643b356237a15c8adaa6fd",
+    "ml_v4/design/challenge/challenge_population_spec.json": "5c97dca0c74e6bab8d8150d3bc52a6986bb1f1be619290fb48d0fadef7e66f79",
+    "ml_v4/design/challenge/challenge_reproducibility_spec.json": "9cb0e6eef01db48afcdf4dd5ddb411da8e82e7d971845206e7929cf3208d4904",
+    "ml_v4/design/challenge/challenge_scientific_claims.json": "2a8e10156e3cb4eecef41e9eee2d0d751ab225778351a8590970bcf3bc6a95dc",
+    "ml_v4/design/challenge/challenge_stage_plan.json": "3eba3580483c879042bc13b34663c49569229f8b732b2f2feafca8e8c109c9ef",
+    "ml_v4/design/challenge/challenge_support_policy.json": "15a4d4dd318df950fc9558dce84d71cb49d642f94547d1c26cb2a7ecd7b3a411",
+    "ml_v4/design/v4_acceptance_gates.json": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+    "ml_v4/design/v4_agent_population_spec.json": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+    "ml_v4/design/v4_dataset_spec.json": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+    "ml_v4/design/v4_evaluation_metrics.json": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+    "ml_v4/design/v4_family_support_policy.json": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+    "ml_v4/design/v4_feature_spec.json": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+    "ml_v4/design/v4_generator_audit_plan.json": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+    "ml_v4/design/v4_hard_negative_spec.json": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+    "ml_v4/design/v4_holdout_policy.json": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+    "ml_v4/design/v4_model_development_policy.json": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+    "ml_v4/design/v4_partition_spec.json": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+    "ml_v4/design/v4_reproducibility_spec.json": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+    "ml_v4/design/v4_stage15_decision.json": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+    "ml_v4/design/v4_stage15_protection.json": "8cc5bda6a6bb40dc66cfa5bfe08e3cbad293eeb579e1a1b60955a6a4a100a807",
+    "ml_v4/design/v4_stage15_verification.json": "1a613441a289a36dd55da2c57ba539ae0db3e2312d45f280634e72186ea3ddce",
+    "ml_v4/design/v4_target_feature_alignment.json": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+    "ml_v4/design/v4_target_predicates.json": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+    "ml_v4/design/v4_temporal_contract.json": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+    "ml_v4/design/v4_v3_comparison.json": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+    "ml_v4/design/v4_wallet_population_spec.json": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc",
+    "ml_v4/evidence/stage16r/holdout_public_certificate.json": "d586484e494e32d85ee33dddff72f9b09b2fe870b7e06a9b21b8fcb32071ffd9",
+    "ml_v4/evidence/stage16r/preflight.json": "dca94c8a3f6023b59a3d89e27fd0918dd6840292e9122ba32ee1633821963b83",
+    "ml_v4/evidence/stage16s/holdout_boundary_verification.json": "7118de32d9e2c5cd8b72d374a8ea4306ae049cbcd907231695eee0855791ba88",
+    "ml_v4/evidence/stage16s/stage16s_decision.json": "d47387afc9ef9ed2cd3e329239a577ea0785ae1de9ac16de03cd62267ed1a67a",
+    "ml_v4/evidence/stage16u/custody_readiness.json": "7d532a8bcfe9d5736c20cc2f99d760f8713c06c8cd296d4939c9d5e9b19d590d",
+    "ml_v4/evidence/stage16u/implementation_tests.json": "0481a66a799e58a27771d0d05f8ec2fac6560e28a2e3d33d1c1d3f443c03adae",
+    "ml_v4/evidence/stage16u/preservation_verification.json": "eca403c1b52090819d45cd64040db67223892f5d82c6c9c9a429ee121e9c4ca2",
+    "ml_v4/evidence/stage16u/reproducibility_readiness.json": "5258aadfb3dd709367079e5fe34a0821dbd314fadf6784721fe20ed34608da39",
+    "ml_v4/evidence/stage16u/stage16u_decision.json": "31495c1586512c5b8bef623eda93bbaa9c54c9c99cd637dc5079d3636360c524",
+    "ml_v4/evidence/stage16u/support_policy_readiness.json": "2cd7307f86efb0820c860e0c3b0d6773526ce117ccda28e5049469128fc88b7d",
+    "ml_v4/generation/stage16r_evaluator.py": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+    "ml_v4/generation/stage16r_generator.py": "563e7d24d11bae63df040b3b9af428943e3602fa28830bc5e505388ad3a6903d",
+    "ml_v4/generation/stage16u_custody.py": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+    "ml_v4/generation/stage16u_generator.py": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+    "ml_v4/generation/stage16u_support.py": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+    "ml_v4/reports/V4_STAGE16R_DATASET_GENERATION_AUDIT.md": "97993b2632724f7e109c9c66fc0bbd2d2c61f2c4f9fb43bd3fed335ffbdf523f",
+    "ml_v4/reports/V4_STAGE16S_FAMILY_SUPPORT_REVIEW.md": "0dd1e825575f7ed4fba4379d876813bb7f82c055938f443f078ccb41e42bbf42",
+    "ml_v4/reports/V4_STAGE16U_IMPLEMENTATION_READINESS.md": "5332d15553e31268a80fc7f387fa940840ebe2c3621217dbb1c5e93017792567",
+    "ml_v4/tests/test_stage16u.py": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb",
+    "server.py": "2f9eab5d1c3571061fd4a2f90fb86536fc8061f94b65ff52f2c21b65cbbc8af3"
+  },
+  "before": {
+    "experimental_v3/service.py": "de39acd2a9add370a52971b1cde4b025bb9c0fd413831a287b570412ae257118",
+    "experimental_v3/web.py": "89fdbb44a72723daf645b6b9a00065a22c3df394d6dd5939413f020a394ec328",
+    "ml_v4/design/V4_STAGE15_CONTROLLED_REDESIGN_SPECIFICATION.md": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+    "ml_v4/design/amendments/V4_STAGE15A_IMPLEMENTATION_CLARIFICATION.md": "93f6a8d23770c104942f5d44f6ef7e218725094f2621f971e370b657496940d4",
+    "ml_v4/design/amendments/v4_stage15a_amount_law.json": "20018476976acdc994a757dea6de85e5c1161fc03442e58c3651ffe2fac1738c",
+    "ml_v4/design/amendments/v4_stage15a_consistency_tests.json": "efc0b63ac1540cde69d1bc6e7bc5e3b5571065a4a16eb553dc840fc6c19381a8",
+    "ml_v4/design/amendments/v4_stage15a_decision.json": "7452d0d81276e15279062dc15b69b867c6ef7fbc2f6113720094fe1e8130b829",
+    "ml_v4/design/amendments/v4_stage15a_episode_mapping.json": "06970282d5ef7d6f84980d2bd0bea5c059f98145f5b314bce7391b9f081a3466",
+    "ml_v4/design/amendments/v4_stage15a_manifest.json": "4132f325f3904559cac3a8673614643b16ae6a83054d1a2dc822902b10892fec",
+    "ml_v4/design/amendments/v4_stage15a_precedence.json": "cefef2a6230207bdea9d6e7a4a2a2d9c4cf5c95f69a3959fdd2700a0c33d483e",
+    "ml_v4/design/amendments/validate_stage15a.py": "b683af7fdd6d04f4805b1b58c85efefd9278f4442f455e93d9c1b87a5de05754",
+    "ml_v4/design/challenge/V4_STAGE16T_CHALLENGE_PROTOCOL.md": "ca937cdd44ff6b070656a37a0ed9a6950a8db086d583c2b40efdd4e2e719fa89",
+    "ml_v4/design/challenge/challenge_custodian_policy.json": "34fda6d653992135f2ce00b295728f41f99cbaa32a32f2c88305a1b5e70496bb",
+    "ml_v4/design/challenge/challenge_decision.json": "0e1977d30f938a76655edb8c0f18fd5cf5b54fe9136b9728d9b1964764a9e353",
+    "ml_v4/design/challenge/challenge_family_opportunities.json": "4ee2d56d0fcd24538f5fe6795ba3c4b003d36271707081b9f79a551dbfa70320",
+    "ml_v4/design/challenge/challenge_hard_negative_spec.json": "a99dfb1fa56e75d9c3cc11b08dfdfabbf59ef5c4827f7b8dda5ff4d295912b53",
+    "ml_v4/design/challenge/challenge_metrics_policy.json": "2ed042ce4ed661a71c5c4cc29f7cf7197d24e7b670643b356237a15c8adaa6fd",
+    "ml_v4/design/challenge/challenge_population_spec.json": "5c97dca0c74e6bab8d8150d3bc52a6986bb1f1be619290fb48d0fadef7e66f79",
+    "ml_v4/design/challenge/challenge_reproducibility_spec.json": "9cb0e6eef01db48afcdf4dd5ddb411da8e82e7d971845206e7929cf3208d4904",
+    "ml_v4/design/challenge/challenge_scientific_claims.json": "2a8e10156e3cb4eecef41e9eee2d0d751ab225778351a8590970bcf3bc6a95dc",
+    "ml_v4/design/challenge/challenge_stage_plan.json": "3eba3580483c879042bc13b34663c49569229f8b732b2f2feafca8e8c109c9ef",
+    "ml_v4/design/challenge/challenge_support_policy.json": "15a4d4dd318df950fc9558dce84d71cb49d642f94547d1c26cb2a7ecd7b3a411",
+    "ml_v4/design/v4_acceptance_gates.json": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+    "ml_v4/design/v4_agent_population_spec.json": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+    "ml_v4/design/v4_dataset_spec.json": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+    "ml_v4/design/v4_evaluation_metrics.json": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+    "ml_v4/design/v4_family_support_policy.json": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+    "ml_v4/design/v4_feature_spec.json": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+    "ml_v4/design/v4_generator_audit_plan.json": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+    "ml_v4/design/v4_hard_negative_spec.json": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+    "ml_v4/design/v4_holdout_policy.json": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+    "ml_v4/design/v4_model_development_policy.json": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+    "ml_v4/design/v4_partition_spec.json": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+    "ml_v4/design/v4_reproducibility_spec.json": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+    "ml_v4/design/v4_stage15_decision.json": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+    "ml_v4/design/v4_stage15_protection.json": "8cc5bda6a6bb40dc66cfa5bfe08e3cbad293eeb579e1a1b60955a6a4a100a807",
+    "ml_v4/design/v4_stage15_verification.json": "1a613441a289a36dd55da2c57ba539ae0db3e2312d45f280634e72186ea3ddce",
+    "ml_v4/design/v4_target_feature_alignment.json": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+    "ml_v4/design/v4_target_predicates.json": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+    "ml_v4/design/v4_temporal_contract.json": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+    "ml_v4/design/v4_v3_comparison.json": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+    "ml_v4/design/v4_wallet_population_spec.json": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc",
+    "ml_v4/evidence/stage16r/holdout_public_certificate.json": "d586484e494e32d85ee33dddff72f9b09b2fe870b7e06a9b21b8fcb32071ffd9",
+    "ml_v4/evidence/stage16r/preflight.json": "dca94c8a3f6023b59a3d89e27fd0918dd6840292e9122ba32ee1633821963b83",
+    "ml_v4/evidence/stage16s/holdout_boundary_verification.json": "7118de32d9e2c5cd8b72d374a8ea4306ae049cbcd907231695eee0855791ba88",
+    "ml_v4/evidence/stage16s/stage16s_decision.json": "d47387afc9ef9ed2cd3e329239a577ea0785ae1de9ac16de03cd62267ed1a67a",
+    "ml_v4/evidence/stage16u/custody_readiness.json": "7d532a8bcfe9d5736c20cc2f99d760f8713c06c8cd296d4939c9d5e9b19d590d",
+    "ml_v4/evidence/stage16u/implementation_tests.json": "0481a66a799e58a27771d0d05f8ec2fac6560e28a2e3d33d1c1d3f443c03adae",
+    "ml_v4/evidence/stage16u/preservation_verification.json": "eca403c1b52090819d45cd64040db67223892f5d82c6c9c9a429ee121e9c4ca2",
+    "ml_v4/evidence/stage16u/reproducibility_readiness.json": "5258aadfb3dd709367079e5fe34a0821dbd314fadf6784721fe20ed34608da39",
+    "ml_v4/evidence/stage16u/stage16u_decision.json": "31495c1586512c5b8bef623eda93bbaa9c54c9c99cd637dc5079d3636360c524",
+    "ml_v4/evidence/stage16u/support_policy_readiness.json": "2cd7307f86efb0820c860e0c3b0d6773526ce117ccda28e5049469128fc88b7d",
+    "ml_v4/generation/stage16r_evaluator.py": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+    "ml_v4/generation/stage16r_generator.py": "563e7d24d11bae63df040b3b9af428943e3602fa28830bc5e505388ad3a6903d",
+    "ml_v4/generation/stage16u_custody.py": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+    "ml_v4/generation/stage16u_generator.py": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+    "ml_v4/generation/stage16u_support.py": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+    "ml_v4/reports/V4_STAGE16R_DATASET_GENERATION_AUDIT.md": "97993b2632724f7e109c9c66fc0bbd2d2c61f2c4f9fb43bd3fed335ffbdf523f",
+    "ml_v4/reports/V4_STAGE16S_FAMILY_SUPPORT_REVIEW.md": "0dd1e825575f7ed4fba4379d876813bb7f82c055938f443f078ccb41e42bbf42",
+    "ml_v4/reports/V4_STAGE16U_IMPLEMENTATION_READINESS.md": "5332d15553e31268a80fc7f387fa940840ebe2c3621217dbb1c5e93017792567",
+    "ml_v4/tests/test_stage16u.py": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb",
+    "server.py": "2f9eab5d1c3571061fd4a2f90fb86536fc8061f94b65ff52f2c21b65cbbc8af3"
+  },
+  "changed_paths": [],
+  "manifest_checks": {
+    "ml_v4/design/amendments/v4_stage15a_manifest.json": {
+      "ml_v4/design/amendments/V4_STAGE15A_IMPLEMENTATION_CLARIFICATION.md": {
+        "actual": "93f6a8d23770c104942f5d44f6ef7e218725094f2621f971e370b657496940d4",
+        "expected": "93f6a8d23770c104942f5d44f6ef7e218725094f2621f971e370b657496940d4",
+        "matches": true
+      },
+      "ml_v4/design/amendments/v4_stage15a_amount_law.json": {
+        "actual": "20018476976acdc994a757dea6de85e5c1161fc03442e58c3651ffe2fac1738c",
+        "expected": "20018476976acdc994a757dea6de85e5c1161fc03442e58c3651ffe2fac1738c",
+        "matches": true
+      },
+      "ml_v4/design/amendments/v4_stage15a_consistency_tests.json": {
+        "actual": "efc0b63ac1540cde69d1bc6e7bc5e3b5571065a4a16eb553dc840fc6c19381a8",
+        "expected": "efc0b63ac1540cde69d1bc6e7bc5e3b5571065a4a16eb553dc840fc6c19381a8",
+        "matches": true
+      },
+      "ml_v4/design/amendments/v4_stage15a_decision.json": {
+        "actual": "7452d0d81276e15279062dc15b69b867c6ef7fbc2f6113720094fe1e8130b829",
+        "expected": "7452d0d81276e15279062dc15b69b867c6ef7fbc2f6113720094fe1e8130b829",
+        "matches": true
+      },
+      "ml_v4/design/amendments/v4_stage15a_episode_mapping.json": {
+        "actual": "06970282d5ef7d6f84980d2bd0bea5c059f98145f5b314bce7391b9f081a3466",
+        "expected": "06970282d5ef7d6f84980d2bd0bea5c059f98145f5b314bce7391b9f081a3466",
+        "matches": true
+      },
+      "ml_v4/design/amendments/v4_stage15a_precedence.json": {
+        "actual": "cefef2a6230207bdea9d6e7a4a2a2d9c4cf5c95f69a3959fdd2700a0c33d483e",
+        "expected": "cefef2a6230207bdea9d6e7a4a2a2d9c4cf5c95f69a3959fdd2700a0c33d483e",
+        "matches": true
+      },
+      "ml_v4/design/amendments/validate_stage15a.py": {
+        "actual": "b683af7fdd6d04f4805b1b58c85efefd9278f4442f455e93d9c1b87a5de05754",
+        "expected": "b683af7fdd6d04f4805b1b58c85efefd9278f4442f455e93d9c1b87a5de05754",
+        "matches": true
+      }
+    },
+    "ml_v4/design/challenge/challenge_decision.json": {
+      "ml_v4/design/challenge/V4_STAGE16T_CHALLENGE_PROTOCOL.md": {
+        "actual": "ca937cdd44ff6b070656a37a0ed9a6950a8db086d583c2b40efdd4e2e719fa89",
+        "expected": "ca937cdd44ff6b070656a37a0ed9a6950a8db086d583c2b40efdd4e2e719fa89",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_custodian_policy.json": {
+        "actual": "34fda6d653992135f2ce00b295728f41f99cbaa32a32f2c88305a1b5e70496bb",
+        "expected": "34fda6d653992135f2ce00b295728f41f99cbaa32a32f2c88305a1b5e70496bb",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_family_opportunities.json": {
+        "actual": "4ee2d56d0fcd24538f5fe6795ba3c4b003d36271707081b9f79a551dbfa70320",
+        "expected": "4ee2d56d0fcd24538f5fe6795ba3c4b003d36271707081b9f79a551dbfa70320",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_hard_negative_spec.json": {
+        "actual": "a99dfb1fa56e75d9c3cc11b08dfdfabbf59ef5c4827f7b8dda5ff4d295912b53",
+        "expected": "a99dfb1fa56e75d9c3cc11b08dfdfabbf59ef5c4827f7b8dda5ff4d295912b53",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_metrics_policy.json": {
+        "actual": "2ed042ce4ed661a71c5c4cc29f7cf7197d24e7b670643b356237a15c8adaa6fd",
+        "expected": "2ed042ce4ed661a71c5c4cc29f7cf7197d24e7b670643b356237a15c8adaa6fd",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_population_spec.json": {
+        "actual": "5c97dca0c74e6bab8d8150d3bc52a6986bb1f1be619290fb48d0fadef7e66f79",
+        "expected": "5c97dca0c74e6bab8d8150d3bc52a6986bb1f1be619290fb48d0fadef7e66f79",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_reproducibility_spec.json": {
+        "actual": "9cb0e6eef01db48afcdf4dd5ddb411da8e82e7d971845206e7929cf3208d4904",
+        "expected": "9cb0e6eef01db48afcdf4dd5ddb411da8e82e7d971845206e7929cf3208d4904",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_scientific_claims.json": {
+        "actual": "2a8e10156e3cb4eecef41e9eee2d0d751ab225778351a8590970bcf3bc6a95dc",
+        "expected": "2a8e10156e3cb4eecef41e9eee2d0d751ab225778351a8590970bcf3bc6a95dc",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_stage_plan.json": {
+        "actual": "3eba3580483c879042bc13b34663c49569229f8b732b2f2feafca8e8c109c9ef",
+        "expected": "3eba3580483c879042bc13b34663c49569229f8b732b2f2feafca8e8c109c9ef",
+        "matches": true
+      },
+      "ml_v4/design/challenge/challenge_support_policy.json": {
+        "actual": "15a4d4dd318df950fc9558dce84d71cb49d642f94547d1c26cb2a7ecd7b3a411",
+        "expected": "15a4d4dd318df950fc9558dce84d71cb49d642f94547d1c26cb2a7ecd7b3a411",
+        "matches": true
+      }
+    },
+    "ml_v4/design/v4_stage15_verification.json": {
+      "ml_v4/design/V4_STAGE15_CONTROLLED_REDESIGN_SPECIFICATION.md": {
+        "actual": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+        "expected": "ad4a2541d6e7d761315478f1362cc63417359fedcd61b18b091ed8ade7d6985e",
+        "matches": true
+      },
+      "ml_v4/design/v4_acceptance_gates.json": {
+        "actual": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+        "expected": "f9c703c5b3f62fcfe06f7e219da496d39fa3fe36c7ec5bcccfb5485cad68a24c",
+        "matches": true
+      },
+      "ml_v4/design/v4_agent_population_spec.json": {
+        "actual": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+        "expected": "9a522aa320035b6cc1dcfad9e63d4d712ba9e0878aefcf7e7742fa831195f925",
+        "matches": true
+      },
+      "ml_v4/design/v4_dataset_spec.json": {
+        "actual": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+        "expected": "9c184ebd0ecd9645bda064a0e5e4974a80492e825986d0b6c1acd1369fab7f18",
+        "matches": true
+      },
+      "ml_v4/design/v4_evaluation_metrics.json": {
+        "actual": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+        "expected": "945341fd9926fe3c833aa139662270d9929aae967939a8492c7e88130050a86e",
+        "matches": true
+      },
+      "ml_v4/design/v4_family_support_policy.json": {
+        "actual": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+        "expected": "69ac9457a254a2d37da43bee1110c0ab656e52fcce02e1cc5e03cb0b00b6f28c",
+        "matches": true
+      },
+      "ml_v4/design/v4_feature_spec.json": {
+        "actual": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+        "expected": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+        "matches": true
+      },
+      "ml_v4/design/v4_generator_audit_plan.json": {
+        "actual": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+        "expected": "770c5dae28901d6b787f5982872548298382f83ded27346ecdd43f46808607b2",
+        "matches": true
+      },
+      "ml_v4/design/v4_hard_negative_spec.json": {
+        "actual": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+        "expected": "11d10e07c1e0b0a1ba363d7f8b1f5f31f4d6977ab44b1939d83e6c6ebfc0afa1",
+        "matches": true
+      },
+      "ml_v4/design/v4_holdout_policy.json": {
+        "actual": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+        "expected": "76854dac71c026249174638ead0fe94d7328c7dedd1c7adb07d2bff1e26a4a5e",
+        "matches": true
+      },
+      "ml_v4/design/v4_model_development_policy.json": {
+        "actual": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+        "expected": "bc7333e50c23dcfd6af47fd1b2f201dfeb0395eef4924c71897490ab1533b21f",
+        "matches": true
+      },
+      "ml_v4/design/v4_partition_spec.json": {
+        "actual": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+        "expected": "b95041fd75e33d0b5439a74df1362ded8174f4984672170e1c3391f613879e4e",
+        "matches": true
+      },
+      "ml_v4/design/v4_reproducibility_spec.json": {
+        "actual": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+        "expected": "87aee3df636d9d86a44ac75ba7955be7eaedb2b9a1965e6c305509ae71144752",
+        "matches": true
+      },
+      "ml_v4/design/v4_stage15_decision.json": {
+        "actual": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+        "expected": "e418dd1fd7f13e9ed9105865cdeacdbc8e5a99c9195137d5ab1f7f08da884de3",
+        "matches": true
+      },
+      "ml_v4/design/v4_stage15_protection.json": {
+        "actual": "8cc5bda6a6bb40dc66cfa5bfe08e3cbad293eeb579e1a1b60955a6a4a100a807",
+        "expected": "8cc5bda6a6bb40dc66cfa5bfe08e3cbad293eeb579e1a1b60955a6a4a100a807",
+        "matches": true
+      },
+      "ml_v4/design/v4_target_feature_alignment.json": {
+        "actual": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+        "expected": "2896a57a23667badf7adabd28ac859a719f7dccfdc53e4efa084af4c7f8ba10a",
+        "matches": true
+      },
+      "ml_v4/design/v4_target_predicates.json": {
+        "actual": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+        "expected": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8",
+        "matches": true
+      },
+      "ml_v4/design/v4_temporal_contract.json": {
+        "actual": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+        "expected": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60",
+        "matches": true
+      },
+      "ml_v4/design/v4_v3_comparison.json": {
+        "actual": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+        "expected": "9207e17c21cebaa30fae5882c836438ba05619acfc96e471e0cb590870839faa",
+        "matches": true
+      },
+      "ml_v4/design/v4_wallet_population_spec.json": {
+        "actual": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc",
+        "expected": "9838185e0f5ba51c58f11a4d38afa9c974a1a4c0955b64fe9380f0c4a55412bc",
+        "matches": true
+      }
+    },
+    "ml_v4/evidence/stage16u/stage16u_decision.json": {
+      "ml_v4/evidence/stage16u/custody_readiness.json": {
+        "actual": "7d532a8bcfe9d5736c20cc2f99d760f8713c06c8cd296d4939c9d5e9b19d590d",
+        "expected": "7d532a8bcfe9d5736c20cc2f99d760f8713c06c8cd296d4939c9d5e9b19d590d",
+        "matches": true
+      },
+      "ml_v4/evidence/stage16u/implementation_tests.json": {
+        "actual": "0481a66a799e58a27771d0d05f8ec2fac6560e28a2e3d33d1c1d3f443c03adae",
+        "expected": "0481a66a799e58a27771d0d05f8ec2fac6560e28a2e3d33d1c1d3f443c03adae",
+        "matches": true
+      },
+      "ml_v4/evidence/stage16u/preservation_verification.json": {
+        "actual": "eca403c1b52090819d45cd64040db67223892f5d82c6c9c9a429ee121e9c4ca2",
+        "expected": "eca403c1b52090819d45cd64040db67223892f5d82c6c9c9a429ee121e9c4ca2",
+        "matches": true
+      },
+      "ml_v4/evidence/stage16u/reproducibility_readiness.json": {
+        "actual": "5258aadfb3dd709367079e5fe34a0821dbd314fadf6784721fe20ed34608da39",
+        "expected": "5258aadfb3dd709367079e5fe34a0821dbd314fadf6784721fe20ed34608da39",
+        "matches": true
+      },
+      "ml_v4/evidence/stage16u/support_policy_readiness.json": {
+        "actual": "2cd7307f86efb0820c860e0c3b0d6773526ce117ccda28e5049469128fc88b7d",
+        "expected": "2cd7307f86efb0820c860e0c3b0d6773526ce117ccda28e5049469128fc88b7d",
+        "matches": true
+      },
+      "ml_v4/generation/stage16u_custody.py": {
+        "actual": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+        "expected": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+        "matches": true
+      },
+      "ml_v4/generation/stage16u_generator.py": {
+        "actual": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+        "expected": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+        "matches": true
+      },
+      "ml_v4/generation/stage16u_support.py": {
+        "actual": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+        "expected": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+        "matches": true
+      },
+      "ml_v4/reports/V4_STAGE16U_IMPLEMENTATION_READINESS.md": {
+        "actual": "5332d15553e31268a80fc7f387fa940840ebe2c3621217dbb1c5e93017792567",
+        "expected": "5332d15553e31268a80fc7f387fa940840ebe2c3621217dbb1c5e93017792567",
+        "matches": true
+      },
+      "ml_v4/tests/test_stage16u.py": {
+        "actual": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb",
+        "expected": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb",
+        "matches": true
+      }
+    }
+  },
+  "scope": "Explicit design, report, public evidence, source and integration paths only. Existing dataset bytes and sealed contents not opened or hashed. Full historical snapshot remains incomplete."
+}

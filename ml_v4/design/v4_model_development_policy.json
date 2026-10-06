@@ -1,0 +1,26 @@
+{
+  "alternative": "If XGBoost is unavailable, declare GradientBoosting replacement before fitting; do not add a fifth family after results.",
+  "budget": {
+    "comparative_candidates": 24,
+    "robustness_and_sanity": 12,
+    "total": 36
+  },
+  "compatibility": "No V3 model promotion or reuse of its fitted transforms. No Train+Validation refit during development. Any authorized final refit is separately budgeted and requires a re-frozen artifact before holdout access.",
+  "design_version": "v4.stage 15.design.1",
+  "diagnostics_allocation": "Reserve dominant-feature removal for 4 families (4), missingness-only (1), dominant-feature-only and tiny-set (2), Train-only shuffle (1), seed repeats (4). If a diagnostic becomes scientifically inapplicable, leave slot unused. This is a ceiling, not an instruction to fit now.",
+  "families": [
+    "LogisticRegression",
+    "RandomForest",
+    "HistGradientBoosting",
+    "XGBoost"
+  ],
+  "labels": "Use natural frozen label prevalence. No resampling by default. Unit weighting and a Train-derived balanced class-weight option may be among frozen configurations. No SMOTE; any future resampling is a separately authorized experiment.",
+  "maximum_development_configurations": 36,
+  "maximum_development_fits": 36,
+  "schema_version": 1,
+  "search": "At most6 fixed configurations per family including class-weight choices. Exact parameters, seeds, preprocessing and 12 diagnostic fit slots frozen in a later authorized modeling plan before first fit. All failed/adaptive/seed-repeat fits consume the 36 cap; unused slots expire rather than justify more search.",
+  "selection": "Use a preregistered constrained comparison of aggregate precision/recall/FPR, family/domain/hard-origin metrics and robustness; do not rank solely on MacroF1. Numerical model acceptance tolerances and deterministic tie-break must be frozen before fitting, in the later modeling plan.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "threshold": "Initial0.50 (score>=0.50 positive). Optimize threshold only in a later separate stage after representation, model and preprocessing freeze, using Train/Validation only. Freeze utility/review-capacity objective and grid before search, then threshold before holdout authorization. No threshold work in Stage 15.",
+  "transforms": "Fit scalers/imputers and any learned encoding on Train only. Document sentinel-to-missing conversion per column; signed valid values remain intact. Fixed three-category type one-hot allowed; no identity encoding. Validation never fits transformations or early stopping."
+}

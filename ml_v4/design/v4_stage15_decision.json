@@ -1,0 +1,20 @@
+{
+  "actual_population_status": "NOT_GENERATED; support/overlap/prevalence/runtime unmeasured",
+  "decision": "A — V4 DESIGN APPROVED FOR GENERATION",
+  "design_version": "v4.stage 15.design.1",
+  "historical_scope": "V1/V2/V3 preserved under explicit702-file protection manifest; named V3 public commitment metadata unchanged, unread evaluation bytes not inspected.",
+  "limitations": [
+    "Synthetic assumptions without operator calibration",
+    "No achieved family-support evidence",
+    "Only 3/2 heldout communities limit uncertainty claims",
+    "Predicate reproduction is narrower than criminal or operational AML detection",
+    "Compact feature representation has documented omissions",
+    "Joint Independent shifts do not isolate mechanisms",
+    "High rule alignment may remain scientifically legitimate"
+  ],
+  "meaning": "Technical design recommendation. User approval and successful future implementation gates are still required; Stage 15 authorizes and performs no generation.",
+  "next_boundary": "Await user approval for a separately bounded V4 implementation/generation stage; no implied permission from this technical A decision.",
+  "rationale": "All 12 predicates, alignment, population mechanisms, boundary rules,40 features, family-support objectives and fresh evaluation governance are specified. V3 semantic and population findings justify a separately versioned experiment.",
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

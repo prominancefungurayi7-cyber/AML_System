@@ -1,0 +1,21 @@
+{
+  "assisted_W2W": "One service using explicit serviced_wallet, including when receiver is serviced; not necessarily sender",
+  "audit_scope": "Independent observable-only primitive calculation exactly matches all 75000 saved growth values. No official matrix regenerated or edited.",
+  "baseline": "(t-35d,t-7d], four disjoint 7d buckets; lower open, upper closed",
+  "cash_in": "One service at named agent for serviced_wallet",
+  "cash_out": "One service at named agent for serviced_wallet",
+  "cold_start": "Unavailable until full 35d observation and baseline count; displayed coverage caps at 28d and cannot establish eligibility",
+  "current": "Included exactly once before state update; type/agent/serviced-wallet/time identify service. Amount is unused.",
+  "denominator": "Median of four weekly DISTINCT serviced-wallet counts, including zero buckets; floor 1",
+  "direct_W2W": "No agent subject; -1; creates no agent service history",
+  "eligibility": "Agent present; first prior observable service <= t-35d; at least 12 baseline services. No recent distinct/novelty/target gate.",
+  "formula": "D_recent / max(1, median(D_week1,D_week2,D_week3,D_week4))",
+  "missing": "-1 when absent agent or baseline ineligible; dimensionless nonnegative observed values",
+  "ordering": "UTC timestamp then integer ID; smaller same-time ID is prior; state updated after emission; no cross-partition state",
+  "recent": "(t-7d,t], prior keys < current key, plus current agent service",
+  "result": "PASS: corrected implementation agrees with Stage 10A contract",
+  "sources": {
+    "ml_v3/src/stage10a_contract.py": "3bef71de4059bc519698b204aea529f7c65d7fd48177d0651f137ef4bd8c380d",
+    "ml_v3/src/stage10a_pipeline.py": "55efde1324ca559006a1dfc8f934d315c2a9c5722c934900090c4dbd019d2dcd"
+  }
+}

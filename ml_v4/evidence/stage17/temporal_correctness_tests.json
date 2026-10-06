@@ -1,0 +1,22 @@
+{
+  "30_day_window": "No feature in frozen 40-field schema requires a 30-day window; none invented.",
+  "coverage": [
+    "strict prior full keys",
+    "1h and 24h open lower bounds",
+    "UTC midnight and calendar baseline",
+    "35d A1 exact age and 12-service support",
+    "graph chronology/1..5 edges",
+    "future append invariance",
+    "partition reset",
+    "incoming coverage and service roles",
+    "7d exact lower exclusion",
+    "5% amount equality and just outside",
+    "inclusive band endpoints",
+    "even weekly median with returning customers",
+    "nonzero 28-bin calendar median",
+    "noncanonical timestamps rejected",
+    "resolved path escape rejection (mocked resolve, no OS symlink provisioned)"
+  ],
+  "fixture_evidence": "independent_fixture_tests.json",
+  "status": "PASS"
+}

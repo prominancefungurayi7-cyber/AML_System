@@ -1,0 +1,254 @@
+{
+  "contract": "v4.temporal.1",
+  "design_version": "v4.stage 15.design.1",
+  "families": [
+    {
+      "all_conditions": [
+        "n(R)>=4",
+        "distinct amount values in R >=2",
+        "sum_minor(R)>=30000",
+        "max_minor(R)/sum_minor(R)<=0.60",
+        "n(R)/max(1,n(B)/672)>=3"
+      ],
+      "baseline_window": "B_1h",
+      "code": "S1",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "28d+1h",
+      "current_inclusion": "Current subject activity once",
+      "entity": "wallet subject",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "VariableFragmentBurst",
+      "notes": "Variable amounts and dispersed value within a short burst. Explicit denominator floor 1; no dependence on private episode membership.",
+      "recent_window": "1h"
+    },
+    {
+      "all_conditions": [
+        "C_R={e in R:20*abs(amount(e)-amount(T))<=amount(T)}; C_B uses same current-centered test in B",
+        "n(C_R)>=4",
+        "sum_minor(C_R)>=20000",
+        "n(C_R)/n(R)>=0.60",
+        "n(C_R)/max(1,n(C_B)/4)>=2"
+      ],
+      "baseline_window": "B_7d",
+      "code": "S2",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "35d",
+      "current_inclusion": "Current subject activity once",
+      "entity": "wallet subject",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "SimilarAmountRepetition",
+      "notes": "Baseline support is all subject activity, not a requirement for four baseline similar events. No future cluster center or learned amount band.",
+      "recent_window": "7d"
+    },
+    {
+      "all_conditions": [
+        "n(R)>=6",
+        "number of occupied UTC hour buckets in R >=3",
+        "sum_minor(R)>=50000",
+        "n(R)/max(1,median(28 preceding calendar-day activity counts, including zeros))>=2"
+      ],
+      "baseline_window": "[d-28d,d)",
+      "code": "S3",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "first observation <=d-28d",
+      "current_inclusion": "Current subject activity once",
+      "entity": "wallet subject",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "DistributedSameDayFragmentation",
+      "notes": "Calendar exception is shared by evaluator/extractor; no full current-day future total.",
+      "recent_window": "UTC [d,t]"
+    },
+    {
+      "all_conditions": [
+        "band(e)=700000<=amount_minor(e)<=1050000; band(T) true",
+        "n(R)>=5",
+        "n(band rows in R)>=3",
+        "distinct band amount values in R >=2",
+        "n(band rows in R)/n(R)>=0.40",
+        "n(band rows in R)/max(1,n(band rows in B)/4)>=2"
+      ],
+      "baseline_window": "B_7d",
+      "code": "S4",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "35d",
+      "current_inclusion": "Current subject activity once",
+      "entity": "wallet subject",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "VariableNearThresholdHistory",
+      "notes": "SYNTHETIC ANALYTICAL THRESHOLD USD 10000; band USD 7000..10500. High-value repetition may be legitimate; no legal claim.",
+      "recent_window": "7d"
+    },
+    {
+      "all_conditions": [
+        "current type is W2W",
+        "n(R incoming W2W edges)>=4",
+        "distinct opposite endpoints in R >=3",
+        "sum_minor(R)>=30000",
+        "n(R)/max(1,n(B)/28)>=2"
+      ],
+      "baseline_window": "B_24h",
+      "code": "N1",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "29d",
+      "current_inclusion": "Current W2W edge once; non-W2W inapplicable",
+      "entity": "current W2W receiver",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "ManyToOneCollection",
+      "notes": "Coverage is first observed participation of endpoint; baseline count is relevant directed W2W edges only; cash excluded.",
+      "recent_window": "24h"
+    },
+    {
+      "all_conditions": [
+        "current type is W2W",
+        "n(R outgoing W2W edges)>=4",
+        "distinct opposite endpoints in R >=3",
+        "sum_minor(R)>=30000",
+        "n(R)/max(1,n(B)/28)>=2"
+      ],
+      "baseline_window": "B_24h",
+      "code": "N2",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "29d",
+      "current_inclusion": "Current W2W edge once; non-W2W inapplicable",
+      "entity": "current W2W sender",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 4,
+      "name": "OneToManyDispersion",
+      "notes": "Coverage is first observed participation of endpoint; baseline count is relevant directed W2W edges only; cash excluded.",
+      "recent_window": "24h"
+    },
+    {
+      "all_conditions": [
+        "current W2W sender s != receiver r",
+        "exists a simple directed prior path r -> ... -> s of 1..5 edges with no repeated vertices",
+        "every edge has t-7d<time<=t and strictly increasing keys, last key<key(T)",
+        "for each adjacent prior edge pair: 1/4<=amount(next)/amount(previous)<=4",
+        "1/4<=amount(T)/amount(first path edge)<=5/4"
+      ],
+      "baseline_window": "none",
+      "code": "N3",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "none",
+      "current_inclusion": "Current closes path; excluded from prior path",
+      "entity": "current W2W endpoints",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 0,
+      "name": "ReciprocalRelationshipCycle",
+      "notes": "Any qualifying path is sufficient. No shortest-path restriction in target; no search truncation. A 1-edge path has a vacuous adjacent-edge condition. Cycle length including current is 2..6.",
+      "recent_window": "prior 7d"
+    },
+    {
+      "all_conditions": [
+        "current type W2W or Cash-Out",
+        "anchor is smallest-key prior incoming W2W edge within (t-24h,t]",
+        "F=sum prior incoming W2W and Cash-In amounts with anchor.key<=key<key(T); each event once",
+        "O_prior=sum prior outgoing W2W and Cash-Out amounts with anchor.key<key<key(T); O=O_prior+amount(T)",
+        "F>=10000",
+        "1/2<=O/F<=1",
+        "amount(T)<=F-O_prior"
+      ],
+      "baseline_window": "none",
+      "code": "N4",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "none",
+      "current_inclusion": "Current outward amount once",
+      "entity": "current W2W sender or cash-out wallet",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 0,
+      "name": "WalletPassThrough",
+      "notes": "Anchor and all funding/outward events are bounded by the same 24h horizon. Cash-In alone cannot establish anchor. No prediction of subsequent exit.",
+      "recent_window": "prior 24h then anchor..current"
+    },
+    {
+      "all_conditions": [
+        "D=distinct serviced wallets in R; U=wallets(R) minus wallets(B); M=median(distinct counts of four baseline weeks, including zeros)",
+        "D>=6",
+        "size(U)>=4",
+        "size(U)/D>=1/2",
+        "D/max(1,M)>=3/2"
+      ],
+      "baseline_window": "B_7d; four separate preceding 7d buckets",
+      "code": "A1",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "35d",
+      "current_inclusion": "Current service once; amount unused",
+      "entity": "current agent",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 12,
+      "name": "AgentWalletGrowth",
+      "notes": "Retains meaningful compound A1; aligns 35d eligibility and boundaries. New means absent in preceding baseline, not private activation or globally new wallet. No added gate solely to lower accuracy.",
+      "recent_window": "7d"
+    },
+    {
+      "all_conditions": [
+        "n(R)>=8",
+        "top2(R)>=13/20",
+        "top2(R)-top2(B)>=1/5"
+      ],
+      "baseline_window": "B_24h",
+      "code": "A2",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "29d",
+      "current_inclusion": "Current service once",
+      "entity": "current agent",
+      "minimum_baseline_distinct": 5,
+      "minimum_baseline_events": 20,
+      "name": "AgentWalletConcentration",
+      "notes": "top2 selects its own two largest serviced-wallet event counts independently in each window, divided by that window count. Different baseline wallets allowed; all service types count.",
+      "recent_window": "24h"
+    },
+    {
+      "all_conditions": [
+        "n(R)>=5",
+        "distinct serviced wallets in R >=3",
+        "n(R)/max(1,n(B)/672)>=3"
+      ],
+      "baseline_window": "B_1h",
+      "code": "A3",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "28d+1h",
+      "current_inclusion": "Current service once",
+      "entity": "current agent",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": 12,
+      "name": "AgentTemporalBurst",
+      "notes": "Baseline offset is exactly 1h, not the 7d-offset A1 baseline. Counts all service types.",
+      "recent_window": "1h"
+    },
+    {
+      "all_conditions": [
+        "current is Cash-In or Cash-Out",
+        "recent cash count>=6",
+        "distinct recent cash-serviced wallets>=3",
+        "v=(cashout_value-cashin_value)/(cashout_value+cashin_value); c=(cashout_count-cashin_count)/(cashout_count+cashin_count)",
+        "abs(v)>=3/5",
+        "abs(c)>=1/2",
+        "v*c>0",
+        "abs(v-v_baseline)>=2/5"
+      ],
+      "baseline_window": "B_24h",
+      "code": "A4",
+      "cold_start": "False with eligibility reason; union may be positive through another family.",
+      "coverage": "29d",
+      "current_inclusion": "Current Cash-In/Cash-Out once; current W2W inapplicable",
+      "entity": "current agent",
+      "minimum_baseline_distinct": null,
+      "minimum_baseline_events": "12 services including >=8 cash events",
+      "name": "AgentFlowImbalance",
+      "notes": "Empty cash skew is 0. W2W never enters cash sums/counts or float. Baseline services and cash both use the same preceding disjoint 28d.",
+      "recent_window": "24h"
+    }
+  ],
+  "final_target": "int(any(family_true)); multi-label family witnesses retained for diagnostics only.",
+  "global_eligibility": "Current role, full observed coverage and minimum baseline counts/distincts in each row are additional mandatory AND conditions. None means no extra minimum. Inapplicable or ineligible families are false.",
+  "independent_input": "Observable event schema only. Neither features, predictions nor private scenario metadata are accepted.",
+  "predicate_version": "v4.predicates.1",
+  "schema_version": 1,
+  "semantic_changes": "All families receive canonical endpoints/full prior keys and explicit denominator floors. A1/S2/S4 use35d, N1/N2/A2/A4 use29d, S1/A3 use28d+1h. A2/A4 replace frozen27d baseline; A3 replaces frozen7d-offset baseline. These are V4 definitions, not corrections to V3 bytes.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

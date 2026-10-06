@@ -1,0 +1,15 @@
+{
+  "HGB": [
+    197,
+    222
+  ],
+  "XGB": [
+    151,
+    222
+  ],
+  "comparator": "primary_HGB",
+  "decision": "No A4 additions or model replacement",
+  "explanation": "Same representation supports different fitted approximations; sparse support/concentration persists. No hyperparameter cause demonstrated. Counts, values, breadth, history change, missingness and type suffice in principle.",
+  "paired_rescues": 46,
+  "selected": "primary_XGB"
+}

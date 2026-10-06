@@ -1,0 +1,10 @@
+{
+  "server.py": {
+    "before": "73d849c183b7d0ba57792c03586b2cb754c758e67b050c56b90449182aa74481",
+    "after": "d2598a8042c4a8e6869d58cf613478b160f8bdb41948529549842f96bff6a4e0"
+  },
+  "templates/compliance_dashboard.html": {
+    "before": "9e0a5e39c5e3cdc007fad8b364ba2c72d68e18e2c6cef5f5d94364a18270e470",
+    "after": "d030735caaebcba080a4db2efc3e52dfeb44c90cf719a171c4e6400197522bd3"
+  }
+}

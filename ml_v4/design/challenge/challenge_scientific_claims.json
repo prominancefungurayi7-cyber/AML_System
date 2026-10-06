@@ -1,0 +1,18 @@
+{
+  "allowable": [
+    "Frozen synthetic predicate performance on independently generated challenge population, with counts and uncertainty",
+    "Family and domain limitations including failed/indeterminate objectives",
+    "Population-shift and feature-sensitivity findings scoped to this challenge and frozen artifacts"
+  ],
+  "comparability": "V3 and V4 development results remain historical version-specific findings. Side-by-side descriptive values may be shown only with explicit differences and no paired significance or claimed algorithm uplift. Challenge versus V4 is distribution/task-alignment evidence, not a controlled model improvement estimate. Never pool rows or prevalence. Same frozen model across the two challenge arms supports the declared within-challenge comparison.",
+  "prohibited": [
+    "Proven detection of actual laundering or criminal intent",
+    "Validated real-world operator/regulatory/production effectiveness",
+    "Repaired original V4 holdout certificates",
+    "Natural-population precision/AP inferred from enriched prevalence",
+    "Independent evidence after challenge-informed model or threshold revision",
+    "Direct algorithm-superiority ranking against V3 using different populations/labels/features/protocols"
+  ],
+  "protocol_version": "v4.challenge.protocol.1",
+  "research_task": "Approximation of a synthetic observable review policy, union of twelve causal predicates across structuring, network and agent domains. High target agreement is not independent proof of detecting real money laundering. Real-world effectiveness remains unverified."
+}

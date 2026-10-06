@@ -1,0 +1,20 @@
+{
+  "eligibility_failures": {
+    "primary_HGB": [],
+    "primary_LR": [
+      "recall",
+      "domain_recall"
+    ],
+    "primary_RF": [],
+    "primary_XGB": []
+  },
+  "eligible": [
+    "primary_RF",
+    "primary_HGB",
+    "primary_XGB"
+  ],
+  "final_model": false,
+  "production_approved": false,
+  "rule": "frozen_training_plan.json",
+  "selected": "primary_XGB"
+}

@@ -1,0 +1,33 @@
+{
+  "A4_policy": "Do not add a full A4 trigger or weaken gates; existing arithmetic primitives suffice in principle. Preserve HGB comparison as evidence of model-specific approximation.",
+  "acceptance_for_next_design": [
+    "Each proposed field has observable causal formula, availability/marker policy and component disclosure",
+    "Existing algebraic redundancy assessed before increasing dimension",
+    "Demonstrated design gap separated from sparse-support limitation",
+    "Versioned preservation/compatibility and a future separately authorized fitting/evaluation plan"
+  ],
+  "constraints": [
+    "Keep all three domains and all twelve target predicates",
+    "No private provenance, intent or complete-family trigger features",
+    "Explicit dimensionality/version amendment before any feature construction",
+    "Independent hand examples for irrecoverability/recoverability, not selected-positive templates",
+    "Document compatibility with Stage16T frozen 40-field evaluation contract",
+    "Preserve XGBoost selected and HGB comparator",
+    "No automatic additional fits; Stage18 unused slots expired",
+    "Custody/holdout restrictions unchanged"
+  ],
+  "first_priority": [
+    "S2 recent cluster sum and prior cluster support/rate as causal lower-level quantities",
+    "S4 band variation and prior band activity/support; avoid redundant n/share columns already derivable",
+    "A2/N1 absolute service/edge-value omissions and N3 alternative-route summary design reviewed secondarily"
+  ],
+  "not_authorized_by_stage19": [
+    "training/refitting",
+    "feature construction/amendment execution",
+    "new transactions",
+    "threshold optimization",
+    "independent evaluation",
+    "application integration"
+  ],
+  "recommendation": "Separately authorize Stage20 controlled feature-representation amendment design and compatibility review; design only, no fit/generation/extraction."
+}

@@ -1,0 +1,171 @@
+{
+  "A4_absolute_skews": {
+    "FN": {
+      "agent_cash_count_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 88,
+        "max": 1.0,
+        "mean": 0.7721994379889116,
+        "median": 0.7571428571428571,
+        "min": 0.5,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.5,
+        "q25": 0.5555555555555556,
+        "q75": 1.0,
+        "q95": 1.0,
+        "std": 0.2270114968569772,
+        "support": 88
+      },
+      "agent_cash_value_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 88,
+        "max": 1.0,
+        "mean": 0.9626725424057454,
+        "median": 0.9981732331033585,
+        "min": 0.6009112225761593,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.7346218114280771,
+        "q25": 0.9842939811506644,
+        "q75": 1.0,
+        "q95": 1.0,
+        "std": 0.08757995126640436,
+        "support": 88
+      },
+      "agent_cash_value_skew_change": {
+        "availability_rate": 1.0,
+        "available_count": 87,
+        "max": 1.4233543632600076,
+        "mean": 0.9330872223988733,
+        "median": 0.9572568857928512,
+        "min": 0.5183470912123522,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.5840577702562497,
+        "q25": 0.7519939137717678,
+        "q75": 1.0822365871590978,
+        "q95": 1.2409537275235705,
+        "std": 0.21260443213985977,
+        "support": 87
+      }
+    },
+    "H8_target0": {
+      "agent_cash_count_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 460,
+        "max": 1.0,
+        "mean": 0.3194637097060371,
+        "median": 0.2,
+        "min": 0.0,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "q75": 0.5,
+        "q95": 1.0,
+        "std": 0.37612998497595096,
+        "support": 460
+      },
+      "agent_cash_value_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 460,
+        "max": 1.0,
+        "mean": 0.5355192721604574,
+        "median": 0.6248565185352288,
+        "min": 0.0,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "q75": 0.9896970306716362,
+        "q95": 1.0,
+        "std": 0.43384749547380613,
+        "support": 460
+      },
+      "agent_cash_value_skew_change": {
+        "availability_rate": 1.0,
+        "available_count": 230,
+        "max": 1.5602925565227415,
+        "mean": 0.784900988420669,
+        "median": 0.8301108801744526,
+        "min": 0.015382810852849954,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.10103916752275992,
+        "q25": 0.49319443617558156,
+        "q75": 1.0583270599766885,
+        "q95": 1.3363737781243339,
+        "std": 0.3902294986064434,
+        "support": 230
+      }
+    },
+    "TP": {
+      "agent_cash_count_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 249,
+        "max": 1.0,
+        "mean": 0.692177644816684,
+        "median": 0.6666666666666666,
+        "min": 0.5,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.5,
+        "q25": 0.6470588235294118,
+        "q75": 0.75,
+        "q95": 1.0,
+        "std": 0.11867166796298502,
+        "support": 249
+      },
+      "agent_cash_value_skew_24h": {
+        "availability_rate": 1.0,
+        "available_count": 249,
+        "max": 1.0,
+        "mean": 0.9388106484813554,
+        "median": 0.982285921333387,
+        "min": 0.6209689358498228,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.7185822584876738,
+        "q25": 0.9216235405490691,
+        "q75": 0.9955292351959927,
+        "q95": 1.0,
+        "std": 0.08808808394043194,
+        "support": 249
+      },
+      "agent_cash_value_skew_change": {
+        "availability_rate": 1.0,
+        "available_count": 249,
+        "max": 1.4130292572226133,
+        "mean": 0.9613134706849221,
+        "median": 1.0152292855270542,
+        "min": 0.4285169714808505,
+        "missing_count": 0,
+        "missing_rate": 0.0,
+        "q05": 0.5236644405564058,
+        "q25": 0.7996642056220036,
+        "q75": 1.1224742026853218,
+        "q95": 1.3184946387688374,
+        "std": 0.24173640559367174,
+        "support": 249
+      }
+    }
+  },
+  "A4_valid_magnitude_note": "Absolute change excludes the -3 marker before taking absolute values; raw skew -1 is valid.",
+  "N3_selected_ratio_outside_original_return_band": {
+    "FN": {
+      "outside_count": 2,
+      "support": 19,
+      "transaction_ids": [
+        "9371",
+        "84452"
+      ]
+    },
+    "TP": {
+      "outside_count": 0,
+      "support": 22,
+      "transaction_ids": []
+    }
+  },
+  "scope": "Additional descriptive error views after the fixed fits; no model, threshold, feature or selection change."
+}

@@ -1,0 +1,563 @@
+{
+  "families": {
+    "agent_flow_imbalance": {
+      "event_bucket": {
+        "1": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "4+": {
+          "count": 120,
+          "detected": 7,
+          "recall": 0.058333333333333334
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 41,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 37,
+          "detected": 3,
+          "recall": 0.08108108108108109
+        },
+        "3": {
+          "count": 38,
+          "detected": 3,
+          "recall": 0.07894736842105263
+        },
+        "4": {
+          "count": 34,
+          "detected": 1,
+          "recall": 0.029411764705882353
+        }
+      }
+    },
+    "agent_temporal_burst": {
+      "event_bucket": {
+        "1": {
+          "count": 10,
+          "detected": 3,
+          "recall": 0.3
+        },
+        "2": {
+          "count": 10,
+          "detected": 2,
+          "recall": 0.2
+        },
+        "3": {
+          "count": 10,
+          "detected": 5,
+          "recall": 0.5
+        },
+        "4+": {
+          "count": 120,
+          "detected": 78,
+          "recall": 0.65
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 40,
+          "detected": 16,
+          "recall": 0.4
+        },
+        "2": {
+          "count": 36,
+          "detected": 20,
+          "recall": 0.5555555555555556
+        },
+        "3": {
+          "count": 39,
+          "detected": 25,
+          "recall": 0.6410256410256411
+        },
+        "4": {
+          "count": 35,
+          "detected": 27,
+          "recall": 0.7714285714285715
+        }
+      }
+    },
+    "agent_wallet_concentration": {
+      "event_bucket": {
+        "1": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 10,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "4+": {
+          "count": 120,
+          "detected": 13,
+          "recall": 0.10833333333333334
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 41,
+          "detected": 1,
+          "recall": 0.024390243902439025
+        },
+        "2": {
+          "count": 36,
+          "detected": 4,
+          "recall": 0.1111111111111111
+        },
+        "3": {
+          "count": 37,
+          "detected": 3,
+          "recall": 0.08108108108108109
+        },
+        "4": {
+          "count": 36,
+          "detected": 5,
+          "recall": 0.1388888888888889
+        }
+      }
+    },
+    "agent_wallet_growth": {
+      "event_bucket": {
+        "1": {
+          "count": 9,
+          "detected": 1,
+          "recall": 0.1111111111111111
+        },
+        "2": {
+          "count": 9,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 9,
+          "detected": 1,
+          "recall": 0.1111111111111111
+        },
+        "4+": {
+          "count": 123,
+          "detected": 29,
+          "recall": 0.23577235772357724
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 40,
+          "detected": 3,
+          "recall": 0.075
+        },
+        "2": {
+          "count": 37,
+          "detected": 5,
+          "recall": 0.13513513513513514
+        },
+        "3": {
+          "count": 40,
+          "detected": 12,
+          "recall": 0.3
+        },
+        "4": {
+          "count": 33,
+          "detected": 11,
+          "recall": 0.3333333333333333
+        }
+      }
+    },
+    "distributed_same_day_fragmentation": {
+      "event_bucket": {
+        "1": {
+          "count": 12,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 12,
+          "detected": 7,
+          "recall": 0.5833333333333334
+        },
+        "3": {
+          "count": 12,
+          "detected": 8,
+          "recall": 0.6666666666666666
+        },
+        "4+": {
+          "count": 114,
+          "detected": 77,
+          "recall": 0.6754385964912281
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 42,
+          "detected": 21,
+          "recall": 0.5
+        },
+        "2": {
+          "count": 36,
+          "detected": 26,
+          "recall": 0.7222222222222222
+        },
+        "3": {
+          "count": 39,
+          "detected": 24,
+          "recall": 0.6153846153846154
+        },
+        "4": {
+          "count": 33,
+          "detected": 21,
+          "recall": 0.6363636363636364
+        }
+      }
+    },
+    "many_to_one_collection": {
+      "event_bucket": {
+        "1": {
+          "count": 13,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 13,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 13,
+          "detected": 2,
+          "recall": 0.15384615384615385
+        },
+        "4+": {
+          "count": 111,
+          "detected": 10,
+          "recall": 0.09009009009009009
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 43,
+          "detected": 3,
+          "recall": 0.06976744186046512
+        },
+        "2": {
+          "count": 35,
+          "detected": 2,
+          "recall": 0.05714285714285714
+        },
+        "3": {
+          "count": 39,
+          "detected": 2,
+          "recall": 0.05128205128205128
+        },
+        "4": {
+          "count": 33,
+          "detected": 5,
+          "recall": 0.15151515151515152
+        }
+      }
+    },
+    "one_to_many_dispersion": {
+      "event_bucket": {
+        "1": {
+          "count": 14,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 14,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 14,
+          "detected": 3,
+          "recall": 0.21428571428571427
+        },
+        "4+": {
+          "count": 108,
+          "detected": 30,
+          "recall": 0.2777777777777778
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 43,
+          "detected": 5,
+          "recall": 0.11627906976744186
+        },
+        "2": {
+          "count": 38,
+          "detected": 21,
+          "recall": 0.5526315789473685
+        },
+        "3": {
+          "count": 38,
+          "detected": 4,
+          "recall": 0.10526315789473684
+        },
+        "4": {
+          "count": 31,
+          "detected": 3,
+          "recall": 0.0967741935483871
+        }
+      }
+    },
+    "reciprocal_relationship_cycle": {
+      "event_bucket": {
+        "1": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "4+": {
+          "count": 96,
+          "detected": 3,
+          "recall": 0.03125
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 42,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 36,
+          "detected": 1,
+          "recall": 0.027777777777777776
+        },
+        "3": {
+          "count": 41,
+          "detected": 1,
+          "recall": 0.024390243902439025
+        },
+        "4": {
+          "count": 31,
+          "detected": 1,
+          "recall": 0.03225806451612903
+        }
+      }
+    },
+    "similar_amount_repetition": {
+      "event_bucket": {
+        "1": {
+          "count": 12,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 12,
+          "detected": 1,
+          "recall": 0.08333333333333333
+        },
+        "3": {
+          "count": 12,
+          "detected": 4,
+          "recall": 0.3333333333333333
+        },
+        "4+": {
+          "count": 114,
+          "detected": 55,
+          "recall": 0.4824561403508772
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 43,
+          "detected": 7,
+          "recall": 0.16279069767441862
+        },
+        "2": {
+          "count": 34,
+          "detected": 18,
+          "recall": 0.5294117647058824
+        },
+        "3": {
+          "count": 39,
+          "detected": 21,
+          "recall": 0.5384615384615384
+        },
+        "4": {
+          "count": 34,
+          "detected": 14,
+          "recall": 0.4117647058823529
+        }
+      }
+    },
+    "variable_fragment_burst": {
+      "event_bucket": {
+        "1": {
+          "count": 16,
+          "detected": 1,
+          "recall": 0.0625
+        },
+        "2": {
+          "count": 16,
+          "detected": 8,
+          "recall": 0.5
+        },
+        "3": {
+          "count": 16,
+          "detected": 12,
+          "recall": 0.75
+        },
+        "4+": {
+          "count": 102,
+          "detected": 90,
+          "recall": 0.8823529411764706
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 44,
+          "detected": 20,
+          "recall": 0.45454545454545453
+        },
+        "2": {
+          "count": 35,
+          "detected": 31,
+          "recall": 0.8857142857142857
+        },
+        "3": {
+          "count": 38,
+          "detected": 34,
+          "recall": 0.8947368421052632
+        },
+        "4": {
+          "count": 33,
+          "detected": 26,
+          "recall": 0.7878787878787878
+        }
+      }
+    },
+    "variable_near_threshold_history": {
+      "event_bucket": {
+        "1": {
+          "count": 14,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "2": {
+          "count": 14,
+          "detected": 3,
+          "recall": 0.21428571428571427
+        },
+        "3": {
+          "count": 14,
+          "detected": 8,
+          "recall": 0.5714285714285714
+        },
+        "4+": {
+          "count": 108,
+          "detected": 43,
+          "recall": 0.39814814814814814
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 45,
+          "detected": 16,
+          "recall": 0.35555555555555557
+        },
+        "2": {
+          "count": 34,
+          "detected": 19,
+          "recall": 0.5588235294117647
+        },
+        "3": {
+          "count": 38,
+          "detected": 13,
+          "recall": 0.34210526315789475
+        },
+        "4": {
+          "count": 33,
+          "detected": 6,
+          "recall": 0.18181818181818182
+        }
+      }
+    },
+    "wallet_pass_through": {
+      "event_bucket": {
+        "1": {
+          "count": 14,
+          "detected": 1,
+          "recall": 0.07142857142857142
+        },
+        "2": {
+          "count": 14,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "3": {
+          "count": 14,
+          "detected": 5,
+          "recall": 0.35714285714285715
+        },
+        "4+": {
+          "count": 108,
+          "detected": 68,
+          "recall": 0.6296296296296297
+        }
+      },
+      "quartile": {
+        "1": {
+          "count": 42,
+          "detected": 9,
+          "recall": 0.21428571428571427
+        },
+        "2": {
+          "count": 36,
+          "detected": 21,
+          "recall": 0.5833333333333334
+        },
+        "3": {
+          "count": 40,
+          "detected": 25,
+          "recall": 0.625
+        },
+        "4": {
+          "count": 32,
+          "detected": 19,
+          "recall": 0.59375
+        }
+      }
+    }
+  },
+  "model": "s5_gradient_boosting_060",
+  "protection": {
+    "result": "PASS",
+    "v1_application_file_count": 347,
+    "v2_dataset_feature_stage5_stage6_file_count": 37
+  },
+  "threshold": 0.5
+}

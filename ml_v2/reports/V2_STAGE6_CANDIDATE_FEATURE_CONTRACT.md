@@ -1,0 +1,16 @@
+# V2 Stage 6 frozen candidate feature contract
+
+`V2_BASELINE_30` is the ordered Stage 3 feature set, unchanged. The eight candidates below are experimental extensions. This contract is fixed before model testing. For every candidate, use only transactions in the same development partition with `(history_timestamp, history_transaction_id) < (current_timestamp, current_transaction_id)`. Compute before inserting the current event. Zero history and zero denominators yield `0`. No scenario, label, risk or rule field is an input. Wallet and agent IDs are grouping keys only.
+
+| Candidate | Definition, subject, window | Behaviour and transaction treatment | Range |
+|---|---|---|---|
+| `network_prior_bidirectional_counterparty_count_7d` | Number of distinct wallets with both inbound and outbound prior W2W edges relative to current sender, 7d. | Persistent two-way relationships; all current types may query sender history. Cash-In, Cash-Out, direct and assisted transactions add edges only when the event itself is W2W. | nonnegative count |
+| `network_prior_return_flow_share_7d` | For current sender, sum over counterparties of `min(prior W2W outbound USD, prior W2W inbound USD)` divided by total prior W2W outbound plus inbound USD, 7d. | Intensity of historically returned value; no current or future edge. Cash transactions never add edges; direct and assisted W2W do. | [0, .5] |
+| `receiver_prior_unique_senders_24h` | Distinct prior W2W senders to current receiver, 24h. | Receiving-side collection breadth. Current receiver may be used as a lookup key. All event types can query; only direct/assisted W2W adds inbound history. | nonnegative count |
+| `receiver_prior_inbound_count_24h` | Prior W2W edge count to current receiver, 24h. | Receiving-side collection intensity. Same treatment as preceding feature. | nonnegative count |
+| `agent_wallet_arrival_ratio_7d` | Distinct serviced wallets in prior 7d absent from the preceding 7d, divided by distinct serviced wallets in prior 7d. Agent subject. | New customer arrival relative to earlier service population. Cash-In, Cash-Out and agent-assisted W2W service count; direct W2W does not. | [0,1] |
+| `agent_top_wallet_count_share_24h` | Maximum prior 24h service-event count for one serviced wallet divided by all prior 24h service events. Agent subject. | Short-term service concentration by count. Cash and assisted W2W service count; direct W2W does not. | [0,1] |
+| `agent_cash_value_imbalance_7d` | `(prior Cash-Out USD − prior Cash-In USD)/(prior Cash-In USD + prior Cash-Out USD)`, agent, 7d. | Bounded agent-float direction and magnitude. Cash-Out is agent-float `inbound`; Cash-In is `outbound`; direct and assisted W2W contribute zero. | [-1,1] |
+| `agent_cash_count_imbalance_7d` | `(prior Cash-Out count − prior Cash-In count)/(prior Cash-In count + prior Cash-Out count)`, agent, 7d. | Direction of service frequency independent of value. Same transaction treatment as value imbalance. | [-1,1] |
+
+Amounts are `amount_minor / 100` USD. For all candidate windows the lower boundary is inclusive. No candidate uses a generator constant or a raw ID as a numerical model value. These features are hypotheses, subject to audit and ablation; they are not automatically retained.

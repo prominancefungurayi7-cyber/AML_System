@@ -1,0 +1,1542 @@
+{
+  "D1": {
+    "domain_independence": {
+      "agent_only": {
+        "fn": 2240,
+        "low_support": false,
+        "recall": 0.28274095421069484,
+        "support": 3123,
+        "tp": 883
+      },
+      "agent_overlap": {
+        "fn": 8,
+        "low_support": false,
+        "recall": 0.9887640449438202,
+        "support": 712,
+        "tp": 704
+      },
+      "network_only": {
+        "fn": 80,
+        "low_support": false,
+        "recall": 0.8915989159891599,
+        "support": 738,
+        "tp": 658
+      },
+      "network_overlap": {
+        "fn": 2,
+        "low_support": false,
+        "recall": 0.9962476547842402,
+        "support": 533,
+        "tp": 531
+      },
+      "structuring_only": {
+        "fn": 5,
+        "low_support": false,
+        "recall": 0.9767441860465116,
+        "support": 215,
+        "tp": 210
+      },
+      "structuring_overlap": {
+        "fn": 6,
+        "low_support": false,
+        "recall": 0.9927184466019418,
+        "support": 824,
+        "tp": 818
+      }
+    },
+    "domains": {
+      "agent": {
+        "fn": 2248,
+        "recall": 0.4138200782268579,
+        "support": 3835,
+        "tp": 1587
+      },
+      "network": {
+        "fn": 82,
+        "recall": 0.9354838709677419,
+        "support": 1271,
+        "tp": 1189
+      },
+      "structuring": {
+        "fn": 11,
+        "recall": 0.9894128970163619,
+        "support": 1039,
+        "tp": 1028
+      }
+    },
+    "excluded_count": 11476,
+    "excluded_family_counts": {
+      "A1": 11476,
+      "A2": 1120,
+      "A3": 970,
+      "A4": 425,
+      "N1": 183,
+      "N2": 443,
+      "N3": 14,
+      "N4": 208,
+      "S1": 336,
+      "S2": 1,
+      "S3": 723,
+      "S4": 7
+    },
+    "families": {
+      "A1": {
+        "fn": 2059,
+        "recall": 0.24990892531876138,
+        "support": 2745,
+        "tp": 686
+      },
+      "A2": {
+        "fn": 140,
+        "recall": 0.8494623655913979,
+        "support": 930,
+        "tp": 790
+      },
+      "A3": {
+        "fn": 2,
+        "recall": 0.9958762886597938,
+        "support": 485,
+        "tp": 483
+      },
+      "A4": {
+        "fn": 117,
+        "recall": 0.6528189910979229,
+        "support": 337,
+        "tp": 220
+      },
+      "N1": {
+        "fn": 17,
+        "recall": 0.9462025316455697,
+        "support": 316,
+        "tp": 299
+      },
+      "N2": {
+        "fn": 36,
+        "recall": 0.9510869565217391,
+        "support": 736,
+        "tp": 700
+      },
+      "N3": {
+        "fn": 21,
+        "recall": 0.4878048780487805,
+        "support": 41,
+        "tp": 20
+      },
+      "N4": {
+        "fn": 8,
+        "recall": 0.9676113360323887,
+        "support": 247,
+        "tp": 239
+      },
+      "S1": {
+        "fn": 4,
+        "recall": 0.9855072463768116,
+        "support": 276,
+        "tp": 272
+      },
+      "S2": {
+        "fn": 1,
+        "recall": 0.0,
+        "support": 1,
+        "tp": 0
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 6,
+        "recall": 0.25,
+        "support": 8,
+        "tp": 2
+      }
+    },
+    "fit_and_score_seconds": 5.437737500004005,
+    "fit_class_counts": [
+      39781,
+      8743
+    ],
+    "fit_subset_metrics": {
+      "accuracy": 0.9766507295358997,
+      "average_precision": 0.9811153897513498,
+      "balanced_accuracy": 0.9549272559497033,
+      "confusion_matrix": [
+        [
+          39339,
+          442
+        ],
+        [
+          691,
+          8052
+        ]
+      ],
+      "false_positive_rate": 0.0111108318041276,
+      "macro_f1": 0.9600366331316063,
+      "normal_f1": 0.985803961859894,
+      "normal_precision": 0.9827379465400949,
+      "normal_recall": 0.9888891681958724,
+      "roc_auc": 0.9947518177865056,
+      "suspicious_f1": 0.9342693044033185,
+      "suspicious_precision": 0.9479632681893101,
+      "suspicious_recall": 0.9209653437035342,
+      "threshold": 0.5
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.4155726200521562,
+        "coverage": 0.046543244657331444,
+        "current": 0.01954124220883755,
+        "network": 0.30987965530208533,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.20846323777958936
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.000666464251910634,
+        "agent_cash_value_skew_24h": 0.0008364055592490415,
+        "agent_cash_value_skew_change": 0.0005691563254126062,
+        "agent_history_coverage_days": 9.883916041151321e-06,
+        "agent_new_wallet_share_7d": 0.00014815858061395637,
+        "agent_service_acceleration_1h": 0.0019538536750296023,
+        "agent_service_count_1h_inclusive": 0.0004969054102018513,
+        "agent_top2_count_share_24h": 0.0039862981633320615,
+        "agent_top2_share_change_24h": 0.001034596667218368,
+        "agent_wallet_growth_ratio_7d": 0.0008090361027377439,
+        "current_amount_usd": 0.000849500482205396,
+        "current_is_cash_in": 0.0009684045301980564,
+        "current_is_cash_out": 0.0012321342252215497,
+        "current_return_amount_ratio": 0.0002668781852583971,
+        "current_return_path_length": 0.00010876464206571898,
+        "receiver_history_coverage_days": 0.00038066585049867726,
+        "receiver_inflow_acceleration_24h": 0.00018793302900324958,
+        "receiver_inflow_count_24h_inclusive": 0.0005228192800770011,
+        "receiver_unique_sources_24h_inclusive": 0.0009225185578324268,
+        "sender_outflow_acceleration_24h": 0.00023873874602055526,
+        "sender_outflow_count_24h_inclusive": 0.001568841648868024,
+        "sender_unique_destinations_24h_inclusive": 0.0007929751000784024,
+        "wallet_active_hours_utc_day": 0.0004875122232774465,
+        "wallet_band_share_7d_inclusive": 0.00026120002493630433,
+        "wallet_count_1h_inclusive": 0.00010045561766077188,
+        "wallet_count_acceleration_1h": 0.0007163047755763265,
+        "wallet_count_utc_day_inclusive": 0.00309370099044846,
+        "wallet_current_amount_cluster_share_7d": 0.00041569901913094195,
+        "wallet_history_coverage_days": 0.0002442646812176709,
+        "wallet_observed_onward_funding_share_24h": 0.0034870117222906985,
+        "wallet_prior_funding_age_hours": 0.00024776243631519134,
+        "wallet_value_24h_inclusive": 0.002251095847930334
+      },
+      "top3_share": 0.38396978129095183,
+      "top5_share": 0.5258738852941038,
+      "top_feature": "agent_service_acceleration_1h",
+      "top_share": 0.1443065182617153,
+      "values": {
+        "agent_cash_count_skew_24h": 0.021440025275160497,
+        "agent_cash_value_skew_24h": 0.006319884420075472,
+        "agent_cash_value_skew_change": -0.0021775570286579615,
+        "agent_history_coverage_days": -0.0023807832604014387,
+        "agent_new_wallet_share_7d": -0.001214242175239466,
+        "agent_service_acceleration_1h": 0.04030309983870406,
+        "agent_service_count_1h_inclusive": -0.0020339381263726106,
+        "agent_top2_count_share_24h": 0.018192108741048967,
+        "agent_top2_share_change_24h": 0.007730699116317075,
+        "agent_wallet_growth_ratio_7d": 0.0166529515664768,
+        "current_amount_usd": -0.0007819193379626036,
+        "current_is_cash_in": 0.00030142612892306947,
+        "current_is_cash_out": 0.004374291826301113,
+        "current_return_amount_ratio": -0.0019644185127016454,
+        "current_return_path_length": -0.002534515404594151,
+        "receiver_history_coverage_days": -0.0010214743621797713,
+        "receiver_inflow_acceleration_24h": 0.00231305718157652,
+        "receiver_inflow_count_24h_inclusive": 0.017865809026749873,
+        "receiver_unique_sources_24h_inclusive": 0.005736134400661082,
+        "sender_outflow_acceleration_24h": 0.0032139282297688476,
+        "sender_outflow_count_24h_inclusive": 0.014050006804893803,
+        "sender_unique_destinations_24h_inclusive": -0.0021778334032393674,
+        "wallet_active_hours_utc_day": 0.0004479640775009175,
+        "wallet_band_share_7d_inclusive": -0.00246323476678989,
+        "wallet_count_1h_inclusive": -0.002410277761446237,
+        "wallet_count_acceleration_1h": 0.003976276153001557,
+        "wallet_count_utc_day_inclusive": 0.032394270064095156,
+        "wallet_current_amount_cluster_share_7d": -0.00265105582241613,
+        "wallet_history_coverage_days": 0.009596718853586187,
+        "wallet_observed_onward_funding_share_24h": 0.03454083816170909,
+        "wallet_prior_funding_age_hours": -0.0021491730668131703,
+        "wallet_value_24h_inclusive": 0.013878232395550675
+      }
+    },
+    "normal_fpr": {
+      "H1": {
+        "false_positive_rate": 0.13865546218487396,
+        "fp": 33,
+        "support": 238,
+        "tn": 205
+      },
+      "H2": {
+        "false_positive_rate": 0.03208556149732621,
+        "fp": 12,
+        "support": 374,
+        "tn": 362
+      },
+      "H3": {
+        "false_positive_rate": 0.022167487684729065,
+        "fp": 9,
+        "support": 406,
+        "tn": 397
+      },
+      "H4": {
+        "false_positive_rate": 0.02054794520547945,
+        "fp": 6,
+        "support": 292,
+        "tn": 286
+      },
+      "H5": {
+        "false_positive_rate": 0.07476635514018691,
+        "fp": 16,
+        "support": 214,
+        "tn": 198
+      },
+      "H6": {
+        "false_positive_rate": 0.01179245283018868,
+        "fp": 5,
+        "support": 424,
+        "tn": 419
+      },
+      "H7": {
+        "false_positive_rate": 0.002785515320334262,
+        "fp": 1,
+        "support": 359,
+        "tn": 358
+      },
+      "H8": {
+        "false_positive_rate": 0.008695652173913044,
+        "fp": 4,
+        "support": 460,
+        "tn": 456
+      },
+      "campaign_member_target0": {
+        "false_positive_rate": 0.03285077951002227,
+        "fp": 59,
+        "support": 1796,
+        "tn": 1737
+      },
+      "routine": {
+        "false_positive_rate": 0.00315867707172055,
+        "fp": 17,
+        "support": 5382,
+        "tn": 5365
+      }
+    },
+    "started_at_utc": "2026-09-28T22:33:39.922596+00:00",
+    "train": {
+      "accuracy": 0.8394833333333334,
+      "average_precision": 0.8411183811059514,
+      "balanced_accuracy": 0.7672078265926194,
+      "confusion_matrix": [
+        [
+          39339,
+          442
+        ],
+        [
+          9189,
+          11030
+        ]
+      ],
+      "false_positive_rate": 0.0111108318041276,
+      "macro_f1": 0.7935182259572788,
+      "normal_f1": 0.8909397683135354,
+      "normal_precision": 0.8106454005934718,
+      "normal_recall": 0.9888891681958724,
+      "roc_auc": 0.8813699375712672,
+      "suspicious_f1": 0.6960966836010224,
+      "suspicious_precision": 0.9614714086471409,
+      "suspicious_recall": 0.5455264849893664,
+      "threshold": 0.5
+    },
+    "train_metric_scope": "train field evaluates ALL original Train rows, including excluded rows; fit_subset_metrics is actual fitted subset",
+    "validation": {
+      "accuracy": 0.8336666666666667,
+      "average_precision": 0.8287698460508163,
+      "balanced_accuracy": 0.7610935814636286,
+      "confusion_matrix": [
+        [
+          9783,
+          162
+        ],
+        [
+          2333,
+          2722
+        ]
+      ],
+      "false_positive_rate": 0.016289592760180997,
+      "macro_f1": 0.7863165866421093,
+      "normal_f1": 0.8869044920901138,
+      "normal_precision": 0.8074447012215252,
+      "normal_recall": 0.983710407239819,
+      "roc_auc": 0.8714201799312639,
+      "suspicious_f1": 0.685728681194105,
+      "suspicious_precision": 0.9438280166435506,
+      "suspicious_recall": 0.5384767556874381,
+      "threshold": 0.5
+    },
+    "warnings": []
+  },
+  "D2": {
+    "domain_independence": {
+      "agent_only": {
+        "fn": 449,
+        "low_support": false,
+        "recall": 0.856227985910983,
+        "support": 3123,
+        "tp": 2674
+      },
+      "agent_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 712,
+        "tp": 712
+      },
+      "network_only": {
+        "fn": 74,
+        "low_support": false,
+        "recall": 0.8997289972899729,
+        "support": 738,
+        "tp": 664
+      },
+      "network_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 533,
+        "tp": 533
+      },
+      "structuring_only": {
+        "fn": 6,
+        "low_support": false,
+        "recall": 0.9720930232558139,
+        "support": 215,
+        "tp": 209
+      },
+      "structuring_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 824,
+        "tp": 824
+      }
+    },
+    "domains": {
+      "agent": {
+        "fn": 449,
+        "recall": 0.8829204693611473,
+        "support": 3835,
+        "tp": 3386
+      },
+      "network": {
+        "fn": 74,
+        "recall": 0.9417781274586939,
+        "support": 1271,
+        "tp": 1197
+      },
+      "structuring": {
+        "fn": 6,
+        "recall": 0.9942252165543792,
+        "support": 1039,
+        "tp": 1033
+      }
+    },
+    "excluded_count": 3770,
+    "excluded_family_counts": {
+      "A1": 1120,
+      "A2": 3770,
+      "A3": 279,
+      "A4": 330,
+      "N1": 34,
+      "N2": 406,
+      "N3": 7,
+      "N4": 110,
+      "S1": 603,
+      "S2": 1,
+      "S3": 1244,
+      "S4": 2
+    },
+    "families": {
+      "A1": {
+        "fn": 58,
+        "recall": 0.9788706739526412,
+        "support": 2745,
+        "tp": 2687
+      },
+      "A2": {
+        "fn": 298,
+        "recall": 0.6795698924731183,
+        "support": 930,
+        "tp": 632
+      },
+      "A3": {
+        "fn": 6,
+        "recall": 0.9876288659793815,
+        "support": 485,
+        "tp": 479
+      },
+      "A4": {
+        "fn": 115,
+        "recall": 0.658753709198813,
+        "support": 337,
+        "tp": 222
+      },
+      "N1": {
+        "fn": 17,
+        "recall": 0.9462025316455697,
+        "support": 316,
+        "tp": 299
+      },
+      "N2": {
+        "fn": 28,
+        "recall": 0.9619565217391305,
+        "support": 736,
+        "tp": 708
+      },
+      "N3": {
+        "fn": 18,
+        "recall": 0.5609756097560976,
+        "support": 41,
+        "tp": 23
+      },
+      "N4": {
+        "fn": 11,
+        "recall": 0.9554655870445344,
+        "support": 247,
+        "tp": 236
+      },
+      "S1": {
+        "fn": 4,
+        "recall": 0.9855072463768116,
+        "support": 276,
+        "tp": 272
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "fit_and_score_seconds": 5.763869900023565,
+    "fit_class_counts": [
+      39781,
+      16449
+    ],
+    "fit_subset_metrics": {
+      "accuracy": 0.9799751022585809,
+      "average_precision": 0.9952852867269237,
+      "balanced_accuracy": 0.9752040974398666,
+      "confusion_matrix": [
+        [
+          39252,
+          529
+        ],
+        [
+          597,
+          15852
+        ]
+      ],
+      "false_positive_rate": 0.013297805485030543,
+      "macro_f1": 0.9757808511946185,
+      "normal_f1": 0.9858596006530203,
+      "normal_precision": 0.9850184446284724,
+      "normal_recall": 0.9867021945149694,
+      "roc_auc": 0.9978716555700671,
+      "suspicious_f1": 0.9657021017362168,
+      "suspicious_precision": 0.967706489225322,
+      "suspicious_recall": 0.9637060003647638,
+      "threshold": 0.5
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.7090336962232426,
+        "coverage": 0.022848104362062985,
+        "current": 0.022469311261187893,
+        "network": 0.14348750670480115,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.10216138144870543
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.0006046169705951933,
+        "agent_cash_value_skew_24h": 0.00023857471200528426,
+        "agent_cash_value_skew_change": 0.0007696091890500928,
+        "agent_history_coverage_days": 0.000509458626417789,
+        "agent_new_wallet_share_7d": 0.0017120885345160563,
+        "agent_service_acceleration_1h": 0.002059649836346711,
+        "agent_service_count_1h_inclusive": 0.00010810453420637841,
+        "agent_top2_count_share_24h": 0.0011958443591559538,
+        "agent_top2_share_change_24h": 0.0006477489769624885,
+        "agent_wallet_growth_ratio_7d": 0.003716893601472413,
+        "current_amount_usd": 0.0001628392458788699,
+        "current_is_cash_in": 0.0003564270496810086,
+        "current_is_cash_out": 0.0004626305533947144,
+        "current_return_amount_ratio": 0.0006233999322424991,
+        "current_return_path_length": 7.46287023450788e-05,
+        "receiver_history_coverage_days": 0.00010572558298839022,
+        "receiver_inflow_acceleration_24h": 7.822489396844644e-05,
+        "receiver_inflow_count_24h_inclusive": 0.00020682120613268947,
+        "receiver_unique_sources_24h_inclusive": 0.0004231718229238536,
+        "sender_outflow_acceleration_24h": 0.0005481872795214797,
+        "sender_outflow_count_24h_inclusive": 0.0009936441215139455,
+        "sender_unique_destinations_24h_inclusive": 7.79268361822366e-05,
+        "wallet_active_hours_utc_day": 7.205530177024565e-05,
+        "wallet_band_share_7d_inclusive": 0.00013565088469055513,
+        "wallet_count_1h_inclusive": 6.247950419503668e-05,
+        "wallet_count_acceleration_1h": 8.816961355656314e-05,
+        "wallet_count_utc_day_inclusive": 0.0019858051985428265,
+        "wallet_current_amount_cluster_share_7d": 0.0003094410671476274,
+        "wallet_history_coverage_days": 0.0004378574870189633,
+        "wallet_observed_onward_funding_share_24h": 0.001958655593657621,
+        "wallet_prior_funding_age_hours": 4.549745001388308e-05,
+        "wallet_value_24h_inclusive": 0.0011095691299183943
+      },
+      "top3_share": 0.6895015668112374,
+      "top5_share": 0.7539247794395839,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.5772529643517301,
+      "values": {
+        "agent_cash_count_skew_24h": 0.010557848053488694,
+        "agent_cash_value_skew_24h": 0.004097247691377685,
+        "agent_cash_value_skew_change": 0.005304276255813904,
+        "agent_history_coverage_days": 0.005516375842477883,
+        "agent_new_wallet_share_7d": 0.007752923236003517,
+        "agent_service_acceleration_1h": 0.03533596799614588,
+        "agent_service_count_1h_inclusive": 0.002270269946595923,
+        "agent_top2_count_share_24h": 0.0062835786764078305,
+        "agent_top2_share_change_24h": 0.0034556943144406307,
+        "agent_wallet_growth_ratio_7d": 0.3287835823508169,
+        "current_amount_usd": 0.003067761561073986,
+        "current_is_cash_in": 0.0042429115994188455,
+        "current_is_cash_out": 0.005487079481116042,
+        "current_return_amount_ratio": 0.0037472994638400037,
+        "current_return_path_length": 0.0020724567700701377,
+        "receiver_history_coverage_days": 0.002265600530097315,
+        "receiver_inflow_acceleration_24h": 0.00451185213960259,
+        "receiver_inflow_count_24h_inclusive": 0.015078830235782936,
+        "receiver_unique_sources_24h_inclusive": 0.008505386947547508,
+        "sender_outflow_acceleration_24h": 0.005816861267445887,
+        "sender_outflow_count_24h_inclusive": 0.015549350555452146,
+        "sender_unique_destinations_24h_inclusive": 0.00308633145234416,
+        "wallet_active_hours_utc_day": 0.006403584679012364,
+        "wallet_band_share_7d_inclusive": 0.0022051826114328397,
+        "wallet_count_1h_inclusive": 0.0024325972351741942,
+        "wallet_count_acceleration_1h": 0.0033577917253525547,
+        "wallet_count_utc_day_inclusive": 0.028597004044899104,
+        "wallet_current_amount_cluster_share_7d": 0.0021462568869600185,
+        "wallet_history_coverage_days": 0.005231523888130529,
+        "wallet_observed_onward_funding_share_24h": 0.02114391209116462,
+        "wallet_prior_funding_age_hours": 0.0022133045485744907,
+        "wallet_value_24h_inclusive": 0.013045218125954125
+      }
+    },
+    "normal_fpr": {
+      "H1": {
+        "false_positive_rate": 0.14285714285714285,
+        "fp": 34,
+        "support": 238,
+        "tn": 204
+      },
+      "H2": {
+        "false_positive_rate": 0.045454545454545456,
+        "fp": 17,
+        "support": 374,
+        "tn": 357
+      },
+      "H3": {
+        "false_positive_rate": 0.014778325123152709,
+        "fp": 6,
+        "support": 406,
+        "tn": 400
+      },
+      "H4": {
+        "false_positive_rate": 0.04794520547945205,
+        "fp": 14,
+        "support": 292,
+        "tn": 278
+      },
+      "H5": {
+        "false_positive_rate": 0.07009345794392523,
+        "fp": 15,
+        "support": 214,
+        "tn": 199
+      },
+      "H6": {
+        "false_positive_rate": 0.009433962264150943,
+        "fp": 4,
+        "support": 424,
+        "tn": 420
+      },
+      "H7": {
+        "false_positive_rate": 0.005571030640668524,
+        "fp": 2,
+        "support": 359,
+        "tn": 357
+      },
+      "H8": {
+        "false_positive_rate": 0.03260869565217391,
+        "fp": 15,
+        "support": 460,
+        "tn": 445
+      },
+      "campaign_member_target0": {
+        "false_positive_rate": 0.05289532293986637,
+        "fp": 95,
+        "support": 1796,
+        "tn": 1701
+      },
+      "routine": {
+        "false_positive_rate": 0.01560758082497213,
+        "fp": 84,
+        "support": 5382,
+        "tn": 5298
+      }
+    },
+    "started_at_utc": "2026-09-28T22:33:49.186027+00:00",
+    "train": {
+      "accuracy": 0.9605333333333334,
+      "average_precision": 0.9760472999688855,
+      "balanced_accuracy": 0.9478740706983078,
+      "confusion_matrix": [
+        [
+          39252,
+          529
+        ],
+        [
+          1839,
+          18380
+        ]
+      ],
+      "false_positive_rate": 0.013297805485030543,
+      "macro_f1": 0.9550999199706637,
+      "normal_f1": 0.9707191611435355,
+      "normal_precision": 0.955245674235234,
+      "normal_recall": 0.9867021945149694,
+      "roc_auc": 0.9797699666169831,
+      "suspicious_f1": 0.9394806787977918,
+      "suspicious_precision": 0.9720239039610767,
+      "suspicious_recall": 0.909045946881646,
+      "threshold": 0.5
+    },
+    "train_metric_scope": "train field evaluates ALL original Train rows, including excluded rows; fit_subset_metrics is actual fitted subset",
+    "validation": {
+      "accuracy": 0.9456666666666667,
+      "average_precision": 0.964689042195038,
+      "balanced_accuracy": 0.9332964837764977,
+      "confusion_matrix": [
+        [
+          9659,
+          286
+        ],
+        [
+          529,
+          4526
+        ]
+      ],
+      "false_positive_rate": 0.02875816993464052,
+      "macro_f1": 0.9384603182391369,
+      "normal_f1": 0.9595191973377043,
+      "normal_precision": 0.9480761680408324,
+      "normal_recall": 0.9712418300653595,
+      "roc_auc": 0.9753660264988595,
+      "suspicious_f1": 0.9174014391405696,
+      "suspicious_precision": 0.9405652535328346,
+      "suspicious_recall": 0.895351137487636,
+      "threshold": 0.5
+    },
+    "warnings": []
+  },
+  "D3": {
+    "domain_independence": {
+      "agent_only": {
+        "fn": 362,
+        "low_support": false,
+        "recall": 0.8840858149215498,
+        "support": 3123,
+        "tp": 2761
+      },
+      "agent_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 712,
+        "tp": 712
+      },
+      "network_only": {
+        "fn": 82,
+        "low_support": false,
+        "recall": 0.8888888888888888,
+        "support": 738,
+        "tp": 656
+      },
+      "network_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 533,
+        "tp": 533
+      },
+      "structuring_only": {
+        "fn": 5,
+        "low_support": false,
+        "recall": 0.9767441860465116,
+        "support": 215,
+        "tp": 210
+      },
+      "structuring_overlap": {
+        "fn": 0,
+        "low_support": false,
+        "recall": 1.0,
+        "support": 824,
+        "tp": 824
+      }
+    },
+    "domains": {
+      "agent": {
+        "fn": 362,
+        "recall": 0.905606258148631,
+        "support": 3835,
+        "tp": 3473
+      },
+      "network": {
+        "fn": 82,
+        "recall": 0.9354838709677419,
+        "support": 1271,
+        "tp": 1189
+      },
+      "structuring": {
+        "fn": 5,
+        "recall": 0.9951876804619827,
+        "support": 1039,
+        "tp": 1034
+      }
+    },
+    "excluded_count": 1353,
+    "excluded_family_counts": {
+      "A1": 425,
+      "A2": 330,
+      "A3": 100,
+      "A4": 1353,
+      "N1": 0,
+      "N2": 0,
+      "N3": 0,
+      "N4": 26,
+      "S1": 43,
+      "S2": 0,
+      "S3": 149,
+      "S4": 0
+    },
+    "families": {
+      "A1": {
+        "fn": 64,
+        "recall": 0.9766848816029143,
+        "support": 2745,
+        "tp": 2681
+      },
+      "A2": {
+        "fn": 132,
+        "recall": 0.8580645161290322,
+        "support": 930,
+        "tp": 798
+      },
+      "A3": {
+        "fn": 2,
+        "recall": 0.9958762886597938,
+        "support": 485,
+        "tp": 483
+      },
+      "A4": {
+        "fn": 182,
+        "recall": 0.4599406528189911,
+        "support": 337,
+        "tp": 155
+      },
+      "N1": {
+        "fn": 22,
+        "recall": 0.930379746835443,
+        "support": 316,
+        "tp": 294
+      },
+      "N2": {
+        "fn": 29,
+        "recall": 0.9605978260869565,
+        "support": 736,
+        "tp": 707
+      },
+      "N3": {
+        "fn": 19,
+        "recall": 0.5365853658536586,
+        "support": 41,
+        "tp": 22
+      },
+      "N4": {
+        "fn": 12,
+        "recall": 0.951417004048583,
+        "support": 247,
+        "tp": 235
+      },
+      "S1": {
+        "fn": 3,
+        "recall": 0.9891304347826086,
+        "support": 276,
+        "tp": 273
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "fit_and_score_seconds": 5.9600959999952465,
+    "fit_class_counts": [
+      39781,
+      18866
+    ],
+    "fit_subset_metrics": {
+      "accuracy": 0.9761283612119972,
+      "average_precision": 0.9947208292985639,
+      "balanced_accuracy": 0.9721065160546529,
+      "confusion_matrix": [
+        [
+          39120,
+          661
+        ],
+        [
+          739,
+          18127
+        ]
+      ],
+      "false_positive_rate": 0.016615972449159147,
+      "macro_f1": 0.9726201246022461,
+      "normal_f1": 0.982420894023104,
+      "normal_precision": 0.9814596452495045,
+      "normal_recall": 0.9833840275508409,
+      "roc_auc": 0.99724831574358,
+      "suspicious_f1": 0.9628193551813884,
+      "suspicious_precision": 0.9648179689163295,
+      "suspicious_recall": 0.960829004558465,
+      "threshold": 0.5
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.7356837136382762,
+        "coverage": 0.024499182793712878,
+        "current": 0.0229800520295871,
+        "network": 0.1346307846616398,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.08220626687678392
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.0005153587775374357,
+        "agent_cash_value_skew_24h": 0.00026472208089146107,
+        "agent_cash_value_skew_change": 0.0005649744722446866,
+        "agent_history_coverage_days": 0.0009514338857752762,
+        "agent_new_wallet_share_7d": 0.001546434460223265,
+        "agent_service_acceleration_1h": 0.00151507434090925,
+        "agent_service_count_1h_inclusive": 0.00013191930281002668,
+        "agent_top2_count_share_24h": 0.0008038548340623234,
+        "agent_top2_share_change_24h": 0.0008846308362388747,
+        "agent_wallet_growth_ratio_7d": 0.004255658817625907,
+        "current_amount_usd": 0.00014951620869350365,
+        "current_is_cash_in": 0.00035053130074546565,
+        "current_is_cash_out": 0.0010068974364631292,
+        "current_return_amount_ratio": 0.00025173004522189283,
+        "current_return_path_length": 1.4771831460478175e-05,
+        "receiver_history_coverage_days": 0.00011270539264114697,
+        "receiver_inflow_acceleration_24h": 0.0001607182843972034,
+        "receiver_inflow_count_24h_inclusive": 0.00017921023597657862,
+        "receiver_unique_sources_24h_inclusive": 0.00040513608711125734,
+        "sender_outflow_acceleration_24h": 0.00017034435056204666,
+        "sender_outflow_count_24h_inclusive": 0.0003742873327174561,
+        "sender_unique_destinations_24h_inclusive": 0.00010517350768536486,
+        "wallet_active_hours_utc_day": 0.00023904300238138072,
+        "wallet_band_share_7d_inclusive": 4.122159241898108e-05,
+        "wallet_count_1h_inclusive": 5.942564139738997e-05,
+        "wallet_count_acceleration_1h": 3.092232342863052e-05,
+        "wallet_count_utc_day_inclusive": 0.0005115172062742636,
+        "wallet_current_amount_cluster_share_7d": 0.00011996713577714608,
+        "wallet_history_coverage_days": 0.0003739299339545616,
+        "wallet_observed_onward_funding_share_24h": 0.0008286455138959768,
+        "wallet_prior_funding_age_hours": 8.608593576948086e-05,
+        "wallet_value_24h_inclusive": 0.0016783513449675376
+      },
+      "top3_share": 0.691951408626073,
+      "top5_share": 0.7524984536109194,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.5968315329785466,
+      "values": {
+        "agent_cash_count_skew_24h": 0.003707237879641778,
+        "agent_cash_value_skew_24h": 0.002486713686913481,
+        "agent_cash_value_skew_change": 0.0033259210025295602,
+        "agent_history_coverage_days": 0.005679689645352444,
+        "agent_new_wallet_share_7d": 0.009860946687941982,
+        "agent_service_acceleration_1h": 0.03355589862460506,
+        "agent_service_count_1h_inclusive": 0.001917457222870289,
+        "agent_top2_count_share_24h": 0.01551829003783467,
+        "agent_top2_share_change_24h": 0.004539943800966599,
+        "agent_wallet_growth_ratio_7d": 0.32199773641520163,
+        "current_amount_usd": 0.0025226346037491667,
+        "current_is_cash_in": 0.0033594826731868643,
+        "current_is_cash_out": 0.006515895105725034,
+        "current_return_amount_ratio": 0.002784018353263066,
+        "current_return_path_length": 0.0019474488265972534,
+        "receiver_history_coverage_days": 0.0022122867310558902,
+        "receiver_inflow_acceleration_24h": 0.004738544444973088,
+        "receiver_inflow_count_24h_inclusive": 0.013454436025092368,
+        "receiver_unique_sources_24h_inclusive": 0.008276088664316653,
+        "sender_outflow_acceleration_24h": 0.004914129326410961,
+        "sender_outflow_count_24h_inclusive": 0.014064941862019195,
+        "sender_unique_destinations_24h_inclusive": 0.002413658703715016,
+        "wallet_active_hours_utc_day": 0.005341037612447049,
+        "wallet_band_share_7d_inclusive": 0.0019791692986064944,
+        "wallet_count_1h_inclusive": 0.0022318227516243683,
+        "wallet_count_acceleration_1h": 0.0030119742792709494,
+        "wallet_count_utc_day_inclusive": 0.017147563481085742,
+        "wallet_current_amount_cluster_share_7d": 0.002118982669889783,
+        "wallet_history_coverage_days": 0.005325625187350469,
+        "wallet_observed_onward_funding_share_24h": 0.01776240973243659,
+        "wallet_prior_funding_age_hours": 0.002279239472739225,
+        "wallet_value_24h_inclusive": 0.012520712182656268
+      }
+    },
+    "normal_fpr": {
+      "H1": {
+        "false_positive_rate": 0.15126050420168066,
+        "fp": 36,
+        "support": 238,
+        "tn": 202
+      },
+      "H2": {
+        "false_positive_rate": 0.05080213903743316,
+        "fp": 19,
+        "support": 374,
+        "tn": 355
+      },
+      "H3": {
+        "false_positive_rate": 0.03201970443349754,
+        "fp": 13,
+        "support": 406,
+        "tn": 393
+      },
+      "H4": {
+        "false_positive_rate": 0.030821917808219176,
+        "fp": 9,
+        "support": 292,
+        "tn": 283
+      },
+      "H5": {
+        "false_positive_rate": 0.07009345794392523,
+        "fp": 15,
+        "support": 214,
+        "tn": 199
+      },
+      "H6": {
+        "false_positive_rate": 0.01179245283018868,
+        "fp": 5,
+        "support": 424,
+        "tn": 419
+      },
+      "H7": {
+        "false_positive_rate": 0.008356545961002786,
+        "fp": 3,
+        "support": 359,
+        "tn": 356
+      },
+      "H8": {
+        "false_positive_rate": 0.03260869565217391,
+        "fp": 15,
+        "support": 460,
+        "tn": 445
+      },
+      "campaign_member_target0": {
+        "false_positive_rate": 0.05846325167037862,
+        "fp": 105,
+        "support": 1796,
+        "tn": 1691
+      },
+      "routine": {
+        "false_positive_rate": 0.016908212560386472,
+        "fp": 91,
+        "support": 5382,
+        "tn": 5291
+      }
+    },
+    "started_at_utc": "2026-09-28T22:33:58.586148+00:00",
+    "train": {
+      "accuracy": 0.9656333333333333,
+      "average_precision": 0.9832795910680067,
+      "balanced_accuracy": 0.9570463834277276,
+      "confusion_matrix": [
+        [
+          39120,
+          661
+        ],
+        [
+          1401,
+          18818
+        ]
+      ],
+      "false_positive_rate": 0.016615972449159147,
+      "macro_f1": 0.9611898856816776,
+      "normal_f1": 0.9743219346965206,
+      "normal_precision": 0.9654253350114755,
+      "normal_recall": 0.9833840275508409,
+      "roc_auc": 0.9862647862271716,
+      "suspicious_f1": 0.9480578366668346,
+      "suspicious_precision": 0.9660660198162123,
+      "suspicious_recall": 0.9307087393046145,
+      "threshold": 0.5
+    },
+    "train_metric_scope": "train field evaluates ALL original Train rows, including excluded rows; fit_subset_metrics is actual fitted subset",
+    "validation": {
+      "accuracy": 0.9493333333333334,
+      "average_precision": 0.9701020227450817,
+      "balanced_accuracy": 0.9399525282227325,
+      "confusion_matrix": [
+        [
+          9634,
+          311
+        ],
+        [
+          449,
+          4606
+        ]
+      ],
+      "false_positive_rate": 0.03127199597787833,
+      "macro_f1": 0.942919864055545,
+      "normal_f1": 0.9620531256241263,
+      "normal_precision": 0.9554696023009025,
+      "normal_recall": 0.9687280040221217,
+      "roc_auc": 0.9787261192742078,
+      "suspicious_f1": 0.9237866024869635,
+      "suspicious_precision": 0.9367500508440105,
+      "suspicious_recall": 0.9111770524233432,
+      "threshold": 0.5
+    },
+    "warnings": []
+  },
+  "D4": {
+    "domain_independence": {
+      "agent_only": {
+        "fn": 3067,
+        "low_support": false,
+        "recall": 0.01793147614473263,
+        "support": 3123,
+        "tp": 56
+      },
+      "agent_overlap": {
+        "fn": 14,
+        "low_support": false,
+        "recall": 0.9803370786516854,
+        "support": 712,
+        "tp": 698
+      },
+      "network_only": {
+        "fn": 81,
+        "low_support": false,
+        "recall": 0.8902439024390244,
+        "support": 738,
+        "tp": 657
+      },
+      "network_overlap": {
+        "fn": 4,
+        "low_support": false,
+        "recall": 0.9924953095684803,
+        "support": 533,
+        "tp": 529
+      },
+      "structuring_only": {
+        "fn": 7,
+        "low_support": false,
+        "recall": 0.9674418604651163,
+        "support": 215,
+        "tp": 208
+      },
+      "structuring_overlap": {
+        "fn": 10,
+        "low_support": false,
+        "recall": 0.9878640776699029,
+        "support": 824,
+        "tp": 814
+      }
+    },
+    "domains": {
+      "agent": {
+        "fn": 3081,
+        "recall": 0.19661016949152543,
+        "support": 3835,
+        "tp": 754
+      },
+      "network": {
+        "fn": 85,
+        "recall": 0.9331235247836349,
+        "support": 1271,
+        "tp": 1186
+      },
+      "structuring": {
+        "fn": 17,
+        "recall": 0.983638113570741,
+        "support": 1039,
+        "tp": 1022
+      }
+    },
+    "excluded_count": 15432,
+    "excluded_family_counts": {
+      "A1": 11476,
+      "A2": 3770,
+      "A3": 1810,
+      "A4": 1353,
+      "N1": 221,
+      "N2": 783,
+      "N3": 22,
+      "N4": 328,
+      "S1": 857,
+      "S2": 2,
+      "S3": 1705,
+      "S4": 9
+    },
+    "families": {
+      "A1": {
+        "fn": 2409,
+        "recall": 0.12240437158469945,
+        "support": 2745,
+        "tp": 336
+      },
+      "A2": {
+        "fn": 451,
+        "recall": 0.5150537634408602,
+        "support": 930,
+        "tp": 479
+      },
+      "A3": {
+        "fn": 375,
+        "recall": 0.2268041237113402,
+        "support": 485,
+        "tp": 110
+      },
+      "A4": {
+        "fn": 294,
+        "recall": 0.12759643916913946,
+        "support": 337,
+        "tp": 43
+      },
+      "N1": {
+        "fn": 16,
+        "recall": 0.9493670886075949,
+        "support": 316,
+        "tp": 300
+      },
+      "N2": {
+        "fn": 32,
+        "recall": 0.9565217391304348,
+        "support": 736,
+        "tp": 704
+      },
+      "N3": {
+        "fn": 25,
+        "recall": 0.3902439024390244,
+        "support": 41,
+        "tp": 16
+      },
+      "N4": {
+        "fn": 12,
+        "recall": 0.951417004048583,
+        "support": 247,
+        "tp": 235
+      },
+      "S1": {
+        "fn": 7,
+        "recall": 0.9746376811594203,
+        "support": 276,
+        "tp": 269
+      },
+      "S2": {
+        "fn": 1,
+        "recall": 0.0,
+        "support": 1,
+        "tp": 0
+      },
+      "S3": {
+        "fn": 1,
+        "recall": 0.9987714987714987,
+        "support": 814,
+        "tp": 813
+      },
+      "S4": {
+        "fn": 8,
+        "recall": 0.0,
+        "support": 8,
+        "tp": 0
+      }
+    },
+    "fit_and_score_seconds": 5.030655199952889,
+    "fit_class_counts": [
+      39781,
+      4787
+    ],
+    "fit_subset_metrics": {
+      "accuracy": 0.9933360258481422,
+      "average_precision": 0.9953445501462749,
+      "balanced_accuracy": 0.9913055023884765,
+      "confusion_matrix": [
+        [
+          39538,
+          243
+        ],
+        [
+          54,
+          4733
+        ]
+      ],
+      "false_positive_rate": 0.006108443729418567,
+      "macro_f1": 0.9829185981378155,
+      "normal_f1": 0.9962581734342912,
+      "normal_precision": 0.9986360880986058,
+      "normal_recall": 0.9938915562705815,
+      "roc_auc": 0.9994266656739045,
+      "suspicious_f1": 0.9695790228413398,
+      "suspicious_precision": 0.9511655948553055,
+      "suspicious_recall": 0.9887194485063714,
+      "threshold": 0.5
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.3247923695944423,
+        "coverage": 0.07398386890047172,
+        "current": 0.10273252350390208,
+        "network": 0.2653278136010556,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.23316342440012827
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 9.233218666861337e-05,
+        "agent_cash_value_skew_24h": 4.583263223734921e-05,
+        "agent_cash_value_skew_change": 0.00023719551616991746,
+        "agent_history_coverage_days": 8.239233071682241e-05,
+        "agent_new_wallet_share_7d": 0.00011189743485424935,
+        "agent_service_acceleration_1h": 0.00013244933536772256,
+        "agent_service_count_1h_inclusive": 0.00011928601067933643,
+        "agent_top2_count_share_24h": 0.00030748298811828086,
+        "agent_top2_share_change_24h": 7.085968037825383e-05,
+        "agent_wallet_growth_ratio_7d": 0.0002614455146653917,
+        "current_amount_usd": 0.0008977855149356536,
+        "current_is_cash_in": 0.0020523820898072104,
+        "current_is_cash_out": 0.0013713304105567405,
+        "current_return_amount_ratio": 0.001484613122855857,
+        "current_return_path_length": 0.0009529302967517728,
+        "receiver_history_coverage_days": 0.00015787884190702402,
+        "receiver_inflow_acceleration_24h": 0.0003640043669679532,
+        "receiver_inflow_count_24h_inclusive": 0.0008163552587213537,
+        "receiver_unique_sources_24h_inclusive": 0.00014684449063869672,
+        "sender_outflow_acceleration_24h": 0.0006400237432973057,
+        "sender_outflow_count_24h_inclusive": 0.0021091869071022443,
+        "sender_unique_destinations_24h_inclusive": 0.0011248733477597526,
+        "wallet_active_hours_utc_day": 0.00043353355022566266,
+        "wallet_band_share_7d_inclusive": 0.0007633738211020852,
+        "wallet_count_1h_inclusive": 0.0001634078789964684,
+        "wallet_count_acceleration_1h": 0.001981321770091913,
+        "wallet_count_utc_day_inclusive": 0.002797780602576346,
+        "wallet_current_amount_cluster_share_7d": 0.00031493769925850017,
+        "wallet_history_coverage_days": 0.0004194725805693153,
+        "wallet_observed_onward_funding_share_24h": 0.004682515148446688,
+        "wallet_prior_funding_age_hours": 0.00040130344741716423,
+        "wallet_value_24h_inclusive": 0.003149448240481206
+      },
+      "top3_share": 0.15565219680575215,
+      "top5_share": 0.23420739288813958,
+      "top_feature": "wallet_count_utc_day_inclusive",
+      "top_share": 0.06456313314147123,
+      "values": {
+        "agent_cash_count_skew_24h": -0.014016433421769836,
+        "agent_cash_value_skew_24h": -0.015165078916618224,
+        "agent_cash_value_skew_change": -0.015443357898282292,
+        "agent_history_coverage_days": -0.014707007689066742,
+        "agent_new_wallet_share_7d": -0.013321926213830068,
+        "agent_service_acceleration_1h": -0.01433613000860671,
+        "agent_service_count_1h_inclusive": -0.010725589643993097,
+        "agent_top2_count_share_24h": -0.014131699369573222,
+        "agent_top2_share_change_24h": -0.01382372277339742,
+        "agent_wallet_growth_ratio_7d": -0.019056254793270444,
+        "current_amount_usd": -0.012820747538374921,
+        "current_is_cash_in": -0.016003691709529977,
+        "current_is_cash_out": -0.012301226832473922,
+        "current_return_amount_ratio": -0.014415918670840319,
+        "current_return_path_length": -0.014542666419383768,
+        "receiver_history_coverage_days": -0.009307205099097696,
+        "receiver_inflow_acceleration_24h": -0.010548732020192611,
+        "receiver_inflow_count_24h_inclusive": 0.006948512726949037,
+        "receiver_unique_sources_24h_inclusive": -0.0059056712667283255,
+        "sender_outflow_acceleration_24h": -0.0057386518304383865,
+        "sender_outflow_count_24h_inclusive": 0.001284051077767227,
+        "sender_unique_destinations_24h_inclusive": -0.014843213051253948,
+        "wallet_active_hours_utc_day": -0.00847536211899702,
+        "wallet_band_share_7d_inclusive": -0.012943906577061681,
+        "wallet_count_1h_inclusive": -0.012485621589447105,
+        "wallet_count_acceleration_1h": -0.008702912276808528,
+        "wallet_count_utc_day_inclusive": 0.025845776625727807,
+        "wallet_current_amount_cluster_share_7d": -0.012381493945439082,
+        "wallet_history_coverage_days": -0.005602852810538146,
+        "wallet_observed_onward_funding_share_24h": 0.017408326120964546,
+        "wallet_prior_funding_age_hours": -0.01457972482722151,
+        "wallet_value_24h_inclusive": 0.012504414761733473
+      }
+    },
+    "normal_fpr": {
+      "H1": {
+        "false_positive_rate": 0.09243697478991597,
+        "fp": 22,
+        "support": 238,
+        "tn": 216
+      },
+      "H2": {
+        "false_positive_rate": 0.029411764705882353,
+        "fp": 11,
+        "support": 374,
+        "tn": 363
+      },
+      "H3": {
+        "false_positive_rate": 0.0024630541871921183,
+        "fp": 1,
+        "support": 406,
+        "tn": 405
+      },
+      "H4": {
+        "false_positive_rate": 0.023972602739726026,
+        "fp": 7,
+        "support": 292,
+        "tn": 285
+      },
+      "H5": {
+        "false_positive_rate": 0.06542056074766354,
+        "fp": 14,
+        "support": 214,
+        "tn": 200
+      },
+      "H6": {
+        "false_positive_rate": 0.0023584905660377358,
+        "fp": 1,
+        "support": 424,
+        "tn": 423
+      },
+      "H7": {
+        "false_positive_rate": 0.0,
+        "fp": 0,
+        "support": 359,
+        "tn": 359
+      },
+      "H8": {
+        "false_positive_rate": 0.004347826086956522,
+        "fp": 2,
+        "support": 460,
+        "tn": 458
+      },
+      "campaign_member_target0": {
+        "false_positive_rate": 0.024498886414253896,
+        "fp": 44,
+        "support": 1796,
+        "tn": 1752
+      },
+      "routine": {
+        "false_positive_rate": 0.001300631735414344,
+        "fp": 7,
+        "support": 5382,
+        "tn": 5375
+      }
+    },
+    "started_at_utc": "2026-09-28T22:34:08.118898+00:00",
+    "train": {
+      "accuracy": 0.7896833333333333,
+      "average_precision": 0.6653169931950619,
+      "balanced_accuracy": 0.6908970121231239,
+      "confusion_matrix": [
+        [
+          39538,
+          243
+        ],
+        [
+          12376,
+          7843
+        ]
+      ],
+      "false_positive_rate": 0.006108443729418567,
+      "macro_f1": 0.7082792129029174,
+      "normal_f1": 0.8623807186869513,
+      "normal_precision": 0.7616057325576916,
+      "normal_recall": 0.9938915562705815,
+      "roc_auc": 0.6755532306975527,
+      "suspicious_f1": 0.5541777071188836,
+      "suspicious_precision": 0.9699480583724956,
+      "suspicious_recall": 0.38790246797566647,
+      "threshold": 0.5
+    },
+    "train_metric_scope": "train field evaluates ALL original Train rows, including excluded rows; fit_subset_metrics is actual fitted subset",
+    "validation": {
+      "accuracy": 0.7814666666666666,
+      "average_precision": 0.6564300732240453,
+      "balanced_accuracy": 0.6810678315303904,
+      "confusion_matrix": [
+        [
+          9836,
+          109
+        ],
+        [
+          3169,
+          1886
+        ]
+      ],
+      "false_positive_rate": 0.010960281548516842,
+      "macro_f1": 0.6961016084920966,
+      "normal_f1": 0.8571677559912854,
+      "normal_precision": 0.756324490580546,
+      "normal_recall": 0.9890397184514832,
+      "roc_auc": 0.6706714924169976,
+      "suspicious_f1": 0.5350354609929078,
+      "suspicious_precision": 0.9453634085213033,
+      "suspicious_recall": 0.37309594460929774,
+      "threshold": 0.5
+    },
+    "warnings": []
+  }
+}

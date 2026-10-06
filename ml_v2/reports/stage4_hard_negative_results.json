@@ -1,0 +1,237 @@
+{
+  "gb_clipped_regularized_balanced": {
+    "H1": {
+      "count": 825,
+      "false_positive_rate": 0.7321212121212122,
+      "false_positives": 604
+    },
+    "H2": {
+      "count": 825,
+      "false_positive_rate": 0.5333333333333333,
+      "false_positives": 440
+    },
+    "H3": {
+      "count": 825,
+      "false_positive_rate": 0.49333333333333335,
+      "false_positives": 407
+    },
+    "H4": {
+      "count": 825,
+      "false_positive_rate": 0.35878787878787877,
+      "false_positives": 296
+    },
+    "H5": {
+      "count": 825,
+      "false_positive_rate": 0.5333333333333333,
+      "false_positives": 440
+    },
+    "H6": {
+      "count": 825,
+      "false_positive_rate": 0.2606060606060606,
+      "false_positives": 215
+    },
+    "H7": {
+      "count": 825,
+      "false_positive_rate": 0.6436363636363637,
+      "false_positives": 531
+    },
+    "H8": {
+      "count": 825,
+      "false_positive_rate": 0.45212121212121215,
+      "false_positives": 373
+    },
+    "routine": {
+      "count": 6600,
+      "false_positive_rate": 0.1606060606060606,
+      "false_positives": 1060
+    }
+  },
+  "hgb_clipped_regularized_balanced": {
+    "H1": {
+      "count": 825,
+      "false_positive_rate": 0.5296969696969697,
+      "false_positives": 437
+    },
+    "H2": {
+      "count": 825,
+      "false_positive_rate": 0.2909090909090909,
+      "false_positives": 240
+    },
+    "H3": {
+      "count": 825,
+      "false_positive_rate": 0.3115151515151515,
+      "false_positives": 257
+    },
+    "H4": {
+      "count": 825,
+      "false_positive_rate": 0.23272727272727273,
+      "false_positives": 192
+    },
+    "H5": {
+      "count": 825,
+      "false_positive_rate": 0.3781818181818182,
+      "false_positives": 312
+    },
+    "H6": {
+      "count": 825,
+      "false_positive_rate": 0.19636363636363635,
+      "false_positives": 162
+    },
+    "H7": {
+      "count": 825,
+      "false_positive_rate": 0.4496969696969697,
+      "false_positives": 371
+    },
+    "H8": {
+      "count": 825,
+      "false_positive_rate": 0.2775757575757576,
+      "false_positives": 229
+    },
+    "routine": {
+      "count": 6600,
+      "false_positive_rate": 0.09712121212121212,
+      "false_positives": 641
+    }
+  },
+  "lr_robust_C10.0_balanced": {
+    "H1": {
+      "count": 825,
+      "false_positive_rate": 0.8036363636363636,
+      "false_positives": 663
+    },
+    "H2": {
+      "count": 825,
+      "false_positive_rate": 0.5903030303030303,
+      "false_positives": 487
+    },
+    "H3": {
+      "count": 825,
+      "false_positive_rate": 0.5515151515151515,
+      "false_positives": 455
+    },
+    "H4": {
+      "count": 825,
+      "false_positive_rate": 0.3903030303030303,
+      "false_positives": 322
+    },
+    "H5": {
+      "count": 825,
+      "false_positive_rate": 0.5757575757575758,
+      "false_positives": 475
+    },
+    "H6": {
+      "count": 825,
+      "false_positive_rate": 0.4193939393939394,
+      "false_positives": 346
+    },
+    "H7": {
+      "count": 825,
+      "false_positive_rate": 0.6436363636363637,
+      "false_positives": 531
+    },
+    "H8": {
+      "count": 825,
+      "false_positive_rate": 0.5624242424242424,
+      "false_positives": 464
+    },
+    "routine": {
+      "count": 6600,
+      "false_positive_rate": 0.2856060606060606,
+      "false_positives": 1885
+    }
+  },
+  "rf_raw_regularized_balanced_subsample": {
+    "H1": {
+      "count": 825,
+      "false_positive_rate": 0.30424242424242426,
+      "false_positives": 251
+    },
+    "H2": {
+      "count": 825,
+      "false_positive_rate": 0.04606060606060606,
+      "false_positives": 38
+    },
+    "H3": {
+      "count": 825,
+      "false_positive_rate": 0.09454545454545454,
+      "false_positives": 78
+    },
+    "H4": {
+      "count": 825,
+      "false_positive_rate": 0.059393939393939395,
+      "false_positives": 49
+    },
+    "H5": {
+      "count": 825,
+      "false_positive_rate": 0.1709090909090909,
+      "false_positives": 141
+    },
+    "H6": {
+      "count": 825,
+      "false_positive_rate": 0.05090909090909091,
+      "false_positives": 42
+    },
+    "H7": {
+      "count": 825,
+      "false_positive_rate": 0.09212121212121212,
+      "false_positives": 76
+    },
+    "H8": {
+      "count": 825,
+      "false_positive_rate": 0.06545454545454546,
+      "false_positives": 54
+    },
+    "routine": {
+      "count": 6600,
+      "false_positive_rate": 0.016363636363636365,
+      "false_positives": 108
+    }
+  },
+  "xgb_raw_regularized_balanced": {
+    "H1": {
+      "count": 825,
+      "false_positive_rate": 0.5903030303030303,
+      "false_positives": 487
+    },
+    "H2": {
+      "count": 825,
+      "false_positive_rate": 0.32727272727272727,
+      "false_positives": 270
+    },
+    "H3": {
+      "count": 825,
+      "false_positive_rate": 0.34545454545454546,
+      "false_positives": 285
+    },
+    "H4": {
+      "count": 825,
+      "false_positive_rate": 0.24606060606060606,
+      "false_positives": 203
+    },
+    "H5": {
+      "count": 825,
+      "false_positive_rate": 0.40606060606060607,
+      "false_positives": 335
+    },
+    "H6": {
+      "count": 825,
+      "false_positive_rate": 0.21575757575757576,
+      "false_positives": 178
+    },
+    "H7": {
+      "count": 825,
+      "false_positive_rate": 0.5236363636363637,
+      "false_positives": 432
+    },
+    "H8": {
+      "count": 825,
+      "false_positive_rate": 0.31393939393939396,
+      "false_positives": 259
+    },
+    "routine": {
+      "count": 6600,
+      "false_positive_rate": 0.11242424242424243,
+      "false_positives": 742
+    }
+  }
+}

@@ -1,0 +1,902 @@
+{
+  "hgb_R0": {
+    "agent_only": {
+      "fn": 256,
+      "low_support": false,
+      "recall": 0.9180275376240794,
+      "support": 3123,
+      "tp": 2867
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 68,
+      "low_support": false,
+      "recall": 0.907859078590786,
+      "support": 738,
+      "tp": 670
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "hgb_R0_no_growth": {
+    "agent_only": {
+      "fn": 1868,
+      "low_support": false,
+      "recall": 0.40185718860070446,
+      "support": 3123,
+      "tp": 1255
+    },
+    "agent_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9943820224719101,
+      "support": 712,
+      "tp": 708
+    },
+    "multi_domain": {
+      "fn": 4,
+      "recall": 0.9959141981613892,
+      "support": 979,
+      "tp": 975
+    },
+    "network_only": {
+      "fn": 64,
+      "low_support": false,
+      "recall": 0.9132791327913279,
+      "support": 738,
+      "tp": 674
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9951456310679612,
+      "support": 824,
+      "tp": 820
+    }
+  },
+  "hgb_R1": {
+    "agent_only": {
+      "fn": 254,
+      "low_support": false,
+      "recall": 0.9186679474863912,
+      "support": 3123,
+      "tp": 2869
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 61,
+      "low_support": false,
+      "recall": 0.9173441734417345,
+      "support": 738,
+      "tp": 677
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "hgb_R1_no_growth": {
+    "agent_only": {
+      "fn": 1887,
+      "low_support": false,
+      "recall": 0.3957732949087416,
+      "support": 3123,
+      "tp": 1236
+    },
+    "agent_overlap": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9929775280898876,
+      "support": 712,
+      "tp": 707
+    },
+    "multi_domain": {
+      "fn": 5,
+      "recall": 0.9948927477017364,
+      "support": 979,
+      "tp": 974
+    },
+    "network_only": {
+      "fn": 58,
+      "low_support": false,
+      "recall": 0.9214092140921409,
+      "support": 738,
+      "tp": 680
+    },
+    "network_overlap": {
+      "fn": 1,
+      "low_support": false,
+      "recall": 0.99812382739212,
+      "support": 533,
+      "tp": 532
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9951456310679612,
+      "support": 824,
+      "tp": 820
+    }
+  },
+  "hgb_R2": {
+    "agent_only": {
+      "fn": 212,
+      "low_support": false,
+      "recall": 0.9321165545949408,
+      "support": 3123,
+      "tp": 2911
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 74,
+      "low_support": false,
+      "recall": 0.8997289972899729,
+      "support": 738,
+      "tp": 664
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "hgb_R2_no_growth": {
+    "agent_only": {
+      "fn": 1813,
+      "low_support": false,
+      "recall": 0.41946845981428116,
+      "support": 3123,
+      "tp": 1310
+    },
+    "agent_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9943820224719101,
+      "support": 712,
+      "tp": 708
+    },
+    "multi_domain": {
+      "fn": 4,
+      "recall": 0.9959141981613892,
+      "support": 979,
+      "tp": 975
+    },
+    "network_only": {
+      "fn": 65,
+      "low_support": false,
+      "recall": 0.9119241192411924,
+      "support": 738,
+      "tp": 673
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9951456310679612,
+      "support": 824,
+      "tp": 820
+    }
+  },
+  "hgb_R3": {
+    "agent_only": {
+      "fn": 211,
+      "low_support": false,
+      "recall": 0.9324367595260967,
+      "support": 3123,
+      "tp": 2912
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 74,
+      "low_support": false,
+      "recall": 0.8997289972899729,
+      "support": 738,
+      "tp": 664
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "hgb_R4": {
+    "agent_only": {
+      "fn": 1811,
+      "low_support": false,
+      "recall": 0.420108869676593,
+      "support": 3123,
+      "tp": 1312
+    },
+    "agent_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9957865168539326,
+      "support": 712,
+      "tp": 709
+    },
+    "multi_domain": {
+      "fn": 3,
+      "recall": 0.9969356486210419,
+      "support": 979,
+      "tp": 976
+    },
+    "network_only": {
+      "fn": 57,
+      "low_support": false,
+      "recall": 0.9227642276422764,
+      "support": 738,
+      "tp": 681
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9963592233009708,
+      "support": 824,
+      "tp": 821
+    }
+  },
+  "hgb_R5": {
+    "agent_only": {
+      "fn": 1259,
+      "low_support": false,
+      "recall": 0.5968619916746718,
+      "support": 3123,
+      "tp": 1864
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 62,
+      "low_support": false,
+      "recall": 0.9159891598915989,
+      "support": 738,
+      "tp": 676
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "xgb_R0": {
+    "agent_only": {
+      "fn": 273,
+      "low_support": false,
+      "recall": 0.9125840537944284,
+      "support": 3123,
+      "tp": 2850
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 65,
+      "low_support": false,
+      "recall": 0.9119241192411924,
+      "support": 738,
+      "tp": 673
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "xgb_R0_no_growth": {
+    "agent_only": {
+      "fn": 1723,
+      "low_support": false,
+      "recall": 0.44828690361831575,
+      "support": 3123,
+      "tp": 1400
+    },
+    "agent_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9957865168539326,
+      "support": 712,
+      "tp": 709
+    },
+    "multi_domain": {
+      "fn": 3,
+      "recall": 0.9969356486210419,
+      "support": 979,
+      "tp": 976
+    },
+    "network_only": {
+      "fn": 57,
+      "low_support": false,
+      "recall": 0.9227642276422764,
+      "support": 738,
+      "tp": 681
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9963592233009708,
+      "support": 824,
+      "tp": 821
+    }
+  },
+  "xgb_R1": {
+    "agent_only": {
+      "fn": 293,
+      "low_support": false,
+      "recall": 0.9061799551713097,
+      "support": 3123,
+      "tp": 2830
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 62,
+      "low_support": false,
+      "recall": 0.9159891598915989,
+      "support": 738,
+      "tp": 676
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 5,
+      "low_support": false,
+      "recall": 0.9767441860465116,
+      "support": 215,
+      "tp": 210
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "xgb_R1_no_growth": {
+    "agent_only": {
+      "fn": 1721,
+      "low_support": false,
+      "recall": 0.4489273134806276,
+      "support": 3123,
+      "tp": 1402
+    },
+    "agent_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9957865168539326,
+      "support": 712,
+      "tp": 709
+    },
+    "multi_domain": {
+      "fn": 3,
+      "recall": 0.9969356486210419,
+      "support": 979,
+      "tp": 976
+    },
+    "network_only": {
+      "fn": 57,
+      "low_support": false,
+      "recall": 0.9227642276422764,
+      "support": 738,
+      "tp": 681
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 3,
+      "low_support": false,
+      "recall": 0.9963592233009708,
+      "support": 824,
+      "tp": 821
+    }
+  },
+  "xgb_R2": {
+    "agent_only": {
+      "fn": 232,
+      "low_support": false,
+      "recall": 0.925712455971822,
+      "support": 3123,
+      "tp": 2891
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 69,
+      "low_support": false,
+      "recall": 0.9065040650406504,
+      "support": 738,
+      "tp": 669
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 6,
+      "low_support": false,
+      "recall": 0.9720930232558139,
+      "support": 215,
+      "tp": 209
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "xgb_R2_no_growth": {
+    "agent_only": {
+      "fn": 1595,
+      "low_support": false,
+      "recall": 0.48927313480627604,
+      "support": 3123,
+      "tp": 1528
+    },
+    "agent_overlap": {
+      "fn": 2,
+      "low_support": false,
+      "recall": 0.9971910112359551,
+      "support": 712,
+      "tp": 710
+    },
+    "multi_domain": {
+      "fn": 2,
+      "recall": 0.9979570990806946,
+      "support": 979,
+      "tp": 977
+    },
+    "network_only": {
+      "fn": 63,
+      "low_support": false,
+      "recall": 0.9146341463414634,
+      "support": 738,
+      "tp": 675
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 2,
+      "low_support": false,
+      "recall": 0.9975728155339806,
+      "support": 824,
+      "tp": 822
+    }
+  },
+  "xgb_R3": {
+    "agent_only": {
+      "fn": 231,
+      "low_support": false,
+      "recall": 0.9260326609029779,
+      "support": 3123,
+      "tp": 2892
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 63,
+      "low_support": false,
+      "recall": 0.9146341463414634,
+      "support": 738,
+      "tp": 675
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 6,
+      "low_support": false,
+      "recall": 0.9720930232558139,
+      "support": 215,
+      "tp": 209
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  },
+  "xgb_R4": {
+    "agent_only": {
+      "fn": 1581,
+      "low_support": false,
+      "recall": 0.49375600384245916,
+      "support": 3123,
+      "tp": 1542
+    },
+    "agent_overlap": {
+      "fn": 1,
+      "low_support": false,
+      "recall": 0.9985955056179775,
+      "support": 712,
+      "tp": 711
+    },
+    "multi_domain": {
+      "fn": 1,
+      "recall": 0.9989785495403473,
+      "support": 979,
+      "tp": 978
+    },
+    "network_only": {
+      "fn": 61,
+      "low_support": false,
+      "recall": 0.9173441734417345,
+      "support": 738,
+      "tp": 677
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 1,
+      "low_support": false,
+      "recall": 0.9987864077669902,
+      "support": 824,
+      "tp": 823
+    }
+  },
+  "xgb_R5": {
+    "agent_only": {
+      "fn": 1001,
+      "low_support": false,
+      "recall": 0.6794748639129042,
+      "support": 3123,
+      "tp": 2122
+    },
+    "agent_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 712,
+      "tp": 712
+    },
+    "multi_domain": {
+      "fn": 0,
+      "recall": 1.0,
+      "support": 979,
+      "tp": 979
+    },
+    "network_only": {
+      "fn": 61,
+      "low_support": false,
+      "recall": 0.9173441734417345,
+      "support": 738,
+      "tp": 677
+    },
+    "network_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 533,
+      "tp": 533
+    },
+    "structuring_only": {
+      "fn": 4,
+      "low_support": false,
+      "recall": 0.9813953488372092,
+      "support": 215,
+      "tp": 211
+    },
+    "structuring_overlap": {
+      "fn": 0,
+      "low_support": false,
+      "recall": 1.0,
+      "support": 824,
+      "tp": 824
+    }
+  }
+}

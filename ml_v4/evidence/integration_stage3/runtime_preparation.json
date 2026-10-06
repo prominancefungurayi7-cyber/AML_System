@@ -1,0 +1,22 @@
+{
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "base_interpreter_sha256": "cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b",
+  "isolated_prefix": "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\.venv_inference_stage3",
+  "system_site_packages": false,
+  "method": "Offline exact distribution-file copies, hashed source and destination; not original wheel lock",
+  "application_environment_modified": false,
+  "packages": {
+    "joblib": "1.5.3",
+    "numpy": "2.4.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "threadpoolctl": "3.6.0",
+    "xgboost": "3.4.1",
+    "pytest": "8.4.2",
+    "pluggy": "1.6.0",
+    "packaging": "26.0",
+    "iniconfig": "2.3.0",
+    "pygments": "2.20.0",
+    "colorama": "0.4.6"
+  }
+}

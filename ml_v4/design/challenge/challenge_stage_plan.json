@@ -1,0 +1,41 @@
+{
+  "protocol_version": "v4.challenge.protocol.1",
+  "stages": [
+    {
+      "gate": "User approves Stage16T and separate custody/resources; no execution implied by technical recommendation.",
+      "name": "Protocol approval",
+      "stage": 1
+    },
+    {
+      "gate": "Separately authorized; pass implementation fixtures and source freeze; one draw in custodian; public aggregate certificates only. Failed support retains draw and blocks automatic progression.",
+      "name": "Implementation, challenge generation and independent audit",
+      "stage": 2
+    },
+    {
+      "gate": "Separate user authorization after protocol/support review; existing Train/Validation only;40-field frozen semantics; challenge extractor code may be tested on fixtures but no challenge data exposed.",
+      "name": "V4 development feature construction",
+      "stage": 3
+    },
+    {
+      "gate": "Separate preregistered plan, <=36 fits; Train fit/Validation selection; sparse-family learning limitations remain; no challenge outcomes or old holdout access.",
+      "name": "Model development",
+      "stage": 4
+    },
+    {
+      "gate": "Recorded hashes of all artifacts, calibration/threshold and evaluation code; challenge commitment already fixed.",
+      "name": "Model and evaluation freeze",
+      "stage": 5
+    },
+    {
+      "gate": "Separate authorization; custodian loads frozen artifacts, computes outputs once; no fitting; all support counts and results released together with failed objectives and uncertainty.",
+      "name": "Independent challenge evaluation",
+      "stage": 6
+    },
+    {
+      "gate": "Separate estimands and all12 families/3domains, qualified failure/indeterminate statements; original holds remain quarantined. Later result-informed work requires new evaluation.",
+      "name": "Final reporting",
+      "stage": 7
+    }
+  ],
+  "stop_now": "Design only. No transactions, features, models, thresholds, evaluation or secret streams."
+}

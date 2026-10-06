@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "amendment_version": "v4.stage15a.design.1",
+  "parent_design_version": "v4.stage15.design.1",
+  "scope": "A, B, C: base/recipe hierarchy, S4/H3 sampling, and their bounded Independent amount shift",
+  "units": "Continuous proposals in USD; final observable amount_minor in integer cents",
+  "hierarchy": ["base_population_law", "predeclared_recipe_constraint_or_transformation", "partition_amount_shift", "universal_bounds", "common_cent_rounding", "accounting_feasibility", "observable_transaction"],
+  "base_law": {
+    "id": "BASE",
+    "components": [
+      {"weight": "9/10", "lognormal_median_usd": 35, "log_standard_deviation": 1},
+      {"weight": "1/10", "lognormal_median_usd": 1800, "log_standard_deviation": 1}
+    ],
+    "continuous_bounds_usd": [0.01, 15000],
+    "density": "f(x)=0.9*LN(x;ln(35),1)+0.1*LN(x;ln(1800),1), x>0. BASE has density f(x)/(F(15000)-F(0.01)) on [0.01,15000].",
+    "direct_users": ["background", "routine", "recipe events without a declared amount relation", "all context events in this amendment"],
+    "proposal_rule": "Each rejection attempt draws a NEW mixture component with probabilities 0.9/0.1 and a NEW lognormal proposal. Accept against the fixed numerical bounds only. Do not choose one component and reject within it while retaining 0.9/0.1 accepted weights; conditioning changes accepted component weights."
+  },
+  "recipe_constraints": {
+    "permitted": "Only predeclared transformations or conditional laws needed by the behavioural recipe, applied symmetrically to matched mechanisms where appropriate. Existing S1/S2/N3/N4/A4 relations remain as declared in Stage 15.",
+    "requirements": ["declared_before_generation", "matched_origin_symmetry", "common_cent_rounding", "no_target_inspection", "no_target_rejection", "no_origin_specific_decimal_precision", "private_provenance_only"],
+    "interpretation": "Common precision means the same cent grid and rounding algorithm; it does not require identical cent-frequency histograms after legitimate recipe transformations. No new blanket jitter is added. S4/H3 get no additional jitter or origin-specific amount transform."
+  },
+  "laws": {
+    "LARGE_CONDITIONAL": {
+      "id": "LARGE_CONDITIONAL",
+      "proposal_source": "BASE",
+      "continuous_support_usd": [5000, 13000],
+      "observable_support_minor": [500000, 1300000],
+      "density": "q(x)=f(x)/(F(13000)-F(5000)) for 5000<=x<=13000, zero elsewhere; F is the untruncated mixture CDF. Conditioning BASE gives this same density because the recipe interval lies inside its universal support.",
+      "sampling": "Draw an unrounded BASE proposal. Accept if 5000<=x<=13000; otherwise discard only that numerical amount proposal and repeat the whole mixture proposal, without evaluating any event or target. The accepted continuous proposal is later shifted if applicable, checked against bounds, then rounded once.",
+      "uniform_range_sampling": false,
+      "conditioning_before_rounding": true,
+      "per_event": "A fresh conditional proposal per motif event for both S4 and H3; no H3-only amount cloning, quantization, jitter or alternative density.",
+      "independent_shift_ref": "BOUNDED_LOG_SHIFT"
+    }
+  },
+  "motif_law_by_origin": {"S4": "LARGE_CONDITIONAL", "H3": "LARGE_CONDITIONAL"},
+  "context_law_by_origin": {"S4": "BASE", "H3": "BASE"},
+  "s4_target_unchanged": {
+    "predicate_source": "../v4_target_predicates.json#/families/code=S4",
+    "analytical_band_minor_inclusive": [700000, 1050000],
+    "all_other_conditions": "Inherited verbatim; no amendment to the target predicate",
+    "language": "SYNTHETIC ANALYTICAL THRESHOLD; neither the target band nor recipe support is a regulatory threshold"
+  },
+  "independent_shift": {
+    "applicable": true,
+    "parent_source": "../v4_holdout_policy.json#/independent_shift/shared_amount_multiplier",
+    "parameter": "23/20",
+    "ordinary_events": "After the applicable base/recipe proposal, multiply by 23/20 and enforce universal continuous bounds [0.01,15000] by numerical proposal rejection as specified in Stage 15; then round and check accounting. No target-dependent rejection.",
+    "s4_h3": {
+      "id": "BOUNDED_LOG_SHIFT",
+      "applies_to": ["S4_motif", "H3_motif"],
+      "definitions": "L=5000, H=13000, a=ln(L), b=ln(H), w=b-a, delta=ln(23/20), u=(ln(x)-a)/w for accepted x~LARGE_CONDITIONAL.",
+      "formula": "z_prime=ln(x)+4*delta*u*(1-u); y=exp(z_prime)",
+      "endpoints": "Define y=L at x=L and y=H at x=H by continuity; this is not clipping an out-of-range amount.",
+      "derivative": "d(z_prime)/d(ln(x))=1+(4*delta/w)*(1-2*u). For 23/20 this is strictly positive on [0,1] because 4*delta<w.",
+      "meaning": "A bounded log-amount transformation of the conditional proposal, not multiplication by 1.15 followed by clipping. The local amount multiplier ranges from 1 at the two endpoints to 1.15 at the geometric midpoint. This S4/H3 exception is explicit; all other amount shifts retain Stage 15 semantics.",
+      "support": "The transformation is continuous and strictly increasing with fixed endpoints; it maps the entire interval [5000,13000] onto itself. Its transformed density has full interior support and no continuous endpoint atoms.",
+      "post_transform": "Check recipe and universal bounds, then apply common cent rounding once and check integer recipe bounds. Unexpected floating-point range failure is an implementation error to stop/report, never clip to an endpoint.",
+      "context": "S4/H3 context events use BASE with the ordinary 1.15 multiplier; no large-payment constraint is applied to their context amounts."
+    }
+  },
+  "rounding": {
+    "rule": "ROUND_HALF_UP once, after recipe and partition transformations and bounds checks: amount_minor=floor(100*y+1/2) for positive real y.",
+    "implementation_convention": "For a binary64 continuous proposal, convert its shortest round-trip decimal repr to Decimal, multiply by Decimal(100), then quantize to integer with ROUND_HALF_UP. Do not use Python's default round or pre-round before conditioning/shift.",
+    "checks": "Require positive integer cents; universal bounds 1..1500000. S4/H3 motifs additionally require 500000..1300000. Ordinary rounding can assign a small terminal interval to an endpoint cent; there is no clipping of a tail mass."
+  },
+  "rejection_policy": {
+    "allowed_reasons": ["fixed_base_support", "fixed_recipe_support", "fixed_universal_support_after_shift"],
+    "target_evaluator_access": false,
+    "target_dependent_retry": false,
+    "episode_retry_on_label_or_support": false,
+    "accounting_failure_action": "STOP materialization; do not replace event, resample amount, top up balances or choose another seed.",
+    "sampling_failure_action": "A numerical error or declared computational limit stops/reports failure; no alternative amount distribution or fallback boundary value."
+  },
+  "label_policy": "Every motif/context event is evaluated normally from observable history. H3 can be positive through S4 or any other family. Origin never overrides the universal target."
+}

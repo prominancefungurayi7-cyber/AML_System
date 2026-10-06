@@ -1,0 +1,3938 @@
+{
+  "models": {
+    "1": {
+      "columns": [
+        "agent_wallet_growth_ratio_7d"
+      ],
+      "domain_independence": {
+        "agent_only": {
+          "fn": 753,
+          "low_support": false,
+          "recall": 0.7588856868395774,
+          "support": 3123,
+          "tp": 2370
+        },
+        "agent_overlap": {
+          "fn": 381,
+          "low_support": false,
+          "recall": 0.4648876404494382,
+          "support": 712,
+          "tp": 331
+        },
+        "network_only": {
+          "fn": 731,
+          "low_support": false,
+          "recall": 0.009485094850948509,
+          "support": 738,
+          "tp": 7
+        },
+        "network_overlap": {
+          "fn": 375,
+          "low_support": false,
+          "recall": 0.2964352720450281,
+          "support": 533,
+          "tp": 158
+        },
+        "structuring_only": {
+          "fn": 214,
+          "low_support": false,
+          "recall": 0.004651162790697674,
+          "support": 215,
+          "tp": 1
+        },
+        "structuring_overlap": {
+          "fn": 595,
+          "low_support": false,
+          "recall": 0.2779126213592233,
+          "support": 824,
+          "tp": 229
+        }
+      },
+      "domains": {
+        "agent": {
+          "fn": 1134,
+          "recall": 0.7043024771838331,
+          "support": 3835,
+          "tp": 2701
+        },
+        "network": {
+          "fn": 1106,
+          "recall": 0.12981904012588513,
+          "support": 1271,
+          "tp": 165
+        },
+        "structuring": {
+          "fn": 809,
+          "recall": 0.22136669874879691,
+          "support": 1039,
+          "tp": 230
+        }
+      },
+      "families": {
+        "A1": {
+          "fn": 97,
+          "recall": 0.9646630236794171,
+          "support": 2745,
+          "tp": 2648
+        },
+        "A2": {
+          "fn": 685,
+          "recall": 0.26344086021505375,
+          "support": 930,
+          "tp": 245
+        },
+        "A3": {
+          "fn": 240,
+          "recall": 0.5051546391752577,
+          "support": 485,
+          "tp": 245
+        },
+        "A4": {
+          "fn": 251,
+          "recall": 0.2551928783382789,
+          "support": 337,
+          "tp": 86
+        },
+        "N1": {
+          "fn": 276,
+          "recall": 0.12658227848101267,
+          "support": 316,
+          "tp": 40
+        },
+        "N2": {
+          "fn": 641,
+          "recall": 0.12907608695652173,
+          "support": 736,
+          "tp": 95
+        },
+        "N3": {
+          "fn": 40,
+          "recall": 0.024390243902439025,
+          "support": 41,
+          "tp": 1
+        },
+        "N4": {
+          "fn": 211,
+          "recall": 0.145748987854251,
+          "support": 247,
+          "tp": 36
+        },
+        "S1": {
+          "fn": 215,
+          "recall": 0.2210144927536232,
+          "support": 276,
+          "tp": 61
+        },
+        "S2": {
+          "fn": 0,
+          "recall": 1.0,
+          "support": 1,
+          "tp": 1
+        },
+        "S3": {
+          "fn": 628,
+          "recall": 0.2285012285012285,
+          "support": 814,
+          "tp": 186
+        },
+        "S4": {
+          "fn": 2,
+          "recall": 0.75,
+          "support": 8,
+          "tp": 6
+        }
+      },
+      "fit_seconds": 1.156132600037381,
+      "name": "top_1",
+      "normal_fpr": {
+        "H1": {
+          "false_positive_rate": 0.0,
+          "fp": 0,
+          "support": 238,
+          "tn": 238
+        },
+        "H2": {
+          "false_positive_rate": 0.013368983957219251,
+          "fp": 5,
+          "support": 374,
+          "tn": 369
+        },
+        "H3": {
+          "false_positive_rate": 0.009852216748768473,
+          "fp": 4,
+          "support": 406,
+          "tn": 402
+        },
+        "H4": {
+          "false_positive_rate": 0.010273972602739725,
+          "fp": 3,
+          "support": 292,
+          "tn": 289
+        },
+        "H5": {
+          "false_positive_rate": 0.004672897196261682,
+          "fp": 1,
+          "support": 214,
+          "tn": 213
+        },
+        "H6": {
+          "false_positive_rate": 0.0023584905660377358,
+          "fp": 1,
+          "support": 424,
+          "tn": 423
+        },
+        "H7": {
+          "false_positive_rate": 0.002785515320334262,
+          "fp": 1,
+          "support": 359,
+          "tn": 358
+        },
+        "H8": {
+          "false_positive_rate": 0.02391304347826087,
+          "fp": 11,
+          "support": 460,
+          "tn": 449
+        },
+        "campaign_member_target0": {
+          "false_positive_rate": 0.017260579064587972,
+          "fp": 31,
+          "support": 1796,
+          "tn": 1765
+        },
+        "routine": {
+          "false_positive_rate": 0.011705685618729096,
+          "fp": 63,
+          "support": 5382,
+          "tn": 5319
+        }
+      },
+      "parameters": {
+        "categorical_features": "from_dtype",
+        "class_weight": null,
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": 6,
+        "max_features": 1.0,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 20260928,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seed": 20260928,
+      "started_at_utc": "2026-09-28T21:36:56.530845+00:00",
+      "train": {
+        "accuracy": 0.8446166666666667,
+        "average_precision": 0.7876186547039622,
+        "balanced_accuracy": 0.7714316730083657,
+        "confusion_matrix": [
+          [
+            39618,
+            163
+          ],
+          [
+            9160,
+            11059
+          ]
+        ],
+        "false_positive_rate": 0.004097433448128503,
+        "macro_f1": 0.7991009513657448,
+        "normal_f1": 0.894725550198173,
+        "normal_precision": 0.8122104227315593,
+        "normal_recall": 0.9959025665518715,
+        "roc_auc": 0.8084416931948175,
+        "suspicious_f1": 0.7034763525333164,
+        "suspicious_precision": 0.9854749599001961,
+        "suspicious_recall": 0.5469607794648598,
+        "threshold": 0.5
+      },
+      "validation": {
+        "accuracy": 0.8356,
+        "average_precision": 0.7581945765410604,
+        "balanced_accuracy": 0.7619193397514221,
+        "confusion_matrix": [
+          [
+            9825,
+            120
+          ],
+          [
+            2346,
+            2709
+          ]
+        ],
+        "false_positive_rate": 0.012066365007541479,
+        "macro_f1": 0.7878558138036802,
+        "normal_f1": 0.8884970157352143,
+        "normal_precision": 0.807246734039931,
+        "normal_recall": 0.9879336349924586,
+        "roc_auc": 0.7866598935092564,
+        "suspicious_f1": 0.6872146118721462,
+        "suspicious_precision": 0.9575821845174973,
+        "suspicious_recall": 0.5359050445103858,
+        "threshold": 0.5
+      },
+      "warnings": []
+    },
+    "2": {
+      "columns": [
+        "agent_wallet_growth_ratio_7d",
+        "agent_service_acceleration_1h"
+      ],
+      "domain_independence": {
+        "agent_only": {
+          "fn": 521,
+          "low_support": false,
+          "recall": 0.8331732308677554,
+          "support": 3123,
+          "tp": 2602
+        },
+        "agent_overlap": {
+          "fn": 196,
+          "low_support": false,
+          "recall": 0.7247191011235955,
+          "support": 712,
+          "tp": 516
+        },
+        "network_only": {
+          "fn": 719,
+          "low_support": false,
+          "recall": 0.025745257452574527,
+          "support": 738,
+          "tp": 19
+        },
+        "network_overlap": {
+          "fn": 317,
+          "low_support": false,
+          "recall": 0.4052532833020638,
+          "support": 533,
+          "tp": 216
+        },
+        "structuring_only": {
+          "fn": 182,
+          "low_support": false,
+          "recall": 0.15348837209302327,
+          "support": 215,
+          "tp": 33
+        },
+        "structuring_overlap": {
+          "fn": 422,
+          "low_support": false,
+          "recall": 0.4878640776699029,
+          "support": 824,
+          "tp": 402
+        }
+      },
+      "domains": {
+        "agent": {
+          "fn": 717,
+          "recall": 0.8130378096479791,
+          "support": 3835,
+          "tp": 3118
+        },
+        "network": {
+          "fn": 1036,
+          "recall": 0.1848937844217152,
+          "support": 1271,
+          "tp": 235
+        },
+        "structuring": {
+          "fn": 604,
+          "recall": 0.41867179980750724,
+          "support": 1039,
+          "tp": 435
+        }
+      },
+      "families": {
+        "A1": {
+          "fn": 71,
+          "recall": 0.9741347905282332,
+          "support": 2745,
+          "tp": 2674
+        },
+        "A2": {
+          "fn": 487,
+          "recall": 0.47634408602150535,
+          "support": 930,
+          "tp": 443
+        },
+        "A3": {
+          "fn": 13,
+          "recall": 0.9731958762886598,
+          "support": 485,
+          "tp": 472
+        },
+        "A4": {
+          "fn": 210,
+          "recall": 0.3768545994065282,
+          "support": 337,
+          "tp": 127
+        },
+        "N1": {
+          "fn": 261,
+          "recall": 0.17405063291139242,
+          "support": 316,
+          "tp": 55
+        },
+        "N2": {
+          "fn": 599,
+          "recall": 0.18614130434782608,
+          "support": 736,
+          "tp": 137
+        },
+        "N3": {
+          "fn": 37,
+          "recall": 0.0975609756097561,
+          "support": 41,
+          "tp": 4
+        },
+        "N4": {
+          "fn": 198,
+          "recall": 0.19838056680161945,
+          "support": 247,
+          "tp": 49
+        },
+        "S1": {
+          "fn": 75,
+          "recall": 0.7282608695652174,
+          "support": 276,
+          "tp": 201
+        },
+        "S2": {
+          "fn": 0,
+          "recall": 1.0,
+          "support": 1,
+          "tp": 1
+        },
+        "S3": {
+          "fn": 541,
+          "recall": 0.3353808353808354,
+          "support": 814,
+          "tp": 273
+        },
+        "S4": {
+          "fn": 2,
+          "recall": 0.75,
+          "support": 8,
+          "tp": 6
+        }
+      },
+      "fit_seconds": 1.0133023000089452,
+      "name": "top_2",
+      "normal_fpr": {
+        "H1": {
+          "false_positive_rate": 0.08403361344537816,
+          "fp": 20,
+          "support": 238,
+          "tn": 218
+        },
+        "H2": {
+          "false_positive_rate": 0.026737967914438502,
+          "fp": 10,
+          "support": 374,
+          "tn": 364
+        },
+        "H3": {
+          "false_positive_rate": 0.014778325123152709,
+          "fp": 6,
+          "support": 406,
+          "tn": 400
+        },
+        "H4": {
+          "false_positive_rate": 0.0410958904109589,
+          "fp": 12,
+          "support": 292,
+          "tn": 280
+        },
+        "H5": {
+          "false_positive_rate": 0.056074766355140186,
+          "fp": 12,
+          "support": 214,
+          "tn": 202
+        },
+        "H6": {
+          "false_positive_rate": 0.01650943396226415,
+          "fp": 7,
+          "support": 424,
+          "tn": 417
+        },
+        "H7": {
+          "false_positive_rate": 0.0807799442896936,
+          "fp": 29,
+          "support": 359,
+          "tn": 330
+        },
+        "H8": {
+          "false_positive_rate": 0.04782608695652174,
+          "fp": 22,
+          "support": 460,
+          "tn": 438
+        },
+        "campaign_member_target0": {
+          "false_positive_rate": 0.060690423162583516,
+          "fp": 109,
+          "support": 1796,
+          "tn": 1687
+        },
+        "routine": {
+          "false_positive_rate": 0.016164994425863992,
+          "fp": 87,
+          "support": 5382,
+          "tn": 5295
+        }
+      },
+      "parameters": {
+        "categorical_features": "from_dtype",
+        "class_weight": null,
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": 6,
+        "max_features": 1.0,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 20260928,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seed": 20260928,
+      "started_at_utc": "2026-09-28T21:36:58.494866+00:00",
+      "train": {
+        "accuracy": 0.8676,
+        "average_precision": 0.8348700813855321,
+        "balanced_accuracy": 0.8123552454933354,
+        "confusion_matrix": [
+          [
+            39057,
+            724
+          ],
+          [
+            7220,
+            12999
+          ]
+        ],
+        "false_positive_rate": 0.01819964304567507,
+        "macro_f1": 0.8368219240738575,
+        "normal_f1": 0.9076901624485811,
+        "normal_precision": 0.8439829721027724,
+        "normal_recall": 0.9818003569543249,
+        "roc_auc": 0.8524732085178073,
+        "suspicious_f1": 0.7659536856991338,
+        "suspicious_precision": 0.9472418567368651,
+        "suspicious_recall": 0.6429101340323458,
+        "threshold": 0.5
+      },
+      "validation": {
+        "accuracy": 0.8540666666666666,
+        "average_precision": 0.809698444298894,
+        "balanced_accuracy": 0.7987532317956476,
+        "confusion_matrix": [
+          [
+            9631,
+            314
+          ],
+          [
+            1875,
+            3180
+          ]
+        ],
+        "false_positive_rate": 0.03157365510306687,
+        "macro_f1": 0.8209500678952871,
+        "normal_f1": 0.897953475362454,
+        "normal_precision": 0.8370415435424996,
+        "normal_recall": 0.9684263448969331,
+        "roc_auc": 0.8324550905350347,
+        "suspicious_f1": 0.7439466604281203,
+        "suspicious_precision": 0.9101316542644533,
+        "suspicious_recall": 0.629080118694362,
+        "threshold": 0.5
+      },
+      "warnings": []
+    },
+    "3": {
+      "columns": [
+        "agent_wallet_growth_ratio_7d",
+        "agent_service_acceleration_1h",
+        "wallet_observed_onward_funding_share_24h"
+      ],
+      "domain_independence": {
+        "agent_only": {
+          "fn": 531,
+          "low_support": false,
+          "recall": 0.829971181556196,
+          "support": 3123,
+          "tp": 2592
+        },
+        "agent_overlap": {
+          "fn": 186,
+          "low_support": false,
+          "recall": 0.7387640449438202,
+          "support": 712,
+          "tp": 526
+        },
+        "network_only": {
+          "fn": 553,
+          "low_support": false,
+          "recall": 0.2506775067750677,
+          "support": 738,
+          "tp": 185
+        },
+        "network_overlap": {
+          "fn": 277,
+          "low_support": false,
+          "recall": 0.4803001876172608,
+          "support": 533,
+          "tp": 256
+        },
+        "structuring_only": {
+          "fn": 186,
+          "low_support": false,
+          "recall": 0.13488372093023257,
+          "support": 215,
+          "tp": 29
+        },
+        "structuring_overlap": {
+          "fn": 402,
+          "low_support": false,
+          "recall": 0.5121359223300971,
+          "support": 824,
+          "tp": 422
+        }
+      },
+      "domains": {
+        "agent": {
+          "fn": 717,
+          "recall": 0.8130378096479791,
+          "support": 3835,
+          "tp": 3118
+        },
+        "network": {
+          "fn": 830,
+          "recall": 0.34697088906372936,
+          "support": 1271,
+          "tp": 441
+        },
+        "structuring": {
+          "fn": 588,
+          "recall": 0.4340712223291627,
+          "support": 1039,
+          "tp": 451
+        }
+      },
+      "families": {
+        "A1": {
+          "fn": 69,
+          "recall": 0.9748633879781421,
+          "support": 2745,
+          "tp": 2676
+        },
+        "A2": {
+          "fn": 484,
+          "recall": 0.47956989247311826,
+          "support": 930,
+          "tp": 446
+        },
+        "A3": {
+          "fn": 14,
+          "recall": 0.9711340206185567,
+          "support": 485,
+          "tp": 471
+        },
+        "A4": {
+          "fn": 215,
+          "recall": 0.3620178041543027,
+          "support": 337,
+          "tp": 122
+        },
+        "N1": {
+          "fn": 254,
+          "recall": 0.1962025316455696,
+          "support": 316,
+          "tp": 62
+        },
+        "N2": {
+          "fn": 560,
+          "recall": 0.2391304347826087,
+          "support": 736,
+          "tp": 176
+        },
+        "N3": {
+          "fn": 30,
+          "recall": 0.2682926829268293,
+          "support": 41,
+          "tp": 11
+        },
+        "N4": {
+          "fn": 2,
+          "recall": 0.9919028340080972,
+          "support": 247,
+          "tp": 245
+        },
+        "S1": {
+          "fn": 72,
+          "recall": 0.7391304347826086,
+          "support": 276,
+          "tp": 204
+        },
+        "S2": {
+          "fn": 0,
+          "recall": 1.0,
+          "support": 1,
+          "tp": 1
+        },
+        "S3": {
+          "fn": 529,
+          "recall": 0.3501228501228501,
+          "support": 814,
+          "tp": 285
+        },
+        "S4": {
+          "fn": 2,
+          "recall": 0.75,
+          "support": 8,
+          "tp": 6
+        }
+      },
+      "fit_seconds": 1.3352148000267334,
+      "name": "top_3",
+      "normal_fpr": {
+        "H1": {
+          "false_positive_rate": 0.06722689075630252,
+          "fp": 16,
+          "support": 238,
+          "tn": 222
+        },
+        "H2": {
+          "false_positive_rate": 0.03208556149732621,
+          "fp": 12,
+          "support": 374,
+          "tn": 362
+        },
+        "H3": {
+          "false_positive_rate": 0.017241379310344827,
+          "fp": 7,
+          "support": 406,
+          "tn": 399
+        },
+        "H4": {
+          "false_positive_rate": 0.05136986301369863,
+          "fp": 15,
+          "support": 292,
+          "tn": 277
+        },
+        "H5": {
+          "false_positive_rate": 0.06542056074766354,
+          "fp": 14,
+          "support": 214,
+          "tn": 200
+        },
+        "H6": {
+          "false_positive_rate": 0.02830188679245283,
+          "fp": 12,
+          "support": 424,
+          "tn": 412
+        },
+        "H7": {
+          "false_positive_rate": 0.055710306406685235,
+          "fp": 20,
+          "support": 359,
+          "tn": 339
+        },
+        "H8": {
+          "false_positive_rate": 0.041304347826086954,
+          "fp": 19,
+          "support": 460,
+          "tn": 441
+        },
+        "campaign_member_target0": {
+          "false_positive_rate": 0.05902004454342984,
+          "fp": 106,
+          "support": 1796,
+          "tn": 1690
+        },
+        "routine": {
+          "false_positive_rate": 0.020624303232998884,
+          "fp": 111,
+          "support": 5382,
+          "tn": 5271
+        }
+      },
+      "parameters": {
+        "categorical_features": "from_dtype",
+        "class_weight": null,
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": 6,
+        "max_features": 1.0,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 20260928,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seed": 20260928,
+      "started_at_utc": "2026-09-28T21:37:00.324841+00:00",
+      "train": {
+        "accuracy": 0.8786166666666667,
+        "average_precision": 0.8692473993052914,
+        "balanced_accuracy": 0.8310238932307408,
+        "confusion_matrix": [
+          [
+            38866,
+            915
+          ],
+          [
+            6368,
+            13851
+          ]
+        ],
+        "false_positive_rate": 0.023000930092255095,
+        "macro_f1": 0.8530789163462238,
+        "normal_f1": 0.9143327648062106,
+        "normal_precision": 0.8592209400008843,
+        "normal_recall": 0.9769990699077449,
+        "roc_auc": 0.8870890682001046,
+        "suspicious_f1": 0.791825067886237,
+        "suspicious_precision": 0.9380333197887037,
+        "suspicious_recall": 0.6850487165537366,
+        "threshold": 0.5
+      },
+      "validation": {
+        "accuracy": 0.8650666666666667,
+        "average_precision": 0.8433945961600673,
+        "balanced_accuracy": 0.8159491446277971,
+        "confusion_matrix": [
+          [
+            9613,
+            332
+          ],
+          [
+            1692,
+            3363
+          ]
+        ],
+        "false_positive_rate": 0.03338360985419809,
+        "macro_f1": 0.8367193277310925,
+        "normal_f1": 0.9047529411764705,
+        "normal_precision": 0.8503317116320213,
+        "normal_recall": 0.9666163901458019,
+        "roc_auc": 0.8680030772612373,
+        "suspicious_f1": 0.7686857142857143,
+        "suspicious_precision": 0.910148849797023,
+        "suspicious_recall": 0.6652818991097923,
+        "threshold": 0.5
+      },
+      "warnings": []
+    },
+    "5": {
+      "columns": [
+        "agent_wallet_growth_ratio_7d",
+        "agent_service_acceleration_1h",
+        "wallet_observed_onward_funding_share_24h",
+        "wallet_count_utc_day_inclusive",
+        "agent_top2_count_share_24h"
+      ],
+      "domain_independence": {
+        "agent_only": {
+          "fn": 351,
+          "low_support": false,
+          "recall": 0.8876080691642652,
+          "support": 3123,
+          "tp": 2772
+        },
+        "agent_overlap": {
+          "fn": 5,
+          "low_support": false,
+          "recall": 0.9929775280898876,
+          "support": 712,
+          "tp": 707
+        },
+        "network_only": {
+          "fn": 485,
+          "low_support": false,
+          "recall": 0.3428184281842818,
+          "support": 738,
+          "tp": 253
+        },
+        "network_overlap": {
+          "fn": 6,
+          "low_support": false,
+          "recall": 0.9887429643527205,
+          "support": 533,
+          "tp": 527
+        },
+        "structuring_only": {
+          "fn": 5,
+          "low_support": false,
+          "recall": 0.9767441860465116,
+          "support": 215,
+          "tp": 210
+        },
+        "structuring_overlap": {
+          "fn": 1,
+          "low_support": false,
+          "recall": 0.9987864077669902,
+          "support": 824,
+          "tp": 823
+        }
+      },
+      "domains": {
+        "agent": {
+          "fn": 356,
+          "recall": 0.9071707953063886,
+          "support": 3835,
+          "tp": 3479
+        },
+        "network": {
+          "fn": 491,
+          "recall": 0.6136900078678206,
+          "support": 1271,
+          "tp": 780
+        },
+        "structuring": {
+          "fn": 6,
+          "recall": 0.9942252165543792,
+          "support": 1039,
+          "tp": 1033
+        }
+      },
+      "families": {
+        "A1": {
+          "fn": 64,
+          "recall": 0.9766848816029143,
+          "support": 2745,
+          "tp": 2681
+        },
+        "A2": {
+          "fn": 135,
+          "recall": 0.8548387096774194,
+          "support": 930,
+          "tp": 795
+        },
+        "A3": {
+          "fn": 14,
+          "recall": 0.9711340206185567,
+          "support": 485,
+          "tp": 471
+        },
+        "A4": {
+          "fn": 174,
+          "recall": 0.4836795252225519,
+          "support": 337,
+          "tp": 163
+        },
+        "N1": {
+          "fn": 250,
+          "recall": 0.2088607594936709,
+          "support": 316,
+          "tp": 66
+        },
+        "N2": {
+          "fn": 220,
+          "recall": 0.7010869565217391,
+          "support": 736,
+          "tp": 516
+        },
+        "N3": {
+          "fn": 28,
+          "recall": 0.3170731707317073,
+          "support": 41,
+          "tp": 13
+        },
+        "N4": {
+          "fn": 2,
+          "recall": 0.9919028340080972,
+          "support": 247,
+          "tp": 245
+        },
+        "S1": {
+          "fn": 4,
+          "recall": 0.9855072463768116,
+          "support": 276,
+          "tp": 272
+        },
+        "S2": {
+          "fn": 0,
+          "recall": 1.0,
+          "support": 1,
+          "tp": 1
+        },
+        "S3": {
+          "fn": 0,
+          "recall": 1.0,
+          "support": 814,
+          "tp": 814
+        },
+        "S4": {
+          "fn": 2,
+          "recall": 0.75,
+          "support": 8,
+          "tp": 6
+        }
+      },
+      "fit_seconds": 1.4449691000045277,
+      "name": "top_5",
+      "normal_fpr": {
+        "H1": {
+          "false_positive_rate": 0.23529411764705882,
+          "fp": 56,
+          "support": 238,
+          "tn": 182
+        },
+        "H2": {
+          "false_positive_rate": 0.10962566844919786,
+          "fp": 41,
+          "support": 374,
+          "tn": 333
+        },
+        "H3": {
+          "false_positive_rate": 0.03940886699507389,
+          "fp": 16,
+          "support": 406,
+          "tn": 390
+        },
+        "H4": {
+          "false_positive_rate": 0.030821917808219176,
+          "fp": 9,
+          "support": 292,
+          "tn": 283
+        },
+        "H5": {
+          "false_positive_rate": 0.09813084112149532,
+          "fp": 21,
+          "support": 214,
+          "tn": 193
+        },
+        "H6": {
+          "false_positive_rate": 0.014150943396226415,
+          "fp": 6,
+          "support": 424,
+          "tn": 418
+        },
+        "H7": {
+          "false_positive_rate": 0.011142061281337047,
+          "fp": 4,
+          "support": 359,
+          "tn": 355
+        },
+        "H8": {
+          "false_positive_rate": 0.04565217391304348,
+          "fp": 21,
+          "support": 460,
+          "tn": 439
+        },
+        "campaign_member_target0": {
+          "false_positive_rate": 0.07182628062360802,
+          "fp": 129,
+          "support": 1796,
+          "tn": 1667
+        },
+        "routine": {
+          "false_positive_rate": 0.021181716833890748,
+          "fp": 114,
+          "support": 5382,
+          "tn": 5268
+        }
+      },
+      "parameters": {
+        "categorical_features": "from_dtype",
+        "class_weight": null,
+        "early_stopping": false,
+        "interaction_cst": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "loss": "log_loss",
+        "max_bins": 255,
+        "max_depth": 6,
+        "max_features": 1.0,
+        "max_iter": 200,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20,
+        "monotonic_cst": null,
+        "n_iter_no_change": 10,
+        "random_state": 20260928,
+        "scoring": "loss",
+        "tol": 1e-07,
+        "validation_fraction": 0.1,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "seed": 20260928,
+      "started_at_utc": "2026-09-28T21:37:02.476731+00:00",
+      "train": {
+        "accuracy": 0.92665,
+        "average_precision": 0.9499388777183597,
+        "balanced_accuracy": 0.9060024133888815,
+        "confusion_matrix": [
+          [
+            38561,
+            1220
+          ],
+          [
+            3181,
+            17038
+          ]
+        ],
+        "false_positive_rate": 0.030667906789673464,
+        "macro_f1": 0.9158176078660487,
+        "normal_f1": 0.9460152349643659,
+        "normal_precision": 0.9237937808442336,
+        "normal_recall": 0.9693320932103265,
+        "roc_auc": 0.9606075806213159,
+        "suspicious_f1": 0.8856199807677314,
+        "suspicious_precision": 0.9331799759009749,
+        "suspicious_recall": 0.8426727335674365,
+        "threshold": 0.5
+      },
+      "validation": {
+        "accuracy": 0.9157333333333333,
+        "average_precision": 0.9266274288263439,
+        "balanced_accuracy": 0.8952562536084966,
+        "confusion_matrix": [
+          [
+            9528,
+            417
+          ],
+          [
+            847,
+            4208
+          ]
+        ],
+        "false_positive_rate": 0.04193061840120663,
+        "macro_f1": 0.9036083815969285,
+        "normal_f1": 0.9377952755905512,
+        "normal_precision": 0.9183614457831325,
+        "normal_recall": 0.9580693815987934,
+        "roc_auc": 0.9492710998523531,
+        "suspicious_f1": 0.8694214876033057,
+        "suspicious_precision": 0.9098378378378379,
+        "suspicious_recall": 0.8324431256181998,
+        "threshold": 0.5
+      },
+      "warnings": []
+    }
+  },
+  "ranking": [
+    "agent_wallet_growth_ratio_7d",
+    "agent_service_acceleration_1h",
+    "wallet_observed_onward_funding_share_24h",
+    "wallet_count_utc_day_inclusive",
+    "agent_top2_count_share_24h",
+    "receiver_inflow_count_24h_inclusive",
+    "wallet_value_24h_inclusive",
+    "agent_cash_count_skew_24h",
+    "sender_outflow_count_24h_inclusive",
+    "receiver_unique_sources_24h_inclusive",
+    "current_is_cash_out",
+    "sender_outflow_acceleration_24h",
+    "agent_cash_value_skew_change",
+    "agent_new_wallet_share_7d",
+    "wallet_active_hours_utc_day",
+    "agent_top2_share_change_24h",
+    "wallet_history_coverage_days",
+    "agent_cash_value_skew_24h",
+    "current_is_cash_in",
+    "receiver_inflow_acceleration_24h",
+    "current_return_amount_ratio",
+    "agent_history_coverage_days",
+    "wallet_count_acceleration_1h",
+    "sender_unique_destinations_24h_inclusive",
+    "current_amount_usd",
+    "receiver_history_coverage_days",
+    "wallet_count_1h_inclusive",
+    "wallet_prior_funding_age_hours",
+    "wallet_current_amount_cluster_share_7d",
+    "agent_service_count_1h_inclusive",
+    "wallet_band_share_7d_inclusive",
+    "current_return_path_length"
+  ],
+  "univariate": {
+    "interpretation": "Raw increasing-value AUC, never sign-selected or threshold-optimized. Observed AUC excludes only the documented marker and describes a different available subset. Encoded AUC includes markers. Nonmonotone associations can have low raw AUC; ranges do not exclude near separation.",
+    "partitions": {
+      "train": {
+        "agent_cash_count_skew_24h": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.49161314087601576,
+          "observed_auc_increasing_value": 0.49161314087601576,
+          "observed_range_overlap": [
+            -1.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": -0.021491935798584643,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.3333333333333333,
+              "q75": 0.17647058823529413,
+              "q95": 1.0,
+              "std": 0.5745344410232975,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": -0.040968743530825066,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.38461538461538464,
+              "q75": 0.3333333333333333,
+              "q95": 1.0,
+              "std": 0.5761715734037666,
+              "support": 20219
+            }
+          }
+        },
+        "agent_cash_value_skew_24h": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.48719249824636157,
+          "observed_auc_increasing_value": 0.48719249824636157,
+          "observed_range_overlap": [
+            -1.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": -0.026874107928994907,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.7807866206427148,
+              "q75": 0.56475182523063,
+              "q95": 1.0,
+              "std": 0.7018156755090544,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": -0.05849018519111529,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.9085613187474197,
+              "q75": 0.7011588185278733,
+              "q95": 1.0,
+              "std": 0.7429797645184847,
+              "support": 20219
+            }
+          }
+        },
+        "agent_cash_value_skew_change": {
+          "available_support": 38002,
+          "encoded_auc_increasing_value": 0.6506877857938964,
+          "observed_auc_increasing_value": 0.48967308967406553,
+          "observed_range_overlap": [
+            -1.9891878969773213,
+            1.9977565788325735
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5287197405796737,
+              "available_count": 21033,
+              "max": 1.9977565788325735,
+              "mean": 0.0047338843347118275,
+              "median": -0.030346742528898657,
+              "min": -1.996547470415554,
+              "missing_count": 18748,
+              "missing_rate": 0.4712802594203263,
+              "q05": -1.2653828413526842,
+              "q25": -0.8041087523125061,
+              "q75": 0.8454008567256173,
+              "q95": 1.3230030775973791,
+              "std": 0.8923489037216137,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8392601018843662,
+              "available_count": 16969,
+              "max": 1.9990165433392035,
+              "mean": -0.030089502149571956,
+              "median": -0.08044061011735945,
+              "min": -1.9891878969773213,
+              "missing_count": 3250,
+              "missing_rate": 0.1607398981156338,
+              "q05": -1.2771891930928265,
+              "q25": -0.8016995792151127,
+              "q75": 0.7787668847219096,
+              "q95": 1.3310073181937259,
+              "std": 0.877598387060963,
+              "support": 20219
+            }
+          }
+        },
+        "agent_history_coverage_days": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6477158837881379,
+          "observed_auc_increasing_value": 0.6477158837881379,
+          "observed_range_overlap": [
+            0.0,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 28.0,
+              "mean": 17.551489552061913,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 12.667489190242376,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 28.0,
+              "mean": 24.073344748700976,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 9.614543761060823,
+              "support": 20219
+            }
+          }
+        },
+        "agent_new_wallet_share_7d": {
+          "available_support": 36943,
+          "encoded_auc_increasing_value": 0.683242129933357,
+          "observed_auc_increasing_value": 0.5701224371394336,
+          "observed_range_overlap": [
+            0.3333333333333333,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5120534928734823,
+              "available_count": 20370,
+              "max": 1.0,
+              "mean": 0.860831883625762,
+              "median": 0.8571428571428571,
+              "min": 0.0,
+              "missing_count": 19411,
+              "missing_rate": 0.48794650712651766,
+              "q05": 0.68,
+              "q25": 0.7931034482758621,
+              "q75": 0.9411764705882353,
+              "q95": 1.0,
+              "std": 0.10447070210441556,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8196745635293535,
+              "available_count": 16573,
+              "max": 1.0,
+              "mean": 0.8851915277100623,
+              "median": 0.8928571428571429,
+              "min": 0.3333333333333333,
+              "missing_count": 3646,
+              "missing_rate": 0.18032543647064642,
+              "q05": 0.7177257525083612,
+              "q25": 0.8292682926829268,
+              "q75": 0.9545454545454546,
+              "q95": 1.0,
+              "std": 0.09135031015289616,
+              "support": 20219
+            }
+          }
+        },
+        "agent_service_acceleration_1h": {
+          "available_support": 38307,
+          "encoded_auc_increasing_value": 0.7138735685748308,
+          "observed_auc_increasing_value": 0.6252914951334833,
+          "observed_range_overlap": [
+            1.0,
+            23.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5323898343430281,
+              "available_count": 21179,
+              "max": 23.0,
+              "mean": 1.28835166910619,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 18602,
+              "missing_rate": 0.46761016565697194,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 0.7654182332899496,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8471239922844849,
+              "available_count": 17128,
+              "max": 26.0,
+              "mean": 2.5042036431574033,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 3091,
+              "missing_rate": 0.1528760077155151,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 9.0,
+              "std": 2.9548772344899303,
+              "support": 20219
+            }
+          }
+        },
+        "agent_service_count_1h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6436003956072673,
+          "observed_auc_increasing_value": 0.6436003956072673,
+          "observed_range_overlap": [
+            0.0,
+            26.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 29.0,
+              "mean": 1.0268218496267063,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.3326601345706477,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 26.0,
+              "mean": 2.186656115534893,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 8.0,
+              "std": 2.9270737961249607,
+              "support": 20219
+            }
+          }
+        },
+        "agent_top2_count_share_24h": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5308576915956967,
+          "observed_auc_increasing_value": 0.5308576915956967,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": 0.4839700089613829,
+              "median": 0.5,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.875,
+              "q95": 1.0,
+              "std": 0.383260662568476,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": 0.5241627685448982,
+              "median": 0.5294117647058824,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.2727272727272727,
+              "q75": 0.7777777777777778,
+              "q95": 1.0,
+              "std": 0.3255370541432504,
+              "support": 20219
+            }
+          }
+        },
+        "agent_top2_share_change_24h": {
+          "available_support": 36986,
+          "encoded_auc_increasing_value": 0.6180861378070754,
+          "observed_auc_increasing_value": 0.41933248838694015,
+          "observed_range_overlap": [
+            -0.16666666666666669,
+            0.9583333333333334
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.513989090269224,
+              "available_count": 20447,
+              "max": 0.9583333333333334,
+              "mean": 0.48494738515058133,
+              "median": 0.47096774193548385,
+              "min": -0.16666666666666669,
+              "missing_count": 19334,
+              "missing_rate": 0.486010909730776,
+              "q05": 0.09130268199233718,
+              "q25": 0.2785714285714286,
+              "q75": 0.7241379310344828,
+              "q95": 0.8769230769230769,
+              "std": 0.2561001204077453,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8179929769029131,
+              "available_count": 16539,
+              "max": 0.9607843137254902,
+              "mean": 0.40231729881244915,
+              "median": 0.4126984126984127,
+              "min": -0.5526315789473685,
+              "missing_count": 3680,
+              "missing_rate": 0.1820070230970869,
+              "q05": -0.03116883116883118,
+              "q25": 0.18676767676767675,
+              "q75": 0.6069308629267456,
+              "q95": 0.8378378378378378,
+              "std": 0.27035037510048254,
+              "support": 20219
+            }
+          }
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "available_support": 36943,
+          "encoded_auc_increasing_value": 0.8003225916504862,
+          "observed_auc_increasing_value": 0.8490732526519215,
+          "observed_range_overlap": [
+            0.16666666666666666,
+            3.3333333333333335
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5120534928734823,
+              "available_count": 20370,
+              "max": 3.3333333333333335,
+              "mean": 0.957674336112311,
+              "median": 0.9565217391304348,
+              "min": 0.06060606060606061,
+              "missing_count": 19411,
+              "missing_rate": 0.48794650712651766,
+              "q05": 0.46153846153846156,
+              "q25": 0.7428571428571429,
+              "q75": 1.183673469387755,
+              "q95": 1.4285714285714286,
+              "std": 0.30130290418950845,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8196745635293535,
+              "available_count": 16573,
+              "max": 14.0,
+              "mean": 1.9370493761049687,
+              "median": 1.6956521739130435,
+              "min": 0.16666666666666666,
+              "missing_count": 3646,
+              "missing_rate": 0.18032543647064642,
+              "q05": 0.7169811320754716,
+              "q25": 1.2244897959183674,
+              "q75": 2.25,
+              "q95": 4.0,
+              "std": 1.1866577441509798,
+              "support": 20219
+            }
+          }
+        },
+        "current_amount_usd": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5154828334520689,
+          "observed_auc_increasing_value": 0.5154828334520689,
+          "observed_range_overlap": [
+            1.0,
+            24995.92
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 24999.0,
+              "mean": 3391.063606495563,
+              "median": 179.28,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 7.37,
+              "q25": 42.0,
+              "q75": 2753.47,
+              "q95": 19475.11,
+              "std": 6298.707724769582,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 24995.92,
+              "mean": 3317.642973440823,
+              "median": 218.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 8.41,
+              "q25": 48.155,
+              "q75": 2615.95,
+              "q95": 18989.388,
+              "std": 6144.563831901978,
+              "support": 20219
+            }
+          }
+        },
+        "current_is_cash_in": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5064665085410082,
+          "observed_auc_increasing_value": 0.5064665085410082,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": 0.2496417887936452,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 1.0,
+              "std": 0.4328056909070793,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": 0.2625748058756615,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 1.0,
+              "std": 0.44003326828209266,
+              "support": 20219
+            }
+          }
+        },
+        "current_is_cash_out": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5253020133641599,
+          "observed_auc_increasing_value": 0.5253020133641599,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": 0.2369472863930017,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 1.0,
+              "std": 0.42520967752862177,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": 0.28755131312132154,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 1.0,
+              "std": 0.45262076338091833,
+              "support": 20219
+            }
+          }
+        },
+        "current_return_amount_ratio": {
+          "available_support": 1142,
+          "encoded_auc_increasing_value": 0.5022871810530974,
+          "observed_auc_increasing_value": 0.5151474150816968,
+          "observed_range_overlap": [
+            0.00042773438339616804,
+            5249.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.017495789447223548,
+              "available_count": 696,
+              "max": 24796.76,
+              "mean": 160.23414909946433,
+              "median": 0.967092022169731,
+              "min": 9.555463232239301e-05,
+              "missing_count": 39085,
+              "missing_rate": 0.9825042105527765,
+              "q05": 0.0014823858378488978,
+              "q25": 0.0552703627652293,
+              "q75": 10.143732617577106,
+              "q95": 568.551322422584,
+              "std": 1117.7412461671338,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.0220584598644839,
+              "available_count": 446,
+              "max": 5249.0,
+              "mean": 72.23887633446421,
+              "median": 0.636339021719366,
+              "min": 0.00042773438339616804,
+              "missing_count": 19773,
+              "missing_rate": 0.9779415401355162,
+              "q05": 0.006690699304081027,
+              "q25": 0.142604422996282,
+              "q75": 6.412288685086746,
+              "q95": 272.2215858305635,
+              "std": 380.41483604552803,
+              "support": 20219
+            }
+          }
+        },
+        "current_return_path_length": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5022461190309492,
+          "observed_auc_increasing_value": 0.5022461190309492,
+          "observed_range_overlap": [
+            0.0,
+            5.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 5.0,
+              "mean": 0.039717453055478746,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.0,
+              "std": 0.3431118022748836,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 5.0,
+              "mean": 0.04169345664968594,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.0,
+              "std": 0.3287990710499582,
+              "support": 20219
+            }
+          }
+        },
+        "receiver_history_coverage_days": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5994038936947033,
+          "observed_auc_increasing_value": 0.5994038936947033,
+          "observed_range_overlap": [
+            0.011689779571759259,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 28.0,
+              "mean": 24.695204684407198,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 5.7979480386111115,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 7.214348758193636,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 28.0,
+              "mean": 27.64333390477964,
+              "median": 28.0,
+              "min": 0.011689779571759259,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 28.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 2.311309427012552,
+              "support": 20219
+            }
+          }
+        },
+        "receiver_inflow_acceleration_24h": {
+          "available_support": 45274,
+          "encoded_auc_increasing_value": 0.6033247812723272,
+          "observed_auc_increasing_value": 0.519038127704799,
+          "observed_range_overlap": [
+            0.0,
+            21.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.6927176290188783,
+              "available_count": 27557,
+              "max": 21.0,
+              "mean": 0.8705465197601591,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 12224,
+              "missing_rate": 0.30728237098112166,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.964024155124336,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8762550076660567,
+              "available_count": 17717,
+              "max": 21.0,
+              "mean": 1.2719023490632415,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 2502,
+              "missing_rate": 0.12374499233394332,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 5.0,
+              "std": 1.9626376313773328,
+              "support": 20219
+            }
+          }
+        },
+        "receiver_inflow_count_24h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5266154354942959,
+          "observed_auc_increasing_value": 0.5266154354942959,
+          "observed_range_overlap": [
+            0.0,
+            21.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 21.0,
+              "mean": 0.8785852542671124,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 1.048550764563823,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 21.0,
+              "mean": 1.290172609921361,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 5.0,
+              "std": 1.9725420822041146,
+              "support": 20219
+            }
+          }
+        },
+        "receiver_unique_sources_24h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5099040870110111,
+          "observed_auc_increasing_value": 0.5099040870110111,
+          "observed_range_overlap": [
+            0.0,
+            12.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 12.0,
+              "mean": 0.8396722053241498,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.8926355377767649,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 12.0,
+              "mean": 1.0913497205598695,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 4.0,
+              "std": 1.5556714335889277,
+              "support": 20219
+            }
+          }
+        },
+        "sender_outflow_acceleration_24h": {
+          "available_support": 42954,
+          "encoded_auc_increasing_value": 0.6408840118328296,
+          "observed_auc_increasing_value": 0.5973817071852383,
+          "observed_range_overlap": [
+            0.0,
+            16.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.6568210954978507,
+              "available_count": 26129,
+              "max": 16.0,
+              "mean": 0.9424129418032947,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 13652,
+              "missing_rate": 0.3431789045021493,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.0940259838793707,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.8321380879370889,
+              "available_count": 16825,
+              "max": 22.0,
+              "mean": 2.3325129748676936,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 3394,
+              "missing_rate": 0.16786191206291112,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 9.0,
+              "std": 3.1158776024880037,
+              "support": 20219
+            }
+          }
+        },
+        "sender_outflow_count_24h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.592337102588052,
+          "observed_auc_increasing_value": 0.592337102588052,
+          "observed_range_overlap": [
+            0.0,
+            16.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 16.0,
+              "mean": 0.9871798094567759,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.2415214753830612,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 22.0,
+              "mean": 2.2926455314308325,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 9.0,
+              "std": 3.0797903950300807,
+              "support": 20219
+            }
+          }
+        },
+        "sender_unique_destinations_24h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5864049821842295,
+          "observed_auc_increasing_value": 0.5864049821842295,
+          "observed_range_overlap": [
+            0.0,
+            12.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 12.0,
+              "mean": 0.9520625424197481,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.0838455518067596,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 14.0,
+              "mean": 1.919630050942183,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 7.0,
+              "std": 2.3764219150632013,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6154157990715077,
+          "observed_auc_increasing_value": 0.6154157990715077,
+          "observed_range_overlap": [
+            1.0,
+            11.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 11.0,
+              "mean": 1.4368165707247178,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 3.0,
+              "std": 0.8709269914589788,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 16.0,
+              "mean": 2.2265690686977595,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 3.0,
+              "q95": 6.0,
+              "std": 1.9035693303566155,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_band_share_7d_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5219546016368497,
+          "observed_auc_increasing_value": 0.5219546016368497,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": 0.05811475553345455,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.3333333333333333,
+              "std": 0.1333835926055108,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": 0.05745385087811982,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.058823529411764705,
+              "q95": 0.3333333333333333,
+              "std": 0.12270579680526242,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_count_1h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.5935858555299945,
+          "observed_auc_increasing_value": 0.5935858555299945,
+          "observed_range_overlap": [
+            1.0,
+            18.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 18.0,
+              "mean": 1.1554008194866896,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.7144068295234615,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 23.0,
+              "mean": 1.9692863148523665,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 7.0,
+              "std": 2.418726163315035,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_count_acceleration_1h": {
+          "available_support": 49851,
+          "encoded_auc_increasing_value": 0.6697397292164811,
+          "observed_auc_increasing_value": 0.5965483052121999,
+          "observed_range_overlap": [
+            1.0,
+            14.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.7642844574042885,
+              "available_count": 30404,
+              "max": 14.0,
+              "mean": 1.1214642810156559,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 9377,
+              "missing_rate": 0.2357155425957115,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.5237558921057571,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.9618180918937633,
+              "available_count": 19447,
+              "max": 23.0,
+              "mean": 1.9596852985036253,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 772,
+              "missing_rate": 0.03818190810623671,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 7.0,
+              "std": 2.395170846359014,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_count_utc_day_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6445294646530921,
+          "observed_auc_increasing_value": 0.6445294646530921,
+          "observed_range_overlap": [
+            1.0,
+            24.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 24.0,
+              "mean": 1.6302003468992736,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 4.0,
+              "std": 1.4516748007342002,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 30.0,
+              "mean": 3.738414362728127,
+              "median": 2.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 5.0,
+              "q95": 13.0,
+              "std": 4.269921632945339,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_current_amount_cluster_share_7d": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.40648288660300397,
+          "observed_auc_increasing_value": 0.40648288660300397,
+          "observed_range_overlap": [
+            0.023255813953488372,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 1.0,
+              "mean": 0.32266515325765993,
+              "median": 0.25,
+              "min": 0.022727272727272728,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.07142857142857142,
+              "q25": 0.16666666666666666,
+              "q75": 0.4,
+              "q95": 1.0,
+              "std": 0.23472463272969174,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 1.0,
+              "mean": 0.2682414963510624,
+              "median": 0.2,
+              "min": 0.023255813953488372,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.05,
+              "q25": 0.1111111111111111,
+              "q75": 0.3333333333333333,
+              "q95": 0.75,
+              "std": 0.22289340660444992,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_history_coverage_days": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6001372245473862,
+          "observed_auc_increasing_value": 0.6001372245473862,
+          "observed_range_overlap": [
+            0.00929812363425926,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 28.0,
+              "mean": 24.70647675660418,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 5.771343861655092,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 7.208982142862599,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 28.0,
+              "mean": 27.660642798168695,
+              "median": 28.0,
+              "min": 0.00929812363425926,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 28.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 2.2368849302425655,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_observed_onward_funding_share_24h": {
+          "available_support": 28304,
+          "encoded_auc_increasing_value": 0.5423567045052148,
+          "observed_auc_increasing_value": 0.5310935856491634,
+          "observed_range_overlap": [
+            0.0,
+            16738.854545454546
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.44805309067142607,
+              "available_count": 17824,
+              "max": 16738.854545454546,
+              "mean": 40.13406710616247,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 21957,
+              "missing_rate": 0.5519469093285739,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.43411544796243584,
+              "q95": 103.00664886908888,
+              "std": 338.2118594643975,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.5183243483851823,
+              "available_count": 10480,
+              "max": 17374.36,
+              "mean": 62.70085065511985,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 9739,
+              "missing_rate": 0.48167565161481773,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.8855450939157267,
+              "q95": 111.97336198547875,
+              "std": 547.5663757261917,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_prior_funding_age_hours": {
+          "available_support": 13064,
+          "encoded_auc_increasing_value": 0.5296143064618117,
+          "observed_auc_increasing_value": 0.5186267066551973,
+          "observed_range_overlap": [
+            0.0013485291666666666,
+            23.99703121388889
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.19841130187778086,
+              "available_count": 7893,
+              "max": 23.9998123575,
+              "mean": 11.51108474435178,
+              "median": 11.52592920611111,
+              "min": 0.00010269249999999999,
+              "missing_count": 31888,
+              "missing_rate": 0.8015886981222191,
+              "q05": 0.5469080122777779,
+              "q25": 4.752915588611111,
+              "q75": 18.21359425111111,
+              "q95": 22.919151846555557,
+              "std": 7.40148941719772,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 0.25574954250952076,
+              "available_count": 5171,
+              "max": 23.99703121388889,
+              "mean": 11.978823496141516,
+              "median": 12.09463869638889,
+              "min": 0.0013485291666666666,
+              "missing_count": 15048,
+              "missing_rate": 0.7442504574904792,
+              "q05": 0.8046763309722222,
+              "q25": 5.2620929247222215,
+              "q75": 18.747900350555554,
+              "q95": 23.10882243444445,
+              "std": 7.382136942125496,
+              "support": 20219
+            }
+          }
+        },
+        "wallet_value_24h_inclusive": {
+          "available_support": 60000,
+          "encoded_auc_increasing_value": 0.6176417529228871,
+          "observed_auc_increasing_value": 0.6176417529228871,
+          "observed_range_overlap": [
+            1.0,
+            258875.01
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 39781,
+              "max": 258875.01,
+              "mean": 7068.425138382645,
+              "median": 608.49,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 13.0,
+              "q25": 93.37,
+              "q75": 11359.47,
+              "q95": 27446.27,
+              "std": 11967.32115418776,
+              "support": 39781
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 20219,
+              "max": 455916.2,
+              "mean": 15353.364389435677,
+              "median": 5638.26,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 20.877000000000002,
+              "q25": 235.81,
+              "q75": 21794.335,
+              "q95": 56008.291999999994,
+              "std": 26985.020972940598,
+              "support": 20219
+            }
+          }
+        }
+      },
+      "validation": {
+        "agent_cash_count_skew_24h": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.49626787091615154,
+          "observed_auc_increasing_value": 0.49626787091615154,
+          "observed_range_overlap": [
+            -1.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": -0.031246022425298448,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.3333333333333333,
+              "q75": 0.2,
+              "q95": 1.0,
+              "std": 0.5815748957698301,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": -0.03974379468137055,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.3508771929824561,
+              "q75": 0.3333333333333333,
+              "q95": 1.0,
+              "std": 0.5612530791487743,
+              "support": 5055
+            }
+          }
+        },
+        "agent_cash_value_skew_24h": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5040352204185334,
+          "observed_auc_increasing_value": 0.5040352204185334,
+          "observed_range_overlap": [
+            -1.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": -0.023829445652746643,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.8208173332135985,
+              "q75": 0.6,
+              "q95": 1.0,
+              "std": 0.7057144284837562,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": -0.010259499860787473,
+              "median": 0.0,
+              "min": -1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": -1.0,
+              "q25": -0.780858978694623,
+              "q75": 0.7280027220224758,
+              "q95": 1.0,
+              "std": 0.7212315044434342,
+              "support": 5055
+            }
+          }
+        },
+        "agent_cash_value_skew_change": {
+          "available_support": 9522,
+          "encoded_auc_increasing_value": 0.6514507635715525,
+          "observed_auc_increasing_value": 0.5124491189648684,
+          "observed_range_overlap": [
+            -1.995259383921716,
+            1.9903372402607338
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5364504776269482,
+              "available_count": 5335,
+              "max": 1.997028493446177,
+              "mean": -0.05417393797212652,
+              "median": -0.056671616343677414,
+              "min": -1.9973325686058638,
+              "missing_count": 4610,
+              "missing_rate": 0.4635495223730518,
+              "q05": -1.310491016521149,
+              "q25": -0.8841892346735654,
+              "q75": 0.827284746757033,
+              "q95": 1.253222612699868,
+              "std": 0.8970894723259036,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8282888229475767,
+              "available_count": 4187,
+              "max": 1.9903372402607338,
+              "mean": -0.022144759282853033,
+              "median": -0.019323737842179667,
+              "min": -1.995259383921716,
+              "missing_count": 868,
+              "missing_rate": 0.17171117705242334,
+              "q05": -1.284825125587933,
+              "q25": -0.7157524829457311,
+              "q75": 0.744163605730486,
+              "q95": 1.2483595446008746,
+              "std": 0.8436964657575179,
+              "support": 5055
+            }
+          }
+        },
+        "agent_history_coverage_days": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.6410493719413253,
+          "observed_auc_increasing_value": 0.6410493719413253,
+          "observed_range_overlap": [
+            0.0,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 28.0,
+              "mean": 17.658505985626984,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 12.667476520766627,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 28.0,
+              "mean": 23.92489480127583,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 9.748193775160326,
+              "support": 5055
+            }
+          }
+        },
+        "agent_new_wallet_share_7d": {
+          "available_support": 9306,
+          "encoded_auc_increasing_value": 0.697390733107263,
+          "observed_auc_increasing_value": 0.6212149146100392,
+          "observed_range_overlap": [
+            0.12,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.522071392659628,
+              "available_count": 5192,
+              "max": 1.0,
+              "mean": 0.6067367112780044,
+              "median": 0.5909090909090909,
+              "min": 0.0,
+              "missing_count": 4753,
+              "missing_rate": 0.47792860734037207,
+              "q05": 0.3157894736842105,
+              "q25": 0.4666666666666667,
+              "q75": 0.7272727272727273,
+              "q95": 1.0,
+              "std": 0.19554729493974776,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8138476755687438,
+              "available_count": 4114,
+              "max": 1.0,
+              "mean": 0.6809282838103289,
+              "median": 0.6842105263157895,
+              "min": 0.12,
+              "missing_count": 941,
+              "missing_rate": 0.18615232443125618,
+              "q05": 0.35714285714285715,
+              "q25": 0.5625,
+              "q75": 0.8235294117647058,
+              "q95": 1.0,
+              "std": 0.1788350367200541,
+              "support": 5055
+            }
+          }
+        },
+        "agent_service_acceleration_1h": {
+          "available_support": 9650,
+          "encoded_auc_increasing_value": 0.7138446520153625,
+          "observed_auc_increasing_value": 0.6389622583988782,
+          "observed_range_overlap": [
+            1.0,
+            6.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5419808949220714,
+              "available_count": 5390,
+              "max": 6.0,
+              "mean": 1.2686456400742114,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 4555,
+              "missing_rate": 0.4580191050779286,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 0.6246336385488533,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8427299703264095,
+              "available_count": 4260,
+              "max": 22.0,
+              "mean": 2.5246478873239435,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 795,
+              "missing_rate": 0.1572700296735905,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 3.0,
+              "q95": 9.0,
+              "std": 2.8192169180370352,
+              "support": 5055
+            }
+          }
+        },
+        "agent_service_count_1h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.6493941803559538,
+          "observed_auc_increasing_value": 0.6493941803559538,
+          "observed_range_overlap": [
+            0.0,
+            15.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 15.0,
+              "mean": 0.9875314228255405,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.0623808079209403,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 22.0,
+              "mean": 2.1689416419386744,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 8.0,
+              "std": 2.74702334495394,
+              "support": 5055
+            }
+          }
+        },
+        "agent_top2_count_share_24h": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5121696432256739,
+          "observed_auc_increasing_value": 0.5121696432256739,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": 0.4974861811504777,
+              "median": 0.5,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 1.0,
+              "std": 0.3838331333639246,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": 0.5163858476169374,
+              "median": 0.5,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.25,
+              "q75": 0.7692307692307693,
+              "q95": 1.0,
+              "std": 0.324099378583275,
+              "support": 5055
+            }
+          }
+        },
+        "agent_top2_share_change_24h": {
+          "available_support": 9286,
+          "encoded_auc_increasing_value": 0.6011033383908231,
+          "observed_auc_increasing_value": 0.40328082553083916,
+          "observed_range_overlap": [
+            -0.19385342789598115,
+            0.9375
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.5233785822021116,
+              "available_count": 5205,
+              "max": 0.9375,
+              "mean": 0.47794466055620205,
+              "median": 0.4575163398692811,
+              "min": -0.19385342789598115,
+              "missing_count": 4740,
+              "missing_rate": 0.4766214177978884,
+              "q05": 0.09681826194253483,
+              "q25": 0.2804878048780488,
+              "q75": 0.7142857142857143,
+              "q95": 0.8629043495570818,
+              "std": 0.24819401471180658,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8073194856577646,
+              "available_count": 4081,
+              "max": 0.9387755102040817,
+              "mean": 0.38162419186380864,
+              "median": 0.38571428571428573,
+              "min": -0.4247104247104247,
+              "missing_count": 974,
+              "missing_rate": 0.1926805143422354,
+              "q05": -0.038018433179723476,
+              "q25": 0.15873015873015872,
+              "q75": 0.6,
+              "q95": 0.8333333333333334,
+              "std": 0.27628516724182645,
+              "support": 5055
+            }
+          }
+        },
+        "agent_wallet_growth_ratio_7d": {
+          "available_support": 9306,
+          "encoded_auc_increasing_value": 0.7861729124427675,
+          "observed_auc_increasing_value": 0.8301699194302892,
+          "observed_range_overlap": [
+            0.19047619047619047,
+            3.142857142857143
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.522071392659628,
+              "available_count": 5192,
+              "max": 3.142857142857143,
+              "mean": 0.9817234126155326,
+              "median": 0.9830508474576272,
+              "min": 0.08333333333333333,
+              "missing_count": 4753,
+              "missing_rate": 0.47792860734037207,
+              "q05": 0.5,
+              "q25": 0.75,
+              "q75": 1.2222222222222223,
+              "q95": 1.4444444444444444,
+              "std": 0.31053231692132505,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8138476755687438,
+              "available_count": 4114,
+              "max": 11.0,
+              "mean": 1.8221409496221705,
+              "median": 1.6923076923076923,
+              "min": 0.19047619047619047,
+              "missing_count": 941,
+              "missing_rate": 0.18615232443125618,
+              "q05": 0.6842105263157895,
+              "q25": 1.1865079365079365,
+              "q75": 2.1333333333333333,
+              "q95": 3.437662337662335,
+              "std": 1.0189152745296681,
+              "support": 5055
+            }
+          }
+        },
+        "current_amount_usd": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5107421878690861,
+          "observed_auc_increasing_value": 0.5107421878690861,
+          "observed_range_overlap": [
+            1.0,
+            24979.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 24979.0,
+              "mean": 3330.5156390145803,
+              "median": 172.61,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 6.732000000000001,
+              "q25": 40.77,
+              "q75": 2694.54,
+              "q95": 19374.19599999999,
+              "std": 6237.03778137401,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 24980.35,
+              "mean": 3161.3686053412466,
+              "median": 203.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 7.880000000000002,
+              "q25": 46.0,
+              "q75": 2232.885,
+              "q95": 19418.401000000005,
+              "std": 6106.780072701077,
+              "support": 5055
+            }
+          }
+        },
+        "current_is_cash_in": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5061212037124063,
+          "observed_auc_increasing_value": 0.5061212037124063,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": 0.2498743086978381,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 1.0,
+              "std": 0.4329401096579244,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": 0.26211671612265086,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 1.0,
+              "std": 0.4397857924623401,
+              "support": 5055
+            }
+          }
+        },
+        "current_is_cash_out": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5246205763748092,
+          "observed_auc_increasing_value": 0.5246205763748092,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": 0.23740573152337857,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 1.0,
+              "std": 0.4254929496046063,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": 0.28664688427299706,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 1.0,
+              "std": 0.45219514372622366,
+              "support": 5055
+            }
+          }
+        },
+        "current_return_amount_ratio": {
+          "available_support": 485,
+          "encoded_auc_increasing_value": 0.5014066385893929,
+          "observed_auc_increasing_value": 0.4824366385060027,
+          "observed_range_overlap": [
+            0.00025229580756291805,
+            3445.288
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.03137254901960784,
+              "available_count": 312,
+              "max": 3628.5,
+              "mean": 69.706753258375,
+              "median": 1.8932431897370923,
+              "min": 0.00017395293344396931,
+              "missing_count": 9633,
+              "missing_rate": 0.9686274509803922,
+              "q05": 0.003436046835082759,
+              "q25": 0.08394899003003095,
+              "q75": 15.944860254725564,
+              "q95": 290.8647937643645,
+              "std": 290.752891268422,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.034223541048466866,
+              "available_count": 173,
+              "max": 3445.288,
+              "mean": 77.58851646258853,
+              "median": 0.8595400870105656,
+              "min": 0.00025229580756291805,
+              "missing_count": 4882,
+              "missing_rate": 0.9657764589515332,
+              "q05": 0.011885360026405802,
+              "q25": 0.16288665077778633,
+              "q75": 6.975564491184659,
+              "q95": 246.29087567567603,
+              "std": 358.00301714799747,
+              "support": 5055
+            }
+          }
+        },
+        "current_return_path_length": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.501329796571549,
+          "observed_auc_increasing_value": 0.501329796571549,
+          "observed_range_overlap": [
+            0.0,
+            5.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 5.0,
+              "mean": 0.07360482654600302,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.0,
+              "std": 0.4632411734866686,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 5.0,
+              "mean": 0.06844708209693373,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.0,
+              "std": 0.42622194373397543,
+              "support": 5055
+            }
+          }
+        },
+        "receiver_history_coverage_days": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5944545445051641,
+          "observed_auc_increasing_value": 0.5944545445051641,
+          "observed_range_overlap": [
+            3.4880879575231485,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 28.0,
+              "mean": 24.691569567500498,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 5.622425121324074,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 7.234437569652128,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 28.0,
+              "mean": 27.55301216529001,
+              "median": 28.0,
+              "min": 3.4880879575231485,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 28.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 2.57262968328535,
+              "support": 5055
+            }
+          }
+        },
+        "receiver_inflow_acceleration_24h": {
+          "available_support": 11380,
+          "encoded_auc_increasing_value": 0.5995215326232957,
+          "observed_auc_increasing_value": 0.5232214039884333,
+          "observed_range_overlap": [
+            0.0,
+            18.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.7011563599798893,
+              "available_count": 6973,
+              "max": 18.0,
+              "mean": 0.8379463645489746,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 2972,
+              "missing_rate": 0.2988436400201106,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.9475624370976979,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8718100890207715,
+              "available_count": 4407,
+              "max": 18.0,
+              "mean": 1.2679827547084184,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 648,
+              "missing_rate": 0.1281899109792285,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 5.0,
+              "std": 1.9961678948128783,
+              "support": 5055
+            }
+          }
+        },
+        "receiver_inflow_count_24h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5300342685959722,
+          "observed_auc_increasing_value": 0.5300342685959722,
+          "observed_range_overlap": [
+            0.0,
+            18.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 18.0,
+              "mean": 0.8527903469079939,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 1.006389095404831,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 18.0,
+              "mean": 1.278536102868447,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 5.0,
+              "std": 1.9603296704500828,
+              "support": 5055
+            }
+          }
+        },
+        "receiver_unique_sources_24h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.513774662722123,
+          "observed_auc_increasing_value": 0.513774662722123,
+          "observed_range_overlap": [
+            0.0,
+            13.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 13.0,
+              "mean": 0.8174962292609351,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.865386899184347,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 13.0,
+              "mean": 1.083086053412463,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 4.0,
+              "std": 1.5583033621411109,
+              "support": 5055
+            }
+          }
+        },
+        "sender_outflow_acceleration_24h": {
+          "available_support": 10793,
+          "encoded_auc_increasing_value": 0.6397176458653155,
+          "observed_auc_increasing_value": 0.6015121564755768,
+          "observed_range_overlap": [
+            0.0,
+            10.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.6630467571644042,
+              "available_count": 6594,
+              "max": 10.0,
+              "mean": 0.930041632171338,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 3351,
+              "missing_rate": 0.3369532428355958,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 0.9764104281374283,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.8306627101879327,
+              "available_count": 4199,
+              "max": 18.0,
+              "mean": 2.303806662902706,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 856,
+              "missing_rate": 0.16933728981206725,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 9.0,
+              "std": 3.0118726633876722,
+              "support": 5055
+            }
+          }
+        },
+        "sender_outflow_count_24h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5954513822064877,
+          "observed_auc_increasing_value": 0.5954513822064877,
+          "observed_range_overlap": [
+            0.0,
+            16.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 16.0,
+              "mean": 1.016088486676722,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.3602644377423083,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 18.0,
+              "mean": 2.300098911968348,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 9.0,
+              "std": 3.0419991198246024,
+              "support": 5055
+            }
+          }
+        },
+        "sender_unique_destinations_24h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5912987902305409,
+          "observed_auc_increasing_value": 0.5912987902305409,
+          "observed_range_overlap": [
+            0.0,
+            12.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 12.0,
+              "mean": 0.9633986928104575,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 1.0,
+              "q95": 3.0,
+              "std": 1.1050720454610312,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 13.0,
+              "mean": 1.951137487636004,
+              "median": 1.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 3.0,
+              "q95": 7.0,
+              "std": 2.376148000309762,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_active_hours_utc_day": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.622312938769563,
+          "observed_auc_increasing_value": 0.622312938769563,
+          "observed_range_overlap": [
+            1.0,
+            12.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 12.0,
+              "mean": 1.4382101558572147,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 3.0,
+              "std": 0.9122527842437139,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 14.0,
+              "mean": 2.2751730959446093,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 3.0,
+              "q95": 7.0,
+              "std": 1.9823271711700519,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_band_share_7d_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5235888186211104,
+          "observed_auc_increasing_value": 0.5235888186211104,
+          "observed_range_overlap": [
+            0.0,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": 0.05788146397733389,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.0,
+              "q95": 0.3333333333333333,
+              "std": 0.13325605445723354,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": 0.05629805925892075,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.058823529411764705,
+              "q95": 0.3333333333333333,
+              "std": 0.11821385517087,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_count_1h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5910537033804619,
+          "observed_auc_increasing_value": 0.5910537033804619,
+          "observed_range_overlap": [
+            1.0,
+            20.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 23.0,
+              "mean": 1.2150829562594267,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 1.1569162716393178,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 20.0,
+              "mean": 1.8949554896142433,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 7.0,
+              "std": 2.250891519825596,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_count_acceleration_1h": {
+          "available_support": 12472,
+          "encoded_auc_increasing_value": 0.6664524916715525,
+          "observed_auc_increasing_value": 0.5995277669392802,
+          "observed_range_overlap": [
+            1.0,
+            11.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.7685268979386627,
+              "available_count": 7643,
+              "max": 11.0,
+              "mean": 1.1037550699986916,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 2302,
+              "missing_rate": 0.23147310206133737,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 1.0,
+              "q95": 2.0,
+              "std": 0.4766869380784265,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.9552917903066271,
+              "available_count": 4829,
+              "max": 20.0,
+              "mean": 1.8784427417684821,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 226,
+              "missing_rate": 0.0447082096933729,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 7.0,
+              "std": 2.207671534243711,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_count_utc_day_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.6492304111783951,
+          "observed_auc_increasing_value": 0.6492304111783951,
+          "observed_range_overlap": [
+            1.0,
+            25.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 25.0,
+              "mean": 1.7215686274509805,
+              "median": 1.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 2.0,
+              "q95": 4.0,
+              "std": 1.9424609915805626,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 26.0,
+              "mean": 3.7080118694362016,
+              "median": 2.0,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 1.0,
+              "q25": 1.0,
+              "q75": 5.0,
+              "q95": 13.0,
+              "std": 4.1215226153090585,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_current_amount_cluster_share_7d": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.40018032909986134,
+          "observed_auc_increasing_value": 0.40018032909986134,
+          "observed_range_overlap": [
+            0.02564102564102564,
+            1.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 1.0,
+              "mean": 0.32265422406567973,
+              "median": 0.25,
+              "min": 0.02564102564102564,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.07142857142857142,
+              "q25": 0.16666666666666666,
+              "q75": 0.42857142857142855,
+              "q95": 1.0,
+              "std": 0.2339488968535627,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 1.0,
+              "mean": 0.2594924132656856,
+              "median": 0.2,
+              "min": 0.023809523809523808,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 0.047619047619047616,
+              "q25": 0.1111111111111111,
+              "q75": 0.3333333333333333,
+              "q95": 0.6666666666666666,
+              "std": 0.21099462331318908,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_history_coverage_days": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.5942618327606983,
+          "observed_auc_increasing_value": 0.5942618327606983,
+          "observed_range_overlap": [
+            3.346765435138889,
+            28.0
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 28.0,
+              "mean": 24.688939189175564,
+              "median": 28.0,
+              "min": 0.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 5.559185456465278,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 7.258899268415066,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 28.0,
+              "mean": 27.550616242664134,
+              "median": 28.0,
+              "min": 3.346765435138889,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 28.0,
+              "q25": 28.0,
+              "q75": 28.0,
+              "q95": 28.0,
+              "std": 2.586650300529484,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_observed_onward_funding_share_24h": {
+          "available_support": 7024,
+          "encoded_auc_increasing_value": 0.5458453541958516,
+          "observed_auc_increasing_value": 0.5379745073594299,
+          "observed_range_overlap": [
+            0.0,
+            10859.405940594059
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.4432378079436903,
+              "available_count": 4408,
+              "max": 10859.405940594059,
+              "mean": 45.28988830341984,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 5537,
+              "missing_rate": 0.5567621920563097,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.3500824612402381,
+              "q95": 119.99875478850709,
+              "std": 318.5405281117469,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.5175074183976262,
+              "available_count": 2616,
+              "max": 13877.985915492958,
+              "mean": 66.5346969050815,
+              "median": 0.0,
+              "min": 0.0,
+              "missing_count": 2439,
+              "missing_rate": 0.4824925816023739,
+              "q05": 0.0,
+              "q25": 0.0,
+              "q75": 0.9082617067998966,
+              "q95": 211.73825338593699,
+              "std": 444.05556957191254,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_prior_funding_age_hours": {
+          "available_support": 3214,
+          "encoded_auc_increasing_value": 0.5323851111876945,
+          "observed_auc_increasing_value": 0.5277727762867293,
+          "observed_range_overlap": [
+            0.005512054166666667,
+            23.968092549166666
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 0.1933634992458522,
+              "available_count": 1923,
+              "max": 23.968092549166666,
+              "mean": 11.03792326039536,
+              "median": 10.566254154166666,
+              "min": 0.002211197222222222,
+              "missing_count": 8022,
+              "missing_rate": 0.8066365007541478,
+              "q05": 0.5764532651111112,
+              "q25": 4.371456570277777,
+              "q75": 17.564707874305554,
+              "q95": 22.997832565666666,
+              "std": 7.388868620791831,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 0.2553907022749753,
+              "available_count": 1291,
+              "max": 23.981470463055558,
+              "mean": 11.753691274233153,
+              "median": 11.150483221388889,
+              "min": 0.005512054166666667,
+              "missing_count": 3764,
+              "missing_rate": 0.7446092977250247,
+              "q05": 0.5933426169444445,
+              "q25": 5.054855504861111,
+              "q75": 18.793184942499998,
+              "q95": 23.16268132625,
+              "std": 7.482181690682096,
+              "support": 5055
+            }
+          }
+        },
+        "wallet_value_24h_inclusive": {
+          "available_support": 15000,
+          "encoded_auc_increasing_value": 0.6144053023578246,
+          "observed_auc_increasing_value": 0.6144053023578246,
+          "observed_range_overlap": [
+            1.0,
+            122427.08
+          ],
+          "target_distributions": {
+            "0": {
+              "availability_rate": 1.0,
+              "available_count": 9945,
+              "max": 122427.08,
+              "mean": 7110.818814479638,
+              "median": 582.15,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 11.938000000000002,
+              "q25": 91.0,
+              "q75": 10988.12,
+              "q95": 28187.159999999996,
+              "std": 12194.86465763467,
+              "support": 9945
+            },
+            "1": {
+              "availability_rate": 1.0,
+              "available_count": 5055,
+              "max": 279894.02,
+              "mean": 14527.520961424334,
+              "median": 4741.03,
+              "min": 1.0,
+              "missing_count": 0,
+              "missing_rate": 0.0,
+              "q05": 21.0,
+              "q25": 234.9,
+              "q75": 21003.195,
+              "q95": 55834.81900000004,
+              "std": 22127.298109114086,
+              "support": 5055
+            }
+          }
+        }
+      }
+    }
+  }
+}

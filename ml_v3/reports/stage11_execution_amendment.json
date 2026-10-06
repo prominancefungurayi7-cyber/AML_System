@@ -1,0 +1,14 @@
+{
+  "original_runner_sha256": "5ed8bbc13d2dcd76e7ff1ab33805096ac1d20a3733dd0a77dcee4333084f7ce1",
+  "previous_amendments": [
+    {
+      "original_runner_sha256": "5ed8bbc13d2dcd76e7ff1ab33805096ac1d20a3733dd0a77dcee4333084f7ce1",
+      "reason": "Recovery after XGBoost default missing=NaN could not be serialized as strict JSON. Logging now encodes nonfinite estimator metadata as text and writes atomic checkpoints. No model/preprocessing/grid/threshold change; saved fits reused.",
+      "resumed_at_utc": "2026-09-28T16:52:24.593824+00:00",
+      "resumed_runner_sha256": "8f3ed0cd0e51a7cca33c978f7fcd89d81f02c22625bc3114c00909fd69cea6f3"
+    }
+  ],
+  "reason": "Logging recovery encodes nonfinite estimator defaults as text and writes atomic checkpoints. Subsequent Random Forest replay differed only by floating-point parallel summation; require maximum score difference <=1e-12 AND identical fixed-0.50 predictions, recording actual differences. No model/preprocessing/grid/threshold change; saved fits reused.",
+  "resumed_at_utc": "2026-09-28T16:59:14.799294+00:00",
+  "resumed_runner_sha256": "289e2b4c6cf1960678d3a921d5b2c50a7dd72435a52fd37bc7781f508f283172"
+}

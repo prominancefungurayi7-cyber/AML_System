@@ -1,0 +1,26 @@
+{
+  "status": "PASS_WITH_EXPLICIT_SCOPE",
+  "checks": {
+    "stage15_design_artifacts": {"listed": 20, "sha256_mismatches": 0},
+    "stage15a_amendment_artifacts": {"listed": 7, "sha256_mismatches": 0},
+    "stage16t_challenge_artifacts": {"listed": 10, "sha256_mismatches": 0},
+    "stage16r_and_16s_historical_status": "Saved reports and evidence retained; no stage16R dataset or sealed contents opened during this turn.",
+    "v3_experimental_integration": "No V3 integration path or artifact was edited by Stage16U.",
+    "v1_and_flask": "No V1 inference, Flask application, or production database code was edited.",
+    "existing_v4_dataset": "No transaction, label, feature, or model file was written or modified.",
+    "sealed_evaluations": "No contents read, enumerated, decrypted, or hashed. Public Stage16R certificate metadata only remains SEALED_QUARANTINED with both support policy results FAIL."
+  },
+  "stage16u_files_written": [
+    "ml_v4/generation/stage16u_generator.py (exclusive horizon handling, global aggregate validation, canonical hard-origin provenance)",
+    "ml_v4/tests/test_stage16u.py (endpoint, aggregate isolation and provenance fixtures)",
+    "ml_v4/reports/V4_STAGE16U_IMPLEMENTATION_READINESS.md",
+    "ml_v4/evidence/stage16u/implementation_tests.json",
+    "ml_v4/evidence/stage16u/custody_readiness.json",
+    "ml_v4/evidence/stage16u/reproducibility_readiness.json",
+    "ml_v4/evidence/stage16u/support_policy_readiness.json",
+    "ml_v4/evidence/stage16u/preservation_verification.json",
+    "ml_v4/evidence/stage16u/stage16u_decision.json"
+  ],
+  "unexpected_changes": [],
+  "scope_limit": "Hash results rely on Stage15/15A/16T saved explicit manifests. The Stage15A validator itself could not finish because one unrelated historical ml_archive path listed by its protection inventory is missing from this checkout. Existing sealed V4 bytes are intentionally outside current checks."
+}

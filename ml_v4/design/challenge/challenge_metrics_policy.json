@@ -1,0 +1,39 @@
+{
+  "definitions": "Positive prediction score>=frozen threshold. Confusion [[TN,FP],[FN,TP]]. AP=sum recall increments*precision is the primary PR-AUC convention; call it Average Precision (AP), not trapezoidal area. Optionally show trapezoidal PR area clearly secondary. Family/domain recall=predicted positive among rows carrying frozen family/domain, including overlaps. Domain-only and unique multi-domain reported separately. Hard FPR=FP/(FP+TN) on union target0 in that origin/slice. Class0 recall=1-FPR.",
+  "estimands": {
+    "A": "Existing V4 Train/Validation development population; selected/reused development results, never independent final evidence.",
+    "B": "This enriched challenge law; report pooled predeclared equal-sized arms and each arm separately. Precision/AP describe realized challenge prevalence only. No pooling with V4 or natural-prevalence conversion. No population accuracy or operational PPV claim."
+  },
+  "model_behaviour_success": {
+    "conditions": [
+      "All technical/independence gates PASS and relevant support/precision objectives met",
+      "Pooled suspicious recall95% lower bound>=0.80",
+      "Each family simultaneous recall lower bound>=0.70",
+      "Each domain recall95% lower bound>=0.75",
+      "Overall FPR95% upper bound<=0.10",
+      "Each matched-hard FPR upper bound<=0.15; use simultaneous12-stratum Bonferroni bounds",
+      "Shifted arm family recall drop reference-minus-shifted upper95% bound<=0.15 for adequately supported families; unsupported differences INDETERMINATE"
+    ],
+    "logic": "Conjunction. Any definite failure => behavioural criterion not met. Missing/inadequate support => indeterminate, never PASS. Report every metric regardless. Macro F1 alone cannot establish success. These conservative illustrative synthetic-research tolerances require explicit protocol approval and are not derived from challenge outcomes.",
+    "status": "Proposed research acceptance criteria fixed by this protocol, not claims about safety or operational utility"
+  },
+  "population_shift": "Report shifted minus reference metric differences with independent stratified unit bootstrap and same frozen model/threshold. Family-specific recall/FPR and availability changes accompany aggregate differences. No causal attribution to a single changed factor. Outcome does not trigger retraining.",
+  "primary": [
+    "accuracy",
+    "balanced_accuracy",
+    "macro_f1",
+    "suspicious_pattern_precision",
+    "suspicious_pattern_recall",
+    "suspicious_pattern_f1",
+    "ROC_AUC",
+    "PR_AUC_AP",
+    "false_positive_rate",
+    "domain_recall",
+    "family_recall",
+    "hard_negative_FPR"
+  ],
+  "protocol_version": "v4.challenge.protocol.1",
+  "robustness": "Custodian reports missing/observed history strata and predefined near-boundary/hard-origin slices. For each of the frozen 40 semantic feature fields, permute that field across a fixed uniform3000-row sample within each arm, 3 repeats; use same baseline sample, signed AP drop and SD, absolute-mass shares. Permute transaction-type one-hot columns as one field. Diagnostic distributions may be off-manifold; importance is not causal and no maximum importance threshold is a success gate. No challenge retraining, feature selection or tuning. Optional matched-removal development models must fit within original36 slots and be frozen before access; if absent, report not measured.",
+  "uncertainty": "10000 stratified whole-unit bootstrap replicates: sample 12 units with replacement within each arm, retain every event/subject/episode jointly; never independently bootstrap wallets or rows. Seed derived from sealed bootstrap stream. Percentile95% intervals overall; simultaneous twelve-family recall intervals use Bonferroni tails 0.025/12 and 1-0.025/12. Report per-unit counts, unit-equal mean recall/FPR as secondary, leave-one-unit-out ranges, and undefined bootstrap fraction. Suppress interval if >5% replicates undefined or fewer than8 supported units. Bootstrap intervals at 12 units/arm are approximate; they do not guarantee frequentist coverage.",
+  "undefined": "Empty denominators => null plus raw numerator/denominator and reason. No predicted positives: precision0 with undefined flag; zero-denominator F1=0 flagged. ROC/AP with missing comparison class null. No imputed perfect scores."
+}

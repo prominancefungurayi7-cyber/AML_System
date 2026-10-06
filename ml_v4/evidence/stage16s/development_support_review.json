@@ -1,0 +1,2464 @@
+{
+  "overlap": "Family supports overlap and are never reduced by another predicate firing",
+  "partitions": {
+    "train": {
+      "N3_structural_audit": {
+        "chronological_topology_available": 307,
+        "full_predicate_positive": 83,
+        "no_chronological_topology": 844,
+        "own_motif_rows": 1151,
+        "topology_present_but_full_amount_conjunction_fails": 224
+      },
+      "accounting": {
+        "accounting_failures": 0,
+        "basis": "Frozen integrity PASS and stop-on-negative-inventory source. Numerical amount bounds rejection is not an accounting retry.",
+        "minimum_inventory_minor": 85241688,
+        "numerical_amount_proposal_rejections": 17
+      },
+      "distribution": {
+        "domain_only": {
+          "agent": 7158,
+          "network": 2041,
+          "structuring": 1658
+        },
+        "domains": {
+          "agent": 7678,
+          "network": 3111,
+          "structuring": 2867
+        },
+        "envelope_pass": true,
+        "multi_domain": 1373,
+        "prevalence": 0.20383333333333334,
+        "target0": 47770,
+        "target1": 12230
+      },
+      "families": {
+        "A1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 111,
+            "eligible": 41142,
+            "inapplicable": 18747
+          },
+          "cluster_objective": null,
+          "decision_points": 5773,
+          "distinct_clusters": 2273,
+          "distinct_subjects": 90,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.10202667590507535,
+            "unit_counts": {
+              "0": 451,
+              "1": 486,
+              "2": 450,
+              "3": 403,
+              "4": 562,
+              "5": 567,
+              "6": 429,
+              "7": 368,
+              "8": 470,
+              "9": 554,
+              "10": 516,
+              "11": 517
+            }
+          },
+          "exclusive_family_rows": 5044,
+          "matched_hard_motif_count": 594,
+          "maximum_cluster_share": 0.002944742768058202,
+          "maximum_subject_share": 0.020613199376407414,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 729,
+          "overlap": {
+            "A1": 5773,
+            "A2": 97,
+            "A3": 193,
+            "A4": 126,
+            "N1": 23,
+            "N2": 78,
+            "N3": 22,
+            "N4": 49,
+            "S1": 45,
+            "S2": 10,
+            "S3": 188,
+            "S4": 14
+          },
+          "own_origin_episodes": 115,
+          "own_origin_opportunities": {
+            "context": 298,
+            "context_any_positive": 43,
+            "context_eligible": 206,
+            "context_family_positive": 35,
+            "motif": 1282,
+            "motif_any_positive": 381,
+            "motif_eligible": 1274,
+            "motif_family_positive": 339,
+            "motif_ineligible_baseline_support": 8,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1580,
+          "planned_M": 1282,
+          "positive_origin_counts": {
+            "A1": 374,
+            "A2": 238,
+            "A3": 285,
+            "A4": 290,
+            "H1": 129,
+            "H2": 123,
+            "H3": 115,
+            "H4": 89,
+            "H5": 119,
+            "H6": 88,
+            "H7": 259,
+            "H8": 249,
+            "N1": 103,
+            "N2": 91,
+            "N3": 238,
+            "N4": 149,
+            "S1": 170,
+            "S2": 313,
+            "S3": 122,
+            "S4": 259,
+            "background": 1970
+          },
+          "required_support_percent": 481.0833333333333,
+          "status": "PASS",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 180,
+            "max_30day_share": 0.1974709856227265,
+            "max_day_share": 0.015070154165944916,
+            "scored_30day_counts": {
+              "0": 746,
+              "1": 1029,
+              "2": 864,
+              "3": 1140,
+              "4": 919,
+              "5": 1075
+            }
+          }
+        },
+        "A2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 599,
+            "eligible": 40654,
+            "inapplicable": 18747
+          },
+          "cluster_objective": null,
+          "decision_points": 755,
+          "distinct_clusters": 339,
+          "distinct_subjects": 74,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.2251655629139073,
+            "unit_counts": {
+              "0": 92,
+              "1": 65,
+              "2": 26,
+              "3": 58,
+              "4": 92,
+              "5": 55,
+              "6": 58,
+              "7": 94,
+              "8": 46,
+              "9": 59,
+              "10": 60,
+              "11": 50
+            }
+          },
+          "exclusive_family_rows": 494,
+          "matched_hard_motif_count": 560,
+          "maximum_cluster_share": 0.018543046357615896,
+          "maximum_subject_share": 0.059602649006622516,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 261,
+          "overlap": {
+            "A1": 97,
+            "A2": 755,
+            "A3": 77,
+            "A4": 47,
+            "N1": 2,
+            "N2": 9,
+            "N3": 9,
+            "N4": 12,
+            "S1": 19,
+            "S2": 0,
+            "S3": 46,
+            "S4": 1
+          },
+          "own_origin_episodes": 114,
+          "own_origin_opportunities": {
+            "context": 343,
+            "context_any_positive": 59,
+            "context_eligible": 219,
+            "context_family_positive": 1,
+            "motif": 1231,
+            "motif_any_positive": 362,
+            "motif_eligible": 1231,
+            "motif_family_positive": 44,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1574,
+          "planned_M": 1231,
+          "positive_origin_counts": {
+            "A1": 4,
+            "A2": 45,
+            "A3": 83,
+            "A4": 103,
+            "H1": 22,
+            "H2": 12,
+            "H3": 4,
+            "H4": 13,
+            "H5": 14,
+            "H6": 4,
+            "H7": 131,
+            "H8": 76,
+            "N1": 9,
+            "N2": 7,
+            "N3": 7,
+            "N4": 23,
+            "S1": 21,
+            "S2": 16,
+            "S3": 18,
+            "S4": 21,
+            "background": 122
+          },
+          "required_support_percent": 62.916666666666664,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 127,
+            "max_30day_share": 0.2185430463576159,
+            "max_day_share": 0.02781456953642384,
+            "scored_30day_counts": {
+              "0": 145,
+              "1": 89,
+              "2": 105,
+              "3": 145,
+              "4": 106,
+              "5": 165
+            }
+          }
+        },
+        "A3": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 90,
+            "eligible": 41163,
+            "inapplicable": 18747
+          },
+          "cluster_objective": null,
+          "decision_points": 883,
+          "distinct_clusters": 249,
+          "distinct_subjects": 77,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.21517553793884484,
+            "unit_counts": {
+              "0": 47,
+              "1": 96,
+              "2": 62,
+              "3": 68,
+              "4": 56,
+              "5": 72,
+              "6": 88,
+              "7": 95,
+              "8": 90,
+              "9": 73,
+              "10": 78,
+              "11": 58
+            }
+          },
+          "exclusive_family_rows": 565,
+          "matched_hard_motif_count": 477,
+          "maximum_cluster_share": 0.015855039637599093,
+          "maximum_subject_share": 0.056625141562853906,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 318,
+          "overlap": {
+            "A1": 193,
+            "A2": 77,
+            "A3": 883,
+            "A4": 43,
+            "N1": 4,
+            "N2": 6,
+            "N3": 17,
+            "N4": 8,
+            "S1": 17,
+            "S2": 0,
+            "S3": 8,
+            "S4": 0
+          },
+          "own_origin_episodes": 109,
+          "own_origin_opportunities": {
+            "context": 526,
+            "context_any_positive": 92,
+            "context_eligible": 367,
+            "context_family_positive": 20,
+            "motif": 1038,
+            "motif_any_positive": 634,
+            "motif_eligible": 1037,
+            "motif_family_positive": 472,
+            "motif_ineligible_baseline_support": 1,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1564,
+          "planned_M": 1038,
+          "positive_origin_counts": {
+            "A1": 1,
+            "A2": 70,
+            "A3": 492,
+            "A4": 57,
+            "H1": 9,
+            "H2": 2,
+            "H3": 1,
+            "H5": 2,
+            "H6": 2,
+            "H7": 97,
+            "H8": 69,
+            "N1": 3,
+            "N2": 2,
+            "N3": 2,
+            "N4": 9,
+            "S1": 28,
+            "S2": 2,
+            "S3": 2,
+            "S4": 4,
+            "background": 29
+          },
+          "required_support_percent": 73.58333333333333,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 122,
+            "max_30day_share": 0.21970554926387317,
+            "max_day_share": 0.04077010192525481,
+            "scored_30day_counts": {
+              "0": 124,
+              "1": 102,
+              "2": 139,
+              "3": 153,
+              "4": 171,
+              "5": 194
+            }
+          }
+        },
+        "A4": {
+          "all_scored_eligibility_reasons": {
+            "coverage_or_baseline_cash_support": 97,
+            "eligible": 28484,
+            "inapplicable": 31419
+          },
+          "cluster_objective": null,
+          "decision_points": 812,
+          "distinct_clusters": 466,
+          "distinct_subjects": 75,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.24630541871921183,
+            "unit_counts": {
+              "0": 66,
+              "1": 44,
+              "2": 68,
+              "3": 75,
+              "4": 55,
+              "5": 75,
+              "6": 72,
+              "7": 106,
+              "8": 35,
+              "9": 72,
+              "10": 87,
+              "11": 57
+            }
+          },
+          "exclusive_family_rows": 583,
+          "matched_hard_motif_count": 583,
+          "maximum_cluster_share": 0.009852216748768473,
+          "maximum_subject_share": 0.07881773399014778,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 229,
+          "overlap": {
+            "A1": 126,
+            "A2": 47,
+            "A3": 43,
+            "A4": 812,
+            "N1": 0,
+            "N2": 0,
+            "N3": 0,
+            "N4": 4,
+            "S1": 3,
+            "S2": 2,
+            "S3": 29,
+            "S4": 2
+          },
+          "own_origin_episodes": 113,
+          "own_origin_opportunities": {
+            "context": 296,
+            "context_any_positive": 53,
+            "context_eligible": 126,
+            "context_family_positive": 5,
+            "motif": 1264,
+            "motif_any_positive": 512,
+            "motif_eligible": 1250,
+            "motif_family_positive": 159,
+            "motif_ineligible_coverage_or_baseline_cash_support": 14,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1560,
+          "planned_M": 1264,
+          "positive_origin_counts": {
+            "A1": 17,
+            "A2": 43,
+            "A3": 19,
+            "A4": 164,
+            "H1": 18,
+            "H2": 21,
+            "H3": 7,
+            "H4": 3,
+            "H5": 12,
+            "H6": 10,
+            "H7": 33,
+            "H8": 114,
+            "N1": 7,
+            "N2": 6,
+            "N3": 20,
+            "N4": 20,
+            "S1": 15,
+            "S2": 22,
+            "S3": 20,
+            "S4": 23,
+            "background": 218
+          },
+          "required_support_percent": 67.66666666666667,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 154,
+            "max_30day_share": 0.18842364532019704,
+            "max_day_share": 0.023399014778325122,
+            "scored_30day_counts": {
+              "0": 122,
+              "1": 135,
+              "2": 142,
+              "3": 153,
+              "4": 144,
+              "5": 116
+            }
+          }
+        },
+        "N1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 10722,
+            "coverage": 298,
+            "eligible": 20399,
+            "inapplicable": 28581
+          },
+          "cluster_objective": null,
+          "decision_points": 414,
+          "distinct_clusters": 187,
+          "distinct_subjects": 116,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.13768115942028986,
+            "unit_counts": {
+              "0": 38,
+              "1": 63,
+              "2": 24,
+              "3": 38,
+              "4": 35,
+              "5": 52,
+              "6": 27,
+              "7": 32,
+              "8": 33,
+              "9": 14,
+              "10": 30,
+              "11": 28
+            }
+          },
+          "exclusive_family_rows": 369,
+          "matched_hard_motif_count": 807,
+          "maximum_cluster_share": 0.024154589371980676,
+          "maximum_subject_share": 0.028985507246376812,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 45,
+          "overlap": {
+            "A1": 23,
+            "A2": 2,
+            "A3": 4,
+            "A4": 0,
+            "N1": 414,
+            "N2": 11,
+            "N3": 7,
+            "N4": 3,
+            "S1": 0,
+            "S2": 0,
+            "S3": 5,
+            "S4": 1
+          },
+          "own_origin_episodes": 118,
+          "own_origin_opportunities": {
+            "context": 671,
+            "context_any_positive": 170,
+            "context_eligible": 215,
+            "context_family_positive": 2,
+            "motif": 891,
+            "motif_any_positive": 271,
+            "motif_eligible": 590,
+            "motif_family_positive": 234,
+            "motif_ineligible_baseline_support": 290,
+            "motif_ineligible_coverage": 11,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1562,
+          "planned_M": 891,
+          "positive_origin_counts": {
+            "A1": 3,
+            "A2": 4,
+            "A3": 8,
+            "H1": 4,
+            "H2": 2,
+            "H3": 6,
+            "H4": 53,
+            "H5": 6,
+            "H6": 2,
+            "H7": 1,
+            "H8": 7,
+            "N1": 236,
+            "N2": 5,
+            "N3": 7,
+            "N4": 3,
+            "S1": 3,
+            "S2": 6,
+            "S3": 4,
+            "S4": 10,
+            "background": 44
+          },
+          "required_support_percent": 34.5,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 106,
+            "max_30day_share": 0.23671497584541062,
+            "max_day_share": 0.03140096618357488,
+            "scored_30day_counts": {
+              "0": 98,
+              "1": 59,
+              "2": 79,
+              "3": 69,
+              "4": 35,
+              "5": 74
+            }
+          }
+        },
+        "N2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 11942,
+            "coverage": 530,
+            "eligible": 18947,
+            "inapplicable": 28581
+          },
+          "cluster_objective": null,
+          "decision_points": 1690,
+          "distinct_clusters": 582,
+          "distinct_subjects": 333,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.08165680473372781,
+            "unit_counts": {
+              "0": 158,
+              "1": 134,
+              "2": 120,
+              "3": 158,
+              "4": 110,
+              "5": 133,
+              "6": 166,
+              "7": 175,
+              "8": 136,
+              "9": 126,
+              "10": 162,
+              "11": 112
+            }
+          },
+          "exclusive_family_rows": 760,
+          "matched_hard_motif_count": 336,
+          "maximum_cluster_share": 0.00650887573964497,
+          "maximum_subject_share": 0.0242603550295858,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 930,
+          "overlap": {
+            "A1": 78,
+            "A2": 9,
+            "A3": 6,
+            "A4": 0,
+            "N1": 11,
+            "N2": 1690,
+            "N3": 33,
+            "N4": 35,
+            "S1": 102,
+            "S2": 3,
+            "S3": 783,
+            "S4": 7
+          },
+          "own_origin_episodes": 114,
+          "own_origin_opportunities": {
+            "context": 712,
+            "context_any_positive": 316,
+            "context_eligible": 229,
+            "context_family_positive": 122,
+            "motif": 864,
+            "motif_any_positive": 346,
+            "motif_eligible": 479,
+            "motif_family_positive": 216,
+            "motif_ineligible_baseline_support": 368,
+            "motif_ineligible_coverage": 17,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1576,
+          "planned_M": 864,
+          "positive_origin_counts": {
+            "A1": 5,
+            "A2": 12,
+            "A3": 12,
+            "A4": 5,
+            "H1": 118,
+            "H2": 35,
+            "H3": 72,
+            "H4": 29,
+            "H5": 188,
+            "H6": 32,
+            "H7": 2,
+            "H8": 8,
+            "N1": 23,
+            "N2": 338,
+            "N3": 85,
+            "N4": 36,
+            "S1": 82,
+            "S2": 98,
+            "S3": 195,
+            "S4": 240,
+            "background": 75
+          },
+          "required_support_percent": 140.83333333333334,
+          "status": "PASS",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 176,
+            "max_30day_share": 0.19467455621301774,
+            "max_day_share": 0.015976331360946745,
+            "scored_30day_counts": {
+              "0": 329,
+              "1": 275,
+              "2": 276,
+              "3": 306,
+              "4": 264,
+              "5": 240
+            }
+          }
+        },
+        "N3": {
+          "all_scored_eligibility_reasons": {
+            "eligible_no_baseline": 31419,
+            "inapplicable": 28581
+          },
+          "cluster_objective": null,
+          "decision_points": 550,
+          "distinct_clusters": 453,
+          "distinct_subjects": 355,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.06181818181818182,
+            "unit_counts": {
+              "0": 45,
+              "1": 41,
+              "2": 51,
+              "3": 48,
+              "4": 46,
+              "5": 37,
+              "6": 48,
+              "7": 54,
+              "8": 43,
+              "9": 46,
+              "10": 49,
+              "11": 42
+            }
+          },
+          "exclusive_family_rows": 449,
+          "matched_hard_motif_count": 551,
+          "maximum_cluster_share": 0.01090909090909091,
+          "maximum_subject_share": 0.01818181818181818,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 101,
+          "overlap": {
+            "A1": 22,
+            "A2": 9,
+            "A3": 17,
+            "A4": 0,
+            "N1": 7,
+            "N2": 33,
+            "N3": 550,
+            "N4": 17,
+            "S1": 6,
+            "S2": 0,
+            "S3": 24,
+            "S4": 0
+          },
+          "own_origin_episodes": 228,
+          "own_origin_opportunities": {
+            "context": 2019,
+            "context_any_positive": 376,
+            "context_eligible": 1016,
+            "context_family_positive": 27,
+            "motif": 1151,
+            "motif_any_positive": 179,
+            "motif_eligible": 1151,
+            "motif_family_positive": 83,
+            "motif_ineligible_eligible_no_baseline": 0
+          },
+          "planned_E": 3170,
+          "planned_M": 1151,
+          "positive_origin_counts": {
+            "A1": 21,
+            "A2": 24,
+            "A3": 18,
+            "A4": 5,
+            "H1": 13,
+            "H2": 10,
+            "H3": 4,
+            "H4": 17,
+            "H5": 16,
+            "H6": 28,
+            "H7": 17,
+            "H8": 15,
+            "N1": 16,
+            "N2": 17,
+            "N3": 110,
+            "N4": 31,
+            "S1": 14,
+            "S2": 26,
+            "S3": 7,
+            "S4": 7,
+            "background": 134
+          },
+          "required_support_percent": 45.833333333333336,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 170,
+            "max_30day_share": 0.19272727272727272,
+            "max_day_share": 0.023636363636363636,
+            "scored_30day_counts": {
+              "0": 106,
+              "1": 92,
+              "2": 85,
+              "3": 82,
+              "4": 98,
+              "5": 87
+            }
+          }
+        },
+        "N4": {
+          "all_scored_eligibility_reasons": {
+            "eligible_anchor": 10924,
+            "inapplicable": 13952,
+            "no_anchor": 35124
+          },
+          "cluster_objective": null,
+          "decision_points": 559,
+          "distinct_clusters": 348,
+          "distinct_subjects": 258,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.09123434704830054,
+            "unit_counts": {
+              "0": 39,
+              "1": 49,
+              "2": 45,
+              "3": 46,
+              "4": 57,
+              "5": 38,
+              "6": 40,
+              "7": 60,
+              "8": 54,
+              "9": 47,
+              "10": 37,
+              "11": 47
+            }
+          },
+          "exclusive_family_rows": 408,
+          "matched_hard_motif_count": 484,
+          "maximum_cluster_share": 0.02146690518783542,
+          "maximum_subject_share": 0.026833631484794274,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 151,
+          "overlap": {
+            "A1": 49,
+            "A2": 12,
+            "A3": 8,
+            "A4": 4,
+            "N1": 3,
+            "N2": 35,
+            "N3": 17,
+            "N4": 559,
+            "S1": 13,
+            "S2": 0,
+            "S3": 50,
+            "S4": 1
+          },
+          "own_origin_episodes": 116,
+          "own_origin_opportunities": {
+            "context": 680,
+            "context_any_positive": 221,
+            "context_eligible": 392,
+            "context_family_positive": 35,
+            "motif": 889,
+            "motif_any_positive": 180,
+            "motif_eligible": 796,
+            "motif_family_positive": 56,
+            "motif_ineligible_eligible_anchor": 0,
+            "motif_ineligible_no_anchor": 93
+          },
+          "planned_E": 1569,
+          "planned_M": 889,
+          "positive_origin_counts": {
+            "A1": 10,
+            "A2": 17,
+            "A3": 15,
+            "A4": 3,
+            "H1": 10,
+            "H2": 2,
+            "H3": 2,
+            "H4": 46,
+            "H5": 41,
+            "H6": 26,
+            "H7": 9,
+            "H8": 10,
+            "N1": 47,
+            "N2": 7,
+            "N3": 59,
+            "N4": 91,
+            "S1": 3,
+            "S2": 15,
+            "S3": 22,
+            "S4": 38,
+            "background": 86
+          },
+          "required_support_percent": 46.583333333333336,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 155,
+            "max_30day_share": 0.20214669051878353,
+            "max_day_share": 0.02146690518783542,
+            "scored_30day_counts": {
+              "0": 113,
+              "1": 106,
+              "2": 82,
+              "3": 68,
+              "4": 95,
+              "5": 95
+            }
+          }
+        },
+        "S1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 8191,
+            "coverage": 964,
+            "eligible": 50845
+          },
+          "cluster_objective": null,
+          "decision_points": 456,
+          "distinct_clusters": 147,
+          "distinct_subjects": 132,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.17763157894736842,
+            "unit_counts": {
+              "0": 51,
+              "1": 20,
+              "2": 29,
+              "3": 31,
+              "4": 37,
+              "5": 42,
+              "6": 38,
+              "7": 47,
+              "8": 50,
+              "9": 49,
+              "10": 28,
+              "11": 34
+            }
+          },
+          "exclusive_family_rows": 217,
+          "matched_hard_motif_count": 402,
+          "maximum_cluster_share": 0.03289473684210526,
+          "maximum_subject_share": 0.04824561403508772,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 239,
+          "overlap": {
+            "A1": 45,
+            "A2": 19,
+            "A3": 17,
+            "A4": 3,
+            "N1": 0,
+            "N2": 102,
+            "N3": 6,
+            "N4": 13,
+            "S1": 456,
+            "S2": 0,
+            "S3": 107,
+            "S4": 0
+          },
+          "own_origin_episodes": 116,
+          "own_origin_opportunities": {
+            "context": 696,
+            "context_any_positive": 233,
+            "context_eligible": 557,
+            "context_family_positive": 112,
+            "motif": 890,
+            "motif_any_positive": 207,
+            "motif_eligible": 686,
+            "motif_family_positive": 71,
+            "motif_ineligible_baseline_support": 187,
+            "motif_ineligible_coverage": 17,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1586,
+          "planned_M": 890,
+          "positive_origin_counts": {
+            "A2": 4,
+            "A3": 13,
+            "A4": 4,
+            "H1": 102,
+            "H4": 3,
+            "H5": 40,
+            "H6": 1,
+            "H7": 12,
+            "H8": 1,
+            "N1": 2,
+            "N2": 40,
+            "N3": 14,
+            "N4": 10,
+            "S1": 183,
+            "S2": 3,
+            "S3": 24
+          },
+          "required_support_percent": 38.0,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 104,
+            "max_30day_share": 0.21271929824561403,
+            "max_day_share": 0.039473684210526314,
+            "scored_30day_counts": {
+              "0": 80,
+              "1": 63,
+              "2": 45,
+              "3": 97,
+              "4": 88,
+              "5": 83
+            }
+          }
+        },
+        "S2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 10581,
+            "coverage": 1249,
+            "eligible": 48170
+          },
+          "cluster_objective": null,
+          "decision_points": 112,
+          "distinct_clusters": 43,
+          "distinct_subjects": 37,
+          "distinct_units": 11,
+          "entity": {
+            "top5_subject_share": 0.30357142857142855,
+            "unit_counts": {
+              "0": 15,
+              "1": 12,
+              "2": 1,
+              "3": 15,
+              "4": 12,
+              "5": 7,
+              "7": 3,
+              "8": 6,
+              "9": 9,
+              "10": 15,
+              "11": 17
+            }
+          },
+          "exclusive_family_rows": 92,
+          "matched_hard_motif_count": 797,
+          "maximum_cluster_share": 0.07142857142857142,
+          "maximum_subject_share": 0.07142857142857142,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 20,
+          "overlap": {
+            "A1": 10,
+            "A2": 0,
+            "A3": 0,
+            "A4": 2,
+            "N1": 0,
+            "N2": 3,
+            "N3": 0,
+            "N4": 0,
+            "S1": 0,
+            "S2": 112,
+            "S3": 8,
+            "S4": 0
+          },
+          "own_origin_episodes": 227,
+          "own_origin_opportunities": {
+            "context": 1502,
+            "context_any_positive": 282,
+            "context_eligible": 1189,
+            "context_family_positive": 0,
+            "motif": 1672,
+            "motif_any_positive": 319,
+            "motif_eligible": 1361,
+            "motif_family_positive": 52,
+            "motif_ineligible_baseline_support": 290,
+            "motif_ineligible_coverage": 21,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 3174,
+          "planned_M": 1672,
+          "positive_origin_counts": {
+            "H2": 56,
+            "H6": 1,
+            "S2": 52,
+            "S4": 1,
+            "background": 2
+          },
+          "required_support_percent": 9.333333333333334,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 53,
+            "max_30day_share": 0.25892857142857145,
+            "max_day_share": 0.0625,
+            "scored_30day_counts": {
+              "0": 17,
+              "1": 16,
+              "2": 18,
+              "3": 11,
+              "4": 29,
+              "5": 21
+            }
+          }
+        },
+        "S3": {
+          "all_scored_eligibility_reasons": {
+            "coverage_or_baseline_support": 10129,
+            "eligible": 49871
+          },
+          "cluster_objective": null,
+          "decision_points": 2292,
+          "distinct_clusters": 673,
+          "distinct_subjects": 397,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.0606457242582897,
+            "unit_counts": {
+              "0": 215,
+              "1": 196,
+              "2": 224,
+              "3": 170,
+              "4": 157,
+              "5": 182,
+              "6": 196,
+              "7": 205,
+              "8": 220,
+              "9": 172,
+              "10": 198,
+              "11": 157
+            }
+          },
+          "exclusive_family_rows": 1185,
+          "matched_hard_motif_count": 491,
+          "maximum_cluster_share": 0.006544502617801047,
+          "maximum_subject_share": 0.017015706806282723,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 1107,
+          "overlap": {
+            "A1": 188,
+            "A2": 46,
+            "A3": 8,
+            "A4": 29,
+            "N1": 5,
+            "N2": 783,
+            "N3": 24,
+            "N4": 50,
+            "S1": 107,
+            "S2": 8,
+            "S3": 2292,
+            "S4": 6
+          },
+          "own_origin_episodes": 113,
+          "own_origin_opportunities": {
+            "context": 490,
+            "context_any_positive": 203,
+            "context_eligible": 415,
+            "context_family_positive": 159,
+            "motif": 1086,
+            "motif_any_positive": 463,
+            "motif_eligible": 950,
+            "motif_family_positive": 352,
+            "motif_ineligible_coverage_or_baseline_support": 136,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 1576,
+          "planned_M": 1086,
+          "positive_origin_counts": {
+            "A1": 5,
+            "A2": 16,
+            "A3": 6,
+            "A4": 33,
+            "H1": 166,
+            "H2": 34,
+            "H3": 59,
+            "H4": 40,
+            "H5": 249,
+            "H6": 34,
+            "H7": 9,
+            "H8": 18,
+            "N1": 43,
+            "N2": 424,
+            "N3": 103,
+            "N4": 107,
+            "S1": 24,
+            "S2": 109,
+            "S3": 511,
+            "S4": 210,
+            "background": 92
+          },
+          "required_support_percent": 191.0,
+          "status": "PASS",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 174,
+            "max_30day_share": 0.18368237347294938,
+            "max_day_share": 0.018760907504363003,
+            "scored_30day_counts": {
+              "0": 387,
+              "1": 352,
+              "2": 421,
+              "3": 389,
+              "4": 336,
+              "5": 407
+            }
+          }
+        },
+        "S4": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 10581,
+            "coverage": 1249,
+            "eligible": 48170
+          },
+          "cluster_objective": null,
+          "decision_points": 128,
+          "distinct_clusters": 57,
+          "distinct_subjects": 54,
+          "distinct_units": 12,
+          "entity": {
+            "top5_subject_share": 0.2265625,
+            "unit_counts": {
+              "0": 21,
+              "1": 10,
+              "2": 8,
+              "3": 16,
+              "4": 22,
+              "5": 10,
+              "6": 1,
+              "7": 11,
+              "8": 2,
+              "9": 12,
+              "10": 8,
+              "11": 7
+            }
+          },
+          "exclusive_family_rows": 99,
+          "matched_hard_motif_count": 835,
+          "maximum_cluster_share": 0.046875,
+          "maximum_subject_share": 0.0546875,
+          "minimum_objective": 1200,
+          "other_predicate_overlap_rows": 29,
+          "overlap": {
+            "A1": 14,
+            "A2": 1,
+            "A3": 0,
+            "A4": 2,
+            "N1": 1,
+            "N2": 7,
+            "N3": 0,
+            "N4": 1,
+            "S1": 0,
+            "S2": 0,
+            "S3": 6,
+            "S4": 128
+          },
+          "own_origin_episodes": 228,
+          "own_origin_opportunities": {
+            "context": 1320,
+            "context_any_positive": 291,
+            "context_eligible": 1069,
+            "context_family_positive": 0,
+            "motif": 1854,
+            "motif_any_positive": 461,
+            "motif_eligible": 1464,
+            "motif_family_positive": 82,
+            "motif_ineligible_baseline_support": 337,
+            "motif_ineligible_coverage": 53,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 3174,
+          "planned_M": 1854,
+          "positive_origin_counts": {
+            "H2": 10,
+            "H3": 26,
+            "S2": 10,
+            "S4": 82
+          },
+          "required_support_percent": 10.666666666666666,
+          "status": "CONDITIONAL",
+          "subject_objective": null,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 78,
+            "max_30day_share": 0.25,
+            "max_day_share": 0.0390625,
+            "scored_30day_counts": {
+              "0": 18,
+              "1": 19,
+              "2": 17,
+              "3": 32,
+              "4": 19,
+              "5": 23
+            }
+          }
+        }
+      },
+      "focus_condition_audit": {
+        "A4": {
+          "all_conditions_pass": 159,
+          "eligible_own_motif": 1250,
+          "failures_nonexclusive": {
+            "abs_count_skew_ge0.5": 765,
+            "abs_value_skew_ge0.6": 411,
+            "cash_count_ge6": 354,
+            "cash_wallets_ge3": 113,
+            "sign_agreement": 401,
+            "skew_change_ge0.4": 364
+          },
+          "sole_failed_condition": {
+            "abs_count_skew_ge0.5": 191,
+            "abs_value_skew_ge0.6": 17,
+            "cash_count_ge6": 99,
+            "cash_wallets_ge3": 5,
+            "sign_agreement": 18,
+            "skew_change_ge0.4": 30
+          }
+        },
+        "S2": {
+          "all_conditions_pass": 52,
+          "eligible_own_motif": 1361,
+          "failures_nonexclusive": {
+            "cluster_count_ge4": 1006,
+            "cluster_growth_ge2": 443,
+            "cluster_share_ge0.6": 1189,
+            "cluster_value_ge20000": 1008
+          },
+          "sole_failed_condition": {
+            "cluster_count_ge4": 13,
+            "cluster_share_ge0.6": 120,
+            "cluster_value_ge20000": 49
+          }
+        },
+        "S4": {
+          "all_conditions_pass": 82,
+          "eligible_own_motif": 1464,
+          "failures_nonexclusive": {
+            "band_count_ge3": 1005,
+            "band_growth_ge2": 695,
+            "band_share_ge0.4": 1268,
+            "band_variation_ge2": 690,
+            "current_in_band": 905,
+            "recent_count_ge5": 245
+          },
+          "sole_failed_condition": {
+            "band_count_ge3": 14,
+            "band_share_ge0.4": 161,
+            "current_in_band": 38,
+            "recent_count_ge5": 3
+          }
+        }
+      },
+      "units": 12
+    },
+    "validation": {
+      "N3_structural_audit": {
+        "chronological_topology_available": 96,
+        "full_predicate_positive": 20,
+        "no_chronological_topology": 221,
+        "own_motif_rows": 317,
+        "topology_present_but_full_amount_conjunction_fails": 76
+      },
+      "accounting": {
+        "accounting_failures": 0,
+        "basis": "Frozen integrity PASS and stop-on-negative-inventory source. Numerical amount bounds rejection is not an accounting retry.",
+        "minimum_inventory_minor": 87624538,
+        "numerical_amount_proposal_rejections": 5
+      },
+      "distribution": {
+        "domain_only": {
+          "agent": 1787,
+          "network": 493,
+          "structuring": 391
+        },
+        "domains": {
+          "agent": 1941,
+          "network": 776,
+          "structuring": 684
+        },
+        "envelope_pass": true,
+        "multi_domain": 359,
+        "prevalence": 0.202,
+        "target0": 11970,
+        "target1": 3030
+      },
+      "families": {
+        "A1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 27,
+            "eligible": 10172,
+            "inapplicable": 4801
+          },
+          "cluster_objective": 30,
+          "decision_points": 1467,
+          "distinct_clusters": 570,
+          "distinct_subjects": 23,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.3830947511929107,
+            "unit_counts": {
+              "0": 484,
+              "1": 479,
+              "2": 504
+            }
+          },
+          "exclusive_family_rows": 1253,
+          "matched_hard_motif_count": 138,
+          "maximum_cluster_share": 0.010906612133605999,
+          "maximum_subject_share": 0.08316291751874574,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 214,
+          "overlap": {
+            "A1": 1467,
+            "A2": 14,
+            "A3": 57,
+            "A4": 41,
+            "N1": 7,
+            "N2": 22,
+            "N3": 7,
+            "N4": 17,
+            "S1": 19,
+            "S2": 0,
+            "S3": 51,
+            "S4": 1
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 91,
+            "context_any_positive": 19,
+            "context_eligible": 55,
+            "context_family_positive": 11,
+            "motif": 300,
+            "motif_any_positive": 62,
+            "motif_eligible": 300,
+            "motif_family_positive": 53,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 391,
+          "planned_M": 300,
+          "positive_origin_counts": {
+            "A1": 64,
+            "A2": 68,
+            "A3": 73,
+            "A4": 47,
+            "H1": 22,
+            "H2": 37,
+            "H3": 39,
+            "H4": 33,
+            "H5": 37,
+            "H6": 32,
+            "H7": 83,
+            "H8": 76,
+            "N1": 20,
+            "N2": 27,
+            "N3": 44,
+            "N4": 34,
+            "S1": 46,
+            "S2": 59,
+            "S3": 46,
+            "S4": 71,
+            "background": 509
+          },
+          "required_support_percent": 489.0,
+          "status": "PASS",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 164,
+            "max_30day_share": 0.2392638036809816,
+            "max_day_share": 0.019768234492160874,
+            "scored_30day_counts": {
+              "0": 157,
+              "1": 351,
+              "2": 191,
+              "3": 190,
+              "4": 282,
+              "5": 296
+            }
+          }
+        },
+        "A2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 197,
+            "eligible": 10002,
+            "inapplicable": 4801
+          },
+          "cluster_objective": 30,
+          "decision_points": 148,
+          "distinct_clusters": 60,
+          "distinct_subjects": 20,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.5135135135135135,
+            "unit_counts": {
+              "0": 49,
+              "1": 62,
+              "2": 37
+            }
+          },
+          "exclusive_family_rows": 96,
+          "matched_hard_motif_count": 157,
+          "maximum_cluster_share": 0.07432432432432433,
+          "maximum_subject_share": 0.14864864864864866,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 52,
+          "overlap": {
+            "A1": 14,
+            "A2": 148,
+            "A3": 20,
+            "A4": 8,
+            "N1": 1,
+            "N2": 2,
+            "N3": 2,
+            "N4": 3,
+            "S1": 5,
+            "S2": 0,
+            "S3": 6,
+            "S4": 0
+          },
+          "own_origin_episodes": 28,
+          "own_origin_opportunities": {
+            "context": 83,
+            "context_any_positive": 13,
+            "context_eligible": 57,
+            "context_family_positive": 1,
+            "motif": 309,
+            "motif_any_positive": 93,
+            "motif_eligible": 309,
+            "motif_family_positive": 6,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 392,
+          "planned_M": 309,
+          "positive_origin_counts": {
+            "A1": 2,
+            "A2": 7,
+            "A3": 14,
+            "A4": 18,
+            "H1": 1,
+            "H2": 2,
+            "H4": 2,
+            "H6": 1,
+            "H7": 50,
+            "H8": 9,
+            "N2": 3,
+            "N3": 5,
+            "N4": 5,
+            "S1": 4,
+            "S2": 3,
+            "S4": 1,
+            "background": 21
+          },
+          "required_support_percent": 49.333333333333336,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 39,
+            "max_30day_share": 0.41216216216216217,
+            "max_day_share": 0.0945945945945946,
+            "scored_30day_counts": {
+              "0": 3,
+              "1": 61,
+              "2": 25,
+              "3": 28,
+              "4": 7,
+              "5": 24
+            }
+          }
+        },
+        "A3": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 13,
+            "eligible": 10186,
+            "inapplicable": 4801
+          },
+          "cluster_objective": 30,
+          "decision_points": 255,
+          "distinct_clusters": 80,
+          "distinct_subjects": 18,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.5647058823529412,
+            "unit_counts": {
+              "0": 89,
+              "1": 93,
+              "2": 73
+            }
+          },
+          "exclusive_family_rows": 148,
+          "matched_hard_motif_count": 151,
+          "maximum_cluster_share": 0.050980392156862744,
+          "maximum_subject_share": 0.19607843137254902,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 107,
+          "overlap": {
+            "A1": 57,
+            "A2": 20,
+            "A3": 255,
+            "A4": 16,
+            "N1": 0,
+            "N2": 6,
+            "N3": 5,
+            "N4": 5,
+            "S1": 8,
+            "S2": 0,
+            "S3": 1,
+            "S4": 0
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 166,
+            "context_any_positive": 38,
+            "context_eligible": 105,
+            "context_family_positive": 7,
+            "motif": 226,
+            "motif_any_positive": 128,
+            "motif_eligible": 226,
+            "motif_family_positive": 91,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 392,
+          "planned_M": 226,
+          "positive_origin_counts": {
+            "A2": 25,
+            "A3": 98,
+            "A4": 26,
+            "H1": 11,
+            "H5": 2,
+            "H6": 1,
+            "H7": 34,
+            "H8": 22,
+            "N1": 1,
+            "N3": 6,
+            "N4": 1,
+            "S1": 17,
+            "S2": 3,
+            "S4": 2,
+            "background": 6
+          },
+          "required_support_percent": 85.0,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 58,
+            "max_30day_share": 0.2549019607843137,
+            "max_day_share": 0.06666666666666667,
+            "scored_30day_counts": {
+              "0": 47,
+              "1": 65,
+              "2": 42,
+              "3": 50,
+              "4": 30,
+              "5": 21
+            }
+          }
+        },
+        "A4": {
+          "all_scored_eligibility_reasons": {
+            "coverage_or_baseline_cash_support": 16,
+            "eligible": 7112,
+            "inapplicable": 7872
+          },
+          "cluster_objective": 30,
+          "decision_points": 222,
+          "distinct_clusters": 138,
+          "distinct_subjects": 17,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.6531531531531531,
+            "unit_counts": {
+              "0": 89,
+              "1": 75,
+              "2": 58
+            }
+          },
+          "exclusive_family_rows": 151,
+          "matched_hard_motif_count": 140,
+          "maximum_cluster_share": 0.04504504504504504,
+          "maximum_subject_share": 0.21621621621621623,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 71,
+          "overlap": {
+            "A1": 41,
+            "A2": 8,
+            "A3": 16,
+            "A4": 222,
+            "N1": 0,
+            "N2": 0,
+            "N3": 0,
+            "N4": 4,
+            "S1": 1,
+            "S2": 0,
+            "S3": 4,
+            "S4": 1
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 91,
+            "context_any_positive": 19,
+            "context_eligible": 48,
+            "context_family_positive": 4,
+            "motif": 299,
+            "motif_any_positive": 96,
+            "motif_eligible": 299,
+            "motif_family_positive": 29,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 390,
+          "planned_M": 299,
+          "positive_origin_counts": {
+            "A1": 10,
+            "A2": 4,
+            "A3": 11,
+            "A4": 33,
+            "H1": 1,
+            "H2": 5,
+            "H3": 3,
+            "H4": 4,
+            "H5": 8,
+            "H6": 4,
+            "H7": 3,
+            "H8": 31,
+            "N1": 1,
+            "N3": 7,
+            "N4": 7,
+            "S1": 2,
+            "S2": 9,
+            "S3": 4,
+            "S4": 10,
+            "background": 65
+          },
+          "required_support_percent": 74.0,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 74,
+            "max_30day_share": 0.35585585585585583,
+            "max_day_share": 0.04954954954954955,
+            "scored_30day_counts": {
+              "0": 38,
+              "1": 23,
+              "2": 39,
+              "3": 79,
+              "4": 25,
+              "5": 18
+            }
+          }
+        },
+        "N1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 2768,
+            "coverage": 83,
+            "eligible": 5021,
+            "inapplicable": 7128
+          },
+          "cluster_objective": 30,
+          "decision_points": 101,
+          "distinct_clusters": 42,
+          "distinct_subjects": 28,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.38613861386138615,
+            "unit_counts": {
+              "0": 29,
+              "1": 32,
+              "2": 40
+            }
+          },
+          "exclusive_family_rows": 89,
+          "matched_hard_motif_count": 195,
+          "maximum_cluster_share": 0.07920792079207921,
+          "maximum_subject_share": 0.0891089108910891,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 12,
+          "overlap": {
+            "A1": 7,
+            "A2": 1,
+            "A3": 0,
+            "A4": 0,
+            "N1": 101,
+            "N2": 0,
+            "N3": 0,
+            "N4": 1,
+            "S1": 1,
+            "S2": 0,
+            "S3": 3,
+            "S4": 0
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 162,
+            "context_any_positive": 40,
+            "context_eligible": 49,
+            "context_family_positive": 0,
+            "motif": 225,
+            "motif_any_positive": 74,
+            "motif_eligible": 135,
+            "motif_family_positive": 70,
+            "motif_ineligible_baseline_support": 90,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 387,
+          "planned_M": 225,
+          "positive_origin_counts": {
+            "A2": 1,
+            "A3": 1,
+            "H1": 1,
+            "H3": 1,
+            "H4": 3,
+            "H5": 1,
+            "H6": 1,
+            "H8": 1,
+            "N1": 70,
+            "N2": 1,
+            "S1": 1,
+            "S3": 1,
+            "S4": 4,
+            "background": 14
+          },
+          "required_support_percent": 33.666666666666664,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 37,
+            "max_30day_share": 0.3465346534653465,
+            "max_day_share": 0.1188118811881188,
+            "scored_30day_counts": {
+              "0": 35,
+              "1": 12,
+              "2": 7,
+              "3": 14,
+              "4": 13,
+              "5": 20
+            }
+          }
+        },
+        "N2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 2986,
+            "coverage": 133,
+            "eligible": 4753,
+            "inapplicable": 7128
+          },
+          "cluster_objective": 30,
+          "decision_points": 429,
+          "distinct_clusters": 147,
+          "distinct_subjects": 86,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.2261072261072261,
+            "unit_counts": {
+              "0": 128,
+              "1": 164,
+              "2": 137
+            }
+          },
+          "exclusive_family_rows": 198,
+          "matched_hard_motif_count": 70,
+          "maximum_cluster_share": 0.02564102564102564,
+          "maximum_subject_share": 0.0675990675990676,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 231,
+          "overlap": {
+            "A1": 22,
+            "A2": 2,
+            "A3": 6,
+            "A4": 0,
+            "N1": 0,
+            "N2": 429,
+            "N3": 14,
+            "N4": 7,
+            "S1": 38,
+            "S2": 0,
+            "S3": 172,
+            "S4": 2
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 178,
+            "context_any_positive": 81,
+            "context_eligible": 67,
+            "context_family_positive": 36,
+            "motif": 211,
+            "motif_any_positive": 94,
+            "motif_eligible": 124,
+            "motif_family_positive": 58,
+            "motif_ineligible_baseline_support": 87,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 389,
+          "planned_M": 211,
+          "positive_origin_counts": {
+            "A1": 2,
+            "A2": 4,
+            "A3": 5,
+            "A4": 4,
+            "H1": 47,
+            "H2": 4,
+            "H3": 18,
+            "H4": 12,
+            "H5": 45,
+            "H6": 8,
+            "H7": 1,
+            "H8": 5,
+            "N1": 1,
+            "N2": 94,
+            "N3": 18,
+            "N4": 9,
+            "S1": 31,
+            "S2": 25,
+            "S3": 43,
+            "S4": 38,
+            "background": 15
+          },
+          "required_support_percent": 143.0,
+          "status": "PASS",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 105,
+            "max_30day_share": 0.22843822843822845,
+            "max_day_share": 0.03263403263403263,
+            "scored_30day_counts": {
+              "0": 57,
+              "1": 98,
+              "2": 84,
+              "3": 69,
+              "4": 43,
+              "5": 78
+            }
+          }
+        },
+        "N3": {
+          "all_scored_eligibility_reasons": {
+            "eligible_no_baseline": 7872,
+            "inapplicable": 7128
+          },
+          "cluster_objective": 30,
+          "decision_points": 130,
+          "distinct_clusters": 111,
+          "distinct_subjects": 87,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.16923076923076924,
+            "unit_counts": {
+              "0": 51,
+              "1": 39,
+              "2": 40
+            }
+          },
+          "exclusive_family_rows": 99,
+          "matched_hard_motif_count": 137,
+          "maximum_cluster_share": 0.03076923076923077,
+          "maximum_subject_share": 0.038461538461538464,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 31,
+          "overlap": {
+            "A1": 7,
+            "A2": 2,
+            "A3": 5,
+            "A4": 0,
+            "N1": 0,
+            "N2": 14,
+            "N3": 130,
+            "N4": 7,
+            "S1": 0,
+            "S2": 0,
+            "S3": 5,
+            "S4": 0
+          },
+          "own_origin_episodes": 61,
+          "own_origin_opportunities": {
+            "context": 478,
+            "context_any_positive": 75,
+            "context_eligible": 234,
+            "context_family_positive": 6,
+            "motif": 317,
+            "motif_any_positive": 52,
+            "motif_eligible": 317,
+            "motif_family_positive": 20,
+            "motif_ineligible_eligible_no_baseline": 0
+          },
+          "planned_E": 795,
+          "planned_M": 317,
+          "positive_origin_counts": {
+            "A1": 5,
+            "A2": 5,
+            "A3": 11,
+            "A4": 1,
+            "H1": 7,
+            "H2": 2,
+            "H4": 2,
+            "H5": 2,
+            "H6": 9,
+            "H7": 6,
+            "H8": 3,
+            "N1": 3,
+            "N2": 4,
+            "N3": 26,
+            "N4": 2,
+            "S2": 5,
+            "S3": 6,
+            "S4": 1,
+            "background": 30
+          },
+          "required_support_percent": 43.333333333333336,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 93,
+            "max_30day_share": 0.23076923076923078,
+            "max_day_share": 0.038461538461538464,
+            "scored_30day_counts": {
+              "0": 30,
+              "1": 21,
+              "2": 24,
+              "3": 16,
+              "4": 17,
+              "5": 22
+            }
+          }
+        },
+        "N4": {
+          "all_scored_eligibility_reasons": {
+            "eligible_anchor": 2692,
+            "inapplicable": 3553,
+            "no_anchor": 8755
+          },
+          "cluster_objective": 30,
+          "decision_points": 144,
+          "distinct_clusters": 91,
+          "distinct_subjects": 74,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.2222222222222222,
+            "unit_counts": {
+              "0": 58,
+              "1": 37,
+              "2": 49
+            }
+          },
+          "exclusive_family_rows": 90,
+          "matched_hard_motif_count": 98,
+          "maximum_cluster_share": 0.05555555555555555,
+          "maximum_subject_share": 0.0625,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 54,
+          "overlap": {
+            "A1": 17,
+            "A2": 3,
+            "A3": 5,
+            "A4": 4,
+            "N1": 1,
+            "N2": 7,
+            "N3": 7,
+            "N4": 144,
+            "S1": 10,
+            "S2": 0,
+            "S3": 11,
+            "S4": 0
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 118,
+            "context_any_positive": 18,
+            "context_eligible": 60,
+            "context_family_positive": 3,
+            "motif": 277,
+            "motif_any_positive": 62,
+            "motif_eligible": 254,
+            "motif_family_positive": 10,
+            "motif_ineligible_eligible_anchor": 0,
+            "motif_ineligible_no_anchor": 23
+          },
+          "planned_E": 395,
+          "planned_M": 277,
+          "positive_origin_counts": {
+            "A2": 1,
+            "A3": 3,
+            "A4": 1,
+            "H1": 2,
+            "H2": 1,
+            "H3": 1,
+            "H4": 8,
+            "H5": 24,
+            "H6": 7,
+            "H7": 3,
+            "H8": 3,
+            "N1": 10,
+            "N2": 8,
+            "N3": 26,
+            "N4": 13,
+            "S1": 5,
+            "S2": 3,
+            "S3": 1,
+            "S4": 4,
+            "background": 20
+          },
+          "required_support_percent": 48.0,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 66,
+            "max_30day_share": 0.3055555555555556,
+            "max_day_share": 0.05555555555555555,
+            "scored_30day_counts": {
+              "0": 18,
+              "1": 44,
+              "2": 24,
+              "3": 21,
+              "4": 13,
+              "5": 24
+            }
+          }
+        },
+        "S1": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 2144,
+            "coverage": 261,
+            "eligible": 12595
+          },
+          "cluster_objective": 30,
+          "decision_points": 132,
+          "distinct_clusters": 34,
+          "distinct_subjects": 31,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.45454545454545453,
+            "unit_counts": {
+              "0": 36,
+              "1": 61,
+              "2": 35
+            }
+          },
+          "exclusive_family_rows": 47,
+          "matched_hard_motif_count": 81,
+          "maximum_cluster_share": 0.11363636363636363,
+          "maximum_subject_share": 0.12121212121212122,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 85,
+          "overlap": {
+            "A1": 19,
+            "A2": 5,
+            "A3": 8,
+            "A4": 1,
+            "N1": 1,
+            "N2": 38,
+            "N3": 0,
+            "N4": 10,
+            "S1": 132,
+            "S2": 0,
+            "S3": 33,
+            "S4": 0
+          },
+          "own_origin_episodes": 30,
+          "own_origin_opportunities": {
+            "context": 160,
+            "context_any_positive": 55,
+            "context_eligible": 129,
+            "context_family_positive": 28,
+            "motif": 235,
+            "motif_any_positive": 65,
+            "motif_eligible": 166,
+            "motif_family_positive": 29,
+            "motif_ineligible_baseline_support": 50,
+            "motif_ineligible_coverage": 19,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 395,
+          "planned_M": 235,
+          "positive_origin_counts": {
+            "A3": 9,
+            "H1": 22,
+            "H4": 2,
+            "H5": 3,
+            "H6": 1,
+            "H7": 4,
+            "N2": 21,
+            "S1": 57,
+            "S3": 12,
+            "background": 1
+          },
+          "required_support_percent": 44.0,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 33,
+            "max_30day_share": 0.2727272727272727,
+            "max_day_share": 0.12121212121212122,
+            "scored_30day_counts": {
+              "0": 4,
+              "1": 36,
+              "2": 31,
+              "3": 22,
+              "4": 9,
+              "5": 30
+            }
+          }
+        },
+        "S2": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 2852,
+            "coverage": 338,
+            "eligible": 11810
+          },
+          "cluster_objective": 30,
+          "decision_points": 23,
+          "distinct_clusters": 7,
+          "distinct_subjects": 7,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.9130434782608695,
+            "unit_counts": {
+              "0": 15,
+              "1": 3,
+              "2": 5
+            }
+          },
+          "exclusive_family_rows": 23,
+          "matched_hard_motif_count": 232,
+          "maximum_cluster_share": 0.34782608695652173,
+          "maximum_subject_share": 0.34782608695652173,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 0,
+          "overlap": {
+            "A1": 0,
+            "A2": 0,
+            "A3": 0,
+            "A4": 0,
+            "N1": 0,
+            "N2": 0,
+            "N3": 0,
+            "N4": 0,
+            "S1": 0,
+            "S2": 23,
+            "S3": 0,
+            "S4": 0
+          },
+          "own_origin_episodes": 54,
+          "own_origin_opportunities": {
+            "context": 393,
+            "context_any_positive": 63,
+            "context_eligible": 297,
+            "context_family_positive": 0,
+            "motif": 398,
+            "motif_any_positive": 61,
+            "motif_eligible": 290,
+            "motif_family_positive": 7,
+            "motif_ineligible_baseline_support": 108,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 791,
+          "planned_M": 398,
+          "positive_origin_counts": {
+            "H2": 16,
+            "S2": 7
+          },
+          "required_support_percent": 7.666666666666667,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 15,
+            "max_30day_share": 0.6521739130434783,
+            "max_day_share": 0.13043478260869565,
+            "scored_30day_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 2,
+              "3": 6,
+              "4": 15,
+              "5": 0
+            }
+          }
+        },
+        "S3": {
+          "all_scored_eligibility_reasons": {
+            "coverage_or_baseline_support": 2718,
+            "eligible": 12282
+          },
+          "cluster_objective": 30,
+          "decision_points": 546,
+          "distinct_clusters": 156,
+          "distinct_subjects": 104,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.1813186813186813,
+            "unit_counts": {
+              "0": 185,
+              "1": 166,
+              "2": 195
+            }
+          },
+          "exclusive_family_rows": 295,
+          "matched_hard_motif_count": 152,
+          "maximum_cluster_share": 0.02197802197802198,
+          "maximum_subject_share": 0.056776556776556776,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 251,
+          "overlap": {
+            "A1": 51,
+            "A2": 6,
+            "A3": 1,
+            "A4": 4,
+            "N1": 3,
+            "N2": 172,
+            "N3": 5,
+            "N4": 11,
+            "S1": 33,
+            "S2": 0,
+            "S3": 546,
+            "S4": 0
+          },
+          "own_origin_episodes": 27,
+          "own_origin_opportunities": {
+            "context": 141,
+            "context_any_positive": 71,
+            "context_eligible": 121,
+            "context_family_positive": 53,
+            "motif": 250,
+            "motif_any_positive": 101,
+            "motif_eligible": 216,
+            "motif_family_positive": 69,
+            "motif_ineligible_coverage_or_baseline_support": 34,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 391,
+          "planned_M": 250,
+          "positive_origin_counts": {
+            "A1": 1,
+            "A2": 2,
+            "A3": 4,
+            "A4": 10,
+            "H1": 56,
+            "H2": 7,
+            "H3": 19,
+            "H4": 22,
+            "H5": 39,
+            "H6": 10,
+            "H7": 2,
+            "H8": 1,
+            "N1": 14,
+            "N2": 105,
+            "N3": 14,
+            "N4": 23,
+            "S1": 1,
+            "S2": 25,
+            "S3": 122,
+            "S4": 52,
+            "background": 17
+          },
+          "required_support_percent": 182.0,
+          "status": "PASS",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 101,
+            "max_30day_share": 0.26556776556776557,
+            "max_day_share": 0.040293040293040296,
+            "scored_30day_counts": {
+              "0": 67,
+              "1": 145,
+              "2": 104,
+              "3": 108,
+              "4": 30,
+              "5": 92
+            }
+          }
+        },
+        "S4": {
+          "all_scored_eligibility_reasons": {
+            "baseline_support": 2852,
+            "coverage": 338,
+            "eligible": 11810
+          },
+          "cluster_objective": 30,
+          "decision_points": 16,
+          "distinct_clusters": 12,
+          "distinct_subjects": 12,
+          "distinct_units": 3,
+          "entity": {
+            "top5_subject_share": 0.5625,
+            "unit_counts": {
+              "0": 4,
+              "1": 9,
+              "2": 3
+            }
+          },
+          "exclusive_family_rows": 12,
+          "matched_hard_motif_count": 219,
+          "maximum_cluster_share": 0.1875,
+          "maximum_subject_share": 0.1875,
+          "minimum_objective": 300,
+          "other_predicate_overlap_rows": 4,
+          "overlap": {
+            "A1": 1,
+            "A2": 0,
+            "A3": 0,
+            "A4": 1,
+            "N1": 0,
+            "N2": 2,
+            "N3": 0,
+            "N4": 0,
+            "S1": 0,
+            "S2": 0,
+            "S3": 0,
+            "S4": 16
+          },
+          "own_origin_episodes": 61,
+          "own_origin_opportunities": {
+            "context": 314,
+            "context_any_positive": 73,
+            "context_eligible": 238,
+            "context_family_positive": 0,
+            "motif": 473,
+            "motif_any_positive": 100,
+            "motif_eligible": 361,
+            "motif_family_positive": 11,
+            "motif_ineligible_baseline_support": 106,
+            "motif_ineligible_coverage": 6,
+            "motif_ineligible_eligible": 0
+          },
+          "planned_E": 787,
+          "planned_M": 473,
+          "positive_origin_counts": {
+            "H3": 4,
+            "S4": 11,
+            "background": 1
+          },
+          "required_support_percent": 5.333333333333333,
+          "status": "CONDITIONAL",
+          "subject_objective": 20,
+          "subject_objective_scope": "Stage 15 declares Validation/Final and Independent diversity objectives; no separate Train diversity minimum",
+          "temporal": {
+            "active_days": 12,
+            "max_30day_share": 0.25,
+            "max_day_share": 0.1875,
+            "scored_30day_counts": {
+              "0": 0,
+              "1": 3,
+              "2": 3,
+              "3": 4,
+              "4": 2,
+              "5": 4
+            }
+          }
+        }
+      },
+      "focus_condition_audit": {
+        "A4": {
+          "all_conditions_pass": 29,
+          "eligible_own_motif": 299,
+          "failures_nonexclusive": {
+            "abs_count_skew_ge0.5": 167,
+            "abs_value_skew_ge0.6": 140,
+            "cash_count_ge6": 86,
+            "cash_wallets_ge3": 43,
+            "sign_agreement": 103,
+            "skew_change_ge0.4": 78
+          },
+          "sole_failed_condition": {
+            "abs_count_skew_ge0.5": 27,
+            "abs_value_skew_ge0.6": 5,
+            "cash_count_ge6": 15,
+            "cash_wallets_ge3": 2,
+            "sign_agreement": 1,
+            "skew_change_ge0.4": 24
+          }
+        },
+        "S2": {
+          "all_conditions_pass": 7,
+          "eligible_own_motif": 290,
+          "failures_nonexclusive": {
+            "cluster_count_ge4": 225,
+            "cluster_growth_ge2": 98,
+            "cluster_share_ge0.6": 260,
+            "cluster_value_ge20000": 229
+          },
+          "sole_failed_condition": {
+            "cluster_count_ge4": 2,
+            "cluster_share_ge0.6": 21,
+            "cluster_value_ge20000": 8
+          }
+        },
+        "S4": {
+          "all_conditions_pass": 11,
+          "eligible_own_motif": 361,
+          "failures_nonexclusive": {
+            "band_count_ge3": 287,
+            "band_growth_ge2": 171,
+            "band_share_ge0.4": 311,
+            "band_variation_ge2": 171,
+            "current_in_band": 232,
+            "recent_count_ge5": 76
+          },
+          "sole_failed_condition": {
+            "band_count_ge3": 5,
+            "band_share_ge0.4": 34,
+            "current_in_band": 7
+          }
+        }
+      },
+      "units": 3
+    }
+  },
+  "scope": "Train and Validation only; aggregate diagnostic counts, no model features",
+  "temporal_bins": "Six fixed 30-day blocks from scored start; daily maxima are descriptive"
+}

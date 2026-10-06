@@ -1,0 +1,150 @@
+{
+  "acquisition": "For growing agents, 2 acquisition intervals of duration U(14,42)d begin uniformly within the scored180d horizon subject to fitting; repeat probability decreases by U(0.05,0.15), with probability floor0.1. Activity multiplier ramps linearly1 to U(1.1,1.8). After interval, retain resulting catchment and smoothly return demand over 7d. No label inspection.",
+  "archetypes": [
+    {
+      "activity_weight_median": 0.65,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Stationary customer demand with day-to-day noise",
+      "name": "low_volume_stable",
+      "repeat_probability_center": 0.8
+    },
+    {
+      "activity_weight_median": 1.0,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Stable activity with returning and occasional customers",
+      "name": "medium_volume_stable",
+      "repeat_probability_center": 0.75
+    },
+    {
+      "activity_weight_median": 1.65,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Higher service opportunity, not a geographic claim",
+      "name": "high_volume_urban_like",
+      "repeat_probability_center": 0.65
+    },
+    {
+      "activity_weight_median": 1.0,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Gradual customer acquisition and reactivation; growth can satisfy review predicates",
+      "name": "growing_legitimate",
+      "repeat_probability_center": 0.65
+    },
+    {
+      "activity_weight_median": 1.0,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Cyclic demand with random phase",
+      "name": "seasonal",
+      "repeat_probability_center": 0.7
+    },
+    {
+      "activity_weight_median": 1.0,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "More repeat use; no automatic negative label",
+      "name": "concentrated_repeat_customer",
+      "repeat_probability_center": 0.85
+    },
+    {
+      "activity_weight_median": 1.2,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Broader overlapping catchment",
+      "name": "broad_customer_base",
+      "repeat_probability_center": 0.55
+    },
+    {
+      "activity_weight_median": 1.0,
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "development_count_per_unit": 1,
+      "mechanism": "Short demand shocks of either sign; no automatic negative label",
+      "name": "volatile_legitimate",
+      "repeat_probability_center": 0.7
+    }
+  ],
+  "assumption_status": "Synthetic assumptions, not empirically calibrated Zimbabwe operator statistics.",
+  "customer_retention": "At each 7d boundary each catchment member survives with independently drawn per-agent retention U(0.80,0.98). Replace leavers without replacement from other local wallets to maintain20 regular slots. Keep actual transaction history; membership replacement does not reset observable novelty.",
+  "design_version": "v4.stage 15.design.1",
+  "local_unit": "100 wallets and 8 agents; each agent has a randomly selected initial regular catchment of 20 wallets, with overlaps allowed. Background regular-customer choice uses repeat probability; remaining choice draws from the other80 local wallets. No partition-global uniform pool.",
+  "novelty_scale_control": "Exactly the same unit size, per-unit row budget, horizon, catchment rules and activity distributions for Train/Validation/Final. Independent changes composition only as declared; neither pool size nor temporal horizon changes.",
+  "ordinary_growth_audit": "Retain both target states for every origin, and separately examine legitimate-growth-origin target 0. Verify failed A1 conditions and cross-family positives. No minimum/maximum growth AUC is a generation objective.",
+  "ordinary_shocks": [
+    {
+      "cause": "newly popular location / promotion / adoption",
+      "customer_source": "mixture of returning and nonregular local wallets",
+      "duration_days": [
+        7,
+        28
+      ],
+      "volume_multiplier": [
+        1.1,
+        2.2
+      ]
+    },
+    {
+      "cause": "payday / market day",
+      "customer_source": "mostly existing regular customers",
+      "duration_days": [
+        1,
+        3
+      ],
+      "volume_multiplier": [
+        1.1,
+        2.0
+      ]
+    },
+    {
+      "cause": "seasonality",
+      "customer_source": "unchanged catchment; random phase",
+      "period_days": [
+        21,
+        45
+      ],
+      "volume_multiplier": [
+        0.6,
+        1.6
+      ]
+    },
+    {
+      "cause": "nearby-agent outage / customer migration",
+      "customer_source": "shift demand from another agent in same unit; total unit demand conserved",
+      "duration_days": [
+        1,
+        7
+      ],
+      "volume_multiplier": [
+        1.1,
+        2.0
+      ]
+    },
+    {
+      "cause": "ordinary expansion / recovery after low activity",
+      "customer_source": "returning and acquired customers; no future recovery in current label",
+      "duration_days": [
+        7,
+        28
+      ],
+      "volume_multiplier": [
+        0.6,
+        1.8
+      ]
+    }
+  ],
+  "overlapping_distributions": "For every archetype draw activity weight lognormal(log(median),0.6), truncated to[0.2,4]. Draw repeat probability uniformly within center +/-0.15, clipped to[0.1,0.95]. Thus distributions overlap and no latent identity implies target.",
+  "own_history": "All newness is evaluated from actual agent service history, never private membership lists. Same observable history produces the same label in every archetype.",
+  "schema_version": 1,
+  "shock_allocation": "Every archetype can receive each shock. Propose2 shocks per agent per scored horizon, cause uniformly from the 5 groups, continuous start time uniform over fitting interval. Seasonal archetypes additionally receive the sinusoid with amplitude U(0.1,0.4) and phase U(0,2pi); volatile archetypes receive2 additional shocks. Multiply overlapping factors then cap total activity multiplier to[0.25,3]. These caps are generator assumptions, not feature clipping.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

@@ -1,0 +1,32 @@
+{
+  "design_version": "v4.stage 15.design.1",
+  "development_seed_derivation": "For partition p and stream s: first16bytes SHA256(UTF8(\"mobile_money_aml_synthetic_100k_v4|2026092915|\"+p+\"|\"+s)), interpreted little-endian unsigned128. Feed explicitly version-pinned NumPy PCG64DXSM Generator; each unit gets stream suffix /unit/<index>.",
+  "holdout_seed_derivation": "After authorization custodian samples a fresh256-bit secret salt, commits SHA256(salt), and derives holdout seeds by HMAC-SHA256(salt, UTF8(dataset_id|partition|stream|unit)); first16bytes little-endian. Salt stays sealed until experiment retirement. Public design master seed never permits developers to regenerate holdouts.",
+  "privacy": "No production customer data or brand identities; opaque synthetic identifiers only.",
+  "proposed_master_seed": 2026092915,
+  "proposed_versions": {
+    "features": "v4.features.1",
+    "generator": "v4.generator.1",
+    "manifest": "v4.stage 15.design.1",
+    "target_evaluator": "v4.predicates.1",
+    "temporal": "v4.temporal.1"
+  },
+  "reproducibility": "Given the same complete private/public manifest, salt/streams, code and environment, raw transactions and truth reproduce byte-for-byte. Public consumers can verify commitments without accessing private seeds or evaluation data.",
+  "schema_version": 1,
+  "seed_status": "Proposal only; no random stream instantiated in Stage 15",
+  "serialization": "UTF8 no BOM, LF endings; JSON sorted keys, finite numbers only; observable CSV fixed field order, integer cents/IDs, UTC microseconds, rows by full key. Feature file dtype/column order and NaN representation frozen before materialization. Random draws and ID collision handling deterministic; pin Python/NumPy/dependencies and record hardware/threads.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "streams": [
+    "entities",
+    "profiles",
+    "catchments",
+    "warmup",
+    "background",
+    "episodes",
+    "amounts",
+    "timestamps",
+    "transaction_ids",
+    "accounting"
+  ],
+  "versioning": "Hash approved JSON specs, code, tests and environment before later execution. Any semantic or population change increments version, preserves prior draws and requires new compatibility declaration; never silently edit frozen manifest after results."
+}

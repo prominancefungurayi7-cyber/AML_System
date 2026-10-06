@@ -1,0 +1,106 @@
+{
+  "Stage21_Stage22_research_artifacts_preserved": {
+    "ml_v4/development_comparison/artifacts/A40-HGB_EXPERIMENTAL.joblib": "0569b34b9e0aed7f6ff96a70e7e0bfea8a08bd67488f10dd362a2c8fdbbd4dad",
+    "ml_v4/development_comparison/artifacts/A40-HGB_train_probabilities.npy": "c146e32345e316eea30b298ee96df2882b395b1a8492b9953496e43c131bead9",
+    "ml_v4/development_comparison/artifacts/A40-HGB_validation_probabilities.npy": "9952bca417a163181e4bb76d208a91d5fa656759d78438b22833ba73b41d6c6c",
+    "ml_v4/development_comparison/artifacts/A40-XGB_EXPERIMENTAL.joblib": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+    "ml_v4/development_comparison/artifacts/A40-XGB_train_probabilities.npy": "6896323babdf077348279cc3218bb83217ec19e095eee6f22b745505d1b4ec04",
+    "ml_v4/development_comparison/artifacts/A40-XGB_validation_probabilities.npy": "a5090b47a719b8c2e38981a6050e049a270de2d1ddc2ae533255f4436d7d2133",
+    "ml_v4/development_comparison/artifacts/B44-HGB_EXPERIMENTAL.joblib": "a040471997616db2dd8e04d69fb62d75361b0ac41f79a5bc9d397727b4579e20",
+    "ml_v4/development_comparison/artifacts/B44-HGB_train_probabilities.npy": "cd6469fd6fe353e7ed9492b036ac45ec202997f2b4442b8e1784ed53dfef31d2",
+    "ml_v4/development_comparison/artifacts/B44-HGB_validation_probabilities.npy": "16ef80c8cefde77d99da732cbce363e7b2b1014a93b0a11d1fe639b8e674d997",
+    "ml_v4/development_comparison/artifacts/B44-XGB_EXPERIMENTAL.joblib": "760e85ce5cc9eab0af0ab7ff4594a30ddcbe74a9472a60bf7d09306d6b09d7bc",
+    "ml_v4/development_comparison/artifacts/B44-XGB_train_probabilities.npy": "2dd743f1fbe819dabe253922049812896341e1866efdabc83c0f91abebfb9ab6",
+    "ml_v4/development_comparison/artifacts/B44-XGB_validation_probabilities.npy": "3f3107a8e92b9352b97b387deb8ddd783e93a5cea462257b88fc8d17ae34760b",
+    "ml_v4/development_comparison/artifacts/permutation_validation_indices.npy": "d2c40e5ccef1f4494c0c978fd8943d65e0bcd92c06c1fe2bea9f6ee4b3e78ac3",
+    "ml_v4/development_comparison/report_stage22.py": "dbf8d53a1514b675789a5398b93919218100fc19d11b523abf06809ad5f980bb",
+    "ml_v4/development_comparison/run_stage22.py": "4203e1fe5d28197b5436f0d864501b18dbb97e57dc6222daed629387f65263f6",
+    "ml_v4/development_features_v2/extractor_v2.py": "418b26ec05ef38c0aa907d270949ce4a776c88fe3e9cde8a328d942651855801",
+    "ml_v4/development_features_v2/finalize_stage21.py": "fc234951728e723152a0cbc822ed87d18fcb1ad8c74676cfc7ddca049c10beda",
+    "ml_v4/development_features_v2/matrices/train/X.npy": "9338ab18a346f3381c400151927755c44dde20e9007ba70fcb1bc166148c26e1",
+    "ml_v4/development_features_v2/matrices/train/row_metadata.csv": "df5bc095c3013701adc0190a8e245cffe3fe2e97f58ec6e02d6577df38c18b60",
+    "ml_v4/development_features_v2/matrices/train/y.npy": "b5fabe11fecb4b7783211e8a113c2fa3bf9050a97a64e6eae9303c1552630543",
+    "ml_v4/development_features_v2/matrices/validation/X.npy": "33d3776b78cdb2010589a3f15ac06b35eccb0b0a0492cd653c20e59d19bff3e2",
+    "ml_v4/development_features_v2/matrices/validation/row_metadata.csv": "cac115219b577d7d3e67098cd12fa82c2d5d4546e48f3139ceb66366f0006d82",
+    "ml_v4/development_features_v2/matrices/validation/y.npy": "27a0c76111ad477d77e0cd7542186ad4791aea0882a5eb8cdc3c554aa760ca06",
+    "ml_v4/development_features_v2/run_stage21.py": "df2833ec18b142049f375cbe11dc3deb2f5bbf380b073b05e49452b1731fdd63",
+    "ml_v4/development_features_v2/tests/test_stage21.py": "e0b14952a56abd56395388722516018d690821f30cfb0c1bf68058e982549471"
+  },
+  "frozen_reference_hashes": {
+    "HGB_comparator": {
+      "path": "ml_v4/development_training/artifacts/primary_HGB_EXPERIMENTAL.joblib",
+      "sha256": "156b499c6b6e5751d638ebedc142cc0b318bd0344d86a2943c3705f3197ac82b"
+    },
+    "dataset_manifest": {
+      "path": "ml_v4/evidence/stage16r/dataset_manifest.json",
+      "sha256": "bebc7afa5bc9d788b9e337265ba9981f4d89abe24689ee25666c7a1265d41a4b"
+    },
+    "extractor_source": {
+      "path": "ml_v4/development_features/extractor.py",
+      "sha256": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717"
+    },
+    "feature_specification": {
+      "path": "ml_v4/design/v4_feature_spec.json",
+      "sha256": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204"
+    },
+    "observable_contract_source": {
+      "path": "ml_v4/generation/stage16r_contract.py",
+      "sha256": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d"
+    },
+    "pipeline": {
+      "path": "ml_v4/development_training/artifacts/primary_XGB_EXPERIMENTAL.joblib",
+      "sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+    },
+    "preprocessing_specification": {
+      "path": "ml_v4/evidence/stage18/preprocessing_specification.json",
+      "sha256": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1"
+    },
+    "preprocessor_source": {
+      "path": "ml_v4/development_training/preprocessing.py",
+      "sha256": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d"
+    },
+    "selection_record": {
+      "path": "ml_v4/evidence/stage18/development_selection.json",
+      "sha256": "60df51b5cc081f99ac4a94b2347b5d9a1243d9c1a2b4dd67d5f07d71d02ed920"
+    },
+    "standalone_fitted_preprocessor": {
+      "path": "ml_v4/development_training/artifacts/selected_preprocessor_EXPERIMENTAL.joblib",
+      "sha256": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41"
+    },
+    "target_evaluator_source": {
+      "path": "ml_v4/generation/stage16r_evaluator.py",
+      "sha256": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af"
+    },
+    "target_specification": {
+      "path": "ml_v4/design/v4_target_predicates.json",
+      "sha256": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8"
+    },
+    "temporal_specification": {
+      "path": "ml_v4/design/v4_temporal_contract.json",
+      "sha256": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60"
+    },
+    "training_plan": {
+      "path": "ml_v4/evidence/stage18/frozen_training_plan.json",
+      "sha256": "4a3823500b6a6a8b776c28dc3210cd11f538d9e7d32fcf251b6b21dac2a08389"
+    }
+  },
+  "manifest_self_hash": "Bound by stage23_decision.json, no circular self-hash",
+  "new_output_sha256": {
+    "ml_v4/development_analysis/stage23_freeze.py": "1d77cee693d20b4e446520466b80054c84c9f940e9636a131f5b479a87c2fc16",
+    "ml_v4/evidence/stage23/development_candidate_freeze.json": "67db9c37d2e261276b6fc15f025e75c625bed35755e172d02dd5a084dd42ae3a",
+    "ml_v4/evidence/stage23/development_model_card.json": "c60209f92f883e4c5e88c3b16d74b6de865c5d0871b6cc45d91ed48c2741846b",
+    "ml_v4/evidence/stage23/development_model_card.md": "bdc53d5eff48a0ccfeb7aa08e2af83d913391d0feb0de52da39f1f3ce7a57452",
+    "ml_v4/evidence/stage23/dissertation_results_summary.json": "6125661db19f1f03dd326db2ca4efd57280669772c63af1eff9a1614b5214d2c",
+    "ml_v4/evidence/stage23/dissertation_results_summary.md": "572dcc139afb223a24bb8132b17a5c5745ebb8c93e37a37d077a9303eab775c7",
+    "ml_v4/evidence/stage23/evidence_verification.json": "823417645292561b90bd593e416f807c6d66d967bf44c1fde29e7440f037780f",
+    "ml_v4/evidence/stage23/family_strengths_weaknesses.json": "cb94e655cf9e4756bf5a1aa35ab64af20bd93e99ec4082c61810f60af378d2bd",
+    "ml_v4/evidence/stage23/final_development_metrics.json": "9bd90f61a9c1aba071b2ca68f54b55c78796aa18b0eb7cf03d3a7c13490ae443",
+    "ml_v4/evidence/stage23/future_work_register.json": "0cbabee7c555f461e8dc7175d7c79352b97e929bd507d5f9f6b9c137f53cc1cc",
+    "ml_v4/evidence/stage23/limitations_register.json": "a634a37a6f5e2e67eb992522362b85e19ba1f9b887871d4c44a0373cecbc2eb1",
+    "ml_v4/evidence/stage23/preservation_verification.json": "f846678c8f9cb3e31e3578d8a50f82bad0ea8b6e7cf85b42d83fd4771d6694ab",
+    "ml_v4/evidence/stage23/representation_decision.json": "23b87e06bdce35cd44cabd02ad8b8081ab49af82e9f5e9faf9368ec81628e156",
+    "ml_v4/evidence/stage23/stage22_interpretation.json": "3d37f8dd61e341e02a7bff19334c05744713529ba3d7d4af49a6457d8f1ee1aa",
+    "ml_v4/reports/V4_STAGE23_DEVELOPMENT_FREEZE_REPORT.md": "c824e32bb61e6de566606a7f2b3266634527b5f95b418a311f14255decb3ccf9"
+  },
+  "security": "Hash references establish identity, not independent custody. No permission or OS immutability claim."
+}

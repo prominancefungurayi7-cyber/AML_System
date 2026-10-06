@@ -1,0 +1,21 @@
+{
+  "HGB": "Preserved comparator, no selection change",
+  "alternatives": {
+    "freeze_neither": "Not necessary to preserve a technically verified development reference; essential gaps block broader validation claims, not archival development freeze",
+    "promote44": "Not justified by current reused development evidence; preserve as experimental research, including S2 gains"
+  },
+  "choice": "Retain original Stage18 primary_XGB, not Stage22 A40 refit or B44 replacement",
+  "criterion": "Scientific defensibility and versioned evidence, not highest MacroF1",
+  "decision": "A \u2014 ORIGINAL 40-FEATURE V4 DEVELOPMENT CANDIDATE RETAINED AND FROZEN",
+  "no_production_or_independent_approval": true,
+  "reasons": [
+    "Original40 primary_XGB was selected by a frozen Stage18 rule before Stage19/20 redesign",
+    "44-field hypothesis arose from repeated Validation inspection",
+    "S2 gain is useful research evidence but S4/S4-only failure persists",
+    "XGB aggregate gain is small and A4 loses7 net detections; other families also trade off",
+    "HGB44 aggregate MacroF1 declines; no uniform algorithm-independent advantage",
+    "Nine support objectives and three-community dependence remain",
+    "More direct target components can improve synthetic policy approximation without real-world validity",
+    "Freezing a bounded research reference preserves reproducibility without mandating another adaptive cycle"
+  ]
+}

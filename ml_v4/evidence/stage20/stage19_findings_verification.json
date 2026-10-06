@@ -1,0 +1,32 @@
+{
+  "comparator": "primary_HGB",
+  "external_independent_review": false,
+  "method": "Verify saved artifact hashes and cross-check saved summary counts; no predictions or performance evaluation executed",
+  "read_public_document_count": 141,
+  "selected_unchanged": "primary_XGB",
+  "stage19_manifest_sha256": "9d01d358bd0cdfaaa5ec75b0fad5750104a98a367695cfff82debb93505aa874",
+  "status": "PASS",
+  "verified_findings": {
+    "A4_HGB": [
+      197,
+      222
+    ],
+    "A4_HGB_rescues": 46,
+    "A4_XGB": [
+      151,
+      222
+    ],
+    "S2_XGB": [
+      11,
+      23
+    ],
+    "S4_XGB": [
+      4,
+      16
+    ],
+    "S4_exclusive_XGB": [
+      0,
+      12
+    ]
+  }
+}

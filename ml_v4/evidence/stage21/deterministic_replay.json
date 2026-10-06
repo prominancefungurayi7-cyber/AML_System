@@ -1,0 +1,18 @@
+{
+  "train": {
+    "byte_identical": true,
+    "fresh_state": true,
+    "replay_X_sha256": "9338ab18a346f3381c400151927755c44dde20e9007ba70fcb1bc166148c26e1",
+    "same_input_source_environment": true,
+    "serialized_X_sha256": "9338ab18a346f3381c400151927755c44dde20e9007ba70fcb1bc166148c26e1",
+    "status": "PASS"
+  },
+  "validation": {
+    "byte_identical": true,
+    "fresh_state": true,
+    "replay_X_sha256": "33d3776b78cdb2010589a3f15ac06b35eccb0b0a0492cd653c20e59d19bff3e2",
+    "same_input_source_environment": true,
+    "serialized_X_sha256": "33d3776b78cdb2010589a3f15ac06b35eccb0b0a0492cd653c20e59d19bff3e2",
+    "status": "PASS"
+  }
+}

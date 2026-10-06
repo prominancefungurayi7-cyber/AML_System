@@ -1,0 +1,407 @@
+{
+  "gb_clipped_regularized_balanced": {
+    "domains": {
+      "agent": {
+        "count": 600,
+        "recall": 0.56,
+        "true_positives": 336
+      },
+      "network": {
+        "count": 600,
+        "recall": 0.48333333333333334,
+        "true_positives": 290
+      },
+      "structuring": {
+        "count": 600,
+        "recall": 0.7933333333333333,
+        "true_positives": 476
+      }
+    },
+    "families": {
+      "agent_flow_imbalance": {
+        "count": 150,
+        "recall": 0.37333333333333335,
+        "true_positives": 56
+      },
+      "agent_temporal_burst": {
+        "count": 150,
+        "recall": 0.8533333333333334,
+        "true_positives": 128
+      },
+      "agent_wallet_concentration": {
+        "count": 150,
+        "recall": 0.4666666666666667,
+        "true_positives": 70
+      },
+      "agent_wallet_growth": {
+        "count": 150,
+        "recall": 0.5466666666666666,
+        "true_positives": 82
+      },
+      "distributed_same_day_fragmentation": {
+        "count": 150,
+        "recall": 0.88,
+        "true_positives": 132
+      },
+      "many_to_one_collection": {
+        "count": 150,
+        "recall": 0.35333333333333333,
+        "true_positives": 53
+      },
+      "one_to_many_dispersion": {
+        "count": 150,
+        "recall": 0.6466666666666666,
+        "true_positives": 97
+      },
+      "reciprocal_relationship_cycle": {
+        "count": 150,
+        "recall": 0.16666666666666666,
+        "true_positives": 25
+      },
+      "similar_amount_repetition": {
+        "count": 150,
+        "recall": 0.7533333333333333,
+        "true_positives": 113
+      },
+      "variable_fragment_burst": {
+        "count": 150,
+        "recall": 0.8933333333333333,
+        "true_positives": 134
+      },
+      "variable_near_threshold_history": {
+        "count": 150,
+        "recall": 0.6466666666666666,
+        "true_positives": 97
+      },
+      "wallet_pass_through": {
+        "count": 150,
+        "recall": 0.7666666666666667,
+        "true_positives": 115
+      }
+    }
+  },
+  "hgb_clipped_regularized_balanced": {
+    "domains": {
+      "agent": {
+        "count": 600,
+        "recall": 0.36833333333333335,
+        "true_positives": 221
+      },
+      "network": {
+        "count": 600,
+        "recall": 0.4,
+        "true_positives": 240
+      },
+      "structuring": {
+        "count": 600,
+        "recall": 0.6166666666666667,
+        "true_positives": 370
+      }
+    },
+    "families": {
+      "agent_flow_imbalance": {
+        "count": 150,
+        "recall": 0.18666666666666668,
+        "true_positives": 28
+      },
+      "agent_temporal_burst": {
+        "count": 150,
+        "recall": 0.76,
+        "true_positives": 114
+      },
+      "agent_wallet_concentration": {
+        "count": 150,
+        "recall": 0.20666666666666667,
+        "true_positives": 31
+      },
+      "agent_wallet_growth": {
+        "count": 150,
+        "recall": 0.32,
+        "true_positives": 48
+      },
+      "distributed_same_day_fragmentation": {
+        "count": 150,
+        "recall": 0.7533333333333333,
+        "true_positives": 113
+      },
+      "many_to_one_collection": {
+        "count": 150,
+        "recall": 0.2733333333333333,
+        "true_positives": 41
+      },
+      "one_to_many_dispersion": {
+        "count": 150,
+        "recall": 0.5466666666666666,
+        "true_positives": 82
+      },
+      "reciprocal_relationship_cycle": {
+        "count": 150,
+        "recall": 0.13333333333333333,
+        "true_positives": 20
+      },
+      "similar_amount_repetition": {
+        "count": 150,
+        "recall": 0.44666666666666666,
+        "true_positives": 67
+      },
+      "variable_fragment_burst": {
+        "count": 150,
+        "recall": 0.8,
+        "true_positives": 120
+      },
+      "variable_near_threshold_history": {
+        "count": 150,
+        "recall": 0.4666666666666667,
+        "true_positives": 70
+      },
+      "wallet_pass_through": {
+        "count": 150,
+        "recall": 0.6466666666666666,
+        "true_positives": 97
+      }
+    }
+  },
+  "lr_robust_C10.0_balanced": {
+    "domains": {
+      "agent": {
+        "count": 600,
+        "recall": 0.635,
+        "true_positives": 381
+      },
+      "network": {
+        "count": 600,
+        "recall": 0.5316666666666666,
+        "true_positives": 319
+      },
+      "structuring": {
+        "count": 600,
+        "recall": 0.8466666666666667,
+        "true_positives": 508
+      }
+    },
+    "families": {
+      "agent_flow_imbalance": {
+        "count": 150,
+        "recall": 0.48,
+        "true_positives": 72
+      },
+      "agent_temporal_burst": {
+        "count": 150,
+        "recall": 0.7866666666666666,
+        "true_positives": 118
+      },
+      "agent_wallet_concentration": {
+        "count": 150,
+        "recall": 0.6066666666666667,
+        "true_positives": 91
+      },
+      "agent_wallet_growth": {
+        "count": 150,
+        "recall": 0.6666666666666666,
+        "true_positives": 100
+      },
+      "distributed_same_day_fragmentation": {
+        "count": 150,
+        "recall": 0.94,
+        "true_positives": 141
+      },
+      "many_to_one_collection": {
+        "count": 150,
+        "recall": 0.3333333333333333,
+        "true_positives": 50
+      },
+      "one_to_many_dispersion": {
+        "count": 150,
+        "recall": 0.64,
+        "true_positives": 96
+      },
+      "reciprocal_relationship_cycle": {
+        "count": 150,
+        "recall": 0.34,
+        "true_positives": 51
+      },
+      "similar_amount_repetition": {
+        "count": 150,
+        "recall": 0.84,
+        "true_positives": 126
+      },
+      "variable_fragment_burst": {
+        "count": 150,
+        "recall": 0.8533333333333334,
+        "true_positives": 128
+      },
+      "variable_near_threshold_history": {
+        "count": 150,
+        "recall": 0.7533333333333333,
+        "true_positives": 113
+      },
+      "wallet_pass_through": {
+        "count": 150,
+        "recall": 0.8133333333333334,
+        "true_positives": 122
+      }
+    }
+  },
+  "rf_raw_regularized_balanced_subsample": {
+    "domains": {
+      "agent": {
+        "count": 600,
+        "recall": 0.07833333333333334,
+        "true_positives": 47
+      },
+      "network": {
+        "count": 600,
+        "recall": 0.19833333333333333,
+        "true_positives": 119
+      },
+      "structuring": {
+        "count": 600,
+        "recall": 0.3416666666666667,
+        "true_positives": 205
+      }
+    },
+    "families": {
+      "agent_flow_imbalance": {
+        "count": 150,
+        "recall": 0.013333333333333334,
+        "true_positives": 2
+      },
+      "agent_temporal_burst": {
+        "count": 150,
+        "recall": 0.21333333333333335,
+        "true_positives": 32
+      },
+      "agent_wallet_concentration": {
+        "count": 150,
+        "recall": 0.02666666666666667,
+        "true_positives": 4
+      },
+      "agent_wallet_growth": {
+        "count": 150,
+        "recall": 0.06,
+        "true_positives": 9
+      },
+      "distributed_same_day_fragmentation": {
+        "count": 150,
+        "recall": 0.49333333333333335,
+        "true_positives": 74
+      },
+      "many_to_one_collection": {
+        "count": 150,
+        "recall": 0.10666666666666667,
+        "true_positives": 16
+      },
+      "one_to_many_dispersion": {
+        "count": 150,
+        "recall": 0.2733333333333333,
+        "true_positives": 41
+      },
+      "reciprocal_relationship_cycle": {
+        "count": 150,
+        "recall": 0.06,
+        "true_positives": 9
+      },
+      "similar_amount_repetition": {
+        "count": 150,
+        "recall": 0.18666666666666668,
+        "true_positives": 28
+      },
+      "variable_fragment_burst": {
+        "count": 150,
+        "recall": 0.4866666666666667,
+        "true_positives": 73
+      },
+      "variable_near_threshold_history": {
+        "count": 150,
+        "recall": 0.2,
+        "true_positives": 30
+      },
+      "wallet_pass_through": {
+        "count": 150,
+        "recall": 0.35333333333333333,
+        "true_positives": 53
+      }
+    }
+  },
+  "xgb_raw_regularized_balanced": {
+    "domains": {
+      "agent": {
+        "count": 600,
+        "recall": 0.4,
+        "true_positives": 240
+      },
+      "network": {
+        "count": 600,
+        "recall": 0.43666666666666665,
+        "true_positives": 262
+      },
+      "structuring": {
+        "count": 600,
+        "recall": 0.6666666666666666,
+        "true_positives": 400
+      }
+    },
+    "families": {
+      "agent_flow_imbalance": {
+        "count": 150,
+        "recall": 0.14666666666666667,
+        "true_positives": 22
+      },
+      "agent_temporal_burst": {
+        "count": 150,
+        "recall": 0.7866666666666666,
+        "true_positives": 118
+      },
+      "agent_wallet_concentration": {
+        "count": 150,
+        "recall": 0.31333333333333335,
+        "true_positives": 47
+      },
+      "agent_wallet_growth": {
+        "count": 150,
+        "recall": 0.35333333333333333,
+        "true_positives": 53
+      },
+      "distributed_same_day_fragmentation": {
+        "count": 150,
+        "recall": 0.76,
+        "true_positives": 114
+      },
+      "many_to_one_collection": {
+        "count": 150,
+        "recall": 0.32,
+        "true_positives": 48
+      },
+      "one_to_many_dispersion": {
+        "count": 150,
+        "recall": 0.5733333333333334,
+        "true_positives": 86
+      },
+      "reciprocal_relationship_cycle": {
+        "count": 150,
+        "recall": 0.14666666666666667,
+        "true_positives": 22
+      },
+      "similar_amount_repetition": {
+        "count": 150,
+        "recall": 0.5466666666666666,
+        "true_positives": 82
+      },
+      "variable_fragment_burst": {
+        "count": 150,
+        "recall": 0.8533333333333334,
+        "true_positives": 128
+      },
+      "variable_near_threshold_history": {
+        "count": 150,
+        "recall": 0.5066666666666667,
+        "true_positives": 76
+      },
+      "wallet_pass_through": {
+        "count": 150,
+        "recall": 0.7066666666666667,
+        "true_positives": 106
+      }
+    }
+  }
+}

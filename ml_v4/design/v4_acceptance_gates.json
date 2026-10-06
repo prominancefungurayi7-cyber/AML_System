@@ -1,0 +1,107 @@
+{
+  "before_generation": "Explicit user approval for next stage; lock complete implementation manifest; execute causal/schema/isolation/accounting tests on hand fixtures; independently review generator and evaluator; recheck preservation. Any failed gate means NO GENERATION.",
+  "before_training": "Generated development support, prevalence, overlap and shortcut audits must be reviewed; keep failed draws. Fresh holdout custodian provides only predeclared pass/fail certificate. No final metric access.",
+  "decision_precedence": "C if any major design gate fails or unresolved semantic contradiction; B for bounded minor document corrections; D only if redesign lacks scientific justification; otherwise A. All A decisions remain waiting for user approval.",
+  "decision_scope": "Design completeness and internal consistency only. G10 approves support objectives, not achieved support. G01..G11 require later implementation verification and user authorization before any generation. Passing design gates is not an execution permission.",
+  "design_version": "v4.stage 15.design.1",
+  "gates": [
+    {
+      "basis": "All 12 defined with explicit conjunction, role, baseline and cold start.",
+      "design_status": "PASS",
+      "evidence_file": "v4_target_predicates.json",
+      "gate": "Exact12 causal predicates",
+      "id": "G01",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Every family linked to explicitly scoped feature histories and missing semantics.",
+      "design_status": "PASS",
+      "evidence_file": "v4_target_feature_alignment.json",
+      "gate": "Target/feature window alignment",
+      "id": "G02",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "A1 and growth both require 35d and 12 baseline services.",
+      "design_status": "PASS",
+      "evidence_file": "v4_temporal_contract.json",
+      "gate": "A1 history discrepancy resolved",
+      "id": "G03",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Acquisition/retention/shocks and explicit A1 failed-gate examples supplied.",
+      "design_status": "PASS",
+      "evidence_file": "v4_agent_population_spec.json",
+      "gate": "Legitimate growth/boundary design",
+      "id": "G04",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Meaningful failed conditions and universal union target rule supplied.",
+      "design_status": "PASS",
+      "evidence_file": "v4_hard_negative_spec.json",
+      "gate": "H1..H8 definitions",
+      "id": "G05",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Exact entities/events; disjoint state and local communities specified.",
+      "design_status": "PASS",
+      "evidence_file": "v4_partition_spec.json",
+      "gate": "Partition isolation",
+      "id": "G06",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Fresh datasets, secret custodian streams, separate loader/seal/access policy.",
+      "design_status": "PASS",
+      "evidence_file": "v4_holdout_policy.json",
+      "gate": "Fresh holdout policy",
+      "id": "G07",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "No private intent, provenance, future features or scored outputs as evaluator input.",
+      "design_status": "PASS",
+      "evidence_file": "v4_target_predicates.json",
+      "gate": "Observable-only truth",
+      "id": "G08",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "40 disclosed lower-level fields; no categoryD; remaining representation gaps explicit.",
+      "design_status": "PASS",
+      "evidence_file": "v4_feature_spec.json",
+      "gate": "No complete oracle features",
+      "id": "G09",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "All 12 have 300 Validation/Final objectives and cluster/minimum/failure policy; realized support is untested.",
+      "design_status": "PASS",
+      "evidence_file": "v4_family_support_policy.json",
+      "gate": "Adequate support objectives",
+      "id": "G10",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "Required causal, boundary, identity, role, accounting and independence tests listed.",
+      "design_status": "PASS",
+      "evidence_file": "v4_generator_audit_plan.json",
+      "gate": "Shortcut/leakage tests specified",
+      "id": "G11",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "basis": "702 allowlisted files will be checked before and after; evaluation bytes excluded.",
+      "design_status": "PASS",
+      "evidence_file": "v4_stage15_protection.json",
+      "gate": "Historical preservation",
+      "id": "G12",
+      "implementation_status": "HASH_CHECKED"
+    }
+  ],
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

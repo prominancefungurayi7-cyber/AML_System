@@ -1,0 +1,52 @@
+{
+  "evaluation_replay": "Observable target replay inside custodian; second generation not requested or exposed",
+  "partitions": {
+    "train": {
+      "canonical_bytes_identical": true,
+      "original_hashes": {
+        "family_evidence.jsonl": "1fdc8b376fe9c819054592d01f370c3baf413ad10bd408e01eb456697c5acbe5",
+        "ground_truth.csv": "4510aa4c08fcc873b0c8e8478a2cc7a4beabeb39105e2bd5f12c5010f4ba7659",
+        "manifest.json": "efe4168365bd8c391249379be0ba9ce74453a7367c21b0b251d9f7c22a6553a8",
+        "private_population.json": "4880c579576ce0abcd6a6c5ff141037e53f7664fc31b45ed4909abe88858807a",
+        "private_provenance.json": "cd0f9da1f4af00899f2159cc77bb64dc1281c86ce8f47bfd0032b29d8489ac8c",
+        "transactions.csv": "8dbbe3cbb23c29e479df27fb0dafd1ee62593be06305b5c2c0c8e9d8752beb85",
+        "warmup_observables.csv": "506ec6b586808b6cb746cc786ef818a5597e82d44a0326e50c3417539f4ef76f"
+      },
+      "replay_hashes": {
+        "family_evidence.jsonl": "1fdc8b376fe9c819054592d01f370c3baf413ad10bd408e01eb456697c5acbe5",
+        "ground_truth.csv": "4510aa4c08fcc873b0c8e8478a2cc7a4beabeb39105e2bd5f12c5010f4ba7659",
+        "manifest.json": "efe4168365bd8c391249379be0ba9ce74453a7367c21b0b251d9f7c22a6553a8",
+        "private_population.json": "4880c579576ce0abcd6a6c5ff141037e53f7664fc31b45ed4909abe88858807a",
+        "private_provenance.json": "cd0f9da1f4af00899f2159cc77bb64dc1281c86ce8f47bfd0032b29d8489ac8c",
+        "transactions.csv": "8dbbe3cbb23c29e479df27fb0dafd1ee62593be06305b5c2c0c8e9d8752beb85",
+        "warmup_observables.csv": "506ec6b586808b6cb746cc786ef818a5597e82d44a0326e50c3417539f4ef76f"
+      },
+      "status": "PASS"
+    },
+    "validation": {
+      "canonical_bytes_identical": true,
+      "original_hashes": {
+        "family_evidence.jsonl": "6e1f3c4c2caab4f7ac96a43a9b9b5cd9c1b09a091186a7b3f953a7dc286739c5",
+        "ground_truth.csv": "f2d9e61400a0f662d70668cdb9349e822fe26edbce10a3d3a4e941f5e1966e29",
+        "manifest.json": "27b0928860a397f59399112b64442594d82614798fa9b77d7a4f6a5fcd73f80a",
+        "private_population.json": "b55696b5e5989b48955bbcf072942fcfe1128ab05fdbf487f19b0b2baad71280",
+        "private_provenance.json": "84db21e26c47d21f423ceec9ec70ef2e93ffbce18c286e9bea342342e72428bd",
+        "transactions.csv": "1741209b032ec226ac30734321940fc43acaf1bfca661cbe08f0065fb2f58c0a",
+        "warmup_observables.csv": "7b182c40a90c953d921442eb342c38ac96ec65409522a28559ad73d651e23a67"
+      },
+      "replay_hashes": {
+        "family_evidence.jsonl": "6e1f3c4c2caab4f7ac96a43a9b9b5cd9c1b09a091186a7b3f953a7dc286739c5",
+        "ground_truth.csv": "f2d9e61400a0f662d70668cdb9349e822fe26edbce10a3d3a4e941f5e1966e29",
+        "manifest.json": "27b0928860a397f59399112b64442594d82614798fa9b77d7a4f6a5fcd73f80a",
+        "private_population.json": "b55696b5e5989b48955bbcf072942fcfe1128ab05fdbf487f19b0b2baad71280",
+        "private_provenance.json": "84db21e26c47d21f423ceec9ec70ef2e93ffbce18c286e9bea342342e72428bd",
+        "transactions.csv": "1741209b032ec226ac30734321940fc43acaf1bfca661cbe08f0065fb2f58c0a",
+        "warmup_observables.csv": "7b182c40a90c953d921442eb342c38ac96ec65409522a28559ad73d651e23a67"
+      },
+      "status": "PASS"
+    }
+  },
+  "second_candidate_draw": false,
+  "status": "PASS",
+  "temporary_outputs_deleted": true
+}

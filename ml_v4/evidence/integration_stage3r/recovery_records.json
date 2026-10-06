@@ -1,0 +1,140 @@
+{
+  "records": [
+    {
+      "destination": "ml_v4/evidence/integration_stage3/prepare.py",
+      "expected_sha256": "bf21b761e30ce2cc692c8c6a12ea6ad59a2b9e62a23603cff0f4a08d19da834a",
+      "actual_sha256": "bf21b761e30ce2cc692c8c6a12ea6ad59a2b9e62a23603cff0f4a08d19da834a",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2208,
+      "call_id": "call_c640883e783a46b7b158c90781012f05",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/__init__.py",
+      "expected_sha256": "c0c7c346d9aaec186b08a43a891d79147a45bcfcb17449b1c295df4daba36475",
+      "actual_sha256": "c0c7c346d9aaec186b08a43a891d79147a45bcfcb17449b1c295df4daba36475",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2223,
+      "call_id": "call_86a430739c7a468a9ab23f1b0167695d",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/evidence/integration_stage3/copy_dependencies.py",
+      "expected_sha256": "cb08d7d21b06612478bff252af557d9e9a3aeddbd09f6aa356d7e18a73c546b6",
+      "actual_sha256": "cb08d7d21b06612478bff252af557d9e9a3aeddbd09f6aa356d7e18a73c546b6",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2251,
+      "call_id": "call_110804d5274648e099f3e101fc50d92f",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/history.py",
+      "expected_sha256": "5f58a425a1ce67047c84d8c017d100d23fa391671e27acbc4beb09cab01f1a67",
+      "actual_sha256": "5f58a425a1ce67047c84d8c017d100d23fa391671e27acbc4beb09cab01f1a67",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2261,
+      "call_id": "call_79f455e92589478cbdff90825d884265",
+      "operation": "Update",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/cli.py",
+      "expected_sha256": "68655d04195fe062f523d33012396e701a394879ee24fa3d0bf22cf8fad49efa",
+      "actual_sha256": "68655d04195fe062f523d33012396e701a394879ee24fa3d0bf22cf8fad49efa",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2261,
+      "call_id": "call_79f455e92589478cbdff90825d884265",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/service.py",
+      "expected_sha256": "fe2b2971f799a359c1bfdf5d92c56664a39b00caffbb03ddee46843f1208ba48",
+      "actual_sha256": "fe2b2971f799a359c1bfdf5d92c56664a39b00caffbb03ddee46843f1208ba48",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2279,
+      "call_id": "call_50e862849f0a4c79bc120c3e78ad8769",
+      "operation": "Update",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/launch.py",
+      "expected_sha256": "07d946c4295479722b7ba72146b452ff5304c1f024f487fefaeb1de196278699",
+      "actual_sha256": "07d946c4295479722b7ba72146b452ff5304c1f024f487fefaeb1de196278699",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2279,
+      "call_id": "call_50e862849f0a4c79bc120c3e78ad8769",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/evidence/integration_stage3/live_check.py",
+      "expected_sha256": "b25a8f48b031c069a664970414dd1b4cf0ee691d1b7caca4aba8f5414761ced8",
+      "actual_sha256": "b25a8f48b031c069a664970414dd1b4cf0ee691d1b7caca4aba8f5414761ced8",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2279,
+      "call_id": "call_50e862849f0a4c79bc120c3e78ad8769",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/tests/test_service.py",
+      "expected_sha256": "1242fba7e2fa9043f4403591633722546dd84f81ba30cedbdd6eca75eb2503e5",
+      "actual_sha256": "1242fba7e2fa9043f4403591633722546dd84f81ba30cedbdd6eca75eb2503e5",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2288,
+      "call_id": "call_hJYMDYEqPuNyA7FIQAOwp5nL",
+      "operation": "Update",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/evidence/integration_stage3/run_tests.py",
+      "expected_sha256": "cc64f68c22a5d1eac9edc85de9d6f95ae988e936f0f1f6b171de00fdb0ec644a",
+      "actual_sha256": "cc64f68c22a5d1eac9edc85de9d6f95ae988e936f0f1f6b171de00fdb0ec644a",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2288,
+      "call_id": "call_hJYMDYEqPuNyA7FIQAOwp5nL",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/frozen_inference/README.md",
+      "expected_sha256": "de603ee36456acf319ae33581e66d9f88321b926b4b8c2921d3d4217d9f94ced",
+      "actual_sha256": "de603ee36456acf319ae33581e66d9f88321b926b4b8c2921d3d4217d9f94ced",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2288,
+      "call_id": "call_hJYMDYEqPuNyA7FIQAOwp5nL",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    },
+    {
+      "destination": "ml_v4/evidence/integration_stage3/finalize.py",
+      "expected_sha256": "61d3a70a59eaa5aa14e89fb327e4e471554fc49f2c2ad1f23179131916708228",
+      "actual_sha256": "61d3a70a59eaa5aa14e89fb327e4e471554fc49f2c2ad1f23179131916708228",
+      "source": "C:\\Users\\PROMINENT\\.codex\\sessions\\2026\\10\\03\\rollout-2026-10-03T19-56-10-01a0c658-9330-7983-830e-9c584a204637_01a102e8-c1e8-7252-bb32-aa6c70e7e7d7.jsonl",
+      "record_line": 2304,
+      "call_id": "call_aXFuTMJH3WDSzEzHhs2hbnts",
+      "operation": "Add",
+      "line_endings": "LF",
+      "method": "exact bytes reproduced from retained original patch records"
+    }
+  ],
+  "unrecovered": [],
+  "session_commands_executed": false,
+  "patch_context_skips": [],
+  "historical_manifest_changed": false
+}

@@ -1,0 +1,12 @@
+{
+  "cumulative_started": 20,
+  "expired_slots_not_reopened": true,
+  "historical_started": 16,
+  "inherited_ceiling": 36,
+  "new_completed": 4,
+  "new_failed": 0,
+  "new_ledger_sha256": "83e53cdec134deae1cc7769cd20ae82c63e011518d350cd533226f46000497d8",
+  "new_started": 4,
+  "parent_ledger_sha256": "26a58318d9fd8050ac48aa1e71cc3d7cfc1fb900f0b669352cc1e4864bfdcb1d",
+  "remaining_authorized_attempts": 0
+}

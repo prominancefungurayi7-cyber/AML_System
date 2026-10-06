@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V3 experimental testing</title>
+<style>body{font:16px system-ui;background:#101827;color:#edf2fa;max-width:1000px;margin:2rem auto;padding:1rem}textarea{width:100%;height:300px;background:#fff;color:#111}button,input{padding:.7rem;margin:.3rem}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#202e43;padding:1rem}.alert{color:#ffcd77}small{color:#c6d5e9}</style>
+<h1>V3 AI MODEL — EXPERIMENTAL TESTING</h1>
+<p>Synthetic suspicious-pattern classifier. No financial operations, production alerts or regulatory reports. Prediction 1 means review suggested, not proof of laundering.</p>
+<label>Local tester token <input id="token" type="password" autocomplete="off"></label><button id="login">Authorize</button>
+<pre id="status">Authorize to check model availability.</pre>
+<button data-demo="normal">Normal-intended example</button><button data-demo="structuring">Structuring example</button><button data-demo="network">Wallet-network example</button><button data-demo="agent">Agent example</button><button id="reset">Clear test history</button>
+<p><small>Examples are behavioural demonstrations with no asserted ground truth. Edit the batch below. Successful runs append to this tab’s temporary history; clearing history or closing the tab discards it. No per-transaction model explanation is available.</small></p>
+<textarea id="payload" aria-label="Synthetic transaction batch"></textarea><button id="run">Predict batch</button>
+<h2>Results and test alerts</h2><pre id="results">No predictions yet.</pre>
+<script>
+let csrf='',history=[];
+const $=id=>document.getElementById(id);
+function row(id,time,w='test_wallet',receiver='test_receiver',type='wallet_to_wallet',agent='') {return {transaction_id:id,event_timestamp:time,sender_wallet:w,receiver_wallet:type==='wallet_to_wallet'?receiver:w,amount_minor:10000,currency:'USD',transaction_type:type,channel:agent?'agent':'direct_wallet',agent_id:agent,serviced_wallet:agent?w:'',agent_flow_direction:type==='wallet_to_wallet'?'none':type};}
+function demo(kind){history=[];let batch=[], base=Date.parse('2027-06-10T12:00:00Z');for(let i=0;i<16;i++)history.push(row(i+1,new Date(base-(40-i)*86400000).toISOString(),'test_wallet','test_receiver','cash_in','test_agent'));
+let n=kind==='normal'?1:8;for(let i=0;i<n;i++){let r=row(100+i,new Date(base+i*60000).toISOString());if(kind==='structuring')r.amount_minor=12000+i*1000;if(kind==='network')r.receiver_wallet='test_receiver_'+i;if(kind==='agent')r=row(100+i,new Date(base+i*60000).toISOString(),'test_customer_'+i,'','cash_out','test_agent');batch.push(r);}
+$('payload').value=JSON.stringify(batch,null,2);$('results').textContent='Example loaded; prediction not assumed.';}
+async function call(url,body){let r=await fetch(url,{method:body?'POST':'GET',headers:{'Content-Type':'application/json','X-V3-CSRF':csrf},body:body?JSON.stringify(body):undefined});let j=await r.json();if(!r.ok)throw Error(j.error||'Request failed');return j;}
+$('login').onclick=async()=>{try{let j=await call('/experimental/v3/login',{token:$('token').value});csrf=j.csrf;$('token').value='';$('status').textContent=JSON.stringify(await call('/api/experimental/v3/status'),null,2);}catch(e){$('status').textContent=e.message;}};
+document.querySelectorAll('[data-demo]').forEach(b=>b.onclick=()=>demo(b.dataset.demo));
+$('reset').onclick=()=>{history=[];$('results').textContent='Independent test history cleared.';};
+$('run').onclick=async()=>{try{let rows=JSON.parse($('payload').value);let result=await call('/api/experimental/v3/predict',{synthetic:true,transactions:rows,prior_history:history});history.push(...rows);$('results').textContent=JSON.stringify(result,null,2);$('results').className=result.predictions.some(p=>p.prediction===1)?'alert':'';}catch(e){$('results').textContent=e.message;}};
+demo('normal');
+</script></html>

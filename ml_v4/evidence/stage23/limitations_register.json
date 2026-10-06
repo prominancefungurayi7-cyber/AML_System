@@ -1,0 +1,90 @@
+{
+  "limitations": [
+    {
+      "id": "L01",
+      "limitation": "Generic Zimbabwean mobile-money assumptions without operator calibration; artificial inventories/isolated local units; benchmark is not a natural prevalence estimate.",
+      "topic": "Synthetic data"
+    },
+    {
+      "id": "L02",
+      "limitation": "S1,S2,S4,N1,N3,N4,A2,A3,A4 miss original Train1200/Validation300 count objectives; no waiver.",
+      "topic": "Nine support shortfalls"
+    },
+    {
+      "id": "L03",
+      "limitation": "112 Train,23 Validation positives; Validation7 subjects/7clusters. Retained recall11/23;44-field improvement exploratory.",
+      "topic": "S2 sparse support"
+    },
+    {
+      "id": "L04",
+      "limitation": "128 Train,16 Validation positives; retained4/16. No net Stage22 improvement.",
+      "topic": "S4 poor recall"
+    },
+    {
+      "id": "L05",
+      "limitation": "Retained XGB0/12 exclusive Validation detections; overlap accounts for all4 S4 detections without proving causal attribution.",
+      "topic": "S4-only failure"
+    },
+    {
+      "id": "L06",
+      "limitation": "A1 covers1467 Validation positives and retained detects all; growth importance and correlated agent primitives remain substantial.",
+      "topic": "A1/growth dependence"
+    },
+    {
+      "id": "L07",
+      "limitation": "Used for selection, diagnosis and representation hypotheses; no independent confirmation from reuse.",
+      "topic": "Repeated Validation inspection"
+    },
+    {
+      "id": "L08",
+      "limitation": "Entities/episodes are dependent; row-based intervals are not reliable population uncertainty.",
+      "topic": "Three Validation communities"
+    },
+    {
+      "id": "L09",
+      "limitation": "Family recalls do not add and union-positive detections need not demonstrate distinctive family reasoning.",
+      "topic": "Family overlap"
+    },
+    {
+      "id": "L10",
+      "limitation": "Hand checks and separate arithmetic in the same developer environment do not constitute outside review.",
+      "topic": "No independent external audit"
+    },
+    {
+      "id": "L11",
+      "limitation": "Original holdouts quarantined with public supportFAIL; no challenge generated or scored.",
+      "topic": "No independent challenge evaluation"
+    },
+    {
+      "id": "L12",
+      "limitation": "Stage16V independent administrator/storage/secret/logging boundary remains unprovisioned.",
+      "topic": "Custody unavailable"
+    },
+    {
+      "id": "L13",
+      "limitation": "No representative real operator cohort evaluated; synthetic findings cannot establish transport.",
+      "topic": "No real mobile-money validation"
+    },
+    {
+      "id": "L14",
+      "limitation": "No operational PPV, calibration, review capacity, latency, drift or downstream decision-impact validation.",
+      "topic": "No production effectiveness evidence"
+    },
+    {
+      "id": "L15",
+      "limitation": "Stage15A broad historical preservation inventory remains incomplete; exact named checks do not repair absent archive.",
+      "topic": "Historical snapshot gap"
+    },
+    {
+      "id": "L16",
+      "limitation": "N3 selected-route loss and other omitted components remain; probability is not calibrated certainty of laundering.",
+      "topic": "Representation and approximation"
+    }
+  ],
+  "no_operational_claim": true,
+  "validation_levels": {
+    "independent_scientific_validation": "Fresh sufficiently supported frozen evaluation with independent custody/review; not achieved",
+    "real_world_AML_validation": "Representative operator outcomes and human-workflow impact assessment; not achieved",
+    "technical_development_success": "Verified feature parity/replay, bounded fits, saved-score arithmetic and reproducible development reference; achieved in documented scope"
+  }
+}

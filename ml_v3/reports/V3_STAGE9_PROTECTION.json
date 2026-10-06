@@ -1,0 +1,7 @@
+{
+  "after_count": 356,
+  "before_count": 356,
+  "changed": [],
+  "result": "PASS",
+  "scope": "explicit application/V1/V2 source and development paths; prohibited old V2 holdout files excluded"
+}

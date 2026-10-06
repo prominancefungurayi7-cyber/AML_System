@@ -1,0 +1,15 @@
+{
+  "artifact": "ml_v3/models/stage11_candidates/s11_09_hist_gradient_boosting.joblib",
+  "candidate": "s11_09_hist_gradient_boosting",
+  "threshold": 0.5,
+  "sha256": {
+    "ml_v3/models/stage11_candidates/s11_09_hist_gradient_boosting.joblib": "69b5e8a87b41f0b1ea383b4542d7969736033eb6b7c73a54ca5f53e7eff80271",
+    "ml_v3/src/stage10a_pipeline.py": "55efde1324ca559006a1dfc8f934d315c2a9c5722c934900090c4dbd019d2dcd",
+    "ml_v3/src/stage10a_contract.py": "3bef71de4059bc519698b204aea529f7c65d7fd48177d0651f137ef4bd8c380d",
+    "ml_v3/src/stage11_preprocessing.py": "dc42812f056ebb2892854109d189c42850f729b17afc4e9d12773000a6cabf59",
+    "ml_v3/reports/stage11_search_plan.json": "267b5e540bf8683376dca53cb1d5b044d634cfb26e0c849d0eebf2ae94a70264"
+  },
+  "sklearn": "1.9.0",
+  "feature_version": "v3_stage10a_features_1",
+  "selection": "Stage13 retained Stage11 reference; Stage14 shuffle and exclusion fits are diagnostics, not general classifiers."
+}

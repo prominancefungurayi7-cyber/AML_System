@@ -1,0 +1,3768 @@
+{
+  "membership": [
+    {
+      "block": 0,
+      "episode_id": "v2p_84bb5c7a1a89f781862518a65b5117b3",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 21,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_295a01c212983697d9656251beb945c5",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 26,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_3d701ac5bfc8706cbe12685f142e0825",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 18,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_c0a0e4ef28058cb2bc2afc6cce77e79b",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 8,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_548cd7cfd44e2351ec1f59b6ae2fa1b0",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_91704760011b90d4294b8ed4e10f523c",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 12,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_736f8551709539668ab3c107c494d990",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_79a123285191e6a5f00e3c1178f5e44c",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_88594894e407c8e78c2156a584cb19e8",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_74417e799081989fb2b1d5443bd7b553",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_66edfe6c978ce4856c427535c2df7146",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_95c519a71ea79497244dd04053892dc8",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_a4abe32dbcfa4d6bb32451b777fe96f7",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 20,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_701dc0fc15f653178ac4ade68cc966e4",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_5f44695107f51a5a23dc8340f5007907",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_a1697b7db44f08851a9ee8d9296da0a4",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_ddefaabb908d8da0f62da34ac19199ae",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_8385919f030e476844074cb7f7cdfc46",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_84597feb821c8186abe210ea9aca6f2a",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 9,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_3c56eddd57f25c0eff8345bf985d5115",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_a39243dc8ddb28ecf90514ba77d7cb06",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 15,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_71d7993d201684963f14e936532c86bd",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 12,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_735bf9ffb2bdd37a81976cffb2df3d97",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 26,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_e21565a3b04c613950e433fd84137f6e",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 5,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_3b6f0de8dbb98c8296e1c95d14cb446b",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 21,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_d874504b3cfc3e1deb98778991218224",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_4db302db12c94da4082c43fb4694efc6",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 19,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_5acda338539a7030554d099d8efe2e6d",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 21,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_c88f752bf1b2ec57282d7fcdce8ade1c",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 19,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_49893f7450bbb386335912652e9c761c",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 10,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_716e913c6ee8e984601734ed0a224c18",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 4,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_92617753f939db0eaa787965c904e256",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 4,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_a9cea7fc8668f228c1809d37ec2b4b23",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 13,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_f97a34b643fb6b50f94b7a786d9d0ebe",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 21,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_2d313df4dcf3807c8e06d79201719a4b",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 18,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_deb808d4131e331720293c860f87f8ca",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 14,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_dd80ef9959caa4225650bc4e5864617e",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 4,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_f147a09841226afb0ff97b2b1559c8f8",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_49eaf9d5325af0683aec2ba2a0a2de11",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 21,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_5e4756527eed33ecee99cecbcce22d46",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 11,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_03d50748addcc06b725d2702a141c8c9",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 26,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_1db269b62a1da657700c6ebab12ebdc4",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 11,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_91a1c40c606a7c3577848b60e73b71c2",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 6,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_4b068f83a4da23ea3bd1bdeb18bd2ad0",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 22,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_18ff3e3cb413b63ee6afcf653c7c7f23",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_301ef84335c7ed42a099ed30ce541710",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 28,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_f0bb4809a9cc8b1a1f3940dcc0c34e4b",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 19,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_3d0367a948dda25d3ae50059eec31996",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_511442e0fa2d45652f032741258b0d3d",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 9,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_5f4ff70ca5d552d3e79efeb8fcdec927",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_bd7e747173e90425d05be2f9a14729e7",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 14,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_8bc342edfb5de4c2a5ae2af97e62a9f7",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 4,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_00f3bb16fc8cf1379ca796a56e3ddd57",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 21,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_1031478cd56374dfd851cc5eb14399a0",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_a8c5427b8c186fea712bb03caab75bfa",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 26,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_6bdc4de6cfc609d14c99f177dde647c7",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 13,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_8697d88cd9ced07c141a7adce34a3a04",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 16,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_bb1da17aca458c7cb41f4a25afc3bde5",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_db86e1ec86d93b49c0bf202cd92fd8b7",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_32d92d0ae0d3a80a7227a4d0460c8d6d",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 5,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_185b0423d352e25b53b0141038d5618a",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_27444b8d018edb8ebf77133904b1f742",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 6,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_77be5c4c0490285fdc0366c32fcd3c02",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 20,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_631341b336161d869a9175431302a159",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 26,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_6d04efa3e8f15fe8b2a895ce1f92653f",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 4,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_345530e41ff9fcc3cc3a747272c18552",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_cfaac351c8dec9e38743c837ad34a61d",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 13,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_4c4956580659e4397313a5a13920cd74",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 23,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_1f1ec8f21c4b054a12bcbb88c9384e54",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 16,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_32b2238c83a577bd3dbbfc50c1dd01b3",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_29a8e9381a429ab09ca108243241d60a",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_7f1ab3526ff44d42362f337b54abd80c",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 4,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_3b1a67a0d026c29a250da21f3ada9186",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_4c4c119c302f3bed30adafba5070ac58",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_e34f903eb996953839199e97183de2cf",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 15,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_02ebfbbae7659dd44822c284cee429bc",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_0113f274d1241a2c497decf43a1784de",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_01d84c279e8ef053948014da5a47a388",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_1aaf990e14daa200ca6bdeec28527944",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_ba4cc48f2ede31bc7dd93c247e10fc07",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 18,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_7a6a7edc59ee45fe6ec33139b0a0dea4",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_e468374358df6dce36b285522ada7954",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_9b94d03279914cee0d0c0d0b778f5f1c",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 20,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_4f7fcdc12ce992999a2fa671ce2ca63d",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_b6df3c3d5873b1ba4b6d83cc73f6f657",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 5,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_59a9564051c9e62a8dddef92f5ca5dbd",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 26,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_ae33e496fb171986358c595da390ce58",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 20,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_10cd4730fca244e62863c8d5c31371cc",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 20,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_7dbc3e38cccb0b54c4afab9628546351",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_6e0c56014b4f41a672df72bf5925a2b7",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_b6089176fdae374cdcf653e75f25087c",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_bde78591df7e5fedf5c07e855641858c",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_4c7c27ca2bb4a95fb221eb2299e1fffd",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 5,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_a95cc1df88f9aaa6bfcbc243690ed04e",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_88a57236cdcf1beec7f9facd434a7eb6",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 5,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_a13ef5121ab01610b89bdb27196745ce",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 4,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_aef4ac80cbbb49701830f5a796bf6688",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 9,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_65baa06f1a82391a7b16cc57e5798b0c",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 6,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_53f140c930a4c85c7b905a501ad46018",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_64d5a7932ec3cb9dc88da5e4fee5a2f6",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 7,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d119e224de9e27d2c4abcaf3cfb49857",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 8,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1893f15b068f3eff4887eee4052499bd",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_484a72b773ea2f46872e1221774b49b5",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_57047f29d310600f9e3022ce8916514f",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 13,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6a756f8d34c7ac6e9443ed6b08778a02",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 14,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_3b39bf89361aa85387992f59eba041dc",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 7,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1f9d7ed64b5bbb4a4b0492d0f25f3a7c",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_7fb24410e5cd4991689eba43c056ae89",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 17,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d3f3a95c24d0c3f70d6fca93fb770f12",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 24,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1d46f040a773578b824f22bc6d262e24",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_7179275394f0d70f403d507fe20939ee",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 11,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6db0b3f46914f9d0de93e20fcdb29b40",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6bc8d99a04227b2b2499b75bc78cff52",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 15,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6a159b56d860f046fd8511aa758ba2df",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 7,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_8fcca40dcd4d354cdcc501c40967a573",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d13e2b9296dda1f87ca630716363df42",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_bf2cde949c7a02d7af7c3cbba5dd29f4",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d103491f73be481e3ba3e60b0a404037",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d38f5d0b43d4cf6b5f1c45f2ce29b77c",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_98c519d7a7bc8c4762cca617ea9801fc",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 24,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1fb9614ca534e1eda297c80c49882468",
+      "family": "A1",
+      "pattern": "A1",
+      "size": 11,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_e17ddc09e608e1fd6c2b02236647e829",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 16,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_10cddc5ab883d3662ccbc3ac0fcd7e60",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 5,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_ceedb4b547928ce0f5744977fc29ce00",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 20,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_cf44969ac169fe882edc4ff9c76a7ffa",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 23,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_e4c3220e0f6caa6a0a892cc7bbb29e24",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 14,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_ad1c6b37bc798a055cfee25b95518321",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_a78eed469cacc0c01a9eced51d2c8b37",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 18,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_7decf1b1daad3889cecb95d83b64042c",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 5,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_c0347b423d1a974dfd644abd43f5597f",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1fb361d2e3a3de790d69475142ae3c37",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_696fd5ded83727b8031da2ccd10dd345",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 4,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_8b3b364d62302a2ce992fffbdb3eedf6",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 20,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_34066b63c78e2e51c1ae3b0852a155a7",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 17,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_fdc69f8da9b1db8ef18d6ffc97fdb7fa",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_cd9f212458f10a178eff584a9e5bbd8a",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 29,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_7fb32e3a3f440bd8bf5d4eecb26bb603",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 9,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_740315e5036fa2d824c0e1382dea1160",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 24,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_3c4774b6e9732cc816ceca7f5be8f8f3",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 28,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_50fb2e295215342fb258ae6082e01cff",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 12,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_574d1ff0ad1317971bd5e30adaafc16a",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_0154b92f7c911649337dabfa928e5fcd",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_0420381643bf2fadd48c858edb56041b",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_12087eb757b5920871b7f24473bf00f0",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_dc99b5380c97329ef3b4120e68d95713",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 19,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_b795f678cbca32b776a2c5b5be9632bb",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 5,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_a31fe8d8b7c9e3346f5471be9eadc293",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 14,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_68c27ca2d78c6dda5b8edcde8782c65a",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_c70ec1005311af49826438f74dc68847",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_2ad66960763ec8afc2c6b715722bddb2",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 24,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_b8b9c1b4f197ab1a1a5fee31e1d370ac",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_6dad0f7cf6d61d13bc6110a4287e5853",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_c83bcb1a32c2b2aa0c7140a21fed9fd9",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 17,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_7e1db70711bba6a0bab55d81d49ae7aa",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 8,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_14f06a13d4c49088197aac143adb5220",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_ed1c5f7ba8c68f5f2eb1e03f3facf873",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_00aa26652f888ba763789debe6c45b21",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 27,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_546717b35e9c7446e559c932949ea1b3",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_a91e40ea5d907bde1193a43ef872b5f4",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 15,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_d9f7acaa624b0394b2acd08ea7ca2a2b",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 17,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_6f3f1b2f4bdcf5201a689cb96783a1ba",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 9,
+      "strength": "weak",
+      "target": 1
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_bb62f9bf754fc1941c019fdf42373b35",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_32941e7fddcbff3915979798ed188cec",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_fa52ddac7ad87c6e258349dcf2c7b829",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_b4d07de1da6b2dee089826fe43b7431f",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 22,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c9622ec4cad366e08840ee05b4356031",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_9f1827f661fa9c0dd1c473158572e868",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 7,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c1e79dd1c57374f3394e787fc2e23de8",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 4,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_f98d27b9280e665833eceb04cec9506f",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 4,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_e9dd43602007ec9dbc9eb3f8251b5019",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_da9e5932a10a6398fbf13cb18a2c045b",
+      "family": "A3",
+      "pattern": "A3",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_73f17f037d3158e17a9feff33cea8639",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_17b97dbe69cc6e075e4ed294a1250d78",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 13,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c914e5679c8b5342790d509f6f90cfdb",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 4,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_d1c09ececb10fda52317b9bd379cfc8d",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 10,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_f03025a65d2c3fc7ab5c7879f41ae7dc",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_697378ed0f0d90f0bb38bf62f5b7df3d",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 19,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_b63fc9eee16519165d664839fc49b002",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 12,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_eb89258d317072dee3de9f6b6b0e8127",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 20,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_5bc033166b03f0f301ff932c2580a31c",
+      "family": "N3",
+      "pattern": "N3",
+      "size": 7,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_8cdba720e086527692f2a8c72d17905d",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_cc92c41d1abc50065ac05d3ae75322ed",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c44f3046b4fff31a675f516d9b24811d",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_54a6820a56a51a952bce7d4ac5b4aea7",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_ffc39251b5510a75c90e443cd57ee307",
+      "family": "S3",
+      "pattern": "S3",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_814a6a988ef0cb3431ff6cc096090071",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 9,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_49dea669beef8ecef98407bc9ad5fd25",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_8607839a53645e8b290f4e721fbee390",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 5,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_17d40060de4bff102b4f1e3f40a29148",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_7df963f381abdcd447b922506e70a1df",
+      "family": "N4",
+      "pattern": "N4",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_a9dc2d27073d05b865c85829a1d6a896",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_9720fda74c4b259ae91d710446372c1d",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_361bcd0157d6a2c31c278343f91eb096",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 6,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_d888ae2d489afdd42ebceb76ab9ee2f6",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_e35ec4616c2d2ff9f01a08b345a28fac",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_33c311f294037bcfbcc54f072c34927e",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 10,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_f2f9c2784ba33328a9cc3a57a159722a",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 4,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_cd1738641b7a0f10a803f4bb2be7da1a",
+      "family": "A2",
+      "pattern": "A2",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_7ef07384dfbd67a7c16d22e15fb7fbc8",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 11,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_1b03fa8875d6ef03a7f2f399b01920e4",
+      "family": "N1",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_384d857d383a1db311c5d7c0bcbedea8",
+      "family": "S4",
+      "pattern": "S4",
+      "size": 14,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_26ae42011127ed759b98cb849785ac09",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 19,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_8d9a8b84af96b6e2af1c03760d623c4c",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 5,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_e60dbc9fc5b3880e3f50d4ee868b21f0",
+      "family": "N2",
+      "pattern": "N2",
+      "size": 5,
+      "strength": "strong",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c68200d7417154dcc9f9ae306f3a92ba",
+      "family": "A4",
+      "pattern": "A4",
+      "size": 6,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_03752cbe82ebe09f0307ba5637d9d6be",
+      "family": "S1",
+      "pattern": "S1",
+      "size": 5,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_8b1b08e953ba132c45ad5de48bad82b1",
+      "family": "S2",
+      "pattern": "S2",
+      "size": 8,
+      "strength": "moderate",
+      "target": 1
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_edfb6b1736d577617481975c03e3585e",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_25d837acd13eb54d22389f6b363c5ebc",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_ce9bf9081a9ceb3ad615bfd5662bb791",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_0ac54bf82b2506ec1b94bb5dbb584308",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_82f4e3ce021a2061efad8b42918d9e08",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_e598b5bcd3fdc4170ac0f519425ab068",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_3b8e400910bc7db7cfa1759b04af7f0f",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_0427fd16b19af143559fe639fe49b27e",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_c2d7c973df4fa0a0c48b4d4e2d36437b",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_34aa57c7c747075ca2ac8c633cde1b25",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_8e6a1ad38c17c282de1731adffffd7e7",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_5f15b6e3a54d96251751b16e98f046c2",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_fafa9f8bb8d2ed953f8f3a2074ae7fe5",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_2912388ef70f49433885ab13a163b81f",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_b216a6584cdc815a472f4f28d5186f20",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_6cd7fe9fe76351d966ac905c78327f2a",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_c6bfd33ba8f30d606118f26b49fef0e9",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_0f1e89f8bcc78843e84d3fd99e6b67e5",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_12ea4161f5c1ae7390c9b6c354c446d1",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_af15774f897d7e61bc8c8daf24529604",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_d029be91bc8c33fcbe1297887458bc23",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_5a367e9e6530c2c958f62e1977a1b95b",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_5a19d5904d69bec478b55d637b1c4e48",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_bc6a277b7d38055aa5f775f37b8d8c17",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_e2e7138ebd07387f209b3401be1802f1",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_202854962e05e73337ad0b1510b8a115",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_f2630b695e0eb213135955547c9b3fbe",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_f85694f07774aa67af7ac1c33facbb30",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_084e2560fb985187855ab75813e9b306",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_0e92d9cd1abbd7a2ccda64ce3e3409da",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_1669a21c9c66452a3d5f84bc157cf0db",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_f7f0683a040d98919f8b2dc76ddb9291",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_5d120012e007d3db85c97b46ce03528e",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_46fd33092b3175aad04d817c3d0dd5b1",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_f45b93f2c24f35a72416164193f3adb1",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_cacc09a7de3a0b00a83cf4af3f6c48fb",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_af87aa3c22f87de1a255c5874ab30e1e",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_c0f283eae7132bfd66c2d651e0486974",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_4952bfc446b8527a566909e299ba8586",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_254491f5f3e2230fbbafff867b2e2b98",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_fddcaf65ce220ce52254347b1d8aefca",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_9a32ec1b48ac10275e52c90c6dd20e2b",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_cba8d4c9e32038c2ed2bb979fc5c01c5",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_84738e9ab208ec0b23da760a14b1b9e5",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_28358e640c6ee443c8d7f6d02a6871a6",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_7b165c59948416fd1f39814edd856642",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_46232e34699ed861bc147d986f1c9363",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_25218f4362ea94c1e492bad9ef793f76",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_6a9d2f18be5660370b759bc3d862be81",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_203b88f3a9f725842d931921dda691e9",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_e2e122a33d7ed707e26d34c10d82eaba",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_b3316adde0a59fd8856fbcb950604d46",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_2bd83e222132addac96695fb8c4c5983",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_df6a1b7d04bcaff2ed2d27464700c74e",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_78898b9641f85d232ef94894e6cdfa2b",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_d4862a7cf0b5c096f54699f35f2e1c5d",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_262e4d435e6d6d4a323c8bbc744b18af",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_5ea9f2269b0f05337def100e3723c619",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_7a2e692606df20a539d7d0d5b7ce12c1",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_6dbdfeeef0abdf0b5a80aee4e91f0c2f",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_0aca068866032085f4b20583d5052aec",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_7e8ff88ae4b716a3d9c90344f9de6ca0",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_c46b01626bd602060e2750875ff7b2b8",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_3c3c05aed63545186247c7c65879031e",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_c22f2d752988799a648d37e1b6d5480e",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_9510cc8c15b3248c0c4d038dd6abce3d",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_b829eca0e8ecabb937240d7c02389dbe",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_f165c0c3860fd43ea22d160a5a0bc1b9",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d9224f03c99ba07a741c4dec56bb020f",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_a8c42eaa43d1ff59e842b5e16454d4c2",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_a8808a4fa64629b9d86c1364e8027be6",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_7b56c7f60fcd881319f9ee79fb1274a1",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_efd9f670035fb2331d96b5af2ed9659d",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_6ab5e7ffd165f4a8eb9e1b1b06b80d6d",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_4a51af0e0bb848ce557faab56812b1bc",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_db7427ba1b707f3f128121eea3904cee",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_61c5a17eb94319c8677b6ed555aa1a16",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_58aea390c70a29f52f074dc6f6009b70",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_07fc623ec7670dadbf47989157656e0f",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_68723aeb481d6f8eb22c761dbd41eedb",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_e22914217e46b172628ec72dd0964c27",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_b63e9cba7392bd52eab8c989b78736c9",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_225cc04d2df37c51b934a1a6bba85565",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_e62e455e8c15798a9009d4aa89ea9ff7",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_0c527de4a9deec3a31c9c8541cba0d89",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_be0f20597df5002cb42a602f70b0567f",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_883d558691afb67940f430f09288075e",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_0167731474b14eb92c62c761f724758d",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_02ccca1d3ecd37f74de8e7748cfa55e0",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_390e65cf587979d01dffb34586e101fa",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_7ca1be8275313fc7fb6abc4a34ca028f",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_016cecb4a49b0b84fdcd202fd4517b46",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_e54b3f7bdec71cff0ae1a484cf4d3227",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_245bc63640ae55799e5786d7777a2a34",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_acd8364240b0de3d58673542893ca4e0",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_6fbce4a836afb0bd7c805f5e181ec2c3",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_0d8eebd00bc98d9f4d220ce301cf9940",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_677ba01ddb8bce5163366e6f3e2526d0",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_ac8c50d482735be8c00b109e58a0e262",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_b6887c043bb27b828f8140dcc650bb3d",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_b7f492504f67c6dd0292f9fee94a6339",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_08dece1b8900caeac9e98eaf3f82075a",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_9f01f1e6de02815c351f0b357e7a6988",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_2434c720d88f828151671d8a62430fa8",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_342490d84db2aa793aff5cbae603de3d",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_f8eb2ab9138ec6f25d34fcc48cfc95fb",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_21be09088cf80a1627896fab63993ed8",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d0beed944542e214dfd8f5736948d2a5",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_05fc660bd70dab79204363e20212ca34",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_5ba539bbff6066350b165431edb72c57",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_d18e11e7ea320458e6c868cc81f53096",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_e4d9d4ec03287dda1f604b293ab799b9",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_80eb25b77a84e92958fdefe818bdfa9a",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_a2b1ddaa1eecab108ad788de59db6260",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_90c0329804381a8508644b8ac077a96b",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_73e8783af3a6475c28d655dec0b34177",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_7dcb3138984ba80edf7ceaa036295291",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_d59cbedf0d7aff0923ca331aa186ebb8",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_b54a7a361ab1ed8780ae0da2a6de9267",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_0f61e7d03f0c987897bd6c716ec6f8d9",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_b1c4625b8e2e105ccb94a8e6ecb549d0",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_88914b25e47a5981e6e4b8322c432691",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_ef8e86e644eadbe34966918979ec8c8b",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_eec8b564a60946beb246a2e300038409",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_ffdccd7ef907a68e33a2cc13e5ea072c",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_af5e65888bb833f495fec773e0069c75",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_271e7cd39cec3c99c7323f06aa63d2d9",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_d36ae3c8771f4bdf9f0bed62c51622f4",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_27633b36f0cf8e6367a24bd1a6fa7cd0",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_b9181610c7c6eeb521d3ba7b768e00dd",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_6c02431bcdc70cb69a0bc567c80b83f2",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_3e1054eb55eb5d0a69f34347cba9d094",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_8b3687d46e48fced6bb27cd8054d86c8",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_8b684a13b1ae0bf419fbca362daeafd6",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_5096337278766b0aa2e7b18397920b35",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_1ae45d844361f9df6ba58b678c3d08a8",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_5a6f7629df1a37b5aff167dc4fb81269",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_e95a99d6f0798276f83e81647d90739c",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_9a14d0f290f92a0dbb805c890e86d190",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_164742d4312146735faf0a74e294e323",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_822cac4db1dd0555e780d82bdec51278",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 12,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_35d9076dd186ab12434f15cc773a0b4d",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_2bca576c123866937e760bb5676030d1",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_cf484bef1fc2f6ebcc52d2b6e05c0fc0",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_1041c2f0ab44979d0ad43ace05c2a5db",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_345d08ad5064c51dd53338a170983c73",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 9,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_01b2d083b917a81905a8ce8af5b7bf83",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_112ff4e80bcf994586f7bb129fa800a7",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_b8cb16c524c8deb023129b949908b825",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_c3aabbf4440e8b1db77f420fcb80e40d",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_3602d1a512ee86cecb151b401c7e5d25",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_139f548a3bc77f747588fc302f50e5de",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_27625c18b89756ec0f0befac81564136",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_8dfbb783728d4422fb5133f975b5dd61",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_991216a3ce0cf1f85a57277404ed7a5b",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_ecd5e10621d2cf54afc9f6ae1f39559c",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_bd8fe6180bfdc32dce601bd583794e95",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_c061cb6f9df96677c010e501e987d189",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6d2efb7bab502a2f93c62a9c96529d20",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 18,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_69f7e8b0cdf6e4f64d830aee47cb255c",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_40f39a7e882af15e0963bf49bcb1f6eb",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_aea7fe36dab6d991f24445f0f8188ade",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_0e394f0f6cc6104730fe96e2d8379734",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_d5930141fe4ae53a679e371d3fbbc588",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_f5262c39b981aff1931960fb9199949c",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_dffed0c9eb85bcea0498d0d39d9afbb9",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_18e01b2c929db25890b2ccc2e29de547",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_bc9e6d9dd16d88cc88f39ed3a23c8f2c",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_12fd01e92719d9c617468418b14faa83",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_569b804afd05c6603234b40ce9d35dba",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_c2b7d0c8deaa47cba6b3f5719925eeda",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_fd811af0d863bae5c49c6ba5ffeaba1b",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_b2d1ee5027ad6c28aac542e3807923a3",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_b2ccbe9afdb379f90d53d738012a2f50",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_c159800e9f820f3c01e2556ed93d0dd6",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_aad7f407e5aae0cb1f504f60fe6eb71d",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 8,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_cf219fac8dacd3a780b27971bc88eef3",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_55b4116bc6116f67e53af352fb64b1c8",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_a3a09b2b95e8e8701406039826e77815",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_b850c166d6b6619147e6066372e1c5e6",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_f855eb57d9fb95ba1a47afb269d823d7",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_bd68ea2badefd2bca6436b860896a968",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_a3f19e10ca5c6e39e7bccb746c323141",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_29ffbf301dbe3e49cd021fbfe6b7b260",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_cc2285c4a499914d3fd9161ef6d868d8",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_453917f2788079ba4c2308de78631bdd",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_d72d190818758c084031d291d2be1b95",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 22,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_51790727ad9b281eb99fb9e9505d5ba0",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_53854283b85c2b53c22ef996aa08d3a3",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 16,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_6273dc8ee33d210d3414d90075edd838",
+      "family": "H2",
+      "pattern": "S2",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_17ab95e28e4170625d932a281fe4405a",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_3a9a87d80fff7c224b98583630fbd254",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 10,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_6b52bf29b7a2e37bf5589b3e10f127bb",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_3a429ed51ec34b695198640023027b50",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 6,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_6e5a728718fa423f419f2fac8b040f96",
+      "family": "H8",
+      "pattern": "A2",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_60db9fe4b63a6be2c6ef6db3a2691e4c",
+      "family": "H8",
+      "pattern": "A4",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_55f14fdac55aefd376a331653161e379",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_35fde55cf2750599178a2cc6e2b04762",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 1,
+      "episode_id": "v2p_01a5320df6fab93d255e96a149b12fe3",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 7,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_9d7f60167ebf213b8c242110c1abf375",
+      "family": "H5",
+      "pattern": "N2",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_e0d78986effd6cffc7de3209c93ffd96",
+      "family": "H3",
+      "pattern": "S4",
+      "size": 20,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_530559c615f0129bafac2f00e9cf3401",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 13,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_8333087669f3ed183352bd534f043222",
+      "family": "H6",
+      "pattern": "N3",
+      "size": 11,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_75177a046cc5fd52ec0b12ea4e6cc0c5",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_50d42c5b9c0400bd1c91068af6222e28",
+      "family": "H7",
+      "pattern": "A3",
+      "size": 15,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_2b87dc61b753c81d1d950b5b85d5df0e",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 14,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 3,
+      "episode_id": "v2p_dc191413d813c19ed107d673df0fcabe",
+      "family": "H1",
+      "pattern": "S3",
+      "size": 23,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 5,
+      "episode_id": "v2p_cdcf1178c701bfe4d3b839231def4dc6",
+      "family": "H1",
+      "pattern": "S1",
+      "size": 19,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 0,
+      "episode_id": "v2p_db08c82fc0464f166b1c89407ee3c5bb",
+      "family": "H7",
+      "pattern": "A1",
+      "size": 21,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 2,
+      "episode_id": "v2p_b2df6977053c4b1c5551fafa3c864c09",
+      "family": "H4",
+      "pattern": "N1",
+      "size": 24,
+      "strength": "",
+      "target": 0
+    },
+    {
+      "block": 4,
+      "episode_id": "v2p_9b8d3dc83b3de8a184e1ff1eb3e21d89",
+      "family": "H5",
+      "pattern": "N4",
+      "size": 17,
+      "strength": "",
+      "target": 0
+    }
+  ],
+  "sha256": "82331fa83f1619e459a1aa1b8acf8b6aaa5013335a41b39d2f885fa5514e1eae",
+  "stage": "committed in memory before materializing event facts; no downstream scores"
+}

@@ -1,0 +1,1887 @@
+{
+  "clipped": {
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "columns": [
+      {
+        "clip_limits": [
+          2.0,
+          24458.73185
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "current_amount_usd",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 189.82999999999998
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_in",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_out",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          2.95,
+          99402.45929999981
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_value_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1105.57
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_utc_day_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_active_hours_utc_day",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_current_amount_cluster_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.25
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_band_share_7d_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_count_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 10149,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_unique_sources_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_inflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "receiver_inflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 14726,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_unique_destinations_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_outflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "sender_outflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 17046,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_return_path_length",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": [
+          0.00021029916180224155,
+          4030.198550113081
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "current_return_amount_ratio",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 58858,
+        "train_observed_median": 0.7217208751718127
+      },
+      {
+        "clip_limits": [
+          0.0,
+          2228.4903388158023
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_observed_onward_funding_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 31696,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_prior_funding_age_hours",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 46936,
+        "train_observed_median": 11.769873767083332
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_service_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_service_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21693,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          0.27586206896551724,
+          6.571428571428571
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_wallet_growth_ratio_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 1.1538461538461537
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_new_wallet_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 0.875
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_top2_count_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.5
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_top2_share_change_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23014,
+        "train_observed_median": 0.4469726352079293
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_value_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_count_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_cash_value_skew_change",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21998,
+        "train_observed_median": -0.05330640761686421
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      }
+    ],
+    "feature_order": [
+      "current_amount_usd",
+      "current_is_cash_in",
+      "current_is_cash_out",
+      "wallet_count_1h_inclusive",
+      "wallet_value_24h_inclusive",
+      "wallet_count_utc_day_inclusive",
+      "wallet_active_hours_utc_day",
+      "wallet_current_amount_cluster_share_7d",
+      "wallet_band_share_7d_inclusive",
+      "wallet_count_acceleration_1h",
+      "receiver_unique_sources_24h_inclusive",
+      "receiver_inflow_count_24h_inclusive",
+      "receiver_inflow_acceleration_24h",
+      "sender_unique_destinations_24h_inclusive",
+      "sender_outflow_count_24h_inclusive",
+      "sender_outflow_acceleration_24h",
+      "current_return_path_length",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_count_1h_inclusive",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_count_share_24h",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_24h",
+      "agent_cash_count_skew_24h",
+      "agent_cash_value_skew_change",
+      "wallet_history_coverage_days",
+      "receiver_history_coverage_days",
+      "agent_history_coverage_days"
+    ],
+    "fitted_partition": "train",
+    "indicator_omission_reason": "Strictly frozen 32-column model input. Imputation loses explicit unavailability; sentinel-preserving comparators retain it.",
+    "indicators_added": false,
+    "input_count": 32,
+    "mode": "clipped",
+    "output_count": 32
+  },
+  "imputed": {
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "columns": [
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_amount_usd",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 189.82999999999998
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_in",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_out",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_value_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1105.57
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_utc_day_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_active_hours_utc_day",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_current_amount_cluster_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.25
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_band_share_7d_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_count_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 10149,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_unique_sources_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_inflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "receiver_inflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 14726,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_unique_destinations_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_outflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "sender_outflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 17046,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_return_path_length",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "current_return_amount_ratio",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 58858,
+        "train_observed_median": 0.7217208751718127
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_observed_onward_funding_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 31696,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_prior_funding_age_hours",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 46936,
+        "train_observed_median": 11.769873767083332
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_service_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_service_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21693,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_wallet_growth_ratio_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 1.1538461538461537
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_new_wallet_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 0.875
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_top2_count_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.5
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -3,
+        "name": "agent_top2_share_change_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23014,
+        "train_observed_median": 0.4469726352079293
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_value_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_count_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -3,
+        "name": "agent_cash_value_skew_change",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21998,
+        "train_observed_median": -0.05330640761686421
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      }
+    ],
+    "feature_order": [
+      "current_amount_usd",
+      "current_is_cash_in",
+      "current_is_cash_out",
+      "wallet_count_1h_inclusive",
+      "wallet_value_24h_inclusive",
+      "wallet_count_utc_day_inclusive",
+      "wallet_active_hours_utc_day",
+      "wallet_current_amount_cluster_share_7d",
+      "wallet_band_share_7d_inclusive",
+      "wallet_count_acceleration_1h",
+      "receiver_unique_sources_24h_inclusive",
+      "receiver_inflow_count_24h_inclusive",
+      "receiver_inflow_acceleration_24h",
+      "sender_unique_destinations_24h_inclusive",
+      "sender_outflow_count_24h_inclusive",
+      "sender_outflow_acceleration_24h",
+      "current_return_path_length",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_count_1h_inclusive",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_count_share_24h",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_24h",
+      "agent_cash_count_skew_24h",
+      "agent_cash_value_skew_change",
+      "wallet_history_coverage_days",
+      "receiver_history_coverage_days",
+      "agent_history_coverage_days"
+    ],
+    "fitted_partition": "train",
+    "indicator_omission_reason": "Strictly frozen 32-column model input. Imputation loses explicit unavailability; sentinel-preserving comparators retain it.",
+    "indicators_added": false,
+    "input_count": 32,
+    "mode": "imputed",
+    "output_count": 32
+  },
+  "raw": {
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "columns": [
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_amount_usd",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 189.82999999999998
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_in",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_out",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_value_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1105.57
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_utc_day_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_active_hours_utc_day",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_current_amount_cluster_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.25
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_band_share_7d_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_count_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 10149,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_unique_sources_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_inflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "receiver_inflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 14726,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_unique_destinations_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_outflow_count_24h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "sender_outflow_acceleration_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 17046,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_return_path_length",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "current_return_amount_ratio",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 58858,
+        "train_observed_median": 0.7217208751718127
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_observed_onward_funding_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 31696,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_prior_funding_age_hours",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 46936,
+        "train_observed_median": 11.769873767083332
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_service_count_1h_inclusive",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_service_acceleration_1h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21693,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_wallet_growth_ratio_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 1.1538461538461537
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_new_wallet_share_7d",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23057,
+        "train_observed_median": 0.875
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_top2_count_share_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.5
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_top2_share_change_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 23014,
+        "train_observed_median": 0.4469726352079293
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_value_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_count_skew_24h",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_cash_value_skew_change",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 21998,
+        "train_observed_median": -0.05330640761686421
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_history_coverage_days",
+        "scaling_center": null,
+        "scaling_range": null,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      }
+    ],
+    "feature_order": [
+      "current_amount_usd",
+      "current_is_cash_in",
+      "current_is_cash_out",
+      "wallet_count_1h_inclusive",
+      "wallet_value_24h_inclusive",
+      "wallet_count_utc_day_inclusive",
+      "wallet_active_hours_utc_day",
+      "wallet_current_amount_cluster_share_7d",
+      "wallet_band_share_7d_inclusive",
+      "wallet_count_acceleration_1h",
+      "receiver_unique_sources_24h_inclusive",
+      "receiver_inflow_count_24h_inclusive",
+      "receiver_inflow_acceleration_24h",
+      "sender_unique_destinations_24h_inclusive",
+      "sender_outflow_count_24h_inclusive",
+      "sender_outflow_acceleration_24h",
+      "current_return_path_length",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_count_1h_inclusive",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_count_share_24h",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_24h",
+      "agent_cash_count_skew_24h",
+      "agent_cash_value_skew_change",
+      "wallet_history_coverage_days",
+      "receiver_history_coverage_days",
+      "agent_history_coverage_days"
+    ],
+    "fitted_partition": "train",
+    "indicator_omission_reason": "Strictly frozen 32-column model input. Imputation loses explicit unavailability; sentinel-preserving comparators retain it.",
+    "indicators_added": false,
+    "input_count": 32,
+    "mode": "raw",
+    "output_count": 32
+  },
+  "robust": {
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "columns": [
+      {
+        "clip_limits": [
+          2.0,
+          24458.73185
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "current_amount_usd",
+        "scaling_center": 189.82999999999998,
+        "scaling_range": 2636.175,
+        "train_missing_count": 0,
+        "train_observed_median": 189.82999999999998
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_in",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_out",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_1h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          2.95,
+          99402.45929999981
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_value_24h_inclusive",
+        "scaling_center": 1105.57,
+        "scaling_range": 15064.857500000002,
+        "train_missing_count": 0,
+        "train_observed_median": 1105.57
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_utc_day_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_active_hours_utc_day",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_current_amount_cluster_share_7d",
+        "scaling_center": 0.25,
+        "scaling_range": 0.19047619047619047,
+        "train_missing_count": 0,
+        "train_observed_median": 0.25
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_band_share_7d_inclusive",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_count_acceleration_1h",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 10149,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_unique_sources_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_inflow_count_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "receiver_inflow_acceleration_24h",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 14726,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_unique_destinations_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_outflow_count_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 2.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "sender_outflow_acceleration_24h",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 17046,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_return_path_length",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": [
+          0.00021029916180224155,
+          4030.198550113081
+        ],
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "current_return_amount_ratio",
+        "scaling_center": 0.7217208751718127,
+        "scaling_range": 1.0,
+        "train_missing_count": 58858,
+        "train_observed_median": 0.7217208751718127
+      },
+      {
+        "clip_limits": [
+          0.0,
+          2228.4903388158023
+        ],
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_observed_onward_funding_share_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 31696,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "wallet_prior_funding_age_hours",
+        "scaling_center": 11.769873767083332,
+        "scaling_range": 1.0,
+        "train_missing_count": 46936,
+        "train_observed_median": 11.769873767083332
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_service_count_1h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_service_acceleration_1h",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 21693,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          0.27586206896551724,
+          6.571428571428571
+        ],
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_wallet_growth_ratio_7d",
+        "scaling_center": 1.1538461538461537,
+        "scaling_range": 0.26731078904991956,
+        "train_missing_count": 23057,
+        "train_observed_median": 1.1538461538461537
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -1,
+        "name": "agent_new_wallet_share_7d",
+        "scaling_center": 0.875,
+        "scaling_range": 0.04814814814814816,
+        "train_missing_count": 23057,
+        "train_observed_median": 0.875
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_top2_count_share_24h",
+        "scaling_center": 0.5,
+        "scaling_range": 0.6461538461538462,
+        "train_missing_count": 0,
+        "train_observed_median": 0.5
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -3,
+        "name": "agent_top2_share_change_24h",
+        "scaling_center": 0.4469726352079293,
+        "scaling_range": 0.1524736990698089,
+        "train_missing_count": 23014,
+        "train_observed_median": 0.4469726352079293
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_value_skew_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 1.4793132641720832,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_count_skew_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 0.5333333333333333,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "train_observed_median",
+        "marker": -3,
+        "name": "agent_cash_value_skew_change",
+        "scaling_center": -0.05330640761686421,
+        "scaling_range": 0.7345337018608996,
+        "train_missing_count": 21998,
+        "train_observed_median": -0.05330640761686421
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 24.10907842994213,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      }
+    ],
+    "feature_order": [
+      "current_amount_usd",
+      "current_is_cash_in",
+      "current_is_cash_out",
+      "wallet_count_1h_inclusive",
+      "wallet_value_24h_inclusive",
+      "wallet_count_utc_day_inclusive",
+      "wallet_active_hours_utc_day",
+      "wallet_current_amount_cluster_share_7d",
+      "wallet_band_share_7d_inclusive",
+      "wallet_count_acceleration_1h",
+      "receiver_unique_sources_24h_inclusive",
+      "receiver_inflow_count_24h_inclusive",
+      "receiver_inflow_acceleration_24h",
+      "sender_unique_destinations_24h_inclusive",
+      "sender_outflow_count_24h_inclusive",
+      "sender_outflow_acceleration_24h",
+      "current_return_path_length",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_count_1h_inclusive",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_count_share_24h",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_24h",
+      "agent_cash_count_skew_24h",
+      "agent_cash_value_skew_change",
+      "wallet_history_coverage_days",
+      "receiver_history_coverage_days",
+      "agent_history_coverage_days"
+    ],
+    "fitted_partition": "train",
+    "indicator_omission_reason": "Strictly frozen 32-column model input. Imputation loses explicit unavailability; sentinel-preserving comparators retain it.",
+    "indicators_added": false,
+    "input_count": 32,
+    "mode": "robust",
+    "output_count": 32
+  },
+  "robust_sentinel": {
+    "clip_quantiles": [
+      0.005,
+      0.995
+    ],
+    "columns": [
+      {
+        "clip_limits": [
+          2.0,
+          24458.73185
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "current_amount_usd",
+        "scaling_center": 189.82999999999998,
+        "scaling_range": 2636.175,
+        "train_missing_count": 0,
+        "train_observed_median": 189.82999999999998
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_in",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_is_cash_out",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_1h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          2.95,
+          99402.45929999981
+        ],
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_value_24h_inclusive",
+        "scaling_center": 1105.57,
+        "scaling_range": 15064.857500000002,
+        "train_missing_count": 0,
+        "train_observed_median": 1105.57
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_count_utc_day_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_active_hours_utc_day",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_current_amount_cluster_share_7d",
+        "scaling_center": 0.25,
+        "scaling_range": 0.19047619047619047,
+        "train_missing_count": 0,
+        "train_observed_median": 0.25
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_band_share_7d_inclusive",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_count_acceleration_1h",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 10149,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_unique_sources_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_inflow_count_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "receiver_inflow_acceleration_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 14726,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_unique_destinations_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "sender_outflow_count_24h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 2.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "sender_outflow_acceleration_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 2.0,
+        "train_missing_count": 17046,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "current_return_path_length",
+        "scaling_center": 0.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": [
+          0.00021029916180224155,
+          4030.198550113081
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "current_return_amount_ratio",
+        "scaling_center": -1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 58858,
+        "train_observed_median": 0.7217208751718127
+      },
+      {
+        "clip_limits": [
+          0.0,
+          2228.4903388158023
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_observed_onward_funding_share_24h",
+        "scaling_center": -1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 31696,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "wallet_prior_funding_age_hours",
+        "scaling_center": -1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 46936,
+        "train_observed_median": 11.769873767083332
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_service_count_1h_inclusive",
+        "scaling_center": 1.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_service_acceleration_1h",
+        "scaling_center": 1.0,
+        "scaling_range": 2.0,
+        "train_missing_count": 21693,
+        "train_observed_median": 1.0
+      },
+      {
+        "clip_limits": [
+          0.27586206896551724,
+          6.571428571428571
+        ],
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_wallet_growth_ratio_7d",
+        "scaling_center": 0.7741935483870968,
+        "scaling_range": 2.3043478260869565,
+        "train_missing_count": 23057,
+        "train_observed_median": 1.1538461538461537
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -1,
+        "name": "agent_new_wallet_share_7d",
+        "scaling_center": 0.7857142857142857,
+        "scaling_range": 1.9,
+        "train_missing_count": 23057,
+        "train_observed_median": 0.875
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_top2_count_share_24h",
+        "scaling_center": 0.5,
+        "scaling_range": 0.6461538461538462,
+        "train_missing_count": 0,
+        "train_observed_median": 0.5
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_top2_share_change_24h",
+        "scaling_center": 0.18910096633177392,
+        "scaling_range": 3.516759413355523,
+        "train_missing_count": 23014,
+        "train_observed_median": 0.4469726352079293
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_value_skew_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 1.4793132641720832,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_cash_count_skew_24h",
+        "scaling_center": 0.0,
+        "scaling_range": 0.5333333333333333,
+        "train_missing_count": 0,
+        "train_observed_median": 0.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "preserved before any scaling",
+        "marker": -3,
+        "name": "agent_cash_value_skew_change",
+        "scaling_center": -0.8754801151835249,
+        "scaling_range": 3.305832466402214,
+        "train_missing_count": 21998,
+        "train_observed_median": -0.05330640761686421
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "wallet_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "receiver_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 1.0,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      },
+      {
+        "clip_limits": null,
+        "handling": "none",
+        "marker": null,
+        "name": "agent_history_coverage_days",
+        "scaling_center": 28.0,
+        "scaling_range": 24.10907842994213,
+        "train_missing_count": 0,
+        "train_observed_median": 28.0
+      }
+    ],
+    "feature_order": [
+      "current_amount_usd",
+      "current_is_cash_in",
+      "current_is_cash_out",
+      "wallet_count_1h_inclusive",
+      "wallet_value_24h_inclusive",
+      "wallet_count_utc_day_inclusive",
+      "wallet_active_hours_utc_day",
+      "wallet_current_amount_cluster_share_7d",
+      "wallet_band_share_7d_inclusive",
+      "wallet_count_acceleration_1h",
+      "receiver_unique_sources_24h_inclusive",
+      "receiver_inflow_count_24h_inclusive",
+      "receiver_inflow_acceleration_24h",
+      "sender_unique_destinations_24h_inclusive",
+      "sender_outflow_count_24h_inclusive",
+      "sender_outflow_acceleration_24h",
+      "current_return_path_length",
+      "current_return_amount_ratio",
+      "wallet_observed_onward_funding_share_24h",
+      "wallet_prior_funding_age_hours",
+      "agent_service_count_1h_inclusive",
+      "agent_service_acceleration_1h",
+      "agent_wallet_growth_ratio_7d",
+      "agent_new_wallet_share_7d",
+      "agent_top2_count_share_24h",
+      "agent_top2_share_change_24h",
+      "agent_cash_value_skew_24h",
+      "agent_cash_count_skew_24h",
+      "agent_cash_value_skew_change",
+      "wallet_history_coverage_days",
+      "receiver_history_coverage_days",
+      "agent_history_coverage_days"
+    ],
+    "fitted_partition": "train",
+    "indicator_omission_reason": "Strictly frozen 32-column model input. Imputation loses explicit unavailability; sentinel-preserving comparators retain it.",
+    "indicators_added": false,
+    "input_count": 32,
+    "mode": "robust_sentinel",
+    "output_count": 32
+  }
+}

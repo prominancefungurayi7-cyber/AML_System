@@ -1,0 +1,36 @@
+{
+  "Stage16T_modified": false,
+  "affected_clauses": [
+    "Stage16T section6 frozen40 semantics",
+    "section8 per-field permutation40 becomes44; type remains one joint field",
+    "section10 extractor/preprocessor/feature/model freeze and compatibility hashes",
+    "section12 stage order and model-plan approvals",
+    "challenge_reproducibility_spec.json and dependent feature/hash references",
+    "challenge_metrics_policy.json field count and challenge_stage_plan.json approval dependencies"
+  ],
+  "current_feature_version": "v4.features.2.experimental.stage21.1",
+  "custody": "Stage16V C unchanged; no provisioning or challenge generation",
+  "independent_readiness": false,
+  "models": "Existing Stage18 fitted42-column models not compatible with44 semantic/46 numeric inputs; no model used or changed",
+  "no_generation_now": true,
+  "original_holdouts": "SEALED_QUARANTINED; public supportFAIL unchanged",
+  "preserved": [
+    "12targets",
+    "population/opportunity laws and one-draw rule",
+    "support/precision objectives",
+    "all metrics and threshold policy",
+    "independent custody",
+    "public-only certificates before freeze",
+    "one frozen primary model not algorithm leaderboard",
+    "original quarantine"
+  ],
+  "required_approvals": [
+    "Approve feature design separately",
+    "Approve challenge protocol amendment/version binding44 fields before affected generation/evaluation; no silent inheritance",
+    "Authorize/test implementation and development extraction separately",
+    "Authorize fit budget and preregister comparison separately",
+    "Verify independent custody and separately authorize generation and later frozen evaluation"
+  ],
+  "status": "REQUIRES_SEPARATELY_APPROVED_VERSIONED_AMENDMENT_NOT_APPLIED",
+  "timing": "No challenge exists; resolve compatibility before any affected challenge generation. Do not substitute development44 artifacts into protocol1 silently."
+}

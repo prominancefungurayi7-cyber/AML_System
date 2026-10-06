@@ -1,0 +1,190 @@
+{
+  "before": {
+    "transactions": "c4421501b4f292718cd63ae7a77756ba7304f9f599282be79b6871ed1d73bb9d",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "cmm_source_changes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "cmm_observation_scopes": "5f143f1dbca09bab21005d87a4bc84fa0e4ef8f8c5d003186c14410f76dc6df4",
+    "cmm_history_attestations": "33370af896d4db5257f1f534950eadee7dd399c8e7b42fd445215d13af1f22a0",
+    "cmm_entity_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "created": true,
+  "repeat_changed": false,
+  "columns": [
+    {
+      "Field": "transaction_id",
+      "Type": "bigint",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "model_version",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "feature_version",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "inference_id",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "UNI",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "status",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "prediction",
+      "Type": "int",
+      "Null": "YES",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "suspicious_probability",
+      "Type": "double",
+      "Null": "YES",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "threshold",
+      "Type": "decimal(3,2)",
+      "Null": "NO",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "decision",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "error_code",
+      "Type": "varchar(255)",
+      "Null": "YES",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "body",
+      "Type": "longtext",
+      "Null": "NO",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    },
+    {
+      "Field": "created_at",
+      "Type": "varchar(255)",
+      "Null": "NO",
+      "Key": "",
+      "Default": null,
+      "Extra": ""
+    }
+  ],
+  "indexes": [
+    {
+      "Table": "v4_shadow_results",
+      "Non_unique": 0,
+      "Key_name": "PRIMARY",
+      "Seq_in_index": 1,
+      "Column_name": "transaction_id",
+      "Collation": "A",
+      "Cardinality": 0,
+      "Sub_part": null,
+      "Packed": null,
+      "Null": "",
+      "Index_type": "BTREE",
+      "Comment": "",
+      "Index_comment": "",
+      "Visible": "YES",
+      "Expression": null
+    },
+    {
+      "Table": "v4_shadow_results",
+      "Non_unique": 0,
+      "Key_name": "PRIMARY",
+      "Seq_in_index": 2,
+      "Column_name": "model_version",
+      "Collation": "A",
+      "Cardinality": 0,
+      "Sub_part": null,
+      "Packed": null,
+      "Null": "",
+      "Index_type": "BTREE",
+      "Comment": "",
+      "Index_comment": "",
+      "Visible": "YES",
+      "Expression": null
+    },
+    {
+      "Table": "v4_shadow_results",
+      "Non_unique": 0,
+      "Key_name": "PRIMARY",
+      "Seq_in_index": 3,
+      "Column_name": "feature_version",
+      "Collation": "A",
+      "Cardinality": 0,
+      "Sub_part": null,
+      "Packed": null,
+      "Null": "",
+      "Index_type": "BTREE",
+      "Comment": "",
+      "Index_comment": "",
+      "Visible": "YES",
+      "Expression": null
+    },
+    {
+      "Table": "v4_shadow_results",
+      "Non_unique": 0,
+      "Key_name": "inference_id",
+      "Seq_in_index": 1,
+      "Column_name": "inference_id",
+      "Collation": "A",
+      "Cardinality": 0,
+      "Sub_part": null,
+      "Packed": null,
+      "Null": "",
+      "Index_type": "BTREE",
+      "Comment": "",
+      "Index_comment": "",
+      "Visible": "YES",
+      "Expression": null
+    }
+  ],
+  "row_count": 0,
+  "after": {
+    "transactions": "c4421501b4f292718cd63ae7a77756ba7304f9f599282be79b6871ed1d73bb9d",
+    "canonical_mobile_money_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "cmm_source_changes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "cmm_observation_scopes": "5f143f1dbca09bab21005d87a4bc84fa0e4ef8f8c5d003186c14410f76dc6df4",
+    "cmm_history_attestations": "33370af896d4db5257f1f534950eadee7dd399c8e7b42fd445215d13af1f22a0",
+    "cmm_entity_history": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "status": "PASS"
+}

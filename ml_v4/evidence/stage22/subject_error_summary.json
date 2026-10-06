@@ -1,0 +1,794 @@
+{
+  "A40-HGB": {
+    "top5_FN": [
+      [
+        "8ac42bcd891217c1cb85aa2a999b28c0",
+        {
+          "FN": 6,
+          "FP": 0,
+          "fpr": {
+            "denominator": 97,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 97,
+          "positive_support": 28,
+          "recall": {
+            "denominator": 28,
+            "numerator": 22,
+            "rate": 0.7857142857142857
+          }
+        }
+      ],
+      [
+        "31bcadc4f2c46483958a4fed607fb1cb",
+        {
+          "FN": 5,
+          "FP": 1,
+          "fpr": {
+            "denominator": 29,
+            "numerator": 1,
+            "rate": 0.034482758620689655
+          },
+          "negative_support": 29,
+          "positive_support": 19,
+          "recall": {
+            "denominator": 19,
+            "numerator": 14,
+            "rate": 0.7368421052631579
+          }
+        }
+      ],
+      [
+        "3e1dcd5383a502a84bb1390a9bfbcc92",
+        {
+          "FN": 5,
+          "FP": 0,
+          "fpr": {
+            "denominator": 40,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 40,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          }
+        }
+      ],
+      [
+        "b1ec5c54faef5315a70e2df82e84c2d2",
+        {
+          "FN": 5,
+          "FP": 1,
+          "fpr": {
+            "denominator": 98,
+            "numerator": 1,
+            "rate": 0.01020408163265306
+          },
+          "negative_support": 98,
+          "positive_support": 33,
+          "recall": {
+            "denominator": 33,
+            "numerator": 28,
+            "rate": 0.8484848484848485
+          }
+        }
+      ],
+      [
+        "dea2efd9738c5aa019f684cb40c9cd95",
+        {
+          "FN": 5,
+          "FP": 0,
+          "fpr": {
+            "denominator": 67,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 67,
+          "positive_support": 14,
+          "recall": {
+            "denominator": 14,
+            "numerator": 9,
+            "rate": 0.6428571428571429
+          }
+        }
+      ]
+    ],
+    "top5_FP": [
+      [
+        "9f922f10e05ef8983ed1e3dbaabd8d90",
+        {
+          "FN": 1,
+          "FP": 6,
+          "fpr": {
+            "denominator": 86,
+            "numerator": 6,
+            "rate": 0.06976744186046512
+          },
+          "negative_support": 86,
+          "positive_support": 16,
+          "recall": {
+            "denominator": 16,
+            "numerator": 15,
+            "rate": 0.9375
+          }
+        }
+      ],
+      [
+        "2fbc15e02d919fe6f92fc3c68e230bc1",
+        {
+          "FN": 0,
+          "FP": 5,
+          "fpr": {
+            "denominator": 62,
+            "numerator": 5,
+            "rate": 0.08064516129032258
+          },
+          "negative_support": 62,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 11,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "c48c1b16299a295ad8754a74a5edbfff",
+        {
+          "FN": 0,
+          "FP": 5,
+          "fpr": {
+            "denominator": 85,
+            "numerator": 5,
+            "rate": 0.058823529411764705
+          },
+          "negative_support": 85,
+          "positive_support": 17,
+          "recall": {
+            "denominator": 17,
+            "numerator": 17,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "10bf5ba2e5aed15e0e33e5f7684b9eb3",
+        {
+          "FN": 2,
+          "FP": 4,
+          "fpr": {
+            "denominator": 79,
+            "numerator": 4,
+            "rate": 0.05063291139240506
+          },
+          "negative_support": 79,
+          "positive_support": 13,
+          "recall": {
+            "denominator": 13,
+            "numerator": 11,
+            "rate": 0.8461538461538461
+          }
+        }
+      ],
+      [
+        "3f8a4d56bbe5971f522f176eb2ad5a5b",
+        {
+          "FN": 1,
+          "FP": 4,
+          "fpr": {
+            "denominator": 80,
+            "numerator": 4,
+            "rate": 0.05
+          },
+          "negative_support": 80,
+          "positive_support": 21,
+          "recall": {
+            "denominator": 21,
+            "numerator": 20,
+            "rate": 0.9523809523809523
+          }
+        }
+      ]
+    ],
+    "wallet_subjects_with_FN": 124,
+    "wallet_subjects_with_FP": 78
+  },
+  "A40-XGB": {
+    "top5_FN": [
+      [
+        "0d625655581f0a48dafb06e3c71c2328",
+        {
+          "FN": 8,
+          "FP": 0,
+          "fpr": {
+            "denominator": 171,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 171,
+          "positive_support": 34,
+          "recall": {
+            "denominator": 34,
+            "numerator": 26,
+            "rate": 0.7647058823529411
+          }
+        }
+      ],
+      [
+        "8ac42bcd891217c1cb85aa2a999b28c0",
+        {
+          "FN": 7,
+          "FP": 0,
+          "fpr": {
+            "denominator": 97,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 97,
+          "positive_support": 28,
+          "recall": {
+            "denominator": 28,
+            "numerator": 21,
+            "rate": 0.75
+          }
+        }
+      ],
+      [
+        "3e1dcd5383a502a84bb1390a9bfbcc92",
+        {
+          "FN": 6,
+          "FP": 0,
+          "fpr": {
+            "denominator": 40,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 40,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 5,
+            "rate": 0.45454545454545453
+          }
+        }
+      ],
+      [
+        "5599749cc2f2a30f38febb8dcfc1666a",
+        {
+          "FN": 6,
+          "FP": 0,
+          "fpr": {
+            "denominator": 82,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 82,
+          "positive_support": 22,
+          "recall": {
+            "denominator": 22,
+            "numerator": 16,
+            "rate": 0.7272727272727273
+          }
+        }
+      ],
+      [
+        "31bcadc4f2c46483958a4fed607fb1cb",
+        {
+          "FN": 5,
+          "FP": 0,
+          "fpr": {
+            "denominator": 29,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 29,
+          "positive_support": 19,
+          "recall": {
+            "denominator": 19,
+            "numerator": 14,
+            "rate": 0.7368421052631579
+          }
+        }
+      ]
+    ],
+    "top5_FP": [
+      [
+        "9f922f10e05ef8983ed1e3dbaabd8d90",
+        {
+          "FN": 0,
+          "FP": 6,
+          "fpr": {
+            "denominator": 86,
+            "numerator": 6,
+            "rate": 0.06976744186046512
+          },
+          "negative_support": 86,
+          "positive_support": 16,
+          "recall": {
+            "denominator": 16,
+            "numerator": 16,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "2fbc15e02d919fe6f92fc3c68e230bc1",
+        {
+          "FN": 0,
+          "FP": 5,
+          "fpr": {
+            "denominator": 62,
+            "numerator": 5,
+            "rate": 0.08064516129032258
+          },
+          "negative_support": 62,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 11,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "3f8a4d56bbe5971f522f176eb2ad5a5b",
+        {
+          "FN": 1,
+          "FP": 4,
+          "fpr": {
+            "denominator": 80,
+            "numerator": 4,
+            "rate": 0.05
+          },
+          "negative_support": 80,
+          "positive_support": 21,
+          "recall": {
+            "denominator": 21,
+            "numerator": 20,
+            "rate": 0.9523809523809523
+          }
+        }
+      ],
+      [
+        "5353e8c6448af6c03c08f8932b9a16aa",
+        {
+          "FN": 0,
+          "FP": 4,
+          "fpr": {
+            "denominator": 38,
+            "numerator": 4,
+            "rate": 0.10526315789473684
+          },
+          "negative_support": 38,
+          "positive_support": 9,
+          "recall": {
+            "denominator": 9,
+            "numerator": 9,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "61e215cb46e880082e6140c543c47039",
+        {
+          "FN": 0,
+          "FP": 4,
+          "fpr": {
+            "denominator": 50,
+            "numerator": 4,
+            "rate": 0.08
+          },
+          "negative_support": 50,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 11,
+            "rate": 1.0
+          }
+        }
+      ]
+    ],
+    "wallet_subjects_with_FN": 143,
+    "wallet_subjects_with_FP": 67
+  },
+  "B44-HGB": {
+    "top5_FN": [
+      [
+        "8ac42bcd891217c1cb85aa2a999b28c0",
+        {
+          "FN": 6,
+          "FP": 1,
+          "fpr": {
+            "denominator": 97,
+            "numerator": 1,
+            "rate": 0.010309278350515464
+          },
+          "negative_support": 97,
+          "positive_support": 28,
+          "recall": {
+            "denominator": 28,
+            "numerator": 22,
+            "rate": 0.7857142857142857
+          }
+        }
+      ],
+      [
+        "31bcadc4f2c46483958a4fed607fb1cb",
+        {
+          "FN": 5,
+          "FP": 1,
+          "fpr": {
+            "denominator": 29,
+            "numerator": 1,
+            "rate": 0.034482758620689655
+          },
+          "negative_support": 29,
+          "positive_support": 19,
+          "recall": {
+            "denominator": 19,
+            "numerator": 14,
+            "rate": 0.7368421052631579
+          }
+        }
+      ],
+      [
+        "3e1dcd5383a502a84bb1390a9bfbcc92",
+        {
+          "FN": 5,
+          "FP": 0,
+          "fpr": {
+            "denominator": 40,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 40,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 6,
+            "rate": 0.5454545454545454
+          }
+        }
+      ],
+      [
+        "99890c2af29e65230b5c3e433f6c4473",
+        {
+          "FN": 5,
+          "FP": 3,
+          "fpr": {
+            "denominator": 110,
+            "numerator": 3,
+            "rate": 0.02727272727272727
+          },
+          "negative_support": 110,
+          "positive_support": 22,
+          "recall": {
+            "denominator": 22,
+            "numerator": 17,
+            "rate": 0.7727272727272727
+          }
+        }
+      ],
+      [
+        "b1ec5c54faef5315a70e2df82e84c2d2",
+        {
+          "FN": 5,
+          "FP": 1,
+          "fpr": {
+            "denominator": 98,
+            "numerator": 1,
+            "rate": 0.01020408163265306
+          },
+          "negative_support": 98,
+          "positive_support": 33,
+          "recall": {
+            "denominator": 33,
+            "numerator": 28,
+            "rate": 0.8484848484848485
+          }
+        }
+      ]
+    ],
+    "top5_FP": [
+      [
+        "9f922f10e05ef8983ed1e3dbaabd8d90",
+        {
+          "FN": 2,
+          "FP": 7,
+          "fpr": {
+            "denominator": 86,
+            "numerator": 7,
+            "rate": 0.08139534883720931
+          },
+          "negative_support": 86,
+          "positive_support": 16,
+          "recall": {
+            "denominator": 16,
+            "numerator": 14,
+            "rate": 0.875
+          }
+        }
+      ],
+      [
+        "31bd99adbbf1101bfbd59246b62e363b",
+        {
+          "FN": 1,
+          "FP": 5,
+          "fpr": {
+            "denominator": 52,
+            "numerator": 5,
+            "rate": 0.09615384615384616
+          },
+          "negative_support": 52,
+          "positive_support": 16,
+          "recall": {
+            "denominator": 16,
+            "numerator": 15,
+            "rate": 0.9375
+          }
+        }
+      ],
+      [
+        "10bf5ba2e5aed15e0e33e5f7684b9eb3",
+        {
+          "FN": 3,
+          "FP": 4,
+          "fpr": {
+            "denominator": 79,
+            "numerator": 4,
+            "rate": 0.05063291139240506
+          },
+          "negative_support": 79,
+          "positive_support": 13,
+          "recall": {
+            "denominator": 13,
+            "numerator": 10,
+            "rate": 0.7692307692307693
+          }
+        }
+      ],
+      [
+        "20c4161070e5f35017dcc8aea608653f",
+        {
+          "FN": 1,
+          "FP": 4,
+          "fpr": {
+            "denominator": 73,
+            "numerator": 4,
+            "rate": 0.0547945205479452
+          },
+          "negative_support": 73,
+          "positive_support": 32,
+          "recall": {
+            "denominator": 32,
+            "numerator": 31,
+            "rate": 0.96875
+          }
+        }
+      ],
+      [
+        "2fbc15e02d919fe6f92fc3c68e230bc1",
+        {
+          "FN": 0,
+          "FP": 4,
+          "fpr": {
+            "denominator": 62,
+            "numerator": 4,
+            "rate": 0.06451612903225806
+          },
+          "negative_support": 62,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 11,
+            "rate": 1.0
+          }
+        }
+      ]
+    ],
+    "wallet_subjects_with_FN": 125,
+    "wallet_subjects_with_FP": 78
+  },
+  "B44-XGB": {
+    "top5_FN": [
+      [
+        "0d625655581f0a48dafb06e3c71c2328",
+        {
+          "FN": 8,
+          "FP": 0,
+          "fpr": {
+            "denominator": 171,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 171,
+          "positive_support": 34,
+          "recall": {
+            "denominator": 34,
+            "numerator": 26,
+            "rate": 0.7647058823529411
+          }
+        }
+      ],
+      [
+        "7b98af59a943229dc4437d67ecfeaa43",
+        {
+          "FN": 7,
+          "FP": 3,
+          "fpr": {
+            "denominator": 149,
+            "numerator": 3,
+            "rate": 0.020134228187919462
+          },
+          "negative_support": 149,
+          "positive_support": 52,
+          "recall": {
+            "denominator": 52,
+            "numerator": 45,
+            "rate": 0.8653846153846154
+          }
+        }
+      ],
+      [
+        "3e1dcd5383a502a84bb1390a9bfbcc92",
+        {
+          "FN": 6,
+          "FP": 0,
+          "fpr": {
+            "denominator": 40,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 40,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 5,
+            "rate": 0.45454545454545453
+          }
+        }
+      ],
+      [
+        "99890c2af29e65230b5c3e433f6c4473",
+        {
+          "FN": 6,
+          "FP": 3,
+          "fpr": {
+            "denominator": 110,
+            "numerator": 3,
+            "rate": 0.02727272727272727
+          },
+          "negative_support": 110,
+          "positive_support": 22,
+          "recall": {
+            "denominator": 22,
+            "numerator": 16,
+            "rate": 0.7272727272727273
+          }
+        }
+      ],
+      [
+        "31bcadc4f2c46483958a4fed607fb1cb",
+        {
+          "FN": 5,
+          "FP": 0,
+          "fpr": {
+            "denominator": 29,
+            "numerator": 0,
+            "rate": 0.0
+          },
+          "negative_support": 29,
+          "positive_support": 19,
+          "recall": {
+            "denominator": 19,
+            "numerator": 14,
+            "rate": 0.7368421052631579
+          }
+        }
+      ]
+    ],
+    "top5_FP": [
+      [
+        "9f922f10e05ef8983ed1e3dbaabd8d90",
+        {
+          "FN": 0,
+          "FP": 6,
+          "fpr": {
+            "denominator": 86,
+            "numerator": 6,
+            "rate": 0.06976744186046512
+          },
+          "negative_support": 86,
+          "positive_support": 16,
+          "recall": {
+            "denominator": 16,
+            "numerator": 16,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "10bf5ba2e5aed15e0e33e5f7684b9eb3",
+        {
+          "FN": 2,
+          "FP": 4,
+          "fpr": {
+            "denominator": 79,
+            "numerator": 4,
+            "rate": 0.05063291139240506
+          },
+          "negative_support": 79,
+          "positive_support": 13,
+          "recall": {
+            "denominator": 13,
+            "numerator": 11,
+            "rate": 0.8461538461538461
+          }
+        }
+      ],
+      [
+        "2fbc15e02d919fe6f92fc3c68e230bc1",
+        {
+          "FN": 0,
+          "FP": 4,
+          "fpr": {
+            "denominator": 62,
+            "numerator": 4,
+            "rate": 0.06451612903225806
+          },
+          "negative_support": 62,
+          "positive_support": 11,
+          "recall": {
+            "denominator": 11,
+            "numerator": 11,
+            "rate": 1.0
+          }
+        }
+      ],
+      [
+        "3f8a4d56bbe5971f522f176eb2ad5a5b",
+        {
+          "FN": 1,
+          "FP": 4,
+          "fpr": {
+            "denominator": 80,
+            "numerator": 4,
+            "rate": 0.05
+          },
+          "negative_support": 80,
+          "positive_support": 21,
+          "recall": {
+            "denominator": 21,
+            "numerator": 20,
+            "rate": 0.9523809523809523
+          }
+        }
+      ],
+      [
+        "5353e8c6448af6c03c08f8932b9a16aa",
+        {
+          "FN": 0,
+          "FP": 4,
+          "fpr": {
+            "denominator": 38,
+            "numerator": 4,
+            "rate": 0.10526315789473684
+          },
+          "negative_support": 38,
+          "positive_support": 9,
+          "recall": {
+            "denominator": 9,
+            "numerator": 9,
+            "rate": 1.0
+          }
+        }
+      ]
+    ],
+    "wallet_subjects_with_FN": 141,
+    "wallet_subjects_with_FP": 65
+  }
+}

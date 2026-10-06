@@ -1,0 +1,49 @@
+{
+  "protocol_version": "v4.challenge.protocol.1",
+  "status": "PREPRODUCTION_FIXTURE_VERIFIED; PRODUCTION_BYTE_REPLAY_NOT_RUN",
+  "runtime_observed": {
+    "python": "3.14.3",
+    "system_numpy": "2.4.3",
+    "venv_numpy": "2.5.0",
+    "scikit_learn": "1.9.0 (not used by challenge generator)",
+    "operating_system": "Windows x64"
+  },
+  "preproduction_reference_pin": {
+    "python": "3.14.3",
+    "numpy": "2.4.3",
+    "bit_generator": "PCG64DXSM",
+    "verified_fixture_runtime": "System interpreter",
+    "status": "EXACT_VERSION_PIN_PROPOSED_FROM_TESTED_RUNTIME; custodian must reproduce this pin or repeat all implementation fixtures and freeze a new environment hash before generation. This record is not an environment lock or authorization."
+  },
+  "pseudorandom_streams": {
+    "algorithm": "NumPy Generator(PCG64DXSM)",
+    "secret_derivation": "HMAC-SHA256(secret_salt, UTF8(dataset_id|arm|unit|stream)); first 16 digest bytes interpreted little-endian unsigned",
+    "streams": ["entities", "profiles", "catchments", "history", "routine", "episodes", "amounts", "timestamps", "transaction_ids", "bootstrap", "permutation"],
+    "arm_unit_stream_separation_fixture": "PASS",
+    "production_salt_created": false,
+    "RNG_instantiated_for_candidate_draw": false
+  },
+  "serialization": {
+    "observable_schema_and_microsecond_key_order": "Inherited Stage 16R frozen contract; deterministic CSV round-trip fixture PASS",
+    "JSON": "UTF-8 without BOM, LF, sorted keys, finite numbers only, inherited frozen contract",
+    "transaction_ids": "Unique positive 63-bit draws checked within each unit; global entity, transaction-ID, unit-budget, ordering, endpoint and horizon checks are implemented and fixture-tested by validate_aggregate, then must run over custodian outputs"
+  },
+  "one_draw": {
+    "fixture_state_machine": "PASS for commit/consume/retain and failed-draw terminal states",
+    "production_atomic_register": "NOT_PROVISIONED",
+    "alternate_seed_or_pilot_draws": 0
+  },
+  "frozen_source_sha256": {
+    "ml_v4/generation/stage16u_generator.py": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+    "ml_v4/generation/stage16u_support.py": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+    "ml_v4/generation/stage16u_custody.py": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+    "ml_v4/generation/stage16r_generator.py": "563e7d24d11bae63df040b3b9af428943e3602fa28830bc5e505388ad3a6903d",
+    "ml_v4/generation/stage16r_evaluator.py": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af",
+    "ml_v4/tests/test_stage16u.py": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb",
+    "server.py current protected integration entry": "2f9eab5d1c3571061fd4a2f90fb86536fc8061f94b65ff52f2c21b65cbbc8af3",
+    "experimental_v3/service.py current protected integration": "de39acd2a9add370a52971b1cde4b025bb9c0fd413831a287b570412ae257118",
+    "experimental_v3/web.py current protected integration": "89fdbb44a72723daf645b6b9a00065a22c3df394d6dd5939413f020a394ec328",
+    "environment_lock": "No custodian environment lock exists; developer runtime observations are not a production freeze."
+  },
+  "claim_limit": "Fixed helper fixtures and source hashes do not prove full-dataset reproducibility. A custodian must pin one environment and perform the single byte-identical replay inside custody after authorization; never make a candidate draw to test this."
+}

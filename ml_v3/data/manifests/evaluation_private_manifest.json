@@ -1,0 +1,21 @@
+{
+  "dataset": "mobile_money_aml_synthetic_100k_v3",
+  "evaluation_file_hashes": {
+    "evaluation/final_test/agents.csv": "36d523fc019a3c5532cab1bc54d625f7bebd91f78bb75940887610428f9dbe9f",
+    "evaluation/final_test/episode_plans.json": "ff3ff41d7a3d2e68599e430c0e1328116943c58bd484e4c4b8d644512dbf3f9e",
+    "evaluation/final_test/ground_truth_v3.csv": "107cf36214ce1ebe177f7f8652ab5d01bf3a528cd75a0da9735928a7cfddf922",
+    "evaluation/final_test/membership_commitment.json": "b381301e921b2f6eef06c44ee1178f8d461afa3afbb3243106f2617165224c30",
+    "evaluation/final_test/partition_role.json": "e2be8a69260f0ace6b7787f0b02c80d72e4c325ba9b092b2b39338bb3cbc3530",
+    "evaluation/final_test/transactions.csv": "f612cfbef0c6682fba034fbfcbed799deeb70645780dfcdb51f99c8786df54e0",
+    "evaluation/final_test/wallets.csv": "f2e66bd99bca463989c62c0f4fd7d785c8535cd82feecc005b207ab2dfbc2fd7",
+    "evaluation/independent/agents.csv": "f0577f41255a1f6773af7ee3cfc7f01b34821a6a63aa203e928dd1de162748db",
+    "evaluation/independent/episode_plans.json": "c020c691f5d7492aee921da02b1d5281912e9e3031c1d3b0a981a543bbbf837e",
+    "evaluation/independent/ground_truth_v3.csv": "ba74611656acf03a6851c668b0e50406e7e97849b269cdd23e490df9ad38bb61",
+    "evaluation/independent/membership_commitment.json": "dd9a6bbf4ff85c2a26f349dabe6a17b101410d1ae250e8c497f864ff28ec1ee0",
+    "evaluation/independent/partition_role.json": "f60ac7e4782f484db71aed7aeae6745bca4612595c62ea1593e35db1ec1d1b13",
+    "evaluation/independent/transactions.csv": "405370a0a88554be6d25c14b670f63806459a235580ac7fe8e4c91bcf559e2ba",
+    "evaluation/independent/wallets.csv": "b147bb6c70f58e11eb257ba485758f1afec7a30184a69826945ea91ed6ace8be"
+  },
+  "sealed_after_structural_audit": true,
+  "seed": 20260922
+}

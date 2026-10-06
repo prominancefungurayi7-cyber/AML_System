@@ -1,0 +1,848 @@
+{
+  "gb": {
+    "candidate": "s11_08_gradient_boosting",
+    "family_recall": {
+      "A1": {
+        "fn": 67,
+        "recall": 0.975591985428051,
+        "support": 2745,
+        "tp": 2678
+      },
+      "A2": {
+        "fn": 194,
+        "recall": 0.7913978494623656,
+        "support": 930,
+        "tp": 736
+      },
+      "A3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 485,
+        "tp": 485
+      },
+      "A4": {
+        "fn": 167,
+        "recall": 0.5044510385756676,
+        "support": 337,
+        "tp": 170
+      },
+      "N1": {
+        "fn": 22,
+        "recall": 0.930379746835443,
+        "support": 316,
+        "tp": 294
+      },
+      "N2": {
+        "fn": 43,
+        "recall": 0.9415760869565217,
+        "support": 736,
+        "tp": 693
+      },
+      "N3": {
+        "fn": 19,
+        "recall": 0.5365853658536586,
+        "support": 41,
+        "tp": 22
+      },
+      "N4": {
+        "fn": 7,
+        "recall": 0.97165991902834,
+        "support": 247,
+        "tp": 240
+      },
+      "S1": {
+        "fn": 2,
+        "recall": 0.9927536231884058,
+        "support": 276,
+        "tp": 274
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.8054459596450426,
+        "coverage": 0.01605370743026363,
+        "current": 0.0065826260730074936,
+        "network": 0.09725326485728149,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.0746644419944049
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.00026621031558074823,
+        "agent_cash_value_skew_24h": 0.0002659259359205546,
+        "agent_cash_value_skew_change": 0.0003525436477839532,
+        "agent_history_coverage_days": 0.0002213865050811596,
+        "agent_new_wallet_share_7d": 0.001699978610110278,
+        "agent_service_acceleration_1h": 0.0003796289798984782,
+        "agent_service_count_1h_inclusive": 2.356485207403235e-05,
+        "agent_top2_count_share_24h": 0.0008180714888116632,
+        "agent_top2_share_change_24h": 0.00025961801588209006,
+        "agent_wallet_growth_ratio_7d": 0.007637808858286275,
+        "current_amount_usd": 0.00013245641739220517,
+        "current_is_cash_in": 0.00019702306129448959,
+        "current_is_cash_out": 0.0006276496701415392,
+        "current_return_amount_ratio": 0.00017156216874817908,
+        "current_return_path_length": 1.3008878922285333e-05,
+        "receiver_history_coverage_days": 9.581031986648519e-05,
+        "receiver_inflow_acceleration_24h": 4.319337125347973e-05,
+        "receiver_inflow_count_24h_inclusive": 0.00029266102264091865,
+        "receiver_unique_sources_24h_inclusive": 0.0001534681609332319,
+        "sender_outflow_acceleration_24h": 0.0005374512501665252,
+        "sender_outflow_count_24h_inclusive": 0.00015500166700126148,
+        "sender_unique_destinations_24h_inclusive": 6.417471729086565e-05,
+        "wallet_active_hours_utc_day": 5.498485144904757e-05,
+        "wallet_band_share_7d_inclusive": 4.116117022309452e-06,
+        "wallet_count_1h_inclusive": 0.0,
+        "wallet_count_acceleration_1h": 4.857660497689321e-05,
+        "wallet_count_utc_day_inclusive": 0.0006596654430232086,
+        "wallet_current_amount_cluster_share_7d": 4.222655427718187e-05,
+        "wallet_history_coverage_days": 0.00014319854153036553,
+        "wallet_observed_onward_funding_share_24h": 0.0018387276376360814,
+        "wallet_prior_funding_age_hours": 7.304639581719091e-06,
+        "wallet_value_24h_inclusive": 0.000858005955634762
+      },
+      "top3_share": 0.7688511686350257,
+      "top5_share": 0.8503988447509999,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.6327430894761285,
+      "values": {
+        "agent_cash_count_skew_24h": 0.0047563904997071456,
+        "agent_cash_value_skew_24h": 0.0020981141988612637,
+        "agent_cash_value_skew_change": 0.0016148125726844764,
+        "agent_history_coverage_days": 0.0008420469031171033,
+        "agent_new_wallet_share_7d": 0.020527062959048863,
+        "agent_service_acceleration_1h": 0.038570432684821965,
+        "agent_service_count_1h_inclusive": 0.00020832200375953125,
+        "agent_top2_count_share_24h": 0.013583730793270687,
+        "agent_top2_share_change_24h": 0.002136733585280696,
+        "agent_wallet_growth_ratio_7d": 0.3059084276100763,
+        "current_amount_usd": 0.0003768815005946354,
+        "current_is_cash_in": 0.0002658266422204125,
+        "current_is_cash_out": 0.0025397537837245445,
+        "current_return_amount_ratio": 0.0025831343308257613,
+        "current_return_path_length": 0.0001658270646258305,
+        "receiver_history_coverage_days": 0.0005651569051779252,
+        "receiver_inflow_acceleration_24h": 0.0010675769444441856,
+        "receiver_inflow_count_24h_inclusive": 0.007336101609882332,
+        "receiver_unique_sources_24h_inclusive": 0.0030081568320815175,
+        "sender_outflow_acceleration_24h": 0.002866469190182519,
+        "sender_outflow_count_24h_inclusive": 0.010508444964384078,
+        "sender_unique_destinations_24h_inclusive": 0.0004956219100797169,
+        "wallet_active_hours_utc_day": 0.0002943309660145739,
+        "wallet_band_share_7d_inclusive": 0.00011372783586964068,
+        "wallet_count_1h_inclusive": 9.903693332713459e-05,
+        "wallet_count_acceleration_1h": 0.00014908234108949406,
+        "wallet_count_utc_day_inclusive": 0.02723290704821017,
+        "wallet_current_amount_cluster_share_7d": 8.222010022873594e-05,
+        "wallet_history_coverage_days": 0.006354183836997336,
+        "wallet_observed_onward_funding_share_24h": 0.018898292751350538,
+        "wallet_prior_funding_age_hours": 8.881494658137996e-05,
+        "wallet_value_24h_inclusive": 0.008126255426302112
+      }
+    },
+    "limitation": "RF/GB have no matched retraining-removal estimate; permutation sensitivity is not equivalent to retraining dependence.",
+    "matched_removal": null,
+    "validation": {
+      "accuracy": 0.9453333333333334,
+      "average_precision": 0.9749192111467561,
+      "balanced_accuracy": 0.9341637164642924,
+      "confusion_matrix": [
+        [
+          9631,
+          314
+        ],
+        [
+          506,
+          4549
+        ]
+      ],
+      "false_positive_rate": 0.03157365510306687,
+      "macro_f1": 0.9382447271691208,
+      "normal_f1": 0.9591674136042226,
+      "normal_precision": 0.9500838512380388,
+      "normal_recall": 0.9684263448969331,
+      "roc_auc": 0.98552644888131,
+      "suspicious_f1": 0.9173220407340189,
+      "suspicious_precision": 0.9354308040304339,
+      "suspicious_recall": 0.8999010880316518,
+      "threshold": 0.5
+    }
+  },
+  "hgb": {
+    "candidate": "s11_09_hist_gradient_boosting",
+    "family_recall": {
+      "A1": {
+        "fn": 56,
+        "recall": 0.9795992714025501,
+        "support": 2745,
+        "tp": 2689
+      },
+      "A2": {
+        "fn": 116,
+        "recall": 0.875268817204301,
+        "support": 930,
+        "tp": 814
+      },
+      "A3": {
+        "fn": 4,
+        "recall": 0.9917525773195877,
+        "support": 485,
+        "tp": 481
+      },
+      "A4": {
+        "fn": 88,
+        "recall": 0.7388724035608308,
+        "support": 337,
+        "tp": 249
+      },
+      "N1": {
+        "fn": 15,
+        "recall": 0.9525316455696202,
+        "support": 316,
+        "tp": 301
+      },
+      "N2": {
+        "fn": 28,
+        "recall": 0.9619565217391305,
+        "support": 736,
+        "tp": 708
+      },
+      "N3": {
+        "fn": 19,
+        "recall": 0.5365853658536586,
+        "support": 41,
+        "tp": 22
+      },
+      "N4": {
+        "fn": 6,
+        "recall": 0.9757085020242915,
+        "support": 247,
+        "tp": 241
+      },
+      "S1": {
+        "fn": 3,
+        "recall": 0.9891304347826086,
+        "support": 276,
+        "tp": 273
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.7620633811647062,
+        "coverage": 0.01610172887314603,
+        "current": 0.019864043001284647,
+        "network": 0.12527125354189877,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.07669959341896433
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.0005149308327309716,
+        "agent_cash_value_skew_24h": 0.0002595596041134128,
+        "agent_cash_value_skew_change": 0.0006090031892974593,
+        "agent_history_coverage_days": 0.0005751169340676148,
+        "agent_new_wallet_share_7d": 0.0010043782389499635,
+        "agent_service_acceleration_1h": 0.0009731287005508769,
+        "agent_service_count_1h_inclusive": 7.630946126596687e-05,
+        "agent_top2_count_share_24h": 0.0018421618882963357,
+        "agent_top2_share_change_24h": 0.0010264734720432385,
+        "agent_wallet_growth_ratio_7d": 0.0024152667363462827,
+        "current_amount_usd": 0.00030865647966069596,
+        "current_is_cash_in": 0.00030456368152727455,
+        "current_is_cash_out": 0.0007706509383348758,
+        "current_return_amount_ratio": 0.0003118920647626935,
+        "current_return_path_length": 2.777987304687295e-05,
+        "receiver_history_coverage_days": 0.00013034175406022663,
+        "receiver_inflow_acceleration_24h": 0.0001637667431317402,
+        "receiver_inflow_count_24h_inclusive": 0.0002708572895212431,
+        "receiver_unique_sources_24h_inclusive": 0.0004520579520237763,
+        "sender_outflow_acceleration_24h": 0.00047865296054794916,
+        "sender_outflow_count_24h_inclusive": 0.0002942371191947744,
+        "sender_unique_destinations_24h_inclusive": 6.955825088804432e-05,
+        "wallet_active_hours_utc_day": 0.0004417550813062999,
+        "wallet_band_share_7d_inclusive": 3.927628459338689e-05,
+        "wallet_count_1h_inclusive": 3.5216841006150215e-05,
+        "wallet_count_acceleration_1h": 5.683100014096875e-05,
+        "wallet_count_utc_day_inclusive": 0.0006480594747327241,
+        "wallet_current_amount_cluster_share_7d": 3.1854066147225396e-05,
+        "wallet_history_coverage_days": 0.0003686924719835464,
+        "wallet_observed_onward_funding_share_24h": 0.0013721984274755743,
+        "wallet_prior_funding_age_hours": 3.527979475937011e-05,
+        "wallet_value_24h_inclusive": 0.0009911848325032757
+      },
+      "top3_share": 0.7098833333788729,
+      "top5_share": 0.7722212593077381,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.6150126178377776,
+      "values": {
+        "agent_cash_count_skew_24h": 0.012268899292582533,
+        "agent_cash_value_skew_24h": 0.004031896663773941,
+        "agent_cash_value_skew_change": 0.004781423916807174,
+        "agent_history_coverage_days": 0.002338530952550988,
+        "agent_new_wallet_share_7d": 0.004696659308667288,
+        "agent_service_acceleration_1h": 0.03196740433833367,
+        "agent_service_count_1h_inclusive": 0.0015326370391206545,
+        "agent_top2_count_share_24h": 0.016188353618700784,
+        "agent_top2_share_change_24h": 0.004536828768175405,
+        "agent_wallet_growth_ratio_7d": 0.3346023623236201,
+        "current_amount_usd": 0.0020621339603408284,
+        "current_is_cash_in": 0.0035441659282907287,
+        "current_is_cash_out": 0.00520088604666739,
+        "current_return_amount_ratio": 0.0026231185286189618,
+        "current_return_path_length": 0.0012948366847505,
+        "receiver_history_coverage_days": 0.0019234872702277306,
+        "receiver_inflow_acceleration_24h": 0.0031163143716065322,
+        "receiver_inflow_count_24h_inclusive": 0.013620983855598586,
+        "receiver_unique_sources_24h_inclusive": 0.006955888021178598,
+        "sender_outflow_acceleration_24h": 0.004952260169905316,
+        "sender_outflow_count_24h_inclusive": 0.011988174398095039,
+        "sender_unique_destinations_24h_inclusive": 0.002168797852813801,
+        "wallet_active_hours_utc_day": 0.004670304807255572,
+        "wallet_band_share_7d_inclusive": 0.001342135826003621,
+        "wallet_count_1h_inclusive": 0.0018630874484630855,
+        "wallet_count_acceleration_1h": 0.002201834206642143,
+        "wallet_count_utc_day_inclusive": 0.017727076200423613,
+        "wallet_current_amount_cluster_share_7d": 0.0016078824801527558,
+        "wallet_history_coverage_days": 0.004498251667928166,
+        "wallet_observed_onward_funding_share_24h": 0.019647740806144953,
+        "wallet_prior_funding_age_hours": 0.0017866778320108079,
+        "wallet_value_24h_inclusive": 0.012316684913042645
+      }
+    },
+    "limitation": "RF/GB have no matched retraining-removal estimate; permutation sensitivity is not equivalent to retraining dependence.",
+    "matched_removal": {
+      "classification": "EXTREME",
+      "dependence_index": 0.3186943620178042,
+      "domain_deltas": {
+        "agent": -0.42138200782268576,
+        "network": 0.0031471282454759164,
+        "structuring": -0.002887391722810384
+      },
+      "family_deltas": {
+        "A1": -0.5945355191256831,
+        "A2": -0.01505376344086018,
+        "A3": 0.008247422680412342,
+        "A4": -0.04451038575667654,
+        "N1": 0.0,
+        "N2": -0.0013586956521739468,
+        "N3": 0.14634146341463417,
+        "N4": -0.004048582995951455,
+        "S1": 0.0036231884057971175,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": -0.5
+      },
+      "full_candidate": "hgb_R0",
+      "metric_deltas": {
+        "average_precision": -0.1110838277119438,
+        "false_positive_rate": 0.006737053795877329,
+        "macro_f1": -0.14182490753786892,
+        "roc_auc": -0.07895073746356696,
+        "suspicious_f1": -0.20774288935468588,
+        "suspicious_precision": -0.046611253396610874,
+        "suspicious_recall": -0.3186943620178042
+      },
+      "normal_fpr_deltas": {
+        "H1": 0.021008403361344546,
+        "H2": 0.01871657754010695,
+        "H3": 0.01231527093596059,
+        "H4": 0.04452054794520548,
+        "H5": 0.01869158878504673,
+        "H6": 0.014150943396226415,
+        "H7": 0.04456824512534819,
+        "H8": -0.015217391304347825,
+        "campaign_member_target0": 0.0072383073496659275,
+        "routine": 0.0009290226681531039
+      },
+      "removed_candidate": "hgb_R0_no_growth"
+    },
+    "validation": {
+      "accuracy": 0.9572,
+      "average_precision": 0.9772291281750702,
+      "balanced_accuracy": 0.9517214113827834,
+      "confusion_matrix": [
+        [
+          9632,
+          313
+        ],
+        [
+          329,
+          4726
+        ]
+      ],
+      "false_positive_rate": 0.031473102061337355,
+      "macro_f1": 0.9520731388387318,
+      "normal_f1": 0.9677484175625439,
+      "normal_precision": 0.9669711876317639,
+      "normal_recall": 0.9685268979386626,
+      "roc_auc": 0.9887584484198204,
+      "suspicious_f1": 0.9363978601149198,
+      "suspicious_precision": 0.9378845008930343,
+      "suspicious_recall": 0.9349159248269041,
+      "threshold": 0.5
+    }
+  },
+  "rf": {
+    "candidate": "s11_27_random_forest",
+    "family_recall": {
+      "A1": {
+        "fn": 62,
+        "recall": 0.9774134790528233,
+        "support": 2745,
+        "tp": 2683
+      },
+      "A2": {
+        "fn": 174,
+        "recall": 0.8129032258064516,
+        "support": 930,
+        "tp": 756
+      },
+      "A3": {
+        "fn": 6,
+        "recall": 0.9876288659793815,
+        "support": 485,
+        "tp": 479
+      },
+      "A4": {
+        "fn": 122,
+        "recall": 0.6379821958456974,
+        "support": 337,
+        "tp": 215
+      },
+      "N1": {
+        "fn": 20,
+        "recall": 0.9367088607594937,
+        "support": 316,
+        "tp": 296
+      },
+      "N2": {
+        "fn": 35,
+        "recall": 0.9524456521739131,
+        "support": 736,
+        "tp": 701
+      },
+      "N3": {
+        "fn": 29,
+        "recall": 0.2926829268292683,
+        "support": 41,
+        "tp": 12
+      },
+      "N4": {
+        "fn": 27,
+        "recall": 0.8906882591093117,
+        "support": 247,
+        "tp": 220
+      },
+      "S1": {
+        "fn": 4,
+        "recall": 0.9855072463768116,
+        "support": 276,
+        "tp": 272
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.73581622830541,
+        "coverage": 0.035430072187679226,
+        "current": 0.014437338538728774,
+        "network": 0.12039722699164747,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.0939191339765345
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.0003228621597531711,
+        "agent_cash_value_skew_24h": 0.00026329183988637396,
+        "agent_cash_value_skew_change": 0.00038348877093607775,
+        "agent_history_coverage_days": 0.0003146189571891341,
+        "agent_new_wallet_share_7d": 0.002535170200883462,
+        "agent_service_acceleration_1h": 0.0010095233245501346,
+        "agent_service_count_1h_inclusive": 0.00024390096206821984,
+        "agent_top2_count_share_24h": 0.0017605995097701188,
+        "agent_top2_share_change_24h": 0.00048667178077353663,
+        "agent_wallet_growth_ratio_7d": 0.012270388479998002,
+        "current_amount_usd": 8.929255015510371e-05,
+        "current_is_cash_in": 9.187448593918678e-05,
+        "current_is_cash_out": 0.0005231609788795645,
+        "current_return_amount_ratio": 5.450553068835835e-05,
+        "current_return_path_length": 4.96914782654103e-06,
+        "receiver_history_coverage_days": 2.207297853480088e-05,
+        "receiver_inflow_acceleration_24h": 0.0004580569808143606,
+        "receiver_inflow_count_24h_inclusive": 0.0001457353350630794,
+        "receiver_unique_sources_24h_inclusive": 0.00016456539585804237,
+        "sender_outflow_acceleration_24h": 0.0002267884366408359,
+        "sender_outflow_count_24h_inclusive": 0.0005245013497354349,
+        "sender_unique_destinations_24h_inclusive": 0.0001786407162183047,
+        "wallet_active_hours_utc_day": 0.00038349464744678316,
+        "wallet_band_share_7d_inclusive": 1.1623886364957929e-05,
+        "wallet_count_1h_inclusive": 3.100749978927868e-05,
+        "wallet_count_acceleration_1h": 7.083480660967648e-05,
+        "wallet_count_utc_day_inclusive": 0.0006640646324593656,
+        "wallet_current_amount_cluster_share_7d": 0.00012508463379621223,
+        "wallet_history_coverage_days": 0.00010399227853118373,
+        "wallet_observed_onward_funding_share_24h": 0.0006218040028048148,
+        "wallet_prior_funding_age_hours": 2.3448351831889374e-05,
+        "wallet_value_24h_inclusive": 0.002248641106541792
+      },
+      "top3_share": 0.6442995545086496,
+      "top5_share": 0.7343133086180179,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.5432095686013769,
+      "values": {
+        "agent_cash_count_skew_24h": 0.010799347054728958,
+        "agent_cash_value_skew_24h": 0.003430496808529434,
+        "agent_cash_value_skew_change": 0.006839152378915414,
+        "agent_history_coverage_days": 0.012865431965148518,
+        "agent_new_wallet_share_7d": 0.02863902727211609,
+        "agent_service_acceleration_1h": 0.031375025963096305,
+        "agent_service_count_1h_inclusive": 0.0026567421779637814,
+        "agent_top2_count_share_24h": 0.025132868197391838,
+        "agent_top2_share_change_24h": 0.005472062081804323,
+        "agent_wallet_growth_ratio_7d": 0.32248701664498364,
+        "current_amount_usd": 0.0022178502359108863,
+        "current_is_cash_in": 0.002363296458489872,
+        "current_is_cash_out": 0.003989862549114413,
+        "current_return_amount_ratio": 0.0018513039671484617,
+        "current_return_path_length": 0.0013357775170018311,
+        "receiver_history_coverage_days": 0.0028172969837932196,
+        "receiver_inflow_acceleration_24h": 0.011701511301957809,
+        "receiver_inflow_count_24h_inclusive": 0.007136001840599038,
+        "receiver_unique_sources_24h_inclusive": 0.006911560378628574,
+        "sender_outflow_acceleration_24h": 0.013803697639126922,
+        "sender_outflow_count_24h_inclusive": 0.006399710297286439,
+        "sender_unique_destinations_24h_inclusive": 0.002110820976116664,
+        "wallet_active_hours_utc_day": 0.005302911551222052,
+        "wallet_band_share_7d_inclusive": 0.0014356026197463272,
+        "wallet_count_1h_inclusive": 0.0022837066246115256,
+        "wallet_count_acceleration_1h": 0.003174572819464242,
+        "wallet_count_utc_day_inclusive": 0.02830556274646201,
+        "wallet_current_amount_cluster_share_7d": 0.0014154947653201393,
+        "wallet_history_coverage_days": 0.005351028443696578,
+        "wallet_observed_onward_funding_share_24h": 0.018445614869785798,
+        "wallet_prior_funding_age_hours": 0.0017801768710974757,
+        "wallet_value_24h_inclusive": 0.013839085187745756
+      }
+    },
+    "limitation": "RF/GB have no matched retraining-removal estimate; permutation sensitivity is not equivalent to retraining dependence.",
+    "matched_removal": null,
+    "validation": {
+      "accuracy": 0.9526,
+      "average_precision": 0.9826646630132841,
+      "balanced_accuracy": 0.9420756296127215,
+      "confusion_matrix": [
+        [
+          9690,
+          255
+        ],
+        [
+          456,
+          4599
+        ]
+      ],
+      "false_positive_rate": 0.02564102564102564,
+      "macro_f1": 0.9464290339988475,
+      "normal_f1": 0.9646110198596386,
+      "normal_precision": 0.9550561797752809,
+      "normal_recall": 0.9743589743589743,
+      "roc_auc": 0.9902559427991441,
+      "suspicious_f1": 0.9282470481380564,
+      "suspicious_precision": 0.9474660074165636,
+      "suspicious_recall": 0.9097922848664688,
+      "threshold": 0.5
+    }
+  },
+  "xgb": {
+    "candidate": "s11_15_xgboost",
+    "family_recall": {
+      "A1": {
+        "fn": 62,
+        "recall": 0.9774134790528233,
+        "support": 2745,
+        "tp": 2683
+      },
+      "A2": {
+        "fn": 115,
+        "recall": 0.8763440860215054,
+        "support": 930,
+        "tp": 815
+      },
+      "A3": {
+        "fn": 1,
+        "recall": 0.9979381443298969,
+        "support": 485,
+        "tp": 484
+      },
+      "A4": {
+        "fn": 104,
+        "recall": 0.6913946587537092,
+        "support": 337,
+        "tp": 233
+      },
+      "N1": {
+        "fn": 16,
+        "recall": 0.9493670886075949,
+        "support": 316,
+        "tp": 300
+      },
+      "N2": {
+        "fn": 25,
+        "recall": 0.9660326086956522,
+        "support": 736,
+        "tp": 711
+      },
+      "N3": {
+        "fn": 18,
+        "recall": 0.5609756097560976,
+        "support": 41,
+        "tp": 23
+      },
+      "N4": {
+        "fn": 6,
+        "recall": 0.9757085020242915,
+        "support": 247,
+        "tp": 241
+      },
+      "S1": {
+        "fn": 3,
+        "recall": 0.9891304347826086,
+        "support": 276,
+        "tp": 273
+      },
+      "S2": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 1,
+        "tp": 1
+      },
+      "S3": {
+        "fn": 0,
+        "recall": 1.0,
+        "support": 814,
+        "tp": 814
+      },
+      "S4": {
+        "fn": 2,
+        "recall": 0.75,
+        "support": 8,
+        "tp": 6
+      }
+    },
+    "importance": {
+      "caveat": "Absolute mass includes negative permutation values. Correlation and sampling affect shares; noncausal diagnostic, reused Validation.",
+      "domain_mass": {
+        "agent": 0.7370755127971638,
+        "coverage": 0.03114554047883741,
+        "current": 0.017026362879826357,
+        "network": 0.1265366219551814,
+        "new_A4": 0.0,
+        "new_N3": 0.0,
+        "structuring": 0.08821596188899107
+      },
+      "method": "Validation permutation drop in AP, three repeats, max_samples=3000, random_state=20260928; raw inputs",
+      "std": {
+        "agent_cash_count_skew_24h": 0.00045211682657849084,
+        "agent_cash_value_skew_24h": 0.0006287855378589819,
+        "agent_cash_value_skew_change": 0.0003884035698630024,
+        "agent_history_coverage_days": 0.0009191971329414468,
+        "agent_new_wallet_share_7d": 0.0012432720742992685,
+        "agent_service_acceleration_1h": 0.0009875520037088792,
+        "agent_service_count_1h_inclusive": 0.0001279410827045944,
+        "agent_top2_count_share_24h": 0.0013202798952089373,
+        "agent_top2_share_change_24h": 0.00038035105879430327,
+        "agent_wallet_growth_ratio_7d": 0.0035994332165707214,
+        "current_amount_usd": 0.00011222649719855318,
+        "current_is_cash_in": 9.854050860067797e-05,
+        "current_is_cash_out": 0.0003673836802149249,
+        "current_return_amount_ratio": 0.00027630638919349284,
+        "current_return_path_length": 1.4874019556458866e-05,
+        "receiver_history_coverage_days": 7.389275743670383e-05,
+        "receiver_inflow_acceleration_24h": 9.592056331335145e-05,
+        "receiver_inflow_count_24h_inclusive": 0.00026335511216231237,
+        "receiver_unique_sources_24h_inclusive": 0.0004646775455203385,
+        "sender_outflow_acceleration_24h": 0.00019853353077708345,
+        "sender_outflow_count_24h_inclusive": 0.0003621188377841977,
+        "sender_unique_destinations_24h_inclusive": 9.589352332235626e-05,
+        "wallet_active_hours_utc_day": 6.507279020461865e-05,
+        "wallet_band_share_7d_inclusive": 4.095985148398792e-06,
+        "wallet_count_1h_inclusive": 1.5305660048120083e-05,
+        "wallet_count_acceleration_1h": 0.00011677500537226224,
+        "wallet_count_utc_day_inclusive": 0.0006018040052141181,
+        "wallet_current_amount_cluster_share_7d": 2.2613100752269695e-05,
+        "wallet_history_coverage_days": 0.00022712700223889522,
+        "wallet_observed_onward_funding_share_24h": 0.0012000533434434726,
+        "wallet_prior_funding_age_hours": 4.738153711316442e-05,
+        "wallet_value_24h_inclusive": 0.0007203780647690256
+      },
+      "top3_share": 0.6645328632738733,
+      "top5_share": 0.7298312925800298,
+      "top_feature": "agent_wallet_growth_ratio_7d",
+      "top_share": 0.5865356907812297,
+      "values": {
+        "agent_cash_count_skew_24h": 0.010253865635304652,
+        "agent_cash_value_skew_24h": 0.006038129891719368,
+        "agent_cash_value_skew_change": 0.005249666946303577,
+        "agent_history_coverage_days": 0.008431939489354426,
+        "agent_new_wallet_share_7d": 0.012721109152487328,
+        "agent_service_acceleration_1h": 0.017656474623193714,
+        "agent_service_count_1h_inclusive": 0.0030430647514454825,
+        "agent_top2_count_share_24h": 0.016198929742990642,
+        "agent_top2_share_change_24h": 0.0068894352332642406,
+        "agent_wallet_growth_ratio_7d": 0.30410230686399625,
+        "current_amount_usd": 0.0024304824108998258,
+        "current_is_cash_in": 0.0027017294415283555,
+        "current_is_cash_out": 0.003695479813465593,
+        "current_return_amount_ratio": 0.003490673703235895,
+        "current_return_path_length": 0.002022798722174849,
+        "receiver_history_coverage_days": 0.0026528174306568917,
+        "receiver_inflow_acceleration_24h": 0.0030693293794990715,
+        "receiver_inflow_count_24h_inclusive": 0.010640186031001994,
+        "receiver_unique_sources_24h_inclusive": 0.00617660620783093,
+        "sender_outflow_acceleration_24h": 0.005143130600656669,
+        "sender_outflow_count_24h_inclusive": 0.01111696109970195,
+        "sender_unique_destinations_24h_inclusive": 0.0029479307424396715,
+        "wallet_active_hours_utc_day": 0.0035437965752841047,
+        "wallet_band_share_7d_inclusive": 0.0021196716468881624,
+        "wallet_count_1h_inclusive": 0.002135729185209323,
+        "wallet_count_acceleration_1h": 0.0033798579168002516,
+        "wallet_count_utc_day_inclusive": 0.02171987679317422,
+        "wallet_current_amount_cluster_share_7d": 0.0023691192267146777,
+        "wallet_history_coverage_days": 0.005063332372773344,
+        "wallet_observed_onward_funding_share_24h": 0.01871946979166787,
+        "wallet_prior_funding_age_hours": 0.002278603612707967,
+        "wallet_value_24h_inclusive": 0.010469450967062385
+      }
+    },
+    "limitation": "RF/GB have no matched retraining-removal estimate; permutation sensitivity is not equivalent to retraining dependence.",
+    "matched_removal": {
+      "classification": "EXTREME",
+      "dependence_index": 0.2856577645895154,
+      "domain_deltas": {
+        "agent": -0.3788787483702738,
+        "network": 0.006294256490952055,
+        "structuring": -0.0019249278152069227
+      },
+      "family_deltas": {
+        "A1": -0.5442622950819671,
+        "A2": -0.0021505376344086446,
+        "A3": 0.0020618556701030855,
+        "A4": 0.014836795252225476,
+        "N1": 0.006329113924050667,
+        "N2": 0.0013586956521738358,
+        "N3": 0.09756097560975607,
+        "N4": 0.004048582995951455,
+        "S1": 0.0036231884057971175,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": -0.375
+      },
+      "full_candidate": "xgb_R0",
+      "metric_deltas": {
+        "average_precision": -0.1169498423372598,
+        "false_positive_rate": 0.023831070889894418,
+        "macro_f1": -0.137655580530877,
+        "roc_auc": -0.08025117374043889,
+        "suspicious_f1": -0.19757319878935076,
+        "suspicious_precision": -0.08446613579929796,
+        "suspicious_recall": -0.2856577645895154
+      },
+      "normal_fpr_deltas": {
+        "H1": 0.02941176470588236,
+        "H2": 0.034759358288770054,
+        "H3": 0.054187192118226604,
+        "H4": 0.07191780821917808,
+        "H5": 0.032710280373831765,
+        "H6": 0.0589622641509434,
+        "H7": 0.061281337047353765,
+        "H8": -0.002173913043478262,
+        "campaign_member_target0": 0.03897550111358575,
+        "routine": 0.009476031215161648
+      },
+      "removed_candidate": "xgb_R0_no_growth"
+    },
+    "validation": {
+      "accuracy": 0.9512666666666667,
+      "average_precision": 0.9771177634926982,
+      "balanced_accuracy": 0.9465659047610523,
+      "confusion_matrix": [
+        [
+          9557,
+          388
+        ],
+        [
+          343,
+          4712
+        ]
+      ],
+      "false_positive_rate": 0.03901458019105078,
+      "macro_f1": 0.9455901404273073,
+      "normal_f1": 0.963164525069287,
+      "normal_precision": 0.9653535353535354,
+      "normal_recall": 0.9609854198089492,
+      "roc_auc": 0.9878857057038241,
+      "suspicious_f1": 0.9280157557853275,
+      "suspicious_precision": 0.923921568627451,
+      "suspicious_recall": 0.9321463897131553,
+      "threshold": 0.5
+    }
+  }
+}

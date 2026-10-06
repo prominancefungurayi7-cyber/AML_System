@@ -1,0 +1,20 @@
+{
+  "status": "COMPATIBILITY_PASS; EMPIRICAL_SUPPORT_NOT_MEASURED",
+  "policy_source": "ml_v4/design/challenge/challenge_support_policy.json",
+  "family_count": 12,
+  "checked_objectives": [
+    "200 positive decision points",
+    "40 distinct subjects",
+    "50 episode/background-day clusters",
+    "12 units",
+    "at least 20 positive rows in four of six fixed 30-day bins",
+    "maximum subject, unit and temporal-bin concentration",
+    "at least 80 positive rows in each arm and at least 8 units in each arm",
+    "per-family matched hard target-0 row, subject and unit objectives",
+    "near-boundary target-0 row and unit objectives"
+  ],
+  "verification": "The support assessor reads post-generation aggregate audit records in memory and has no sampling, filtering, label override or retry interface. Hand-built abstract records exercised PASS, empty/fail, low-row, subject concentration, cluster, unit, temporal and arm failures. These records are not transactions and are not used to estimate support.",
+  "family_specific_results": "No empirical support measurements exist for the challenge population.",
+  "production_draw": "BLOCKED_PENDING_INDEPENDENT_CUSTODY_AND_SEPARATE_AUTHORIZATION",
+  "failed_objective_policy": "Retain the single completed draw and publish only the predeclared aggregate certificate; no regeneration or threshold relaxation."
+}

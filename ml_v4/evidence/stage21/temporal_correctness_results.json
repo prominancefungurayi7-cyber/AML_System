@@ -1,0 +1,22 @@
+{
+  "coverage_rule": "actual first prior observation<=t-35d and4 activity rows in(t-35d,t-7d], no rounded age",
+  "current_event": "included once in recent; excluded from baseline; full-key monotonic input enforced",
+  "no_specification_changes": true,
+  "nonredundancy": "All four exact Stage20 witnesses pass full40 equality and specified new-value changes",
+  "reference": "independent_hand_fixtures.json",
+  "requirements": [
+    "At t-35d observation establishes age but event excluded from B count",
+    "At t-7d event enters B not R",
+    "Same-time lower ID prior, higher ID future; output before insertion",
+    "Current5000:4750/5250 included;4749/5251 excluded by20*abs integer test",
+    "Band700000/1050000 inclusive;699999/1050001 outside",
+    "Distinct band repeated values count once, zero band gives0",
+    "Age35d with3 baseline activities =>-1; age35d with4 nonmatching activities =>0 for both baseline features",
+    "Recent sum/distinct defined even with insufficient history; no current-band gate for either S4 field",
+    "Incoming W2W establishes age but cannot satisfy four baseline subject activities",
+    "Cash bothdirections count once; receiver-assisted W2W does not change structuring subject from sender",
+    "Future insertion, private-metadata mutation, bijective renaming preserve outputs with full-key ordering",
+    "Exact aggregate and overflow fixture; no sentinel confusion; reproduce first40 columns identically"
+  ],
+  "status": "PASS_FIXTURES"
+}

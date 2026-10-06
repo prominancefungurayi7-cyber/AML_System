@@ -1,0 +1,13 @@
+# V2 Stage 6 representation-gap analysis
+
+This diagnosis uses the frozen Stage 2 design and Stage 5 Train/Validation results only. It precedes candidate extraction and ablation. Scenario names are diagnostic labels, never model inputs.
+
+| Family (Stage 5 recall) | Designed behaviour | Existing response | Gap and causal historical information |
+|---|---|---|---|
+| N3 reciprocal relationship cycle (.0200) | Unequal two-way flows and directed cycles among 2–6 wallets over hours to days, with side payments. | `network_reciprocal_flow_ratio_7d`, counterparty counts, pass-through ratio. | Set overlap discards the number, timing and value of return transfers. Prior directed edges can supply bidirectional counterparty count and return-flow intensity. A cycle completed by the current or a future edge cannot be claimed as prior evidence. |
+| N1 many-to-one collection (.0800) | 3–12 sources contribute to a collector over minutes to days; legitimate merchants and community collections overlap. | Sender outbound counts and receiver inbound counterparty count. | The existing receiver count is 7-day unique sources only. It misses recent inbound intensity and source turnover; prior receiving-wallet history can supply both without current-edge inclusion. |
+| A1 agent wallet growth (.2067) | New or infrequently served wallets arrive relative to an agent's own history. | 7-day unique-wallet count and current-wallet novelty. | A level and one current-event flag do not describe change from the agent's preceding service population. Prior recent versus earlier distinct-wallet sets can supply a growth measure. |
+| A2 agent wallet concentration (.0867) | A few related wallets account for a shifting share of service, interleaved with ordinary customers. | 7-day value HHI, repeat-wallet ratio, shared-flow concentration. | Long-window aggregates blur short changes, and value HHI does not capture count dominance. Prior short-window wallet service counts can supply the leading-wallet share. |
+| A4 agent flow imbalance (.0467) | Cash-In and Cash-Out dominance varies in value and count; assisted transfers do not use agent float. | 7-day inbound/outbound value ratio. | A one-sided unbounded ratio loses a well-scaled sign when one side is zero and omits transaction-count direction. Prior cash-only value and count histories can supply bounded signed measures. |
+
+All proposed histories are observable transactions strictly earlier in `(timestamp, transaction_id)` order, kept separately for Train and Validation. These patterns overlap normal commerce by design; no feature is assumed to be a label rule.

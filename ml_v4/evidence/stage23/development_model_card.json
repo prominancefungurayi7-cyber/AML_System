@@ -1,0 +1,530 @@
+{
+  "artifact_version": "Unchanged Stage18 primary_XGB experimental pipeline; no new fitted model",
+  "dependencies": {
+    "OS": "Windows-11-10.0.26200-SP0",
+    "Stage18_recorded_versions": {
+      "numpy": "2.4.3",
+      "python": "3.14.3",
+      "sklearn": "1.9.0",
+      "xgboost": "3.4.1"
+    },
+    "freeze_runtime_package_pins": {
+      "joblib": "1.5.3",
+      "numpy": "2.4.3",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.18.0",
+      "threadpoolctl": "3.6.0",
+      "xgboost": "3.4.1"
+    },
+    "installation_lock_limit": "Version/reference freeze, not an independently validated wheel/image lock. No environment installation or model execution in Stage23. Verify dependencies and trusted hashes before any separately authorized loading.",
+    "interpreter": "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "interpreter_sha256": "cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b",
+    "pin_scope": "Python/NumPy/sklearn/XGBoost match historical recorded runtime. scipy/joblib/threadpoolctl are currently observed supplementary pins, not retroactively asserted Stage18 install records.",
+    "threads": 1
+  },
+  "development_metrics": {
+    "FN": 292,
+    "FP": 118,
+    "TN": 11852,
+    "TP": 2738,
+    "accuracy": 0.9726666666666667,
+    "average_precision": 0.9859722854404002,
+    "balanced_accuracy": 0.9468861923786364,
+    "brier_score": 0.02014017291367054,
+    "calibration_bins": [
+      {
+        "count": 11263,
+        "lower": 0.0,
+        "mean_probability": 0.013430503197014332,
+        "observed_positive_fraction": 0.002397229867708426,
+        "upper": 0.1
+      },
+      {
+        "count": 343,
+        "lower": 0.1,
+        "mean_probability": 0.142390176653862,
+        "observed_positive_fraction": 0.13702623906705538,
+        "upper": 0.2
+      },
+      {
+        "count": 206,
+        "lower": 0.2,
+        "mean_probability": 0.25024065375328064,
+        "observed_positive_fraction": 0.3155339805825243,
+        "upper": 0.3
+      },
+      {
+        "count": 180,
+        "lower": 0.3,
+        "mean_probability": 0.3500816822052002,
+        "observed_positive_fraction": 0.4,
+        "upper": 0.4
+      },
+      {
+        "count": 152,
+        "lower": 0.4,
+        "mean_probability": 0.4482574462890625,
+        "observed_positive_fraction": 0.5328947368421053,
+        "upper": 0.5
+      },
+      {
+        "count": 159,
+        "lower": 0.5,
+        "mean_probability": 0.5508550405502319,
+        "observed_positive_fraction": 0.710691823899371,
+        "upper": 0.6
+      },
+      {
+        "count": 136,
+        "lower": 0.6,
+        "mean_probability": 0.6512842774391174,
+        "observed_positive_fraction": 0.7941176470588235,
+        "upper": 0.7
+      },
+      {
+        "count": 170,
+        "lower": 0.7,
+        "mean_probability": 0.756597638130188,
+        "observed_positive_fraction": 0.8764705882352941,
+        "upper": 0.8
+      },
+      {
+        "count": 241,
+        "lower": 0.8,
+        "mean_probability": 0.8555885553359985,
+        "observed_positive_fraction": 0.950207468879668,
+        "upper": 0.9
+      },
+      {
+        "count": 2150,
+        "lower": 0.9,
+        "mean_probability": 0.9856314659118652,
+        "observed_positive_fraction": 0.9948837209302326,
+        "upper": 1.0
+      }
+    ],
+    "confusion_matrix": [
+      [
+        11852,
+        118
+      ],
+      [
+        292,
+        2738
+      ]
+    ],
+    "false_positive_rate": 0.009857978279030911,
+    "log_loss": 0.07305558025836945,
+    "macro_f1": 0.9566703080517052,
+    "normal_recall": 0.9901420217209691,
+    "positive_f1": 0.9303431872239212,
+    "positive_precision": 0.9586834733893558,
+    "positive_recall": 0.9036303630363036,
+    "precision_undefined": false,
+    "probability_quantiles": [
+      0.0027302424423396587,
+      0.003708630334585905,
+      0.00542449438944459,
+      0.010991544928401709,
+      0.09687996841967106,
+      0.9994559228420258,
+      0.9999876022338867
+    ],
+    "roc_auc": 0.9960458213741173,
+    "threshold": 0.5
+  },
+  "dimensions": {
+    "numeric": 42,
+    "semantic": 40
+  },
+  "entity_population": {
+    "train_agents": 96,
+    "train_units": 12,
+    "train_wallets": 1200,
+    "validation_agents": 24,
+    "validation_units": 3,
+    "validation_wallets": 300
+  },
+  "evaluation_status": "No independent challenge evaluation or real-world validation; Stage16V custody unavailable; original holdouts quarantined/supportFAIL; Stage16T40-feature semantic alignment alone is not evaluation authorization",
+  "family_diagnostics": {
+    "A1": {
+      "FN": 0,
+      "TP": 1467,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 0,
+        "support": 1253
+      },
+      "recall": 1.0,
+      "support": 1467,
+      "train_required": 1200,
+      "train_support": 5773,
+      "validation_clusters": 570,
+      "validation_required": 300,
+      "validation_subjects": 23
+    },
+    "A2": {
+      "FN": 39,
+      "TP": 109,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 39,
+        "support": 96
+      },
+      "recall": 0.7364864864864865,
+      "support": 148,
+      "train_required": 1200,
+      "train_support": 755,
+      "validation_clusters": 60,
+      "validation_required": 300,
+      "validation_subjects": 20
+    },
+    "A3": {
+      "FN": 0,
+      "TP": 255,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 0,
+        "support": 148
+      },
+      "recall": 1.0,
+      "support": 255,
+      "train_required": 1200,
+      "train_support": 883,
+      "validation_clusters": 80,
+      "validation_required": 300,
+      "validation_subjects": 18
+    },
+    "A4": {
+      "FN": 71,
+      "TP": 151,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 71,
+        "support": 151
+      },
+      "recall": 0.6801801801801802,
+      "support": 222,
+      "train_required": 1200,
+      "train_support": 812,
+      "validation_clusters": 138,
+      "validation_required": 300,
+      "validation_subjects": 17
+    },
+    "N1": {
+      "FN": 24,
+      "TP": 77,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 24,
+        "support": 89
+      },
+      "recall": 0.7623762376237624,
+      "support": 101,
+      "train_required": 1200,
+      "train_support": 414,
+      "validation_clusters": 42,
+      "validation_required": 300,
+      "validation_subjects": 28
+    },
+    "N2": {
+      "FN": 48,
+      "TP": 381,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 45,
+        "support": 198
+      },
+      "recall": 0.8881118881118881,
+      "support": 429,
+      "train_required": 1200,
+      "train_support": 1690,
+      "validation_clusters": 147,
+      "validation_required": 300,
+      "validation_subjects": 86
+    },
+    "N3": {
+      "FN": 8,
+      "TP": 122,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 8,
+        "support": 99
+      },
+      "recall": 0.9384615384615385,
+      "support": 130,
+      "train_required": 1200,
+      "train_support": 550,
+      "validation_clusters": 111,
+      "validation_required": 300,
+      "validation_subjects": 87
+    },
+    "N4": {
+      "FN": 21,
+      "TP": 123,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 21,
+        "support": 90
+      },
+      "recall": 0.8541666666666666,
+      "support": 144,
+      "train_required": 1200,
+      "train_support": 559,
+      "validation_clusters": 91,
+      "validation_required": 300,
+      "validation_subjects": 74
+    },
+    "S1": {
+      "FN": 6,
+      "TP": 126,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 6,
+        "support": 47
+      },
+      "recall": 0.9545454545454546,
+      "support": 132,
+      "train_required": 1200,
+      "train_support": 456,
+      "validation_clusters": 34,
+      "validation_required": 300,
+      "validation_subjects": 31
+    },
+    "S2": {
+      "FN": 12,
+      "TP": 11,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 12,
+        "support": 23
+      },
+      "recall": 0.4782608695652174,
+      "support": 23,
+      "train_required": 1200,
+      "train_support": 112,
+      "validation_clusters": 7,
+      "validation_required": 300,
+      "validation_subjects": 7
+    },
+    "S3": {
+      "FN": 54,
+      "TP": 492,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 51,
+        "support": 295
+      },
+      "recall": 0.9010989010989011,
+      "support": 546,
+      "train_required": 1200,
+      "train_support": 2292,
+      "validation_clusters": 156,
+      "validation_required": 300,
+      "validation_subjects": 104
+    },
+    "S4": {
+      "FN": 12,
+      "TP": 4,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 12,
+        "support": 12
+      },
+      "recall": 0.25,
+      "support": 16,
+      "train_required": 1200,
+      "train_support": 128,
+      "validation_clusters": 12,
+      "validation_required": 300,
+      "validation_subjects": 12
+    }
+  },
+  "feature_version": "v4.features.1",
+  "fit_attempts_cumulative": 20,
+  "human_review": "A score is review evidence; a person must assess context and appropriate next steps. Neither positive nor negative certifies criminality/benignity.",
+  "input": "Validated causal observable history under frozen schema, not IDs/provenance as model columns",
+  "intended_use": "Reproducible synthetic development research and separately authorized human-review decision-support studies",
+  "known_failure_modes": [
+    "Generic Zimbabwean mobile-money assumptions without operator calibration; artificial inventories/isolated local units; benchmark is not a natural prevalence estimate.",
+    "S1,S2,S4,N1,N3,N4,A2,A3,A4 miss original Train1200/Validation300 count objectives; no waiver.",
+    "112 Train,23 Validation positives; Validation7 subjects/7clusters. Retained recall11/23;44-field improvement exploratory.",
+    "128 Train,16 Validation positives; retained4/16. No net Stage22 improvement.",
+    "Retained XGB0/12 exclusive Validation detections; overlap accounts for all4 S4 detections without proving causal attribution.",
+    "A1 covers1467 Validation positives and retained detects all; growth importance and correlated agent primitives remain substantial.",
+    "Used for selection, diagnosis and representation hypotheses; no independent confirmation from reuse.",
+    "Entities/episodes are dependent; row-based intervals are not reliable population uncertainty.",
+    "Family recalls do not add and union-positive detections need not demonstrate distinctive family reasoning.",
+    "Hand checks and separate arithmetic in the same developer environment do not constitute outside review.",
+    "Original holdouts quarantined with public supportFAIL; no challenge generated or scored.",
+    "Stage16V independent administrator/storage/secret/logging boundary remains unprovisioned.",
+    "No representative real operator cohort evaluated; synthetic findings cannot establish transport.",
+    "No operational PPV, calibration, review capacity, latency, drift or downstream decision-impact validation.",
+    "Stage15A broad historical preservation inventory remains incomplete; exact named checks do not repair absent archive.",
+    "N3 selected-route loss and other omitted components remain; probability is not calibrated certainty of laundering."
+  ],
+  "model_name": "V4 original40 Stage18 primary_XGB",
+  "non_intended_use": [
+    "Determining that laundering/crime occurred",
+    "Autonomous financial/account/investigation actions",
+    "Production deployment or regulatory certification",
+    "Real-world accuracy/PPV assertions",
+    "Unapproved live application inference"
+  ],
+  "population": {
+    "scored_all": 100000,
+    "train": 60000,
+    "train_warmup": 14400,
+    "validation": 15000,
+    "validation_warmup": 3600,
+    "warmup_all": 24000
+  },
+  "preprocessing": {
+    "class": "preprocessing.FrozenPreprocessor",
+    "contract": {
+      "NaN_field": "wallet_prior_funding_residual_minor_24h",
+      "columns": [
+        "amount_minor",
+        "transaction_type=wallet_to_wallet",
+        "transaction_type=cash_in",
+        "transaction_type=cash_out",
+        "wallet_count_1h",
+        "wallet_value_1h",
+        "wallet_max_value_share_1h",
+        "wallet_activity_acceleration_1h",
+        "wallet_similar_amount_count_7d",
+        "wallet_similar_amount_share_7d",
+        "wallet_count_utc_day",
+        "wallet_active_hours_utc_day",
+        "wallet_day_count_growth",
+        "wallet_near_band_count_7d",
+        "network_in_count_24h",
+        "network_in_distinct_24h",
+        "network_in_acceleration_24h",
+        "network_out_count_24h",
+        "network_out_distinct_24h",
+        "network_out_acceleration_24h",
+        "prior_return_path_min_length_7d",
+        "prior_return_path_count_7d",
+        "prior_path_min_max_log_change_7d",
+        "current_to_selected_path_first_value_ratio",
+        "wallet_pass_through_fraction_24h",
+        "wallet_prior_funding_residual_minor_24h",
+        "agent_wallet_growth_ratio_7d",
+        "agent_distinct_wallets_7d",
+        "agent_new_wallet_count_7d",
+        "agent_new_wallet_share_7d",
+        "agent_top2_count_share_24h",
+        "agent_top2_share_change_24h",
+        "agent_service_acceleration_1h",
+        "agent_distinct_wallets_1h",
+        "agent_cash_in_count_24h",
+        "agent_cash_out_count_24h",
+        "agent_cash_in_value_24h",
+        "agent_cash_out_value_24h",
+        "agent_cash_distinct_wallets_24h",
+        "agent_cash_value_skew_change",
+        "wallet_observed_coverage_days",
+        "agent_observed_coverage_days"
+      ],
+      "count": 42,
+      "fit_partition": "Train only",
+      "markers_to_missing": {
+        "agent_cash_value_skew_change": -3,
+        "agent_new_wallet_count_7d": -1,
+        "agent_new_wallet_share_7d": -1,
+        "agent_service_acceleration_1h": -1,
+        "agent_top2_share_change_24h": -3,
+        "agent_wallet_growth_ratio_7d": -1,
+        "current_to_selected_path_first_value_ratio": -1,
+        "network_in_acceleration_24h": -1,
+        "network_out_acceleration_24h": -1,
+        "prior_path_min_max_log_change_7d": -1,
+        "prior_return_path_min_length_7d": -1,
+        "wallet_activity_acceleration_1h": -1,
+        "wallet_day_count_growth": -1,
+        "wallet_pass_through_fraction_24h": -1
+      },
+      "median_and_scale_fit_per_pipeline": true,
+      "no_indicators_in_full_model": true,
+      "schema_and_marker_fixture": "PASS",
+      "valid_negative_values_preserved": true
+    },
+    "fitted_state": "Already embedded in original pipeline and separately saved original preprocessor; not refitted",
+    "mode": "full",
+    "training_plan_description": "Exact markers -> NaN per field; Train-only median imputer (empty=0), no indicators; deterministic type one-hot in declared order; Train-only standard scaling for all estimators."
+  },
+  "reference_only": true,
+  "reference_version": "v4.development.freeze.stage23.1",
+  "required_statement": "This model identifies transaction patterns defined as suspicious within the synthetic research benchmark. It does not determine that money laundering has occurred.",
+  "security_integrity": {
+    "HGB_comparator": {
+      "path": "ml_v4/development_training/artifacts/primary_HGB_EXPERIMENTAL.joblib",
+      "sha256": "156b499c6b6e5751d638ebedc142cc0b318bd0344d86a2943c3705f3197ac82b"
+    },
+    "dataset_manifest": {
+      "path": "ml_v4/evidence/stage16r/dataset_manifest.json",
+      "sha256": "bebc7afa5bc9d788b9e337265ba9981f4d89abe24689ee25666c7a1265d41a4b"
+    },
+    "extractor_source": {
+      "path": "ml_v4/development_features/extractor.py",
+      "sha256": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717"
+    },
+    "feature_specification": {
+      "path": "ml_v4/design/v4_feature_spec.json",
+      "sha256": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204"
+    },
+    "observable_contract_source": {
+      "path": "ml_v4/generation/stage16r_contract.py",
+      "sha256": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d"
+    },
+    "pipeline": {
+      "path": "ml_v4/development_training/artifacts/primary_XGB_EXPERIMENTAL.joblib",
+      "sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+    },
+    "preprocessing_specification": {
+      "path": "ml_v4/evidence/stage18/preprocessing_specification.json",
+      "sha256": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1"
+    },
+    "preprocessor_source": {
+      "path": "ml_v4/development_training/preprocessing.py",
+      "sha256": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d"
+    },
+    "selection_record": {
+      "path": "ml_v4/evidence/stage18/development_selection.json",
+      "sha256": "60df51b5cc081f99ac4a94b2347b5d9a1243d9c1a2b4dd67d5f07d71d02ed920"
+    },
+    "standalone_fitted_preprocessor": {
+      "path": "ml_v4/development_training/artifacts/selected_preprocessor_EXPERIMENTAL.joblib",
+      "sha256": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41"
+    },
+    "target_evaluator_source": {
+      "path": "ml_v4/generation/stage16r_evaluator.py",
+      "sha256": "37aedae842e169b97fd0d110b9b33d5665198d8e870c38658051502e86f2f6af"
+    },
+    "target_specification": {
+      "path": "ml_v4/design/v4_target_predicates.json",
+      "sha256": "1295cd6fd1cbf1bce27b8504019da0408574d52decc0732d5e92742f2656dde8"
+    },
+    "temporal_specification": {
+      "path": "ml_v4/design/v4_temporal_contract.json",
+      "sha256": "72158611bcc1033bc308f95b91d434686c876ef72371fb1009ea2bcfe8f8db60"
+    },
+    "training_plan": {
+      "path": "ml_v4/evidence/stage18/frozen_training_plan.json",
+      "sha256": "4a3823500b6a6a8b776c28dc3210cd11f538d9e7d32fcf251b6b21dac2a08389"
+    }
+  },
+  "synthetic_warning": "No production customer data or operator calibration; no real AML validation",
+  "target": {
+    "materialized_evaluator_version": "v4.predicates.1.stage16r.1",
+    "meaning": "Union of12 eligible observable causal suspicious-pattern predicates; target0 does not prove benignity, including cold-start ineligibility",
+    "semantic_version": "v4.predicates.1",
+    "temporal_version": "v4.temporal.1"
+  },
+  "threshold": {
+    "calibration": "No fitted probability calibration",
+    "operator": ">=",
+    "value": 0.5
+  }
+}

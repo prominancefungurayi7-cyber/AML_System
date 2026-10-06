@@ -1,0 +1,12 @@
+{
+  "attempt": "preflight_only",
+  "created_utc": "2026-09-29T16:08:51.768388+00:00",
+  "dataset_id": "mobile_money_aml_synthetic_100k_v4",
+  "dataset_status": "NOT_GENERATED",
+  "measurements": null,
+  "reason": "Stage 16 section 1 stop condition: unresolved frozen design conflict B01",
+  "rows_generated_this_attempt": 0,
+  "schema_version": 1,
+  "stage": 16,
+  "status": "NOT_RUN"
+}

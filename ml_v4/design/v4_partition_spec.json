@@ -1,0 +1,65 @@
+{
+  "count_rationale": "Twice V3 wallet count per agent provides100-wallet local reservoirs; repeated units keep pool size and expected per-entity event exposure constant across partition sizes.12/3/3/2 communities are a controlled synthetic replication design, not a representative regional network.",
+  "design_version": "v4.stage 15.design.1",
+  "entity_IDs": "Later materialization derives independent128-bit opaque wallet/agent IDs from partition entity streams. Transaction IDs are unique random positive63-bit integers drawn without replacement; no family/time/partition block prefixes. IDs are join/order keys, never input features.",
+  "isolation": "Wallets and agents disjoint across partitions; no cross-partition edge, history, warm-up, state or ID collision. Units are isolated communities within a partition; no cross-unit W2W or service. Unit ID is private and excluded from X.",
+  "local_unit": {
+    "agents": 8,
+    "scored_events": 5000,
+    "wallets": 100,
+    "warmup_events": 1200
+  },
+  "partitions": [
+    {
+      "agents": 96,
+      "local_units": 12,
+      "name": "train",
+      "scored_events": 60000,
+      "wallets": 1200,
+      "warmup_events": 14400
+    },
+    {
+      "agents": 24,
+      "local_units": 3,
+      "name": "validation",
+      "scored_events": 15000,
+      "wallets": 300,
+      "warmup_events": 3600
+    },
+    {
+      "agents": 24,
+      "local_units": 3,
+      "name": "final_test",
+      "scored_events": 15000,
+      "wallets": 300,
+      "warmup_events": 3600
+    },
+    {
+      "agents": 16,
+      "local_units": 2,
+      "name": "independent_evaluation",
+      "scored_events": 10000,
+      "wallets": 200,
+      "warmup_events": 2400
+    }
+  ],
+  "scaled_design": "Same horizon and unit structure for all partitions; fresh streams and entities. Final same process as development. Independent shift parameters are listed in holdout policy.",
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "temporal": {
+    "scored_days": 180,
+    "scored_end_exclusive": "2027-08-11T00:00:00Z",
+    "scored_start": "2027-02-12T00:00:00Z",
+    "start": "2027-01-01T00:00:00Z",
+    "warmup_days": 42
+  },
+  "warmup": {
+    "can_satisfy_predicates": true,
+    "counted_in_100000": false,
+    "label_storage": "Optional evaluator diagnostic stream only; warm-up truth excluded from model training and reported scored prevalence. No y forced to 0.",
+    "scored": false,
+    "selection": "Fixed timestamp interval, never label-based discard; all scored rows kept even if baseline-ineligible.",
+    "storage": "Separate warmup_observables file per partition with identical event schema, fed before scored transactions; files hash-manifested and kept permanently.",
+    "used_for_model_fit": false
+  }
+}

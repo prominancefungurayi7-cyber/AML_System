@@ -1,0 +1,21 @@
+{
+  "boundary_changed": false,
+  "certificate_caveat": "Custodian support_policy combines family counts, subject/cluster coverage and prevalence; FAIL does not identify which condition or family failed.",
+  "commitment_id": "6448b0fb8b7ed7f3cc3e58bae9a2565f45dd5d2d6cccb91b74fdc4580696f0f5",
+  "disposition": "SEALED_QUARANTINED",
+  "loader_called": false,
+  "loader_source_sha256": {
+    "ml_v4/evaluation/stage16r_authorized_loader.py": "b1937b7a232d2f59586af60737c37d2e7a22007ff6e56d913de04a4dcb173588",
+    "ml_v4/generation/stage16r_loader.py": "5ebeb543174036448be0193973656bc217bc5214dbc5372f9ef0dcec67b29034"
+  },
+  "original_holdout_support_policy_satisfied": false,
+  "private_counts_requested": false,
+  "private_failure_family_or_counts": "UNKNOWN; not inferred",
+  "public_support_policy": {
+    "final_test": "FAIL",
+    "independent_evaluation": "FAIL"
+  },
+  "scope": "Existing named public metadata and loader source only; no seal enumeration or encrypted/private bytes read",
+  "scope_limit": "Verifies this audit access and unchanged source/public metadata; does not attest unread encrypted bytes or all external OS activity.",
+  "sealed_contents_accessed": false
+}

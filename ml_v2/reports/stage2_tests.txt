@@ -1,0 +1,12 @@
+test_all_positive_episodes_complete_across_seeds (test_stage2_contract.Stage2Contract.test_all_positive_episodes_complete_across_seeds) ... ok
+test_equal_timestamp_order_does_not_consult_labels (test_stage2_contract.Stage2Contract.test_equal_timestamp_order_does_not_consult_labels) ... ok
+test_holdout_and_path_injection_denied_before_io (test_stage2_contract.Stage2Contract.test_holdout_and_path_injection_denied_before_io) ... ok
+test_junction_or_symlink_escape_rejected (test_stage2_contract.Stage2Contract.test_junction_or_symlink_escape_rejected) ... ok
+test_no_application_or_ml_imports (test_stage2_contract.Stage2Contract.test_no_application_or_ml_imports) ... ok
+test_no_overwrite (test_stage2_contract.Stage2Contract.test_no_overwrite) ... ok
+test_reject_outside_paths (test_stage2_contract.Stage2Contract.test_reject_outside_paths) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.360s
+
+OK

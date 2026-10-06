@@ -1,0 +1,143 @@
+{
+  "a1_boundary_design": [
+    {
+      "D": 12,
+      "baseline_median": 6,
+      "case": "Strong growth, returning customers",
+      "failed_gate": "new_distinct<4 and novelty=0.25<0.5",
+      "new_distinct": 3
+    },
+    {
+      "D": 10,
+      "baseline_median": 8,
+      "case": "High novelty, modest growth",
+      "failed_gate": "growth=1.25<1.5",
+      "new_distinct": 7
+    },
+    {
+      "D": 12,
+      "baseline_median": 6,
+      "case": "Temporary market-day expansion",
+      "failed_gate": "novelty=1/3<0.5; future return to baseline is irrelevant",
+      "new_distinct": 4
+    },
+    {
+      "D": 18,
+      "baseline_median": 9,
+      "case": "Sustained legitimate-like expansion",
+      "failed_gate": "novelty=7/18<0.5; sustained expansion may instead become target 1 if all gates pass",
+      "new_distinct": 7
+    },
+    {
+      "D": 8,
+      "baseline_median": 6,
+      "case": "Busy repeat use without acquisition",
+      "failed_gate": "growth<1.5, new_distinct<4 and novelty<0.5; event count alone is insufficient",
+      "new_distinct": 2
+    },
+    {
+      "D": 14,
+      "baseline_median": 10,
+      "case": "Naturally expanding customer population",
+      "failed_gate": "growth=1.4<1.5",
+      "new_distinct": 8
+    },
+    {
+      "D": 10,
+      "baseline_median": 6,
+      "case": "Near novelty boundary",
+      "failed_gate": "novelty=0.4<0.5; changing one old wallet to a baseline-new wallet reaches0.5",
+      "new_distinct": 4
+    }
+  ],
+  "a1_positive_diversity": [
+    "Gradual acquisition: D12, baseline median8, U6 illustrates equality at growth1.5 and novelty0.5.",
+    "Sharp acquisition: D12, baseline median5, U8 illustrates stronger growth and novelty.",
+    "Moderate growth with novelty: D8, baseline median5, U5 illustrates ratio1.6 and novelty0.625.",
+    "Sustained acquisition after a stable baseline: D18, median10, U10 illustrates growth1.8 and novelty0.556."
+  ],
+  "boundary_coverage": "For every numeric gate, future hand fixtures include exact equality, one integer step either side where possible, and plausible count/amount perturbations. Population recipes vary one or several components, never expose distance-to-full-predicate as an input.",
+  "categories": [
+    {
+      "code": "H1",
+      "families": [
+        "S1",
+        "S3"
+      ],
+      "mechanism": "High counts with one dominant payment, or activity concentrated in fewer than 3 hour buckets, or established comparable daily baseline.",
+      "name": "Busy wallet / same-day activity",
+      "required_failed_family_condition": "S1 max share>0.60 or acceleration<3; S3 occupied hours<3 or day growth<2."
+    },
+    {
+      "code": "H2",
+      "families": [
+        "S2"
+      ],
+      "mechanism": "Similar amounts across prior and recent periods; or mixed current payments diluting the similar cluster.",
+      "name": "Recurring payments",
+      "required_failed_family_condition": "S2 cluster share<0.60 or cluster growth<2; do not lower label because recurring origin is legitimate."
+    },
+    {
+      "code": "H3",
+      "families": [
+        "S4"
+      ],
+      "mechanism": "Large repeated transfers on a stable schedule; high-value band occurs in all origins.",
+      "name": "Recurring legitimate large payments",
+      "required_failed_family_condition": "S4 band share<0.40, fewer than 3 recent band events, or band growth<2; exact-same band values also fail required variation."
+    },
+    {
+      "code": "H4",
+      "families": [
+        "N1"
+      ],
+      "mechanism": "Several payers with stable prior incoming volume, or many recent transfers from only 2 payers.",
+      "name": "Legitimate collection",
+      "required_failed_family_condition": "N1 incoming growth<2 or distinct senders<3."
+    },
+    {
+      "code": "H5",
+      "families": [
+        "N2",
+        "N4"
+      ],
+      "mechanism": "Recurring dispersion with strong prior baseline; alternatively outward transfers use only a small fraction of recent funding.",
+      "name": "Payroll / transit-like dispersion",
+      "required_failed_family_condition": "N2 outgoing growth<2; N4 O/F<0.5 (or no incoming-W2W anchor). Must check both and all other families for target 0."
+    },
+    {
+      "code": "H6",
+      "families": [
+        "N3"
+      ],
+      "mechanism": "Reverse edges and chains exist but chronological order, amount consistency or current return proportion fails.",
+      "name": "Refund / settlement / reciprocal-looking activity",
+      "required_failed_family_condition": "No full qualifying chronological simple path, or every such path fails an amount ratio. Presence of a topological path alone is not N3."
+    },
+    {
+      "code": "H7",
+      "families": [
+        "A1",
+        "A3"
+      ],
+      "mechanism": "Returning-customer expansion, moderate acquisition, market-day demand, customer migration and low-period recovery.",
+      "name": "Busy / growing agents",
+      "required_failed_family_condition": "A1 new count<4, novelty<0.5, recent distinct<6 or growth<1.5; A3 hourly growth<3 or recent distinct<3. Later recovery is not a gate."
+    },
+    {
+      "code": "H8",
+      "families": [
+        "A2",
+        "A4"
+      ],
+      "mechanism": "Repeat clientele with stable concentration; cash direction aligned with prior season or with weak count/value agreement.",
+      "name": "Concentrated customer / cash demand",
+      "required_failed_family_condition": "A2 share change<0.2 or top2 share<0.65; A4 abs skew change<0.4, abs count skew<0.5, abs value skew<0.6 or sign disagreement."
+    }
+  ],
+  "design_version": "v4.stage 15.design.1",
+  "example_status": "These are mathematical design examples, not generated rows, measured prevalence or fixed signatures. Eligible history and >=12 baseline services are assumed. Draw broad overlapping recipe parameters; do not copy exact example tuples across episodes.",
+  "joint_negative_rule": "A named failed gate rules out only its family. A true target 0 case must have every family false under the common evaluator. Hard-origin rows satisfying any full predicate must be target 1; never delete, relabel or regenerate them to preserve a negative quota.",
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

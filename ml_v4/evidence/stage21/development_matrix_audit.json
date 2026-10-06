@@ -1,0 +1,417 @@
+{
+  "isolation": {
+    "counts": {
+      "train": {
+        "agents": 96,
+        "ids": 74400,
+        "wallets": 1200
+      },
+      "validation": {
+        "agents": 24,
+        "ids": 18600,
+        "wallets": 300
+      }
+    },
+    "fresh_state_per_partition_and_replay": true,
+    "wallets_agents_transaction_ids_disjoint": true
+  },
+  "no_resampling_or_new_transactions": true,
+  "partitions": {
+    "train": {
+      "dtype": [
+        [
+          "amount_minor",
+          "<f8"
+        ],
+        [
+          "transaction_type",
+          "<U16"
+        ],
+        [
+          "wallet_count_1h",
+          "<f8"
+        ],
+        [
+          "wallet_value_1h",
+          "<f8"
+        ],
+        [
+          "wallet_max_value_share_1h",
+          "<f8"
+        ],
+        [
+          "wallet_activity_acceleration_1h",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_count_7d",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_share_7d",
+          "<f8"
+        ],
+        [
+          "wallet_count_utc_day",
+          "<f8"
+        ],
+        [
+          "wallet_active_hours_utc_day",
+          "<f8"
+        ],
+        [
+          "wallet_day_count_growth",
+          "<f8"
+        ],
+        [
+          "wallet_near_band_count_7d",
+          "<f8"
+        ],
+        [
+          "network_in_count_24h",
+          "<f8"
+        ],
+        [
+          "network_in_distinct_24h",
+          "<f8"
+        ],
+        [
+          "network_in_acceleration_24h",
+          "<f8"
+        ],
+        [
+          "network_out_count_24h",
+          "<f8"
+        ],
+        [
+          "network_out_distinct_24h",
+          "<f8"
+        ],
+        [
+          "network_out_acceleration_24h",
+          "<f8"
+        ],
+        [
+          "prior_return_path_min_length_7d",
+          "<f8"
+        ],
+        [
+          "prior_return_path_count_7d",
+          "<f8"
+        ],
+        [
+          "prior_path_min_max_log_change_7d",
+          "<f8"
+        ],
+        [
+          "current_to_selected_path_first_value_ratio",
+          "<f8"
+        ],
+        [
+          "wallet_pass_through_fraction_24h",
+          "<f8"
+        ],
+        [
+          "wallet_prior_funding_residual_minor_24h",
+          "<f8"
+        ],
+        [
+          "agent_wallet_growth_ratio_7d",
+          "<f8"
+        ],
+        [
+          "agent_distinct_wallets_7d",
+          "<f8"
+        ],
+        [
+          "agent_new_wallet_count_7d",
+          "<f8"
+        ],
+        [
+          "agent_new_wallet_share_7d",
+          "<f8"
+        ],
+        [
+          "agent_top2_count_share_24h",
+          "<f8"
+        ],
+        [
+          "agent_top2_share_change_24h",
+          "<f8"
+        ],
+        [
+          "agent_service_acceleration_1h",
+          "<f8"
+        ],
+        [
+          "agent_distinct_wallets_1h",
+          "<f8"
+        ],
+        [
+          "agent_cash_in_count_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_out_count_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_in_value_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_out_value_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_distinct_wallets_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_value_skew_change",
+          "<f8"
+        ],
+        [
+          "wallet_observed_coverage_days",
+          "<f8"
+        ],
+        [
+          "agent_observed_coverage_days",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_value_minor_7d",
+          "<f8"
+        ],
+        [
+          "wallet_baseline_similar_amount_count_28d_offset_7d",
+          "<f8"
+        ],
+        [
+          "wallet_near_band_distinct_amount_count_7d",
+          "<f8"
+        ],
+        [
+          "wallet_baseline_near_band_count_28d_offset_7d",
+          "<f8"
+        ]
+      ],
+      "encoded_matrix_created": false,
+      "exact_label_and_metadata_bytes_match": true,
+      "expected_encoded_columns": 46,
+      "first40_parity": "PASS",
+      "input_row_order_preserved": true,
+      "labels": {
+        "0": 47770,
+        "1": 12230
+      },
+      "physical_shape": [
+        60000
+      ],
+      "row_ids_outside_X": true,
+      "semantic_shape": [
+        60000,
+        44
+      ],
+      "warmup_rows": 14400
+    },
+    "validation": {
+      "dtype": [
+        [
+          "amount_minor",
+          "<f8"
+        ],
+        [
+          "transaction_type",
+          "<U16"
+        ],
+        [
+          "wallet_count_1h",
+          "<f8"
+        ],
+        [
+          "wallet_value_1h",
+          "<f8"
+        ],
+        [
+          "wallet_max_value_share_1h",
+          "<f8"
+        ],
+        [
+          "wallet_activity_acceleration_1h",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_count_7d",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_share_7d",
+          "<f8"
+        ],
+        [
+          "wallet_count_utc_day",
+          "<f8"
+        ],
+        [
+          "wallet_active_hours_utc_day",
+          "<f8"
+        ],
+        [
+          "wallet_day_count_growth",
+          "<f8"
+        ],
+        [
+          "wallet_near_band_count_7d",
+          "<f8"
+        ],
+        [
+          "network_in_count_24h",
+          "<f8"
+        ],
+        [
+          "network_in_distinct_24h",
+          "<f8"
+        ],
+        [
+          "network_in_acceleration_24h",
+          "<f8"
+        ],
+        [
+          "network_out_count_24h",
+          "<f8"
+        ],
+        [
+          "network_out_distinct_24h",
+          "<f8"
+        ],
+        [
+          "network_out_acceleration_24h",
+          "<f8"
+        ],
+        [
+          "prior_return_path_min_length_7d",
+          "<f8"
+        ],
+        [
+          "prior_return_path_count_7d",
+          "<f8"
+        ],
+        [
+          "prior_path_min_max_log_change_7d",
+          "<f8"
+        ],
+        [
+          "current_to_selected_path_first_value_ratio",
+          "<f8"
+        ],
+        [
+          "wallet_pass_through_fraction_24h",
+          "<f8"
+        ],
+        [
+          "wallet_prior_funding_residual_minor_24h",
+          "<f8"
+        ],
+        [
+          "agent_wallet_growth_ratio_7d",
+          "<f8"
+        ],
+        [
+          "agent_distinct_wallets_7d",
+          "<f8"
+        ],
+        [
+          "agent_new_wallet_count_7d",
+          "<f8"
+        ],
+        [
+          "agent_new_wallet_share_7d",
+          "<f8"
+        ],
+        [
+          "agent_top2_count_share_24h",
+          "<f8"
+        ],
+        [
+          "agent_top2_share_change_24h",
+          "<f8"
+        ],
+        [
+          "agent_service_acceleration_1h",
+          "<f8"
+        ],
+        [
+          "agent_distinct_wallets_1h",
+          "<f8"
+        ],
+        [
+          "agent_cash_in_count_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_out_count_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_in_value_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_out_value_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_distinct_wallets_24h",
+          "<f8"
+        ],
+        [
+          "agent_cash_value_skew_change",
+          "<f8"
+        ],
+        [
+          "wallet_observed_coverage_days",
+          "<f8"
+        ],
+        [
+          "agent_observed_coverage_days",
+          "<f8"
+        ],
+        [
+          "wallet_similar_amount_value_minor_7d",
+          "<f8"
+        ],
+        [
+          "wallet_baseline_similar_amount_count_28d_offset_7d",
+          "<f8"
+        ],
+        [
+          "wallet_near_band_distinct_amount_count_7d",
+          "<f8"
+        ],
+        [
+          "wallet_baseline_near_band_count_28d_offset_7d",
+          "<f8"
+        ]
+      ],
+      "encoded_matrix_created": false,
+      "exact_label_and_metadata_bytes_match": true,
+      "expected_encoded_columns": 46,
+      "first40_parity": "PASS",
+      "input_row_order_preserved": true,
+      "labels": {
+        "0": 11970,
+        "1": 3030
+      },
+      "physical_shape": [
+        15000
+      ],
+      "row_ids_outside_X": true,
+      "semantic_shape": [
+        15000,
+        44
+      ],
+      "warmup_rows": 3600
+    }
+  }
+}

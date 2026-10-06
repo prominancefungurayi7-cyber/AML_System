@@ -1,0 +1,211 @@
+{
+  "numpy": "2.4.3",
+  "partition_entity_id_isolation": "PASS",
+  "partitions": {
+    "train": {
+      "artifacts": {
+        "ml_v4/development_features/matrices/train/X.npy": "951df849aa10fe8d90fc58f8546d2b26604b12dbf6ee1e3ce97e78b9e18cee71",
+        "ml_v4/development_features/matrices/train/row_metadata.csv": "df5bc095c3013701adc0190a8e245cffe3fe2e97f58ec6e02d6577df38c18b60",
+        "ml_v4/development_features/matrices/train/y.npy": "b5fabe11fecb4b7783211e8a113c2fa3bf9050a97a64e6eae9303c1552630543"
+      },
+      "byte_identical_replay": true,
+      "extraction_seconds": 31.71722150000278,
+      "family_support": {
+        "A1": {
+          "decision_points": 5773,
+          "distinct_clusters": 2273,
+          "distinct_subjects": 90,
+          "minimum_objective": 1200
+        },
+        "A2": {
+          "decision_points": 755,
+          "distinct_clusters": 339,
+          "distinct_subjects": 74,
+          "minimum_objective": 1200
+        },
+        "A3": {
+          "decision_points": 883,
+          "distinct_clusters": 249,
+          "distinct_subjects": 77,
+          "minimum_objective": 1200
+        },
+        "A4": {
+          "decision_points": 812,
+          "distinct_clusters": 466,
+          "distinct_subjects": 75,
+          "minimum_objective": 1200
+        },
+        "N1": {
+          "decision_points": 414,
+          "distinct_clusters": 187,
+          "distinct_subjects": 116,
+          "minimum_objective": 1200
+        },
+        "N2": {
+          "decision_points": 1690,
+          "distinct_clusters": 582,
+          "distinct_subjects": 333,
+          "minimum_objective": 1200
+        },
+        "N3": {
+          "decision_points": 550,
+          "distinct_clusters": 453,
+          "distinct_subjects": 355,
+          "minimum_objective": 1200
+        },
+        "N4": {
+          "decision_points": 559,
+          "distinct_clusters": 348,
+          "distinct_subjects": 258,
+          "minimum_objective": 1200
+        },
+        "S1": {
+          "decision_points": 456,
+          "distinct_clusters": 147,
+          "distinct_subjects": 132,
+          "minimum_objective": 1200
+        },
+        "S2": {
+          "decision_points": 112,
+          "distinct_clusters": 43,
+          "distinct_subjects": 37,
+          "minimum_objective": 1200
+        },
+        "S3": {
+          "decision_points": 2292,
+          "distinct_clusters": 673,
+          "distinct_subjects": 397,
+          "minimum_objective": 1200
+        },
+        "S4": {
+          "decision_points": 128,
+          "distinct_clusters": 57,
+          "distinct_subjects": 54,
+          "minimum_objective": 1200
+        }
+      },
+      "label_counts": {
+        "0": 47770,
+        "1": 12230
+      },
+      "label_shape": [
+        60000
+      ],
+      "numpy_storage_shape": [
+        60000
+      ],
+      "original_order_and_label_alignment": "PASS",
+      "peak_process_working_set_bytes": 295960576,
+      "replay_seconds": 31.76166240000748,
+      "semantic_dimensions": [
+        60000,
+        40
+      ],
+      "warmup_rows": 14400
+    },
+    "validation": {
+      "artifacts": {
+        "ml_v4/development_features/matrices/validation/X.npy": "a2efa261c67bf8b65fccf2a1ede4efce81ac6ef5d92bc9b22794f549cac7e3a8",
+        "ml_v4/development_features/matrices/validation/row_metadata.csv": "cac115219b577d7d3e67098cd12fa82c2d5d4546e48f3139ceb66366f0006d82",
+        "ml_v4/development_features/matrices/validation/y.npy": "27a0c76111ad477d77e0cd7542186ad4791aea0882a5eb8cdc3c554aa760ca06"
+      },
+      "byte_identical_replay": true,
+      "extraction_seconds": 7.68924100001459,
+      "family_support": {
+        "A1": {
+          "decision_points": 1467,
+          "distinct_clusters": 570,
+          "distinct_subjects": 23,
+          "minimum_objective": 300
+        },
+        "A2": {
+          "decision_points": 148,
+          "distinct_clusters": 60,
+          "distinct_subjects": 20,
+          "minimum_objective": 300
+        },
+        "A3": {
+          "decision_points": 255,
+          "distinct_clusters": 80,
+          "distinct_subjects": 18,
+          "minimum_objective": 300
+        },
+        "A4": {
+          "decision_points": 222,
+          "distinct_clusters": 138,
+          "distinct_subjects": 17,
+          "minimum_objective": 300
+        },
+        "N1": {
+          "decision_points": 101,
+          "distinct_clusters": 42,
+          "distinct_subjects": 28,
+          "minimum_objective": 300
+        },
+        "N2": {
+          "decision_points": 429,
+          "distinct_clusters": 147,
+          "distinct_subjects": 86,
+          "minimum_objective": 300
+        },
+        "N3": {
+          "decision_points": 130,
+          "distinct_clusters": 111,
+          "distinct_subjects": 87,
+          "minimum_objective": 300
+        },
+        "N4": {
+          "decision_points": 144,
+          "distinct_clusters": 91,
+          "distinct_subjects": 74,
+          "minimum_objective": 300
+        },
+        "S1": {
+          "decision_points": 132,
+          "distinct_clusters": 34,
+          "distinct_subjects": 31,
+          "minimum_objective": 300
+        },
+        "S2": {
+          "decision_points": 23,
+          "distinct_clusters": 7,
+          "distinct_subjects": 7,
+          "minimum_objective": 300
+        },
+        "S3": {
+          "decision_points": 546,
+          "distinct_clusters": 156,
+          "distinct_subjects": 104,
+          "minimum_objective": 300
+        },
+        "S4": {
+          "decision_points": 16,
+          "distinct_clusters": 12,
+          "distinct_subjects": 12,
+          "minimum_objective": 300
+        }
+      },
+      "label_counts": {
+        "0": 11970,
+        "1": 3030
+      },
+      "label_shape": [
+        15000
+      ],
+      "numpy_storage_shape": [
+        15000
+      ],
+      "original_order_and_label_alignment": "PASS",
+      "peak_process_working_set_bytes": 295960576,
+      "replay_seconds": 7.609358899993822,
+      "semantic_dimensions": [
+        15000,
+        40
+      ],
+      "warmup_rows": 3600
+    }
+  },
+  "python": "3.14.3",
+  "status": "PASS",
+  "storage": "Structured NPY, 40 named semantic fields; 39 float64 fields and one categorical Unicode field. Not an estimator-ready homogeneous array. No pickle needed."
+}

@@ -1,0 +1,46 @@
+{
+  "reviewed_sql_sha256": "6a39ddc6c5663573ff2203c47997929dbc1f785851cd26361770cf40a12ed310",
+  "stage2a_hash_match": true,
+  "exact_six_statements_match_verified_stage2a_source": true,
+  "expected": {
+    "cmm_tx_insert": {
+      "table": "transactions",
+      "timing": "AFTER",
+      "event": "INSERT",
+      "body_sha256": "be73681c2fafab7922a4568036efa1de669f862d43e819729141a274c19031a6"
+    },
+    "cmm_tx_update": {
+      "table": "transactions",
+      "timing": "AFTER",
+      "event": "UPDATE",
+      "body_sha256": "1e07974cec2e067b813b4e3b45a612975e1ea9dca5727b5509e984d27c6318a6"
+    },
+    "cmm_tx_delete": {
+      "table": "transactions",
+      "timing": "AFTER",
+      "event": "DELETE",
+      "body_sha256": "b7ef1a2d8335bdeb3972de18ccc09ee683b40b19391830e3d3e41152c778c01c"
+    },
+    "cmm_ce_insert": {
+      "table": "canonical_mobile_money_events",
+      "timing": "AFTER",
+      "event": "INSERT",
+      "body_sha256": "8ff474b58fb859f120b0c560a406007efdfeb03e1b314c59a760c690bcf76da5"
+    },
+    "cmm_ce_update": {
+      "table": "canonical_mobile_money_events",
+      "timing": "AFTER",
+      "event": "UPDATE",
+      "body_sha256": "0ed8510fc097e6b0406028408d5fc11c9c17a9df5655660f147ae18983157418"
+    },
+    "cmm_ce_delete": {
+      "table": "canonical_mobile_money_events",
+      "timing": "AFTER",
+      "event": "DELETE",
+      "body_sha256": "cdd1150e624d5b9b68e3cbe2bbda9a1c25a775da3de47954a161709bc31374b1"
+    }
+  },
+  "live_metadata_verification": "NOT_RUN: administrator identity unavailable",
+  "last_stage2a_installed_triggers": [],
+  "current_installation_status": "NOT_REVERIFIED"
+}

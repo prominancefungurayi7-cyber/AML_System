@@ -1,0 +1,158 @@
+{
+  "inference": "Paired descriptive development counts; no row-independence significance claim or post hoc candidate substitution",
+  "paired_fixed_threshold_counts": {
+    "train": {
+      "families": {
+        "A1": {
+          "HGB_detects_XGB_misses": 1,
+          "XGB_detects_HGB_misses": 6,
+          "both_miss": 0
+        },
+        "A2": {
+          "HGB_detects_XGB_misses": 51,
+          "XGB_detects_HGB_misses": 1,
+          "both_miss": 94
+        },
+        "A3": {
+          "HGB_detects_XGB_misses": 0,
+          "XGB_detects_HGB_misses": 0,
+          "both_miss": 0
+        },
+        "A4": {
+          "HGB_detects_XGB_misses": 177,
+          "XGB_detects_HGB_misses": 1,
+          "both_miss": 44
+        },
+        "N1": {
+          "HGB_detects_XGB_misses": 25,
+          "XGB_detects_HGB_misses": 7,
+          "both_miss": 33
+        },
+        "N2": {
+          "HGB_detects_XGB_misses": 31,
+          "XGB_detects_HGB_misses": 12,
+          "both_miss": 98
+        },
+        "N3": {
+          "HGB_detects_XGB_misses": 9,
+          "XGB_detects_HGB_misses": 37,
+          "both_miss": 25
+        },
+        "N4": {
+          "HGB_detects_XGB_misses": 48,
+          "XGB_detects_HGB_misses": 4,
+          "both_miss": 50
+        },
+        "S1": {
+          "HGB_detects_XGB_misses": 13,
+          "XGB_detects_HGB_misses": 3,
+          "both_miss": 0
+        },
+        "S2": {
+          "HGB_detects_XGB_misses": 24,
+          "XGB_detects_HGB_misses": 1,
+          "both_miss": 20
+        },
+        "S3": {
+          "HGB_detects_XGB_misses": 55,
+          "XGB_detects_HGB_misses": 16,
+          "both_miss": 153
+        },
+        "S4": {
+          "HGB_detects_XGB_misses": 28,
+          "XGB_detects_HGB_misses": 2,
+          "both_miss": 58
+        }
+      },
+      "negative": {
+        "HGB_positive_only": 92,
+        "XGB_positive_only": 123,
+        "both_negative": 47226,
+        "both_positive": 329
+      },
+      "positive": {
+        "HGB_positive_only": 458,
+        "XGB_positive_only": 87,
+        "both_negative": 569,
+        "both_positive": 11116
+      }
+    },
+    "validation": {
+      "families": {
+        "A1": {
+          "HGB_detects_XGB_misses": 0,
+          "XGB_detects_HGB_misses": 4,
+          "both_miss": 0
+        },
+        "A2": {
+          "HGB_detects_XGB_misses": 16,
+          "XGB_detects_HGB_misses": 2,
+          "both_miss": 23
+        },
+        "A3": {
+          "HGB_detects_XGB_misses": 0,
+          "XGB_detects_HGB_misses": 0,
+          "both_miss": 0
+        },
+        "A4": {
+          "HGB_detects_XGB_misses": 46,
+          "XGB_detects_HGB_misses": 0,
+          "both_miss": 25
+        },
+        "N1": {
+          "HGB_detects_XGB_misses": 8,
+          "XGB_detects_HGB_misses": 0,
+          "both_miss": 16
+        },
+        "N2": {
+          "HGB_detects_XGB_misses": 6,
+          "XGB_detects_HGB_misses": 7,
+          "both_miss": 42
+        },
+        "N3": {
+          "HGB_detects_XGB_misses": 2,
+          "XGB_detects_HGB_misses": 9,
+          "both_miss": 6
+        },
+        "N4": {
+          "HGB_detects_XGB_misses": 3,
+          "XGB_detects_HGB_misses": 6,
+          "both_miss": 18
+        },
+        "S1": {
+          "HGB_detects_XGB_misses": 5,
+          "XGB_detects_HGB_misses": 1,
+          "both_miss": 1
+        },
+        "S2": {
+          "HGB_detects_XGB_misses": 3,
+          "XGB_detects_HGB_misses": 1,
+          "both_miss": 9
+        },
+        "S3": {
+          "HGB_detects_XGB_misses": 15,
+          "XGB_detects_HGB_misses": 16,
+          "both_miss": 39
+        },
+        "S4": {
+          "HGB_detects_XGB_misses": 1,
+          "XGB_detects_HGB_misses": 0,
+          "both_miss": 11
+        }
+      },
+      "negative": {
+        "HGB_positive_only": 44,
+        "XGB_positive_only": 23,
+        "both_negative": 11808,
+        "both_positive": 95
+      },
+      "positive": {
+        "HGB_positive_only": 105,
+        "XGB_positive_only": 41,
+        "both_negative": 187,
+        "both_positive": 2697
+      }
+    }
+  },
+  "selected_candidate_unchanged": "primary_XGB"
+}

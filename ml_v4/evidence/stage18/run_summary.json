@@ -1,0 +1,9 @@
+{
+  "completed_utc": "2026-10-04T15:01:45.089136+00:00",
+  "decision": "A",
+  "failed_fits": 0,
+  "fit_count": 16,
+  "peak_working_set_bytes": 598306816,
+  "plan_sha256": "4a3823500b6a6a8b776c28dc3210cd11f538d9e7d32fcf251b6b21dac2a08389",
+  "selected": "primary_XGB"
+}

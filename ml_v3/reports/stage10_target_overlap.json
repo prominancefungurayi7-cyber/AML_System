@@ -1,0 +1,1350 @@
+{
+  "train": {
+    "agent_cash_count_skew_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": -0.02150123273103585,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": -0.041044192648162565,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_cash_value_skew_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": -0.026879644561373303,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": -0.058506628016256265,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_cash_value_skew_change": {
+      "0": {
+        "count": 39781,
+        "maximum": 2.0,
+        "mean": -0.46395595703903186,
+        "median": -1.0,
+        "minimum": -2.0,
+        "q05": -1.1311473682126567,
+        "q95": 1.1931337095602985
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.9990165433392038,
+        "mean": -0.17751479256066013,
+        "median": -0.3626788888050675,
+        "minimum": -1.9904245820376243,
+        "q05": -1.2600146134114443,
+        "q95": 1.3019194064538953
+      },
+      "range_overlap": true
+    },
+    "agent_history_coverage_days": {
+      "0": {
+        "count": 39781,
+        "maximum": 28.0,
+        "mean": 17.551489552061913,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 28.0,
+        "mean": 24.073344748700976,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "agent_new_wallet_share_7d": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": -0.013830511926530717,
+        "median": 0.5714285714285714,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.5843979636537626,
+        "median": 0.8705882352941177,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_service_acceleration_1h": {
+      "0": {
+        "count": 39781,
+        "maximum": 23.0,
+        "mean": 0.22638948241622886,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 26.0,
+        "mean": 1.9999505415698107,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 8.0
+      },
+      "range_overlap": true
+    },
+    "agent_service_count_1h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 29.0,
+        "mean": 1.0268218496267063,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 26.0,
+        "mean": 2.186656115534893,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 8.0
+      },
+      "range_overlap": true
+    },
+    "agent_top2_count_share_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": 0.4839724764404724,
+        "median": 0.5,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.5241878362540207,
+        "median": 0.5294117647058824,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_top2_share_change_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 0.9574468085106383,
+        "mean": -0.20050656020830435,
+        "median": 0.11434878587196468,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.8484848484848485
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 0.96,
+        "mean": 0.19095369473515672,
+        "median": 0.3343799058084772,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.8305084745762712
+      },
+      "range_overlap": true
+    },
+    "agent_wallet_growth_ratio_7d": {
+      "0": {
+        "count": 39781,
+        "maximum": 20.0,
+        "mean": 0.06657327640279445,
+        "median": 0.5,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.380952380952381
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 14.0,
+        "mean": 1.5039067249667415,
+        "median": 1.5789473684210527,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 3.909090909090909
+      },
+      "range_overlap": true
+    },
+    "current_amount_usd": {
+      "0": {
+        "count": 39781,
+        "maximum": 24999.0,
+        "mean": 3391.0636064955634,
+        "median": 179.28,
+        "minimum": 1.0,
+        "q05": 7.37,
+        "q95": 19475.11
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 24995.92,
+        "mean": 3317.642973440823,
+        "median": 218.0,
+        "minimum": 1.0,
+        "q05": 8.41,
+        "q95": 18989.388
+      },
+      "range_overlap": true
+    },
+    "current_is_cash_in": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": 0.2496417887936452,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.2625748058756615,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "current_is_cash_out": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": 0.2369472863930017,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.28755131312132154,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "current_return_amount_ratio": {
+      "0": {
+        "count": 39781,
+        "maximum": 24796.76,
+        "mean": 4.122444206389077,
+        "median": -1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": -1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 5249.0,
+        "mean": 2.9653997805969254,
+        "median": -1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": -1.0
+      },
+      "range_overlap": true
+    },
+    "current_return_path_length": {
+      "0": {
+        "count": 39781,
+        "maximum": 5.0,
+        "mean": 0.15565219577185088,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 5.0,
+        "mean": 0.15584351352688067,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.0
+      },
+      "range_overlap": true
+    },
+    "receiver_history_coverage_days": {
+      "0": {
+        "count": 39781,
+        "maximum": 28.0,
+        "mean": 24.695204684407198,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 5.7979480386111115,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 28.0,
+        "mean": 27.64333390477964,
+        "median": 28.0,
+        "minimum": 0.011689779571759259,
+        "q05": 28.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "receiver_inflow_acceleration_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 21.0,
+        "mean": 0.4401209681647017,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 21.0,
+        "mean": 1.1515711397304416,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 5.0
+      },
+      "range_overlap": true
+    },
+    "receiver_inflow_count_24h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 21.0,
+        "mean": 0.8785852542671124,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 21.0,
+        "mean": 1.2903209852119293,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 5.0
+      },
+      "range_overlap": true
+    },
+    "receiver_unique_sources_24h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 12.0,
+        "mean": 0.8396722053241498,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 12.0,
+        "mean": 1.0913497205598695,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 4.0
+      },
+      "range_overlap": true
+    },
+    "sender_outflow_acceleration_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 16.0,
+        "mean": 0.49359447622813113,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 20.0,
+        "mean": 2.1271659465036565,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 9.0
+      },
+      "range_overlap": true
+    },
+    "sender_outflow_count_24h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 16.0,
+        "mean": 0.9873054975993565,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 22.0,
+        "mean": 2.29457441020822,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 9.0
+      },
+      "range_overlap": true
+    },
+    "sender_unique_destinations_24h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 12.0,
+        "mean": 0.9521630929338126,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 14.0,
+        "mean": 1.9209159701271081,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 7.0
+      },
+      "range_overlap": true
+    },
+    "wallet_active_hours_utc_day": {
+      "0": {
+        "count": 39781,
+        "maximum": 11.0,
+        "mean": 1.41967270807672,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 15.0,
+        "mean": 2.0565309857065137,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 6.0
+      },
+      "range_overlap": true
+    },
+    "wallet_band_share_7d_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": 0.05927872378093783,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.3333333333333333
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.05732110109822355,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.3333333333333333
+      },
+      "range_overlap": true
+    },
+    "wallet_count_1h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 17.0,
+        "mean": 1.143108519142304,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 22.0,
+        "mean": 1.7508284287056728,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 6.0
+      },
+      "range_overlap": true
+    },
+    "wallet_count_acceleration_1h": {
+      "0": {
+        "count": 39781,
+        "maximum": 10.0,
+        "mean": 0.6224328196877906,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 22.0,
+        "mean": 1.659528166575993,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 1.0,
+        "q95": 6.0
+      },
+      "range_overlap": true
+    },
+    "wallet_count_utc_day_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 23.0,
+        "mean": 1.593122344837988,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 4.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 27.0,
+        "mean": 3.1998120579652802,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 11.0
+      },
+      "range_overlap": true
+    },
+    "wallet_current_amount_cluster_share_7d": {
+      "0": {
+        "count": 39781,
+        "maximum": 1.0,
+        "mean": 0.31482159306096696,
+        "median": 0.25,
+        "minimum": 0.024390243902439025,
+        "q05": 0.07692307692307693,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 1.0,
+        "mean": 0.2675355517199433,
+        "median": 0.2,
+        "minimum": 0.025,
+        "q05": 0.05555555555555555,
+        "q95": 0.7142857142857143
+      },
+      "range_overlap": true
+    },
+    "wallet_history_coverage_days": {
+      "0": {
+        "count": 39781,
+        "maximum": 28.0,
+        "mean": 24.703401024272843,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 5.746228002395833,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 28.0,
+        "mean": 27.65744279231489,
+        "median": 28.0,
+        "minimum": 0.00929812363425926,
+        "q05": 28.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "wallet_observed_onward_funding_share_24h": {
+      "0": {
+        "count": 39781,
+        "maximum": 19025.85,
+        "mean": 4.763440106831794,
+        "median": 0.5315897696167973,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 2.8199671497233183
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 4434.247863247863,
+        "mean": 1.1462776716544227,
+        "median": 0.5517321989411529,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 2.0025481890184125
+      },
+      "range_overlap": true
+    },
+    "wallet_prior_funding_age_hours": {
+      "0": {
+        "count": 39781,
+        "maximum": 4318.493037048888,
+        "mean": 1407.139452301905,
+        "median": 1038.9892896966667,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 3849.816946595833
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 4310.760613461111,
+        "mean": 1635.4131504668883,
+        "median": 1542.1431134575,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 3931.7664257206943
+      },
+      "range_overlap": true
+    },
+    "wallet_value_24h_inclusive": {
+      "0": {
+        "count": 39781,
+        "maximum": 220443.68,
+        "mean": 6910.159903974259,
+        "median": 620.89,
+        "minimum": 1.0,
+        "q05": 13.0,
+        "q95": 26339.1
+      },
+      "1": {
+        "count": 20219,
+        "maximum": 392344.02,
+        "mean": 13247.788217023592,
+        "median": 3908.9300000000003,
+        "minimum": 1.0,
+        "q05": 19.879,
+        "q95": 48322.55999999999
+      },
+      "range_overlap": true
+    }
+  },
+  "validation": {
+    "agent_cash_count_skew_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": -0.031246022425298454,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": -0.03972730935331252,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_cash_value_skew_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": -0.023829445652746643,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": -0.010259497279344406,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_cash_value_skew_change": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.9970269138340395,
+        "mean": -0.48501589823715363,
+        "median": -1.0,
+        "minimum": -1.9973402591284442,
+        "q05": -1.1708849814513351,
+        "q95": 1.13290777772705
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.9936963355262627,
+        "mean": -0.16810285985251489,
+        "median": -0.3013453461742772,
+        "minimum": -1.995259383921716,
+        "q05": -1.2373843967387648,
+        "q95": 1.2531478634869146
+      },
+      "range_overlap": true
+    },
+    "agent_history_coverage_days": {
+      "0": {
+        "count": 9945,
+        "maximum": 28.0,
+        "mean": 17.658505985626984,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 28.0,
+        "mean": 23.924894801275826,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "agent_new_wallet_share_7d": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": -0.12685587884365784,
+        "median": 0.3,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.9333333333333333
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.4158448918216969,
+        "median": 0.627906976744186,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.9743589743589743
+      },
+      "range_overlap": true
+    },
+    "agent_service_acceleration_1h": {
+      "0": {
+        "count": 9945,
+        "maximum": 6.0,
+        "mean": 0.2326797385620915,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 22.0,
+        "mean": 1.976854599406528,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 8.0
+      },
+      "range_overlap": true
+    },
+    "agent_service_count_1h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 15.0,
+        "mean": 0.9875314228255405,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 22.0,
+        "mean": 2.1689416419386744,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 8.0
+      },
+      "range_overlap": true
+    },
+    "agent_top2_count_share_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": 0.4974861811504777,
+        "median": 0.5,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.5163874533307092,
+        "median": 0.5,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "agent_top2_share_change_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 0.9340659340659341,
+        "mean": -0.1948630551119193,
+        "median": 0.13486005089058523,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.8364779874213837
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 0.9375,
+        "mean": 0.16103458809493132,
+        "median": 0.2857142857142857,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.8181818181818181
+      },
+      "range_overlap": true
+    },
+    "agent_wallet_growth_ratio_7d": {
+      "0": {
+        "count": 9945,
+        "maximum": 6.4,
+        "mean": 0.08122928914686381,
+        "median": 0.5538461538461539,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.3953488372093024
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 11.0,
+        "mean": 1.3877632682467875,
+        "median": 1.56,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 3.3333333333333335
+      },
+      "range_overlap": true
+    },
+    "current_amount_usd": {
+      "0": {
+        "count": 9945,
+        "maximum": 24979.0,
+        "mean": 3330.5156390145803,
+        "median": 172.61,
+        "minimum": 1.0,
+        "q05": 6.732000000000001,
+        "q95": 19374.19599999999
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 24980.35,
+        "mean": 3161.368605341246,
+        "median": 203.0,
+        "minimum": 1.0,
+        "q05": 7.880000000000002,
+        "q95": 19418.401000000005
+      },
+      "range_overlap": true
+    },
+    "current_is_cash_in": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": 0.2498743086978381,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.26211671612265086,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "current_is_cash_out": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": 0.23740573152337857,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.28664688427299706,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 1.0
+      },
+      "range_overlap": true
+    },
+    "current_return_amount_ratio": {
+      "0": {
+        "count": 9945,
+        "maximum": 3854.450885668277,
+        "mean": 6.2414298436147515,
+        "median": -1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 1.143230853770763
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 6167.0,
+        "mean": 7.648247007903258,
+        "median": -1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 0.7196246535701988
+      },
+      "range_overlap": true
+    },
+    "current_return_path_length": {
+      "0": {
+        "count": 9945,
+        "maximum": 5.0,
+        "mean": 0.37526395173453997,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 4.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 5.0,
+        "mean": 0.3084075173095945,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "range_overlap": true
+    },
+    "receiver_history_coverage_days": {
+      "0": {
+        "count": 9945,
+        "maximum": 28.0,
+        "mean": 24.691569567500498,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 5.622425121324074,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 28.0,
+        "mean": 27.553012165290006,
+        "median": 28.0,
+        "minimum": 3.4880879575231485,
+        "q05": 28.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "receiver_inflow_acceleration_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 18.0,
+        "mean": 0.4213172448466566,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 1.1382789317507418,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 5.0
+      },
+      "range_overlap": true
+    },
+    "receiver_inflow_count_24h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 18.0,
+        "mean": 0.8527903469079939,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 1.2787339268051434,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 5.0
+      },
+      "range_overlap": true
+    },
+    "receiver_unique_sources_24h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 13.0,
+        "mean": 0.8174962292609351,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 13.0,
+        "mean": 1.083086053412463,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 4.0
+      },
+      "range_overlap": true
+    },
+    "sender_outflow_acceleration_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 12.0,
+        "mean": 0.48222921634764876,
+        "median": 0.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 2.078916842299937,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 9.0
+      },
+      "range_overlap": true
+    },
+    "sender_outflow_count_24h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 16.0,
+        "mean": 1.01649069884364,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 2.3014836795252225,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 9.0
+      },
+      "range_overlap": true
+    },
+    "sender_unique_destinations_24h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 12.0,
+        "mean": 0.963499245852187,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 13.0,
+        "mean": 1.951730959446093,
+        "median": 1.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 7.0
+      },
+      "range_overlap": true
+    },
+    "wallet_active_hours_utc_day": {
+      "0": {
+        "count": 9945,
+        "maximum": 10.0,
+        "mean": 1.4135746606334842,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 3.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 13.0,
+        "mean": 2.0921859545004944,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 6.0
+      },
+      "range_overlap": true
+    },
+    "wallet_band_share_7d_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": 0.05912423615678377,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.3333333333333333
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.05604436646354678,
+        "median": 0.0,
+        "minimum": 0.0,
+        "q05": 0.0,
+        "q95": 0.3333333333333333
+      },
+      "range_overlap": true
+    },
+    "wallet_count_1h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 19.0,
+        "mean": 1.1850175967823027,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 1.7074183976261128,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 6.0
+      },
+      "range_overlap": true
+    },
+    "wallet_count_acceleration_1h": {
+      "0": {
+        "count": 9945,
+        "maximum": 11.0,
+        "mean": 0.6238310708898944,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": -1.0,
+        "q95": 2.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 18.0,
+        "mean": 1.5879327398615233,
+        "median": 1.0,
+        "minimum": -1.0,
+        "q05": 1.0,
+        "q95": 5.0
+      },
+      "range_overlap": true
+    },
+    "wallet_count_utc_day_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 22.0,
+        "mean": 1.650075414781297,
+        "median": 1.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 4.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 23.0,
+        "mean": 3.1910979228486647,
+        "median": 2.0,
+        "minimum": 1.0,
+        "q05": 1.0,
+        "q95": 11.0
+      },
+      "range_overlap": true
+    },
+    "wallet_current_amount_cluster_share_7d": {
+      "0": {
+        "count": 9945,
+        "maximum": 1.0,
+        "mean": 0.31397740481505565,
+        "median": 0.25,
+        "minimum": 0.02857142857142857,
+        "q05": 0.07692307692307693,
+        "q95": 1.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 1.0,
+        "mean": 0.2584669698749675,
+        "median": 0.2,
+        "minimum": 0.025,
+        "q05": 0.05263157894736842,
+        "q95": 0.625
+      },
+      "range_overlap": true
+    },
+    "wallet_history_coverage_days": {
+      "0": {
+        "count": 9945,
+        "maximum": 28.0,
+        "mean": 24.693315826534356,
+        "median": 28.0,
+        "minimum": 0.0,
+        "q05": 5.5895922365486115,
+        "q95": 28.0
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 28.0,
+        "mean": 27.547541689500665,
+        "median": 28.0,
+        "minimum": 3.346765435138889,
+        "q05": 28.0,
+        "q95": 28.0
+      },
+      "range_overlap": true
+    },
+    "wallet_observed_onward_funding_share_24h": {
+      "0": {
+        "count": 9945,
+        "maximum": 1506.1395793499041,
+        "mean": 2.5961793547159653,
+        "median": 0.5520465139604741,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 2.538446531047625
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 507.57894736842104,
+        "mean": 1.1830594919042443,
+        "median": 0.6030656422854318,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 2.1085155984098605
+      },
+      "range_overlap": true
+    },
+    "wallet_prior_funding_age_hours": {
+      "0": {
+        "count": 9945,
+        "maximum": 4317.618805285278,
+        "mean": 1346.316986942532,
+        "median": 998.5889857747222,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 3790.968697739555
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 4295.840997778889,
+        "mean": 1636.2624045841196,
+        "median": 1489.3953431619445,
+        "minimum": -1.0,
+        "q05": 0.0,
+        "q95": 3884.763937665139
+      },
+      "range_overlap": true
+    },
+    "wallet_value_24h_inclusive": {
+      "0": {
+        "count": 9945,
+        "maximum": 122427.08,
+        "mean": 6916.165905480141,
+        "median": 584.9,
+        "minimum": 1.0,
+        "q05": 11.76,
+        "q95": 26686.495999999937
+      },
+      "1": {
+        "count": 5055,
+        "maximum": 235883.25999999998,
+        "mean": 12712.299167161227,
+        "median": 3214.0,
+        "minimum": 1.0,
+        "q05": 20.0,
+        "q95": 49106.666000000005
+      },
+      "range_overlap": true
+    }
+  }
+}

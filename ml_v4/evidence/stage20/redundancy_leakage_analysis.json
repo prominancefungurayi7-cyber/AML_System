@@ -1,0 +1,27 @@
+{
+  "all40_witness_controls": "Use identical timestamp/ID/endpoint skeletons; all changed rows outside24h and current day; direct W2W to distinct sink wallets with no return edges, no incoming funding and no agents; fixed first observation and baseline counts. Current receiver is a fresh sink. Incoming network descriptors/agent missing markers/path summaries stay fixed. Amount-only changes leave baseline count medians unchanged. Exact wallet coverage identical.",
+  "four_witnesses": {
+    "wallet_baseline_near_band_count_28d_offset_7d": "At fixed baseline keys around t-20d change outgoing1000 to800000, maintaining counts/endpoints/first observation and no agents or return routes. Existing40 fields stay fixed; baseline band count changes0 to1. Amounts remain valid positive cents.",
+    "wallet_baseline_similar_amount_count_28d_offset_7d": "Keep baseline keys, counts and endpoints fixed at times around t-20d; change an outgoing amount from1000 to5000 for current5000. Counts/coverage and all recent fields stay fixed, no agent or return graph. Baseline similar count changes0 to1; existing40 cannot distinguish. Use >=4 total baseline events and fixed first observation <=t-35d.",
+    "wallet_near_band_distinct_amount_count_7d": "Current850000, prior band rows850000,850000,850000 and one nonband100: change one old850000 to850001 outside24h/current day but within7d. Band count and similar count/share remain4 and4/5; distinct band values change1 to2. Direct fresh sink endpoints, no agent, anchor or return route; baseline unchanged. All original40 fields equal.",
+    "wallet_similar_amount_value_minor_7d": "Current 5000 and three prior similar amounts 4999,5000,5000 give 19999; changing 4999 to 5000 gives 20000 without changing cluster count/share. Place prior rows more than24h before current within7d, outside current UTC day; direct outgoing edges to fresh sinks, no agent/return paths/incoming anchor. Other counts/times and baseline fixed: all original40 fields unchanged."
+  },
+  "future_audits": [
+    "static import/interface separation",
+    "independent hand fixtures",
+    "metadata and identity invariance",
+    "target0 conditional overlap and origin associations as diagnostics only",
+    "missingness and amount precision associations",
+    "no shortcut removal solely to flatten importance"
+  ],
+  "joint_information": "With44 fields S2/S4 become expressible from individual quantities and markers. This is intentionally stronger rule alignment, disclosed B components, not proof of criminal intent. No scalar combines every gate.",
+  "prohibited": [
+    "full S2/S4/A4 flags",
+    "label-conditioned missingness",
+    "target-qualified path counts",
+    "private activation/provenance",
+    "future-derived center",
+    "packed compound rule code"
+  ],
+  "proof_status": "Symbolic paired histories and aggregate identities, not executed extraction fixtures or empirical gain evidence"
+}

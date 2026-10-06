@@ -1,0 +1,91 @@
+{
+  "design_version": "v4.stage 15.design.1",
+  "rows": [
+    {
+      "Stage14_finding": "436 Train/97 Validation A1 positives unavailable",
+      "V3_design": "Frozen target 28d; corrected feature35d",
+      "V4_correction": "Target and baseline-dependent A1 features35d; shared canonical boundaries",
+      "issue": "A1 coverage",
+      "scientific_justification": "Eligibility consistency without changing historical evidence"
+    },
+    {
+      "Stage14_finding": "98.08% of lost Validation detections carry A1",
+      "V3_design": "Valid growth feature strongly dominates",
+      "V4_correction": "Retain growth, disclose direct component and audit conditional overlap",
+      "issue": "Growth concentration",
+      "scientific_justification": "Dependence does not imply private/future leakage"
+    },
+    {
+      "Stage14_finding": "All-origin hard/routine growth exists, eligible target 0 tail small",
+      "V3_design": "Broad routine sampling; limited acquisition/retention dynamics",
+      "V4_correction": "Heterogeneous local catchments, retention, acquisition, shocks and failed-gate cases",
+      "issue": "Legitimate growth",
+      "scientific_justification": "Populate meaningful combinations rather than suppress valid signal"
+    },
+    {
+      "Stage14_finding": "Origin cannot override target",
+      "V3_design": "Universal union relabels full-predicate hard-origin rows positive",
+      "V4_correction": "Preserve origin only for diagnosis; every full predicate remains positive",
+      "issue": "Hard-negative conditioning",
+      "scientific_justification": "Avoid contradictory supervision"
+    },
+    {
+      "Stage14_finding": "N3 small and weak; improvements partial",
+      "V3_design": "One topology-selected path may lose evidence",
+      "V4_correction": "All-topology path count and minimum-spread path summaries; full existential target separate",
+      "issue": "N3 representation",
+      "scientific_justification": "Richer lower-level evidence without complete path trigger"
+    },
+    {
+      "Stage14_finding": "Stage 13 additions help incompletely",
+      "V3_design": "Compact skew summaries; weak A4 recall",
+      "V4_correction": "Explicit cash counts/values/breadth plus baseline skew change",
+      "issue": "A4 representation",
+      "scientific_justification": "Expose independent cash context; assisted W2W excluded"
+    },
+    {
+      "Stage14_finding": "Unreliable family generalization",
+      "V3_design": "Validation positives1/8",
+      "V4_correction": "300 Validation/Final objective, subject/cluster audits, fallback challenge-set policy",
+      "issue": "S2/S4 support",
+      "scientific_justification": "Support refers to actual evidence, never campaign allocation"
+    },
+    {
+      "Stage14_finding": "Semantic change cannot inherit evaluation validity",
+      "V3_design": "V3 seals tied to frozen V3 semantics",
+      "V4_correction": "Fresh V4 entities, histories, labels, seeds and seals",
+      "issue": "Evaluation compatibility",
+      "scientific_justification": "No cross-version holdout contamination or direct metric ranking"
+    },
+    {
+      "Stage14_finding": "A2/A4 baseline and A3 offset also differ statically",
+      "V3_design": "Separate written and materialized implementations",
+      "V4_correction": "One normative contract, independent tests and explicit calendar exception",
+      "issue": "Temporal consistency",
+      "scientific_justification": "Prevent implementation drift across all 12 families"
+    },
+    {
+      "Stage14_finding": "Growth is not complete oracle",
+      "V3_design": "Behavioural components have unequal informativeness",
+      "V4_correction": "40 lower-level fields; A/B/C disclosure, D prohibited, no evaluator import",
+      "issue": "Feature/predicate separation",
+      "scientific_justification": "Transparent component learning"
+    },
+    {
+      "Stage14_finding": "Smaller global wallet pool plausibly affects novelty",
+      "V3_design": "Train600/96 vs Validation150/24 over 180d",
+      "V4_correction": "100-wallet/8-agent units repeated12/3/3/2 times",
+      "issue": "Population scaling",
+      "scientific_justification": "Control local saturation while preserving entity isolation"
+    },
+    {
+      "Stage14_finding": "Validation repeatedly reused",
+      "V3_design": "High selected synthetic development scores",
+      "V4_correction": "New V4 experiment; preserve V3 with protected hashes",
+      "issue": "Evidence versioning",
+      "scientific_justification": "No claim of universal or causal improvement"
+    }
+  ],
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

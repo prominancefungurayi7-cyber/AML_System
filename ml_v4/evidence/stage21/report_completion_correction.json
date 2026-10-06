@@ -1,0 +1,14 @@
+{
+  "archived_executed_runner": "ml_v4/evidence/stage21/run_stage21_attempt1.py.txt",
+  "archived_sha256": "bb30838d10222e58c66716407a6dc2e2bbd0ef4088faca006620713062ad77a6",
+  "corrected_runner_sha256": "df2833ec18b142049f375cbe11dc3deb2f5bbf380b073b05e49452b1731fdd63",
+  "error": "TypeError: 'str' object is not callable at np.__version__() in report formatting",
+  "extractor_changed": false,
+  "final_verification": "69 tests recorded; all75000 first40 columns, saved replay X hashes, exact y/metadata and261 protected paths rechecked",
+  "fits": 0,
+  "fixtures_changed": false,
+  "initial_attempt": "Extraction and all audits completed; report construction failed before writing report/decision",
+  "matrices_changed": false,
+  "only_change": "np.__version__() -> np.__version__ in report text",
+  "reextraction": false
+}

@@ -1,0 +1,12 @@
+{
+  "changed_paths": [],
+  "expected_encoded_fields": 46,
+  "matrix_parity_rechecked_rows": 75000,
+  "new_fits": 0,
+  "protected_count": 261,
+  "report_only_correction_recorded": true,
+  "schema_fields": 44,
+  "serialized_replay_hashes_rechecked": true,
+  "status": "PASS",
+  "tests_passed": 69
+}

@@ -1,0 +1,804 @@
+{
+  "train": {
+    "A1_component_contingencies": {
+      "feature_ratio_ge1.5": {
+        "A1_true": 11476,
+        "A1_without_condition": 436,
+        "both": 11040,
+        "condition_true": 11184,
+        "condition_without_A1": 144,
+        "target0_condition": 135
+      },
+      "implemented_ratio_ge1.5": {
+        "A1_true": 11476,
+        "A1_without_condition": 0,
+        "both": 11476,
+        "condition_true": 18528,
+        "condition_without_A1": 7052,
+        "target0_condition": 6737
+      },
+      "written_full_A1": {
+        "A1_true": 11476,
+        "A1_without_condition": 436,
+        "both": 11040,
+        "condition_true": 11040,
+        "condition_without_A1": 0,
+        "target0_condition": 0
+      }
+    },
+    "A1_growth_unavailable": 436,
+    "A1_written_implementation_disagreements": 436,
+    "availability_indicator_power": {
+      "average_precision": 0.42848088969598147,
+      "negative": 39781,
+      "positive": 20219,
+      "prevalence": 0.33698333333333336,
+      "roc_auc": 0.6538105353279355,
+      "support": 60000
+    },
+    "available_age_strata": {
+      "120..1000": {
+        "average_precision": 0.8635540443714442,
+        "negative": 8522,
+        "positive": 6526,
+        "prevalence": 0.43367889420521,
+        "roc_auc": 0.8406854502089848,
+        "support": 15048
+      },
+      "35..60": {
+        "average_precision": 0.8845701622563242,
+        "negative": 3445,
+        "positive": 3119,
+        "prevalence": 0.4751675807434491,
+        "roc_auc": 0.8469342123815315,
+        "support": 6564
+      },
+      "60..90": {
+        "average_precision": 0.8935657507533463,
+        "negative": 4044,
+        "positive": 3628,
+        "prevalence": 0.47288842544316995,
+        "roc_auc": 0.8582038453527188,
+        "support": 7672
+      },
+      "90..120": {
+        "average_precision": 0.879670855989698,
+        "negative": 4359,
+        "positive": 3300,
+        "prevalence": 0.4308656482569526,
+        "roc_auc": 0.8593886907617121,
+        "support": 7659
+      }
+    },
+    "frozen_A1_reconstruction_mismatches": 0,
+    "groups": {
+      "age35plus_insufficient_baseline": {
+        "growth_power": {
+          "average_precision": 0.08558558558558559,
+          "negative": 203,
+          "positive": 19,
+          "prevalence": 0.08558558558558559,
+          "roc_auc": 0.5,
+          "support": 222
+        },
+        "positive": 19,
+        "positive_rate": 0.08558558558558559,
+        "support": 222
+      },
+      "agent_observed_age_under35": {
+        "growth_power": {
+          "average_precision": 0.10437748720864128,
+          "negative": 7877,
+          "positive": 918,
+          "prevalence": 0.10437748720864128,
+          "roc_auc": 0.5,
+          "support": 8795
+        },
+        "positive": 918,
+        "positive_rate": 0.10437748720864128,
+        "support": 8795
+      },
+      "available": {
+        "growth_power": {
+          "average_precision": 0.8772161396271576,
+          "negative": 20370,
+          "positive": 16573,
+          "prevalence": 0.4486100208429202,
+          "roc_auc": 0.8490732526519215,
+          "support": 36943
+        },
+        "positive": 16573,
+        "positive_rate": 0.4486100208429202,
+        "support": 36943
+      },
+      "coverage_display28": {
+        "growth_power": {
+          "average_precision": 0.8617001912496871,
+          "negative": 21331,
+          "positive": 17192,
+          "prevalence": 0.4462788464034473,
+          "roc_auc": 0.8258680216099719,
+          "support": 38523
+        },
+        "positive": 17192,
+        "positive_rate": 0.4462788464034473,
+        "support": 38523
+      },
+      "no_agent": {
+        "growth_power": {
+          "average_precision": 0.19294871794871796,
+          "negative": 11331,
+          "positive": 2709,
+          "prevalence": 0.19294871794871796,
+          "roc_auc": 0.5,
+          "support": 14040
+        },
+        "positive": 2709,
+        "positive_rate": 0.19294871794871796,
+        "support": 14040
+      },
+      "unavailable": {
+        "growth_power": {
+          "average_precision": 0.15812985210565123,
+          "negative": 19411,
+          "positive": 3646,
+          "prevalence": 0.15812985210565123,
+          "roc_auc": 0.5,
+          "support": 23057
+        },
+        "positive": 3646,
+        "positive_rate": 0.15812985210565123,
+        "support": 23057
+      }
+    },
+    "primitive_summary": {
+      "agent_observation_age_days": {
+        "correlation_with_growth": {
+          "pearson": -0.02863746545812701,
+          "spearman": -0.0063810089501736035,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 179.982543556875,
+          "mean": 107.88593830203125,
+          "median": 107.8549140754919,
+          "min": 35.001796041643516,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 41.9135899129022,
+          "q25": 72.8182695696383,
+          "q75": 143.2870555120197,
+          "q95": 171.7698873986117,
+          "q99": 178.22252776450938,
+          "std": 41.55974352484761,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 179.97276881840278,
+          "mean": 105.64630274523957,
+          "median": 104.81660720350695,
+          "min": 35.01256950684028,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 42.529562109273144,
+          "q25": 69.32730292380788,
+          "q75": 141.27625404011576,
+          "q95": 172.8286210856574,
+          "q99": 177.98881567390603,
+          "std": 41.99644419924308,
+          "support": 16573
+        }
+      },
+      "baseline_median": {
+        "correlation_with_growth": {
+          "pearson": -0.3998760507178812,
+          "spearman": -0.37667582057165455,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 40.0,
+          "mean": 18.431320569464898,
+          "median": 20.0,
+          "min": 1.5,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 5.0,
+          "q25": 11.0,
+          "q75": 24.5,
+          "q95": 31.0,
+          "q99": 36.0,
+          "std": 8.40717870506652,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 39.5,
+          "mean": 14.618626681952573,
+          "median": 14.0,
+          "min": 1.5,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 3.5,
+          "q25": 7.5,
+          "q75": 21.5,
+          "q95": 28.5,
+          "q99": 33.0,
+          "std": 8.216704129451001,
+          "support": 16573
+        }
+      },
+      "baseline_services": {
+        "correlation_with_growth": {
+          "pearson": -0.373639661060852,
+          "spearman": -0.3426792695200352,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 242.0,
+          "mean": 109.94840451644575,
+          "median": 114.0,
+          "min": 12.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 28.0,
+          "q25": 66.0,
+          "q75": 150.0,
+          "q95": 188.0,
+          "q99": 210.0,
+          "std": 50.39297060268741,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 235.0,
+          "mean": 88.46533518373258,
+          "median": 83.0,
+          "min": 12.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 19.0,
+          "q25": 45.0,
+          "q75": 127.0,
+          "q95": 174.0,
+          "q99": 196.0,
+          "std": 49.48604329471913,
+          "support": 16573
+        }
+      },
+      "new_distinct": {
+        "correlation_with_growth": {
+          "pearson": 0.3750971697062,
+          "spearman": 0.4638868652651293,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 45.0,
+          "mean": 14.60559646539028,
+          "median": 14.0,
+          "min": 0.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 4.0,
+          "q25": 9.0,
+          "q75": 20.0,
+          "q95": 27.0,
+          "q99": 33.0,
+          "std": 7.462797148948228,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 75.0,
+          "mean": 20.366922102214446,
+          "median": 19.0,
+          "min": 1.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 6.0,
+          "q25": 12.0,
+          "q75": 27.0,
+          "q95": 39.0,
+          "q99": 45.0,
+          "std": 10.034309533240037,
+          "support": 16573
+        }
+      },
+      "novelty": {
+        "correlation_with_growth": {
+          "pearson": 0.21852235937287579,
+          "spearman": 0.18722512352401016,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 1.0,
+          "mean": 0.860831883625762,
+          "median": 0.8571428571428571,
+          "min": 0.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 0.68,
+          "q25": 0.7931034482758621,
+          "q75": 0.9411764705882353,
+          "q95": 1.0,
+          "q99": 1.0,
+          "std": 0.10447070210441556,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 1.0,
+          "mean": 0.8851915277100623,
+          "median": 0.8928571428571429,
+          "min": 0.3333333333333333,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 0.7177257525083612,
+          "q25": 0.8292682926829268,
+          "q75": 0.9545454545454546,
+          "q95": 1.0,
+          "q99": 1.0,
+          "std": 0.09135031015289616,
+          "support": 16573
+        }
+      },
+      "recent_distinct": {
+        "correlation_with_growth": {
+          "pearson": 0.3076797084299728,
+          "spearman": 0.406782447946261,
+          "support": 36943
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 20370,
+          "max": 51.0,
+          "mean": 17.411340206185567,
+          "median": 17.0,
+          "min": 1.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 4.0,
+          "q25": 10.0,
+          "q75": 24.0,
+          "q95": 33.0,
+          "q99": 40.0,
+          "std": 9.259644179423008,
+          "support": 20370
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 16573,
+          "max": 79.0,
+          "mean": 23.376938393773003,
+          "median": 22.0,
+          "min": 1.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 7.0,
+          "q25": 14.0,
+          "q75": 31.0,
+          "q95": 45.0,
+          "q99": 51.0,
+          "std": 11.759805386954302,
+          "support": 16573
+        }
+      }
+    }
+  },
+  "validation": {
+    "A1_component_contingencies": {
+      "feature_ratio_ge1.5": {
+        "A1_true": 2745,
+        "A1_without_condition": 97,
+        "both": 2648,
+        "condition_true": 2825,
+        "condition_without_A1": 177,
+        "target0_condition": 117
+      },
+      "implemented_ratio_ge1.5": {
+        "A1_true": 2745,
+        "A1_without_condition": 0,
+        "both": 2745,
+        "condition_true": 4563,
+        "condition_without_A1": 1818,
+        "target0_condition": 1665
+      },
+      "written_full_A1": {
+        "A1_true": 2745,
+        "A1_without_condition": 97,
+        "both": 2648,
+        "condition_true": 2648,
+        "condition_without_A1": 0,
+        "target0_condition": 0
+      }
+    },
+    "A1_growth_unavailable": 97,
+    "A1_written_implementation_disagreements": 97,
+    "availability_indicator_power": {
+      "average_precision": 0.42251942158712796,
+      "negative": 9945,
+      "positive": 5055,
+      "prevalence": 0.337,
+      "roc_auc": 0.6458881414545579,
+      "support": 15000
+    },
+    "available_age_strata": {
+      "120..1000": {
+        "average_precision": 0.8503041833745654,
+        "negative": 2048,
+        "positive": 1745,
+        "prevalence": 0.46005800158186133,
+        "roc_auc": 0.8164552180336675,
+        "support": 3793
+      },
+      "35..60": {
+        "average_precision": 0.9004118151083271,
+        "negative": 844,
+        "positive": 824,
+        "prevalence": 0.4940047961630695,
+        "roc_auc": 0.8621034256660378,
+        "support": 1668
+      },
+      "60..90": {
+        "average_precision": 0.8223359999789484,
+        "negative": 1205,
+        "positive": 717,
+        "prevalence": 0.37304890738813734,
+        "roc_auc": 0.8251329594842503,
+        "support": 1922
+      },
+      "90..120": {
+        "average_precision": 0.8561797509616758,
+        "negative": 1095,
+        "positive": 828,
+        "prevalence": 0.43057722308892354,
+        "roc_auc": 0.831108684622681,
+        "support": 1923
+      }
+    },
+    "frozen_A1_reconstruction_mismatches": 0,
+    "groups": {
+      "age35plus_insufficient_baseline": {
+        "growth_power": {
+          "average_precision": 0.2962962962962963,
+          "negative": 19,
+          "positive": 8,
+          "prevalence": 0.2962962962962963,
+          "roc_auc": 0.5,
+          "support": 27
+        },
+        "positive": 8,
+        "positive_rate": 0.2962962962962963,
+        "support": 27
+      },
+      "agent_observed_age_under35": {
+        "growth_power": {
+          "average_precision": 0.10802039870190079,
+          "negative": 1924,
+          "positive": 233,
+          "prevalence": 0.10802039870190079,
+          "roc_auc": 0.5,
+          "support": 2157
+        },
+        "positive": 233,
+        "positive_rate": 0.10802039870190079,
+        "support": 2157
+      },
+      "available": {
+        "growth_power": {
+          "average_precision": 0.857249991721336,
+          "negative": 5192,
+          "positive": 4114,
+          "prevalence": 0.44208037825059104,
+          "roc_auc": 0.8301699194302892,
+          "support": 9306
+        },
+        "positive": 4114,
+        "positive_rate": 0.44208037825059104,
+        "support": 9306
+      },
+      "coverage_display28": {
+        "growth_power": {
+          "average_precision": 0.8426085502259237,
+          "negative": 5404,
+          "positive": 4264,
+          "prevalence": 0.4410426148117501,
+          "roc_auc": 0.808084124503703,
+          "support": 9668
+        },
+        "positive": 4264,
+        "positive_rate": 0.4410426148117501,
+        "support": 9668
+      },
+      "no_agent": {
+        "growth_power": {
+          "average_precision": 0.19943019943019943,
+          "negative": 2810,
+          "positive": 700,
+          "prevalence": 0.19943019943019943,
+          "roc_auc": 0.5,
+          "support": 3510
+        },
+        "positive": 700,
+        "positive_rate": 0.19943019943019943,
+        "support": 3510
+      },
+      "unavailable": {
+        "growth_power": {
+          "average_precision": 0.1652616789603091,
+          "negative": 4753,
+          "positive": 941,
+          "prevalence": 0.1652616789603091,
+          "roc_auc": 0.5,
+          "support": 5694
+        },
+        "positive": 941,
+        "positive_rate": 0.1652616789603091,
+        "support": 5694
+      }
+    },
+    "primitive_summary": {
+      "agent_observation_age_days": {
+        "correlation_with_growth": {
+          "pearson": -0.009907166299903573,
+          "spearman": -0.005903212999752948,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 179.96298743806713,
+          "mean": 106.35473293223858,
+          "median": 103.37681676596065,
+          "min": 35.05511996421296,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 42.68057237352488,
+          "q25": 71.54848810863716,
+          "q75": 141.74229608149307,
+          "q95": 171.4789898233692,
+          "q99": 178.42894907096897,
+          "std": 41.25782624908035,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 179.77824951692128,
+          "mean": 108.06441994964986,
+          "median": 108.72564269391204,
+          "min": 35.06588001315973,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 43.849794475704286,
+          "q25": 66.85871030114873,
+          "q75": 144.88817561946468,
+          "q95": 172.89959894987732,
+          "q99": 177.62275372777094,
+          "std": 43.08541368934564,
+          "support": 4114
+        }
+      },
+      "baseline_median": {
+        "correlation_with_growth": {
+          "pearson": -0.40632271404956544,
+          "spearman": -0.38107817662566207,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 37.0,
+          "mean": 17.390408320493066,
+          "median": 18.5,
+          "min": 2.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 5.0,
+          "q25": 10.5,
+          "q75": 23.5,
+          "q95": 29.5,
+          "q99": 32.0,
+          "std": 7.806841384738381,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 37.5,
+          "mean": 14.302139037433156,
+          "median": 14.0,
+          "min": 2.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 3.5,
+          "q25": 7.0,
+          "q75": 20.5,
+          "q95": 27.5,
+          "q99": 31.0,
+          "std": 7.895147848332377,
+          "support": 4114
+        }
+      },
+      "baseline_services": {
+        "correlation_with_growth": {
+          "pearson": -0.3693835044367615,
+          "spearman": -0.33266731989613607,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 218.0,
+          "mean": 107.17681047765794,
+          "median": 109.0,
+          "min": 12.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 28.55000000000001,
+          "q25": 63.0,
+          "q75": 147.0,
+          "q95": 186.0,
+          "q99": 208.0,
+          "std": 50.001285977263684,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 217.0,
+          "mean": 89.91006319883326,
+          "median": 84.0,
+          "min": 12.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 19.0,
+          "q25": 45.0,
+          "q75": 135.0,
+          "q95": 174.0,
+          "q99": 197.0,
+          "std": 51.533524172213006,
+          "support": 4114
+        }
+      },
+      "new_distinct": {
+        "correlation_with_growth": {
+          "pearson": 0.4874784452059918,
+          "spearman": 0.6303478130577488,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 24.0,
+          "mean": 9.267526964560863,
+          "median": 9.0,
+          "min": 0.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 3.0,
+          "q25": 6.0,
+          "q75": 12.0,
+          "q95": 17.0,
+          "q99": 20.090000000000146,
+          "std": 4.375512407726276,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 35.0,
+          "mean": 14.010695187165775,
+          "median": 13.0,
+          "min": 1.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 5.0,
+          "q25": 9.0,
+          "q75": 18.0,
+          "q95": 26.0,
+          "q99": 31.0,
+          "std": 6.436057150996314,
+          "support": 4114
+        }
+      },
+      "novelty": {
+        "correlation_with_growth": {
+          "pearson": 0.3375468139728714,
+          "spearman": 0.33775608967946325,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 1.0,
+          "mean": 0.6067367112780044,
+          "median": 0.5909090909090909,
+          "min": 0.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 0.3157894736842105,
+          "q25": 0.4666666666666667,
+          "q75": 0.7272727272727273,
+          "q95": 1.0,
+          "q99": 1.0,
+          "std": 0.19554729493974776,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 1.0,
+          "mean": 0.6809282838103289,
+          "median": 0.6842105263157895,
+          "min": 0.12,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 0.35714285714285715,
+          "q25": 0.5625,
+          "q75": 0.8235294117647058,
+          "q95": 1.0,
+          "q99": 1.0,
+          "std": 0.1788350367200541,
+          "support": 4114
+        }
+      },
+      "recent_distinct": {
+        "correlation_with_growth": {
+          "pearson": 0.24636864126837016,
+          "spearman": 0.38066781440769665,
+          "support": 9306
+        },
+        "target0_available": {
+          "availability_rate": 1.0,
+          "available_count": 5192,
+          "max": 52.0,
+          "mean": 16.860939907550076,
+          "median": 17.0,
+          "min": 1.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 4.0,
+          "q25": 9.0,
+          "q75": 23.0,
+          "q95": 32.0,
+          "q99": 39.0,
+          "std": 8.82119504451285,
+          "support": 5192
+        },
+        "target1_available": {
+          "availability_rate": 1.0,
+          "available_count": 4114,
+          "max": 57.0,
+          "mean": 21.685464268351968,
+          "median": 21.0,
+          "min": 2.0,
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "q05": 7.0,
+          "q25": 14.0,
+          "q75": 28.0,
+          "q95": 40.0,
+          "q99": 50.86999999999989,
+          "std": 10.361302283873608,
+          "support": 4114
+        }
+      }
+    }
+  }
+}

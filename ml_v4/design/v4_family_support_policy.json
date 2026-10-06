@@ -1,0 +1,324 @@
+{
+  "count_definition": "Number of scored decision points with each observable predicate true, not events carrying private scenario family. Family counts overlap; unique positive count is a union.",
+  "dependence_requirements": "Also record distinct subjects, episodes and units per family. Aim >=20 distinct subjects and >=30 distinct episode-or-background-time clusters per Validation/Final family, >=12 subjects and 20 clusters for Independent. Agent family objective is constrained by24/16 agents. Show concentration and cluster uncertainty;300 rows from one agent is not adequate.",
+  "design_version": "v4.stage 15.design.1",
+  "desired_prevalence_range": [
+    0.1,
+    0.45
+  ],
+  "families": [
+    {
+      "family": "S1",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "S2",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "S3",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "S4",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "N1",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "N2",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "N3",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "N4",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "A1",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "A2",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "A3",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    },
+    {
+      "family": "A4",
+      "final_test_minimum_objective": 300,
+      "final_test_planning_range": [
+        300,
+        900
+      ],
+      "independent_minimum_objective": 200,
+      "independent_planning_range": [
+        200,
+        600
+      ],
+      "train_minimum_objective": 1200,
+      "train_planning_range": [
+        1200,
+        3600
+      ],
+      "validation_minimum_objective": 300,
+      "validation_planning_range": [
+        300,
+        900
+      ]
+    }
+  ],
+  "family_recipe_design": {
+    "A1": "Combine acquisition/returning-customer mechanisms over 2..28d with regular-catchment probability U(0.2,0.9); changing activity by factor U(0.8,2.5). Cases may pass or fail multiple gates. Baseline is the actual ledger.",
+    "A2": "Choose2..6 regular counterparties and allocate service shares U(0.35,0.90) over 2..24h; baseline concentration may already be high.",
+    "A3": "5..16 services over 0.25..3h to 2..8 wallets; bursts can span the 1h boundary; activity count baseline uses preceding28d.",
+    "A4": "Mixed cash services over 2..24h,2..8 wallets, cash-out probability U(0.1,0.9), common amount sampling with direction multiplier U(0.5,2); no accept-until-A4 loop.",
+    "N1": "4..12 incoming W2W edges,2..8 senders, over 1..24h; use shared amounts and existing relation history.",
+    "N2": "4..12 outgoing W2W edges,2..8 receivers, over 1..24h; same relation and value support as H5.",
+    "N3": "Propose simple walks2..6 vertices and return edges, chronology jitter and independent amounts with multiplicative factors exp(U(log0.15,log5)); include reversed-order and competing paths. Do not call evaluator to choose any qualifying path.",
+    "N4": "Incoming W2W funding and subsequent mixed outward events over 1..24h; proposed outward fraction U(0.1,1.2); accounting rejection is separate and logged.",
+    "S1": "4..12 subject events across5..60min; value dispersion from a common Dirichlet(1,1,...) allocation; total amount sampled from shared value process; both dominant and diffuse payments possible.",
+    "S2": "4..12 subject payments over 1..7d; base amount from shared process, multiplicative jitter lognormal log-SD U(0.01,0.15); interleave unrelated payments. Use adequate background activity without searching evaluated target.",
+    "S3": "6..16 subject events over 3..20h with independent inter-arrival jitter, across3..8 proposed occupied hours; may cross UTC midnight. Full daily counts remain causal.",
+    "S4": "5..12 payments over 1..7d; recipe amounts drawn continuous USD 5000..13000, with common cent rounding; earlier same-profile large-payment history may defeat rate change. No forced positive label."
+  },
+  "holdout_support": "Later sealed custodian runs fixed support/schema/causality gates and releases only a predeclared pass/fail certificate before model freeze, not detailed rows/counts. Failed seals are quarantined without exposing outcomes to developers; no seed shopping. Any replacement requires versioned authorization and no cross-version benchmark claim.",
+  "no_retry": "One production draw per frozen manifest and seed. No repeat generation until prevalence, support, AUC, overlap or model performance looks preferable. Shortfalls are retained and documented.",
+  "opportunity_budget": {
+    "development_and_final_per_unit": {
+      "background": 2000,
+      "family_opportunities": 2000,
+      "hard_origin": 1000
+    },
+    "family_allocation": "S2,S4,N3 weight2 each, all other families weight1. Allocate2000 event opportunities by largest-remainder rounding in code order; includes preparatory/pre-onset events. This is not target balancing.",
+    "hard_allocation": "H1..H8 weights1 each; largest-remainder rounding with lexical ties; event provenance assigned once.",
+    "independent_per_unit": {
+      "background": 1750,
+      "family_opportunities": 2000,
+      "hard_origin": 1250
+    },
+    "warmup_per_unit": "1200 background-only opportunities; labels can still emerge from observable behaviour."
+  },
+  "opportunity_recipe": "Event budgets allocated before targets. Episode sizes are discrete uniform8..20 conditioned only on completing the budget, with any residual<8 assigned to background and reported. Continuous start times uniform over fitting intervals; no forced30d blocks. Same episode-size law for positive-intended and hard origins. Strength U(0.1,0.9), never label input.",
+  "range_justification": "Broad enriched research coverage envelope:12 families at 300 positives in15000 rows could require up to 24% unique positives absent overlap.10-45% leaves overlap and routine/hard-origin positives possible; not an estimate of operational prevalence.",
+  "schema_version": 1,
+  "shortfall_resolution": "Block training or qualified family-performance claims when development coverage is inadequate. Before any model evaluation, either approve a new version with scientifically justified opportunity changes, or retain the frozen population benchmark and authorize a separately labeled family challenge set with cluster uncertainty. Do not mix challenge-set prevalence into the 100k benchmark. If realistic S4 support is infeasible, report imprecise S4 recall and a separate stress test; do not distort ordinary amounts to claim coverage.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "support_rationale": "Several hundred rows can stabilize raw recall relative to V3 counts1 and 8. An independent-binomial worst-case95% half-width is about 0.057 atN300; event dependence makes this optimistic. No achieved count or precision claim before generation."
+}

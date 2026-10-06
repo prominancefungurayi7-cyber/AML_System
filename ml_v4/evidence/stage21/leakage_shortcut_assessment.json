@@ -1,0 +1,10 @@
+{
+  "labels": "Runner joins unchanged y only after extraction; no label input to either state",
+  "no_complete_predicate_flag": true,
+  "private_metadata": "Only exact Event accepted; extra columns rejected; provenance never supplied",
+  "quality_evidence": "feature_quality_audit.json",
+  "runtime_forbidden_modules_loaded": false,
+  "shortcut_limit": "Causality/role tests and excluded metadata do not establish absence of all synthetic shortcuts. No accuracy, performance improvement or independent generalization assessed.",
+  "static_import_audit": "PASS: frozen base plus new extractor import low-level schema only, no evaluator/generator/model",
+  "target_relationship": "All four are disclosed categoryB individual components; jointly44 enables expression of S2/S4. This is rule reproduction, not new evidence of real AML capability. Shared baseline missingness intentionally communicates history support, no standalone eligibility flag."
+}

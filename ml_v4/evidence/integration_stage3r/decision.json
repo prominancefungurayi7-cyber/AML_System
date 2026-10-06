@@ -1,0 +1,27 @@
+{
+  "decision": "A \u2014 EXACT STAGE3 IMPLEMENTATION RECOVERED AND PARITY REVERIFIED",
+  "classification": "EXACT RECOVERY VERIFIED",
+  "exact_restored_files": 12,
+  "reconstructed_files": 0,
+  "tests_passed": 54,
+  "fixed_development_examples": 128,
+  "max_probability_difference": 0,
+  "stage4_resumed": false,
+  "artifact_sha256": {
+    "ml_v4/evidence/integration_stage3r/approved_stage3_source_backup.zip": "acc772f58bc745dacc8eeb445b0393c9ee1c50458f41db34d30c471de8acf2d4",
+    "ml_v4/evidence/integration_stage3r/cause_assessment.json": "d445f021a4f8d29b7b231434a97ad59fb480950f11a1624bbf57e61b87c6e458",
+    "ml_v4/evidence/integration_stage3r/copy_search.json": "6229c34d4afc68a413bfaf6eb66ee2d3074f74d6d41cf79a57b33da4f61d4f0b",
+    "ml_v4/evidence/integration_stage3r/finalize.py": "606e3c0619cdd8b9ae8e76f1de8306171a61443444116b60e008f225bc0ad7d7",
+    "ml_v4/evidence/integration_stage3r/missing_files.json": "4172cfa9b09c3f040f9c1cd5fc1058a3a2acded722c73fe21babd2a5b9c316dd",
+    "ml_v4/evidence/integration_stage3r/parity.json": "afdf4b9463cbcaeff3886da229e404d0db3ffc90bd3ee51627039465d6b18b24",
+    "ml_v4/evidence/integration_stage3r/preservation_verification.json": "4844e9bc954c52d7b43ae5c3d8733e89675a741671961cd2a2bce385b75f3103",
+    "ml_v4/evidence/integration_stage3r/recover.py": "627944b24a7647920ecc1333a0830a179b063da841b4ac6084403d23ace37f6f",
+    "ml_v4/evidence/integration_stage3r/recovery_records.json": "7817ea72fcd554c7d7c785b5fdb3e7ed9f540bc30fdc8b8650bce6a32f2c73af",
+    "ml_v4/evidence/integration_stage3r/runtime_verification.json": "79fa160d9a0250a447bd051c6520c7b93a34c782dcc57d771114fc2cf269e9e9",
+    "ml_v4/evidence/integration_stage3r/source_backup_manifest.json": "3ad85cea36cba45f30c49f2c55d5875b46bfe6bcc399db6bfc1543de25ddcf7d",
+    "ml_v4/evidence/integration_stage3r/source_integrity_gate.json": "969666f4981b83ce0a9a620bf3695ba90cc24b71802a30ef12678ba2a85e9b9d",
+    "ml_v4/evidence/integration_stage3r/test_results.txt": "21d37e907be3865c444ee0f0a84579a96982abe9697412e9ab77254b985a4cb0",
+    "ml_v4/evidence/integration_stage3r/validate.py": "4c87a43bbecd82510fb0426c340300febe554c13a421dfda2fd3b33248c54952",
+    "ml_v4/reports/V4_INTEGRATION_STAGE3R_RECOVERY_REPORT.md": "89f33ee064ff03b6832474109f3146532a0640499bd828910aa8f0372b3b25b2"
+  }
+}

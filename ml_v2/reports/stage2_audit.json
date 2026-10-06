@@ -1,0 +1,903 @@
+{
+  "checks": {
+    "180_day_support": 100000,
+    "agent_activation": 75000,
+    "agent_band_allocation": 4,
+    "agent_count_uniqueness": 4,
+    "agent_growth_wallet_roles": 236,
+    "agent_imbalance_cash_portion": 243,
+    "agent_imbalance_count_portion": 243,
+    "agent_imbalance_value_portion": 243,
+    "binary_target": 100000,
+    "cash_bookkeeping": 50000,
+    "cash_direction": 50000,
+    "category_counts": 4,
+    "class_category_counts": 16,
+    "class_counts": 4,
+    "closed_reciprocal_cycles": 468,
+    "collection_graph_roles": 431,
+    "complete_episode_plan_join": 4,
+    "conserved_electronic_value": 4,
+    "currency": 100000,
+    "development_hard_negative_activity_overlap": 16,
+    "development_hard_negative_amount_overlap": 16,
+    "development_hard_negative_duration_overlap": 16,
+    "direct_wallet_nulls": 25000,
+    "dispersion_graph_roles": 269,
+    "domain_counts": 4,
+    "domain_family_consistency": 12000,
+    "entity_partition": 2160,
+    "episode_length_support": 3871,
+    "episode_schedule_duration": 3871,
+    "ex_ante_agent_funding": 4,
+    "ex_ante_wallet_funding": 4,
+    "exact_block_counts": 24,
+    "exact_file_inventory": 1,
+    "exact_schema_allowlist": 16,
+    "family_category_allocation": 48,
+    "family_count": 48,
+    "family_duration_support": 3871,
+    "family_strength_count": 144,
+    "file_hash": 28,
+    "global_chronological_id_assignment": 1,
+    "global_id_range": 1,
+    "global_id_unique": 100000,
+    "ground_truth_row_count": 4,
+    "hard_normal_count": 36,
+    "holdout_marker": 4,
+    "label_basis": 100000,
+    "membership_commitment_hash": 4,
+    "near_threshold_partial_membership": 458,
+    "no_copied_complete_episode_sequence": 3871,
+    "no_duplicate_labels": 4,
+    "no_negative_balance_or_float": 100000,
+    "no_truncated_episode": 3871,
+    "normal_category_allocation": 36,
+    "normal_episode_membership": 88000,
+    "normal_metadata_consistency": 88000,
+    "one_to_one_ground_truth": 4,
+    "one_wallet_per_customer": 4,
+    "partition_access_role": 4,
+    "partition_entity_episode_disjointness": 24,
+    "partition_local_endpoints": 100000,
+    "partition_rows": 4,
+    "pass_through_retention": 262,
+    "positive_bounded_integer_amount": 100000,
+    "precommitted_phase": 56000,
+    "precommitted_plan_membership": 56000,
+    "routine_phase": 44000,
+    "sequence_equals_id": 100000,
+    "strict_partition_causal_order": 100000,
+    "suspicious_metadata_consistency": 12000,
+    "transfer_no_float_movement": 50000,
+    "unchanged_precommitted_membership": 3871,
+    "valid_agent_attribution": 75000,
+    "valid_channel": 100000,
+    "valid_normal_family": 88000,
+    "valid_signal_strength": 12000,
+    "valid_suspicious_family": 12000,
+    "valid_transaction_type": 100000,
+    "wallet_activation": 100000,
+    "wallet_count_uniqueness": 4,
+    "wallet_profile_allocation": 4,
+    "zero_transfer_self_loops": 50000
+  },
+  "development_overlap": {
+    "train": {
+      "amount_bin_edges_minor": [
+        100,
+        1000,
+        10000,
+        100000,
+        700000,
+        1000000,
+        1050001,
+        2500001
+      ],
+      "groups": {
+        "H1": {
+          "above_threshold": 265,
+          "amount_bin_counts": [
+            150,
+            760,
+            1117,
+            906,
+            102,
+            13,
+            252
+          ],
+          "amount_max": 2495654,
+          "amount_median": 48666.0,
+          "amount_min": 100,
+          "below_threshold": 3035,
+          "duration_seconds_range": [
+            606.8613221608548,
+            288314.8008791421
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H2": {
+          "above_threshold": 421,
+          "amount_bin_counts": [
+            281,
+            1240,
+            918,
+            347,
+            93,
+            4,
+            417
+          ],
+          "amount_max": 2489452,
+          "amount_median": 11574.5,
+          "amount_min": 100,
+          "below_threshold": 2879,
+          "duration_seconds_range": [
+            11880.018749728177,
+            863592.51272101
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H3": {
+          "above_threshold": 493,
+          "amount_bin_counts": [
+            137,
+            646,
+            624,
+            187,
+            1213,
+            189,
+            304
+          ],
+          "amount_max": 2499390,
+          "amount_median": 711995.0,
+          "amount_min": 100,
+          "below_threshold": 2807,
+          "duration_seconds_range": [
+            173673.90202053083,
+            1205919.3899494475
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H4": {
+          "above_threshold": 515,
+          "amount_bin_counts": [
+            221,
+            1135,
+            1038,
+            304,
+            87,
+            13,
+            502
+          ],
+          "amount_max": 2498685,
+          "amount_median": 16431.5,
+          "amount_min": 100,
+          "below_threshold": 2785,
+          "duration_seconds_range": [
+            2435.302055974832,
+            430934.4855581991
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H5": {
+          "above_threshold": 292,
+          "amount_bin_counts": [
+            479,
+            1053,
+            987,
+            421,
+            68,
+            18,
+            274
+          ],
+          "amount_max": 2497500,
+          "amount_median": 13330.0,
+          "amount_min": 100,
+          "below_threshold": 3008,
+          "duration_seconds_range": [
+            1930.6802594151893,
+            256785.69797248166
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H6": {
+          "above_threshold": 514,
+          "amount_bin_counts": [
+            208,
+            1178,
+            957,
+            336,
+            107,
+            25,
+            489
+          ],
+          "amount_max": 2498019,
+          "amount_median": 15933.5,
+          "amount_min": 100,
+          "below_threshold": 2786,
+          "duration_seconds_range": [
+            3643.5520258283564,
+            590563.8676375338
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H7": {
+          "above_threshold": 480,
+          "amount_bin_counts": [
+            224,
+            1179,
+            976,
+            335,
+            106,
+            19,
+            461
+          ],
+          "amount_max": 2497887,
+          "amount_median": 14814.0,
+          "amount_min": 100,
+          "below_threshold": 2820,
+          "duration_seconds_range": [
+            918.7876227903263,
+            603572.0510482911
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H8": {
+          "above_threshold": 444,
+          "amount_bin_counts": [
+            221,
+            1171,
+            1041,
+            345,
+            78,
+            25,
+            419
+          ],
+          "amount_max": 2497805,
+          "amount_median": 15094.5,
+          "amount_min": 100,
+          "below_threshold": 2856,
+          "duration_seconds_range": [
+            21600.932850015197,
+            602676.4340327025
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "routine": {
+          "above_threshold": 3943,
+          "amount_bin_counts": [
+            1842,
+            9073,
+            7949,
+            2784,
+            808,
+            128,
+            3816
+          ],
+          "amount_max": 2499938,
+          "amount_median": 16070.5,
+          "amount_min": 100,
+          "below_threshold": 22456
+        },
+        "suspicious": {
+          "above_threshold": 942,
+          "amount_bin_counts": [
+            488,
+            2239,
+            2188,
+            916,
+            427,
+            79,
+            863
+          ],
+          "amount_max": 2495575,
+          "amount_median": 21030.0,
+          "amount_min": 100,
+          "below_threshold": 6258,
+          "duration_seconds_range": [
+            352.1796399545535,
+            1180097.575665826
+          ],
+          "event_count_range": [
+            4,
+            30
+          ]
+        }
+      }
+    },
+    "validation": {
+      "amount_bin_edges_minor": [
+        100,
+        1000,
+        10000,
+        100000,
+        700000,
+        1000000,
+        1050001,
+        2500001
+      ],
+      "groups": {
+        "H1": {
+          "above_threshold": 85,
+          "amount_bin_counts": [
+            41,
+            170,
+            280,
+            220,
+            29,
+            2,
+            83
+          ],
+          "amount_max": 2477600,
+          "amount_median": 51238,
+          "amount_min": 100,
+          "below_threshold": 740,
+          "duration_seconds_range": [
+            686.2373572596582,
+            266625.5775480583
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H2": {
+          "above_threshold": 203,
+          "amount_bin_counts": [
+            62,
+            188,
+            251,
+            110,
+            11,
+            1,
+            202
+          ],
+          "amount_max": 2477807,
+          "amount_median": 29863,
+          "amount_min": 132,
+          "below_threshold": 622,
+          "duration_seconds_range": [
+            15268.23309142581,
+            857797.2923054309
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H3": {
+          "above_threshold": 134,
+          "amount_bin_counts": [
+            23,
+            160,
+            144,
+            45,
+            319,
+            48,
+            86
+          ],
+          "amount_max": 2471691,
+          "amount_median": 737839,
+          "amount_min": 160,
+          "below_threshold": 691,
+          "duration_seconds_range": [
+            177488.81046542036,
+            1169283.1799032753
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H4": {
+          "above_threshold": 114,
+          "amount_bin_counts": [
+            43,
+            311,
+            253,
+            85,
+            19,
+            3,
+            111
+          ],
+          "amount_max": 2492600,
+          "amount_median": 15026,
+          "amount_min": 100,
+          "below_threshold": 711,
+          "duration_seconds_range": [
+            4637.474353561155,
+            430147.5269046957
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H5": {
+          "above_threshold": 86,
+          "amount_bin_counts": [
+            112,
+            266,
+            239,
+            103,
+            19,
+            4,
+            82
+          ],
+          "amount_max": 2497900,
+          "amount_median": 13700,
+          "amount_min": 115,
+          "below_threshold": 739,
+          "duration_seconds_range": [
+            1801.450815210556,
+            222021.43589911502
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H6": {
+          "above_threshold": 128,
+          "amount_bin_counts": [
+            55,
+            300,
+            241,
+            75,
+            26,
+            3,
+            125
+          ],
+          "amount_max": 2487677,
+          "amount_median": 15789,
+          "amount_min": 100,
+          "below_threshold": 697,
+          "duration_seconds_range": [
+            5515.08274782733,
+            603992.0493019198
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "H7": {
+          "above_threshold": 136,
+          "amount_bin_counts": [
+            70,
+            275,
+            236,
+            82,
+            26,
+            5,
+            131
+          ],
+          "amount_max": 2488271,
+          "amount_median": 15800,
+          "amount_min": 175,
+          "below_threshold": 689,
+          "duration_seconds_range": [
+            1156.8036765162171,
+            577938.1672689418
+          ],
+          "event_count_range": [
+            6,
+            23
+          ]
+        },
+        "H8": {
+          "above_threshold": 125,
+          "amount_bin_counts": [
+            60,
+            282,
+            260,
+            76,
+            22,
+            4,
+            121
+          ],
+          "amount_max": 2482972,
+          "amount_median": 15000,
+          "amount_min": 100,
+          "below_threshold": 700,
+          "duration_seconds_range": [
+            23190.91573256886,
+            597964.009266626
+          ],
+          "event_count_range": [
+            6,
+            24
+          ]
+        },
+        "routine": {
+          "above_threshold": 1010,
+          "amount_bin_counts": [
+            459,
+            2306,
+            1955,
+            656,
+            214,
+            43,
+            967
+          ],
+          "amount_max": 2498775,
+          "amount_median": 15399.0,
+          "amount_min": 100,
+          "below_threshold": 5590
+        },
+        "suspicious": {
+          "above_threshold": 262,
+          "amount_bin_counts": [
+            127,
+            588,
+            503,
+            207,
+            113,
+            19,
+            243
+          ],
+          "amount_max": 2499660,
+          "amount_median": 20922.5,
+          "amount_min": 120,
+          "below_threshold": 1538,
+          "duration_seconds_range": [
+            629.578071332261,
+            1172625.6832323582
+          ],
+          "event_count_range": [
+            4,
+            29
+          ]
+        }
+      }
+    }
+  },
+  "failures": [],
+  "limitations": [
+    "Software access guard is not an OS security boundary.",
+    "Descriptive overlap does not prove absence of every single-variable shortcut.",
+    "Initial liquidity is deliberately ample and fixed; this experiment does not model operational liquidity scarcity.",
+    "Synthetic scenario membership is not evidence of real-world crime."
+  ],
+  "partitions": {
+    "final_test": {
+      "agents": 24,
+      "cash_same_wallet_records": 7500,
+      "categories": {
+        "0": 3750,
+        "1": 3750,
+        "2": 3750,
+        "3": 3750
+      },
+      "classes": {
+        "0": 13200,
+        "1": 1800
+      },
+      "customers": 300,
+      "domains": {
+        "agent": 600,
+        "network": 600,
+        "structuring": 600
+      },
+      "episodes": 600,
+      "equal_timestamp_pairs": 0,
+      "families": {
+        "A1": 150,
+        "A2": 150,
+        "A3": 150,
+        "A4": 150,
+        "N1": 150,
+        "N2": 150,
+        "N3": 150,
+        "N4": 150,
+        "S1": 150,
+        "S2": 150,
+        "S3": 150,
+        "S4": 150
+      },
+      "first_timestamp": "2025-01-01T00:00:11.121538Z",
+      "last_timestamp": "2025-06-29T23:58:50.283252Z",
+      "minimum_agent_float_minor": 4976039525,
+      "minimum_wallet_balance_minor": 221365371,
+      "normal_blocks": [
+        2200,
+        2200,
+        2200,
+        2200,
+        2200,
+        2200
+      ],
+      "normal_families": {
+        "H1": 825,
+        "H2": 825,
+        "H3": 825,
+        "H4": 825,
+        "H5": 825,
+        "H6": 825,
+        "H7": 825,
+        "H8": 825,
+        "routine": 6600
+      },
+      "positive_blocks": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "rows": 15000,
+      "strengths": {
+        "moderate": 900,
+        "strong": 540,
+        "weak": 360
+      },
+      "transfer_self_loops": 0,
+      "wallets": 300
+    },
+    "independent": {
+      "agents": 16,
+      "cash_same_wallet_records": 5000,
+      "categories": {
+        "0": 2500,
+        "1": 2500,
+        "2": 2500,
+        "3": 2500
+      },
+      "classes": {
+        "0": 8800,
+        "1": 1200
+      },
+      "customers": 200,
+      "domains": {
+        "agent": 400,
+        "network": 400,
+        "structuring": 400
+      },
+      "episodes": 425,
+      "equal_timestamp_pairs": 0,
+      "families": {
+        "A1": 100,
+        "A2": 100,
+        "A3": 100,
+        "A4": 100,
+        "N1": 100,
+        "N2": 100,
+        "N3": 100,
+        "N4": 100,
+        "S1": 100,
+        "S2": 100,
+        "S3": 100,
+        "S4": 100
+      },
+      "first_timestamp": "2025-01-01T00:00:29.036480Z",
+      "last_timestamp": "2025-06-29T23:29:01.873629Z",
+      "minimum_agent_float_minor": 4973704230,
+      "minimum_wallet_balance_minor": 225040476,
+      "normal_blocks": [
+        1467,
+        1467,
+        1467,
+        1467,
+        1466,
+        1466
+      ],
+      "normal_families": {
+        "H1": 550,
+        "H2": 550,
+        "H3": 550,
+        "H4": 550,
+        "H5": 550,
+        "H6": 550,
+        "H7": 550,
+        "H8": 550,
+        "routine": 4400
+      },
+      "positive_blocks": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "rows": 10000,
+      "strengths": {
+        "moderate": 600,
+        "strong": 360,
+        "weak": 240
+      },
+      "transfer_self_loops": 0,
+      "wallets": 200
+    },
+    "train": {
+      "agents": 96,
+      "cash_same_wallet_records": 30000,
+      "categories": {
+        "0": 15000,
+        "1": 15000,
+        "2": 15000,
+        "3": 15000
+      },
+      "classes": {
+        "0": 52800,
+        "1": 7200
+      },
+      "customers": 1200,
+      "domains": {
+        "agent": 2400,
+        "network": 2400,
+        "structuring": 2400
+      },
+      "episodes": 2255,
+      "equal_timestamp_pairs": 0,
+      "families": {
+        "A1": 600,
+        "A2": 600,
+        "A3": 600,
+        "A4": 600,
+        "N1": 600,
+        "N2": 600,
+        "N3": 600,
+        "N4": 600,
+        "S1": 600,
+        "S2": 600,
+        "S3": 600,
+        "S4": 600
+      },
+      "first_timestamp": "2025-01-01T00:00:04.209352Z",
+      "last_timestamp": "2025-06-29T23:44:59.722351Z",
+      "minimum_agent_float_minor": 4964050901,
+      "minimum_wallet_balance_minor": 216641746,
+      "normal_blocks": [
+        8800,
+        8800,
+        8800,
+        8800,
+        8800,
+        8800
+      ],
+      "normal_families": {
+        "H1": 3300,
+        "H2": 3300,
+        "H3": 3300,
+        "H4": 3300,
+        "H5": 3300,
+        "H6": 3300,
+        "H7": 3300,
+        "H8": 3300,
+        "routine": 26400
+      },
+      "positive_blocks": [
+        1200,
+        1200,
+        1200,
+        1200,
+        1200,
+        1200
+      ],
+      "rows": 60000,
+      "strengths": {
+        "moderate": 3600,
+        "strong": 2160,
+        "weak": 1440
+      },
+      "transfer_self_loops": 0,
+      "wallets": 1200
+    },
+    "validation": {
+      "agents": 24,
+      "cash_same_wallet_records": 7500,
+      "categories": {
+        "0": 3750,
+        "1": 3750,
+        "2": 3750,
+        "3": 3750
+      },
+      "classes": {
+        "0": 13200,
+        "1": 1800
+      },
+      "customers": 300,
+      "domains": {
+        "agent": 600,
+        "network": 600,
+        "structuring": 600
+      },
+      "episodes": 591,
+      "equal_timestamp_pairs": 0,
+      "families": {
+        "A1": 150,
+        "A2": 150,
+        "A3": 150,
+        "A4": 150,
+        "N1": 150,
+        "N2": 150,
+        "N3": 150,
+        "N4": 150,
+        "S1": 150,
+        "S2": 150,
+        "S3": 150,
+        "S4": 150
+      },
+      "first_timestamp": "2025-01-01T00:00:02.004518Z",
+      "last_timestamp": "2025-06-29T23:37:53.757950Z",
+      "minimum_agent_float_minor": 4972391616,
+      "minimum_wallet_balance_minor": 220760106,
+      "normal_blocks": [
+        2200,
+        2200,
+        2200,
+        2200,
+        2200,
+        2200
+      ],
+      "normal_families": {
+        "H1": 825,
+        "H2": 825,
+        "H3": 825,
+        "H4": 825,
+        "H5": 825,
+        "H6": 825,
+        "H7": 825,
+        "H8": 825,
+        "routine": 6600
+      },
+      "positive_blocks": [
+        300,
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "rows": 15000,
+      "strengths": {
+        "moderate": 900,
+        "strong": 540,
+        "weak": 360
+      },
+      "transfer_self_loops": 0,
+      "wallets": 300
+    }
+  },
+  "result": "PASS",
+  "temporal_contract": {
+    "cold_start": "Partial history is valid; no hidden warm-up",
+    "feature_replay_executed": false,
+    "ordering": [
+      "event_timestamp",
+      "transaction_id"
+    ],
+    "windows_seconds": [
+      3600,
+      86400,
+      604800,
+      2592000
+    ]
+  }
+}

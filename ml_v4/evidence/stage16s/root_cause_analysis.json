@@ -1,0 +1,165 @@
+{
+  "accounting": {
+    "train": {
+      "accounting_failures": 0,
+      "basis": "Frozen integrity PASS and stop-on-negative-inventory source. Numerical amount bounds rejection is not an accounting retry.",
+      "minimum_inventory_minor": 85241688,
+      "numerical_amount_proposal_rejections": 17
+    },
+    "validation": {
+      "accounting_failures": 0,
+      "basis": "Frozen integrity PASS and stop-on-negative-inventory source. Numerical amount bounds rejection is not an accounting retry.",
+      "minimum_inventory_minor": 87624538,
+      "numerical_amount_proposal_rejections": 5
+    }
+  },
+  "causal_limits": "Descriptive attrition and source mechanisms, not causal percentages. Own-origin motifs are a diagnostic subset; ordinary and hard-origin events can also become positive. Single-gate failures overlap; sole-failure counts do not authorize changing gates.",
+  "diversity": "Validation has only three units; subject/cluster counts are coverage measures, not effective independent sample sizes. No minimum was invented for Train.",
+  "eligibility": "Saved eligibility/reason counts are reported for all scored rows and intended motif rows. N4 anchor eligibility is not a long-history requirement. Inapplicable roles must not be described as historical insufficiency.",
+  "family_interpretations": {
+    "A1": "Minimum support is met and many positives originate outside A1 episodes. This dominant support cannot substitute for sparse agent families or establish operational specificity.",
+    "A2": "Top-two concentration and change from its own baseline must coincide after eight recent services and historical support. Choosing two-to-six customers with shares 0.35..0.90 is broader than the target conjunction; intended opportunities are not labels.",
+    "A3": "A 0.25..3-hour motif can extend beyond the one-hour target window; count, breadth and baseline conditions also apply. Validation subject breadth is below its objective. No temporal-duration intervention was performed.",
+    "A4": "Cash event count, distinct wallets, value skew, count skew, sign agreement and historical skew change must all hold. Random direction probabilities and heterogeneous amounts are not guarantees of the joint imbalance. The measured eligible-motif failures identify limiting conditions, while subject breadth is also insufficient.",
+    "N1": "Incoming collection requires prior receiver-specific directed support, three senders, four recent edges and sufficient value. Two-to-eight partner opportunities and context are not guaranteed positive decisions. Eligibility and own-origin counts identify observed attrition; relative causal effects remain unestimated.",
+    "N2": "Minimum support is met, with positives also arising outside intended N2 episodes. Overlap with other predicates enriches supervision but does not create independent observations.",
+    "N3": "No long-history eligibility gate exists for W2W. Early walk events need not close a chronological return route; reversed ordering and broad amount factors can defeat a full path. Topology-present versus amount-conjunction failure is measured on own motif rows. Absence of a qualifying path is not evidence of accounting loss.",
+    "N4": "A prior incoming-W2W anchor, funding minimum, outward fraction and remaining-funding conjunction are required. A funding proposal itself is not an outward detection, and shared small-value draws may not reach the funding minimum. No gate-specific counterfactual effect is claimed.",
+    "S1": "Own opportunities use a dispersed share of one base-mixture total; the target additionally requires USD 300 total, four causal recent events, variation, limited maximum share and eligible history. Source supports this mechanism, but no S1 gate-by-gate causal allocation is estimated.",
+    "S2": "Fresh jittered motif amounts need not leave four payments within the current-centered 5% band; cluster value and 60% share must also pass. Context and ordinary activity enter the denominator. The measured gate failures below distinguish this attrition from historical ineligibility.",
+    "S3": "Minimum decision-point support is met. Day boundaries and occupied-hour/value/history conjunction still filter opportunities; success does not establish independent precision or all-domain reliability.",
+    "S4": "The conditional USD 5000..13000 recipe is wider than the target band. A current in-band payment, three in-band rows, 40% share, variation, rate increase and history must coincide. The condition audit quantifies overlap among failures without treating them as independent causes."
+  },
+  "implementation_limit": "Read-only evidence review does not independently certify every stochastic population mechanism or remedy the documented process/current-user holdout boundary limitation.",
+  "measured_focus": {
+    "train": {
+      "N3": {
+        "chronological_topology_available": 307,
+        "full_predicate_positive": 83,
+        "no_chronological_topology": 844,
+        "own_motif_rows": 1151,
+        "topology_present_but_full_amount_conjunction_fails": 224
+      },
+      "conditions": {
+        "A4": {
+          "all_conditions_pass": 159,
+          "eligible_own_motif": 1250,
+          "failures_nonexclusive": {
+            "abs_count_skew_ge0.5": 765,
+            "abs_value_skew_ge0.6": 411,
+            "cash_count_ge6": 354,
+            "cash_wallets_ge3": 113,
+            "sign_agreement": 401,
+            "skew_change_ge0.4": 364
+          },
+          "sole_failed_condition": {
+            "abs_count_skew_ge0.5": 191,
+            "abs_value_skew_ge0.6": 17,
+            "cash_count_ge6": 99,
+            "cash_wallets_ge3": 5,
+            "sign_agreement": 18,
+            "skew_change_ge0.4": 30
+          }
+        },
+        "S2": {
+          "all_conditions_pass": 52,
+          "eligible_own_motif": 1361,
+          "failures_nonexclusive": {
+            "cluster_count_ge4": 1006,
+            "cluster_growth_ge2": 443,
+            "cluster_share_ge0.6": 1189,
+            "cluster_value_ge20000": 1008
+          },
+          "sole_failed_condition": {
+            "cluster_count_ge4": 13,
+            "cluster_share_ge0.6": 120,
+            "cluster_value_ge20000": 49
+          }
+        },
+        "S4": {
+          "all_conditions_pass": 82,
+          "eligible_own_motif": 1464,
+          "failures_nonexclusive": {
+            "band_count_ge3": 1005,
+            "band_growth_ge2": 695,
+            "band_share_ge0.4": 1268,
+            "band_variation_ge2": 690,
+            "current_in_band": 905,
+            "recent_count_ge5": 245
+          },
+          "sole_failed_condition": {
+            "band_count_ge3": 14,
+            "band_share_ge0.4": 161,
+            "current_in_band": 38,
+            "recent_count_ge5": 3
+          }
+        }
+      }
+    },
+    "validation": {
+      "N3": {
+        "chronological_topology_available": 96,
+        "full_predicate_positive": 20,
+        "no_chronological_topology": 221,
+        "own_motif_rows": 317,
+        "topology_present_but_full_amount_conjunction_fails": 76
+      },
+      "conditions": {
+        "A4": {
+          "all_conditions_pass": 29,
+          "eligible_own_motif": 299,
+          "failures_nonexclusive": {
+            "abs_count_skew_ge0.5": 167,
+            "abs_value_skew_ge0.6": 140,
+            "cash_count_ge6": 86,
+            "cash_wallets_ge3": 43,
+            "sign_agreement": 103,
+            "skew_change_ge0.4": 78
+          },
+          "sole_failed_condition": {
+            "abs_count_skew_ge0.5": 27,
+            "abs_value_skew_ge0.6": 5,
+            "cash_count_ge6": 15,
+            "cash_wallets_ge3": 2,
+            "sign_agreement": 1,
+            "skew_change_ge0.4": 24
+          }
+        },
+        "S2": {
+          "all_conditions_pass": 7,
+          "eligible_own_motif": 290,
+          "failures_nonexclusive": {
+            "cluster_count_ge4": 225,
+            "cluster_growth_ge2": 98,
+            "cluster_share_ge0.6": 260,
+            "cluster_value_ge20000": 229
+          },
+          "sole_failed_condition": {
+            "cluster_count_ge4": 2,
+            "cluster_share_ge0.6": 21,
+            "cluster_value_ge20000": 8
+          }
+        },
+        "S4": {
+          "all_conditions_pass": 11,
+          "eligible_own_motif": 361,
+          "failures_nonexclusive": {
+            "band_count_ge3": 287,
+            "band_growth_ge2": 171,
+            "band_share_ge0.4": 311,
+            "band_variation_ge2": 171,
+            "current_in_band": 232,
+            "recent_count_ge5": 76
+          },
+          "sole_failed_condition": {
+            "band_count_ge3": 5,
+            "band_share_ge0.4": 34,
+            "current_in_band": 7
+          }
+        }
+      }
+    }
+  },
+  "opportunity_adequacy": "The fixed E budget includes context and pre-detection events. Realized positive support is inadequate for nine family objectives; this does not prove that more rows alone would solve eligibility, composition or diversity.",
+  "overlap": "Does not remove any family flags or reduce their individual counts; only the binary union deduplicates."
+}

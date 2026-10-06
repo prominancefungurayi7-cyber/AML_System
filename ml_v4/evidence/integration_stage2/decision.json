@@ -1,0 +1,23 @@
+{
+  "decision": "B — FOUNDATION PARTIALLY READY; LIMITED DATA WORK REMAINS",
+  "tests_passed": 50,
+  "mysql_migration": "PASS; one additive table, five indexes; immediate repeat no changes",
+  "remaining": "History-completeness attestation and legacy observation gaps; no V4 activation",
+  "artifact_sha256": {
+    "canonical_mobile_money.py": "dc986203931e7baa17f2906193e9550d5ece94d4708951099803c5b826f0d803",
+    "canonical_mobile_money_store.py": "eedf852950b7ef1d772142a598a42a8d1b1324239e6fa4ca47fe91bbbdb88f76",
+    "migrate_canonical_mobile_money.py": "d06d6a7bae6f4f2e8af04d68392196d0eceb27ce09ddd85ede31a42fe0e8a4cf",
+    "tests/test_canonical_mobile_money.py": "eb9e3ec639b4c3055921c2b37f2e46026fab961a6e3d04c57da80cf0b8e4d966",
+    "server.py": "73d849c183b7d0ba57792c03586b2cb754c758e67b050c56b90449182aa74481",
+    "static/react-dashboard.js": "9467e66c69160a7858efb2e5aae32b8e237e15c4f0215c5aba2980edf0770c90",
+    "ml_v4/reports/V4_INTEGRATION_STAGE2_CANONICAL_DATA_REPORT.md": "a988ffbd335eb627f28424d0c43169e7b367c2cb5ed1a10ce3ed930fc9a7452f",
+    "ml_v4/evidence/integration_stage2/before_sha256.json": "d1fb80ae3d452fdf79987ba833de8004e93699cb11f496cd5e0d464d40ba21f8",
+    "ml_v4/evidence/integration_stage2/database_discovery.json": "3e321de2ffd174529086d950557d3a5dd47c9e18e501819d5c682b2f724f3b56",
+    "ml_v4/evidence/integration_stage2/finalize.py": "3ad11fa9c9e43aafb91aa2a9ab78c8a077c050539d1bd37ecf2f7b1b01c0ccb4",
+    "ml_v4/evidence/integration_stage2/history_completeness_contract.json": "c2749276a11c677189cf6bd51c5e35bcad608d568d36d4fc7a4e3b08e9108577",
+    "ml_v4/evidence/integration_stage2/migration_execution.json": "f63346aab593360cbfa322085ed8b9313e683ae05b1d3817ec0e343dd607c409",
+    "ml_v4/evidence/integration_stage2/migration_plan.json": "593146c20975151f71b59fcb606785a5e23edd224a592064b1a7011f3255f688",
+    "ml_v4/evidence/integration_stage2/preservation_verification.json": "19cb51a19da002361a7a7a2f82cef80734eb6c5e90a57bd7b3b40a2819fa1c78",
+    "ml_v4/evidence/integration_stage2/test_results.txt": "8a63ec1b16afd492e19fe8d3119d270eef1fc67b454e6781894831d3057edcd5"
+  }
+}

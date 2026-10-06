@@ -1,0 +1,27 @@
+{
+  "artifact_sha256": {
+    "ml_v4/evidence/stage16v/authorization_fixture.json": "57cc56004fad6fa1e7f80223d1174b684b3ae32c3043d5c03148f7b3ff41e3b2",
+    "ml_v4/evidence/stage16v/environment_audit.json": "0b2afaa79ef0e470b79fd932bd640a01e37378463f6e4ca8f4996173a237c783",
+    "ml_v4/evidence/stage16v/historical_snapshot_gap.json": "0b7795551f5483bb283fb59345733d97cdcb6291c1a0966e1fd4fa4d58b4c23a",
+    "ml_v4/evidence/stage16v/preservation_verification.json": "e9f79ee5b6803895e3cd989a9ad6fe398d57e3add3a6b40452f695fbf794017f",
+    "ml_v4/evidence/stage16v/reproducibility_readiness.json": "4663527b6a747d58a931d229c51764d38be0fad871e253721f32adc1b6f78d49",
+    "ml_v4/generation/stage16v_audit.py": "fca650af5595dd8b2bfd42bb2ee58829a2e550af792763ff48181fc862131cf7",
+    "ml_v4/generation/stage16v_fixture.py": "bbc8fbf040ed560c59d1afcbe5cbb2abe89884904b91c818f2aaf31d77c25360",
+    "ml_v4/reports/V4_STAGE16V_CUSTODY_READINESS.md": "4aff87d66662ba6069dd57e546a13ec291374d326f66c530aaeb7b338759cfc3"
+  },
+  "candidate_schedules_sampled": false,
+  "changed_paths": [],
+  "decision": "C ? INDEPENDENT CUSTODY UNAVAILABLE",
+  "dual_identity_tests": "NOT_RUN: independent identity and endpoint unavailable",
+  "historical_snapshot": "INCOMPLETE; first missing archive has matching Git HEAD recovery bytes",
+  "independent_custodian_verified": false,
+  "local_restart_concurrency_fixture": "PASS; no production or custody authority",
+  "manifest_checks": 47,
+  "manifest_self_hash_excluded": true,
+  "preserved_named_paths": 62,
+  "production_generation_authorized": false,
+  "production_salt_created": false,
+  "required_next_action": "Provision externally administered custody and test both identities; separate readiness and generation approval required.",
+  "sealed_contents_accessed": false,
+  "stage": "16V"
+}

@@ -1,0 +1,15 @@
+{
+  "authorized_new_fits": 0,
+  "comparator": "primary_HGB",
+  "limitations": [
+    "Nine family support shortfalls unchanged",
+    "Repeated Validation development use; no independent performance evidence",
+    "Four direct target components improve information availability, not measured predictive quality",
+    "Same developer environment hand audit, not independent external audit",
+    "Runtime measured for frozen development rows, not production latency guarantee",
+    "Original40 extractor intentionally reused and byte-verified, not independently reimplemented",
+    "Original Stage15A historical snapshot still incomplete; exact named checks do not restore absent archive",
+    "No fitted preprocessing, encoding, model fitting, expired-fit use, threshold search or application integration"
+  ],
+  "selected": "primary_XGB"
+}

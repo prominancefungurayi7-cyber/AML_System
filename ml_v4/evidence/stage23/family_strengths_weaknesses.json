@@ -1,0 +1,200 @@
+{
+  "families": {
+    "A1": {
+      "FN": 0,
+      "TP": 1467,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 0,
+        "support": 1253
+      },
+      "recall": 1.0,
+      "support": 1467,
+      "train_required": 1200,
+      "train_support": 5773,
+      "validation_clusters": 570,
+      "validation_required": 300,
+      "validation_subjects": 23
+    },
+    "A2": {
+      "FN": 39,
+      "TP": 109,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 39,
+        "support": 96
+      },
+      "recall": 0.7364864864864865,
+      "support": 148,
+      "train_required": 1200,
+      "train_support": 755,
+      "validation_clusters": 60,
+      "validation_required": 300,
+      "validation_subjects": 20
+    },
+    "A3": {
+      "FN": 0,
+      "TP": 255,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 0,
+        "support": 148
+      },
+      "recall": 1.0,
+      "support": 255,
+      "train_required": 1200,
+      "train_support": 883,
+      "validation_clusters": 80,
+      "validation_required": 300,
+      "validation_subjects": 18
+    },
+    "A4": {
+      "FN": 71,
+      "TP": 151,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 71,
+        "support": 151
+      },
+      "recall": 0.6801801801801802,
+      "support": 222,
+      "train_required": 1200,
+      "train_support": 812,
+      "validation_clusters": 138,
+      "validation_required": 300,
+      "validation_subjects": 17
+    },
+    "N1": {
+      "FN": 24,
+      "TP": 77,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 24,
+        "support": 89
+      },
+      "recall": 0.7623762376237624,
+      "support": 101,
+      "train_required": 1200,
+      "train_support": 414,
+      "validation_clusters": 42,
+      "validation_required": 300,
+      "validation_subjects": 28
+    },
+    "N2": {
+      "FN": 48,
+      "TP": 381,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 45,
+        "support": 198
+      },
+      "recall": 0.8881118881118881,
+      "support": 429,
+      "train_required": 1200,
+      "train_support": 1690,
+      "validation_clusters": 147,
+      "validation_required": 300,
+      "validation_subjects": 86
+    },
+    "N3": {
+      "FN": 8,
+      "TP": 122,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 8,
+        "support": 99
+      },
+      "recall": 0.9384615384615385,
+      "support": 130,
+      "train_required": 1200,
+      "train_support": 550,
+      "validation_clusters": 111,
+      "validation_required": 300,
+      "validation_subjects": 87
+    },
+    "N4": {
+      "FN": 21,
+      "TP": 123,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 21,
+        "support": 90
+      },
+      "recall": 0.8541666666666666,
+      "support": 144,
+      "train_required": 1200,
+      "train_support": 559,
+      "validation_clusters": 91,
+      "validation_required": 300,
+      "validation_subjects": 74
+    },
+    "S1": {
+      "FN": 6,
+      "TP": 126,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 6,
+        "support": 47
+      },
+      "recall": 0.9545454545454546,
+      "support": 132,
+      "train_required": 1200,
+      "train_support": 456,
+      "validation_clusters": 34,
+      "validation_required": 300,
+      "validation_subjects": 31
+    },
+    "S2": {
+      "FN": 12,
+      "TP": 11,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 12,
+        "support": 23
+      },
+      "recall": 0.4782608695652174,
+      "support": 23,
+      "train_required": 1200,
+      "train_support": 112,
+      "validation_clusters": 7,
+      "validation_required": 300,
+      "validation_subjects": 7
+    },
+    "S3": {
+      "FN": 54,
+      "TP": 492,
+      "count_shortfall": false,
+      "exclusive": {
+        "FN": 51,
+        "support": 295
+      },
+      "recall": 0.9010989010989011,
+      "support": 546,
+      "train_required": 1200,
+      "train_support": 2292,
+      "validation_clusters": 156,
+      "validation_required": 300,
+      "validation_subjects": 104
+    },
+    "S4": {
+      "FN": 12,
+      "TP": 4,
+      "count_shortfall": true,
+      "exclusive": {
+        "FN": 12,
+        "support": 12
+      },
+      "recall": 0.25,
+      "support": 16,
+      "train_required": 1200,
+      "train_support": 128,
+      "validation_clusters": 12,
+      "validation_required": 300,
+      "validation_subjects": 12
+    }
+  },
+  "growth_absolute_permutation_mass": 0.3774611009749635,
+  "overlap": "Family/domain counts overlap; a positive union prediction does not identify which family caused it",
+  "strengths": "High observed A1/A3 recall and S1/N3 detection on this development cohort; not independent sensitivity claims",
+  "weaknesses": "Sparse S2 11/23; S4 4/16 and exclusive0/12; A4 151/222, A2 109/148 and N1 77/101; N3 selected-route information loss remains"
+}

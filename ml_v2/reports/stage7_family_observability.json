@@ -1,0 +1,640 @@
+{
+  "agent_prior_baseline": {
+    "agent_flow_imbalance": {
+      "hard_family": "H8",
+      "normal_count": 825,
+      "quantities": {
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.6200727272727274,
+          "iqr_overlap": 0.4838709677419355,
+          "normal_median": -0.023255813953488372,
+          "suspicious_median": 0.079002079002079
+        },
+        "earlier_count": {
+          "direction_free_auc": 0.5071919191919192,
+          "iqr_overlap": 0.75,
+          "normal_median": 22.0,
+          "suspicious_median": 31.0
+        },
+        "earlier_unique_wallets": {
+          "direction_free_auc": 0.5243313131313132,
+          "iqr_overlap": 0.7307692307692307,
+          "normal_median": 17.0,
+          "suspicious_median": 25.0
+        },
+        "new_wallet_share": {
+          "direction_free_auc": 0.5671838383838383,
+          "iqr_overlap": 0.6562213189982955,
+          "normal_median": 0.9354838709677419,
+          "suspicious_median": 0.9043445121951219
+        },
+        "prior_hour_count": {
+          "direction_free_auc": 0.5002707070707071,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "suspicious_median": 0.0
+        },
+        "recent_count": {
+          "direction_free_auc": 0.6203515151515151,
+          "iqr_overlap": 0.4740740740740741,
+          "normal_median": 32.0,
+          "suspicious_median": 39.0
+        },
+        "recent_unique_wallets": {
+          "direction_free_auc": 0.6516888888888889,
+          "iqr_overlap": 0.3153153153153153,
+          "normal_median": 24.0,
+          "suspicious_median": 30.0
+        },
+        "top_wallet_share": {
+          "direction_free_auc": 0.5250424242424242,
+          "iqr_overlap": 0.7652867592177938,
+          "normal_median": 0.15384615384615385,
+          "suspicious_median": 0.1600284495021337
+        }
+      },
+      "suspicious_count": 150
+    },
+    "agent_temporal_burst": {
+      "hard_family": "H7",
+      "normal_count": 825,
+      "quantities": {
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.627268686868687,
+          "iqr_overlap": 0.3492647058823529,
+          "normal_median": 0.0,
+          "suspicious_median": -0.02564102564102564
+        },
+        "earlier_count": {
+          "direction_free_auc": 0.6675555555555556,
+          "iqr_overlap": 0.2857142857142857,
+          "normal_median": 19.0,
+          "suspicious_median": 41.0
+        },
+        "earlier_unique_wallets": {
+          "direction_free_auc": 0.6285454545454546,
+          "iqr_overlap": 0.5769230769230769,
+          "normal_median": 13.0,
+          "suspicious_median": 26.0
+        },
+        "new_wallet_share": {
+          "direction_free_auc": 0.5881171717171717,
+          "iqr_overlap": 0.8333333333333339,
+          "normal_median": 0.9361702127659575,
+          "suspicious_median": 0.9124040920716112
+        },
+        "prior_hour_count": {
+          "direction_free_auc": 0.7183434343434344,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 1.0,
+          "suspicious_median": 6.0
+        },
+        "recent_count": {
+          "direction_free_auc": 0.5853858585858586,
+          "iqr_overlap": 0.774390243902439,
+          "normal_median": 29.0,
+          "suspicious_median": 45.0
+        },
+        "recent_unique_wallets": {
+          "direction_free_auc": 0.6169818181818181,
+          "iqr_overlap": 0.6339285714285714,
+          "normal_median": 23.0,
+          "suspicious_median": 34.0
+        },
+        "top_wallet_share": {
+          "direction_free_auc": 0.5658181818181818,
+          "iqr_overlap": 0.8467766100896812,
+          "normal_median": 0.125,
+          "suspicious_median": 0.1
+        }
+      },
+      "suspicious_count": 150
+    },
+    "agent_wallet_concentration": {
+      "hard_family": "H8",
+      "normal_count": 825,
+      "quantities": {
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5885777777777778,
+          "iqr_overlap": 0.5096899224806202,
+          "normal_median": -0.023255813953488372,
+          "suspicious_median": 0.0
+        },
+        "earlier_count": {
+          "direction_free_auc": 0.5262181818181819,
+          "iqr_overlap": 0.967741935483871,
+          "normal_median": 22.0,
+          "suspicious_median": 26.0
+        },
+        "earlier_unique_wallets": {
+          "direction_free_auc": 0.5291474747474747,
+          "iqr_overlap": 0.9113924050632911,
+          "normal_median": 17.0,
+          "suspicious_median": 13.0
+        },
+        "new_wallet_share": {
+          "direction_free_auc": 0.6633050505050505,
+          "iqr_overlap": 0.38123339352035335,
+          "normal_median": 0.9354838709677419,
+          "suspicious_median": 0.8823529411764706
+        },
+        "prior_hour_count": {
+          "direction_free_auc": 0.5434060606060606,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "suspicious_median": 0.0
+        },
+        "recent_count": {
+          "direction_free_auc": 0.5181535353535354,
+          "iqr_overlap": 0.9310344827586207,
+          "normal_median": 32.0,
+          "suspicious_median": 33.0
+        },
+        "recent_unique_wallets": {
+          "direction_free_auc": 0.5133737373737373,
+          "iqr_overlap": 0.8941176470588236,
+          "normal_median": 24.0,
+          "suspicious_median": 23.0
+        },
+        "top_wallet_share": {
+          "direction_free_auc": 0.5685373737373738,
+          "iqr_overlap": 0.6420283895881008,
+          "normal_median": 0.15384615384615385,
+          "suspicious_median": 0.11189358372456965
+        }
+      },
+      "suspicious_count": 150
+    },
+    "agent_wallet_growth": {
+      "hard_family": "H7",
+      "normal_count": 825,
+      "quantities": {
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.6209535353535354,
+          "iqr_overlap": 0.4260648677747124,
+          "normal_median": 0.0,
+          "suspicious_median": -0.09226467847157502
+        },
+        "earlier_count": {
+          "direction_free_auc": 0.6471717171717171,
+          "iqr_overlap": 0.39285714285714285,
+          "normal_median": 19.0,
+          "suspicious_median": 28.0
+        },
+        "earlier_unique_wallets": {
+          "direction_free_auc": 0.6432727272727272,
+          "iqr_overlap": 0.5294117647058824,
+          "normal_median": 13.0,
+          "suspicious_median": 22.0
+        },
+        "new_wallet_share": {
+          "direction_free_auc": 0.5786626262626262,
+          "iqr_overlap": 0.5883065150799713,
+          "normal_median": 0.9361702127659575,
+          "suspicious_median": 0.9183673469387755
+        },
+        "prior_hour_count": {
+          "direction_free_auc": 0.6835555555555556,
+          "iqr_overlap": 0.16666666666666666,
+          "normal_median": 1.0,
+          "suspicious_median": 0.0
+        },
+        "recent_count": {
+          "direction_free_auc": 0.6432,
+          "iqr_overlap": 0.5581395348837209,
+          "normal_median": 29.0,
+          "suspicious_median": 46.5
+        },
+        "recent_unique_wallets": {
+          "direction_free_auc": 0.6167555555555556,
+          "iqr_overlap": 0.5190839694656488,
+          "normal_median": 23.0,
+          "suspicious_median": 30.0
+        },
+        "top_wallet_share": {
+          "direction_free_auc": 0.5886060606060606,
+          "iqr_overlap": 0.5354267310789049,
+          "normal_median": 0.125,
+          "suspicious_median": 0.1094820205479452
+        }
+      },
+      "suspicious_count": 150
+    }
+  },
+  "definition": "Evidence categories use prior events in the same labelled episode only. They are lower-bound operational proxies, not proof of suspiciousness or absence of relevant ordinary history.",
+  "families": {
+    "agent_flow_imbalance": {
+      "mature": {
+        "count": 120,
+        "detected": 7,
+        "recall": 0.058333333333333334
+      },
+      "none": {
+        "count": 10,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 20,
+        "detected": 0,
+        "recall": 0.0
+      }
+    },
+    "agent_temporal_burst": {
+      "mature": {
+        "count": 120,
+        "detected": 78,
+        "recall": 0.65
+      },
+      "none": {
+        "count": 10,
+        "detected": 3,
+        "recall": 0.3
+      },
+      "partial": {
+        "count": 20,
+        "detected": 7,
+        "recall": 0.35
+      }
+    },
+    "agent_wallet_concentration": {
+      "mature": {
+        "count": 48,
+        "detected": 7,
+        "recall": 0.14583333333333334
+      },
+      "none": {
+        "count": 10,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 92,
+        "detected": 6,
+        "recall": 0.06521739130434782
+      }
+    },
+    "agent_wallet_growth": {
+      "mature": {
+        "count": 114,
+        "detected": 29,
+        "recall": 0.2543859649122807
+      },
+      "none": {
+        "count": 9,
+        "detected": 1,
+        "recall": 0.1111111111111111
+      },
+      "partial": {
+        "count": 27,
+        "detected": 1,
+        "recall": 0.037037037037037035
+      }
+    },
+    "distributed_same_day_fragmentation": {
+      "mature": {
+        "count": 109,
+        "detected": 74,
+        "recall": 0.6788990825688074
+      },
+      "none": {
+        "count": 12,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 29,
+        "detected": 18,
+        "recall": 0.6206896551724138
+      }
+    },
+    "many_to_one_collection": {
+      "mature": {
+        "count": 86,
+        "detected": 9,
+        "recall": 0.10465116279069768
+      },
+      "none": {
+        "count": 38,
+        "detected": 3,
+        "recall": 0.07894736842105263
+      },
+      "partial": {
+        "count": 26,
+        "detected": 0,
+        "recall": 0.0
+      }
+    },
+    "one_to_many_dispersion": {
+      "mature": {
+        "count": 83,
+        "detected": 17,
+        "recall": 0.20481927710843373
+      },
+      "none": {
+        "count": 39,
+        "detected": 4,
+        "recall": 0.10256410256410256
+      },
+      "partial": {
+        "count": 28,
+        "detected": 12,
+        "recall": 0.42857142857142855
+      }
+    },
+    "reciprocal_relationship_cycle": {
+      "mature": {
+        "count": 80,
+        "detected": 2,
+        "recall": 0.025
+      },
+      "none": {
+        "count": 18,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 52,
+        "detected": 1,
+        "recall": 0.019230769230769232
+      }
+    },
+    "similar_amount_repetition": {
+      "mature": {
+        "count": 96,
+        "detected": 46,
+        "recall": 0.4791666666666667
+      },
+      "none": {
+        "count": 12,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 42,
+        "detected": 14,
+        "recall": 0.3333333333333333
+      }
+    },
+    "variable_fragment_burst": {
+      "mature": {
+        "count": 102,
+        "detected": 90,
+        "recall": 0.8823529411764706
+      },
+      "none": {
+        "count": 16,
+        "detected": 1,
+        "recall": 0.0625
+      },
+      "partial": {
+        "count": 32,
+        "detected": 20,
+        "recall": 0.625
+      }
+    },
+    "variable_near_threshold_history": {
+      "mature": {
+        "count": 88,
+        "detected": 34,
+        "recall": 0.38636363636363635
+      },
+      "none": {
+        "count": 14,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "partial": {
+        "count": 48,
+        "detected": 20,
+        "recall": 0.4166666666666667
+      }
+    },
+    "wallet_pass_through": {
+      "mature": {
+        "count": 97,
+        "detected": 61,
+        "recall": 0.6288659793814433
+      },
+      "none": {
+        "count": 39,
+        "detected": 7,
+        "recall": 0.1794871794871795
+      },
+      "partial": {
+        "count": 14,
+        "detected": 6,
+        "recall": 0.42857142857142855
+      }
+    }
+  },
+  "n3": {
+    "any_episode_prior_motif": {
+      "any_prior_cycle": {
+        "count": 80,
+        "detected": 2,
+        "recall": 0.025
+      },
+      "any_prior_reciprocal_pair": {
+        "count": 0,
+        "detected": 0,
+        "recall": null
+      },
+      "no_prior_reciprocal": {
+        "count": 70,
+        "detected": 1,
+        "recall": 0.014285714285714285
+      }
+    },
+    "by_event_position": {
+      "1": {
+        "complete_prior_cycle": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        },
+        "no_prior_reciprocal": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "prior_reciprocal_pair": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        }
+      },
+      "2": {
+        "complete_prior_cycle": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        },
+        "no_prior_reciprocal": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "prior_reciprocal_pair": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        }
+      },
+      "3": {
+        "complete_prior_cycle": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        },
+        "no_prior_reciprocal": {
+          "count": 18,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "prior_reciprocal_pair": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        }
+      },
+      "4+": {
+        "complete_prior_cycle": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        },
+        "no_prior_reciprocal": {
+          "count": 96,
+          "detected": 3,
+          "recall": 0.03125
+        },
+        "prior_reciprocal_pair": {
+          "count": 0,
+          "detected": 0,
+          "recall": null
+        }
+      }
+    },
+    "categories": {
+      "complete_prior_cycle": {
+        "count": 0,
+        "detected": 0,
+        "recall": null
+      },
+      "no_prior_reciprocal": {
+        "count": 150,
+        "detected": 3,
+        "recall": 0.02
+      },
+      "prior_reciprocal_pair": {
+        "count": 0,
+        "detected": 0,
+        "recall": null
+      }
+    },
+    "current_edge_closure": {
+      "current_closes_cycle": {
+        "count": 48,
+        "detected": 1,
+        "recall": 0.020833333333333332
+      },
+      "current_does_not_close_cycle": {
+        "count": 102,
+        "detected": 2,
+        "recall": 0.0196078431372549
+      }
+    },
+    "scope": "prior edges in same labelled episode; complete means a directed cycle containing a current endpoint; cross-episode history is excluded"
+  },
+  "n4": {
+    "by_event_position": {
+      "1": {
+        "cash_funding": {
+          "count": 11,
+          "detected": 1,
+          "recall": 0.09090909090909091
+        },
+        "inbound_transfer": {
+          "count": 3,
+          "detected": 0,
+          "recall": 0.0
+        }
+      },
+      "2": {
+        "cash_funding": {
+          "count": 6,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "inbound_transfer": {
+          "count": 5,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "outbound_or_exit": {
+          "count": 3,
+          "detected": 0,
+          "recall": 0.0
+        }
+      },
+      "3": {
+        "cash_funding": {
+          "count": 4,
+          "detected": 3,
+          "recall": 0.75
+        },
+        "inbound_transfer": {
+          "count": 2,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "outbound_or_exit": {
+          "count": 8,
+          "detected": 2,
+          "recall": 0.25
+        }
+      },
+      "4+": {
+        "cash_funding": {
+          "count": 4,
+          "detected": 3,
+          "recall": 0.75
+        },
+        "inbound_transfer": {
+          "count": 4,
+          "detected": 0,
+          "recall": 0.0
+        },
+        "outbound_or_exit": {
+          "count": 100,
+          "detected": 65,
+          "recall": 0.65
+        }
+      }
+    },
+    "roles": {
+      "cash_funding": {
+        "count": 25,
+        "detected": 7,
+        "recall": 0.28
+      },
+      "inbound_transfer": {
+        "count": 14,
+        "detected": 0,
+        "recall": 0.0
+      },
+      "outbound_or_exit": {
+        "count": 111,
+        "detected": 67,
+        "recall": 0.6036036036036037
+      }
+    },
+    "scope": "role inferred from first W2W transfer of labelled episode; outbound_or_exit includes later cash events"
+  },
+  "protection": {
+    "result": "PASS",
+    "v1_application_file_count": 347,
+    "v2_dataset_feature_stage5_stage6_file_count": 37
+  }
+}

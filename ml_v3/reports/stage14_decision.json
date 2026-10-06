@@ -1,0 +1,57 @@
+{
+  "answers": [
+    [
+      "Why is growth powerful?",
+      "It measures A1's defining relative customer-growth component. A1 contributes most lost detections, while the other agent features encode different mechanisms."
+    ],
+    [
+      "Is the signal behaviourally legitimate?",
+      "Yes as a causal observable customer-growth descriptor and a component of the chosen review rule. These data do not establish real-world suspiciousness or specificity."
+    ],
+    [
+      "Does synthetic construction amplify it?",
+      "Yes: broad routine wallet sampling and episodic low-frequency customer selection make other A1 gates frequently pass. Universal predicate labeling also removes qualifying high-growth H7/H8/routine events from target0. The two mechanisms cannot be assigned causal percentages by this observational audit."
+    ],
+    [
+      "Is it a near-oracle?",
+      "HIGH A1 proxy concern in eligible development rows; it is not a complete predicate or overall-target oracle. Available high-growth non-A1 rows and unavailable A1 positives are explicit counterexamples."
+    ],
+    [
+      "Is missingness/history responsible?",
+      "It contributes class association, but available-only and age-stratified growth remain predictive. The denominator floor is checked separately. The frozen target's 28d coverage versus feature's 35d explains unavailable A1 positives."
+    ],
+    [
+      "Which family contributes most?",
+      "A1. Validation loses 1634 A1 detections out of 1666 total lost positives; two A1 detections are recovered. Net A1 loss exceeds total net loss because other families have recoveries."
+    ],
+    [
+      "Are negatives sufficiently overlapping?",
+      "Observed eligible A1 versus target0 H7/H8/routine overlap is very small, insufficient to establish robustness to legitimate customer expansion. Hard/routine all-origin cohorts do contain high growth; those satisfying A1 are relabeled positive by design. More high-growth generation alone cannot create negatives that satisfy the unchanged full predicate."
+    ],
+    [
+      "Can model training alone solve it?",
+      "No evidence supports that as the sole remedy: all four model families concentrate on growth; removing A1 supervision greatly reduces its importance but loses agent detection. Model tuning cannot resolve target semantics or population assumptions."
+    ],
+    [
+      "Would more features likely solve it?",
+      "The tested N3/A4 additions did not replace A1 information. A scientifically motivated A1 representation study may help, but more columns alone have no demonstrated solution and duplicate proxies could only redistribute importance."
+    ],
+    [
+      "Does V3 need development redesign before final evaluation?",
+      "Yes: first reconcile written predicates and the actual frozen evaluator in a separately versioned development plan, then audit realistic agent acquisition/retention and near-boundary negatives under the declared task. Preserve this experiment, prohibit silent relabeling, and keep holdouts sealed. Any new target/evaluation compatibility needs explicit governance before future evaluation."
+    ]
+  ],
+  "consequence": "Recommend a bounded development-only design stage; implement no consequence in Stage 14. Keep Stage 11 reference as historical development benchmark, no promotion.",
+  "decision": "F",
+  "label": "MULTIPLE FACTORS; CONTROLLED DEVELOPMENT REDESIGN REQUIRED",
+  "limitations": [
+    "Synthetic target; no external real-agent calibration",
+    "Repeated Validation reuse",
+    "Family-removal changes class prevalence and removes overlapping labels",
+    "Event rows are dependent; no independent-row confidence intervals",
+    "Permutation importance is noncausal and sample-dependent",
+    "A1 contract discrepancy measured; no complete audit of every target family",
+    "Onset slices small and restricted to own recorded family"
+  ],
+  "reason": "A1 predicate alignment, synthetic population/label conditioning, insufficient independent A1 representation, and a confirmed evaluator/contract coverage discrepancy jointly explain the evidence. Dependence persists across algorithms. Missingness is secondary."
+}

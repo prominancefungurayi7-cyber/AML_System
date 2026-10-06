@@ -1,0 +1,57 @@
+{
+  "freeze_id": "v4.development.freeze.stage23.1",
+  "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "verified": {
+    "extractor_source": {
+      "path": "ml_v4/development_features/extractor.py",
+      "sha256": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717",
+      "actual_sha256": "e21c9a3d9577d056fa69cb48d96af7486ce6e6d5bfbbe99e0bd2dabc676a1717"
+    },
+    "feature_specification": {
+      "path": "ml_v4/design/v4_feature_spec.json",
+      "sha256": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204",
+      "actual_sha256": "23804a05080b84304dd8d25c441b2901b3fb101dc412d7fd19eef849a8cc4204"
+    },
+    "observable_contract_source": {
+      "path": "ml_v4/generation/stage16r_contract.py",
+      "sha256": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d",
+      "actual_sha256": "81802d1942af5b77eb939e02d50f40a7a1992a11dab89db11a06f1ee062bc16d"
+    },
+    "pipeline": {
+      "path": "ml_v4/development_training/artifacts/primary_XGB_EXPERIMENTAL.joblib",
+      "sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+      "actual_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+    },
+    "preprocessing_specification": {
+      "path": "ml_v4/evidence/stage18/preprocessing_specification.json",
+      "sha256": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1",
+      "actual_sha256": "f5b48b5f4789622ffff38244bad730340ea3705c1740e80c13f7c120edcc39c1"
+    },
+    "preprocessor_source": {
+      "path": "ml_v4/development_training/preprocessing.py",
+      "sha256": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d",
+      "actual_sha256": "698bad02e88620d741af509e03367fb52a873561bda512c919b297605bd3777d"
+    },
+    "standalone_fitted_preprocessor": {
+      "path": "ml_v4/development_training/artifacts/selected_preprocessor_EXPERIMENTAL.joblib",
+      "sha256": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41",
+      "actual_sha256": "a6a1266c830511ecbab6487157f75a3d47fbffbb0a0e86580a861f3f4e222f41"
+    },
+    "freeze": {
+      "path": "ml_v4/evidence/stage23/development_candidate_freeze.json",
+      "sha256": "67db9c37d2e261276b6fc15f025e75c625bed35755e172d02dd5a084dd42ae3a",
+      "actual_sha256": "67db9c37d2e261276b6fc15f025e75c625bed35755e172d02dd5a084dd42ae3a"
+    }
+  },
+  "original_model_path_required": true,
+  "no_model_fallback": true,
+  "history_sources": {
+    "canonical_history.py": "ae5e7b8bfe8d51c0380ff5fd9209954f85ce38291ac5bed80c782f51bffb0b43",
+    "canonical_history_store.py": "74dc937637cc57e023548aded2dabd1dc626f5f4270deba8c55e157d6d54a588",
+    "canonical_history_journal.py": "b3bf98a6ea2c1b462a497653927d26fd6c72befb06e3330a965ea1dc83c43f01",
+    "canonical_mobile_money.py": "dc986203931e7baa17f2906193e9550d5ece94d4708951099803c5b826f0d803",
+    "canonical_mobile_money_store.py": "eedf852950b7ef1d772142a598a42a8d1b1324239e6fa4ca47fe91bbbdb88f76",
+    "database.py": "fe08a247c07a0db59020028737cffec5c43faef92715f87c849164e49fdce266",
+    "ml_v4/evidence/integration_stage2a2/observation_boundary.json": "a131f77ae8ab108a8ea836daa23f0fbcefd45745ef4fed9a8c6c61aa367ed412"
+  }
+}

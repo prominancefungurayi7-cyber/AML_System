@@ -1,0 +1,9 @@
+{
+  "comparator_unchanged": "primary_HGB",
+  "decision": "C \u2014 EXPERIMENT INCONCLUSIVE",
+  "interpretation": "A denotes consistent primary development improvement: for both algorithms none of S2,S4,S2-only,S4-only recall decreases and at least one S2 and one S4 contrast improves. Always disclose unionFPR/other-family tradeoffs; A is not overall superiority or promotion. B if neither algorithm improves any primary contrast; C for mixed primary directions or incomplete evidence; D for contract/access/budget failure. This descriptive interpretation is frozen before fitting, not an independent acceptance gate.",
+  "new_final_model_selected": false,
+  "next_stage_authorized": false,
+  "recommendation": "Preserve all four experimental artifacts and the historical selected XGBoost/HGB roles. Review the observed information/accuracy tradeoffs and support limitations; any next study, candidate-selection rule, challenge amendment or evaluation needs separate authorization. No additional fitting, threshold search or promotion follows.",
+  "selected_unchanged": "primary_XGB"
+}

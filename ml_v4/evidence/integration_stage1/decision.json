@@ -1,0 +1,16 @@
+{
+  "decision": "D — V4 INTEGRATION BLOCKED BY INCOMPATIBLE DATA OR ARTIFACTS",
+  "blocker": "Current application data semantics incomplete/ambiguous; frozen artifacts match",
+  "protected_count": 390,
+  "implementation_authorized_by_report": false,
+  "artifact_sha256": {
+    "ml_v4/evidence/integration_stage1/application_source_index.json": "134e178da516ce330f6f7f0583f2cb893e681e0d432784d41cbd57a1fca8a275",
+    "ml_v4/evidence/integration_stage1/audit_record.py": "aa640c11a2cf0ca306a88f1e46b4550d07aabc7d64ab8d6eaade899d8c48d911",
+    "ml_v4/evidence/integration_stage1/before_sha256.json": "0d385c66efeff57a3f3e076ef221daa2c751d8cb7d7fc57677b3a27378cfbe30",
+    "ml_v4/evidence/integration_stage1/feature_feasibility.json": "76bcf3dcf97f856a2fefca92c3b0a13e91fe7e53c2fcbaea5975100f607bad13",
+    "ml_v4/evidence/integration_stage1/feature_feasibility.md": "e870e0fd63b00ab21929d8537e00f7aaaba0456193bd8a64b87bfbeaa9d31136",
+    "ml_v4/evidence/integration_stage1/freeze_verification.json": "1bf554a9a2b37bfc3ebfac41317f2387ef56cf4d68c9251a0c7aa43e2d2398a2",
+    "ml_v4/evidence/integration_stage1/preservation_verification.json": "38017f5ae135eb34d52b81ecb8ec7105091843334702d357c5d98634cd3e6ffd",
+    "ml_v4/reports/V4_INTEGRATION_STAGE1_READINESS_AUDIT.md": "60c8484c7109dc8b3a296060a295094445d2debfd302f765976523120332ee58"
+  }
+}

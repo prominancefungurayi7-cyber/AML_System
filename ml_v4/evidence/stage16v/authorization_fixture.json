@@ -1,0 +1,152 @@
+{
+  "authorize": {
+    "command": [
+      "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+      "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+      "authorize"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "ALLOWED\r\n"
+  },
+  "concurrent_separate_processes": [
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "ALLOWED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-B",
+        "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+        "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+        "consume"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "DENIED\r\n"
+    }
+  ],
+  "consume_after_restart": {
+    "command": [
+      "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+      "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+      "consume"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "DENIED\r\n"
+  },
+  "independent_append_only_log_verified": false,
+  "limitation": "SQLite transactions serialize consumption across process restarts. Developer deletion, database rollback and audit edits remain possible. No crash/power-loss, external identity or immutable-store claim. Temporary fixture contains no salt, entities or events.",
+  "passed": true,
+  "production_authority": false,
+  "reauthorize_after_restart": {
+    "command": [
+      "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+      "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+      "authorize"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "DENIED\r\n"
+  },
+  "unissued": {
+    "command": [
+      "C:\\Users\\PROMINENT\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-B",
+      "C:\\Users\\PROMINENT\\Desktop\\important\\My Projects\\Last update for AML system\\AML System\\ml_v4\\generation\\stage16v_fixture.py",
+      "C:\\Users\\PROMIN~1\\AppData\\Local\\Temp\\stage16v_nonsecret_r87rnor6\\fixture.sqlite",
+      "consume"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "DENIED\r\n"
+  }
+}

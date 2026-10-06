@@ -1,0 +1,65 @@
+{
+  "activation_consistency": "Inactive wallets cannot appear in any event or relationship choice before their proposed observable activation opportunity. Renormalize over active candidates, log empty candidate sets as failures; never use private activation to set target eligibility. Private catchment membership alone creates no observation.",
+  "activity": "Profile relative activity drawn lognormal(log(median),0.7), truncated[0.1,5]; all overlap. Normalize within the local unit when assigning a fixed opportunity budget.",
+  "cold_start": "Reserve10 of each 100 wallets, chosen independently of profile, for first observable activity uniformly in scored days0..60. Other90 are eligible for warm-up selection, without guaranteed complete history. Agents all may appear in warm-up but first-observed coverage is checked rather than assumed.",
+  "collection_dispersion": "Collection/dispersion profiles bias direction, not target: endpoint weights are multiplied1.5 for the relevant role. Other profiles can receive identical motifs.",
+  "design_version": "v4.stage 15.design.1",
+  "forbidden": "Profiles, private activation and future schedules never reach evaluator or X. No profile-specific numeric ID range, amount precision, timestamp block or unique channel.",
+  "interpretation": "Profiles describe opportunities; realized review evidence is solely evaluated from observables.",
+  "profiles": [
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 25,
+      "name": "low_frequency_personal",
+      "relative_activity_median": 0.5
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 20,
+      "name": "regular_transfer",
+      "relative_activity_median": 1
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 15,
+      "name": "cash_heavy",
+      "relative_activity_median": 1
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 15,
+      "name": "recurring_payment",
+      "relative_activity_median": 1
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 10,
+      "name": "high_activity",
+      "relative_activity_median": 2
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 8,
+      "name": "collection_like",
+      "relative_activity_median": 1.5
+    },
+    {
+      "can_be_target0": true,
+      "can_be_target1": true,
+      "count_per_unit": 7,
+      "name": "dispersion_like",
+      "relative_activity_median": 1.5
+    }
+  ],
+  "recurring": "Recurring-payment profile proposes intervals of 7 or30days with equal probability and independent timestamp jitter uniform +/-12h; no negative dates, all events retained only within generation horizon. Amount varies by lognormal multiplier log-SD0.08. The same renewal process may appear in every profile with probability0.2.",
+  "relationships": "Each wallet has an initial set of 5 preferred counterparties sampled without replacement in its unit, excluding itself. For ordinary W2W, choose preferred with probability U(0.5,0.85) per wallet; otherwise from remaining unit wallets. Each 7d boundary retain each preference with probability0.95 and refill to 5.",
+  "schema_version": 1,
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "types": "Start from background type probabilities; cash-heavy multiplies each cash probability by1.5; regular-transfer multiplies W2W by1.5; other profiles use base weights; normalize. Matched scenario/hard recipes may override roles symmetrically."
+}

@@ -1,0 +1,127 @@
+{
+  "families": {
+    "A1": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Half prefer already observed active customers, half use the ordinary acquisition mixture. Promotion, migration, seasonality and recovery never override labels.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "A1"
+      ]
+    },
+    "A2": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Select frequent prior customers when available using same share law and duration; otherwise ordinary active selection with logged fallback.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "A2"
+      ]
+    },
+    "A3": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same law with DU(1,3) customers or duration U(0.75,3)h, equal choice.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "A3"
+      ]
+    },
+    "A4": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same probability magnitude oriented toward prior observed dominant cash direction if available; otherwise same ordinary probability. No target inspection.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "A4"
+      ]
+    },
+    "N1": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Use DU(1,3) senders or prefer previously observed sender relationships with equal probability; same time/value law.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "N1"
+      ]
+    },
+    "N2": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same values/timing with DU(1,3) receivers or observed recurring recipients; no negative override.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "N2"
+      ]
+    },
+    "N3": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same topology/value support; chronological swap probability 0.75. For one-edge prior routes the swap is inapplicable and recorded; no retry.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "N3"
+      ]
+    },
+    "N4": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same funding law; fraction U(0.1,0.6), same schema and mixed outward law. Other prior funding remains real and may change results.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "N4"
+      ]
+    },
+    "S1": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Use the same total/count law, with one random Dirichlet alpha=8 and others=1, or duration U(45,120) minutes (equal choice).",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "S1"
+      ]
+    },
+    "S2": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Use the same anchor/jitter mixture and repeated focal-wallet schedule; half use an amount drawn from a strictly prior subject payment if available, otherwise the ordinary recipe anchor. Existing prior repetition may defeat growth.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "S2"
+      ]
+    },
+    "S3": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Same time/amount law with half the events assigned to each of two random instants within the interval; timestamps retain full-key ordering.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "S3"
+      ]
+    },
+    "S4": {
+      "amount_law": "Same family amount support/rounding/shift unless the explicit behavioural fraction or history-anchor rule above applies.",
+      "analysis": "Report both target states; target0 alone enters hard-origin FPR. Never reject cross-family positives.",
+      "label": "Universal union only; a named-family failure does not guarantee target0.",
+      "mechanism": "Identical conditional amount law; evenly spaced times within the same random duration and preference for an active recurring-payment subject. No cloned amount or forced negative.",
+      "quota_events_per_unit": 30,
+      "related_families": [
+        "S4"
+      ]
+    }
+  },
+  "near_boundary_slice": "Post-generation diagnostic only: applicable family with required historical eligibility and exactly one numeric atomic condition failing. Counts are within 1 below a lower bound; ratios within 10% of the fixed positive threshold on the failing side. For upper bounds use 10% above. S4 amount outside band within 5% of its endpoint; exact sign/variation failures reported separately. N3: topology present but every route fails full monetary conjunction; report separately without claiming a unique closest path. N4 missing anchor reported separately, not called a near numeric boundary. Union target0 is required for FPR; otherwise count cross-family positives. No slice definition affects sampling.",
+  "protocol_version": "v4.challenge.protocol.1",
+  "scope": "Twelve matched strata retain all H1-H8 concepts; H1 covers S1/S3, H2 S2, H3 S4, H4 N1, H5 N2/N4, H6 N3, H7 A1/A3, H8 A2/A4. Origin is private and not a class."
+}

@@ -1,0 +1,155 @@
+{
+  "all_21_evidence_artifacts_accounted_for": true,
+  "artifact_sha256": {
+    "ml_v4/evidence/stage16_a1_overlap_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_a4_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_agent_population_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_background_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_dataset_integrity.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_decision.json": "8fbc771a699fc2590e4eba62987639c87fe298a0607430d5415413007c653054",
+    "ml_v4/evidence/stage16_design_verification.json": "501e64c5183895a3e3ad186c73aeb0e9c26edc457e5e5b7aa0c288e55d5320f5",
+    "ml_v4/evidence/stage16_development_distribution.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_entity_isolation.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_family_support.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_hard_origin_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_n3_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_protection.json": "fcf87ba9dc872bbff60a3a3d0e1f6ae7c5867b39354fe26630a09bf16f211a2f",
+    "ml_v4/evidence/stage16_reproducibility.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_shortcut_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_structuring_support_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_target_independence.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_target_replay.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_temporal_safety.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/evidence/stage16_wallet_population_audit.json": "32a869e7128cc74a9d9fe3abda0acff183186eb50672cb9fab862607bd5c9c97",
+    "ml_v4/generation/stage16_preflight.py": "6a4b06e4c6d6c441dadb34fa5f8d866228f8b24cf77263b59d2304cf5ebc4b61",
+    "ml_v4/reports/V4_STAGE16_DATASET_GENERATION_AUDIT.md": "c52c43120ef2b8130fa25e04a9e8733cca1cb6a75c874eafd2223b5a087d96e1"
+  },
+  "attempt": "preflight_only",
+  "authoritative_hashes_match_stage15": true,
+  "changed_paths": [],
+  "created_utc": "2026-09-29T16:08:51.768388+00:00",
+  "dataset_id": "mobile_money_aml_synthetic_100k_v4",
+  "dataset_reproducibility": "NOT_RUN",
+  "decision": "D — STAGE 16 IMPLEMENTATION FAILED; DATASET STATUS UNDETERMINED",
+  "gates": [
+    {
+      "gate": 1,
+      "name": "Stage 15 authoritative artifacts consistent",
+      "reason": "B01 unresolved amount-law conflict",
+      "status": "FAIL"
+    },
+    {
+      "gate": 2,
+      "name": "100000 scored plus 24000 warm-up events",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 3,
+      "name": "Partition/entity isolation",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 4,
+      "name": "Observable schema",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 5,
+      "name": "Accounting validity",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 6,
+      "name": "Observable-only universal evaluator",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 7,
+      "name": "Exact observable-only target replay",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 8,
+      "name": "Temporal safety tests",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 9,
+      "name": "A1 target/feature 35d alignment implemented",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 10,
+      "name": "Development prevalence assessed",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 11,
+      "name": "Family support assessed without regeneration",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 12,
+      "name": "H1-H8 origins, no forced negative labels",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 13,
+      "name": "A1 overlap audit",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 14,
+      "name": "N3/A4/S2/S4 support audits",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 15,
+      "name": "Generator shortcut audit",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 16,
+      "name": "Dataset reproducibility",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 17,
+      "name": "Fresh sealed holdouts and loader isolation",
+      "reason": "Generation stopped at Gate 1; no implementation or data audit executed",
+      "status": "NOT_RUN"
+    },
+    {
+      "gate": 18,
+      "name": "Historical preservation",
+      "reason": "Explicit before/after protection hashes",
+      "status": "PASS"
+    }
+  ],
+  "new_data_rows": 0,
+  "new_feature_vectors": 0,
+  "new_holdout_seals": 0,
+  "new_model_fits": 0,
+  "protected_count": 723,
+  "schema_version": 1,
+  "scope": "Preflight failure-record integrity only; Stage 16 execution status remains D",
+  "self_hash_excluded": true,
+  "stage": 16,
+  "stage16_execution_status": "STOPPED_AT_PREFLIGHT",
+  "status": "PASS"
+}

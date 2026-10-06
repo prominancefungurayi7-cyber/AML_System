@@ -1,0 +1,396 @@
+{
+  "architecture": "Separate activity/first-observation state; frozen original extractor called directly for first40; extractor accepts exact Event only; no target import",
+  "complexity": "Additional O(subject35d history) per event; stores per-wallet last-access-pruned35d activity and persistent first observation. Inactive wallet queues retained until next access; total finite-partition memory measured below.",
+  "dtype": [
+    [
+      "amount_minor",
+      "<f8"
+    ],
+    [
+      "transaction_type",
+      "<U16"
+    ],
+    [
+      "wallet_count_1h",
+      "<f8"
+    ],
+    [
+      "wallet_value_1h",
+      "<f8"
+    ],
+    [
+      "wallet_max_value_share_1h",
+      "<f8"
+    ],
+    [
+      "wallet_activity_acceleration_1h",
+      "<f8"
+    ],
+    [
+      "wallet_similar_amount_count_7d",
+      "<f8"
+    ],
+    [
+      "wallet_similar_amount_share_7d",
+      "<f8"
+    ],
+    [
+      "wallet_count_utc_day",
+      "<f8"
+    ],
+    [
+      "wallet_active_hours_utc_day",
+      "<f8"
+    ],
+    [
+      "wallet_day_count_growth",
+      "<f8"
+    ],
+    [
+      "wallet_near_band_count_7d",
+      "<f8"
+    ],
+    [
+      "network_in_count_24h",
+      "<f8"
+    ],
+    [
+      "network_in_distinct_24h",
+      "<f8"
+    ],
+    [
+      "network_in_acceleration_24h",
+      "<f8"
+    ],
+    [
+      "network_out_count_24h",
+      "<f8"
+    ],
+    [
+      "network_out_distinct_24h",
+      "<f8"
+    ],
+    [
+      "network_out_acceleration_24h",
+      "<f8"
+    ],
+    [
+      "prior_return_path_min_length_7d",
+      "<f8"
+    ],
+    [
+      "prior_return_path_count_7d",
+      "<f8"
+    ],
+    [
+      "prior_path_min_max_log_change_7d",
+      "<f8"
+    ],
+    [
+      "current_to_selected_path_first_value_ratio",
+      "<f8"
+    ],
+    [
+      "wallet_pass_through_fraction_24h",
+      "<f8"
+    ],
+    [
+      "wallet_prior_funding_residual_minor_24h",
+      "<f8"
+    ],
+    [
+      "agent_wallet_growth_ratio_7d",
+      "<f8"
+    ],
+    [
+      "agent_distinct_wallets_7d",
+      "<f8"
+    ],
+    [
+      "agent_new_wallet_count_7d",
+      "<f8"
+    ],
+    [
+      "agent_new_wallet_share_7d",
+      "<f8"
+    ],
+    [
+      "agent_top2_count_share_24h",
+      "<f8"
+    ],
+    [
+      "agent_top2_share_change_24h",
+      "<f8"
+    ],
+    [
+      "agent_service_acceleration_1h",
+      "<f8"
+    ],
+    [
+      "agent_distinct_wallets_1h",
+      "<f8"
+    ],
+    [
+      "agent_cash_in_count_24h",
+      "<f8"
+    ],
+    [
+      "agent_cash_out_count_24h",
+      "<f8"
+    ],
+    [
+      "agent_cash_in_value_24h",
+      "<f8"
+    ],
+    [
+      "agent_cash_out_value_24h",
+      "<f8"
+    ],
+    [
+      "agent_cash_distinct_wallets_24h",
+      "<f8"
+    ],
+    [
+      "agent_cash_value_skew_change",
+      "<f8"
+    ],
+    [
+      "wallet_observed_coverage_days",
+      "<f8"
+    ],
+    [
+      "agent_observed_coverage_days",
+      "<f8"
+    ],
+    [
+      "wallet_similar_amount_value_minor_7d",
+      "<f8"
+    ],
+    [
+      "wallet_baseline_similar_amount_count_28d_offset_7d",
+      "<f8"
+    ],
+    [
+      "wallet_near_band_distinct_amount_count_7d",
+      "<f8"
+    ],
+    [
+      "wallet_baseline_near_band_count_28d_offset_7d",
+      "<f8"
+    ]
+  ],
+  "encoding_applied": false,
+  "failure_policy": "Wrapper becomes terminal after an invalid event/aggregate; fresh validated replay required",
+  "new_definitions": [
+    {
+      "category": "B: disclosed individual target component",
+      "complexity": "O(n_R) scan per subject query; O(n_35d) retained state. Optional amount index needs separate correctness review.",
+      "deployment": "Needs complete rolling 35d subject history plus first prior observation; no schema inference from ambiguous production records. No deployment approved.",
+      "domain": "structuring",
+      "dtype": "float64 after exact integer aggregation; no new categorical field",
+      "eligibility": "No baseline gate; valid at first activity",
+      "family": "S2",
+      "fixture_requirements": [
+        "Assert independent hand-computed output, not agreement with evaluator",
+        "Full original40 equality for the stated paired-history witness; no feature implementation or event ledger constructed in this stage",
+        "Lower/upper endpoints, same-time smaller/larger IDs, current once, incoming-vs-outgoing role",
+        "Mutate private metadata and future rows: unchanged earlier outputs",
+        "Cold start and exact35d/four-event boundary where applicable",
+        "Both passing and failing individual target components; never query full target during extraction"
+      ],
+      "formula": "sum(amount_minor(e) for e in C_R)",
+      "index": 41,
+      "inputs": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "transaction_type",
+        "serviced_wallet"
+      ],
+      "leakage_controls": "Observable stream only; no labels, evaluator imports, witness caches, origin, private activation, predictions or future events.",
+      "missing_marker": "Never missing for a valid event; current ensures a positive sum",
+      "name": "wallet_similar_amount_value_minor_7d",
+      "nonredundancy": "Count/share/current amount do not determine exact sum within the inclusive 5% tolerance.",
+      "numeric": "Integer cents and integer count arithmetic; reject aggregate outside exact float64 integer range 0..2^53-1 rather than silently round. No new amount rounding, tolerance, scaling or clipping.",
+      "ordering": "UTC integer microseconds then unique integer transaction_id. Only smaller keys are prior. Emit before update.",
+      "rank": 1,
+      "shortcut_risk": "Direct rule-component alignment can make synthetic targets easier; no claim of operational AML value. Inspect matched target-0 support and missingness later.",
+      "symbolic_information_witness": "Current 5000 and three prior similar amounts 4999,5000,5000 give 19999; changing 4999 to 5000 gives 20000 without changing cluster count/share. Place prior rows more than24h before current within7d, outside current UTC day; direct outgoing edges to fresh sinks, no agent/return paths/incoming anchor. Other counts/times and baseline fixed: all original40 fields unchanged.",
+      "unit": "cents",
+      "wallet_role": "Current sender for W2W; serviced_wallet for Cash-In/Cash-Out. Subject activity is sent W2W and cash of that wallet, once per event. Incoming W2W only establishes observation age, not activity.",
+      "window": "R=(t-7d,t] restricted to prior keys, plus current once"
+    },
+    {
+      "category": "B: disclosed individual target component",
+      "complexity": "O(n_B) current-centered range scan; O(n_35d) state. Query center must be recomputed for every current amount.",
+      "deployment": "Needs complete rolling 35d subject history plus first prior observation; no schema inference from ambiguous production records. No deployment approved.",
+      "domain": "structuring",
+      "dtype": "float64 after exact integer aggregation; no new categorical field",
+      "eligibility": "First prior participation <=t-35d AND n(B subject activity)>=4",
+      "family": "S2",
+      "fixture_requirements": [
+        "Assert independent hand-computed output, not agreement with evaluator",
+        "Full original40 equality for the stated paired-history witness; no feature implementation or event ledger constructed in this stage",
+        "Lower/upper endpoints, same-time smaller/larger IDs, current once, incoming-vs-outgoing role",
+        "Mutate private metadata and future rows: unchanged earlier outputs",
+        "Cold start and exact35d/four-event boundary where applicable",
+        "Both passing and failing individual target components; never query full target during extraction"
+      ],
+      "formula": "n(C_B)",
+      "index": 42,
+      "inputs": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "transaction_type",
+        "serviced_wallet"
+      ],
+      "leakage_controls": "Observable stream only; no labels, evaluator imports, witness caches, origin, private activation, predictions or future events.",
+      "missing_marker": "-1 if age or activity support fails; otherwise integer >=0 (zero valid)",
+      "name": "wallet_baseline_similar_amount_count_28d_offset_7d",
+      "nonredundancy": "Existing cluster count/share are recent; baseline activity-count summaries and coverage do not reveal current-centered baseline amounts.",
+      "numeric": "Integer cents and integer count arithmetic; reject aggregate outside exact float64 integer range 0..2^53-1 rather than silently round. No new amount rounding, tolerance, scaling or clipping.",
+      "ordering": "UTC integer microseconds then unique integer transaction_id. Only smaller keys are prior. Emit before update.",
+      "rank": 2,
+      "shortcut_risk": "Direct rule-component alignment can make synthetic targets easier; no claim of operational AML value. Inspect matched target-0 support and missingness later.",
+      "symbolic_information_witness": "Keep baseline keys, counts and endpoints fixed at times around t-20d; change an outgoing amount from1000 to5000 for current5000. Counts/coverage and all recent fields stay fixed, no agent or return graph. Baseline similar count changes0 to1; existing40 cannot distinguish. Use >=4 total baseline events and fixed first observation <=t-35d.",
+      "unit": "events",
+      "wallet_role": "Current sender for W2W; serviced_wallet for Cash-In/Cash-Out. Subject activity is sent W2W and cash of that wallet, once per event. Incoming W2W only establishes observation age, not activity.",
+      "window": "B=(t-35d,t-7d] restricted to prior keys; current excluded"
+    },
+    {
+      "category": "B: disclosed individual target component",
+      "complexity": "O(n_R) scan with O(d_band) distinct-value set; rolling frequencies may update per event with exact expiry.",
+      "deployment": "Needs complete rolling 35d subject history plus first prior observation; no schema inference from ambiguous production records. No deployment approved.",
+      "domain": "structuring",
+      "dtype": "float64 after exact integer aggregation; no new categorical field",
+      "eligibility": "No baseline or current-band gate; defined for every valid subject activity",
+      "family": "S4",
+      "fixture_requirements": [
+        "Assert independent hand-computed output, not agreement with evaluator",
+        "Full original40 equality for the stated paired-history witness; no feature implementation or event ledger constructed in this stage",
+        "Lower/upper endpoints, same-time smaller/larger IDs, current once, incoming-vs-outgoing role",
+        "Mutate private metadata and future rows: unchanged earlier outputs",
+        "Cold start and exact35d/four-event boundary where applicable",
+        "Both passing and failing individual target components; never query full target during extraction"
+      ],
+      "formula": "cardinality({amount_minor(e): e in R AND 700000<=amount_minor(e)<=1050000})",
+      "index": 43,
+      "inputs": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "transaction_type",
+        "serviced_wallet"
+      ],
+      "leakage_controls": "Observable stream only; no labels, evaluator imports, witness caches, origin, private activation, predictions or future events.",
+      "missing_marker": "Never missing; zero if no band rows; one means repeated identical band value",
+      "name": "wallet_near_band_distinct_amount_count_7d",
+      "nonredundancy": "Band count and similar-cluster count/share do not determine whether band values differ by a cent.",
+      "numeric": "Integer cents and integer count arithmetic; reject aggregate outside exact float64 integer range 0..2^53-1 rather than silently round. No new amount rounding, tolerance, scaling or clipping.",
+      "ordering": "UTC integer microseconds then unique integer transaction_id. Only smaller keys are prior. Emit before update.",
+      "rank": 3,
+      "shortcut_risk": "Direct rule-component alignment can make synthetic targets easier; no claim of operational AML value. Inspect matched target-0 support and missingness later.",
+      "symbolic_information_witness": "Current850000, prior band rows850000,850000,850000 and one nonband100: change one old850000 to850001 outside24h/current day but within7d. Band count and similar count/share remain4 and4/5; distinct band values change1 to2. Direct fresh sink endpoints, no agent, anchor or return route; baseline unchanged. All original40 fields equal.",
+      "unit": "distinct cent values",
+      "wallet_role": "Current sender for W2W; serviced_wallet for Cash-In/Cash-Out. Subject activity is sent W2W and cash of that wallet, once per event. Incoming W2W only establishes observation age, not activity.",
+      "window": "R=(t-7d,t] restricted to prior keys, plus current once"
+    },
+    {
+      "category": "B: disclosed individual target component",
+      "complexity": "O(n_B) scan or O(1) maintained band count after expiry/migration; O(n_35d) state.",
+      "deployment": "Needs complete rolling 35d subject history plus first prior observation; no schema inference from ambiguous production records. No deployment approved.",
+      "domain": "structuring",
+      "dtype": "float64 after exact integer aggregation; no new categorical field",
+      "eligibility": "First prior participation <=t-35d AND n(B subject activity)>=4",
+      "family": "S4",
+      "fixture_requirements": [
+        "Assert independent hand-computed output, not agreement with evaluator",
+        "Full original40 equality for the stated paired-history witness; no feature implementation or event ledger constructed in this stage",
+        "Lower/upper endpoints, same-time smaller/larger IDs, current once, incoming-vs-outgoing role",
+        "Mutate private metadata and future rows: unchanged earlier outputs",
+        "Cold start and exact35d/four-event boundary where applicable",
+        "Both passing and failing individual target components; never query full target during extraction"
+      ],
+      "formula": "n({e in B:700000<=amount_minor(e)<=1050000})",
+      "index": 44,
+      "inputs": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "transaction_type",
+        "serviced_wallet"
+      ],
+      "leakage_controls": "Observable stream only; no labels, evaluator imports, witness caches, origin, private activation, predictions or future events.",
+      "missing_marker": "-1 if age or activity support fails; otherwise integer >=0 (zero valid)",
+      "name": "wallet_baseline_near_band_count_28d_offset_7d",
+      "nonredundancy": "No existing field measures baseline band membership; fixed baseline counts can hide arbitrary band composition.",
+      "numeric": "Integer cents and integer count arithmetic; reject aggregate outside exact float64 integer range 0..2^53-1 rather than silently round. No new amount rounding, tolerance, scaling or clipping.",
+      "ordering": "UTC integer microseconds then unique integer transaction_id. Only smaller keys are prior. Emit before update.",
+      "rank": 4,
+      "shortcut_risk": "Direct rule-component alignment can make synthetic targets easier; no claim of operational AML value. Inspect matched target-0 support and missingness later.",
+      "symbolic_information_witness": "At fixed baseline keys around t-20d change outgoing1000 to800000, maintaining counts/endpoints/first observation and no agents or return routes. Existing40 fields stay fixed; baseline band count changes0 to1. Amounts remain valid positive cents.",
+      "unit": "events",
+      "wallet_role": "Current sender for W2W; serviced_wallet for Cash-In/Cash-Out. Subject activity is sent W2W and cash of that wallet, once per event. Incoming W2W only establishes observation age, not activity.",
+      "window": "B=(t-35d,t-7d] restricted to prior keys; current excluded"
+    }
+  ],
+  "numeric_estimator_count_if_encoded": 46,
+  "ordered_names": [
+    "amount_minor",
+    "transaction_type",
+    "wallet_count_1h",
+    "wallet_value_1h",
+    "wallet_max_value_share_1h",
+    "wallet_activity_acceleration_1h",
+    "wallet_similar_amount_count_7d",
+    "wallet_similar_amount_share_7d",
+    "wallet_count_utc_day",
+    "wallet_active_hours_utc_day",
+    "wallet_day_count_growth",
+    "wallet_near_band_count_7d",
+    "network_in_count_24h",
+    "network_in_distinct_24h",
+    "network_in_acceleration_24h",
+    "network_out_count_24h",
+    "network_out_distinct_24h",
+    "network_out_acceleration_24h",
+    "prior_return_path_min_length_7d",
+    "prior_return_path_count_7d",
+    "prior_path_min_max_log_change_7d",
+    "current_to_selected_path_first_value_ratio",
+    "wallet_pass_through_fraction_24h",
+    "wallet_prior_funding_residual_minor_24h",
+    "agent_wallet_growth_ratio_7d",
+    "agent_distinct_wallets_7d",
+    "agent_new_wallet_count_7d",
+    "agent_new_wallet_share_7d",
+    "agent_top2_count_share_24h",
+    "agent_top2_share_change_24h",
+    "agent_service_acceleration_1h",
+    "agent_distinct_wallets_1h",
+    "agent_cash_in_count_24h",
+    "agent_cash_out_count_24h",
+    "agent_cash_in_value_24h",
+    "agent_cash_out_value_24h",
+    "agent_cash_distinct_wallets_24h",
+    "agent_cash_value_skew_change",
+    "wallet_observed_coverage_days",
+    "agent_observed_coverage_days",
+    "wallet_similar_amount_value_minor_7d",
+    "wallet_baseline_similar_amount_count_28d_offset_7d",
+    "wallet_near_band_distinct_amount_count_7d",
+    "wallet_baseline_near_band_count_28d_offset_7d"
+  ],
+  "precision": "Exact integer sum/count/distinct before float64; -1 or0..2^53-1 only",
+  "semantic_count": 44,
+  "version": "v4.features.2.experimental.stage21.1"
+}

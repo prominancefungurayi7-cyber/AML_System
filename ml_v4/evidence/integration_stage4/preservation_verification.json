@@ -1,0 +1,20 @@
+{
+  "present_named_files_unchanged": 467,
+  "missing_required_files": [
+    "ml_v4/frozen_inference/cli.py",
+    "ml_v4/frozen_inference/history.py",
+    "ml_v4/frozen_inference/launch.py",
+    "ml_v4/frozen_inference/README.md",
+    "ml_v4/frozen_inference/service.py",
+    "ml_v4/frozen_inference/__init__.py",
+    "ml_v4/frozen_inference/tests/test_service.py",
+    "ml_v4/evidence/integration_stage3/copy_dependencies.py",
+    "ml_v4/evidence/integration_stage3/finalize.py",
+    "ml_v4/evidence/integration_stage3/live_check.py",
+    "ml_v4/evidence/integration_stage3/prepare.py",
+    "ml_v4/evidence/integration_stage3/run_tests.py"
+  ],
+  "all_required_artifacts_available": false,
+  "application_files_changed": [],
+  "database_access": false
+}

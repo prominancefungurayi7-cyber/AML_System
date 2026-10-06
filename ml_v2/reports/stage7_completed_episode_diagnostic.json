@@ -1,0 +1,1488 @@
+{
+  "families": {
+    "agent_flow_imbalance": {
+      "best_first_event_frozen_feature_auc": 0.6240740740740741,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.6333333333333333,
+          "iqr_overlap": 0.457748893681567,
+          "normal_median": 1.8780637233418083,
+          "positive_median": 1.6680463611922476
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.6444444444444445,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 2.0,
+          "positive_median": 1.5
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5333333333333333,
+          "iqr_overlap": 0.7820317094677285,
+          "normal_median": 78.13119272513889,
+          "positive_median": 99.38013512583333
+        },
+        "length": {
+          "direction_free_auc": 0.5314814814814814,
+          "iqr_overlap": 0.9215686274509803,
+          "normal_median": 14.0,
+          "positive_median": 12.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.5888888888888888,
+          "iqr_overlap": 0.3,
+          "normal_median": 4.0,
+          "positive_median": 5.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5101851851851853,
+          "iqr_overlap": 0.5833333333333334,
+          "normal_median": 13.5,
+          "positive_median": 11.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5972222222222222,
+          "iqr_overlap": 0.41818181818181815,
+          "normal_median": 11.0,
+          "positive_median": 12.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5972222222222222,
+          "iqr_overlap": 0.41818181818181815,
+          "normal_median": 11.0,
+          "positive_median": 12.0
+        }
+      },
+      "hard_family": "H8",
+      "normal_episodes": 54,
+      "positive_episodes": 10
+    },
+    "agent_temporal_burst": {
+      "best_first_event_frozen_feature_auc": 0.6865384615384615,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5173076923076922,
+          "iqr_overlap": 0.7010529753184005,
+          "normal_median": 1.8072468896994,
+          "positive_median": 1.7215573920889078
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5615384615384615,
+          "iqr_overlap": 0.6363636363636364,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5096153846153846,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.7480769230769231,
+          "iqr_overlap": 0.004440666898691436,
+          "normal_median": 28.720281443055555,
+          "positive_median": 1.102255073472222
+        },
+        "length": {
+          "direction_free_auc": 0.5442307692307693,
+          "iqr_overlap": 0.7209302325581395,
+          "normal_median": 16.5,
+          "positive_median": 16.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.6971153846153847,
+          "iqr_overlap": 0.2222222222222222,
+          "normal_median": 5.5,
+          "positive_median": 7.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5346153846153846,
+          "iqr_overlap": 0.6842105263157895,
+          "normal_median": 15.5,
+          "positive_median": 16.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6230769230769231,
+          "iqr_overlap": 0.6521739130434783,
+          "normal_median": 13.0,
+          "positive_median": 15.5
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.6230769230769231,
+          "iqr_overlap": 0.6521739130434783,
+          "normal_median": 13.0,
+          "positive_median": 15.5
+        }
+      },
+      "hard_family": "H7",
+      "normal_episodes": 52,
+      "positive_episodes": 10
+    },
+    "agent_wallet_concentration": {
+      "best_first_event_frozen_feature_auc": 0.674074074074074,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5907407407407408,
+          "iqr_overlap": 0.5881090077765004,
+          "normal_median": 1.8780637233418083,
+          "positive_median": 1.7484563631026182
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5555555555555556,
+          "iqr_overlap": 0.5833333333333334,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5833333333333334,
+          "iqr_overlap": 0.5181991252651555,
+          "normal_median": 78.13119272513889,
+          "positive_median": 59.94455132819444
+        },
+        "length": {
+          "direction_free_auc": 0.5277777777777778,
+          "iqr_overlap": 0.7843137254901961,
+          "normal_median": 14.0,
+          "positive_median": 13.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.687037037037037,
+          "iqr_overlap": 0.125,
+          "normal_median": 4.0,
+          "positive_median": 7.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5249999999999999,
+          "iqr_overlap": 0.7777777777777778,
+          "normal_median": 13.5,
+          "positive_median": 12.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5666666666666667,
+          "iqr_overlap": 0.6785714285714286,
+          "normal_median": 11.0,
+          "positive_median": 10.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5666666666666667,
+          "iqr_overlap": 0.6785714285714286,
+          "normal_median": 11.0,
+          "positive_median": 10.0
+        }
+      },
+      "hard_family": "H8",
+      "normal_episodes": 54,
+      "positive_episodes": 10
+    },
+    "agent_wallet_growth": {
+      "best_first_event_frozen_feature_auc": 0.6709401709401709,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5961538461538461,
+          "iqr_overlap": 0.4544836913604312,
+          "normal_median": 1.8072468896994,
+          "positive_median": 1.9681952469183939
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5363247863247863,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5096153846153846,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6538461538461539,
+          "iqr_overlap": 0.5571343996795495,
+          "normal_median": 28.720281443055555,
+          "positive_median": 54.927646905833335
+        },
+        "length": {
+          "direction_free_auc": 0.5202991452991452,
+          "iqr_overlap": 0.515625,
+          "normal_median": 16.5,
+          "positive_median": 12.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.6399572649572649,
+          "iqr_overlap": 0.2926829268292683,
+          "normal_median": 5.5,
+          "positive_median": 6.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5170940170940171,
+          "iqr_overlap": 0.5416666666666666,
+          "normal_median": 15.5,
+          "positive_median": 10.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6987179487179487,
+          "iqr_overlap": 0.2222222222222222,
+          "normal_median": 13.0,
+          "positive_median": 8.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.6987179487179487,
+          "iqr_overlap": 0.2222222222222222,
+          "normal_median": 13.0,
+          "positive_median": 8.0
+        }
+      },
+      "hard_family": "H7",
+      "normal_episodes": 52,
+      "positive_episodes": 9
+    },
+    "distributed_same_day_fragmentation": {
+      "best_first_event_frozen_feature_auc": 0.6772727272727274,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.7242424242424242,
+          "iqr_overlap": 0.3405556577189939,
+          "normal_median": 1.230394249384628,
+          "positive_median": 1.6417540433206361
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.55,
+          "iqr_overlap": 0.8,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.646969696969697,
+          "iqr_overlap": 0.41952724671960595,
+          "normal_median": 6.268964709444444,
+          "positive_median": 8.915534505
+        },
+        "length": {
+          "direction_free_auc": 0.6553030303030303,
+          "iqr_overlap": 0.5531914893617021,
+          "normal_median": 14.0,
+          "positive_median": 10.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8568181818181818,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.0,
+          "positive_median": 2.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8151515151515152,
+          "iqr_overlap": 0.08333333333333333,
+          "normal_median": 6.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7522727272727272,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H1",
+      "normal_episodes": 55,
+      "positive_episodes": 12
+    },
+    "many_to_one_collection": {
+      "best_first_event_frozen_feature_auc": 0.6937321937321937,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.6723646723646723,
+          "iqr_overlap": 0.3684919532625746,
+          "normal_median": 2.0018060580541412,
+          "positive_median": 1.607563175294853
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5441595441595442,
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6723646723646723,
+          "iqr_overlap": 0.2561265697998676,
+          "normal_median": 57.639949460416666,
+          "positive_median": 34.78146388138889
+        },
+        "length": {
+          "direction_free_auc": 0.6908831908831908,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 15.0,
+          "positive_median": 9.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8190883190883191,
+          "iqr_overlap": 0.0,
+          "normal_median": 12.0,
+          "positive_median": 8.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6096866096866096,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 2.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6246438746438746,
+          "iqr_overlap": 0.75,
+          "normal_median": 7.0,
+          "positive_median": 6.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5847578347578348,
+          "iqr_overlap": 0.7272727272727273,
+          "normal_median": 3.0,
+          "positive_median": 3.0
+        }
+      },
+      "hard_family": "H4",
+      "normal_episodes": 54,
+      "positive_episodes": 13
+    },
+    "one_to_many_dispersion": {
+      "best_first_event_frozen_feature_auc": 0.6785714285714286,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5436507936507937,
+          "iqr_overlap": 0.83908385139478,
+          "normal_median": 1.7295997759146027,
+          "positive_median": 1.6059947173148186
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5085978835978836,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.7222222222222222,
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.656084656084656,
+          "iqr_overlap": 0.3099866880543514,
+          "normal_median": 28.25658247138889,
+          "positive_median": 38.11427033444444
+        },
+        "length": {
+          "direction_free_auc": 0.7275132275132276,
+          "iqr_overlap": 0.36538461538461536,
+          "normal_median": 15.5,
+          "positive_median": 8.5
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8267195767195767,
+          "iqr_overlap": 0.045454545454545456,
+          "normal_median": 13.5,
+          "positive_median": 6.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6223544973544974,
+          "iqr_overlap": 0.5,
+          "normal_median": 7.0,
+          "positive_median": 5.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6097883597883597,
+          "iqr_overlap": 0.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5072751322751323,
+          "iqr_overlap": 1.0,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H5",
+      "normal_episodes": 54,
+      "positive_episodes": 14
+    },
+    "reciprocal_relationship_cycle": {
+      "best_first_event_frozen_feature_auc": 0.9030303030303031,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.6505050505050505,
+          "iqr_overlap": 0.4012163841463989,
+          "normal_median": 1.8502767616773836,
+          "positive_median": 1.607056991582954
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.8727272727272728,
+          "iqr_overlap": 0.0,
+          "normal_median": 1.0,
+          "positive_median": 0.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5040404040404041,
+          "iqr_overlap": 0.9753682647068588,
+          "normal_median": 69.04724359722222,
+          "positive_median": 65.68077039708334
+        },
+        "length": {
+          "direction_free_auc": 0.843939393939394,
+          "iqr_overlap": 0.0,
+          "normal_median": 14.0,
+          "positive_median": 7.5
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.753030303030303,
+          "iqr_overlap": 0.24390243902439024,
+          "normal_median": 12.0,
+          "positive_median": 7.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.7934343434343434,
+          "iqr_overlap": 0.18604651162790697,
+          "normal_median": 13.0,
+          "positive_median": 7.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.7934343434343434,
+          "iqr_overlap": 0.18604651162790697,
+          "normal_median": 13.0,
+          "positive_median": 7.5
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.9409090909090909,
+          "iqr_overlap": 0.0,
+          "normal_median": 4.0,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H6",
+      "normal_episodes": 55,
+      "positive_episodes": 18
+    },
+    "similar_amount_repetition": {
+      "best_first_event_frozen_feature_auc": 0.6372950819672131,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5437158469945356,
+          "iqr_overlap": 0.9539245515517645,
+          "normal_median": 0.43396153935374165,
+          "positive_median": 0.44717920427551217
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5109289617486338,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5792349726775956,
+          "iqr_overlap": 0.7948112706719621,
+          "normal_median": 135.95387723055555,
+          "positive_median": 110.13570911861112
+        },
+        "length": {
+          "direction_free_auc": 0.5655737704918034,
+          "iqr_overlap": 0.7619047619047619,
+          "normal_median": 13.0,
+          "positive_median": 11.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8210382513661202,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 3.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.787568306010929,
+          "iqr_overlap": 0.07692307692307693,
+          "normal_median": 5.0,
+          "positive_median": 3.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7295081967213115,
+          "iqr_overlap": 0.0,
+          "normal_median": 2.0,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H2",
+      "normal_episodes": 61,
+      "positive_episodes": 12
+    },
+    "variable_fragment_burst": {
+      "best_first_event_frozen_feature_auc": 0.6125,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.7625,
+          "iqr_overlap": 0.09259966431539508,
+          "normal_median": 1.230394249384628,
+          "positive_median": 0.8847287050235022
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5034090909090909,
+          "iqr_overlap": 0.8888888888888888,
+          "normal_median": 2.0,
+          "positive_median": 1.5
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6261363636363636,
+          "iqr_overlap": 0.5228371375668329,
+          "normal_median": 6.268964709444444,
+          "positive_median": 1.7374887018055554
+        },
+        "length": {
+          "direction_free_auc": 0.7744318181818182,
+          "iqr_overlap": 0.2,
+          "normal_median": 14.0,
+          "positive_median": 8.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.95,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.0,
+          "positive_median": 2.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8727272727272728,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 3.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7403409090909091,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H1",
+      "normal_episodes": 55,
+      "positive_episodes": 16
+    },
+    "variable_near_threshold_history": {
+      "best_first_event_frozen_feature_auc": 0.6421957671957672,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5198412698412698,
+          "iqr_overlap": 0.7650556002932785,
+          "normal_median": 0.9140374528812938,
+          "positive_median": 0.8914971253659821
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5654761904761905,
+          "iqr_overlap": 0.7272727272727273,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5687830687830688,
+          "iqr_overlap": 0.5359736218996566,
+          "normal_median": 166.01854417013888,
+          "positive_median": 138.17628068416667
+        },
+        "length": {
+          "direction_free_auc": 0.7202380952380952,
+          "iqr_overlap": 0.5,
+          "normal_median": 15.0,
+          "positive_median": 9.5
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.9107142857142857,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.5,
+          "positive_median": 2.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8082010582010581,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7691798941798942,
+          "iqr_overlap": 0.0,
+          "normal_median": 2.5,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H3",
+      "normal_episodes": 54,
+      "positive_episodes": 14
+    },
+    "wallet_pass_through": {
+      "best_first_event_frozen_feature_auc": 0.6316137566137566,
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.7037037037037037,
+          "iqr_overlap": 0.18528388235819515,
+          "normal_median": 1.7295997759146027,
+          "positive_median": 1.2516305218521029
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5879629629629629,
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.6706349206349207,
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 1.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6296296296296297,
+          "iqr_overlap": 0.3532107505623328,
+          "normal_median": 28.25658247138889,
+          "positive_median": 16.490017002222224
+        },
+        "length": {
+          "direction_free_auc": 0.7334656084656085,
+          "iqr_overlap": 0.4727272727272727,
+          "normal_median": 15.5,
+          "positive_median": 9.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8353174603174603,
+          "iqr_overlap": 0.10416666666666667,
+          "normal_median": 13.5,
+          "positive_median": 6.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6104497354497355,
+          "iqr_overlap": 0.55,
+          "normal_median": 7.0,
+          "positive_median": 5.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5092592592592593,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.8366402116402116,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 1.0
+        }
+      },
+      "hard_family": "H5",
+      "normal_episodes": 54,
+      "positive_episodes": 14
+    }
+  },
+  "protection": {
+    "result": "PASS",
+    "v1_application_file_count": 347,
+    "v2_dataset_feature_stage5_stage6_file_count": 37
+  },
+  "train_families": {
+    "agent_flow_imbalance": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5120538720538721,
+          "iqr_overlap": 0.8837436443412142,
+          "normal_median": 1.8501404721296413,
+          "positive_median": 1.8937860456775415
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5027609427609427,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5152861952861952,
+          "iqr_overlap": 0.9133120938756426,
+          "normal_median": 79.85407965194445,
+          "positive_median": 83.80760101555556
+        },
+        "length": {
+          "direction_free_auc": 0.6317845117845118,
+          "iqr_overlap": 0.5333333333333333,
+          "normal_median": 15.0,
+          "positive_median": 19.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7220875420875421,
+          "iqr_overlap": 0.3,
+          "normal_median": 5.0,
+          "positive_median": 9.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6671380471380471,
+          "iqr_overlap": 0.4666666666666667,
+          "normal_median": 13.0,
+          "positive_median": 18.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.7153535353535353,
+          "iqr_overlap": 0.29411764705882354,
+          "normal_median": 11.0,
+          "positive_median": 19.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7153535353535353,
+          "iqr_overlap": 0.29411764705882354,
+          "normal_median": 11.0,
+          "positive_median": 19.0
+        }
+      },
+      "hard_family": "H8",
+      "normal_episodes": 225,
+      "positive_episodes": 33
+    },
+    "agent_temporal_burst": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.6165289256198347,
+          "iqr_overlap": 0.5524806218536493,
+          "normal_median": 1.7966877221166293,
+          "positive_median": 1.9400123317123512
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5278236914600551,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.7482093663911846,
+          "iqr_overlap": 0.0038714249616878466,
+          "normal_median": 1.8548356581944443,
+          "positive_median": 1.0501119261111111
+        },
+        "length": {
+          "direction_free_auc": 0.6120523415977962,
+          "iqr_overlap": 0.5625,
+          "normal_median": 15.0,
+          "positive_median": 18.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7279614325068869,
+          "iqr_overlap": 0.2222222222222222,
+          "normal_median": 5.0,
+          "positive_median": 10.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6579889807162534,
+          "iqr_overlap": 0.375,
+          "normal_median": 13.0,
+          "positive_median": 18.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.7109504132231405,
+          "iqr_overlap": 0.3157894736842105,
+          "normal_median": 11.0,
+          "positive_median": 18.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7109504132231405,
+          "iqr_overlap": 0.3157894736842105,
+          "normal_median": 11.0,
+          "positive_median": 18.0
+        }
+      },
+      "hard_family": "H7",
+      "normal_episodes": 220,
+      "positive_episodes": 33
+    },
+    "agent_wallet_concentration": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.524952380952381,
+          "iqr_overlap": 0.839786631270008,
+          "normal_median": 1.8501404721296413,
+          "positive_median": 1.9168805150254449
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5365079365079365,
+          "iqr_overlap": 0.6666666666666666,
+          "normal_median": 2.0,
+          "positive_median": 3.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5657142857142857,
+          "iqr_overlap": 0.7331540267132017,
+          "normal_median": 79.85407965194445,
+          "positive_median": 69.80098395333333
+        },
+        "length": {
+          "direction_free_auc": 0.6012063492063493,
+          "iqr_overlap": 0.6206896551724138,
+          "normal_median": 15.0,
+          "positive_median": 18.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.737968253968254,
+          "iqr_overlap": 0.2777777777777778,
+          "normal_median": 5.0,
+          "positive_median": 9.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5425396825396825,
+          "iqr_overlap": 0.7272727272727273,
+          "normal_median": 13.0,
+          "positive_median": 14.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6238095238095238,
+          "iqr_overlap": 0.5263157894736842,
+          "normal_median": 11.0,
+          "positive_median": 8.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.6238095238095238,
+          "iqr_overlap": 0.5263157894736842,
+          "normal_median": 11.0,
+          "positive_median": 8.0
+        }
+      },
+      "hard_family": "H8",
+      "normal_episodes": 225,
+      "positive_episodes": 35
+    },
+    "agent_wallet_growth": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5106060606060605,
+          "iqr_overlap": 0.8835381874002843,
+          "normal_median": 1.7966877221166293,
+          "positive_median": 1.7974967714839707
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.6429063360881542,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 2.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6734159779614325,
+          "iqr_overlap": 0.5626634215495548,
+          "normal_median": 1.8548356581944443,
+          "positive_median": 72.52269225666666
+        },
+        "length": {
+          "direction_free_auc": 0.6365702479338842,
+          "iqr_overlap": 0.5714285714285714,
+          "normal_median": 15.0,
+          "positive_median": 19.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7757575757575758,
+          "iqr_overlap": 0.2,
+          "normal_median": 5.0,
+          "positive_median": 9.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6288567493112946,
+          "iqr_overlap": 0.5,
+          "normal_median": 13.0,
+          "positive_median": 17.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5552341597796142,
+          "iqr_overlap": 0.6,
+          "normal_median": 11.0,
+          "positive_median": 10.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5552341597796142,
+          "iqr_overlap": 0.6,
+          "normal_median": 11.0,
+          "positive_median": 10.0
+        }
+      },
+      "hard_family": "H7",
+      "normal_episodes": 220,
+      "positive_episodes": 33
+    },
+    "distributed_same_day_fragmentation": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.7043650793650793,
+          "iqr_overlap": 0.35368424463326315,
+          "normal_median": 1.3429183237693307,
+          "positive_median": 1.954107632579955
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5109126984126985,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.687037037037037,
+          "iqr_overlap": 0.20430265567514333,
+          "normal_median": 7.208907643888889,
+          "positive_median": 12.238870338888889
+        },
+        "length": {
+          "direction_free_auc": 0.5721560846560847,
+          "iqr_overlap": 0.6428571428571429,
+          "normal_median": 15.0,
+          "positive_median": 15.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7798941798941799,
+          "iqr_overlap": 0.2,
+          "normal_median": 7.0,
+          "positive_median": 4.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6996693121693122,
+          "iqr_overlap": 0.36363636363636365,
+          "normal_median": 6.0,
+          "positive_median": 5.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.673478835978836,
+          "iqr_overlap": 0.16666666666666666,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H1",
+      "normal_episodes": 216,
+      "positive_episodes": 35
+    },
+    "many_to_one_collection": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5514270887389725,
+          "iqr_overlap": 0.6837482647050008,
+          "normal_median": 1.840993116633507,
+          "positive_median": 1.7306961320522942
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.517695900363259,
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5190451478982875,
+          "iqr_overlap": 0.915262417433535,
+          "normal_median": 58.011157840555555,
+          "positive_median": 51.83678146638889
+        },
+        "length": {
+          "direction_free_auc": 0.6654385054488843,
+          "iqr_overlap": 0.42857142857142855,
+          "normal_median": 17.0,
+          "positive_median": 13.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7902439024390244,
+          "iqr_overlap": 0.13043478260869565,
+          "normal_median": 14.0,
+          "positive_median": 7.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.6403736377789311,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 2.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.6599896211728074,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 7.0,
+          "positive_median": 5.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5926829268292683,
+          "iqr_overlap": 0.6666666666666666,
+          "normal_median": 3.0,
+          "positive_median": 3.0
+        }
+      },
+      "hard_family": "H4",
+      "normal_episodes": 205,
+      "positive_episodes": 47
+    },
+    "one_to_many_dispersion": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5523352793994996,
+          "iqr_overlap": 0.7103649436308933,
+          "normal_median": 1.7874942970892231,
+          "positive_median": 1.859010369242056
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5389908256880734,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.694954128440367,
+          "iqr_overlap": 0.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.52418682235196,
+          "iqr_overlap": 0.857179088916985,
+          "normal_median": 26.011170445416667,
+          "positive_median": 26.08558857861111
+        },
+        "length": {
+          "direction_free_auc": 0.5763657214345288,
+          "iqr_overlap": 0.6097560975609756,
+          "normal_median": 15.5,
+          "positive_median": 14.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7068390325271059,
+          "iqr_overlap": 0.36363636363636365,
+          "normal_median": 13.0,
+          "positive_median": 9.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5966951626355296,
+          "iqr_overlap": 0.631578947368421,
+          "normal_median": 7.0,
+          "positive_median": 6.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.7426501251042535,
+          "iqr_overlap": 0.0,
+          "normal_median": 2.0,
+          "positive_median": 3.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.5827773144286906,
+          "iqr_overlap": 0.3333333333333333,
+          "normal_median": 3.0,
+          "positive_median": 3.0
+        }
+      },
+      "hard_family": "H5",
+      "normal_episodes": 218,
+      "positive_episodes": 44
+    },
+    "reciprocal_relationship_cycle": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5098858540562576,
+          "iqr_overlap": 0.7315002751841586,
+          "normal_median": 1.770962270834071,
+          "positive_median": 1.8298793867173961
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.8318385650224216,
+          "iqr_overlap": 0.0,
+          "normal_median": 1.0,
+          "positive_median": 0.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5126375866286179,
+          "iqr_overlap": 0.8371310200965931,
+          "normal_median": 75.10074660277779,
+          "positive_median": 69.08404884194445
+        },
+        "length": {
+          "direction_free_auc": 0.5599775784753364,
+          "iqr_overlap": 0.7346938775510204,
+          "normal_median": 15.0,
+          "positive_median": 13.5
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.5514675907052587,
+          "iqr_overlap": 0.5714285714285714,
+          "normal_median": 12.0,
+          "positive_median": 13.5
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5090705258866695,
+          "iqr_overlap": 0.6530612244897959,
+          "normal_median": 13.0,
+          "positive_median": 13.5
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5090705258866695,
+          "iqr_overlap": 0.6530612244897959,
+          "normal_median": 13.0,
+          "positive_median": 13.5
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7873012637586628,
+          "iqr_overlap": 0.0,
+          "normal_median": 4.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H6",
+      "normal_episodes": 223,
+      "positive_episodes": 44
+    },
+    "similar_amount_repetition": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5312409742947916,
+          "iqr_overlap": 0.8646712483458636,
+          "normal_median": 0.5262947794556609,
+          "positive_median": 0.49714061826944683
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5474150380283046,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5286415711947627,
+          "iqr_overlap": 0.8469360148929864,
+          "normal_median": 107.95553630055555,
+          "positive_median": 104.29365453555556
+        },
+        "length": {
+          "direction_free_auc": 0.6133147203234812,
+          "iqr_overlap": 0.5833333333333334,
+          "normal_median": 15.0,
+          "positive_median": 11.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.8491383460094348,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.0,
+          "positive_median": 3.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8596322325984403,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7415519399249062,
+          "iqr_overlap": 0.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H2",
+      "normal_episodes": 221,
+      "positive_episodes": 47
+    },
+    "variable_fragment_burst": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.7947239692522712,
+          "iqr_overlap": 0.032814058314037095,
+          "normal_median": 1.3429183237693307,
+          "positive_median": 0.9035008312289099
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5267732354996506,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6934835779175401,
+          "iqr_overlap": 0.05128411773453172,
+          "normal_median": 7.208907643888889,
+          "positive_median": 1.7876275697222224
+        },
+        "length": {
+          "direction_free_auc": 0.7010394828791056,
+          "iqr_overlap": 0.3076923076923077,
+          "normal_median": 15.0,
+          "positive_median": 11.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.9036076170510133,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.0,
+          "positive_median": 3.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8398846960167715,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 4.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7023497554157931,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H1",
+      "normal_episodes": 216,
+      "positive_episodes": 53
+    },
+    "variable_near_threshold_history": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.5209378856437681,
+          "iqr_overlap": 0.8887406652127678,
+          "normal_median": 0.9710510458680879,
+          "positive_median": 0.9824450241362572
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.5712875359934183,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 0.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.5070341423282599,
+          "iqr_overlap": 0.9361024980038744,
+          "normal_median": 176.7768650325,
+          "positive_median": 191.52913770722222
+        },
+        "length": {
+          "direction_free_auc": 0.704730563554093,
+          "iqr_overlap": 0.4,
+          "normal_median": 15.0,
+          "positive_median": 10.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.9062114356232003,
+          "iqr_overlap": 0.0,
+          "normal_median": 7.0,
+          "positive_median": 3.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.8728918140682846,
+          "iqr_overlap": 0.0,
+          "normal_median": 6.0,
+          "positive_median": 3.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5,
+          "iqr_overlap": 1.0,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.7387494858083093,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H3",
+      "normal_episodes": 221,
+      "positive_episodes": 55
+    },
+    "wallet_pass_through": {
+      "completed_statistics": {
+        "amount_cv": {
+          "direction_free_auc": 0.6951981260979894,
+          "iqr_overlap": 0.40550901050032484,
+          "normal_median": 1.7874942970892231,
+          "positive_median": 1.3548752590822346
+        },
+        "cash_count_imbalance": {
+          "direction_free_auc": 0.6047725941830959,
+          "iqr_overlap": 0.5,
+          "normal_median": 1.0,
+          "positive_median": 1.0
+        },
+        "complete_cycle": {
+          "direction_free_auc": 0.6667479992192075,
+          "iqr_overlap": 1.0,
+          "normal_median": 0.0,
+          "positive_median": 1.0
+        },
+        "duration_hours": {
+          "direction_free_auc": 0.6369314854577397,
+          "iqr_overlap": 0.5655631693676302,
+          "normal_median": 26.011170445416667,
+          "positive_median": 14.995198049999999
+        },
+        "length": {
+          "direction_free_auc": 0.6243412063244193,
+          "iqr_overlap": 0.6190476190476191,
+          "normal_median": 15.5,
+          "positive_median": 13.0
+        },
+        "transfer_count": {
+          "direction_free_auc": 0.7381905133710717,
+          "iqr_overlap": 0.2727272727272727,
+          "normal_median": 13.0,
+          "positive_median": 9.0
+        },
+        "unique_receivers": {
+          "direction_free_auc": 0.5516787038844426,
+          "iqr_overlap": 0.8421052631578947,
+          "normal_median": 7.0,
+          "positive_median": 6.0
+        },
+        "unique_senders": {
+          "direction_free_auc": 0.5229357798165137,
+          "iqr_overlap": 1.0,
+          "normal_median": 2.0,
+          "positive_median": 2.0
+        },
+        "unique_serviced_wallets": {
+          "direction_free_auc": 0.8009955104430997,
+          "iqr_overlap": 0.0,
+          "normal_median": 3.0,
+          "positive_median": 2.0
+        }
+      },
+      "hard_family": "H5",
+      "normal_episodes": 218,
+      "positive_episodes": 47
+    }
+  },
+  "warning": "NON-DEPLOYABLE: full-episode statistics include current/future facts; descriptive only, no model input or label change."
+}

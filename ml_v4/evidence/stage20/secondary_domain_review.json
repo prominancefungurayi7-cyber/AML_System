@@ -1,0 +1,41 @@
+{
+  "A2": {
+    "decision": "DEFER, first secondary priority",
+    "quantity": "all current-agent services in R24h including current once;0 absent agent; no baseline gate",
+    "reason": "Absolute count missing; HGB advantage also shows approximation. No top2 conjunction/trigger."
+  },
+  "A3": {
+    "decision": "DEFER",
+    "quantity": "current-agent service count R1h including current;0 no agent",
+    "reason": "Acceleration equals count under floor but not generally;255/255 Validation detection is not proof of sufficiency. No immediate addition justified."
+  },
+  "A4": {
+    "decision": "RETAIN primitives; REJECT full flag and redundant skews",
+    "reason": "Six primitives/history marker/type supply arithmetic; HGB197/222 vsXGB151/222 with46 rescues. Cause of model difference unproven."
+  },
+  "N1": {
+    "decision": "DEFER, first secondary priority",
+    "quantity": "sum minor incoming W2W to current receiver in R24h including current once;0 non-W2W; no baseline gate; exact integer ->float64",
+    "reason": "Genuine missing aggregate,24 Validation misses and HGB rescues8; do not bundle a second hypothesis into S2/S4 test."
+  },
+  "N2": {
+    "decision": "DEFER",
+    "quantity": "sum minor outgoing W2W from current sender in R24h including current;0 non-W2W; no baseline gate",
+    "reason": "Genuine omission but429 positives and stronger observed recall; symmetry alone is not a reason to add now."
+  },
+  "N3": {
+    "decision": "DEFER; reject qualifying-path count/existence and current-ratio-selected route",
+    "quantity": "Potential future topology-only deterministic second route or prior-only monetary quantiles over all topology-valid paths",
+    "reason": "7/130 positives have incompatible selected summary,4 missed. Arbitrary second route still lossy; path-order, bounded enumeration, dimensionality and costs need separate design. Marginal extrema can combine different paths and must not be called a witness."
+  },
+  "N4": {
+    "decision": "DEFER",
+    "quantity": "prior anchored funding F in24h, current excluded; missing if no anchor/current not outward",
+    "reason": "F=(a-r)/(q-1) only for q!=1; q=1 degeneracy and near1 numerical conditioning remain. Existing residual can be negative; never use negative as generic missing."
+  },
+  "S3": {
+    "decision": "DEFER",
+    "quantity": "current subject calendar-day value including current, UTC[d,t], strict keys",
+    "reason": "Not recoverable from1h total, but546 Validation positives. Calendar boundary fixtures needed; no new day amount now."
+  }
+}

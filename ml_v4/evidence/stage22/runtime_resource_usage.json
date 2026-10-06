@@ -1,0 +1,19 @@
+{
+  "fit_seconds": {
+    "A40-HGB": 4.726647799951024,
+    "A40-XGB": 2.5322730999905616,
+    "B44-HGB": 4.900594800012186,
+    "B44-XGB": 2.551948699983768
+  },
+  "peak_process_working_set_bytes": 555618304,
+  "peak_scope": "Windows process lifetime including all four retained pipelines, matrices, annotations and permutations; not per-model marginal memory",
+  "permutation_seconds": 30.560365599987563,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "threads": 1,
+  "versions": {
+    "numpy": "2.4.3",
+    "python": "3.14.3",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

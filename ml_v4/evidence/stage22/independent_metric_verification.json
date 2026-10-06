@@ -1,0 +1,133 @@
+{
+  "results": {
+    "A40-HGB": {
+      "train": {
+        "confusion": [
+          [
+            47349,
+            421
+          ],
+          [
+            656,
+            11574
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 60000,
+        "status": "PASS"
+      },
+      "validation": {
+        "confusion": [
+          [
+            11831,
+            139
+          ],
+          [
+            228,
+            2802
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 15000,
+        "status": "PASS"
+      }
+    },
+    "A40-XGB": {
+      "train": {
+        "confusion": [
+          [
+            47318,
+            452
+          ],
+          [
+            1027,
+            11203
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 60000,
+        "status": "PASS"
+      },
+      "validation": {
+        "confusion": [
+          [
+            11852,
+            118
+          ],
+          [
+            292,
+            2738
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 15000,
+        "status": "PASS"
+      }
+    },
+    "B44-HGB": {
+      "train": {
+        "confusion": [
+          [
+            47359,
+            411
+          ],
+          [
+            657,
+            11573
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 60000,
+        "status": "PASS"
+      },
+      "validation": {
+        "confusion": [
+          [
+            11834,
+            136
+          ],
+          [
+            235,
+            2795
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 15000,
+        "status": "PASS"
+      }
+    },
+    "B44-XGB": {
+      "train": {
+        "confusion": [
+          [
+            47326,
+            444
+          ],
+          [
+            1041,
+            11189
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 60000,
+        "status": "PASS"
+      },
+      "validation": {
+        "confusion": [
+          [
+            11855,
+            115
+          ],
+          [
+            279,
+            2751
+          ]
+        ],
+        "max_float_tolerance": 1e-12,
+        "rows": 15000,
+        "status": "PASS"
+      }
+    }
+  },
+  "scope": "Separate confusion/ratio arithmetic from saved scores; sklearn AP/AUC reused. Same developer environment, not independent external review. No new model predictions."
+}

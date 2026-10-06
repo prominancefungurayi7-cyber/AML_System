@@ -1,0 +1,518 @@
+{
+  "s11_08_gradient_boosting": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 67,
+      "recall": 0.975591985428051,
+      "support": 2745,
+      "tp": 2678
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 194,
+      "recall": 0.7913978494623656,
+      "support": 930,
+      "tp": 736
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 485,
+      "tp": 485
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 167,
+      "recall": 0.5044510385756676,
+      "support": 337,
+      "tp": 170
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 22,
+      "recall": 0.930379746835443,
+      "support": 316,
+      "tp": 294
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 43,
+      "recall": 0.9415760869565217,
+      "support": 736,
+      "tp": 693
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 19,
+      "recall": 0.5365853658536586,
+      "support": 41,
+      "tp": 22
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 7,
+      "recall": 0.97165991902834,
+      "support": 247,
+      "tp": 240
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 2,
+      "recall": 0.9927536231884058,
+      "support": 276,
+      "tp": 274
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 814,
+      "tp": 814
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  },
+  "s11_09_hist_gradient_boosting": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 56,
+      "recall": 0.9795992714025501,
+      "support": 2745,
+      "tp": 2689
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 116,
+      "recall": 0.875268817204301,
+      "support": 930,
+      "tp": 814
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 4,
+      "recall": 0.9917525773195877,
+      "support": 485,
+      "tp": 481
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 88,
+      "recall": 0.7388724035608308,
+      "support": 337,
+      "tp": 249
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 15,
+      "recall": 0.9525316455696202,
+      "support": 316,
+      "tp": 301
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 28,
+      "recall": 0.9619565217391305,
+      "support": 736,
+      "tp": 708
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 19,
+      "recall": 0.5365853658536586,
+      "support": 41,
+      "tp": 22
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 6,
+      "recall": 0.9757085020242915,
+      "support": 247,
+      "tp": 241
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 3,
+      "recall": 0.9891304347826086,
+      "support": 276,
+      "tp": 273
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 814,
+      "tp": 814
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  },
+  "s11_14_hist_gradient_boosting": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 59,
+      "recall": 0.9785063752276867,
+      "support": 2745,
+      "tp": 2686
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 100,
+      "recall": 0.8924731182795699,
+      "support": 930,
+      "tp": 830
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 3,
+      "recall": 0.9938144329896907,
+      "support": 485,
+      "tp": 482
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 87,
+      "recall": 0.7418397626112759,
+      "support": 337,
+      "tp": 250
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 12,
+      "recall": 0.9620253164556962,
+      "support": 316,
+      "tp": 304
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 24,
+      "recall": 0.967391304347826,
+      "support": 736,
+      "tp": 712
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 18,
+      "recall": 0.5609756097560976,
+      "support": 41,
+      "tp": 23
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 8,
+      "recall": 0.9676113360323887,
+      "support": 247,
+      "tp": 239
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 2,
+      "recall": 0.9927536231884058,
+      "support": 276,
+      "tp": 274
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 814,
+      "tp": 814
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  },
+  "s11_15_xgboost": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 62,
+      "recall": 0.9774134790528233,
+      "support": 2745,
+      "tp": 2683
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 115,
+      "recall": 0.8763440860215054,
+      "support": 930,
+      "tp": 815
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 1,
+      "recall": 0.9979381443298969,
+      "support": 485,
+      "tp": 484
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 104,
+      "recall": 0.6913946587537092,
+      "support": 337,
+      "tp": 233
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 16,
+      "recall": 0.9493670886075949,
+      "support": 316,
+      "tp": 300
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 25,
+      "recall": 0.9660326086956522,
+      "support": 736,
+      "tp": 711
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 18,
+      "recall": 0.5609756097560976,
+      "support": 41,
+      "tp": 23
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 6,
+      "recall": 0.9757085020242915,
+      "support": 247,
+      "tp": 241
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 3,
+      "recall": 0.9891304347826086,
+      "support": 276,
+      "tp": 273
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 814,
+      "tp": 814
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  },
+  "s11_16_logistic": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 197,
+      "recall": 0.9282331511839709,
+      "support": 2745,
+      "tp": 2548
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 297,
+      "recall": 0.6806451612903226,
+      "support": 930,
+      "tp": 633
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 19,
+      "recall": 0.9608247422680413,
+      "support": 485,
+      "tp": 466
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 184,
+      "recall": 0.4540059347181009,
+      "support": 337,
+      "tp": 153
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 137,
+      "recall": 0.5664556962025317,
+      "support": 316,
+      "tp": 179
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 165,
+      "recall": 0.7758152173913043,
+      "support": 736,
+      "tp": 571
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 33,
+      "recall": 0.1951219512195122,
+      "support": 41,
+      "tp": 8
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 138,
+      "recall": 0.44129554655870445,
+      "support": 247,
+      "tp": 109
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 12,
+      "recall": 0.9565217391304348,
+      "support": 276,
+      "tp": 264
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 84,
+      "recall": 0.8968058968058968,
+      "support": 814,
+      "tp": 730
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  },
+  "s11_27_random_forest": {
+    "A1": {
+      "family": "agent_wallet_growth",
+      "fn": 62,
+      "recall": 0.9774134790528233,
+      "support": 2745,
+      "tp": 2683
+    },
+    "A2": {
+      "family": "agent_wallet_concentration",
+      "fn": 174,
+      "recall": 0.8129032258064516,
+      "support": 930,
+      "tp": 756
+    },
+    "A3": {
+      "family": "agent_temporal_burst",
+      "fn": 6,
+      "recall": 0.9876288659793815,
+      "support": 485,
+      "tp": 479
+    },
+    "A4": {
+      "family": "agent_flow_imbalance",
+      "fn": 122,
+      "recall": 0.6379821958456974,
+      "support": 337,
+      "tp": 215
+    },
+    "N1": {
+      "family": "many_to_one_collection",
+      "fn": 20,
+      "recall": 0.9367088607594937,
+      "support": 316,
+      "tp": 296
+    },
+    "N2": {
+      "family": "one_to_many_dispersion",
+      "fn": 35,
+      "recall": 0.9524456521739131,
+      "support": 736,
+      "tp": 701
+    },
+    "N3": {
+      "family": "reciprocal_relationship_cycle",
+      "fn": 29,
+      "recall": 0.2926829268292683,
+      "support": 41,
+      "tp": 12
+    },
+    "N4": {
+      "family": "wallet_pass_through",
+      "fn": 27,
+      "recall": 0.8906882591093117,
+      "support": 247,
+      "tp": 220
+    },
+    "S1": {
+      "family": "variable_fragment_burst",
+      "fn": 4,
+      "recall": 0.9855072463768116,
+      "support": 276,
+      "tp": 272
+    },
+    "S2": {
+      "family": "similar_amount_repetition",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 1,
+      "tp": 1
+    },
+    "S3": {
+      "family": "distributed_same_day_fragmentation",
+      "fn": 0,
+      "recall": 1.0,
+      "support": 814,
+      "tp": 814
+    },
+    "S4": {
+      "family": "variable_near_threshold_history",
+      "fn": 2,
+      "recall": 0.75,
+      "support": 8,
+      "tp": 6
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "dual_identity_access_tests": "NOT_RUN: no independent custodian identity or endpoint supplied",
+  "event_log_limit": "Running EventLog does not demonstrate immutable or independently controlled logging.",
+  "independent_admin_verified": false,
+  "observations": [
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "whoami /all"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "\r\nUSER INFORMATION\r\n----------------\r\n\r\nUser Name                SID                                           \r\n======================== ==============================================\r\nproe\\codexsandboxoffline S-1-5-21-2107818440-2455369762-3535634824-1003\r\n\r\n\r\nGROUP INFORMATION\r\n-----------------\r\n\r\nGroup Name                             Type             SID                                            Attributes                                        \r\n====================================== ================ ============================================== ==================================================\r\nEveryone                               Well-known group S-1-1-0                                        Mandatory group, Enabled by default, Enabled group\r\nPROE\\CodexSandboxUsers                 Alias            S-1-5-21-2107818440-2455369762-3535634824-1002 Mandatory group, Enabled by default, Enabled group\r\nBUILTIN\\Users                          Alias            S-1-5-32-545                                   Mandatory group, Enabled by default, Enabled group\r\nNT AUTHORITY\\INTERACTIVE               Well-known group S-1-5-4                                        Mandatory group, Enabled by default, Enabled group\r\nCONSOLE LOGON                          Well-known group S-1-2-1                                        Mandatory group, Enabled by default, Enabled group\r\nNT AUTHORITY\\Authenticated Users       Well-known group S-1-5-11                                       Mandatory group, Enabled by default, Enabled group\r\nNT AUTHORITY\\This Organization         Well-known group S-1-5-15                                       Mandatory group, Enabled by default, Enabled group\r\nNT AUTHORITY\\Local account             Well-known group S-1-5-113                                      Mandatory group, Enabled by default, Enabled group\r\nLOCAL                                  Well-known group S-1-2-0                                        Mandatory group, Enabled by default, Enabled group\r\nNT AUTHORITY\\NTLM Authentication       Well-known group S-1-5-64-10                                    Mandatory group, Enabled by default, Enabled group\r\nMandatory Label\\Medium Mandatory Level Label            S-1-16-8192                                                                                      \r\n\r\n\r\nPRIVILEGES INFORMATION\r\n----------------------\r\n\r\nPrivilege Name          Description              State  \r\n======================= ======================== =======\r\nSeChangeNotifyPrivilege Bypass traverse checking Enabled\r\n\r\n"
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-LocalUser | Select-Object Name,Enabled,PrincipalSource | ConvertTo-Json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "[\r\n    {\r\n        \"Name\":  \"Administrator\",\r\n        \"Enabled\":  false,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"CodexSandboxOffline\",\r\n        \"Enabled\":  true,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"CodexSandboxOnline\",\r\n        \"Enabled\":  true,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"DefaultAccount\",\r\n        \"Enabled\":  false,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"Guest\",\r\n        \"Enabled\":  false,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"PROMINENT\",\r\n        \"Enabled\":  true,\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"WDAGUtilityAccount\",\r\n        \"Enabled\":  false,\r\n        \"PrincipalSource\":  1\r\n    }\r\n]\r\n"
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-LocalGroupMember -Group Administrators | Select-Object Name,PrincipalSource | ConvertTo-Json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "[\r\n    {\r\n        \"Name\":  \"PROE\\\\Administrator\",\r\n        \"PrincipalSource\":  1\r\n    },\r\n    {\r\n        \"Name\":  \"PROE\\\\PROMINENT\",\r\n        \"PrincipalSource\":  1\r\n    }\r\n]\r\n"
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-Acl . | Select-Object Owner,AccessToString | ConvertTo-Json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\r\n    \"Owner\":  \"PROE\\\\PROMINENT\",\r\n    \"AccessToString\":  \"S-1-5-21-2922563616-2723964850-4215268665-2602405674 Allow  Modify, Synchronize\\nS-1-5-21-109701538-3342199795-313759566-3298333380 Allow  Modify, Synchronize\\nS-1-5-21-1569909409-2768236462-222641915-2541378864 Allow  Modify, Synchronize\\nS-1-5-21-2094708357-186330721-1721461999-3258741448 Allow  Modify, Synchronize\\nPROE\\\\CodexSandboxUsers Allow  Modify, Synchronize\\nPROE\\\\CodexSandboxUsers Allow  ReadAndExecute, Synchronize\\nNT AUTHORITY\\\\SYSTEM Allow  FullControl\\nBUILTIN\\\\Administrators Allow  FullControl\\nPROE\\\\PROMINENT Allow  FullControl\"\r\n}\r\n"
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-Service EventLog,WinRM -ErrorAction Continue | Select-Object Name,Status | ConvertTo-Json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "[\r\n    {\r\n        \"Name\":  \"EventLog\",\r\n        \"Status\":  4\r\n    },\r\n    {\r\n        \"Name\":  \"WinRM\",\r\n        \"Status\":  1\r\n    }\r\n]\r\n"
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-Command Get-Secret,Get-SecretVault -ErrorAction SilentlyContinue | Select-Object Name,Source | ConvertTo-Json"
+      ],
+      "exit_code": 1,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "scope": "Local host only; no credentials, remote infrastructure or sealed paths inspected."
+}

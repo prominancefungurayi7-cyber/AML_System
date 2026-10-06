@@ -1,0 +1,6 @@
+{
+  "dataset": "mobile_money_aml_synthetic_100k_v3",
+  "specification_revision": "stage8-approved-revision-1",
+  "approved_documents": ["ml_v2/redesign/V3_DATASET_SPECIFICATION.md","ml_v2/redesign/V3_GROUND_TRUTH_CONTRACT.md","ml_v2/redesign/V3_SCENARIO_ONSET_CONTRACT.md","ml_v2/redesign/V3_FEATURE_ARCHITECTURE_PROPOSAL.md","ml_v2/redesign/V3_HARD_NEGATIVE_SPECIFICATION.md","ml_v2/redesign/V3_HOLDOUT_POLICY.md","ml_v2/redesign/V3_EVALUATION_PROTOCOL.md"],
+  "implementation_scope": "raw observable generation, universal decision-point truth, structural audit; no feature extraction or model training"
+}

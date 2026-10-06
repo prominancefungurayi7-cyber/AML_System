@@ -1,0 +1,21 @@
+{
+  "development_only_paths": true,
+  "direct_target_components": "Disclosed frozen B/C components retained; no full predicate trigger",
+  "extractor_imports": [
+    "from collections import defaultdict, deque, Counter",
+    "from fractions import Fraction",
+    "import json",
+    "import math",
+    "from pathlib import Path",
+    "import sys",
+    "from stage16r_contract import Event, DAY, HOUR, validate_event"
+  ],
+  "identifier_columns_in_X": false,
+  "input_interface": "Exact validated observable Event only",
+  "logical_separation_not_external_audit": true,
+  "no_truth_or_provenance_in_extractor": true,
+  "sealed_or_challenge_access": false,
+  "status": "PASS",
+  "tests": "private-field rejection, access enum rejection, history reset, future/identity invariance",
+  "y_join": "Runner reads frozen binary labels separately, checks exact IDs/order, never supplies labels to extractor"
+}

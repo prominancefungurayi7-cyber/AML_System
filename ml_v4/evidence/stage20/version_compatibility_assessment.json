@@ -1,0 +1,11 @@
+{
+  "Stage16T": "NOT_COMPATIBLE_BY_DEFAULT: explicit feature-dimension/version, extractor/hash, preprocessing, permutation-field count and freeze/amendment required. No automatic edit.",
+  "Stage17": "Immutable40 columns. Future44 matrix in new namespace, verify first40 values/order/IDs/labels against Stage17 exactly; no replacement.",
+  "Stage18": "Old fitted42-numeric preprocessing/models incompatible with46-numeric inputs. New unfitted preprocessing specification may inherit marker conversion, Train median(empty0), scaling and fixed3type onehot; must be fitted Train only under separate authorization. Never pad old models or reuse fitted medians as if44 compatible.",
+  "Train_Validation_ledgers": "Semantically sufficient observable fields/history already retained; no new transactions needed. Future separately authorized extraction reads each partition in isolation. No ledger byte examined beyond hashing in this stage.",
+  "custody": "Stage16V C remains; independent admin/storage/secret/registry/log/developer-denial verification remains mandatory.",
+  "original_sealed": "SEALED_QUARANTINED, supportFAIL unchanged. No compatibility claim, access, recount, reinterpretation, regeneration or amendment to original certificates.",
+  "realtime": "Requires explicit serviced_wallet/roles, complete causal history, integercents and exactkey order; additional range scans and distinct state benchmark later. Existing application adapter not approved; no Flask/API changes.",
+  "versions": "New feature v4.features.2.proposed.stage20.1; proposed comparison v4.feature_comparison.1. Preserve target v4.predicates.1 and data version/hash. Feature experiment separate, no new dataset required.",
+  "warmup": "Unchanged42d warmup; maximum35d history; no fabricated observations/activation. Later cold start remains missing."
+}

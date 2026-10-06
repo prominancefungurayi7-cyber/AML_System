@@ -1,0 +1,3963 @@
+{
+  "artifacts": [
+    "gradient_boosting_best.joblib",
+    "hist_gradient_boosting_best.joblib",
+    "logistic_regression_best.joblib",
+    "random_forest_best.joblib",
+    "xgboost_best.joblib"
+  ],
+  "best_by_algorithm": {
+    "gradient_boosting": "gb_clipped_regularized_balanced",
+    "hist_gradient_boosting": "hgb_clipped_regularized_balanced",
+    "logistic_regression": "lr_robust_C10.0_balanced",
+    "random_forest": "rf_raw_regularized_balanced_subsample",
+    "xgboost": "xgb_raw_regularized_balanced"
+  },
+  "convergence_warnings": [
+    {
+      "configuration": "lr_raw_baseline",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_baseline",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C0.1_none",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C0.1_balanced",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C1.0_none",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C1.0_balanced",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C10.0_none",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    },
+    {
+      "configuration": "lr_robust_C10.0_balanced",
+      "warning": "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    }
+  ],
+  "preprocessing": {
+    "clipped": {
+      "clip": true,
+      "clipped_features": {
+        "agent_hourly_tx_zscore_30d": {
+          "lower": -7.006346329499342,
+          "upper": 16.097467957458257
+        },
+        "agent_hourly_value_zscore_30d": {
+          "lower": -0.9181749219595632,
+          "upper": 4.886509115367609
+        },
+        "agent_inbound_outbound_value_ratio_7d": {
+          "lower": 0.0,
+          "upper": 442.19327506904875
+        },
+        "agent_prior_tx_count_1h": {
+          "lower": 0.0,
+          "upper": 15.0
+        },
+        "agent_prior_tx_count_7d": {
+          "lower": 0.0,
+          "upper": 87.0
+        },
+        "agent_prior_value_sum_1h": {
+          "lower": 0.0,
+          "upper": 52591.34209999974
+        },
+        "agent_prior_value_sum_7d": {
+          "lower": 0.0,
+          "upper": 363079.7851499997
+        },
+        "agent_unique_wallet_count_7d": {
+          "lower": 0.0,
+          "upper": 61.0
+        },
+        "network_inbound_counterparty_count_7d": {
+          "lower": 0.0,
+          "upper": 12.0
+        },
+        "network_outbound_counterparty_count_7d": {
+          "lower": 0.0,
+          "upper": 12.0
+        },
+        "network_outbound_counterparty_entropy_30d": {
+          "lower": 0.0,
+          "upper": 2.242027858176439
+        },
+        "network_pass_through_ratio_24h": {
+          "lower": 0.0,
+          "upper": 322.22252198454265
+        },
+        "structuring_amount_cluster_dispersion_7d": {
+          "lower": 0.0,
+          "upper": 3.390930771180551
+        },
+        "structuring_prior_tx_count_1h": {
+          "lower": 0.0,
+          "upper": 11.0
+        },
+        "structuring_prior_value_sum_24h": {
+          "lower": 0.0,
+          "upper": 75448.85769999982
+        },
+        "structuring_same_day_prior_tx_count": {
+          "lower": 0.0,
+          "upper": 18.0
+        }
+      },
+      "fit_partition": "train",
+      "quantiles": [
+        0.005,
+        0.995
+      ],
+      "scale": false,
+      "scaler": null
+    },
+    "raw": {
+      "clip": false,
+      "clipped_features": {},
+      "fit_partition": "train",
+      "quantiles": null,
+      "scale": false,
+      "scaler": null
+    },
+    "robust": {
+      "clip": true,
+      "clipped_features": {
+        "agent_hourly_tx_zscore_30d": {
+          "lower": -7.006346329499342,
+          "upper": 16.097467957458257
+        },
+        "agent_hourly_value_zscore_30d": {
+          "lower": -0.9181749219595632,
+          "upper": 4.886509115367609
+        },
+        "agent_inbound_outbound_value_ratio_7d": {
+          "lower": 0.0,
+          "upper": 442.19327506904875
+        },
+        "agent_prior_tx_count_1h": {
+          "lower": 0.0,
+          "upper": 15.0
+        },
+        "agent_prior_tx_count_7d": {
+          "lower": 0.0,
+          "upper": 87.0
+        },
+        "agent_prior_value_sum_1h": {
+          "lower": 0.0,
+          "upper": 52591.34209999974
+        },
+        "agent_prior_value_sum_7d": {
+          "lower": 0.0,
+          "upper": 363079.7851499997
+        },
+        "agent_unique_wallet_count_7d": {
+          "lower": 0.0,
+          "upper": 61.0
+        },
+        "network_inbound_counterparty_count_7d": {
+          "lower": 0.0,
+          "upper": 12.0
+        },
+        "network_outbound_counterparty_count_7d": {
+          "lower": 0.0,
+          "upper": 12.0
+        },
+        "network_outbound_counterparty_entropy_30d": {
+          "lower": 0.0,
+          "upper": 2.242027858176439
+        },
+        "network_pass_through_ratio_24h": {
+          "lower": 0.0,
+          "upper": 322.22252198454265
+        },
+        "structuring_amount_cluster_dispersion_7d": {
+          "lower": 0.0,
+          "upper": 3.390930771180551
+        },
+        "structuring_prior_tx_count_1h": {
+          "lower": 0.0,
+          "upper": 11.0
+        },
+        "structuring_prior_value_sum_24h": {
+          "lower": 0.0,
+          "upper": 75448.85769999982
+        },
+        "structuring_same_day_prior_tx_count": {
+          "lower": 0.0,
+          "upper": 18.0
+        }
+      },
+      "fit_partition": "train",
+      "quantiles": [
+        0.005,
+        0.995
+      ],
+      "scale": true,
+      "scaler": "RobustScaler(25th/75th percentile)"
+    }
+  },
+  "primary_candidate": "rf_raw_regularized_balanced_subsample",
+  "ranking": [
+    "rf_raw_regularized_balanced_subsample",
+    "hgb_clipped_regularized_balanced",
+    "xgb_raw_regularized_balanced",
+    "gb_clipped_regularized_balanced",
+    "lr_robust_C10.0_balanced"
+  ],
+  "results": [
+    {
+      "algorithm": "logistic_regression",
+      "baseline": true,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.4944510385292031
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.4122760098975348
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.36352278628118284
+          },
+          {
+            "feature": "network_counterparty_set_change_7d",
+            "value": 0.2952038908574604
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.21822229903103546
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.21059519635017024
+          },
+          {
+            "feature": "agent_high_value_event_share_7d",
+            "value": 0.13011903132458294
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.11433789049532683
+          },
+          {
+            "feature": "agent_burst_concentration_7d",
+            "value": 0.10519105658277551
+          },
+          {
+            "feature": "network_inbound_counterparty_count_7d",
+            "value": 0.10426434698158286
+          }
+        ],
+        "top_feature_share": 0.16025570792272162
+      },
+      "name": "lr_raw_baseline",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.879,
+        "average_precision": 0.1835354631938025,
+        "balanced_accuracy": 0.5029103535353535,
+        "confusion_matrix": [
+          [
+            52682,
+            118
+          ],
+          [
+            7142,
+            58
+          ]
+        ],
+        "false_positive_rate": 0.002234848484848485,
+        "macro_f1": 0.47563219977694776,
+        "normal_recall": 0.9977651515151515,
+        "roc_auc": 0.6176874934238215,
+        "suspicious_f1": 0.015726681127982648,
+        "suspicious_precision": 0.32954545454545453,
+        "suspicious_recall": 0.008055555555555555,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.540681099999347,
+      "validation_metrics": {
+        "accuracy": 0.8766666666666667,
+        "average_precision": 0.14557854003295734,
+        "balanced_accuracy": 0.5024242424242424,
+        "confusion_matrix": [
+          [
+            13132,
+            68
+          ],
+          [
+            1782,
+            18
+          ]
+        ],
+        "false_positive_rate": 0.005151515151515152,
+        "macro_f1": 0.4766422513518849,
+        "normal_recall": 0.9948484848484849,
+        "roc_auc": 0.5567883207070707,
+        "suspicious_f1": 0.019088016967126194,
+        "suspicious_precision": 0.20930232558139536,
+        "suspicious_recall": 0.01,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": true,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.8378652167839488
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.5354798236463649
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.3878462778686927
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.3151470590345277
+          },
+          {
+            "feature": "network_counterparty_set_change_7d",
+            "value": 0.25941494609641885
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.23743073342175727
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.18966092619403138
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.17220369610648167
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.15415481396926023
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.12956891270408752
+          }
+        ],
+        "top_feature_share": 0.21123579227247075
+      },
+      "name": "lr_robust_baseline",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.8800666666666667,
+        "average_precision": 0.2543801986847706,
+        "balanced_accuracy": 0.5096938131313131,
+        "confusion_matrix": [
+          [
+            52643,
+            157
+          ],
+          [
+            7039,
+            161
+          ]
+        ],
+        "false_positive_rate": 0.0029734848484848486,
+        "macro_f1": 0.4894279298219683,
+        "normal_recall": 0.9970265151515152,
+        "roc_auc": 0.6945262981376262,
+        "suspicious_f1": 0.04283054003724395,
+        "suspicious_precision": 0.5062893081761006,
+        "suspicious_recall": 0.02236111111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.71055879999767,
+      "validation_metrics": {
+        "accuracy": 0.8792,
+        "average_precision": 0.23242478222671667,
+        "balanced_accuracy": 0.5093813131313131,
+        "confusion_matrix": [
+          [
+            13147,
+            53
+          ],
+          [
+            1759,
+            41
+          ]
+        ],
+        "false_positive_rate": 0.004015151515151515,
+        "macro_f1": 0.48941219734522895,
+        "normal_recall": 0.9959848484848485,
+        "roc_auc": 0.6659618476430976,
+        "suspicious_f1": 0.04329461457233368,
+        "suspicious_precision": 0.43617021276595747,
+        "suspicious_recall": 0.02277777777777778,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.8046648628935616
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.517787333206355
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.37326549076297655
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.3190077799024438
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.24754874390815812
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.2270052645371122
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.2259257710586128
+          },
+          {
+            "feature": "network_counterparty_set_change_7d",
+            "value": 0.22523219836644806
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.16689769214381234
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.14770493678871555
+          }
+        ],
+        "top_feature_share": 0.2011838745493209
+      },
+      "name": "lr_robust_C0.1_none",
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.8801166666666667,
+        "average_precision": 0.2549537766674845,
+        "balanced_accuracy": 0.5088825757575758,
+        "confusion_matrix": [
+          [
+            52660,
+            140
+          ],
+          [
+            7053,
+            147
+          ]
+        ],
+        "false_positive_rate": 0.0026515151515151517,
+        "macro_f1": 0.48766883718968584,
+        "normal_recall": 0.9973484848484848,
+        "roc_auc": 0.6949798597958754,
+        "suspicious_f1": 0.039268064645385334,
+        "suspicious_precision": 0.5121951219512195,
+        "suspicious_recall": 0.020416666666666666,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.768551599991042,
+      "validation_metrics": {
+        "accuracy": 0.8789333333333333,
+        "average_precision": 0.23161806970512702,
+        "balanced_accuracy": 0.508270202020202,
+        "confusion_matrix": [
+          [
+            13147,
+            53
+          ],
+          [
+            1763,
+            37
+          ]
+        ],
+        "false_positive_rate": 0.004015151515151515,
+        "macro_f1": 0.48727504757387363,
+        "normal_recall": 0.9959848484848485,
+        "roc_auc": 0.6671810395622896,
+        "suspicious_f1": 0.039153439153439155,
+        "suspicious_precision": 0.4111111111111111,
+        "suspicious_recall": 0.020555555555555556,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.747374028568259
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.49087749368298284
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.40926608665450165
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.30280150163466535
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.28974774514278184
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.26581157037098707
+          },
+          {
+            "feature": "structuring_near_threshold_history_ratio_7d",
+            "value": 0.2400815307071847
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.1955994383586756
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.1860577869486589
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.18453159547507755
+          }
+        ],
+        "top_feature_share": 0.1782639596486498
+      },
+      "name": "lr_robust_C0.1_balanced",
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.6683166666666667,
+        "average_precision": 0.24802159065530727,
+        "balanced_accuracy": 0.6460732323232323,
+        "confusion_matrix": [
+          [
+            35658,
+            17142
+          ],
+          [
+            2759,
+            4441
+          ]
+        ],
+        "false_positive_rate": 0.3246590909090909,
+        "macro_f1": 0.5452064386706577,
+        "normal_recall": 0.675340909090909,
+        "roc_auc": 0.7002979653303872,
+        "suspicious_f1": 0.3085849286036897,
+        "suspicious_precision": 0.20576379557985452,
+        "suspicious_recall": 0.6168055555555556,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.053081700010807,
+      "validation_metrics": {
+        "accuracy": 0.5845333333333333,
+        "average_precision": 0.22820914476339876,
+        "balanced_accuracy": 0.621439393939394,
+        "confusion_matrix": [
+          [
+            7562,
+            5638
+          ],
+          [
+            594,
+            1206
+          ]
+        ],
+        "false_positive_rate": 0.4271212121212121,
+        "macro_f1": 0.49361126801385286,
+        "normal_recall": 0.5728787878787879,
+        "roc_auc": 0.6686335648148147,
+        "suspicious_f1": 0.27903748264692274,
+        "suspicious_precision": 0.17621274108708357,
+        "suspicious_recall": 0.67,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.8378652167839488
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.5354798236463649
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.3878462778686927
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.3151470590345277
+          },
+          {
+            "feature": "network_counterparty_set_change_7d",
+            "value": 0.25941494609641885
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.23743073342175727
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.18966092619403138
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.17220369610648167
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.15415481396926023
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.12956891270408752
+          }
+        ],
+        "top_feature_share": 0.21123579227247075
+      },
+      "name": "lr_robust_C1.0_none",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.8800666666666667,
+        "average_precision": 0.2543801986847706,
+        "balanced_accuracy": 0.5096938131313131,
+        "confusion_matrix": [
+          [
+            52643,
+            157
+          ],
+          [
+            7039,
+            161
+          ]
+        ],
+        "false_positive_rate": 0.0029734848484848486,
+        "macro_f1": 0.4894279298219683,
+        "normal_recall": 0.9970265151515152,
+        "roc_auc": 0.6945262981376262,
+        "suspicious_f1": 0.04283054003724395,
+        "suspicious_precision": 0.5062893081761006,
+        "suspicious_recall": 0.02236111111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.489866800009622,
+      "validation_metrics": {
+        "accuracy": 0.8792,
+        "average_precision": 0.23242478222671667,
+        "balanced_accuracy": 0.5093813131313131,
+        "confusion_matrix": [
+          [
+            13147,
+            53
+          ],
+          [
+            1759,
+            41
+          ]
+        ],
+        "false_positive_rate": 0.004015151515151515,
+        "macro_f1": 0.48941219734522895,
+        "normal_recall": 0.9959848484848485,
+        "roc_auc": 0.6659618476430976,
+        "suspicious_f1": 0.04329461457233368,
+        "suspicious_precision": 0.43617021276595747,
+        "suspicious_recall": 0.02277777777777778,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.7513305669487881
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.4878769895526821
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.32541271693060614
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.3121859530528875
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.2663180268639586
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.23577264516061905
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.20500886299754312
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.19560974357742633
+          },
+          {
+            "feature": "structuring_near_threshold_history_ratio_7d",
+            "value": 0.18633625400071238
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.1339700703090633
+          }
+        ],
+        "top_feature_share": 0.1939050312233965
+      },
+      "name": "lr_robust_C1.0_balanced",
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.6669833333333334,
+        "average_precision": 0.24705062595638935,
+        "balanced_accuracy": 0.6448958333333333,
+        "confusion_matrix": [
+          [
+            35585,
+            17215
+          ],
+          [
+            2766,
+            4434
+          ]
+        ],
+        "false_positive_rate": 0.3260416666666667,
+        "macro_f1": 0.5440929910749273,
+        "normal_recall": 0.6739583333333333,
+        "roc_auc": 0.7001823534827442,
+        "suspicious_f1": 0.3073936704911782,
+        "suspicious_precision": 0.20481315534204814,
+        "suspicious_recall": 0.6158333333333333,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.689617099997122,
+      "validation_metrics": {
+        "accuracy": 0.5815333333333333,
+        "average_precision": 0.22822997878003232,
+        "balanced_accuracy": 0.6209343434343435,
+        "confusion_matrix": [
+          [
+            7512,
+            5688
+          ],
+          [
+            589,
+            1211
+          ]
+        ],
+        "false_positive_rate": 0.4309090909090909,
+        "macro_f1": 0.4918709031636218,
+        "normal_recall": 0.5690909090909091,
+        "roc_auc": 0.6695533038720538,
+        "suspicious_f1": 0.2784228072192206,
+        "suspicious_precision": 0.17553268589650675,
+        "suspicious_recall": 0.6727777777777778,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.7873020891510668
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.4976233343283274
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.35197800390346534
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.3083053947424997
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.2530583611726224
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.22795301295227524
+          },
+          {
+            "feature": "network_counterparty_set_change_7d",
+            "value": 0.2259979908893398
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.1995205242207831
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.15823600002384683
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.15733189162055922
+          }
+        ],
+        "top_feature_share": 0.19813887360831345
+      },
+      "name": "lr_robust_C10.0_none",
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.88,
+        "average_precision": 0.2548602868502303,
+        "balanced_accuracy": 0.5084564393939394,
+        "confusion_matrix": [
+          [
+            52659,
+            141
+          ],
+          [
+            7059,
+            141
+          ]
+        ],
+        "false_positive_rate": 0.0026704545454545453,
+        "macro_f1": 0.4868503477294475,
+        "normal_recall": 0.9973295454545454,
+        "roc_auc": 0.695023841277357,
+        "suspicious_f1": 0.03769045709703288,
+        "suspicious_precision": 0.5,
+        "suspicious_recall": 0.019583333333333335,
+        "threshold": 0.5
+      },
+      "training_seconds": 11.133073099990725,
+      "validation_metrics": {
+        "accuracy": 0.8794666666666666,
+        "average_precision": 0.23135717191294597,
+        "balanced_accuracy": 0.5100126262626262,
+        "confusion_matrix": [
+          [
+            13149,
+            51
+          ],
+          [
+            1757,
+            43
+          ]
+        ],
+        "false_positive_rate": 0.003863636363636364,
+        "macro_f1": 0.49053932273740286,
+        "normal_recall": 0.9961363636363636,
+        "roc_auc": 0.6663113425925926,
+        "suspicious_f1": 0.0454065469904963,
+        "suspicious_precision": 0.4574468085106383,
+        "suspicious_recall": 0.02388888888888889,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "importance": {
+        "measure": "absolute_standardized_coefficient",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.7537903500815317
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.47594208522118236
+          },
+          {
+            "feature": "structuring_repeated_amount_ratio_7d",
+            "value": 0.3753441291471726
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.30115540640313115
+          },
+          {
+            "feature": "agent_unique_wallet_count_7d",
+            "value": 0.294252504168491
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.23235298481250896
+          },
+          {
+            "feature": "structuring_near_threshold_history_ratio_7d",
+            "value": 0.21728240835997273
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.20812445092907733
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.18892291313306622
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.15936415500651221
+          }
+        ],
+        "top_feature_share": 0.18528861222595744
+      },
+      "name": "lr_robust_C10.0_balanced",
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "train_metrics": {
+        "accuracy": 0.66855,
+        "average_precision": 0.24741342667564437,
+        "balanced_accuracy": 0.6450662878787878,
+        "confusion_matrix": [
+          [
+            35691,
+            17109
+          ],
+          [
+            2778,
+            4422
+          ]
+        ],
+        "false_positive_rate": 0.3240340909090909,
+        "macro_f1": 0.544963232236334,
+        "normal_recall": 0.6759659090909091,
+        "roc_auc": 0.7002413102377947,
+        "suspicious_f1": 0.30782082071629946,
+        "suspicious_precision": 0.20537829176536157,
+        "suspicious_recall": 0.6141666666666666,
+        "threshold": 0.5
+      },
+      "training_seconds": 10.445300599996699,
+      "validation_metrics": {
+        "accuracy": 0.5853333333333334,
+        "average_precision": 0.2278550202813049,
+        "balanced_accuracy": 0.6223737373737374,
+        "confusion_matrix": [
+          [
+            7572,
+            5628
+          ],
+          [
+            592,
+            1208
+          ]
+        ],
+        "false_positive_rate": 0.4263636363636364,
+        "macro_f1": 0.49430758361279925,
+        "normal_recall": 0.5736363636363636,
+        "roc_auc": 0.6691742634680135,
+        "suspicious_f1": 0.2797591477535896,
+        "suspicious_precision": 0.1767115272088941,
+        "suspicious_recall": 0.6711111111111111,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "lbfgs failed to converge after 2000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=2000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.07602659359623698
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.07537324408215682
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.06266943985114519
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.05561304008510075
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.04890702090261833
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.0482347591289578
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.04762727103335628
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.0472790892618855
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.04704117561084112
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.041925700172185124
+          }
+        ],
+        "top_feature_share": 0.07602659359623698
+      },
+      "name": "rf_raw_baseline",
+      "params": {
+        "class_weight": null,
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 160
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.9972666666666666,
+        "average_precision": 0.9930089417600727,
+        "balanced_accuracy": 0.9886710858585859,
+        "confusion_matrix": [
+          [
+            52799,
+            1
+          ],
+          [
+            163,
+            7037
+          ]
+        ],
+        "false_positive_rate": 1.893939393939394e-05,
+        "macro_f1": 0.9934654384209095,
+        "normal_recall": 0.9999810606060606,
+        "roc_auc": 0.998069119581229,
+        "suspicious_f1": 0.9884815283045372,
+        "suspicious_precision": 0.9998579141801648,
+        "suspicious_recall": 0.9773611111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 22.021970999994664,
+      "validation_metrics": {
+        "accuracy": 0.8789333333333333,
+        "average_precision": 0.22132607116813288,
+        "balanced_accuracy": 0.508270202020202,
+        "confusion_matrix": [
+          [
+            13147,
+            53
+          ],
+          [
+            1763,
+            37
+          ]
+        ],
+        "false_positive_rate": 0.004015151515151515,
+        "macro_f1": 0.48727504757387363,
+        "normal_recall": 0.9959848484848485,
+        "roc_auc": 0.6654953072390571,
+        "suspicious_f1": 0.039153439153439155,
+        "suspicious_precision": 0.4111111111111111,
+        "suspicious_recall": 0.020555555555555556,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.05955477050668466
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.0523597162237592
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.05226048869234187
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.05190979630051939
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.05115702648192063
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.0511049394609011
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.05008059215472848
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.04831450113879911
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.04819132383679914
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.04769311112928096
+          }
+        ],
+        "top_feature_share": 0.05955477050668466
+      },
+      "name": "rf_raw_regularized_none",
+      "params": {
+        "class_weight": null,
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.91875,
+        "average_precision": 0.8612470173781319,
+        "balanced_accuracy": 0.6614583333333334,
+        "confusion_matrix": [
+          [
+            52800,
+            0
+          ],
+          [
+            4875,
+            2325
+          ]
+        ],
+        "false_positive_rate": 0.0,
+        "macro_f1": 0.7220306728461386,
+        "normal_recall": 1.0,
+        "roc_auc": 0.950567319023569,
+        "suspicious_f1": 0.4881889763779528,
+        "suspicious_precision": 1.0,
+        "suspicious_recall": 0.3229166666666667,
+        "threshold": 0.5
+      },
+      "training_seconds": 25.68221870000707,
+      "validation_metrics": {
+        "accuracy": 0.88,
+        "average_precision": 0.2483036352906216,
+        "balanced_accuracy": 0.5043181818181818,
+        "confusion_matrix": [
+          [
+            13182,
+            18
+          ],
+          [
+            1782,
+            18
+          ]
+        ],
+        "false_positive_rate": 0.0013636363636363637,
+        "macro_f1": 0.47784823345614347,
+        "normal_recall": 0.9986363636363637,
+        "roc_auc": 0.6858044823232323,
+        "suspicious_f1": 0.0196078431372549,
+        "suspicious_precision": 0.5,
+        "suspicious_recall": 0.01,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.06286255107189209
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.05803552332266418
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.054159452836788975
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.05094334909151156
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.04937361395142824
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.048214213701265454
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.04678929227152226
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.046742074880448216
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.04634964809033732
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.044361741129355425
+          }
+        ],
+        "top_feature_share": 0.06286255107189209
+      },
+      "name": "rf_raw_regularized_balanced_subsample",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.9451833333333334,
+        "average_precision": 0.8835092552742808,
+        "balanced_accuracy": 0.8884880050505051,
+        "confusion_matrix": [
+          [
+            50851,
+            1949
+          ],
+          [
+            1340,
+            5860
+          ]
+        ],
+        "false_positive_rate": 0.036912878787878786,
+        "macro_f1": 0.874769159896372,
+        "normal_recall": 0.9630871212121213,
+        "roc_auc": 0.9755954979482323,
+        "suspicious_f1": 0.7808648144446665,
+        "suspicious_precision": 0.7504161864515303,
+        "suspicious_recall": 0.8138888888888889,
+        "threshold": 0.5
+      },
+      "training_seconds": 25.254272899997886,
+      "validation_metrics": {
+        "accuracy": 0.8489333333333333,
+        "average_precision": 0.23247034355966376,
+        "balanced_accuracy": 0.5713510101010101,
+        "confusion_matrix": [
+          [
+            12363,
+            837
+          ],
+          [
+            1429,
+            371
+          ]
+        ],
+        "false_positive_rate": 0.06340909090909091,
+        "macro_f1": 0.5813623658388931,
+        "normal_recall": 0.9365909090909091,
+        "roc_auc": 0.6643749999999999,
+        "suspicious_f1": 0.2466755319148936,
+        "suspicious_precision": 0.30711920529801323,
+        "suspicious_recall": 0.2061111111111111,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.07612803786116722
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.07542065098456299
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.06315910415460538
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.05555785173356339
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.048052148606981857
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.04767311476922203
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.04766185307530974
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.04765986284265812
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.046879994279902394
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.04208089121108052
+          }
+        ],
+        "top_feature_share": 0.07612803786116722
+      },
+      "name": "rf_clipped_baseline",
+      "params": {
+        "class_weight": null,
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 160
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9972666666666666,
+        "average_precision": 0.9930151099521227,
+        "balanced_accuracy": 0.9886710858585859,
+        "confusion_matrix": [
+          [
+            52799,
+            1
+          ],
+          [
+            163,
+            7037
+          ]
+        ],
+        "false_positive_rate": 1.893939393939394e-05,
+        "macro_f1": 0.9934654384209095,
+        "normal_recall": 0.9999810606060606,
+        "roc_auc": 0.9980679437605219,
+        "suspicious_f1": 0.9884815283045372,
+        "suspicious_precision": 0.9998579141801648,
+        "suspicious_recall": 0.9773611111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 21.44155150000006,
+      "validation_metrics": {
+        "accuracy": 0.8792666666666666,
+        "average_precision": 0.22830972763766327,
+        "balanced_accuracy": 0.507020202020202,
+        "confusion_matrix": [
+          [
+            13158,
+            42
+          ],
+          [
+            1769,
+            31
+          ]
+        ],
+        "false_positive_rate": 0.003181818181818182,
+        "macro_f1": 0.4843577214636131,
+        "normal_recall": 0.9968181818181818,
+        "roc_auc": 0.6694705808080808,
+        "suspicious_f1": 0.03310197544046983,
+        "suspicious_precision": 0.4246575342465753,
+        "suspicious_recall": 0.017222222222222222,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.05973809833887278
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.05275301847410236
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.05272265603522681
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.052203761427651145
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.05171058215228056
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.050597423914795374
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.04993339951459435
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.04965595947603185
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.04945196470489063
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.049070869257451785
+          }
+        ],
+        "top_feature_share": 0.05973809833887277
+      },
+      "name": "rf_clipped_regularized_none",
+      "params": {
+        "class_weight": null,
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9196833333333333,
+        "average_precision": 0.8667197344491324,
+        "balanced_accuracy": 0.6653472222222222,
+        "confusion_matrix": [
+          [
+            52800,
+            0
+          ],
+          [
+            4819,
+            2381
+          ]
+        ],
+        "false_positive_rate": 0.0,
+        "macro_f1": 0.7266912556880634,
+        "normal_recall": 1.0,
+        "roc_auc": 0.9527456991792931,
+        "suspicious_f1": 0.4970253626970045,
+        "suspicious_precision": 1.0,
+        "suspicious_recall": 0.33069444444444446,
+        "threshold": 0.5
+      },
+      "training_seconds": 25.341340400002082,
+      "validation_metrics": {
+        "accuracy": 0.8809333333333333,
+        "average_precision": 0.25334690109354896,
+        "balanced_accuracy": 0.5077272727272727,
+        "confusion_matrix": [
+          [
+            13184,
+            16
+          ],
+          [
+            1770,
+            30
+          ]
+        ],
+        "false_positive_rate": 0.0012121212121212121,
+        "macro_f1": 0.4845329483691731,
+        "normal_recall": 0.9987878787878788,
+        "roc_auc": 0.6876479797979798,
+        "suspicious_f1": 0.032502708559046585,
+        "suspicious_precision": 0.6521739130434783,
+        "suspicious_recall": 0.016666666666666666,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.062584586307456
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.0578771875741771
+          },
+          {
+            "feature": "agent_hourly_value_zscore_30d",
+            "value": 0.0524328884942813
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.05135488758851512
+          },
+          {
+            "feature": "agent_inbound_outbound_value_ratio_7d",
+            "value": 0.049499973007560455
+          },
+          {
+            "feature": "agent_wallet_value_hhi_7d",
+            "value": 0.048361647098975835
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.047492094837350576
+          },
+          {
+            "feature": "agent_prior_value_sum_7d",
+            "value": 0.047361077007412995
+          },
+          {
+            "feature": "network_top_counterparty_value_share_30d",
+            "value": 0.04635163635105919
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.044086544295332826
+          }
+        ],
+        "top_feature_share": 0.06258458630745602
+      },
+      "name": "rf_clipped_regularized_balanced_subsample",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9455666666666667,
+        "average_precision": 0.8848826285990752,
+        "balanced_accuracy": 0.8897253787878788,
+        "confusion_matrix": [
+          [
+            50857,
+            1943
+          ],
+          [
+            1323,
+            5877
+          ]
+        ],
+        "false_positive_rate": 0.03679924242424242,
+        "macro_f1": 0.875722951730835,
+        "normal_recall": 0.9632007575757576,
+        "roc_auc": 0.9758510469276094,
+        "suspicious_f1": 0.7825565912117177,
+        "suspicious_precision": 0.75153452685422,
+        "suspicious_recall": 0.81625,
+        "threshold": 0.5
+      },
+      "training_seconds": 25.208101399999578,
+      "validation_metrics": {
+        "accuracy": 0.8490666666666666,
+        "average_precision": 0.22921595409630907,
+        "balanced_accuracy": 0.5675883838383838,
+        "confusion_matrix": [
+          [
+            12381,
+            819
+          ],
+          [
+            1445,
+            355
+          ]
+        ],
+        "false_positive_rate": 0.06204545454545454,
+        "macro_f1": 0.5774822630886066,
+        "normal_recall": 0.9379545454545455,
+        "roc_auc": 0.6641871843434344,
+        "suspicious_f1": 0.23873570948217887,
+        "suspicious_precision": 0.3023850085178876,
+        "suspicious_recall": 0.19722222222222222,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.10782573746568577
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.1075822048676067
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.08957854749452383
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.08726341199011792
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.06716148742594474
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.05180250921109949
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.05154855326402039
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.03907427990302554
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.039039303859515734
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.0388306600670985
+          }
+        ],
+        "top_feature_share": 0.10782573746568574
+      },
+      "name": "gb_raw_baseline",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100,
+        "subsample": 1.0
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.88635,
+        "average_precision": 0.40005962284247815,
+        "balanced_accuracy": 0.5310763888888889,
+        "confusion_matrix": [
+          [
+            52723,
+            77
+          ],
+          [
+            6742,
+            458
+          ]
+        ],
+        "false_positive_rate": 0.0014583333333333334,
+        "macro_f1": 0.5288412704138625,
+        "normal_recall": 0.9985416666666667,
+        "roc_auc": 0.7624506983901514,
+        "suspicious_f1": 0.11842275371687136,
+        "suspicious_precision": 0.8560747663551402,
+        "suspicious_recall": 0.0636111111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 22.38098240000545,
+      "validation_metrics": {
+        "accuracy": 0.8822666666666666,
+        "average_precision": 0.267702411811517,
+        "balanced_accuracy": 0.518560606060606,
+        "confusion_matrix": [
+          [
+            13162,
+            38
+          ],
+          [
+            1728,
+            72
+          ]
+        ],
+        "false_positive_rate": 0.0028787878787878787,
+        "macro_f1": 0.506261660817231,
+        "normal_recall": 0.9971212121212121,
+        "roc_auc": 0.6935713594276095,
+        "suspicious_f1": 0.07539267015706806,
+        "suspicious_precision": 0.6545454545454545,
+        "suspicious_recall": 0.04,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.10972452175763803
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.10954829650374696
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.08848133834906864
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.08043673309180199
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.06689004646879305
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.0526155894412392
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.044513126538990665
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.04189336873043958
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.03713044531299729
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.03690731028363632
+          }
+        ],
+        "top_feature_share": 0.10972452175763807
+      },
+      "name": "gb_raw_regularized_none",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.8849833333333333,
+        "average_precision": 0.388732906832701,
+        "balanced_accuracy": 0.5241224747474748,
+        "confusion_matrix": [
+          [
+            52744,
+            56
+          ],
+          [
+            6845,
+            355
+          ]
+        ],
+        "false_positive_rate": 0.0010606060606060607,
+        "macro_f1": 0.5159416135241438,
+        "normal_recall": 0.9989393939393939,
+        "roc_auc": 0.7589301202125421,
+        "suspicious_f1": 0.09328603337274997,
+        "suspicious_precision": 0.8637469586374696,
+        "suspicious_recall": 0.049305555555555554,
+        "threshold": 0.5
+      },
+      "training_seconds": 30.270567100000335,
+      "validation_metrics": {
+        "accuracy": 0.8816666666666667,
+        "average_precision": 0.2678281441655673,
+        "balanced_accuracy": 0.5131818181818182,
+        "confusion_matrix": [
+          [
+            13174,
+            26
+          ],
+          [
+            1749,
+            51
+          ]
+        ],
+        "false_positive_rate": 0.00196969696969697,
+        "macro_f1": 0.4956132179154927,
+        "normal_recall": 0.998030303030303,
+        "roc_auc": 0.6933330387205386,
+        "suspicious_f1": 0.05434203516249334,
+        "suspicious_precision": 0.6623376623376623,
+        "suspicious_recall": 0.028333333333333332,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.14212790233603023
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.11733233007176588
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.11044076381361485
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.07107546922401933
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.05674515907396377
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.04714098645394915
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.042399350559936905
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.03639194849481762
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.0355181685031497
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.03379140548415417
+          }
+        ],
+        "top_feature_share": 0.1421279023360302
+      },
+      "name": "gb_raw_regularized_balanced",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.7167166666666667,
+        "average_precision": 0.3628302415154459,
+        "balanced_accuracy": 0.6999621212121212,
+        "confusion_matrix": [
+          [
+            38122,
+            14678
+          ],
+          [
+            2319,
+            4881
+          ]
+        ],
+        "false_positive_rate": 0.27799242424242426,
+        "macro_f1": 0.5912603933939597,
+        "normal_recall": 0.7220075757575758,
+        "roc_auc": 0.7673409985269359,
+        "suspicious_f1": 0.36481183900743674,
+        "suspicious_precision": 0.24955263561531776,
+        "suspicious_recall": 0.6779166666666666,
+        "threshold": 0.5
+      },
+      "training_seconds": 29.94160209999245,
+      "validation_metrics": {
+        "accuracy": 0.6609333333333334,
+        "average_precision": 0.2583345023306753,
+        "balanced_accuracy": 0.638699494949495,
+        "confusion_matrix": [
+          [
+            8817,
+            4383
+          ],
+          [
+            703,
+            1097
+          ]
+        ],
+        "false_positive_rate": 0.33204545454545453,
+        "macro_f1": 0.5387589962854047,
+        "normal_recall": 0.6679545454545455,
+        "roc_auc": 0.6934065656565657,
+        "suspicious_f1": 0.30137362637362636,
+        "suspicious_precision": 0.20018248175182482,
+        "suspicious_recall": 0.6094444444444445,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "balanced"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.10646686899098
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.09764621834345956
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.08615089698882152
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.08096820352320787
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.07091373723361447
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.052130092540997826
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.04805775598587914
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.04360514901417508
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.040408594790037354
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.038005400510864394
+          }
+        ],
+        "top_feature_share": 0.10646686899098004
+      },
+      "name": "gb_clipped_baseline",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100,
+        "subsample": 1.0
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.8869666666666667,
+        "average_precision": 0.40588894796733316,
+        "balanced_accuracy": 0.5332859848484849,
+        "confusion_matrix": [
+          [
+            52729,
+            71
+          ],
+          [
+            6711,
+            489
+          ]
+        ],
+        "false_positive_rate": 0.0013446969696969697,
+        "macro_f1": 0.5328034183009898,
+        "normal_recall": 0.998655303030303,
+        "roc_auc": 0.7656963002420034,
+        "suspicious_f1": 0.12603092783505154,
+        "suspicious_precision": 0.8732142857142857,
+        "suspicious_recall": 0.06791666666666667,
+        "threshold": 0.5
+      },
+      "training_seconds": 23.436569299999974,
+      "validation_metrics": {
+        "accuracy": 0.882,
+        "average_precision": 0.2621774700979364,
+        "balanced_accuracy": 0.5174494949494949,
+        "confusion_matrix": [
+          [
+            13162,
+            38
+          ],
+          [
+            1732,
+            68
+          ]
+        ],
+        "false_positive_rate": 0.0028787878787878787,
+        "macro_f1": 0.5041754218766843,
+        "normal_recall": 0.9971212121212121,
+        "roc_auc": 0.6911194234006733,
+        "suspicious_f1": 0.07135362014690451,
+        "suspicious_precision": 0.6415094339622641,
+        "suspicious_recall": 0.03777777777777778,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.11115041139288231
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.10393508536022904
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.08618253352745635
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.08331187243160362
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.06670180608841507
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.0554881589828941
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.045328759515954276
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.04345674378653338
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.04257825240206274
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.03908050321562784
+          }
+        ],
+        "top_feature_share": 0.11115041139288229
+      },
+      "name": "gb_clipped_regularized_none",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.8849166666666667,
+        "average_precision": 0.38803196196895295,
+        "balanced_accuracy": 0.524804292929293,
+        "confusion_matrix": [
+          [
+            52728,
+            72
+          ],
+          [
+            6833,
+            367
+          ]
+        ],
+        "false_positive_rate": 0.0013636363636363637,
+        "macro_f1": 0.5173160839336837,
+        "normal_recall": 0.9986363636363637,
+        "roc_auc": 0.76001866450968,
+        "suspicious_f1": 0.09608587511454379,
+        "suspicious_precision": 0.835990888382688,
+        "suspicious_recall": 0.050972222222222224,
+        "threshold": 0.5
+      },
+      "training_seconds": 30.645883599994704,
+      "validation_metrics": {
+        "accuracy": 0.8822,
+        "average_precision": 0.2738762778905422,
+        "balanced_accuracy": 0.5151641414141414,
+        "confusion_matrix": [
+          [
+            13175,
+            25
+          ],
+          [
+            1742,
+            58
+          ]
+        ],
+        "false_positive_rate": 0.001893939393939394,
+        "macro_f1": 0.4993796406189892,
+        "normal_recall": 0.9981060606060606,
+        "roc_auc": 0.6931199074074075,
+        "suspicious_f1": 0.06160382368560807,
+        "suspicious_precision": 0.6987951807228916,
+        "suspicious_recall": 0.03222222222222222,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.1411900848911315
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.11636398422596061
+          },
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.1097035342923333
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.07181106631976387
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.05598917208237997
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.04704414790959936
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.04146002450513863
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.03739003661020101
+          },
+          {
+            "feature": "network_outbound_counterparty_entropy_30d",
+            "value": 0.03626032320427586
+          },
+          {
+            "feature": "structuring_amount_cluster_dispersion_7d",
+            "value": 0.033346462038744785
+          }
+        ],
+        "top_feature_share": 0.1411900848911315
+      },
+      "name": "gb_clipped_regularized_balanced",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.7184,
+        "average_precision": 0.3624782725346678,
+        "balanced_accuracy": 0.7007386363636363,
+        "confusion_matrix": [
+          [
+            38226,
+            14574
+          ],
+          [
+            2322,
+            4878
+          ]
+        ],
+        "false_positive_rate": 0.27602272727272725,
+        "macro_f1": 0.5925255998396495,
+        "normal_recall": 0.7239772727272727,
+        "roc_auc": 0.7686818050294613,
+        "suspicious_f1": 0.3660513282305268,
+        "suspicious_precision": 0.25077112893275755,
+        "suspicious_recall": 0.6775,
+        "threshold": 0.5
+      },
+      "training_seconds": 32.5853661000001,
+      "validation_metrics": {
+        "accuracy": 0.6624,
+        "average_precision": 0.2591002441058139,
+        "balanced_accuracy": 0.6407323232323232,
+        "confusion_matrix": [
+          [
+            8834,
+            4366
+          ],
+          [
+            698,
+            1102
+          ]
+        ],
+        "false_positive_rate": 0.33075757575757575,
+        "macro_f1": 0.5402387233559988,
+        "normal_recall": 0.6692424242424242,
+        "roc_auc": 0.6933332070707071,
+        "suspicious_f1": 0.30324711062190424,
+        "suspicious_precision": 0.20153621068032188,
+        "suspicious_recall": 0.6122222222222222,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "balanced"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": true,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_raw_baseline",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 0.0,
+        "learning_rate": 0.1,
+        "max_depth": null,
+        "max_iter": 120,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.9106333333333333,
+        "average_precision": 0.6834390592703504,
+        "balanced_accuracy": 0.6295580808080808,
+        "confusion_matrix": [
+          [
+            52768,
+            32
+          ],
+          [
+            5330,
+            1870
+          ]
+        ],
+        "false_positive_rate": 0.0006060606060606061,
+        "macro_f1": 0.6812739834343073,
+        "normal_recall": 0.9993939393939394,
+        "roc_auc": 0.8835171519886365,
+        "suspicious_f1": 0.4108987035816304,
+        "suspicious_precision": 0.9831756046267087,
+        "suspicious_recall": 0.25972222222222224,
+        "threshold": 0.5
+      },
+      "training_seconds": 1.7914309000043431,
+      "validation_metrics": {
+        "accuracy": 0.8793333333333333,
+        "average_precision": 0.24258156979920656,
+        "balanced_accuracy": 0.5168939393939394,
+        "confusion_matrix": [
+          [
+            13118,
+            82
+          ],
+          [
+            1728,
+            72
+          ]
+        ],
+        "false_positive_rate": 0.006212121212121212,
+        "macro_f1": 0.5045790761500097,
+        "normal_recall": 0.9937878787878788,
+        "roc_auc": 0.683963005050505,
+        "suspicious_f1": 0.0736949846468782,
+        "suspicious_precision": 0.4675324675324675,
+        "suspicious_recall": 0.04,
+        "threshold": 0.5
+      },
+      "warnings": [
+        "Could not find the number of physical cores for the following reason:\n[WinError 2] The system cannot find the file specified\nReturning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use."
+      ],
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_raw_regularized_none",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.9092166666666667,
+        "average_precision": 0.6689159901784874,
+        "balanced_accuracy": 0.6234154040404041,
+        "confusion_matrix": [
+          [
+            52772,
+            28
+          ],
+          [
+            5419,
+            1781
+          ]
+        ],
+        "false_positive_rate": 0.0005303030303030304,
+        "macro_f1": 0.673153172085518,
+        "normal_recall": 0.999469696969697,
+        "roc_auc": 0.8773692668876262,
+        "suspicious_f1": 0.3953823953823954,
+        "suspicious_precision": 0.9845218352681039,
+        "suspicious_recall": 0.24736111111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 1.3101877000008244,
+      "validation_metrics": {
+        "accuracy": 0.8799333333333333,
+        "average_precision": 0.24861595713586127,
+        "balanced_accuracy": 0.5155555555555555,
+        "confusion_matrix": [
+          [
+            13134,
+            66
+          ],
+          [
+            1735,
+            65
+          ]
+        ],
+        "false_positive_rate": 0.005,
+        "macro_f1": 0.5015796594612901,
+        "normal_recall": 0.995,
+        "roc_auc": 0.6850740740740741,
+        "suspicious_f1": 0.06732263076126359,
+        "suspicious_precision": 0.4961832061068702,
+        "suspicious_recall": 0.03611111111111111,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_raw_regularized_balanced",
+      "params": {
+        "class_weight": "balanced",
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.8126833333333333,
+        "average_precision": 0.6374706490174465,
+        "balanced_accuracy": 0.7921527777777778,
+        "confusion_matrix": [
+          [
+            43252,
+            9548
+          ],
+          [
+            1691,
+            5509
+          ]
+        ],
+        "false_positive_rate": 0.18083333333333335,
+        "macro_f1": 0.6900250267350656,
+        "normal_recall": 0.8191666666666667,
+        "roc_auc": 0.885553128945707,
+        "suspicious_f1": 0.4950352698027587,
+        "suspicious_precision": 0.36587633658763363,
+        "suspicious_recall": 0.7651388888888889,
+        "threshold": 0.5
+      },
+      "training_seconds": 4.077504800006864,
+      "validation_metrics": {
+        "accuracy": 0.7387333333333334,
+        "average_precision": 0.23831365051695458,
+        "balanced_accuracy": 0.621729797979798,
+        "confusion_matrix": [
+          [
+            10239,
+            2961
+          ],
+          [
+            958,
+            842
+          ]
+        ],
+        "false_positive_rate": 0.2243181818181818,
+        "macro_f1": 0.5699593853944542,
+        "normal_recall": 0.7756818181818181,
+        "roc_auc": 0.6754050925925925,
+        "suspicious_f1": 0.30055327503123325,
+        "suspicious_precision": 0.2214041546147778,
+        "suspicious_recall": 0.4677777777777778,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": true,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_clipped_baseline",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 0.0,
+        "learning_rate": 0.1,
+        "max_depth": null,
+        "max_iter": 120,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9098666666666667,
+        "average_precision": 0.6743111888901463,
+        "balanced_accuracy": 0.6267834595959596,
+        "confusion_matrix": [
+          [
+            52761,
+            39
+          ],
+          [
+            5369,
+            1831
+          ]
+        ],
+        "false_positive_rate": 0.0007386363636363636,
+        "macro_f1": 0.6774985784712212,
+        "normal_recall": 0.9992613636363636,
+        "roc_auc": 0.8797506260521885,
+        "suspicious_f1": 0.4037486218302095,
+        "suspicious_precision": 0.979144385026738,
+        "suspicious_recall": 0.25430555555555556,
+        "threshold": 0.5
+      },
+      "training_seconds": 0.8917770999978529,
+      "validation_metrics": {
+        "accuracy": 0.8784666666666666,
+        "average_precision": 0.2410040055395389,
+        "balanced_accuracy": 0.5149621212121213,
+        "confusion_matrix": [
+          [
+            13111,
+            89
+          ],
+          [
+            1734,
+            66
+          ]
+        ],
+        "false_positive_rate": 0.0067424242424242425,
+        "macro_f1": 0.5012582536560943,
+        "normal_recall": 0.9932575757575758,
+        "roc_auc": 0.6804553661616162,
+        "suspicious_f1": 0.06751918158567775,
+        "suspicious_precision": 0.4258064516129032,
+        "suspicious_recall": 0.03666666666666667,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_clipped_regularized_none",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9090833333333334,
+        "average_precision": 0.6670905810762852,
+        "balanced_accuracy": 0.6235195707070708,
+        "confusion_matrix": [
+          [
+            52761,
+            39
+          ],
+          [
+            5416,
+            1784
+          ]
+        ],
+        "false_positive_rate": 0.0007386363636363636,
+        "macro_f1": 0.6731397809457911,
+        "normal_recall": 0.9992613636363636,
+        "roc_auc": 0.8771360703388047,
+        "suspicious_f1": 0.3954338911670176,
+        "suspicious_precision": 0.9786066922654965,
+        "suspicious_recall": 0.2477777777777778,
+        "threshold": 0.5
+      },
+      "training_seconds": 1.3433481999963988,
+      "validation_metrics": {
+        "accuracy": 0.8810666666666667,
+        "average_precision": 0.25570307017046645,
+        "balanced_accuracy": 0.5178787878787878,
+        "confusion_matrix": [
+          [
+            13144,
+            56
+          ],
+          [
+            1728,
+            72
+          ]
+        ],
+        "false_positive_rate": 0.004242424242424243,
+        "macro_f1": 0.5055689637434978,
+        "normal_recall": 0.9957575757575757,
+        "roc_auc": 0.6845647095959595,
+        "suspicious_f1": 0.07468879668049792,
+        "suspicious_precision": 0.5625,
+        "suspicious_recall": 0.04,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "importance": {
+        "measure": "unsupported",
+        "ranking": []
+      },
+      "name": "hgb_clipped_regularized_balanced",
+      "params": {
+        "class_weight": "balanced",
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.8118666666666666,
+        "average_precision": 0.6359443044356383,
+        "balanced_accuracy": 0.7906691919191919,
+        "confusion_matrix": [
+          [
+            43220,
+            9580
+          ],
+          [
+            1708,
+            5492
+          ]
+        ],
+        "false_positive_rate": 0.18143939393939393,
+        "macro_f1": 0.6888355153219068,
+        "normal_recall": 0.8185606060606061,
+        "roc_auc": 0.8842671519886365,
+        "suspicious_f1": 0.4931752873563218,
+        "suspicious_precision": 0.3643842887473461,
+        "suspicious_recall": 0.7627777777777778,
+        "threshold": 0.5
+      },
+      "training_seconds": 4.013765300012892,
+      "validation_metrics": {
+        "accuracy": 0.746,
+        "average_precision": 0.24815448576939508,
+        "balanced_accuracy": 0.623219696969697,
+        "confusion_matrix": [
+          [
+            10359,
+            2841
+          ],
+          [
+            969,
+            831
+          ]
+        ],
+        "false_positive_rate": 0.21522727272727274,
+        "macro_f1": 0.574197694578913,
+        "normal_recall": 0.7847727272727273,
+        "roc_auc": 0.6715653198653198,
+        "suspicious_f1": 0.30372807017543857,
+        "suspicious_precision": 0.22630718954248366,
+        "suspicious_recall": 0.46166666666666667,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.13425403833389282
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.08243409544229507
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.07064354419708252
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.06904240697622299
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.04099708050489426
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.034047819674015045
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.032663390040397644
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.031641069799661636
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.029316671192646027
+          },
+          {
+            "feature": "agent_hourly_tx_zscore_30d",
+            "value": 0.0277043916285038
+          }
+        ],
+        "top_feature_share": 0.13425402343273163
+      },
+      "name": "xgb_raw_baseline",
+      "params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.08,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 180,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 1.0
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.9019166666666667,
+        "average_precision": 0.5954631160810736,
+        "balanced_accuracy": 0.5946780303030303,
+        "confusion_matrix": [
+          [
+            52744,
+            56
+          ],
+          [
+            5829,
+            1371
+          ]
+        ],
+        "false_positive_rate": 0.0010606060606060607,
+        "macro_f1": 0.632499443277247,
+        "normal_recall": 0.9989393939393939,
+        "roc_auc": 0.849001545401936,
+        "suspicious_f1": 0.3178393416019474,
+        "suspicious_precision": 0.9607568325157674,
+        "suspicious_recall": 0.19041666666666668,
+        "threshold": 0.5
+      },
+      "training_seconds": 1.6640552000026219,
+      "validation_metrics": {
+        "accuracy": 0.8804,
+        "average_precision": 0.24486234419199834,
+        "balanced_accuracy": 0.5151010101010101,
+        "confusion_matrix": [
+          [
+            13144,
+            56
+          ],
+          [
+            1738,
+            62
+          ]
+        ],
+        "false_positive_rate": 0.004242424242424243,
+        "macro_f1": 0.5003831695335254,
+        "normal_recall": 0.9957575757575757,
+        "roc_auc": 0.682256228956229,
+        "suspicious_f1": 0.06465067778936393,
+        "suspicious_precision": 0.5254237288135594,
+        "suspicious_recall": 0.034444444444444444,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.11461999267339706
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.09261606633663177
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.07159082591533661
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.06089575216174126
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.04318183287978172
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.039880093187093735
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.03357962518930435
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.032317087054252625
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.03135426715016365
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.028175771236419678
+          }
+        ],
+        "top_feature_share": 0.11461997777223587
+      },
+      "name": "xgb_raw_regularized_none",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.8984,
+        "average_precision": 0.5751130709215914,
+        "balanced_accuracy": 0.5790056818181818,
+        "confusion_matrix": [
+          [
+            52761,
+            39
+          ],
+          [
+            6057,
+            1143
+          ]
+        ],
+        "false_positive_rate": 0.0007386363636363636,
+        "macro_f1": 0.6090562128297977,
+        "normal_recall": 0.9992613636363636,
+        "roc_auc": 0.8392526054819023,
+        "suspicious_f1": 0.2727272727272727,
+        "suspicious_precision": 0.9670050761421319,
+        "suspicious_recall": 0.15875,
+        "threshold": 0.5
+      },
+      "training_seconds": 2.7893635999935213,
+      "validation_metrics": {
+        "accuracy": 0.8807333333333334,
+        "average_precision": 0.251808187219846,
+        "balanced_accuracy": 0.514090909090909,
+        "confusion_matrix": [
+          [
+            13154,
+            46
+          ],
+          [
+            1743,
+            57
+          ]
+        ],
+        "false_positive_rate": 0.0034848484848484847,
+        "macro_f1": 0.4981165671637018,
+        "normal_recall": 0.9965151515151515,
+        "roc_auc": 0.6859174663299663,
+        "suspicious_f1": 0.05990541250656858,
+        "suspicious_precision": 0.5533980582524272,
+        "suspicious_recall": 0.03166666666666667,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.13051632046699524
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.08662188053131104
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.08164996653795242
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.07381824404001236
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.05086779594421387
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.03725947439670563
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.032283101230859756
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.030227134004235268
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.027565889060497284
+          },
+          {
+            "feature": "structuring_near_threshold_history_ratio_7d",
+            "value": 0.027141867205500603
+          }
+        ],
+        "top_feature_share": 0.13051630556583405
+      },
+      "name": "xgb_raw_regularized_balanced",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 7.333333333333333,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "train_metrics": {
+        "accuracy": 0.7853333333333333,
+        "average_precision": 0.563828234122758,
+        "balanced_accuracy": 0.7653377525252525,
+        "confusion_matrix": [
+          [
+            41799,
+            11001
+          ],
+          [
+            1879,
+            5321
+          ]
+        ],
+        "false_positive_rate": 0.20835227272727272,
+        "macro_f1": 0.6594627882007007,
+        "normal_recall": 0.7916477272727273,
+        "roc_auc": 0.8554195733375421,
+        "suspicious_f1": 0.45242751466712017,
+        "suspicious_precision": 0.3260017154760446,
+        "suspicious_recall": 0.7390277777777777,
+        "threshold": 0.5
+      },
+      "training_seconds": 2.780451099999482,
+      "validation_metrics": {
+        "accuracy": 0.7274,
+        "average_precision": 0.25075422971803535,
+        "balanced_accuracy": 0.6296843434343434,
+        "confusion_matrix": [
+          [
+            10009,
+            3191
+          ],
+          [
+            898,
+            902
+          ]
+        ],
+        "false_positive_rate": 0.24174242424242423,
+        "macro_f1": 0.5682535645864898,
+        "normal_recall": 0.7582575757575758,
+        "roc_auc": 0.6797849957912457,
+        "suspicious_f1": 0.3061259120991006,
+        "suspicious_precision": 0.22037625213779624,
+        "suspicious_recall": 0.5011111111111111,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": true,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.13364364206790924
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.08537118136882782
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.07034824043512344
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.05700687691569328
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.044050294905900955
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.03756662458181381
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.034825559705495834
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.03229203447699547
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.029826702550053596
+          },
+          {
+            "feature": "structuring_prior_tx_count_1h",
+            "value": 0.02843087539076805
+          }
+        ],
+        "top_feature_share": 0.13364365696907043
+      },
+      "name": "xgb_clipped_baseline",
+      "params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.08,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 180,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 1.0
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.9043833333333333,
+        "average_precision": 0.6182652413156955,
+        "balanced_accuracy": 0.6044760101010102,
+        "confusion_matrix": [
+          [
+            52752,
+            48
+          ],
+          [
+            5689,
+            1511
+          ]
+        ],
+        "false_positive_rate": 0.0009090909090909091,
+        "macro_f1": 0.6467219214504656,
+        "normal_recall": 0.9990909090909091,
+        "roc_auc": 0.8600600812815655,
+        "suspicious_f1": 0.34501655440118734,
+        "suspicious_precision": 0.9692110327132777,
+        "suspicious_recall": 0.2098611111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 1.7222938999912003,
+      "validation_metrics": {
+        "accuracy": 0.8805333333333333,
+        "average_precision": 0.25088439240568394,
+        "balanced_accuracy": 0.5161363636363636,
+        "confusion_matrix": [
+          [
+            13142,
+            58
+          ],
+          [
+            1734,
+            66
+          ]
+        ],
+        "false_positive_rate": 0.004393939393939394,
+        "macro_f1": 0.5023901563294639,
+        "normal_recall": 0.9956060606060606,
+        "roc_auc": 0.67951632996633,
+        "suspicious_f1": 0.06860706860706861,
+        "suspicious_precision": 0.532258064516129,
+        "suspicious_recall": 0.03666666666666667,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.11540205776691437
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.08985236287117004
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.08170948922634125
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.059315696358680725
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.05003780126571655
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.04405190795660019
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.0326385423541069
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.03150211274623871
+          },
+          {
+            "feature": "network_repeated_receiver_ratio_30d",
+            "value": 0.03043270856142044
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.02852173149585724
+          }
+        ],
+        "top_feature_share": 0.11540205776691437
+      },
+      "name": "xgb_clipped_regularized_none",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.8998,
+        "average_precision": 0.5833677303243093,
+        "balanced_accuracy": 0.5851388888888889,
+        "confusion_matrix": [
+          [
+            52756,
+            44
+          ],
+          [
+            5968,
+            1232
+          ]
+        ],
+        "false_positive_rate": 0.0008333333333333334,
+        "macro_f1": 0.618397741402105,
+        "normal_recall": 0.9991666666666666,
+        "roc_auc": 0.8425031013257576,
+        "suspicious_f1": 0.290703161868806,
+        "suspicious_precision": 0.9655172413793104,
+        "suspicious_recall": 0.1711111111111111,
+        "threshold": 0.5
+      },
+      "training_seconds": 2.73623170000792,
+      "validation_metrics": {
+        "accuracy": 0.8810666666666667,
+        "average_precision": 0.26082377861689765,
+        "balanced_accuracy": 0.515,
+        "confusion_matrix": [
+          [
+            13156,
+            44
+          ],
+          [
+            1740,
+            60
+          ]
+        ],
+        "false_positive_rate": 0.0033333333333333335,
+        "macro_f1": 0.49976431347026284,
+        "normal_recall": 0.9966666666666667,
+        "roc_auc": 0.6874175715488215,
+        "suspicious_f1": 0.06302521008403361,
+        "suspicious_precision": 0.5769230769230769,
+        "suspicious_recall": 0.03333333333333333,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "importance": {
+        "measure": "impurity_or_gain_importance",
+        "top10": [
+          {
+            "feature": "agent_current_wallet_is_new",
+            "value": 0.13756497204303741
+          },
+          {
+            "feature": "agent_prior_value_sum_1h",
+            "value": 0.08652500063180923
+          },
+          {
+            "feature": "structuring_same_day_prior_tx_count",
+            "value": 0.08553848415613174
+          },
+          {
+            "feature": "structuring_prior_value_sum_24h",
+            "value": 0.06759857386350632
+          },
+          {
+            "feature": "agent_prior_tx_count_1h",
+            "value": 0.05599776655435562
+          },
+          {
+            "feature": "network_outbound_counterparty_count_7d",
+            "value": 0.03706086054444313
+          },
+          {
+            "feature": "network_current_receiver_is_new",
+            "value": 0.0327061302959919
+          },
+          {
+            "feature": "agent_prior_tx_count_7d",
+            "value": 0.02915370464324951
+          },
+          {
+            "feature": "structuring_near_threshold_history_ratio_7d",
+            "value": 0.027436532080173492
+          },
+          {
+            "feature": "agent_repeat_wallet_ratio_7d",
+            "value": 0.02658383548259735
+          }
+        ],
+        "top_feature_share": 0.1375649869441986
+      },
+      "name": "xgb_clipped_regularized_balanced",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 7.333333333333333,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "train_metrics": {
+        "accuracy": 0.7886166666666666,
+        "average_precision": 0.5787612446118559,
+        "balanced_accuracy": 0.7691224747474747,
+        "confusion_matrix": [
+          [
+            41964,
+            10836
+          ],
+          [
+            1847,
+            5353
+          ]
+        ],
+        "false_positive_rate": 0.20522727272727273,
+        "macro_f1": 0.6632287479599264,
+        "normal_recall": 0.7947727272727273,
+        "roc_auc": 0.8606187329019361,
+        "suspicious_f1": 0.457736542819274,
+        "suspicious_precision": 0.33065661869170426,
+        "suspicious_recall": 0.7434722222222222,
+        "threshold": 0.5
+      },
+      "training_seconds": 2.8015345000021625,
+      "validation_metrics": {
+        "accuracy": 0.7286,
+        "average_precision": 0.25343767809408474,
+        "balanced_accuracy": 0.6255681818181817,
+        "confusion_matrix": [
+          [
+            10047,
+            3153
+          ],
+          [
+            918,
+            882
+          ]
+        ],
+        "false_positive_rate": 0.23886363636363636,
+        "macro_f1": 0.5669234169327518,
+        "normal_recall": 0.7611363636363636,
+        "roc_auc": 0.6767506944444445,
+        "suspicious_f1": 0.30231362467866324,
+        "suspicious_precision": 0.21858736059479553,
+        "suspicious_recall": 0.49,
+        "threshold": 0.5
+      },
+      "warnings": [],
+      "weight": "none"
+    }
+  ],
+  "search_space": [
+    {
+      "algorithm": "logistic_regression",
+      "baseline": true,
+      "name": "lr_raw_baseline",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": true,
+      "name": "lr_robust_baseline",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C0.1_none",
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C0.1_balanced",
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C1.0_none",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C1.0_balanced",
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C10.0_none",
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "logistic_regression",
+      "baseline": false,
+      "name": "lr_robust_C10.0_balanced",
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "prep": "robust",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": true,
+      "name": "rf_raw_baseline",
+      "params": {
+        "class_weight": null,
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 160
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "name": "rf_raw_regularized_none",
+      "params": {
+        "class_weight": null,
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "name": "rf_raw_regularized_balanced_subsample",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": true,
+      "name": "rf_clipped_baseline",
+      "params": {
+        "class_weight": null,
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 160
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "name": "rf_clipped_regularized_none",
+      "params": {
+        "class_weight": null,
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "random_forest",
+      "baseline": false,
+      "name": "rf_clipped_regularized_balanced_subsample",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 16,
+        "max_features": "sqrt",
+        "min_samples_leaf": 3,
+        "min_samples_split": 8,
+        "n_estimators": 240
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": true,
+      "name": "gb_raw_baseline",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100,
+        "subsample": 1.0
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "name": "gb_raw_regularized_none",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "name": "gb_raw_regularized_balanced",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "weight": "balanced"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": true,
+      "name": "gb_clipped_baseline",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100,
+        "subsample": 1.0
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "name": "gb_clipped_regularized_none",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "gradient_boosting",
+      "baseline": false,
+      "name": "gb_clipped_regularized_balanced",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "min_samples_leaf": 4,
+        "min_samples_split": 8,
+        "n_estimators": 160,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "weight": "balanced"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": true,
+      "name": "hgb_raw_baseline",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 0.0,
+        "learning_rate": 0.1,
+        "max_depth": null,
+        "max_iter": 120,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "name": "hgb_raw_regularized_none",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "name": "hgb_raw_regularized_balanced",
+      "params": {
+        "class_weight": "balanced",
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": true,
+      "name": "hgb_clipped_baseline",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 0.0,
+        "learning_rate": 0.1,
+        "max_depth": null,
+        "max_iter": 120,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 20
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "name": "hgb_clipped_regularized_none",
+      "params": {
+        "class_weight": null,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "hist_gradient_boosting",
+      "baseline": false,
+      "name": "hgb_clipped_regularized_balanced",
+      "params": {
+        "class_weight": "balanced",
+        "l2_regularization": 1.0,
+        "learning_rate": 0.07,
+        "max_depth": 10,
+        "max_iter": 180,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": true,
+      "name": "xgb_raw_baseline",
+      "params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.08,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 180,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 1.0
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "name": "xgb_raw_regularized_none",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "name": "xgb_raw_regularized_balanced",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 7.333333333333333,
+        "subsample": 0.85
+      },
+      "prep": "raw",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": true,
+      "name": "xgb_clipped_baseline",
+      "params": {
+        "colsample_bytree": 1.0,
+        "learning_rate": 0.08,
+        "max_depth": 5,
+        "min_child_weight": 1,
+        "n_estimators": 180,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 1.0
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "name": "xgb_clipped_regularized_none",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 1.0,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "weight": "none"
+    },
+    {
+      "algorithm": "xgboost",
+      "baseline": false,
+      "name": "xgb_clipped_regularized_balanced",
+      "params": {
+        "colsample_bytree": 0.85,
+        "learning_rate": 0.05,
+        "max_depth": 5,
+        "min_child_weight": 3,
+        "n_estimators": 240,
+        "reg_alpha": 0.05,
+        "reg_lambda": 2.0,
+        "scale_pos_weight": 7.333333333333333,
+        "subsample": 0.85
+      },
+      "prep": "clipped",
+      "weight": "none"
+    }
+  ],
+  "secondary_candidate": "hgb_clipped_regularized_balanced",
+  "seed": 20260921,
+  "selected_reproducibility": {
+    "metrics_identical": true,
+    "predictions_identical": true,
+    "probabilities_max_abs_difference": 0.0,
+    "result": "PASS"
+  },
+  "selection_metric": "validation_macro_f1",
+  "stage": 4,
+  "threshold": 0.5,
+  "total_stage4_training_seconds": 571.8996224999864,
+  "versions": {
+    "joblib": "1.5.3",
+    "numpy": "2.4.3",
+    "python": "3.14.3",
+    "scikit_learn": "1.9.0",
+    "xgboost": "3.4.1"
+  },
+  "xgboost_available": true,
+  "xgboost_unavailable_error": null
+}

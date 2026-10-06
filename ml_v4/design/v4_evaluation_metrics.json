@@ -1,0 +1,56 @@
+{
+  "definitions": {
+    "FPR": "FP/(FP+TN) on target 0 only",
+    "average_precision": "AP=sum over recall increments times corresponding precision, from continuous scores; explicitly label AP, not trapezoidal PR-AUC.",
+    "classification": "score>=threshold; exact0.50 tie positive initially",
+    "confusion_matrix": "[[TN,FP],[FN,TP]]",
+    "macro_f1": "mean of class0 and class1 F1, including explicit zero-denominator convention",
+    "normal_recall": "TN/(TN+FP)",
+    "undefined": "AUC/AP with no positive or negative comparison: null and reason. Empty recall/FPR support: null, not0. Precision with no predicted positives:0 with undefined flag; report numerator/denominator."
+  },
+  "design_version": "v4.stage 15.design.1",
+  "interpretation": "High feature concentration is an investigation trigger, not an automatic failure; distinguish valid target component, population construction, hidden shortcut and representation gaps. Never dilute importance with duplicate proxies.",
+  "overall": [
+    "accuracy",
+    "balanced_accuracy",
+    "macro_f1",
+    "suspicious_precision",
+    "suspicious_recall",
+    "suspicious_f1",
+    "normal_recall",
+    "roc_auc",
+    "average_precision",
+    "false_positive_rate",
+    "confusion_matrix"
+  ],
+  "overlap": "Domain/family rows overlap and cannot be added. Domain-only excludes every other domain; multi-domain is unique rows with >=2 domains. Pre-onset is diagnostic relative to that recipe only; a row may be positive through another family.",
+  "permutation_protocol": "For each frozen serious model use the same3000 Validation row indices (uniform without replacement, seed 2026092915),3 paired permutations per feature, seed 2026092916, one worker. Baseline AP and permuted AP both use exactly that same sample. Report mean signed AP drop and repeat SD; normalize absolute mean drops into top/domain shares, null if total mass is 0. Disclose sparse family sample support. No comparable native gain/impurity substitution.",
+  "positive_class": "Observable review-pattern target, not criminal intent",
+  "robustness": [
+    "same permutation-AP protocol across families",
+    "signed AP drops and absolute top1/top3/top5 mass",
+    "domain importance mass",
+    "matched retrained dominant-feature removal",
+    "missingness-only diagnostic",
+    "small-feature models if justified",
+    "Train/Validation marker-aware shift and conditional slices",
+    "family dependence and overlap attribution",
+    "eligible-only and age-stratified comparisons"
+  ],
+  "schema_version": 1,
+  "slices": [
+    "3 ordinary positive domains",
+    "12 family supports/TP/FN/recall",
+    "structuring_only",
+    "network_only",
+    "agent_only",
+    "multi_domain union",
+    "H1..H8 target 0 FPR",
+    "routine target 0 FPR",
+    "pre-onset campaign target 0 FPR",
+    "legitimate-growth-origin target 0 FPR",
+    "family near-boundary target 0 FPR"
+  ],
+  "status": "DESIGN_ONLY; implementation and population evidence pending",
+  "uncertainty": "Report raw counts, episode/subject concentration, Wilson intervals as descriptive independence-based bounds, plus cluster resampling intervals by local community when possible. With only 3 or2 evaluation communities, cluster inference is unstable: report unit-specific results and avoid population precision claims. No accuracy or significance promised."
+}

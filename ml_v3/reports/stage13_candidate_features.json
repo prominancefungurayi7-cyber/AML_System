@@ -1,0 +1,116 @@
+{
+  "candidate_max_count": 38,
+  "count": 6,
+  "definitions": [
+    {
+      "baseline": "none",
+      "current": "type and endpoints only; no current amount",
+      "domain": "new_N3",
+      "formula": "Number of prior W2W edges receiver(T)->sender(T) in (t-7d,t], with key < key(T). Zero for non-W2W or self-loop.",
+      "marker": null,
+      "max": null,
+      "meaning": "Repeated reverse-direction relationships beyond the selected shortest path",
+      "min": 0,
+      "name": "candidate_prior_reciprocal_count_7d",
+      "non_oracle": "No current/edge amount gates, no multi-edge qualifying-path conjunction or target.",
+      "prior": "observable directed edges, strictly smaller timestamp/integer-ID keys",
+      "window": "open-lower 7d",
+      "zero_missing": "zero means no reciprocal edge or non-applicable role; no missing marker"
+    },
+    {
+      "baseline": "none",
+      "current": "type and endpoints only",
+      "domain": "new_N3",
+      "formula": "Count edge-pairs r->m and m->s with three distinct nodes, both in (t-7d,t], key(edge1)<key(edge2)<key(T). Each edge-pair counts once. Zero for non-W2W/self-loop.",
+      "marker": null,
+      "max": null,
+      "meaning": "Multiplicity of short return routes, not restricted to the selected path",
+      "min": 0,
+      "name": "candidate_prior_two_hop_return_count_7d",
+      "non_oracle": "No monetary filtering, current return ratio, lengths 3..5 or complete cycle predicate.",
+      "prior": "observable edges with increasing full keys",
+      "window": "open-lower 7d",
+      "zero_missing": "zero when no chronological two-edge route; no missing marker"
+    },
+    {
+      "baseline": "none",
+      "current": "type/endpoints select the prior path; current amount excluded",
+      "domain": "new_N3",
+      "formula": "max_j abs(log(amount(edge[j+1])/amount(edge[j]))) over adjacent edges in the Stage 10A selected chronological simple path of 1..5 prior edges. One-edge path=0; absent/non-W2W=-1.",
+      "marker": -1,
+      "max": null,
+      "meaning": "Continuous value variation along a selected prior path",
+      "min": 0,
+      "name": "candidate_selected_path_max_log_value_change",
+      "non_oracle": "No amount-gated path search, predicate cutoffs, current ratio gate or any-qualifying-path output.",
+      "prior": "Stage 10A topology selection: shortest path, latest first edge, then lexicographic edge-key sequence",
+      "window": "open-lower 7d",
+      "zero_missing": "one-edge path has no adjacent discrepancy (0); absent path uses -1"
+    },
+    {
+      "baseline": "none",
+      "current": "current agent service/type; no cash principal assigned to W2W",
+      "domain": "new_A4",
+      "formula": "Cash-In plus Cash-Out service count / all service-event count in (t-24h,t], including permitted current service. Assisted W2W only enters denominator.",
+      "marker": null,
+      "max": 1,
+      "meaning": "Cash activity relative to all agent service activity",
+      "min": 0,
+      "name": "candidate_agent_cash_service_share_24h",
+      "non_oracle": "No cash-count minimum, unique-wallet count, direction thresholds or complete imbalance conjunction.",
+      "prior": "same-agent service history, key < key(T)",
+      "window": "open-lower 24h",
+      "zero_missing": "zero without agent/services; no missing marker"
+    },
+    {
+      "baseline": "none",
+      "current": "current cash type/amount/agent and time",
+      "domain": "new_A4",
+      "formula": "abs(sum(skew_j)/4), where skew_j=(cashout_value-cashin_value)/(cashout_value+cashin_value) in each of four disjoint 6h buckets (t-(j+1)*6h,t-j*6h], j=0..3; empty-cash bucket skew=0. Current service enters j=0.",
+      "marker": null,
+      "max": 1,
+      "meaning": "Persistence of a common cash direction across time, discounted by inactive buckets",
+      "min": 0,
+      "name": "candidate_agent_cash_direction_persistence_24h",
+      "non_oracle": "No complete A4 count, wallet breadth, magnitude/change or current-role conjunction.",
+      "prior": "same-agent history, key < key(T); no future buckets",
+      "window": "four preceding/current 6h buckets covering open-lower 24h",
+      "zero_missing": "zero with no cash/agent or balanced opposing bucket directions; no missing marker"
+    },
+    {
+      "baseline": "at least 12 baseline services and 8 baseline cash events, full 29d observation; no recent eligibility gate",
+      "current": "current cash value included; assisted W2W contributes zero cash",
+      "domain": "new_A4",
+      "formula": "Recent 24h Cash-In+Cash-Out minor-unit value / max(1, preceding disjoint 28d cash value / 28). Baseline B=(t-29d,t-1d], recent R=(t-1d,t].",
+      "marker": -1,
+      "max": null,
+      "meaning": "Unsigned cash magnitude relative to the agent own earlier activity",
+      "min": 0,
+      "name": "candidate_agent_cash_value_acceleration_24h",
+      "non_oracle": "No signed imbalance/change gates, recent count/breadth conjunction, private activation or predicate outcome.",
+      "prior": "same-agent observed services; full baseline coverage from first observed service <=t-29d",
+      "window": "open-lower 24h recent; disjoint 28d baseline",
+      "zero_missing": "-1 without agent or eligible baseline; valid zero if no recent cash; denominator floor one minor unit"
+    }
+  ],
+  "official_feature_count": 32,
+  "partitions": {
+    "train": {
+      "candidate_file_sha256": "3b6805789d4d4e965bb33b32c5f9642192ef97bf103ad8aaa7e4772ed2f4c4c4",
+      "new_columns": 6,
+      "observable_source_sha256": "e59841c8b1ff6f79e3f0efb0aa67517aada996412a6c8d5dec9d28bcebc0c37a",
+      "official_values_unchanged": true,
+      "repeat_extraction_exact": true,
+      "rows": 60000
+    },
+    "validation": {
+      "candidate_file_sha256": "074a92cdf170cd31b0b9a0a2ea67422cac67a921f17e6b0c8d17389bb16e2d7e",
+      "new_columns": 6,
+      "observable_source_sha256": "4e324e6a84ab78a3a5b2432f3a95f38557b78640d65d49bfd411b8d573d12576",
+      "official_values_unchanged": true,
+      "repeat_extraction_exact": true,
+      "rows": 15000
+    }
+  },
+  "temporal_rule": "Strict timestamp/integer ID keys; open lower windows; fresh state; emit before update; observable eight-field projection only."
+}

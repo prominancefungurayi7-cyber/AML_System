@@ -1,0 +1,55 @@
+{
+  "algebra_scope": "Exact aggregate identities; no new extracted columns, models, labels or trigger features. Jointly sufficient primitives are permitted; full-family trigger as a feature remains prohibited.",
+  "families": {
+    "A1": {
+      "classification": "All compound-gate ingredients supplied",
+      "detail": "Growth, D, new count/share and historical missing marker expose all A1 components. Perfect observed recall and high growth importance are consistent with alignment, not private intent leakage by themselves."
+    },
+    "A2": {
+      "classification": "Genuine omitted information plus model-specific weakness",
+      "detail": "Top2 share, change and historical marker present; absolute recent service count>=8 not supplied. Both detected/missed positives have large change, so a near-change-threshold explanation is unsupported."
+    },
+    "A3": {
+      "classification": "Conditional count information",
+      "detail": "Recent breadth and acceleration/history marker present. Absolute count is not explicit; acceleration equals count when the denominator floor is active, but baseline count is not supplied to establish that identity universally."
+    },
+    "A4": {
+      "classification": "Arithmetic ingredients supplied; learning/support issue remains",
+      "detail": "Cash counts, values, distinct wallets, signed historical change and current type permit count/value skew, agreement and eligibility checks. The frozen fields support the compound rule in principle; HGB rescues 46/71 XGB Validation misses without feature changes. This cannot prove a universal algorithm advantage or identify an exact fitting cause."
+    },
+    "N1": {
+      "classification": "Genuine omitted information",
+      "detail": "Directed count, breadth and acceleration/historical marker present; recent incoming total value absent. Current amount alone is not the historical sum."
+    },
+    "N2": {
+      "classification": "Genuine omitted information",
+      "detail": "Directed count, breadth and acceleration/historical marker present; recent outgoing total value absent."
+    },
+    "N3": {
+      "classification": "Demonstrated lossy summary",
+      "detail": "All-path count and minimum length do not expose all monetary routes. Seven Validation positives have selected summaries incompatible with amount bounds; four are missed. This co-occurrence is not causal attribution of four misses."
+    },
+    "N4": {
+      "classification": "Conditional reconstructability; degenerate information gap",
+      "detail": "Let q=(Oprior+a)/F and r=F-Oprior. F=(a-r)/(q-1) when q!=1; when q=1, a=r and F remains unidentified by these quantities. Thus the F>=10000 gate is not guaranteed recoverable from the N4 fields. No numerical reconstruction is substituted into X."
+    },
+    "S1": {
+      "classification": "Components available, one indirectly",
+      "detail": "Although distinct amount count is absent, variation>=2 is equivalent to n*max_share>1 for positive amounts (exact-aggregate algebra). Thus its binary variation gate is recoverable from count and max share; do not call the omitted count an irreducible gap. Float64 precision remains the saved contract."
+    },
+    "S2": {
+      "classification": "Genuine omitted information and sparse support",
+      "detail": "Recent cluster count/share/current amount present. Exact cluster sum, baseline similar count/rate and exact S2 historical support are not generally recoverable. Current amount times count approximates but does not equal the sum under 5% tolerance. Coverage 35 alone cannot encode baseline event support."
+    },
+    "S3": {
+      "classification": "Genuine omitted information",
+      "detail": "Day count/hour breadth and historical daily growth present; current-day total value is not generally recoverable from the one-hour sum."
+    },
+    "S4": {
+      "classification": "Genuine omissions plus recoverable cross-field quantities",
+      "detail": "Current band and band count present. n(R7d)=S2 similar-count/similar-share because current always belongs to its own cluster; band share follows by dividing band count by that n. These are not necessarily missing information. Band amount variation, baseline band frequency and exact S4 baseline support remain absent."
+    }
+  },
+  "status": "Static review plus saved-data observations; no amendment applied",
+  "uncertainty": "Absence of a named field need not imply information loss. Conversely high observed accuracy is not proof that the representation is sufficient for all permitted histories."
+}

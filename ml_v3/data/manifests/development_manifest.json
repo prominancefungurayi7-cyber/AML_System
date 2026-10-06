@@ -1,0 +1,240 @@
+{
+  "dataset": "mobile_money_aml_synthetic_100k_v3",
+  "file_hashes": {
+    "development/train/agents.csv": "4cb4aae1d6c4739586f1ec06aa04895ef6eb8f2551643f5225ef784863df3287",
+    "development/train/episode_plans.json": "c3885b97547011caeab25c23ab8c925e095d60a5c1599c6f8e6c213349ec0b6f",
+    "development/train/ground_truth_v3.csv": "4e14d7234c2bbf082736a89d2790440cf0d96c51318ef6258171633afdf7eb62",
+    "development/train/membership_commitment.json": "3ede279e27228a7e099be3c0a51e069944c0d4d40d4f3df94aa2ccfe48e35802",
+    "development/train/partition_role.json": "f2c474dfad7ea9dbb628b7d0edd01ea4ff6da75bf3c40178fc1d270f59545dd6",
+    "development/train/transactions.csv": "e59841c8b1ff6f79e3f0efb0aa67517aada996412a6c8d5dec9d28bcebc0c37a",
+    "development/train/wallets.csv": "349d79c7ba4e5ae554ec9b70a77a348c4a825fd0bdeaec8b7ca9820eda4d2de3",
+    "development/validation/agents.csv": "cb8900d8ab960b4b7789575372906fcd355902c0b08b22db3a4ded3ba12b70e9",
+    "development/validation/episode_plans.json": "d670e8489bedfa1beab0f9f86c96cdb2e20f9823f52e4e05f836b7885bcc0278",
+    "development/validation/ground_truth_v3.csv": "488a7b827fe0d4e70af25b982044638eda5ad190097ff7fb9af1c1e0b4c550d1",
+    "development/validation/membership_commitment.json": "2eb9074c15c1e8dc9d409c71aebc31b541f8850f71e5922d88396546559d99a9",
+    "development/validation/partition_role.json": "44c3d968c84b2b77ae61269e15700b9a651a48e34336100be13421d8c0b1ef43",
+    "development/validation/transactions.csv": "4e324e6a84ab78a3a5b2432f3a95f38557b78640d65d49bfd411b8d573d12576",
+    "development/validation/wallets.csv": "d3addaea33f798aa0f96bab83709a8131c54f8c7dd015fa746123b2f416380e0"
+  },
+  "partition_roles": {
+    "train": "development",
+    "validation": "development"
+  },
+  "summary": {
+    "final_test": {
+      "campaign_member_target_counts": {
+        "0:0": 8132,
+        "0:1": 3268,
+        "1:0": 1930,
+        "1:1": 1670
+      },
+      "family_witness_counts": {
+        "agent_flow_imbalance": 278,
+        "agent_temporal_burst": 425,
+        "agent_wallet_concentration": 882,
+        "agent_wallet_growth": 2742,
+        "distributed_same_day_fragmentation": 760,
+        "many_to_one_collection": 314,
+        "one_to_many_dispersion": 669,
+        "reciprocal_relationship_cycle": 64,
+        "similar_amount_repetition": 2,
+        "variable_fragment_burst": 290,
+        "variable_near_threshold_history": 14,
+        "wallet_pass_through": 301
+      },
+      "hard_origin_targets": {
+        "H1:0": 194,
+        "H1:1": 406,
+        "H2:0": 345,
+        "H2:1": 255,
+        "H3:0": 445,
+        "H3:1": 155,
+        "H4:0": 287,
+        "H4:1": 313,
+        "H5:0": 310,
+        "H5:1": 290,
+        "H6:0": 406,
+        "H6:1": 194,
+        "H7:0": 333,
+        "H7:1": 267,
+        "H8:0": 410,
+        "H8:1": 190
+      },
+      "origins": {
+        "campaign_member": 3600,
+        "hard_scenario": 4800,
+        "routine": 6600
+      },
+      "routine_target_counts": {
+        "0": 5402,
+        "1": 1198
+      },
+      "rows": 15000,
+      "targets": {
+        "0": 10062,
+        "1": 4938
+      }
+    },
+    "independent": {
+      "campaign_member_target_counts": {
+        "0:0": 5764,
+        "0:1": 1836,
+        "1:0": 1370,
+        "1:1": 1030
+      },
+      "family_witness_counts": {
+        "agent_flow_imbalance": 205,
+        "agent_temporal_burst": 308,
+        "agent_wallet_concentration": 589,
+        "agent_wallet_growth": 1278,
+        "distributed_same_day_fragmentation": 538,
+        "many_to_one_collection": 204,
+        "one_to_many_dispersion": 456,
+        "reciprocal_relationship_cycle": 38,
+        "variable_fragment_burst": 240,
+        "variable_near_threshold_history": 2,
+        "wallet_pass_through": 178
+      },
+      "hard_origin_targets": {
+        "H1:0": 146,
+        "H1:1": 254,
+        "H2:0": 305,
+        "H2:1": 95,
+        "H3:0": 291,
+        "H3:1": 109,
+        "H4:0": 217,
+        "H4:1": 183,
+        "H5:0": 195,
+        "H5:1": 205,
+        "H6:0": 283,
+        "H6:1": 117,
+        "H7:0": 237,
+        "H7:1": 163,
+        "H8:0": 333,
+        "H8:1": 67
+      },
+      "origins": {
+        "campaign_member": 2400,
+        "hard_scenario": 3200,
+        "routine": 4400
+      },
+      "routine_target_counts": {
+        "0": 3757,
+        "1": 643
+      },
+      "rows": 10000,
+      "targets": {
+        "0": 7134,
+        "1": 2866
+      }
+    },
+    "train": {
+      "campaign_member_target_counts": {
+        "0:0": 32352,
+        "0:1": 13248,
+        "1:0": 7429,
+        "1:1": 6971
+      },
+      "family_witness_counts": {
+        "agent_flow_imbalance": 1353,
+        "agent_temporal_burst": 1810,
+        "agent_wallet_concentration": 3770,
+        "agent_wallet_growth": 11476,
+        "distributed_same_day_fragmentation": 3262,
+        "many_to_one_collection": 1278,
+        "one_to_many_dispersion": 2912,
+        "reciprocal_relationship_cycle": 120,
+        "similar_amount_repetition": 4,
+        "variable_fragment_burst": 1352,
+        "variable_near_threshold_history": 40,
+        "wallet_pass_through": 1064
+      },
+      "hard_origin_targets": {
+        "H1:0": 840,
+        "H1:1": 1560,
+        "H2:0": 1380,
+        "H2:1": 1020,
+        "H3:0": 1643,
+        "H3:1": 757,
+        "H4:0": 1237,
+        "H4:1": 1163,
+        "H5:0": 1054,
+        "H5:1": 1346,
+        "H6:0": 1639,
+        "H6:1": 761,
+        "H7:0": 1475,
+        "H7:1": 925,
+        "H8:0": 1677,
+        "H8:1": 723
+      },
+      "origins": {
+        "campaign_member": 14400,
+        "hard_scenario": 19200,
+        "routine": 26400
+      },
+      "routine_target_counts": {
+        "0": 21407,
+        "1": 4993
+      },
+      "rows": 60000,
+      "targets": {
+        "0": 39781,
+        "1": 20219
+      }
+    },
+    "validation": {
+      "campaign_member_target_counts": {
+        "0:0": 8149,
+        "0:1": 3251,
+        "1:0": 1796,
+        "1:1": 1804
+      },
+      "family_witness_counts": {
+        "agent_flow_imbalance": 337,
+        "agent_temporal_burst": 485,
+        "agent_wallet_concentration": 930,
+        "agent_wallet_growth": 2745,
+        "distributed_same_day_fragmentation": 814,
+        "many_to_one_collection": 316,
+        "one_to_many_dispersion": 736,
+        "reciprocal_relationship_cycle": 41,
+        "similar_amount_repetition": 1,
+        "variable_fragment_burst": 276,
+        "variable_near_threshold_history": 8,
+        "wallet_pass_through": 247
+      },
+      "hard_origin_targets": {
+        "H1:0": 238,
+        "H1:1": 362,
+        "H2:0": 374,
+        "H2:1": 226,
+        "H3:0": 406,
+        "H3:1": 194,
+        "H4:0": 292,
+        "H4:1": 308,
+        "H5:0": 214,
+        "H5:1": 386,
+        "H6:0": 424,
+        "H6:1": 176,
+        "H7:0": 359,
+        "H7:1": 241,
+        "H8:0": 460,
+        "H8:1": 140
+      },
+      "origins": {
+        "campaign_member": 3600,
+        "hard_scenario": 4800,
+        "routine": 6600
+      },
+      "routine_target_counts": {
+        "0": 5382,
+        "1": 1218
+      },
+      "rows": 15000,
+      "targets": {
+        "0": 9945,
+        "1": 5055
+      }
+    }
+  }
+}

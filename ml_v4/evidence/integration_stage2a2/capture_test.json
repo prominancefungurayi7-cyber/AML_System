@@ -1,0 +1,552 @@
+{
+  "mode": "activate",
+  "database": "aml",
+  "privilege_method": "Ordinary configured application connection; manual root installation reported by user",
+  "trigger_mutations": 0,
+  "metadata_before": {
+    "triggers": [
+      {
+        "TRIGGER_NAME": "cmm_ce_delete",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "DELETE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (OLD.transaction_id,'CANONICAL_DELETE',OLD.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_ce_insert",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "INSERT",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.transaction_id,'CANONICAL_INSERT',NEW.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_ce_update",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "UPDATE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.transaction_id,'CANONICAL_UPDATE',NEW.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_delete",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "DELETE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (OLD.id,'SOURCE_DELETE',OLD.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_insert",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "INSERT",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.id,'SOURCE_INSERT',NEW.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_update",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "UPDATE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN IF NOT (OLD.id <=> NEW.id AND OLD.timestamp <=> NEW.timestamp AND OLD.sender_account <=> NEW.sender_account AND OLD.receiver_account <=> NEW.receiver_account AND OLD.transaction_type <=> NEW.transaction_type AND OLD.currency <=> NEW.currency AND OLD.agent_id <=> NEW.agent_id AND OLD.amount <=> NEW.amount) THEN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.id,'SOURCE_UPDATE',NEW.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END IF; END"
+      }
+    ],
+    "exact_bodies_match": true,
+    "unexpected_cmm_triggers": [],
+    "tables": {
+      "cmm_observation_scopes": [
+        {
+          "Field": "scope_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "revision",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_history_attestations": [
+        {
+          "Field": "attestation_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "scope_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "revision",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_entity_history": [
+        {
+          "Field": "attestation_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "entity_key",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_source_changes": [
+        {
+          "Field": "change_id",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": "auto_increment"
+        },
+        {
+          "Field": "transaction_id",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "operation",
+          "Type": "varchar(32)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "event_timestamp",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "recorded_at",
+          "Type": "varchar(40)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ]
+    },
+    "canonical_schema": {
+      "engine": "mysql",
+      "exists": true,
+      "columns": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "currency",
+        "transaction_type",
+        "channel",
+        "agent_id",
+        "serviced_wallet",
+        "agent_flow_direction",
+        "canonical_version",
+        "history_status"
+      ],
+      "indexes": {
+        "PRIMARY": [
+          "transaction_id"
+        ],
+        "cmm_agent_time_id": [
+          "agent_id",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_receiver_time_id": [
+          "receiver_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_sender_time_id": [
+          "sender_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_serviced_time_id": [
+          "serviced_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_time_id": [
+          "event_timestamp",
+          "transaction_id"
+        ]
+      }
+    }
+  },
+  "scope_rows_before": [],
+  "engine": {
+    "version": "8.0.46"
+  },
+  "source_before": {
+    "users": {
+      "rows": 18,
+      "sha256": "03798ba4425fa0d205ffdbba16fd79c393e71bd13525377d1ef342160dcc8769"
+    },
+    "transactions": {
+      "rows": 7800,
+      "sha256": "c4421501b4f292718cd63ae7a77756ba7304f9f599282be79b6871ed1d73bb9d"
+    },
+    "canonical_mobile_money_events": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "cmm_source_changes": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "idempotency": "PASS: two unchanged history migrations and repeated trigger inspection; no trigger apply",
+  "capture_test": {
+    "mechanism": "One uncommitted InnoDB transaction, always rolled back; no journal DELETE; auto-increment gaps retained",
+    "fixture_marker": "CMM_STAGE2A2_DISPOSABLE_cc2261e6f6b2432b8c1ef4ab6e069dcc",
+    "transaction_id": 8519,
+    "operational_only_update": "PASS",
+    "observed_journal": [
+      {
+        "change_id": 1,
+        "transaction_id": 8519,
+        "operation": "SOURCE_INSERT",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.482703Z"
+      },
+      {
+        "change_id": 2,
+        "transaction_id": 8519,
+        "operation": "SOURCE_UPDATE",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.487005Z"
+      },
+      {
+        "change_id": 3,
+        "transaction_id": 8519,
+        "operation": "CANONICAL_INSERT",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.498122Z"
+      },
+      {
+        "change_id": 4,
+        "transaction_id": 8519,
+        "operation": "CANONICAL_UPDATE",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.498739Z"
+      },
+      {
+        "change_id": 5,
+        "transaction_id": 8519,
+        "operation": "CANONICAL_DELETE",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.499243Z"
+      },
+      {
+        "change_id": 6,
+        "transaction_id": 8519,
+        "operation": "SOURCE_DELETE",
+        "event_timestamp": "2026-10-05T21:14:02.474860Z",
+        "recorded_at": "2026-10-05T21:14:02.499704Z"
+      }
+    ],
+    "rollback_transaction_id": 8520,
+    "rollback_and_cleanup": "PASS: independent connection sees no fixture business or journal rows",
+    "status": "PASS"
+  },
+  "source_after_tests": {
+    "users": {
+      "rows": 18,
+      "sha256": "03798ba4425fa0d205ffdbba16fd79c393e71bd13525377d1ef342160dcc8769"
+    },
+    "transactions": {
+      "rows": 7800,
+      "sha256": "c4421501b4f292718cd63ae7a77756ba7304f9f599282be79b6871ed1d73bb9d"
+    },
+    "canonical_mobile_money_events": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "cmm_source_changes": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "metadata_after_tests": {
+    "triggers": [
+      {
+        "TRIGGER_NAME": "cmm_ce_delete",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "DELETE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (OLD.transaction_id,'CANONICAL_DELETE',OLD.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_ce_insert",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "INSERT",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.transaction_id,'CANONICAL_INSERT',NEW.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_ce_update",
+        "EVENT_OBJECT_TABLE": "canonical_mobile_money_events",
+        "EVENT_MANIPULATION": "UPDATE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.transaction_id,'CANONICAL_UPDATE',NEW.event_timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_delete",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "DELETE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (OLD.id,'SOURCE_DELETE',OLD.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_insert",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "INSERT",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.id,'SOURCE_INSERT',NEW.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END"
+      },
+      {
+        "TRIGGER_NAME": "cmm_tx_update",
+        "EVENT_OBJECT_TABLE": "transactions",
+        "EVENT_MANIPULATION": "UPDATE",
+        "ACTION_TIMING": "AFTER",
+        "ACTION_STATEMENT": "BEGIN IF NOT (OLD.id <=> NEW.id AND OLD.timestamp <=> NEW.timestamp AND OLD.sender_account <=> NEW.sender_account AND OLD.receiver_account <=> NEW.receiver_account AND OLD.transaction_type <=> NEW.transaction_type AND OLD.currency <=> NEW.currency AND OLD.agent_id <=> NEW.agent_id AND OLD.amount <=> NEW.amount) THEN INSERT INTO cmm_source_changes (transaction_id,operation,event_timestamp,recorded_at) VALUES (NEW.id,'SOURCE_UPDATE',NEW.timestamp,DATE_FORMAT(UTC_TIMESTAMP(6),'%Y-%m-%dT%H:%i:%s.%fZ')); END IF; END"
+      }
+    ],
+    "exact_bodies_match": true,
+    "unexpected_cmm_triggers": [],
+    "tables": {
+      "cmm_observation_scopes": [
+        {
+          "Field": "scope_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "revision",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_history_attestations": [
+        {
+          "Field": "attestation_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "scope_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "revision",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_entity_history": [
+        {
+          "Field": "attestation_id",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "entity_key",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "body",
+          "Type": "longtext",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ],
+      "cmm_source_changes": [
+        {
+          "Field": "change_id",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "PRI",
+          "Default": null,
+          "Extra": "auto_increment"
+        },
+        {
+          "Field": "transaction_id",
+          "Type": "bigint",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "operation",
+          "Type": "varchar(32)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "event_timestamp",
+          "Type": "varchar(255)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        },
+        {
+          "Field": "recorded_at",
+          "Type": "varchar(40)",
+          "Null": "NO",
+          "Key": "",
+          "Default": null,
+          "Extra": ""
+        }
+      ]
+    },
+    "canonical_schema": {
+      "engine": "mysql",
+      "exists": true,
+      "columns": [
+        "transaction_id",
+        "event_timestamp",
+        "sender_wallet",
+        "receiver_wallet",
+        "amount_minor",
+        "currency",
+        "transaction_type",
+        "channel",
+        "agent_id",
+        "serviced_wallet",
+        "agent_flow_direction",
+        "canonical_version",
+        "history_status"
+      ],
+      "indexes": {
+        "PRIMARY": [
+          "transaction_id"
+        ],
+        "cmm_agent_time_id": [
+          "agent_id",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_receiver_time_id": [
+          "receiver_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_sender_time_id": [
+          "sender_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_serviced_time_id": [
+          "serviced_wallet",
+          "event_timestamp",
+          "transaction_id"
+        ],
+        "cmm_time_id": [
+          "event_timestamp",
+          "transaction_id"
+        ]
+      }
+    }
+  }
+}

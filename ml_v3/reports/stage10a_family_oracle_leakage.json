@@ -1,0 +1,278 @@
+{
+  "family_mapping": {
+    "A1": "agent_wallet_growth",
+    "A2": "agent_wallet_concentration",
+    "A3": "agent_temporal_burst",
+    "A4": "agent_flow_imbalance",
+    "N1": "many_to_one_collection",
+    "N2": "one_to_many_dispersion",
+    "N3": "reciprocal_relationship_cycle",
+    "N4": "wallet_pass_through",
+    "S1": "variable_fragment_burst",
+    "S2": "similar_amount_repetition",
+    "S3": "distributed_same_day_fragmentation",
+    "S4": "variable_near_threshold_history"
+  },
+  "feature_artifacts_unchanged": true,
+  "initial_oracle_record_sha256": "93c201aae6f9c645245ca75b34943324219d2dba05a9b6c7b67ee641d61397af",
+  "partitions": {
+    "train": {
+      "checks": {
+        "A1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        }
+      },
+      "result": "PASS",
+      "support_counts": {
+        "A1": {
+          "0": 48524,
+          "1": 11476
+        },
+        "A2": {
+          "0": 56230,
+          "1": 3770
+        },
+        "A3": {
+          "0": 58190,
+          "1": 1810
+        },
+        "A4": {
+          "0": 58647,
+          "1": 1353
+        },
+        "N1": {
+          "0": 58722,
+          "1": 1278
+        },
+        "N2": {
+          "0": 57088,
+          "1": 2912
+        },
+        "N3": {
+          "0": 59880,
+          "1": 120
+        },
+        "N4": {
+          "0": 58936,
+          "1": 1064
+        },
+        "S1": {
+          "0": 58648,
+          "1": 1352
+        },
+        "S2": {
+          "0": 59996,
+          "1": 4
+        },
+        "S3": {
+          "0": 56738,
+          "1": 3262
+        },
+        "S4": {
+          "0": 59960,
+          "1": 40
+        }
+      }
+    },
+    "validation": {
+      "checks": {
+        "A1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "A4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "N4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S1": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S2": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S3": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        },
+        "S4": {
+          "exact_columns": [],
+          "exact_fixed_combinations": [],
+          "exact_monotone_cutoffs": [],
+          "result": "PASS"
+        }
+      },
+      "result": "PASS",
+      "support_counts": {
+        "A1": {
+          "0": 12255,
+          "1": 2745
+        },
+        "A2": {
+          "0": 14070,
+          "1": 930
+        },
+        "A3": {
+          "0": 14515,
+          "1": 485
+        },
+        "A4": {
+          "0": 14663,
+          "1": 337
+        },
+        "N1": {
+          "0": 14684,
+          "1": 316
+        },
+        "N2": {
+          "0": 14264,
+          "1": 736
+        },
+        "N3": {
+          "0": 14959,
+          "1": 41
+        },
+        "N4": {
+          "0": 14753,
+          "1": 247
+        },
+        "S1": {
+          "0": 14724,
+          "1": 276
+        },
+        "S2": {
+          "0": 14999,
+          "1": 1
+        },
+        "S3": {
+          "0": 14186,
+          "1": 814
+        },
+        "S4": {
+          "0": 14992,
+          "1": 8
+        }
+      }
+    }
+  },
+  "reason": "The initial extraction runner queried S1..A4 codes against a full-family-name ledger, giving uninformative constant outcomes. This additive diagnostic fixes the lookup without changing any frozen extraction code or output. The initial record is preserved.",
+  "result": "PASS",
+  "source_sha256": "ed8b9868c528be0558c735761224d51b00b386ca10ed1aa304da867ececbd892",
+  "started_at_utc": "2026-09-28T16:36:15.642318+00:00"
+}

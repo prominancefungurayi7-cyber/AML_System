@@ -1,0 +1,74 @@
+{
+  "design_version": "v4.stage 15.design.1",
+  "development_loader": "Explicit train/validation enum only; resolve and validate path under ml_v4/data/development/<partition>; reject aliases, traversal, symlinks escaping root, wildcard roots and evaluation requests. Holdout files not mounted in development process.",
+  "evaluation_loader": "Separate evaluation-only entry point requires recorded user authorization, frozen model/preprocessor/feature/threshold hashes and matching seal. Log requester, scope, UTC, artifact hashes and operation; reject fitting and writeback to sealed inputs.",
+  "final": "Same design distribution, horizon, unit size and opportunity laws as Train/Validation, with disjoint entities and independent streams.",
+  "final_access": "One declared final evaluation after all development/threshold decisions. Independent evaluation is a second predeclared report under identical frozen model; neither feeds retraining. If final results drive later work, future version needs fresh holdouts.",
+  "freshness": "Completely new V4 Final Test and Independent Evaluation, including histories, entities, labels and commitments. No V3 evaluation directory enumeration or byte access; no reinterpretation of V3 evaluation labels.",
+  "independent_agent_allocation": "Uniformly permute the 16 archetypes with the stated exact counts, then assign8 to each of the 2 independent units; unit sizes remain unchanged.",
+  "independent_shift": {
+    "agent_archetype_counts": [
+      1,
+      2,
+      2,
+      3,
+      3,
+      2,
+      2,
+      1
+    ],
+    "agent_count_order": [
+      "low_volume_stable",
+      "medium_volume_stable",
+      "high_volume_urban_like",
+      "growing_legitimate",
+      "seasonal",
+      "concentrated_repeat_customer",
+      "broad_customer_base",
+      "volatile_legitimate"
+    ],
+    "amount_bounds": "Same[0.01,15000]USD and rounding; truncate by rejection after multiplying. All origins use shift.",
+    "assisted_W2W_probability": 0.45,
+    "background_type_probabilities": {
+      "cash_in": 0.275,
+      "cash_out": 0.275,
+      "wallet_to_wallet": 0.45
+    },
+    "hard_origin_event_share": 0.25,
+    "interpretation": "Joint moderate synthetic process shift; does not isolate causal effects of individual shifted factors. Not designed from model weaknesses or to maximize failure.",
+    "seasonal_amplitude_range": [
+      0.2,
+      0.5
+    ],
+    "shared_amount_multiplier": 1.15,
+    "unchanged": [
+      "all target formulas/cutoffs/coverage",
+      "feature formulas and fitted transforms",
+      "100-wallet local reservoir",
+      "42d warm-up and 180d scored horizon",
+      "output schema"
+    ],
+    "wallet_profile_counts_per100": [
+      20,
+      18,
+      20,
+      12,
+      10,
+      10,
+      10
+    ],
+    "wallet_profile_order": [
+      "low_frequency_personal",
+      "regular_transfer",
+      "cash_heavy",
+      "recurring_payment",
+      "high_activity",
+      "collection_like",
+      "dispersion_like"
+    ]
+  },
+  "provenance": "Separate private diagnostics, never passed to model prediction. Custodian can compute predeclared slices after authorization without leaking provenance to X.",
+  "schema_version": 1,
+  "seal": "Authorized custodian creates data once after approved implementation. Hash all new holdout raw/target/history files in its isolated environment; publish commitment root, schema/design hashes and fixed gate certificate only. Private file manifest and seeds held separately with no developer access. Stage 15 creates no holdout files or seal.",
+  "status": "DESIGN_ONLY; implementation and population evidence pending"
+}

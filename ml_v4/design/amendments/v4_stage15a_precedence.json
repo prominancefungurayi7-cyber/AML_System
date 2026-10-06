@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "amendment_version": "v4.stage15a.design.1",
+  "parent_design_version": "v4.stage15.design.1",
+  "parent_identity": "Exact parent bytes are bound by the Stage 15 authoritative SHA-256 map in the amendment manifest; canonical parent name does not rewrite historical files.",
+  "historical_version_spellings": ["v4.stage 15.design.1", "v4.stage15.design.1"],
+  "resolution_order": ["Explicit clauses A-F in this amendment", "All unaffected frozen Stage 15 clauses"],
+  "overrides": [
+    {"id": "A", "clause": "Amount-law hierarchy", "parent_locations": ["v4_dataset_spec.json#/amount_process", "Stage15 report section 18 amount process"], "replacement": "v4_stage15a_amount_law.json#/base_law and /recipe_constraints", "effect": "Interpret shared mixture as base law; predeclared conditional laws/relations with common cent precision are permitted."},
+    {"id": "B", "clause": "S4 amount sampling", "parent_locations": ["v4_family_support_policy.json#/family_recipe_design/S4", "Stage15 report section 22 S4 opportunity mechanism"], "replacement": "v4_stage15a_amount_law.json#/laws/LARGE_CONDITIONAL", "effect": "Conditional mixture on USD 5000..13000; no uniform alternative. Target band and all target conditions unchanged."},
+    {"id": "C", "clause": "H3 matched sampling and S4/H3 partition-shift interaction", "parent_locations": ["v4_hard_negative_spec.json#/categories/code=H3 amount treatment only", "v4_holdout_policy.json#/independent_shift/shared_amount_multiplier for S4/H3 motifs only", "Stage15 report sections 12, 18, 22, 28 amount treatment"], "replacement": "v4_stage15a_amount_law.json#/motif_law_by_origin and /independent_shift/s4_h3", "effect": "H3 and S4 share conditional amount law and the same bounded log-space transformation using the frozen 1.15 parameter. H3-only cloning/amount distribution is excluded. Temporal/history mechanisms and universal labels remain unchanged; other origins/context retain ordinary Independent multiplication."},
+    {"id": "D", "clause": "Episode-to-motif mapping", "parent_locations": ["v4_family_support_policy.json#/opportunity_recipe", "v4_family_support_policy.json#/family_recipe_design counts only", "v4_hard_negative_spec.json#/categories matched motif-count framework", "Stage15 report sections 12 and 22"], "replacement": "v4_stage15a_episode_mapping.json#/total_episode, /motif_rule, /families, /hard_origins, /hard_selection", "effect": "Keep E law and budgets, condition M on E, declare missing structural count laws; matched hard origins share corresponding count support. Other recipe parameters remain inherited."},
+    {"id": "E", "clause": "Context-event definition", "parent_locations": ["v4_family_support_policy.json#/opportunity_budget/family_allocation preparatory/pre-onset interpretation", "v4_dataset_spec.json#/private_diagnostic_fields diagnostic extension only", "Stage15 report sections 18, 22, 26"], "replacement": "v4_stage15a_episode_mapping.json#/context and /private_provenance", "effect": "R=E-M; freeze four-role mixture, population/amount rules, random context timestamps and enclosing interval, including missing N3/H6 interval; add two private diagnostic role fields only. Motif durations already specified in Stage 15 are preserved inside the episode envelope; target windows and observable schema are unchanged."},
+    {"id": "F", "clause": "Canonical amendment metadata", "parent_locations": ["New amendment metadata and future references to its parent only"], "replacement": "amendment_version=v4.stage15a.design.1; parent_design_version=v4.stage15.design.1", "effect": "Record original spelling discrepancy; leave all historical files unchanged. Future implementation manifests must identify both parent hashes and amendment hashes."}
+  ],
+  "unchanged_authority": [
+    "All 12 predicates and universal binary target semantics",
+    "A1 35d coverage, >=12 baseline services and all numerical gates",
+    "Three AML domains and 40 semantic feature declarations",
+    "Observable event schema, entity/isolation rules and history contracts",
+    "100000 scored plus 24000 warm-up, partition/entity totals and dates",
+    "Per-unit opportunity budgets, allocation weights, support/prevalence policies",
+    "Population profiles/archetypes and accounting capacities/failure policy",
+    "Master seed, stream derivation and private custodian seed governance",
+    "Holdout access/sealing policies; only S4/H3 amount shift law is clarified",
+    "Model candidates, 36-fit limit, threshold policy and evaluation metrics"
+  ],
+  "prohibited_override_roots": ["v4_target_predicates.json", "v4_temporal_contract.json", "v4_target_feature_alignment.json", "v4_feature_spec.json", "v4_partition_spec.json", "v4_model_development_policy.json", "v4_evaluation_metrics.json"],
+  "unresolved_contradiction_policy": "Stop and report any new contradiction; this amendment is not a blanket permission to reinterpret unaffected clauses.",
+  "current_authorization": "Design amendment and static validation only. Do not retry Stage 16 or create development/evaluation data in this stage. Decision A states design readiness for a separately authorized retry, not execution in Stage 15A.",
+  "historical_stage16": "The failed Stage 16 attempt remains D and is immutable. A future retry needs a fresh attempt/output namespace; never overwrite its report, evidence or source."
+}

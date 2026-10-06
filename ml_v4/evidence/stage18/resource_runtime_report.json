@@ -1,0 +1,82 @@
+{
+  "memory_meaning": "Windows process high-water mark, including retained earlier models and diagnostics; not isolated estimator allocation.",
+  "per_fit": {
+    "dominant_only_HGB": {
+      "fit_seconds": 1.366614099999424,
+      "peak_process_working_set_bytes": 537628672
+    },
+    "missingness_HGB": {
+      "fit_seconds": 3.7214504000148736,
+      "peak_process_working_set_bytes": 537628672
+    },
+    "primary_HGB": {
+      "fit_seconds": 4.903384700010065,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "primary_LR": {
+      "fit_seconds": 0.988849699991988,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "primary_RF": {
+      "fit_seconds": 20.99783569999272,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "primary_XGB": {
+      "fit_seconds": 2.6315996999910567,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "remove_HGB": {
+      "fit_seconds": 4.0574282000015955,
+      "peak_process_working_set_bytes": 535670784
+    },
+    "remove_LR": {
+      "fit_seconds": 0.7058336999907624,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "remove_RF": {
+      "fit_seconds": 18.975018099998124,
+      "peak_process_working_set_bytes": 507371520
+    },
+    "remove_XGB": {
+      "fit_seconds": 2.140739800001029,
+      "peak_process_working_set_bytes": 537628672
+    },
+    "repeat_HGB": {
+      "fit_seconds": 4.151736599975266,
+      "peak_process_working_set_bytes": 597966848
+    },
+    "repeat_LR": {
+      "fit_seconds": 0.7223123000003397,
+      "peak_process_working_set_bytes": 544346112
+    },
+    "repeat_RF": {
+      "fit_seconds": 18.129752699984238,
+      "peak_process_working_set_bytes": 544825344
+    },
+    "repeat_XGB": {
+      "fit_seconds": 2.2517246999777853,
+      "peak_process_working_set_bytes": 598306816
+    },
+    "shuffle_HGB": {
+      "fit_seconds": 3.3790555000014137,
+      "peak_process_working_set_bytes": 543096832
+    },
+    "tiny_A1_HGB": {
+      "fit_seconds": 1.1919331999961287,
+      "peak_process_working_set_bytes": 537628672
+    }
+  },
+  "run_peak_working_set_bytes": 598306816,
+  "sum_fit_seconds": 90.31526909992681,
+  "threads": 1,
+  "versions": {
+    "numpy": "2.4.3",
+    "python": "3.14.3",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  },
+  "wall_interval": {
+    "completed_utc": "2026-10-04T15:01:45.089136+00:00",
+    "plan_frozen_utc": "2026-10-04T14:59:24.888970+00:00"
+  }
+}

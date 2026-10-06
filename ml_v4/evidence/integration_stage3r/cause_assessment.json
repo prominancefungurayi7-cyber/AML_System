@@ -1,0 +1,7 @@
+{
+  "conclusion": "CAUSE NOT ESTABLISHED",
+  "git_evidence": "No tracked files or historical commits found for approved inference source during Stage4 checks",
+  "session_check": "No recorded deletion-operation tool call naming one of the twelve exact missing paths found in the recovery session log",
+  "limits": "Does not rule out generic cleanup, external tools, other sessions, workspace reset or unsaved automation. No such cause is asserted.",
+  "prevention": "Exact source-only archive plus per-entry hashes created; recommend tracking recovered source and evidence scripts in Git, excluding binaries, datasets, credentials and runtime environments."
+}

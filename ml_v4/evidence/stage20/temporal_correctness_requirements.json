@@ -1,0 +1,31 @@
+{
+  "boundary_requirements": [
+    "At t-35d observation establishes age but event excluded from B count",
+    "At t-7d event enters B not R",
+    "Same-time lower ID prior, higher ID future; output before insertion",
+    "Current5000:4750/5250 included;4749/5251 excluded by20*abs integer test",
+    "Band700000/1050000 inclusive;699999/1050001 outside",
+    "Distinct band repeated values count once, zero band gives0",
+    "Age35d with3 baseline activities =>-1; age35d with4 nonmatching activities =>0 for both baseline features",
+    "Recent sum/distinct defined even with insufficient history; no current-band gate for either S4 field",
+    "Incoming W2W establishes age but cannot satisfy four baseline subject activities",
+    "Cash bothdirections count once; receiver-assisted W2W does not change structuring subject from sender",
+    "Future insertion, private-metadata mutation, bijective renaming preserve outputs with full-key ordering",
+    "Exact aggregate and overflow fixture; no sentinel confusion; reproduce first40 columns identically"
+  ],
+  "canonical": "UTC microsecond full-key prior; R=(t-7d,t] plus current once; B=(t-35d,t-7d] prior only; windows disjoint",
+  "deployment": "Keep first observed participation scalar after35d eviction. Out-of-order current rows rejected or handled by a separately versioned replay policy; never silently use future state. Retained warmup is42d, availability still observed per row.",
+  "execution_status": "NOT_RUN: requirements and paper arithmetic only; no synthetic ledger, RNG, extractor or matrix created",
+  "hand_examples": {
+    "band_values": [
+      "850000 repeated ->1",
+      "850000 and850001 ->2"
+    ],
+    "eligible_baseline_zero": 0,
+    "ineligible_baseline": -1,
+    "recent_similar_sum_cents": [
+      19999,
+      20000
+    ]
+  }
+}

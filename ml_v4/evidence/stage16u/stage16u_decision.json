@@ -1,0 +1,34 @@
+{
+  "protocol_version": "v4.challenge.protocol.1",
+  "stage": "16U",
+  "artifact_sha256": {
+    "ml_v4/reports/V4_STAGE16U_IMPLEMENTATION_READINESS.md": "5332d15553e31268a80fc7f387fa940840ebe2c3621217dbb1c5e93017792567",
+    "ml_v4/evidence/stage16u/implementation_tests.json": "0481a66a799e58a27771d0d05f8ec2fac6560e28a2e3d33d1c1d3f443c03adae",
+    "ml_v4/evidence/stage16u/custody_readiness.json": "7d532a8bcfe9d5736c20cc2f99d760f8713c06c8cd296d4939c9d5e9b19d590d",
+    "ml_v4/evidence/stage16u/reproducibility_readiness.json": "5258aadfb3dd709367079e5fe34a0821dbd314fadf6784721fe20ed34608da39",
+    "ml_v4/evidence/stage16u/support_policy_readiness.json": "2cd7307f86efb0820c860e0c3b0d6773526ce117ccda28e5049469128fc88b7d",
+    "ml_v4/evidence/stage16u/preservation_verification.json": "eca403c1b52090819d45cd64040db67223892f5d82c6c9c9a429ee121e9c4ca2",
+    "ml_v4/generation/stage16u_generator.py": "3d7b1cbea93b6f54aa848fa55767c29489e20b57ba53e121e4f8f3b02f672aca",
+    "ml_v4/generation/stage16u_support.py": "939849b1b7302139bb43d303aafe891a7a0acd99bd7c40ab8287e90432295185",
+    "ml_v4/generation/stage16u_custody.py": "fee0425ebc07b975132d2be1b4807108ce1ab8d2b2fe1b920a62d110736d983e",
+    "ml_v4/tests/test_stage16u.py": "f25ca816660808bafb77e908e5647b248d5faaf88fbdf79f7751f928180bdebb"
+  },
+  "manifest_self_hash_excluded": true,
+  "decision": "B — IMPLEMENTATION READY; INDEPENDENT CUSTODY NOT AVAILABLE",
+  "implementation_status": "Deterministic fixture suite passes; Stage 16U event-writing, support-policy and seed-derivation fixtures pass without candidate challenge draws. The exclusive scored-horizon endpoint, global arm/unit/entity/transaction-ID validator and H1-H8 provenance mapping are implemented and tested with small hand-authored fixtures.",
+  "custody_status": "BLOCKED. Current shared workspace ACL permits the current sandbox identity to modify the source tree. No independently administered custodian runtime, secret store, private registry, or immutable access register is provisioned.",
+  "production_generation": "BLOCKED; no challenge transaction or secret salt was created.",
+  "authorizes": "Preproduction fixture work and custodian provisioning only. This decision does not authorize production generation, a challenge dataset, feature construction, model fitting, threshold work, or evaluation.",
+  "required_before_generation": [
+    "Provision and independently verify the custody boundary described in custody_readiness.json.",
+    "Freeze the final generator/evaluator/support source, Python/NumPy environment and serialization in the custodian runtime.",
+    "Pass all Stage16T implementation gates there on hand-authored fixtures; run the aggregate isolation validator in custody and provide an atomic one-draw register.",
+    "Obtain separate explicit authorization for exactly one production challenge draw."
+  ],
+  "historical_holds": "Original Final Test and Independent Evaluation remain SEALED_QUARANTINED. Public support-policy certificates remain FAIL. No private counts or contents accessed.",
+  "production_salt_created": false,
+  "candidate_dataset_created": false,
+  "features_constructed": false,
+  "models_trained": 0,
+  "holdout_contents_accessed": false
+}

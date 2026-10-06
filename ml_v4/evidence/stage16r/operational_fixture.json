@@ -1,0 +1,16 @@
+{
+  "budget_bytes": 4294967296,
+  "budget_seconds": 600,
+  "elapsed_seconds": 5.237100800033659,
+  "fixture_events": 6200,
+  "fixture_seed_namespace": 881610,
+  "hardware": {
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel"
+  },
+  "peak_working_set_bytes": 55816192,
+  "production_seed_used": false,
+  "single_thread": true,
+  "status": "PASS"
+}
