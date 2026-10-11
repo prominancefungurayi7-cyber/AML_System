@@ -4,7 +4,7 @@
   <aside class="messaging-rail" aria-label="Secure conversation">
     <div class="messaging-rail__header">
       <div><span class="messaging-kicker">Secure Communications</span><h2>Messages</h2></div>
-      <span class="secure-chip">Encrypted</span>
+      <span class="secure-chip">Private</span>
     </div>
     <ul class="conversations-list modern-message-list active" id="conversationsList">
       <li class="message-empty-state">Loading your secure conversation...</li>
@@ -18,7 +18,7 @@
     <div id="chatContent" class="chat-content" hidden>
       <header class="chat-header modern-chat-header">
         <div class="chat-header-info"><div class="conversation-avatar chat-avatar" id="chatAvatar">--</div><div><div class="chat-title" id="chatTitle"></div><div class="user-status"><span class="status-indicator offline" id="statusIndicator"></span><span id="userStatus">Offline</span></div></div></div>
-        <span class="secure-chip">Audit-ready</span>
+        <span class="secure-chip">Access controlled</span>
       </header>
       <div class="messages-container modern-messages-container" id="messagesContainer"></div>
       <footer class="input-area modern-input-area"><div class="input-wrapper"><textarea class="message-input" id="messageInput" placeholder="Write a clear, professional message" rows="1"></textarea></div><button class="send-button" id="sendButton" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></button></footer>
@@ -26,7 +26,7 @@
   </section>
 </section>
 <script>
-  const socket = io();
+  const socket = window.getAmlSocket();
   const currentUser = {{ session.get("username", "")|tojson }};
   let currentConversation = null;
   let currentReceiver = "";

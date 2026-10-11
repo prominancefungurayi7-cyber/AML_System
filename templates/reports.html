@@ -47,7 +47,7 @@
     </nav>
   </aside>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <main class="admin-content">
+  <div class="admin-content">
     <section class="hero hero-banner">
       <div class="hero-badge">Risk Intelligence</div>
       <h2>EpoCash Mobile Money AML Reporting</h2>
@@ -59,15 +59,15 @@
       (function() {
         var reloadEvents = ['alert_update', 'sar_report', 'ctr_report', 'stats'];
         if (typeof io !== 'undefined') {
-          var socket = io({ transports: ['websocket', 'polling'] });
+          var socket = window.getAmlSocket();
           reloadEvents.forEach(function(evt) {
-            socket.on(evt, function() { location.reload(); });
+            socket.on(evt, function() { window.refreshAmlPage(); });
           });
           window.addEventListener('beforeunload', function() { socket.disconnect(); });
         } else if (window.EventSource) {
           var es = new EventSource('/stream');
           reloadEvents.forEach(function(evt) {
-            es.addEventListener(evt, function() { location.reload(); });
+            es.addEventListener(evt, function() { window.refreshAmlPage(); });
           });
           es.onerror = function() { es.close(); };
           window.addEventListener('beforeunload', function() { es.close(); });
@@ -79,7 +79,7 @@
   <h3>Executive Summary</h3>
   <ul>
     <li><strong>Total transactions:</strong> {{ total_transactions }}</li>
-    <li><strong>Suspicious transactions:</strong> {{ suspicious_transactions }}</li>
+    <li><strong>Flagged or pending transactions:</strong> {{ suspicious_transactions }}</li>
   </ul>
 
   <h3>Monthly transaction volume</h3>
@@ -155,39 +155,8 @@
     {% endfor %}
   </ul>
 </section>
-  </main>
+  </div>
 </div>
 
-<script>
-  (function() {
-    const sidebar = document.getElementById('page-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    let sidebarOpen = false;
 
-    function toggleSidebar(forceState) {
-      sidebarOpen = typeof forceState === 'boolean' ? forceState : !sidebarOpen;
-      if (sidebar) sidebar.classList.toggle('open', sidebarOpen);
-      if (overlay) overlay.classList.toggle('active', sidebarOpen);
-    }
-
-    // Register with global sidebar controller (set up in base.html)
-    window.__amlSidebarController = window.__amlSidebarController || {
-      listeners: new Set(),
-      register(handler) { this.listeners.add(handler); return () => this.listeners.delete(handler); },
-      toggle() { this.listeners.forEach((h) => h()); },
-      close() { this.listeners.forEach((h) => h(false)); }
-    };
-
-    const unregister = window.__amlSidebarController.register(toggleSidebar);
-    const fallback = () => toggleSidebar();
-    window.addEventListener('sidebar-toggle-click', fallback);
-
-    if (overlay) overlay.addEventListener('click', () => toggleSidebar(false));
-
-    window.addEventListener('beforeunload', function() {
-      unregister();
-      window.removeEventListener('sidebar-toggle-click', fallback);
-    });
-  })();
-</script>
 {% endblock %}

@@ -276,11 +276,6 @@ app.config.from_object(
 
 )
 
-# Security: Add secure headers
-@app.after_request
-def add_security_headers_wrapper(response):
-    return add_security_headers(response)
-
 
 # ============================================================================
 # Database Connection
@@ -633,7 +628,7 @@ app.extensions["realtime_broker"].set_staff_authorizer(_current_staff_socket_use
 # Note: These will be initialized per-request to use the correct database connection
 app.extensions["stage13_feature_service"] = None
 app.extensions["stage14_model_service"] = None
-app.logger.info("Stage 13 + Stage 14 AI services will be initialized per-request with database connection")
+app.logger.info("Primary AML model selected: %s", os.environ.get('AML_PRIMARY_MODEL', 'Stage14'))
 
 
 
@@ -646,9 +641,12 @@ def handle_connect():
         return False
     
     user_id = session.get('user_id')
-    role = session.get('role', 'unknown')
+    user = get_user_by_id(user_id)
+    if not user:
+        return False
+    role = user['role']
     sid = request.sid
-    username = session.get('username')
+    username = user['username']
     if username:
         # Every browser tab for a signed-in user joins the same private room.
         # This makes unread badges update immediately without exposing direct
@@ -1113,76 +1111,6 @@ def api_get_messageable_users():
     except Exception as e:
         app.logger.error(f"Error fetching messageable users: {e}")
         return jsonify({'status': 'error', 'message': str(e)}), 500
-
-
-# ============================================================================
-# Event Broadcasting Helper
-# ============================================================================
-
-def broadcast_event(event_name, payload):
-    """Broadcast event using RealtimeBroker."""
-    broker = app.extensions.get("realtime_broker")
-    if broker:
-        broker.publish(event_name, payload)
-
-
-# ============================================================================
-# AI Training Functions
-# ============================================================================
-
-def _ai_training_rows(rows):
-    histories = {}
-    enriched = []
-    for row in rows:
-        sender = row["sender_account"]
-        history = histories.setdefault(sender, {"amounts": [], "recipients": set(), "events": [], "transactions": []})
-        profile = _history_profile(row["amount"], row["receiver_account"], row["timestamp"], history)
-        item = dict(row)
-        item.update(profile)
-        enriched.append(item)
-        history["amounts"].append(float(row["amount"]))
-        history["recipients"].add(row["receiver_account"])
-        history["events"].append((_parse_timestamp(row["timestamp"]), float(row["amount"])))
-        history["transactions"].append(dict(row))
-    return enriched
-
-
-def _train_ai_model_from_db(conn, emit_events=True):
-    # Prevent concurrent AI training
-    global _ai_training_in_progress, _ai_training_lock
-    with _ai_training_lock:
-        if _ai_training_in_progress:
-            if app:
-                app.logger.info("AI training already in progress, skipping")
-            return None
-        _ai_training_in_progress = True
-    
-    try:
-        rows = conn.execute(
-            """
-            SELECT t.id, t.sender_account, t.receiver_account, t.amount, t.transaction_type,
-                   t.timestamp, COALESCE(t.generated_label, t.risk_level) as risk_level, t.risk_score, t.channel,
-                   COALESCE(u.wealth_segment, 'average') AS wealth_segment
-            FROM transactions t
-            LEFT JOIN users u ON t.sender_account = u.account_number
-            WHERE description != 'Initiated' OR risk_score > 0
-            ORDER BY t.timestamp ASC, t.id ASC
-            """
-        ).fetchall()
-        model = train_ai_model(_ai_training_rows(rows))
-        if emit_events:
-            meta = get_model_metadata()
-            broadcast_event("ai_model", {
-                "trained": model is not None,
-                "training_rows": len(rows),
-                "version": meta.get("version", "unknown"),
-                "cross_val_f1": meta.get("cross_val_f1_weighted"),
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-            })
-        return model
-    finally:
-        with _ai_training_lock:
-            _ai_training_in_progress = False
 
 
 # ============================================================================
@@ -1675,6 +1603,7 @@ def broadcast_user_balance(conn, account_number):
     if row:
 
         broadcast_event("balance", _user_balance_payload(row))
+        socketio.emit("balance", _user_balance_payload(row), to=f"user:{row['username']}")
 
 
 
@@ -2167,6 +2096,28 @@ def require_v4_rule_policy():
 def v4_primary_enabled():
     """An explicit operator setting; importing this module never activates V4."""
     return os.environ.get('AML_PRIMARY_MODEL') == 'V4'
+
+
+def primary_model_metadata():
+    """Report the selected model without loading or training a legacy model."""
+    if not v4_primary_enabled():
+        return {**get_model_metadata(), 'primary_model': 'Stage14',
+                'rules_enabled': _RULE_ENGINE_ENABLED}
+    return {'primary_model': 'V4', 'name': 'V4 XGBoost', 'status': 'frozen',
+            'version': 'v4.development.freeze.stage23.1',
+            'feature_version': 'v4.features.1', 'semantic_features': 40,
+            'estimator_columns': 42, 'threshold': 0.50,
+            'rules_enabled': _RULE_ENGINE_ENABLED,
+            'inference_mode': 'post_commit', 'automatic_fallback': False}
+
+
+def dashboard_user(row):
+    """Only presentation fields belong in browser dashboard JSON."""
+    allowed = ('id', 'username', 'email', 'id_number', 'account_number', 'role',
+               'balance', 'kyc_status', 'pep_flag', 'risk_rating',
+               'wealth_segment', 'created_at')
+    values = dict(row)
+    return {key: serialize_value(values.get(key)) for key in allowed}
 
 
 def _notify_v4_decision(result):
@@ -2723,6 +2674,7 @@ def inject_user():
 
     return {
         "current_user": user,
+        "primary_model": primary_model_metadata(),
         "staff_login_identifiers": [
             identifier.casefold()
             for username, staff in STAFF_ACCOUNTS.items()
@@ -2772,7 +2724,10 @@ def health():
 
         },
 
-        "database": app.config.get("DATABASE", "unknown"),
+        "database": {"configured": bool(app.config.get("DATABASE")),
+                     "engine": "mysql" if is_mysql_database_url(app.config.get("DATABASE", "")) else "other"},
+        "primary_model": "V4" if v4_primary_enabled() else "Stage14",
+        "rules_enabled": _RULE_ENGINE_ENABLED,
 
         "active_streams": len(app.config.get("ACTIVE_STREAMS", {})),
 
@@ -3394,7 +3349,7 @@ def customer_dashboard():
 
         dashboard_data={
 
-            "user": serialize_row(user),
+            "user": dashboard_user(user),
 
             "transactions": serialize_rows(transactions),
 
@@ -3801,6 +3756,7 @@ def compliance_dashboard():
             "transactions": serialize_rows(transactions),
 
             "open_alerts": serialize_rows(open_alerts),
+            "model": primary_model_metadata(),
 
             "filter_value": filter_value,
 
@@ -4313,7 +4269,8 @@ def admin_dashboard():
 
         dashboard_data={
 
-            "users": serialize_rows(users),
+            "users": [dashboard_user(user) for user in users],
+            "model": primary_model_metadata(),
 
             "activity": serialize_rows(activity),
 
@@ -4913,6 +4870,9 @@ def generate_agent_scenario():
 
 def clear_transactions():
 
+    if v4_primary_enabled():
+        return 'The verified V4 ledger cannot be cleared from the application.', 409
+
     admin_user = get_user_by_id(session["user_id"])
 
     conn = get_db()
@@ -4981,6 +4941,9 @@ def clear_watchlist():
 @login_required("admin")
 
 def migrate_database():
+
+    if v4_primary_enabled():
+        return 'V4 schema maintenance requires the guarded local administration command.', 409
 
     admin_user = get_user_by_id(session["user_id"])
 
@@ -5113,7 +5076,7 @@ def reports():
 
 def api_ai_model():
 
-    return jsonify(get_model_metadata())
+    return jsonify(primary_model_metadata())
 
 
 

@@ -8,17 +8,17 @@
 
 <div id="compliance-react-root"></div>
 
-<section id="v4-shadow-panel" class="panel" aria-labelledby="v4-shadow-title">
-  <h2 id="v4-shadow-title">V4 Shadow AI</h2>
+<section id="v4-shadow-panel" class="card v4-audit-panel" aria-labelledby="v4-shadow-title">
+  <h2 id="v4-shadow-title">V4 decision audit</h2>
   <p>This model identifies transaction patterns defined as suspicious within the synthetic research benchmark. It does not determine that money laundering has occurred.</p>
   <p>A normal result does not certify that the transaction is legitimate. All positive results require human review. Probability is the uncalibrated synthetic benchmark class-1 output.</p>
-  <p id="v4-shadow-state" role="status">Loading shadow results…</p>
+  <p id="v4-shadow-state" role="status">Loading V4 results…</p>
   <div id="v4-shadow-results"></div>
 </section>
 <script defer src="{{ url_for('static', filename='v4-shadow.js') }}"></script>
 
 <script id="compliance-dashboard-data" type="application/json">{{ dashboard_data|tojson }}</script>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="{{ url_for('static', filename='vendor/react.production.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/react-dom.production.min.js') }}"></script>
 <script src="{{ url_for('static', filename='react-dashboard.js') }}"></script>
 {% endblock %}

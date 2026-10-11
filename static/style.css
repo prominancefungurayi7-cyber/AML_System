@@ -1,2297 +1,1308 @@
+/* EpoCash workspace: shared tokens, components and responsive layouts. */
 :root {
-  --EpoCash-green: #1a3a5c;
-  --EpoCash-green-dark: #0f2540;
-  --EpoCash-gold: #2c5282;
-  --EpoCash-gold-soft: #e8f0f8;
-  --EpoCash-dark: #0a1628;
-  --EpoCash-bg: #0f172a;
-  --EpoCash-panel: #1e293b;
-  --EpoCash-panel-strong: #334155;
-  --EpoCash-border: #475569;
-  --EpoCash-border-strong: #64748b;
-  --EpoCash-text: #f1f5f9;
-  --EpoCash-muted: #94a3b8;
-  --EpoCash-danger: #ef4444;
-  --EpoCash-info: #3b82f6;
-  --EpoCash-warning: #f59e0b;
-  --EpoCash-critical: #dc2626;
-  --EpoCash-success: #10b981;
-  --EpoCash-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --EpoCash-glow: none;
-  --space-1: 0.5rem;
-  --space-2: 0.75rem;
-  --space-3: 1rem;
-  --space-4: 1.25rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --EpoCash-hover: rgba(255, 255, 255, 0.06);
+  color-scheme: light;
+  --EpoCash-bg:#f3f6f7;
+  --EpoCash-panel:#fff;
+  --EpoCash-panel-strong:#edf3f4;
+  --EpoCash-text:#19333b;
+  --EpoCash-muted:#5c7078;
+  --EpoCash-border:#dce5e8;
+  --EpoCash-border-strong:#b7c8cd;
+  --EpoCash-green:#087c70;
+  --EpoCash-green-dark:#086157;
+  --EpoCash-gold:#087c70;
+  --EpoCash-gold-soft:#e0f4ec;
+  --EpoCash-dark:#102f36;
+  --EpoCash-danger:#ba3547;
+  --EpoCash-info:#2366a4;
+  --EpoCash-warning:#986315;
+  --EpoCash-critical:#ad2440;
+  --EpoCash-success:#08745b;
+  --EpoCash-hover:#edf4f3;
+  --EpoCash-shadow:0 4px 20px #17323b06;
+  --EpoCash-glow:none;
+  --space-1:.5rem;
+  --space-2:.75rem;
+  --space-3:1rem;
+  --space-4:1.25rem;
+  --space-5:1.5rem;
+  --space-6:2rem;
 }
-
-html[data-theme="light"] {
-  --EpoCash-green: #1a3a5c;
-  --EpoCash-green-dark: #0f2540;
-  --EpoCash-gold: #2c5282;
-  --EpoCash-gold-soft: #e8f0f8;
-  --EpoCash-dark: #f8fafc;
-  --EpoCash-bg: #f8fafc;
-  --EpoCash-panel: #ffffff;
-  --EpoCash-panel-strong: #f1f5f9;
-  --EpoCash-border: #e2e8f0;
-  --EpoCash-border-strong: #cbd5e1;
-  --EpoCash-text: #1e293b;
-  --EpoCash-muted: #64748b;
-  --EpoCash-danger: #dc2626;
-  --EpoCash-info: #2563eb;
-  --EpoCash-warning: #d97706;
-  --EpoCash-critical: #b91c1c;
-  --EpoCash-success: #059669;
-  --EpoCash-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --EpoCash-glow: none;
-  --EpoCash-hover: rgba(0, 0, 0, 0.05);
+html[data-theme="dark"] {
+  color-scheme:dark;
+  --EpoCash-bg:#101e25;
+  --EpoCash-panel:#172a33;
+  --EpoCash-panel-strong:#203741;
+  --EpoCash-text:#e2eef0;
+  --EpoCash-muted:#a4b9c1;
+  --EpoCash-border:#2b424d;
+  --EpoCash-border-strong:#48636e;
+  --EpoCash-green:#55c9ad;
+  --EpoCash-green-dark:#7edfc4;
+  --EpoCash-gold:#70dabb;
+  --EpoCash-gold-soft:#203e36;
+  --EpoCash-hover:#223d46;
 }
-
-* { box-sizing: border-box; }
-
-html {
-  min-height: 100%;
-  background: var(--EpoCash-bg);
+* {
+  box-sizing:border-box
 }
-
+[hidden] {
+  display:none!important
+}
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  background: var(--EpoCash-bg);
-  color: var(--EpoCash-text);
-  font-size: 13px;
-  line-height: 1.5;
+  margin:0;
+  background:var(--EpoCash-bg);
+  color:var(--EpoCash-text);
+  font:14px/1.55 "Segoe UI",Arial,sans-serif
 }
-
-html[data-theme="light"] body {
-  background: var(--EpoCash-bg);
+a {
+  color:var(--EpoCash-green);
+  text-decoration:none
 }
-
-body::before {
-  display: none;
+a:hover {
+  text-decoration:underline
 }
-
-.page-shell {
-  min-height: 100vh;
-  padding-bottom: var(--space-6);
+button,input,select,textarea {
+  font:inherit
 }
-
-.topbar {
-  width: calc(100% - 2rem);
-  margin: 0.75rem 1rem 0;
-  color: var(--EpoCash-text);
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 4px;
-  box-shadow: var(--EpoCash-shadow);
-  position: relative;
-  z-index: 2;
+button,a,input,select,textarea {
+  -webkit-tap-highlight-color:transparent
 }
-
-html[data-theme="light"] .topbar {
-  background: var(--EpoCash-panel);
-  border-color: var(--EpoCash-border);
+:focus-visible {
+  outline:3px solid #339dce;
+  outline-offset:3px
 }
-
-.brand-block { display: flex; align-items: center; gap: 1rem; }
-
-/* Hide sidebar toggle on pages without sidebar */
-.no-sidebar .sidebar-toggle {
-  display: none;
+h1,h2,h3,h4,p {
+  margin-top:0
 }
-
-.brand-mark {
-  min-width: 60px;
-  width: auto;
-  height: 36px;
-  padding: 0 0.5rem;
-  display: grid;
-  place-items: center;
-  border-radius: 4px;
-  background: var(--EpoCash-green);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.85rem;
-  box-shadow: none;
-  transition: none;
+h2 {
+  font-size:30px;
+  line-height:1.2;
+  letter-spacing:-.8px
 }
-
-.brand-mark:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.brand-mark--stacked {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.02rem;
-  line-height: 0.98;
-  min-width: 70px;
-  height: 44px;
-  font-size: 0.8rem;
-}
-
-.brand-block p { margin: 0.14rem 0 0; color: var(--EpoCash-muted); font-size: 0.75rem; }
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  min-width: 0;
-}
-
-.topnav { display: flex; gap: 0.45rem; flex-wrap: wrap; justify-content: flex-end; }
-
-.topnav a {
-  color: var(--EpoCash-text);
-  text-decoration: none;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  transition: background 0.15s ease, color 0.15s ease;
-  font-weight: 500;
-  font-size: 0.8rem;
-  border: 1px solid transparent;
-}
-
-.topnav a:hover,
-.topnav a[aria-current="page"] {
-  color: var(--EpoCash-text);
-  background: var(--EpoCash-panel-strong);
-  border-color: var(--EpoCash-border);
-  transform: none;
-}
-
-.topnav a[aria-current="page"] {
-  box-shadow: none;
-  font-weight: 600;
-}
-
-html[data-theme="light"] .topnav a {
-  color: var(--EpoCash-text);
-}
-
-html[data-theme="light"] .topnav a:hover,
-html[data-theme="light"] .topnav a[aria-current="page"] {
-  color: var(--EpoCash-text);
-  background: var(--EpoCash-panel-strong);
-  border-color: var(--EpoCash-border);
-}
-
-.theme-toggle {
-  width: auto;
-  min-height: 32px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  color: var(--EpoCash-text);
-  box-shadow: none;
-  white-space: nowrap;
-}
-
-.theme-toggle:hover {
-  transform: none;
-  background: var(--EpoCash-panel-strong);
-}
-
-.theme-toggle__track {
-  width: 32px;
-  height: 18px;
-  padding: 2px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  background: var(--EpoCash-border);
-  box-shadow: none;
-}
-
-.theme-toggle__thumb {
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: var(--EpoCash-text);
-  box-shadow: none;
-  transform: translateX(0);
-  transition: transform 0.2s ease;
-}
-
-.theme-toggle__text {
-  min-width: 28px;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-html[data-theme="light"] .theme-toggle {
-  background: var(--EpoCash-panel);
-  color: var(--EpoCash-text);
-}
-
-html[data-theme="light"] .theme-toggle__track {
-  background: var(--EpoCash-border);
-}
-
-html[data-theme="light"] .theme-toggle__thumb {
-  background: var(--EpoCash-text);
-  transform: translateX(14px);
-}
-
-main {
-  padding: var(--space-4) 1.5rem 1.5rem;
-  width: 100%;
-}
-
-.hero,
-.card,
-.panel,
-.auth-panel {
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 4px;
-  padding: 1rem 1rem;
-  box-shadow: var(--EpoCash-shadow);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card:hover,
-.panel:hover,
-.auth-panel:hover {
-  transform: none;
-  border-color: var(--EpoCash-border-strong);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.auth-layout {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: var(--space-5);
-  align-items: stretch;
-}
-
-.auth-panel {
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.auth-panel--brand,
-.hero-banner {
-  color: white;
-  position: relative;
-  overflow: hidden;
-  background: var(--EpoCash-green);
-  border-color: var(--EpoCash-border);
-}
-
-html[data-theme="light"] .auth-panel--brand,
-html[data-theme="light"] .hero-banner {
-  background: var(--EpoCash-green);
-}
-
-.auth-panel--brand::before,
-.hero-banner::before {
-  display: none;
-}
-
-.auth-panel--brand > *,
-.hero-banner > * {
-  position: relative;
-}
-
-.auth-panel--brand h2 {
-  margin: 0 0 0.4rem;
-  color: white;
-  font-size: 1.15rem;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-.auth-panel--brand p {
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 460px;
-  line-height: 1.5;
-  font-size: 0.8rem;
-}
-
-html[data-theme="light"] .auth-panel--brand p,
-html[data-theme="light"] .hero p {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.auth-points,
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1rem;
-}
-
-.auth-point,
-.stat-chip {
-  padding: 0.5rem 0.72rem;
-  border-radius: 8px;
-  background: rgba(79, 140, 255, 0.12);
-  border: 1px solid rgba(129, 166, 255, 0.2);
-  color: #ddecff;
-  font-size: 0.84rem;
-  font-weight: 700;
-  transition: transform 0.22s var(--ease-out), border-color 0.22s var(--ease-out), background 0.22s var(--ease-out);
-}
-
-html[data-theme="light"] .auth-point,
-html[data-theme="light"] .stat-chip {
-  color: #eef7ff;
-  background: rgba(255, 255, 255, 0.13);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.auth-point:hover,
-.stat-chip:hover {
-  transform: translateY(-1px);
-  background: rgba(79, 140, 255, 0.18);
-  border-color: rgba(114, 228, 255, 0.3);
-}
-
-.auth-panel--form { padding: 1.65rem; justify-content: center; }
-
-.auth-brand-inline {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1.2rem;
-}
-
-.auth-brand-inline h3 {
-  margin: 0 0 0.2rem;
-  color: var(--EpoCash-text);
-  font-size: 1.35rem;
-}
-
-.auth-brand-inline p { margin: 0; color: var(--EpoCash-muted); }
-
-.brand-mark--small {
-  min-width: 74px;
-  width: auto;
-  height: 42px;
-  padding: 0 0.55rem;
-  border-radius: 8px;
-  font-size: 0.88rem;
-}
-
-.auth-form,
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.78rem;
-}
-
-.auth-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.2rem;
-}
-
-.text-link,
-.auth-footer a {
-  color: var(--EpoCash-gold);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.auth-footer {
-  margin-top: 1.2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--EpoCash-border);
-  color: var(--EpoCash-muted);
-  display: flex;
-  gap: 0.45rem;
-  flex-wrap: wrap;
-}
-
-.hero-banner {
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: var(--EpoCash-green);
-  color: white;
-}
-
-.hero-banner::after {
-  display: none;
-}
-
-.hero-badge {
-  display: inline-flex;
-  width: fit-content;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  animation: none;
-}
-
-.hero-banner h2,
-.hero-banner p { color: white; }
-
-.hero h2 {
-  margin: 0 0 0.3rem;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-.hero p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 760px;
-  line-height: 1.5;
-  font-size: 0.85rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-5);
-  margin-top: var(--space-5);
-}
-
-.react-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--space-4);
-  margin: var(--space-5) 0;
-}
-
-.metric-tile {
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 4px;
-  padding: 0.75rem 0.85rem;
-  box-shadow: var(--EpoCash-shadow);
-  min-height: 80px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-html[data-theme="light"] .metric-tile {
-  background: var(--EpoCash-panel);
-  box-shadow: var(--EpoCash-shadow);
-}
-
-.metric-tile::after {
-  display: none;
-}
-
-.metric-tile:hover {
-  transform: none;
-  border-color: var(--EpoCash-border-strong);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.metric-tile:hover::after {
-  display: none;
-}
-
-.metric-tile strong {
-  display: block;
-  margin-top: 0.3rem;
-  color: var(--EpoCash-text);
-  font-size: 1.25rem;
-  line-height: 1.1;
-  font-weight: 600;
-}
-
-html[data-theme="light"] .metric-tile strong,
-html[data-theme="light"] .data-table strong {
-  color: var(--EpoCash-text);
-}
-
-.metric-tile small {
-  display: block;
-  margin-top: 0.3rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.7rem;
-}
-
-.metric-label {
-  color: var(--EpoCash-muted);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-html[data-theme="light"] .metric-label,
-html[data-theme="light"] .data-table th {
-  color: var(--EpoCash-muted);
-}
-
-.react-dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-5);
-  margin-top: var(--space-5);
-}
-
-.react-dashboard-grid > * {
-  min-width: 0;
-}
-
-.compliance-dashboard-grid {
-  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
-}
-
-.react-filter-card { margin-top: var(--space-5); display: flex; flex-direction: column; }
-
-.react-filter-card form {
-  display: grid;
-  grid-template-columns: auto minmax(180px, 260px) auto;
-  align-items: end;
-  gap: var(--space-3);
-}
-
-.panel-heading-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-bottom: var(--space-3);
-}
-
 h3 {
-  color: var(--EpoCash-text);
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size:17px;
+  line-height:1.4
 }
-
-.panel-heading-row h3 { margin: 0; }
-
-.empty-state {
-  min-height: 132px;
-  display: grid;
-  place-items: center;
-  gap: 0.6rem;
-  text-align: center;
-  color: var(--EpoCash-muted);
-  border: 1px dashed rgba(129, 166, 255, 0.26);
-  border-radius: 8px;
-  background: rgba(8, 16, 31, 0.54);
-  padding: 1rem;
-  animation: rise-in 0.5s var(--ease-out) both;
+p {
+  margin-bottom:16px
 }
-
-html[data-theme="light"] .empty-state {
-  background: rgba(244, 248, 255, 0.82);
+svg {
+  width:20px;
+  height:20px;
+  flex-shrink:0
 }
-
-.empty-state p { margin: 0; }
-
-.empty-state-icon {
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: rgba(79, 140, 255, 0.16);
-  color: var(--EpoCash-gold);
-  font-weight: 800;
-  animation: soft-pulse 2.4s ease-in-out infinite;
+.muted-line,.form-hint,small {
+  color:var(--EpoCash-muted)
 }
-
-label {
-  font-weight: 500;
-  color: var(--EpoCash-text);
-  font-size: 0.75rem;
+.skip-link {
+  position:fixed;
+  top:-60px;
+  left:16px;
+  z-index:200;
+  background:var(--EpoCash-panel);
+  padding:12px
 }
-
-html[data-theme="light"] label {
-  color: var(--EpoCash-text);
+.skip-link:focus {
+  top:8px
 }
-
-input,
-select,
-button {
-  width: 100%;
-  min-height: 36px;
-  padding: 0.5rem 0.6rem;
-  border-radius: 4px;
-  border: 1px solid var(--EpoCash-border);
-  font: inherit;
-  font-size: 0.8rem;
+.topbar {
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  gap:20px;
+  background:var(--EpoCash-panel);
+  border-bottom:1px solid var(--EpoCash-border);
+  position:sticky;
+  top:0;
+  z-index:60
 }
-
-input,
-select {
-  background: var(--EpoCash-panel);
-  color: var(--EpoCash-text);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+.brand-block,.brand-home,.topbar-actions {
+  display:flex;
+  align-items:center;
+  gap:14px
 }
-
-html[data-theme="light"] input,
-html[data-theme="light"] select {
-  background: var(--EpoCash-panel);
-  color: var(--EpoCash-text);
+.brand-home {
+  color:var(--EpoCash-text)
 }
-
-html[data-theme="light"] input::placeholder {
-  color: var(--EpoCash-muted);
+.brand-home:hover {
+  text-decoration:none
 }
-
-input::placeholder { color: var(--EpoCash-muted); }
-
-select { color-scheme: light; }
-
-input:focus,
-select:focus {
-  outline: 2px solid var(--EpoCash-info);
-  outline-offset: -1px;
-  border-color: var(--EpoCash-info);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  transform: none;
+.brand-symbol {
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  background:#102f36;
+  color:#8be2c6;
+  border-radius:12px;
+  font-size:30px;
+  font-weight:800;
+  line-height:1
 }
-
-button {
-  cursor: pointer;
-  background: var(--EpoCash-green);
-  color: white;
-  font-weight: 500;
-  border: none;
-  box-shadow: none;
-  transition: background 0.15s ease, box-shadow 0.15s ease;
+.brand-home strong {
+  display:block;
+  font-size:20px;
+  letter-spacing:-.5px
 }
-
-button:hover {
-  background: var(--EpoCash-green-dark);
-  transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.brand-home small {
+  display:block;
+  font-size:11px;
+  letter-spacing:.4px
 }
-
-.admin-danger-zone {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: var(--space-5);
+.engine-badge {
+  font-size:12px;
+  font-weight:700;
+  border:1px solid var(--EpoCash-border);
+  padding:6px 10px;
+  border-radius:20px;
+  white-space:nowrap
 }
-
-.admin-danger-zone form { width: min(100%, 280px); }
-
-.danger-button {
-  width: 100%;
-  background: var(--EpoCash-danger);
-  box-shadow: none;
+.engine-badge span {
+  font-weight:400;
+  color:var(--EpoCash-muted)
 }
-
-.flash-messages {
-  margin: 0 0 1rem;
-  padding: 0.9rem 1rem;
-  list-style: none;
-  border-radius: 8px;
-  background: rgba(255, 207, 90, 0.12);
-  color: #ffe39b;
-  border: 1px solid rgba(255, 207, 90, 0.3);
-  animation: flash-enter 0.24s ease-out;
-  overflow: clip;
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease,
-    max-height 0.35s ease,
-    margin 0.35s ease,
-    padding 0.35s ease,
-    border-width 0.35s ease;
-  max-height: 160px;
+.account-link {
+  color:var(--EpoCash-text);
+  font-weight:600;
+  font-size:13px
 }
-
-html[data-theme="light"] .flash-messages {
-  background: #fff4cc;
-  color: #3f2b00;
-  border-color: rgba(138, 98, 11, 0.42);
-  box-shadow: 0 12px 30px rgba(76, 54, 8, 0.12);
+.account-link span {
+  display:block;
+  font-size:11px;
+  color:var(--EpoCash-muted);
+  font-weight:400
 }
-
-.flash-messages.is-clearing {
-  opacity: 0;
-  transform: translateY(-8px);
-  max-height: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-width: 0;
+.header-caption {
+  font-size:12px;
+  color:var(--EpoCash-muted)
 }
-
-ul { padding-left: 1.1rem; }
-li { margin-bottom: 0.5rem; }
-
+.topbar-message-link {
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border:1px solid var(--EpoCash-border);
+  border-radius:10px;
+  color:var(--EpoCash-muted)
+}
+.topbar-message-link svg,.sidebar-toggle svg {
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7
+}
+.message-badge {
+  position:absolute;
+  right:-6px;
+  top:-6px;
+  background:#ba3547;
+  color:white;
+  border-radius:20px;
+  font-size:10px;
+  min-width:18px;
+  text-align:center;
+  padding:1px 4px
+}
+.page-shell>main {
+  max-width:1700px;
+  margin:0 auto;
+  padding:32px 36px 40px 272px;
+  min-height:calc(100vh - 132px)
+}
+.no-sidebar>main {
+  padding:32px;
+  max-width:1300px
+}
+.site-footer {
+  margin-left:236px;
+  padding:14px 36px;
+  border-top:1px solid var(--EpoCash-border);
+  font-size:11px;
+  color:var(--EpoCash-muted);
+  display:flex;
+  justify-content:space-between
+}
+.no-sidebar .site-footer {
+  margin-left:0
+}
+.hero-banner {
+  margin:0 0 28px;
+  padding:0;
+  background:none;
+  max-width:900px
+}
+.hero-badge {
+  color:var(--EpoCash-green);
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  margin-bottom:10px
+}
+.hero-banner h2 {
+  margin:0 0 10px
+}
+.hero-banner p {
+  color:var(--EpoCash-muted);
+  max-width:760px;
+  margin:0;
+  font-size:14px
+}
+.admin-layout,.admin-content {
+  min-width:0
+}
+.admin-sidebar {
+  position:fixed;
+  top:76px;
+  bottom:0;
+  left:0;
+  width:236px;
+  z-index:50;
+  background:var(--EpoCash-panel);
+  border-right:1px solid var(--EpoCash-border);
+  padding:26px 16px 18px;
+  display:flex;
+  flex-direction:column;
+  overflow:auto
+}
+.sidebar-brand {
+  padding:0 14px 24px
+}
+.sidebar-brand__title {
+  display:block;
+  font-size:10px;
+  letter-spacing:1.8px;
+  color:var(--EpoCash-muted);
+  font-weight:700
+}
+.sidebar-brand__role {
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  font-weight:600
+}
+.admin-sidebar nav {
+  display:flex;
+  flex-direction:column;
+  gap:5px
+}
+.sidebar-item {
+  justify-content:flex-start;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:0;
+  border-radius:9px;
+  color:var(--EpoCash-muted);
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  box-shadow:none
+}
+.sidebar-item:hover {
+  background:var(--EpoCash-hover);
+  text-decoration:none;
+  color:var(--EpoCash-text)
+}
+.sidebar-item.active {
+  background:var(--EpoCash-gold-soft);
+  color:var(--EpoCash-green);
+  font-weight:700
+}
+.sidebar-item svg {
+  width:18px;
+  height:18px
+}
+.sidebar-footer {
+  margin-top:auto;
+  padding:28px 12px 0
+}
+.theme-toggle-sidebar {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:none;
+  color:var(--EpoCash-muted);
+  padding:0;
+  border:0;
+  font-size:12px
+}
+.theme-toggle__track {
+  width:32px;
+  height:18px;
+  background:var(--EpoCash-border-strong);
+  padding:3px;
+  border-radius:16px
+}
+.theme-toggle__thumb {
+  display:block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:white
+}
+html[data-theme="dark"] .theme-toggle__thumb {
+  transform:translateX(14px)
+}
+.sidebar-toggle {
+  display:none;
+  padding:8px;
+  background:transparent;
+  color:var(--EpoCash-text);
+  border:1px solid var(--EpoCash-border);
+  border-radius:8px
+}
+.sidebar-overlay {
+  display:none
+}
+.react-metrics {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-bottom:24px
+}
+.metric-tile {
+  padding:20px 22px;
+  background:var(--EpoCash-panel);
+  border:1px solid var(--EpoCash-border);
+  border-radius:14px;
+  box-shadow:var(--EpoCash-shadow)
+}
+.metric-label {
+  display:block;
+  color:var(--EpoCash-muted);
+  font-size:12px;
+  font-weight:500
+}
+.metric-tile strong {
+  display:block;
+  font-size:28px;
+  letter-spacing:-.7px;
+  margin:8px 0 2px;
+  font-variant-numeric:tabular-nums
+}
+.metric-tile small {
+  font-size:11px
+}
+.grid,.react-dashboard-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  align-items:start
+}
+.compliance-dashboard-grid {
+  grid-template-columns:minmax(0,1fr)
+}
+.card,.panel {
+  background:var(--EpoCash-panel);
+  border:1px solid var(--EpoCash-border);
+  border-radius:14px;
+  padding:24px;
+  min-width:0;
+  box-shadow:var(--EpoCash-shadow)
+}
 .table-card {
-  min-width: 0;
-  overflow-x: auto;
-  overflow-y: visible;
+  overflow-x:auto
 }
-.table-card ul { margin: 0; padding-left: 0; list-style: none; }
-.table-card li {
-  padding: 0.85rem 0.15rem;
-  color: var(--EpoCash-text);
-  border-bottom: 1px solid rgba(129, 166, 255, 0.12);
-  transition: background 0.22s var(--ease-out), padding-left 0.22s var(--ease-out);
+.panel-heading-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:20px
 }
-.table-card li:hover {
-  background: rgba(79, 140, 255, 0.045);
-  padding-left: 0.35rem;
+.panel-heading-row h3 {
+  margin:0
 }
-
-html[data-theme="light"] .table-card li:hover,
-html[data-theme="light"] .activity-item:hover,
-html[data-theme="light"] .data-table tbody tr:hover {
-  background: rgba(29, 92, 255, 0.055);
+.action-card form {
+  display:flex;
+  flex-direction:column
 }
-.table-card li:last-child { border-bottom: none; }
-
-.metric { font-size: 1.35rem; font-weight: 800; color: var(--EpoCash-gold); }
-
-.muted-line {
-  color: var(--EpoCash-muted);
-  font-size: 0.88rem;
+.action-card>p {
+  color:var(--EpoCash-muted)
 }
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  min-height: 24px;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-text);
-  border: 1px solid var(--EpoCash-border);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  transition: none;
+.account-card {
+  background:#102f36;
+  color:#fff;
+  min-height:250px;
+  border:0;
+  padding:30px
 }
-
-html[data-theme="light"] .status-pill {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-text);
-  border-color: var(--EpoCash-border);
+.account-card .muted-line {
+  color:#b8ced1
 }
-
-.status-pill:hover {
-  transform: none;
+.account-card .metric {
+  font-size:40px;
+  letter-spacing:-1px;
+  color:#8be2c6;
+  margin:22px 0
 }
-
-.status-pill.alert {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-danger);
-  border-color: var(--EpoCash-border);
+.account-card .status-pill {
+  background:#25494e;
+  color:#b0efda
 }
-
-html[data-theme="light"] .status-pill.alert {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-danger);
-  border-color: var(--EpoCash-border);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  padding: 0.5rem 0.6rem;
-  border: 1px solid var(--EpoCash-border);
-  text-align: left;
-  font-size: 0.75rem;
-}
-
-table th {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-text);
-  font-weight: 600;
-}
-
-html[data-theme="light"] table th,
-html[data-theme="light"] .data-table th {
-  background: var(--EpoCash-panel-strong);
-}
-
-table tr:nth-child(even) { background: var(--EpoCash-panel-strong); }
-
-.action-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.action-card > p { margin: 0; }
-.account-card { min-height: 240px; }
-
 .account-card h3 {
-  margin: 0.95rem 0 0.45rem;
-  font-size: 1.6rem;
+  font-size:14px;
+  font-weight:500;
+  margin:20px 0 0
 }
-
+.model-card>h3 {
+  font-size:24px;
+  margin:20px 0 10px
+}
+.model-facts {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  font-size:13px;
+  padding:20px 0;
+  border-top:1px solid var(--EpoCash-border);
+  border-bottom:1px solid var(--EpoCash-border)
+}
+.model-facts dt {
+  color:var(--EpoCash-muted)
+}
+.model-facts dd {
+  margin:0;
+  text-align:right;
+  font-weight:600
+}
+label {
+  display:block;
+  font-size:12px;
+  font-weight:600;
+  margin:0 0 6px
+}
+input,select,textarea {
+  display:block;
+  width:100%;
+  min-width:0;
+  border:1px solid var(--EpoCash-border-strong);
+  background:var(--EpoCash-panel);
+  color:var(--EpoCash-text);
+  border-radius:8px;
+  padding:10px 12px;
+  margin-bottom:16px;
+  min-height:42px
+}
+input::placeholder,textarea::placeholder {
+  color:var(--EpoCash-muted);
+  opacity:.75
+}
+textarea {
+  min-height:100px;
+  resize:vertical
+}
+input[type="checkbox"],input[type="radio"] {
+  display:inline-block;
+  width:auto;
+  min-height:0
+}
+input[type="hidden"] {
+  display:none
+}
+button,.button,.action-link,.message-card-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:var(--EpoCash-green);
+  color:var(--EpoCash-panel);
+  border:1px solid transparent;
+  border-radius:8px;
+  padding:10px 16px;
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:none;
+  min-height:40px
+}
+button:hover,.button:hover,.message-card-button:hover {
+  filter:brightness(.94);
+  text-decoration:none
+}
+button:disabled {
+  opacity:.5;
+  cursor:not-allowed
+}
+.danger-button {
+  background:#b53547;
+  color:white
+}
 .form-hint {
-  margin: -0.25rem 0 0.1rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.84rem;
+  font-size:12px;
+  line-height:1.6;
+  margin:0 0 16px
 }
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 640px;
-  table-layout: fixed;
+.text-link {
+  font-size:13px
 }
-
-.data-table th,
-.data-table td {
-  border: 0;
-  border-bottom: 1px solid rgba(129, 166, 255, 0.12);
-  padding: 0.95rem 0.78rem;
-  vertical-align: top;
-  overflow-wrap: anywhere;
-  word-break: normal;
+.data-table,table {
+  width:100%;
+  border-collapse:collapse;
+  text-align:left;
+  font-size:12px
 }
-
-.data-table th {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-text);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
+.data-table th,th {
+  font-size:10px;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  color:var(--EpoCash-muted);
+  padding:12px 10px;
+  background:var(--EpoCash-panel-strong);
+  font-weight:700;
+  white-space:nowrap
 }
-
-.data-table tr:nth-child(even) { background: transparent; }
-
-.data-table tbody tr {
-  transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+.data-table td,td {
+  padding:14px 10px;
+  border-bottom:1px solid var(--EpoCash-border);
+  vertical-align:top
+}
+.data-table tbody tr:last-child td {
+  border-bottom:0
 }
 .data-table tbody tr:hover {
-  background: rgba(79, 140, 255, 0.07);
+  background:var(--EpoCash-hover)
 }
-.data-table strong { color: var(--EpoCash-text); }
-
-.admin-transactions-table {
-  min-width: 0;
-  table-layout: auto;
+.data-table td p {
+  margin:5px 0
 }
-
-.admin-transactions-table th,
-.admin-transactions-table td {
-  padding-inline: 0.58rem;
-}
-
-.admin-transactions-table th:nth-child(1),
-.admin-transactions-table td:nth-child(1) {
-  width: 30%;
-}
-
-.admin-transactions-table th:nth-child(2),
-.admin-transactions-table td:nth-child(2) {
-  width: 32%;
-}
-
-.admin-transactions-table th:nth-child(3),
-.admin-transactions-table td:nth-child(3) {
-  width: 22%;
-  white-space: nowrap;
-}
-
-.admin-transactions-table th:nth-child(4),
-.admin-transactions-table td:nth-child(4) {
-  width: 16%;
-}
-
 .block-line {
-  display: block;
-  margin-top: 0.25rem;
+  display:block
 }
-
-.block-fit { width: fit-content; }
-
-.activity-item {
-  padding: 0.92rem 0.12rem;
-  border-bottom: 1px solid rgba(129, 166, 255, 0.12);
-  transition: background 0.22s var(--ease-out), padding-left 0.22s var(--ease-out);
+.block-fit {
+  width:fit-content
 }
-
-.activity-item:last-child { border-bottom: 0; }
-
-.activity-item:hover {
-  background: rgba(79, 140, 255, 0.045);
-  padding-left: 0.35rem;
+.admin-transactions-table {
+  min-width:640px
 }
-
-.activity-item p {
-  margin: 0.25rem 0 0;
-  color: #d4e1f8;
-  line-height: 1.45;
+.status-pill,.live-status,.secure-chip {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 9px;
+  border-radius:6px;
+  background:var(--EpoCash-panel-strong);
+  color:var(--EpoCash-muted);
+  font-size:10px;
+  font-weight:600;
+  line-height:1.5;
+  white-space:nowrap;
+  text-transform:capitalize
 }
-
-html[data-theme="light"] .activity-item p {
-  color: #253954;
+.risk-normal,.risk-low,.status-pill.success {
+  background:#e0f4ec;
+  color:#08634f
 }
-
-.live-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.34rem 0.62rem;
-  border-radius: 8px;
-  background: rgba(66, 232, 164, 0.12);
-  color: #91f6c8;
-  border: 1px solid rgba(66, 232, 164, 0.22);
-  font-size: 0.78rem;
-  font-weight: 800;
-  max-width: 100%;
-  animation: status-breathe 2.2s ease-in-out infinite;
+.risk-suspicious,.risk-medium,.status-pill.warning {
+  background:#fff0d7;
+  color:#8b590b
 }
-
-html[data-theme="light"] .live-status {
-  background: rgba(9, 92, 54, 0.12);
-  color: #064d2f;
-  border-color: rgba(9, 92, 54, 0.28);
+.risk-high-risk,.risk-super-suspicious,.risk-critical,.status-pill.alert {
+  background:#fce5e9;
+  color:#a32640
 }
-
-.live-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--EpoCash-success);
-  box-shadow: 0 0 0 4px rgba(66, 232, 164, 0.14), 0 0 18px rgba(66, 232, 164, 0.55);
-  animation: live-dot 1.5s ease-in-out infinite;
+.risk-pending-v4,.risk-pending,.risk-inference-error {
+  background:#fff0d7;
+  color:#8b590b
 }
-
 .risk-pill {
-  background: rgba(66, 232, 164, 0.12);
-  color: #74f0bb;
+  white-space:normal
 }
-
-html[data-theme="light"] .risk-pill {
-  background: rgba(18, 132, 90, 0.1);
-  color: #08764f;
+.live-dot {
+  height:6px;
+  width:6px;
+  background:currentColor;
+  border-radius:50%
 }
-
-html[data-theme="light"] .risk-low {
-  background: rgba(8, 126, 164, 0.1);
-  color: #087196;
+.live-status {
+  white-space:normal
 }
-
-html[data-theme="light"] .risk-suspicious {
-  background: rgba(138, 98, 11, 0.11);
-  color: #735006;
-}
-
-html[data-theme="light"] .risk-super-suspicious,
-html[data-theme="light"] .risk-high-risk,
-html[data-theme="light"] .risk-critical {
-  background: rgba(197, 54, 88, 0.1);
-  color: #a22544;
-}
-
-.risk-low {
-  background: rgba(86, 199, 255, 0.12);
-  color: #87ddff;
-  border-color: rgba(86, 199, 255, 0.24);
-}
-
-.risk-suspicious {
-  background: rgba(255, 207, 90, 0.13);
-  color: #ffe08a;
-  border-color: rgba(255, 207, 90, 0.26);
-}
-
-.risk-super-suspicious,
-.risk-high-risk {
-  background: rgba(255, 95, 126, 0.13);
-  color: #ff9bae;
-  border-color: rgba(255, 95, 126, 0.28);
-}
-
-.risk-critical {
-  background: rgba(255, 71, 120, 0.16);
-  color: #ff83a0;
-  border-color: rgba(255, 71, 120, 0.34);
-}
-
 .action-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 0.45rem 0.7rem;
-  border-radius: 8px;
-  background: rgba(79, 140, 255, 0.14);
-  color: #a8d9ff;
-  border: 1px solid rgba(129, 166, 255, 0.22);
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform 0.22s var(--ease-out), background 0.22s var(--ease-out), color 0.22s var(--ease-out), border-color 0.22s var(--ease-out);
+  padding:6px 10px;
+  min-height:30px;
+  background:var(--EpoCash-gold-soft);
+  color:var(--EpoCash-green);
+  font-size:11px
 }
-
-.action-link:hover {
-  background: rgba(79, 140, 255, 0.22);
-  color: white;
-  border-color: rgba(114, 228, 255, 0.36);
-  transform: translateY(-1px);
+.empty-state {
+  padding:36px 20px;
+  text-align:center;
+  color:var(--EpoCash-muted);
+  background:var(--EpoCash-panel-strong);
+  border-radius:10px
 }
-
-.queue-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  padding-top: 1rem;
+.empty-state p {
+  margin:8px 0 0
 }
-
-.pagination-disabled {
-  opacity: 0.45;
-  pointer-events: none;
+.empty-state-icon {
+  border:1px solid var(--EpoCash-border-strong);
+  border-radius:50%;
+  width:24px;
+  height:24px;
+  display:inline-grid;
+  place-items:center
 }
-
-html[data-theme="light"] .action-link {
-  background: rgba(29, 92, 255, 0.09);
-  color: #134cae;
-  border-color: rgba(29, 92, 255, 0.22);
-}
-
-html[data-theme="light"] .action-link:hover {
-  background: rgba(29, 92, 255, 0.14);
-  color: #0d347c;
-  border-color: rgba(29, 92, 255, 0.3);
-}
-
-.live-feed-card ul,
 .table-card ul {
-  list-style: none;
-  padding-left: 0;
+  list-style:none;
+  padding:0;
+  margin:0
 }
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(114, 228, 255, 0.42) transparent;
+.activity-item {
+  padding:16px 0;
+  border-bottom:1px solid var(--EpoCash-border)
 }
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+.activity-item p {
+  margin:5px 0
 }
-
-::-webkit-scrollbar-track {
-  background: transparent;
+.activity-item:last-child {
+  border:0
 }
-
-::-webkit-scrollbar-thumb {
-  background: rgba(114, 228, 255, 0.32);
-  border: 3px solid transparent;
-  border-radius: 999px;
-  background-clip: content-box;
+.queue-pagination {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  justify-content:flex-end;
+  margin-top:20px
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(114, 228, 255, 0.55);
-  background-clip: content-box;
+.pagination-disabled {
+  color:var(--EpoCash-muted)
 }
-
-@keyframes flash-enter {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.react-filter-card {
+  margin-bottom:20px
 }
-
-@keyframes page-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.react-filter-card form {
+  display:flex;
+  align-items:end;
+  gap:12px;
+  flex-wrap:wrap
 }
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.react-filter-card form input,.react-filter-card form select {
+  width:auto;
+  margin-bottom:0
 }
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.v4-audit-panel {
+  margin-top:24px
 }
-
-@keyframes soft-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 rgba(114, 228, 255, 0);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(114, 228, 255, 0.12);
-  }
+.v4-audit-panel>p {
+  font-size:12px;
+  color:var(--EpoCash-muted);
+  max-width:900px
 }
-
-@keyframes scan-line {
-  0%, 100% {
-    opacity: 0.45;
-    transform: translateX(-18%);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(18%);
-  }
+.v4-audit-panel h2 {
+  font-size:20px
 }
-
-@keyframes status-breathe {
-  0%, 100% { border-color: rgba(66, 232, 164, 0.2); }
-  50% { border-color: rgba(66, 232, 164, 0.42); }
+#v4-shadow-results p {
+  padding:16px;
+  background:var(--EpoCash-panel-strong);
+  border-radius:8px;
+  font-size:12px;
+  overflow-wrap:anywhere
 }
-
-@keyframes live-dot {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 4px rgba(66, 232, 164, 0.14), 0 0 18px rgba(66, 232, 164, 0.55);
-  }
-  50% {
-    transform: scale(1.18);
-    box-shadow: 0 0 0 7px rgba(66, 232, 164, 0.08), 0 0 24px rgba(66, 232, 164, 0.72);
-  }
+.flash-messages {
+  list-style:none;
+  padding:14px 18px;
+  margin:0 0 24px;
+  background:var(--EpoCash-gold-soft);
+  border:1px solid var(--EpoCash-border);
+  border-left:3px solid var(--EpoCash-green);
+  border-radius:8px;
+  font-size:13px
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
+.flash-messages li+li {
+  margin-top:8px
 }
-
-@media (max-width: 760px) {
-  .topbar {
-    width: min(100% - 1rem, 1380px);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-    padding: 0.9rem;
-    top: 0.5rem;
-  }
-
-  .topbar-actions {
-    width: 100%;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .topnav { gap: 0.35rem; }
-  .topnav a { padding: 0.45rem 0.62rem; font-size: 0.82rem; }
-  .theme-toggle { align-self: flex-start; }
-  main { padding: var(--space-4) 1rem 2rem; }
-  .hero, .card, .panel, .auth-panel { padding: var(--space-4); }
-  .hero-banner { min-height: 170px; }
-  .hero-banner h2 { font-size: 1.45rem; }
-  .auth-layout { grid-template-columns: 1fr; }
-  .auth-panel { min-height: auto; }
-  .auth-actions { flex-direction: column; align-items: stretch; }
-  .react-filter-card form { grid-template-columns: 1fr; }
-  .react-dashboard-grid,
-  .grid { grid-template-columns: 1fr; }
-  .react-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-  .metric-tile { min-height: 96px; padding: 0.9rem; }
-  .metric-tile strong { font-size: 1.18rem; }
-  .panel-heading-row { align-items: flex-start; }
-  .data-table { min-width: 620px; }
-  .compliance-dashboard-grid { grid-template-columns: 1fr; }
-  .account-card { min-height: auto; }
+.auth-layout {
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  max-width:1050px;
+  margin:40px auto 60px;
+  background:var(--EpoCash-panel);
+  border:1px solid var(--EpoCash-border);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 16px 60px #19333b0a
 }
-
-.admin-layout {
-  position: relative;
-  width: 100%;
-  margin-top: 1rem;
+.auth-panel {
+  padding:52px
 }
-
-.admin-sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 260px;
-  background: var(--EpoCash-panel);
-  border-right: 1px solid var(--EpoCash-border);
-  border-radius: 0 6px 6px 0;
-  padding: 1.25rem 1rem;
-  z-index: 1000;
-  transform: translateX(-100%);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
-  overflow-y: auto;
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  will-change: transform;
+.auth-panel--brand {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:#102f36;
+  color:#fff;
+  position:relative
 }
-
-.admin-sidebar.open {
-  transform: translateX(0);
-  opacity: 1;
+.auth-panel--brand .hero-badge {
+  color:#8be2c6
 }
-
-.admin-sidebar nav {
-  flex: 1;
+.auth-panel--brand h2 {
+  font-size:46px;
+  margin:16px 0;
+  letter-spacing:-1.5px
 }
-
-.sidebar-footer {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--EpoCash-border);
+.auth-panel--brand p {
+  color:#bbd0d3;
+  font-size:15px;
+  max-width:320px
 }
-
-.theme-toggle-sidebar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
+.auth-points {
+  margin-top:32px;
+  display:grid;
+  gap:18px
 }
-
-.theme-toggle-sidebar:hover {
-  background: var(--EpoCash-hover);
+.auth-point {
+  font-size:13px;
+  color:#d2e4e5;
+  display:flex;
+  gap:12px;
+  align-items:center
 }
-
-.admin-sidebar h3 {
-  margin: 0 0 0.75rem;
+.auth-point:before {
+  content:'\2713';
+  width:23px;
+  height:23px;
+  border-radius:50%;
+  background:#264b4d;
+  color:#9be5ce;
+  display:grid;
+  place-items:center
 }
-
-/* ========== Messaging Component ========== */
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+.auth-brand-inline {
+  margin-bottom:32px
 }
-
-.topbar-message-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--EpoCash-text);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  text-decoration: none;
+.auth-brand-inline .brand-mark {
+  display:none
 }
-
-.topbar-message-link:hover {
-  background-color: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-gold);
+.auth-brand-inline h3 {
+  font-size:25px;
+  margin:0 0 8px
 }
-
-.topbar-message-link svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
+.auth-brand-inline p {
+  font-size:12px;
+  color:var(--EpoCash-muted)
 }
-
-.message-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: var(--EpoCash-danger);
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  border: 2px solid var(--EpoCash-panel);
-  animation: badgePulse 2s infinite;
+.auth-actions {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:6px
 }
-
-@keyframes badgePulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
-  }
+.auth-actions button {
+  min-width:120px
 }
-
-html[data-theme="light"] .topbar-message-link:hover {
-  background-color: var(--EpoCash-panel-strong);
+.auth-footer {
+  display:flex;
+  gap:8px;
+  margin-top:32px;
+  padding-top:24px;
+  border-top:1px solid var(--EpoCash-border);
+  font-size:12px;
+  color:var(--EpoCash-muted)
 }
-
-html[data-theme="light"] .message-badge {
-  border-color: var(--EpoCash-panel);
+.auth-footer a {
+  font-weight:600
 }
-
 .dashboard-message-card {
-  position: relative;
-  overflow: hidden;
-  animation: rise-in 0.42s var(--ease-out) both;
+  min-height:260px
 }
-
-.dashboard-message-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-top: 3px solid var(--EpoCash-info);
-  opacity: 0.85;
-  pointer-events: none;
-}
-
 .message-card-topline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px
 }
-
 .message-card-icon {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: rgba(59, 130, 246, 0.14);
-  color: var(--EpoCash-info);
-  border: 1px solid rgba(59, 130, 246, 0.24);
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  background:var(--EpoCash-gold-soft);
+  border-radius:10px
 }
-
-.message-card-icon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.message-card-alert {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(239, 68, 68, 0.12);
-  color: var(--EpoCash-danger);
-  border: 1px solid rgba(239, 68, 68, 0.22);
-  font-size: 0.72rem;
-  font-weight: 700;
-  animation: badgePulse 2.2s ease-in-out infinite;
-}
-
 .message-card-stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin: 1rem 0;
+  display:flex;
+  gap:30px;
+  margin:20px 0
 }
-
 .message-card-stats span {
-  min-height: 70px;
-  padding: 0.75rem;
-  border-radius: 8px;
-  background: rgba(148, 163, 184, 0.08);
-  border: 1px solid rgba(148, 163, 184, 0.16);
+  display:flex;
+  flex-direction:column
 }
-
-.message-card-stats strong,
-.message-card-stats small {
-  display: block;
-}
-
 .message-card-stats strong {
-  color: var(--EpoCash-text);
-  font-size: 1.2rem;
-  line-height: 1;
+  font-size:24px
 }
-
 .message-card-stats small {
-  margin-top: 0.35rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.72rem;
+  font-size:12px
 }
-
-.message-card-button {
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: 6px;
-  background: var(--EpoCash-green);
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+.message-card-alert {
+  font-size:11px;
+  color:var(--EpoCash-muted)
 }
-
-.message-card-button:hover {
-  background: var(--EpoCash-green-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(15, 37, 64, 0.18);
-}
-
-.secure-chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.11);
-  color: var(--EpoCash-success);
-  border: 1px solid rgba(16, 185, 129, 0.22);
-  font-size: 0.7rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 .messaging-workspace {
-  height: calc(100vh - 118px);
-  min-height: 620px;
-  display: grid;
-  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
-  gap: 0;
-  overflow: hidden;
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 8px;
-  box-shadow: var(--EpoCash-shadow);
-  animation: rise-in 0.38s var(--ease-out) both;
+  display:grid;
+  grid-template-columns:310px minmax(0,1fr);
+  height:calc(100vh - 195px);
+  min-height:480px;
+  border:1px solid var(--EpoCash-border);
+  border-radius:16px;
+  overflow:hidden;
+  background:var(--EpoCash-panel)
 }
-
-.messaging-rail,
-.modern-chat-panel {
-  min-width: 0;
-  min-height: 0;
-}
-
 .messaging-rail {
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid var(--EpoCash-border);
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.06), transparent 180px), var(--EpoCash-panel);
+  border-right:1px solid var(--EpoCash-border);
+  overflow:auto
 }
-
-.messaging-rail__header,
-.modern-chat-header,
-.modern-input-area {
-  flex-shrink: 0;
-}
-
 .messaging-rail__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1rem;
-  border-bottom: 1px solid var(--EpoCash-border);
+  padding:24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px
 }
-
 .messaging-rail__header h2 {
-  margin: 0.2rem 0 0;
-  color: var(--EpoCash-text);
-  font-size: 1.15rem;
-  line-height: 1.15;
+  font-size:23px;
+  margin:5px 0 0
 }
-
 .messaging-kicker {
-  color: var(--EpoCash-muted);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--EpoCash-muted)
 }
-
-.message-search {
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  align-items: center;
-  gap: 0.55rem;
-  margin: 1rem;
-  padding: 0.55rem 0.65rem;
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 8px;
-  background: rgba(148, 163, 184, 0.08);
-  color: var(--EpoCash-muted);
-}
-
-.message-search svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-}
-
-.message-search input {
-  width: 100%;
-  min-height: 26px;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.message-search:focus-within {
-  border-color: var(--EpoCash-info);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-}
-
-.message-tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.35rem;
-  padding: 0 1rem 0.75rem;
-}
-
-.message-tab {
-  min-height: 34px;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--EpoCash-muted);
-  border: 1px solid var(--EpoCash-border);
-  font-weight: 700;
-}
-
-.message-tab:hover,
-.message-tab.active {
-  background: var(--EpoCash-panel-strong);
-  color: var(--EpoCash-text);
-}
-
 .modern-message-list {
-  display: none;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  list-style: none;
-  margin: 0;
-  padding: 0.25rem 0.75rem 1rem;
+  list-style:none;
+  margin:0;
+  padding:8px
 }
-
-.modern-message-list.active {
-  display: block;
-}
-
 .modern-thread {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.7rem;
-  min-height: 62px;
-  margin: 0 0 0.35rem;
-  padding: 0.55rem;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  animation: thread-enter 0.25s var(--ease-out) both;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 12px;
+  cursor:pointer;
+  border-radius:10px
 }
-
-.modern-thread:hover,
-.modern-thread.active {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.22);
-  transform: translateX(2px);
+.modern-thread.active,.modern-thread:hover {
+  background:var(--EpoCash-hover)
 }
-
 .conversation-avatar {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--EpoCash-green), var(--EpoCash-info));
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 0.86rem;
-  position: relative;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:var(--EpoCash-gold-soft);
+  color:var(--EpoCash-green);
+  display:grid;
+  place-items:center;
+  font-weight:700;
+  font-size:13px
 }
-
-.conversation-avatar.online::after {
-  content: "";
-  position: absolute;
-  right: -1px;
-  bottom: -1px;
-  width: 11px;
-  height: 11px;
-  border-radius: 999px;
-  background: var(--EpoCash-success);
-  border: 2px solid var(--EpoCash-panel);
-}
-
 .conversation-info {
-  min-width: 0;
+  min-width:0;
+  flex:1
 }
-
-.conversation-name,
-.conversation-preview {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .conversation-name {
-  color: var(--EpoCash-text);
-  font-weight: 700;
+  font-weight:600;
+  font-size:13px
 }
-
 .conversation-preview {
-  margin-top: 0.15rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.76rem;
+  font-size:11px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:var(--EpoCash-muted);
+  margin-top:3px
 }
-
 .thread-meta {
-  display: flex;
-  justify-content: flex-end;
+  font-size:10px;
+  color:var(--EpoCash-muted)
 }
-
 .unread-badge {
-  min-width: 22px;
-  height: 22px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 999px;
-  padding: 0 0.35rem;
-  background: var(--EpoCash-danger);
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
+  background:var(--EpoCash-green);
+  color:var(--EpoCash-panel);
+  padding:2px 6px;
+  border-radius:12px
 }
-
-.modern-chat-panel,
+.modern-chat-panel {
+  min-width:0;
+  min-height:0
+}
 .chat-content {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+  height:100%;
+  display:flex;
+  flex-direction:column
 }
-
-.chat-content {
-  flex: 1;
-}
-
-.chat-content[hidden],
-.modern-empty-chat[hidden] {
-  display: none;
-}
-
 .modern-chat-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  padding: 0.95rem 1rem;
-  border-bottom: 1px solid var(--EpoCash-border);
-  background: rgba(148, 163, 184, 0.045);
+  padding:20px 24px;
+  border-bottom:1px solid var(--EpoCash-border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between
 }
-
 .chat-header-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
+  display:flex;
+  align-items:center;
+  gap:12px
 }
-
-.chat-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-}
-
 .chat-title {
-  color: var(--EpoCash-text);
-  font-size: 1rem;
-  font-weight: 800;
+  font-weight:600
 }
-
 .user-status {
-  margin-top: 0.1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.74rem;
+  font-size:11px;
+  color:var(--EpoCash-muted);
+  display:flex;
+  align-items:center;
+  gap:5px
 }
-
 .status-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--EpoCash-success);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#299e70
 }
-
 .status-indicator.offline {
-  background: var(--EpoCash-muted);
-  box-shadow: none;
+  background:var(--EpoCash-muted)
 }
-
 .modern-messages-container {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  background:
-    linear-gradient(180deg, rgba(59, 130, 246, 0.04), transparent 220px),
-    var(--EpoCash-bg);
+  flex:1;
+  overflow-y:auto;
+  padding:24px;
+  background:var(--EpoCash-bg);
+  display:flex;
+  flex-direction:column;
+  gap:16px
 }
-
 .message-group {
-  display: flex;
-  animation: message-in 0.24s var(--ease-out) both;
+  align-self:flex-start;
+  max-width:80%
 }
-
 .message-group.sent {
-  justify-content: flex-end;
+  align-self:flex-end
 }
-
 .message-bubble {
-  max-width: min(620px, 66vw);
-  padding: 0.7rem 0.85rem;
-  border-radius: 10px;
-  color: var(--EpoCash-text);
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-  overflow-wrap: anywhere;
+  padding:12px 16px;
+  border-radius:12px 12px 12px 2px;
+  background:var(--EpoCash-panel);
+  border:1px solid var(--EpoCash-border);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  font-size:13px
 }
-
 .message-group.sent .message-bubble {
-  background: var(--EpoCash-green);
-  color: #ffffff;
-  border-color: var(--EpoCash-green);
+  background:#11695f;
+  color:white;
+  border:0;
+  border-radius:12px 12px 2px 12px
 }
-
 .message-time {
-  margin-top: 0.3rem;
-  color: var(--EpoCash-muted);
-  font-size: 0.7rem;
+  font-size:10px;
+  color:var(--EpoCash-muted);
+  margin-top:5px
 }
-
 .message-group.sent .message-time {
-  text-align: right;
+  text-align:right
 }
-
-.typing-indicator {
-  width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  padding: 0.7rem 0.85rem;
-  border-radius: 10px;
-  background: var(--EpoCash-panel);
-  border: 1px solid var(--EpoCash-border);
-}
-
-.typing-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--EpoCash-muted);
-  animation: typing-dot 1.2s ease-in-out infinite;
-}
-
-.typing-dot:nth-child(2) { animation-delay: 0.16s; }
-.typing-dot:nth-child(3) { animation-delay: 0.32s; }
-
 .modern-input-area {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 42px;
-  gap: 0.75rem;
-  align-items: end;
-  padding: 0.9rem 1rem;
-  border-top: 1px solid var(--EpoCash-border);
-  background: var(--EpoCash-panel);
+  display:flex;
+  gap:12px;
+  padding:16px 20px;
+  border-top:1px solid var(--EpoCash-border);
+  align-items:center
 }
-
+.input-wrapper {
+  flex:1
+}
 .message-input {
-  width: 100%;
-  min-height: 42px;
-  max-height: 120px;
-  resize: none;
-  border-radius: 8px;
-  padding: 0.7rem 0.8rem;
+  min-height:44px;
+  max-height:130px;
+  margin:0;
+  resize:none
 }
-
 .send-button {
-  width: 42px;
-  height: 42px;
-  min-height: 42px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
+  width:44px;
+  height:44px;
+  padding:10px
 }
-
-.send-button svg {
-  width: 19px;
-  height: 19px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
+.send-button svg,.empty-chat-icon svg {
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6
 }
-
 .modern-empty-chat {
-  height: 100%;
-  min-height: 420px;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 0.65rem;
-  padding: 2rem;
-  text-align: center;
-  color: var(--EpoCash-muted);
-  background: var(--EpoCash-bg);
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px
 }
-
 .modern-empty-chat h3 {
-  margin: 0;
-  color: var(--EpoCash-text);
-  font-size: 1.05rem;
+  margin:20px 0 8px
 }
-
 .modern-empty-chat p {
-  max-width: 380px;
-  margin: 0;
+  color:var(--EpoCash-muted);
+  max-width:340px;
+  font-size:13px
 }
-
 .empty-chat-icon {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--EpoCash-info);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  animation: soft-pulse 2.8s ease-in-out infinite;
+  width:64px;
+  height:64px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  background:var(--EpoCash-panel-strong);
+  color:var(--EpoCash-muted)
 }
-
 .empty-chat-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
+  width:28px;
+  height:28px
 }
-
 .message-empty-state {
-  min-height: 92px;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  color: var(--EpoCash-muted);
-  text-align: center;
-  border: 1px dashed rgba(148, 163, 184, 0.22);
-  border-radius: 8px;
-  background: rgba(148, 163, 184, 0.055);
+  padding:24px;
+  color:var(--EpoCash-muted);
+  font-size:12px
 }
-
-.message-empty-state--inline {
-  margin: auto;
-  width: min(100%, 420px);
+.typing-indicator {
+  display:flex;
+  gap:4px;
+  padding:8px
 }
-
-.modern-message-list::-webkit-scrollbar,
-.modern-messages-container::-webkit-scrollbar {
-  width: 8px;
+.typing-dot {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--EpoCash-muted)
 }
-
-.modern-message-list::-webkit-scrollbar-track,
-.modern-messages-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.modern-message-list::-webkit-scrollbar-thumb,
-.modern-messages-container::-webkit-scrollbar-thumb {
-  background: var(--EpoCash-border-strong);
-  border-radius: 999px;
-}
-
-@keyframes thread-enter {
-  from {
-    opacity: 0;
-    transform: translateX(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes message-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes typing-dot {
-  0%, 80%, 100% {
-    opacity: 0.35;
-    transform: translateY(0);
-  }
-  40% {
-    opacity: 1;
-    transform: translateY(-3px);
-  }
-}
-
-@media (max-width: 900px) {
-  .messaging-workspace {
-    height: auto;
-    min-height: 0;
-    grid-template-columns: 1fr;
-  }
-
-  .messaging-rail {
-    max-height: 430px;
-    border-right: 0;
-    border-bottom: 1px solid var(--EpoCash-border);
-  }
-
-  .modern-chat-panel {
-    min-height: 560px;
-  }
-
-  .message-bubble {
-    max-width: min(100%, 82vw);
-  }
-}
-
-@media (max-width: 560px) {
-  .messaging-rail__header,
-  .modern-chat-header,
-  .modern-input-area {
-    padding: 0.85rem;
-  }
-
-  .messaging-workspace {
-    border-radius: 6px;
-  }
-
-  .modern-chat-header .secure-chip {
-    display: none;
-  }
-}
-
-.admin-sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.admin-content {
-  width: 100%;
-}
-
-.sidebar-toggle {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 40px;
-  height: 40px;
-  background: var(--EpoCash-green);
-  border: 1px solid var(--EpoCash-border);
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1001;
-  transition: background 0.15s ease, transform 0.15s ease, opacity 0.3s ease, width 0.3s ease, padding 0.3s ease;
-  padding: 0;
-  opacity: 1;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.sidebar-toggle.hidden {
-  opacity: 0;
-  width: 0;
-  padding: 0;
-  margin: 0;
-  pointer-events: none;
-}
-
-.sidebar-close-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s ease;
-  z-index: 10;
-}
-
-.sidebar-close-button:hover {
-  background: var(--EpoCash-hover);
-}
-
-.sidebar-close-button svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--EpoCash-text);
-  fill: currentColor;
-}
-
-.sidebar-toggle:hover {
-  background: var(--EpoCash-green-dark);
-  transform: scale(1.05);
-}
-
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.7rem 1rem;
-  margin: 0.125rem 0;
-  border-radius: 6px;
-  border: none;
-  border-left: 3px solid transparent;
-  background: transparent;
-  color: var(--EpoCash-text);
-  cursor: pointer;
-  text-align: left;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  text-decoration: none;
-}
-
-.sidebar-item svg {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
-  stroke: var(--EpoCash-muted);
-  transition: stroke 0.15s ease;
-}
-
-.sidebar-item:hover {
-  background: var(--EpoCash-hover);
-  border-left-color: var(--EpoCash-border-strong);
-  color: var(--EpoCash-text);
-}
-
-.sidebar-item:hover svg {
-  stroke: var(--EpoCash-text);
-}
-
-.sidebar-item.active {
-  background: color-mix(in srgb, var(--EpoCash-green) 20%, transparent);
-  color: var(--EpoCash-text);
-  border-left-color: var(--EpoCash-green);
-  font-weight: 600;
-}
-
-.sidebar-item.active svg {
-  stroke: var(--EpoCash-green);
-}
-
 .back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: var(--EpoCash-green);
-  color: white;
-  border: 2px solid var(--EpoCash-border);
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.15s ease;
-  z-index: 1000;
-  box-shadow: var(--EpoCash-shadow);
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:40;
+  display:none;
+  width:40px;
+  height:40px;
+  padding:0;
+  box-shadow:var(--EpoCash-shadow)
 }
-
 .back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
+  display:grid;
+  place-items:center
 }
-
-.back-to-top:hover {
-  background: var(--EpoCash-green-dark);
-  transform: translateY(-2px);
-}
-
-.sidebar-toggle svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.sidebar-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ========== Entrance Animations ========== */
-@keyframes tile-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.metric-tile {
-  animation: tile-in 0.35s var(--ease-out) both;
-}
-
-.metric-tile:nth-child(1) { animation-delay: 0ms; }
-.metric-tile:nth-child(2) { animation-delay: 40ms; }
-.metric-tile:nth-child(3) { animation-delay: 80ms; }
-.metric-tile:nth-child(4) { animation-delay: 120ms; }
-.metric-tile:nth-child(5) { animation-delay: 160ms; }
-.metric-tile:nth-child(6) { animation-delay: 200ms; }
-.metric-tile:nth-child(7) { animation-delay: 240ms; }
-.metric-tile:nth-child(8) { animation-delay: 280ms; }
-
-/* Smooth row hover on all data tables */
-.data-table tbody tr {
-  transition: background 0.1s ease;
-}
-
-/* Flash message slide-down animation */
-@keyframes flash-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.flash-messages li {
-  animation: flash-in 0.3s var(--ease-out) both;
-}
-
-/* Sidebar header branding strip */
-.sidebar-brand {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.5rem 0.25rem 1rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--EpoCash-border);
-}
-
-.sidebar-brand__title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--EpoCash-muted);
-}
-
-.sidebar-brand__role {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--EpoCash-text);
-}
-
-/* Hero banner subtle upgrade */
-.hero-banner {
-  border-left: 4px solid var(--EpoCash-green);
-  border-radius: 0 8px 8px 0;
-}
-
-/* Card entrance */
-@keyframes card-in {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-  animation: card-in 0.3s var(--ease-out) both;
-}
-
-@media (max-width: 760px) {
-  .admin-sidebar {
-    width: 220px;
+@media(min-width:1001px) {
+  .sidebar-overlay.active {
+    display:none
   }
+}
+@media(max-width:1200px) {
+  .page-shell>main {
+    padding:28px 24px 32px 260px
+  }
+  .no-sidebar>main {
+    padding:24px
+  }
+  .metric-tile {
+    padding:16px
+  }
+  .metric-tile strong {
+    font-size:24px
+  }
+  .card {
+    padding:20px
+  }
+}
+@media(max-width:1000px) {
+  .page-shell>main {
+    padding:24px
+  }
+  .admin-sidebar {
+    transform:translateX(-100%);
+    transition:transform .2s
+  }
+  .admin-sidebar.open {
+    transform:translateX(0)
+  }
+  .sidebar-toggle {
+    display:inline-flex
+  }
+  .sidebar-overlay.active {
+    display:block;
+    position:fixed;
+    inset:76px 0 0;
+    background:#071d2a66;
+    z-index:45
+  }
+  .site-footer {
+    margin-left:0
+  }
+  .auth-panel {
+    padding:36px
+  }
+  .auth-layout {
+    margin:20px auto
+  }
+  .auth-panel--brand h2 {
+    font-size:38px
+  }
+}
+@media(max-width:700px) {
+  .topbar {
+    padding:0 16px;
+    height:68px;
+    gap:10px
+  }
+  .brand-block,.topbar-actions {
+    gap:10px
+  }
+  .brand-home small,.engine-badge,.header-caption {
+    display:none
+  }
+  .brand-home strong {
+    font-size:18px
+  }
+  .brand-symbol {
+    width:34px;
+    height:34px;
+    font-size:26px
+  }
+  .account-link {
+    font-size:12px
+  }
+  .page-shell>main {
+    padding:24px 16px
+  }
+  .hero-banner h2 {
+    font-size:26px
+  }
+  .hero-banner p {
+    font-size:13px
+  }
+  .react-metrics {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px
+  }
+  .metric-tile strong {
+    font-size:25px
+  }
+  .grid,.react-dashboard-grid {
+    grid-template-columns:minmax(0,1fr);
+    gap:18px
+  }
+  .card {
+    padding:20px
+  }
+  .admin-sidebar {
+    top:68px
+  }
+  .sidebar-overlay.active {
+    top:68px
+  }
+  .auth-layout {
+    grid-template-columns:1fr;
+    margin:0 auto 20px
+  }
+  .auth-panel {
+    padding:28px
+  }
+  .auth-panel--brand {
+    padding:30px
+  }
+  .auth-panel--brand h2 {
+    font-size:32px;
+    margin:8px 0
+  }
+  .auth-panel--brand p {
+    max-width:none;
+    font-size:13px;
+    margin:0
+  }
+  .auth-points {
+    display:none
+  }
+  .auth-brand-inline {
+    margin-bottom:24px
+  }
+  .site-footer {
+    padding:14px 16px
+  }
+  .messaging-workspace {
+    grid-template-columns:1fr;
+    height:auto;
+    min-height:600px
+  }
+  .messaging-rail {
+    border-right:0;
+    border-bottom:1px solid var(--EpoCash-border);
+    max-height:220px
+  }
+  .messaging-rail__header {
+    padding:16px
+  }
+  .modern-chat-panel {
+    height:520px
+  }
+  .panel-heading-row {
+    flex-wrap:wrap
+  }
+  .table-card {
+    padding:16px
+  }
+  .topbar-message-link {
+    width:34px;
+    height:34px
+  }
+  .model-facts {
+    font-size:12px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important
+  }
+}
+.admin-content>.card+.card {
+  margin-top:24px
+}
+.reason-preview {
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  min-width:160px;
+  max-width:420px
+}
+.filter-bar {
+  max-width:280px
+}
+details>summary {
+  cursor:pointer;
+  font-weight:600;
+  font-size:12px;
+  margin-bottom:16px;
+  color:var(--EpoCash-green)
+}
+.refresh-notice {
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:90;
+  padding:12px 16px;
+  border:1px solid var(--EpoCash-border);
+  border-radius:12px;
+  background:var(--EpoCash-panel);
+  box-shadow:0 4px 24px #0002;
+  max-width:90vw
 }

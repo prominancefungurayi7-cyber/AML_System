@@ -11,7 +11,7 @@
     return;
   }
 
-  const { createElement: h, useEffect, useMemo, useState } = window.React;
+  const { createElement: h, useEffect, useMemo, useState, useRef } = window.React;
   const suspiciousLevels = ["suspicious", "super_suspicious", "high_risk", "critical"];
 
   window.__amlSidebarController = window.__amlSidebarController || {
@@ -175,116 +175,39 @@
     );
   }
 
-  // Singleton SocketIO connection to prevent multiple connections
-  let globalSocket = null;
-  let globalHeartbeatInterval = null;
-
-  function getSocket() {
-    if (!globalSocket && window.io) {
-      globalSocket = window.io({ 
-        transports: ["websocket", "polling"],
-        reconnection: true,
-        reconnectionAttempts: Infinity,
-        reconnectionDelay: 500,
-        reconnectionDelayMax: 2000,
-        pingTimeout: 30000,
-        pingInterval: 5000
+  function useRealtime(handlers) {
+    const latest = useRef(handlers);
+    latest.current = handlers;
+    const events = Object.keys(handlers).sort().join(',');
+    useEffect(() => {
+      const socket = window.getAmlSocket();
+      if (!socket) return;
+      const bound = {};
+      events.split(',').forEach((name) => {
+        bound[name] = (...args) => latest.current[name]?.(...args);
+        socket.on(name, bound[name]);
       });
-      
-      globalSocket.on('connect', () => {
-        console.log('SocketIO connected', { socketId: globalSocket.id });
-      });
-      
-      globalSocket.on('disconnect', (reason) => {
-        console.log('SocketIO disconnected', { reason });
-      });
-      
-      globalSocket.on('connect_error', (error) => {
-        console.error('SocketIO connection error:', error);
-      });
-      
-      globalSocket.on('reconnect', (attemptNumber) => {
-        console.log('SocketIO reconnected', { attemptNumber });
-      });
-      
-      globalSocket.on('reconnect_attempt', (attemptNumber) => {
-        console.log('SocketIO reconnection attempt', { attemptNumber });
-      });
-      
-      globalSocket.on('reconnect_error', (error) => {
-        console.error('SocketIO reconnection error:', error);
-      });
-      
-      // Socket.IO maintains transport-level ping/pong. This heartbeat only
-      // refreshes the server-side presence record.
-      globalHeartbeatInterval = setInterval(() => {
-        if (globalSocket && globalSocket.connected) {
-          globalSocket.emit('heartbeat');
-        }
-      }, 30000);
-    }
-    return globalSocket;
+      if (socket.connected && latest.current.connect) latest.current.connect();
+      return () => Object.entries(bound).forEach(([name, fn]) => socket.off(name, fn));
+    }, [events]);
   }
 
-  function useRealtime(handlers) {
-    useEffect(() => {
-      const socket = getSocket();
-      if (!socket) {
-        console.warn('SocketIO not available');
-        return;
-      }
-      
-      // Store event handlers for cleanup
-      const eventHandlers = {};
-      Object.keys(handlers).forEach((eventName) => {
-        const handler = handlers[eventName];
-        socket.on(eventName, handler);
-        eventHandlers[eventName] = handler;
-      });
-      
-      return () => {
-        // Remove event handlers on cleanup
-        Object.keys(eventHandlers).forEach((eventName) => {
-          socket.off(eventName, eventHandlers[eventName]);
-        });
-      };
-    }, [JSON.stringify(handlers)]); // Re-register if handlers change
+  function upsert(items, item, limit) {
+    return [item, ...items.filter((row) => String(row.id) !== String(item.id))].slice(0, limit);
   }
 
   function ownsTransaction(txn, accountNumber) {
     return txn.sender_account === accountNumber || txn.receiver_account === accountNumber;
   }
 
-  function CustomerDashboard({ initialData }) {
-    const user = initialData.user || {};
-    const accountNumber = user.account_number || "";
-    const [balance, setBalance] = useState(Number(user.balance || 0));
-    const [transactions, setTransactions] = useState(initialData.transactions || []);
-    const [alerts, setAlerts] = useState(initialData.alerts || []);
-    const [stats, setStats] = useState(initialData.stats || {});
-    const [feed, setFeed] = useState([]);
-    const [status, setStatus] = useState("Connected | live monitoring active");
-    const [activeSection, setActiveSection] = useState("overview");
+  function DashboardSidebar({ sidebarItems, activeSection, setActiveSection, role }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
-    // Native form resubmissions preserve this value; a new dashboard draft gets a new one.
-    const [transactionRequestId] = useState(() =>
-      window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : "");
-
-    const sidebarItems = [
-      { id: "overview", label: "Overview", icon: "home" },
-      { id: "transactions", label: "Transactions", icon: "list" },
-      { id: "alerts", label: "Alerts", icon: "alert" },
-      { id: "activity", label: "Activity Feed", icon: "activity" },
-      { id: "messages", label: "Messages", href: "/messages", icon: "message" },
-      { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
-    ];
-
     const toggleTheme = () => {
       const currentTheme = document.documentElement.dataset.theme || "dark";
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("epocash-theme", newTheme);
+      try { localStorage.setItem("epocash-theme", newTheme); } catch (_) { /* Cookie persists the choice. */ }
       document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
       setTheme(newTheme);
     };
@@ -307,25 +230,84 @@
       };
     }, []);
 
+    return h(window.React.Fragment, null,
+      sidebarOpen && h("div", {
+        className: "sidebar-overlay active",
+        onClick: () => setSidebarOpen(false)
+      }),
+      h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
+        h("div", { className: "sidebar-brand" },
+          h("span", { className: "sidebar-brand__title" }, "WORKSPACE"),
+          h("span", { className: "sidebar-brand__role" }, role)
+        ),
+        h("nav", null,
+          sidebarItems.map((item) => item.href ?
+            h("a", {
+              key: item.id,
+              href: item.href,
+              className: "sidebar-item"
+            }, h(Icon, { name: item.icon }), item.label) :
+            h("button", {
+              key: item.id,
+              "aria-current": activeSection === item.id ? "page" : undefined,
+              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
+              onClick: () => {
+                setActiveSection(item.id);
+                setSidebarOpen(false);
+              },
+              type: "button"
+            }, h(Icon, { name: item.icon }), item.label))
+        ),
+        h("div", { className: "sidebar-footer" },
+          h("button", {
+            className: "theme-toggle-sidebar",
+            onClick: toggleTheme,
+            type: "button",
+            "aria-label": "Toggle theme"
+          },
+            h("span", { className: "theme-toggle__track" },
+              h("span", { className: "theme-toggle__thumb" })
+            ),
+            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
+          )
+        )
+      )
+    );
+  }
+
+  function CustomerDashboard({ initialData }) {
+    const user = initialData.user || {};
+    const accountNumber = user.account_number || "";
+    const [balance, setBalance] = useState(Number(user.balance || 0));
+    const [transactions, setTransactions] = useState(initialData.transactions || []);
+    const [alerts, setAlerts] = useState(initialData.alerts || []);
+    const [stats, setStats] = useState(initialData.stats || {});
+    const [feed, setFeed] = useState([]);
+    const [status, setStatus] = useState("Connecting to live updates");
+    const [activeSection, setActiveSection] = useState("overview");
+    // Native form resubmissions preserve this value; a new dashboard draft gets a new one.
+    const [transactionRequestId] = useState(() =>
+      window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : "");
+
+    const sidebarItems = [
+      { id: "overview", label: "Overview", icon: "home" },
+      { id: "transactions", label: "Transactions", icon: "list" },
+      { id: "alerts", label: "Alerts", icon: "alert" },
+      { id: "activity", label: "Activity Feed", icon: "activity" },
+      { id: "messages", label: "Messages", href: "/messages", icon: "message" },
+      { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
+    ];
+
+
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 25));
-    const adjustBalanceFromTransaction = (txn) => {
-      if (!ownsTransaction(txn, accountNumber)) return;
-      const amount = Number(txn.amount || 0);
-      const txType = txn.transaction_type || txn.type;
-      setBalance((current) => {
-        if (txType === "deposit" && txn.sender_account === accountNumber) return current + amount;
-        if (txType === "withdraw" && txn.sender_account === accountNumber) return current - amount;
-        if (txType === "transfer" && txn.sender_account === accountNumber) return current - amount;
-        if (txType === "transfer" && txn.receiver_account === accountNumber) return current + amount;
-        return current;
-      });
-    };
 
     useRealtime({
-      connect: () => setStatus("Connected | WebSocket live stream active"),
+      connect: () => setStatus("Live updates connected"),
+      disconnect: () => setStatus("Disconnected. Reconnecting..."),
+      connect_error: () => setStatus("Live updates unavailable. Reload to refresh."),
       transaction: (txn) => {
         if (!ownsTransaction(txn, accountNumber)) return;
-        setTransactions((current) => trim([txn, ...current], 25));
+        setTransactions((current) => upsert(current, txn, 25));
         setStats((current) => ({
           ...current,
           total_tx: Number(current.total_tx || 0) + 1,
@@ -333,12 +315,11 @@
             ? Number(current.flagged || 0) + 1
             : Number(current.flagged || 0),
         }));
-        adjustBalanceFromTransaction(txn);
         addFeed(`Transaction | ${txn.transaction_type || txn.type || ""} | ${money(txn.amount)} | ${txn.risk_level || "normal"}`);
       },
       alert: (alert) => {
         if (alert.account_number !== accountNumber) return;
-        setAlerts((current) => trim([alert, ...current], 10));
+        setAlerts((current) => upsert(current, alert, 10));
         setStats((current) => ({ ...current, open_alerts: Number(current.open_alerts || 0) + 1 }));
         setStatus("Live alert received | stream active");
         addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | Score ${score(alert.risk_score)} | ${alert.reason || ""}`);
@@ -350,7 +331,7 @@
           const exists = current.some((item) => String(item.id) === String(alert.id));
           return exists
             ? current.map((item) => String(item.id) === String(alert.id) ? alert : item)
-            : trim([alert, ...current], 10);
+            : upsert(current, alert, 10);
         });
         if (alert.status !== "open") {
           setStats((current) => ({ ...current, open_alerts: Math.max(0, Number(current.open_alerts || 0) - 1) }));
@@ -406,7 +387,9 @@
                   h("input", { type: "number", min: "0.01", max: "15000.00", step: "0.01", name: "amount", required: true }),
                   h("label", null, "Recipient Wallet Number"),
                   h("input", { name: "recipient", placeholder: "ACC1004" }),
-                  h("p", { className: "form-hint" }, "Recipient wallet is required when sending money."),
+                  h("p", { className: "form-hint" }, "For direct transfers, enter the receiving wallet. For cash in or cash out, complete the agent service details below."),
+                  h("details", { className: "agent-details" },
+                  h("summary", null, "Agent service / cash transaction details"),
                   h("label", null, "Service channel"),
                   h("select", { name: "channel", defaultValue: "direct_wallet" },
                     h("option", { value: "direct_wallet" }, "Direct wallet transfer"),
@@ -423,10 +406,11 @@
                     h("option", { value: "cash_out" }, "Cash out")
                   ),
                   h("p", { className: "form-hint" }, "Cash requires an agent, your wallet as the serviced wallet, and the matching cash direction. For agent-assisted transfers, name exactly one serviced endpoint. Leave agent and serviced wallet empty for direct transfers."),
+                  ),
                   !transactionRequestId && h("p", { className: "form-hint" },
                     "Secure request IDs are unavailable in this browser. Please use a supported browser."),
                   h("button", { type: "submit", disabled: !transactionRequestId },
-                    "Complete Mobile-Money Transaction")
+                    "Confirm transaction")
                 )
               ),
             )
@@ -448,47 +432,8 @@
     };
 
     return h("div", { className: "admin-layout" },
-      sidebarOpen && h("div", {
-        className: "sidebar-overlay active",
-        onClick: () => setSidebarOpen(false)
-      }),
-      h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
-          h("span", { className: "sidebar-brand__role" }, "Wallet Customer")
-        ),
-        h("nav", null,
-          sidebarItems.map((item) => item.href ? 
-            h("a", {
-              key: item.id,
-              href: item.href,
-              className: "sidebar-item"
-            }, h(Icon, { name: item.icon }), item.label) :
-            h("button", {
-              key: item.id,
-              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-              onClick: () => {
-                setActiveSection(item.id);
-                setSidebarOpen(false);
-              },
-              type: "button"
-            }, h(Icon, { name: item.icon }), item.label))
-        ),
-        h("div", { className: "sidebar-footer" },
-          h("button", {
-            className: "theme-toggle-sidebar",
-            onClick: toggleTheme,
-            type: "button",
-            "aria-label": "Toggle theme"
-          }, 
-            h("span", { className: "theme-toggle__track" },
-              h("span", { className: "theme-toggle__thumb" })
-            ),
-            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
-          )
-        )
-      ),
-      h("main", { className: "admin-content" }, renderSection())
+      h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Wallet Customer" }),
+      h("div", { className: "admin-content" }, renderSection())
     );
   }
 
@@ -497,7 +442,7 @@
       h(PanelHeading, { title: "Recent Transactions" }),
       transactions.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Transaction", "Type", "Amount", "Risk", "AI"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Transaction", "Type", "Amount", "Risk", "Recorded AI"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -509,11 +454,11 @@
             h("td", null, money(txn.amount)),
             h("td", null,
               h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)),
-              h("span", { className: "muted-line block-line" }, `Score ${score(txn.risk_score)}`)
+              h("span", { className: "muted-line block-line" }, `Operational score ${score(txn.risk_score)}`)
             ),
             h("td", null,
               h("span", null, labelize(txn.ai_risk_level || "unavailable")),
-              h("span", { className: "muted-line block-line" }, confidence(txn.ai_confidence))
+              h("span", { className: "muted-line block-line" }, confidence(["pending_v4", "inference_error"].includes(txn.ai_risk_level) ? null : txn.ai_confidence))
             )
           ))
         )
@@ -548,15 +493,29 @@
       h(PanelHeading, { title: "Compliance Communications", meta: h("span", { className: "status-pill" }, "Secure Messaging") }),
       h("p", { className: "muted-line" }, audience || "Direct secure channel with compliance staff and support teams."),
       h("div", { style: { marginTop: "1rem" } },
-        h("a", { 
-          href: "/messages", 
-          className: "btn btn-primary", 
-          style: { display: "inline-flex", alignItems: "center", gap: "0.5rem" } 
+        h("a", {
+          href: "/messages",
+          className: "btn btn-primary",
+          style: { display: "inline-flex", alignItems: "center", gap: "0.5rem" }
         },
           h(Icon, { name: "message" }),
           "Open Message Center"
         )
       )
+    );
+  }
+
+  function ModelCard({ model }) {
+    return h("section", { className: "card model-card" },
+      h(PanelHeading, { title: "AML decision engine", meta: h("span", { className: "status-pill" }, "V4 selected") }),
+      h("h3", null, "Frozen XGBoost"),
+      h("p", { className: "muted-line" }, "Customer payments are assessed after commit using verified canonical history."),
+      h("dl", { className: "model-facts" },
+        h("dt", null, "Decision threshold"), h("dd", null, model.threshold),
+        h("dt", null, "Feature contract"), h("dd", null, "40 semantic / 42 model inputs"),
+        h("dt", null, "Independent AML rules"), h("dd", null, model.rules_enabled ? "On" : "Off"),
+        h("dt", null, "Automatic legacy fallback"), h("dd", null, "Disabled")),
+      h("p", { className: "form-hint" }, "Batch generators and destructive maintenance are unavailable in V4 mode. Decisions and errors are recorded for analyst review.")
     );
   }
 
@@ -567,8 +526,6 @@
     const [watchlist, setWatchlist] = useState(initialData.watchlist || []);
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -582,50 +539,11 @@
       { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
-    const toggleTheme = () => {
-      const currentTheme = document.documentElement.dataset.theme || "dark";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("epocash-theme", newTheme);
-      document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
-      setTheme(newTheme);
-    };
 
-    // Listen for sidebar toggle click from header
-    useEffect(() => {
-      const handleToggleClick = (nextValue) => {
-        if (typeof nextValue === 'boolean') {
-          setSidebarOpen(nextValue);
-          return;
-        }
-        setSidebarOpen((prev) => !prev);
-      };
-      const unregister = window.__amlSidebarController.register(handleToggleClick);
-      const fallback = () => handleToggleClick();
-      window.addEventListener('sidebar-toggle-click', fallback);
-      return () => {
-        unregister();
-        window.removeEventListener('sidebar-toggle-click', fallback);
-      };
-    }, []);
-
-    const updateBalances = (txn) => {
-      const amount = Number(txn.amount || 0);
-      const txType = txn.transaction_type || txn.type;
-      setUsers((current) => current.map((user) => {
-        let balance = Number(user.balance || 0);
-        if (txType === "deposit" && user.account_number === txn.sender_account) balance += amount;
-        if (txType === "withdraw" && user.account_number === txn.sender_account) balance -= amount;
-        if (txType === "transfer" && user.account_number === txn.sender_account) balance -= amount;
-        if (txType === "transfer" && user.account_number === txn.receiver_account) balance += amount;
-        return { ...user, balance };
-      }));
-    };
 
     useRealtime({
       transaction: (txn) => {
-        setTransactions((current) => trim([txn, ...current], 20));
-        updateBalances(txn);
+        setTransactions((current) => upsert(current, txn, 20));
       },
       balance: (event) => {
         setUsers((current) => current.map((user) => (
@@ -677,7 +595,7 @@
           return h(window.React.Fragment, null,
             h(StatGrid, { items: metricItems }),
             h("section", { className: "react-dashboard-grid" },
-              h("div", { className: "card action-card" },
+              initialData.model?.primary_model === "V4" ? h(ModelCard, { model: initialData.model }) : h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Mobile-Money Transaction Simulator", meta: h("span", { className: "status-pill" }, "Wallet users only") }),
                 h("p", { className: "muted-line" }, "Generate realistic cash-ins, cash-outs, and wallet transfers using registered EpoCash wallets."),
                 h("form", { method: "post", action: "/admin/generate-transactions" },
@@ -740,6 +658,7 @@
         case "activity":
           return h(ActivityPanel, { activity });
         case "settings":
+          if (initialData.model?.primary_model === "V4") return h(ModelCard, { model: initialData.model });
           return h("section", { className: "admin-danger-zone" },
             h("div", { className: "card action-card" },
               h(PanelHeading, { title: "System Maintenance" }),
@@ -784,47 +703,8 @@
     };
 
     return h("div", { className: "admin-layout" },
-      sidebarOpen && h("div", {
-        className: "sidebar-overlay active",
-        onClick: () => setSidebarOpen(false)
-      }),
-      h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
-          h("span", { className: "sidebar-brand__role" }, "Institutional Admin")
-        ),
-        h("nav", null,
-          sidebarItems.map((item) => item.href ? 
-            h("a", {
-              key: item.id,
-              href: item.href,
-              className: "sidebar-item"
-            }, h(Icon, { name: item.icon }), item.label) :
-            h("button", {
-              key: item.id,
-              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-              onClick: () => {
-                setActiveSection(item.id);
-                setSidebarOpen(false);
-              },
-              type: "button"
-            }, h(Icon, { name: item.icon }), item.label))
-        ),
-        h("div", { className: "sidebar-footer" },
-          h("button", {
-            className: "theme-toggle-sidebar",
-            onClick: toggleTheme,
-            type: "button",
-            "aria-label": "Toggle theme"
-          }, 
-            h("span", { className: "theme-toggle__track" },
-              h("span", { className: "theme-toggle__thumb" })
-            ),
-            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
-          )
-        )
-      ),
-      h("main", { className: "admin-content" }, renderSection())
+      h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Institutional Admin" }),
+      h("div", { className: "admin-content" }, renderSection())
     );
   }
 
@@ -911,10 +791,8 @@
     const [alerts, setAlerts] = useState(initialData.open_alerts || []);
     const [stats, setStats] = useState(initialData.stats || {});
     const [feed, setFeed] = useState([]);
-    const [status, setStatus] = useState("Connected | live alert monitoring active");
+    const [status, setStatus] = useState("Connecting to live updates");
     const [activeSection, setActiveSection] = useState("overview");
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
     const filterValue = initialData.filter_value || "all";
 
     const sidebarItems = [
@@ -927,32 +805,6 @@
       { id: "signout", label: "Sign Out", href: "/logout", icon: "logout" }
     ];
 
-    const toggleTheme = () => {
-      const currentTheme = document.documentElement.dataset.theme || "dark";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem("epocash-theme", newTheme);
-      document.cookie = `epocash-theme=${encodeURIComponent(newTheme)}; Max-Age=31536000; Path=/; SameSite=Lax`;
-      setTheme(newTheme);
-    };
-
-    // Listen for sidebar toggle click from header
-    useEffect(() => {
-      const handleToggleClick = (nextValue) => {
-        if (typeof nextValue === 'boolean') {
-          setSidebarOpen(nextValue);
-          return;
-        }
-        setSidebarOpen((prev) => !prev);
-      };
-      const unregister = window.__amlSidebarController.register(handleToggleClick);
-      const fallback = () => handleToggleClick();
-      window.addEventListener('sidebar-toggle-click', fallback);
-      return () => {
-        unregister();
-        window.removeEventListener('sidebar-toggle-click', fallback);
-      };
-    }, []);
 
     const addFeed = (text) => setFeed((current) => trim([{ text, timestamp: new Date().toLocaleTimeString() }, ...current], 30));
     const passesFilter = (txn) => {
@@ -964,12 +816,15 @@
     };
 
     useRealtime({
+      connect: () => setStatus("Live updates connected"),
+      disconnect: () => setStatus("Disconnected. Reconnecting..."),
+      connect_error: () => setStatus("Live updates unavailable. Reload to refresh."),
       transaction: (txn) => {
-        if (passesFilter(txn)) setTransactions((current) => trim([txn, ...current], 25));
+        if (passesFilter(txn)) setTransactions((current) => upsert(current, txn, 25));
         addFeed(`Transaction | Tx #${txn.id || ""} | ${txn.risk_level || "normal"} | Score ${score(txn.risk_score)}`);
       },
       alert: (alert) => {
-        setAlerts((current) => trim([alert, ...current], 30));
+        setAlerts((current) => upsert(current, alert, 30));
         setStatus("New alert received | stream active");
         addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | ${alert.reason || ""}`);
       },
@@ -979,7 +834,7 @@
           const exists = current.some((item) => String(item.id) === String(alert.id));
           return exists
             ? current.map((item) => String(item.id) === String(alert.id) ? alert : item)
-            : trim([alert, ...current], 30);
+            : upsert(current, alert, 30);
         });
         addFeed(`Alert status | #${alert.id || ""} | ${alert.status || ""}`);
       },
@@ -1036,63 +891,24 @@
     };
 
     return h("div", { className: "admin-layout" },
-      sidebarOpen && h("div", {
-        className: "sidebar-overlay active",
-        onClick: () => setSidebarOpen(false)
-      }),
-      h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
-        h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "EpoCash AML"),
-          h("span", { className: "sidebar-brand__role" }, "Compliance Operations")
-        ),
-        h("nav", null,
-          sidebarItems.map((item) => item.href ? 
-            h("a", {
-              key: item.id,
-              href: item.href,
-              className: "sidebar-item"
-            }, h(Icon, { name: item.icon }), item.label) :
-            h("button", {
-              key: item.id,
-              className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
-              onClick: () => {
-                setActiveSection(item.id);
-                setSidebarOpen(false);
-              },
-              type: "button"
-            }, h(Icon, { name: item.icon }), item.label))
-        ),
-        h("div", { className: "sidebar-footer" },
-          h("button", {
-            className: "theme-toggle-sidebar",
-            onClick: toggleTheme,
-            type: "button",
-            "aria-label": "Toggle theme"
-          }, 
-            h("span", { className: "theme-toggle__track" },
-              h("span", { className: "theme-toggle__thumb" })
-            ),
-            h("span", { className: "theme-toggle__text" }, theme === "dark" ? "Dark" : "Light")
-          )
-        )
-      ),
-      h("main", { className: "admin-content" }, renderSection())
+      h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Compliance Operations" }),
+      h("div", { className: "admin-content" }, renderSection())
     );
   }
 
   function ComplianceTransactionsPanel({ transactions }) {
     const [filter, setFilter] = useState("all");
-    
-    const filteredTransactions = filter === "all" 
-      ? transactions 
+
+    const filteredTransactions = filter === "all"
+      ? transactions
       : transactions.filter(txn => txn.risk_level === filter);
-    
+
     return h("div", { className: "card table-card" },
       h(PanelHeading, { title: "Transactions" }),
       h("div", { className: "filter-bar" },
         h("label", null, "Filter by Risk:"),
-        h("select", { 
-          value: filter, 
+        h("select", {
+          value: filter,
           onChange: (e) => setFilter(e.target.value),
           className: "filter-select"
         },
@@ -1116,8 +932,8 @@
             h("td", null, labelizeTransactionType(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
             h("td", null,
-              h("span", { className: riskClass(txn.ai_risk_level || txn.risk_level) }, labelize(txn.ai_risk_level || txn.risk_level || "unavailable")),
-              h("span", { className: "muted-line block-line" }, `Score ${score(txn.risk_score)}`)
+              h("span", { className: riskClass(txn.ai_risk_level || txn.risk_level) }, labelize(txn.ai_risk_level || "unavailable")),
+              h("span", { className: "muted-line block-line" }, `Operational score ${score(txn.risk_score)}`)
             )
           ))
         )
@@ -1140,7 +956,7 @@
             ),
             h("td", null, alert.account_number || ""),
             h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk"))),
-            h("td", null, alert.reason || ""),
+            h("td", null, h("span", { className: "reason-preview", title: alert.reason || "" }, alert.reason || "")),
             h("td", null, alert.id
               ? h("a", { className: "action-link", href: `/compliance/alert/${alert.id}` }, "Review")
               : h("span", { className: "muted-line" }, "Pending")

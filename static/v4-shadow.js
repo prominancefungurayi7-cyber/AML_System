@@ -35,7 +35,7 @@
           ' | Inference time: ' + (row.inference_timestamp || 'pending');
         list.appendChild(item);
       }
-      state.textContent = data.results.length ? 'Latest 50 persisted shadow results. Legacy operational risk is unchanged.' : 'No V4 shadow results yet.';
+      state.textContent = data.results.length ? 'Latest 50 persisted V4 results. Independent rule evidence remains on each case.' : 'No V4 decisions recorded yet. Historical alerts are shown above.';
     } catch (_) { state.textContent = 'V4 inference unavailable.'; }
     finally { busy = false; }
   }
@@ -43,7 +43,7 @@
   // Durable GET refresh is the recovery path for missed notifications.
   window.addEventListener('focus', refresh);
   if (typeof window.io === 'function') {
-    const socket = window.io({ transports: ['websocket', 'polling'] });
+    const socket = window.getAmlSocket();
     socket.on('connect', function () { socket.emit('v4_shadow_subscribe'); refresh(); });
     socket.on('v4_shadow_result', refresh);
     window.addEventListener('pagehide', function () { socket.disconnect(); }, { once: true });

@@ -37,7 +37,7 @@
     </nav>
   </aside>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
-  <main class="admin-content">
+  <div class="admin-content">
     <section class="hero hero-banner">
       <div class="hero-badge">Case Investigation</div>
       <h2>Alert #{{ alert.id }}</h2>
@@ -49,17 +49,17 @@
       (function() {
         var alertId = {{ alert.id }};
         if (typeof io !== 'undefined') {
-          var socket = io({ transports: ['websocket', 'polling'] });
-          socket.on('alert_update', function(data) { if (data.id === alertId) location.reload(); });
-          socket.on('sar_report', function(data) { if (data.alert_id === alertId) location.reload(); });
+          var socket = window.getAmlSocket();
+          socket.on('alert_update', function(data) { if (data.id === alertId) window.refreshAmlPage(); });
+          socket.on('sar_report', function(data) { if (data.alert_id === alertId) window.refreshAmlPage(); });
           window.addEventListener('beforeunload', function() { socket.disconnect(); });
         } else if (window.EventSource) {
           var es = new EventSource('/stream');
           es.addEventListener('alert_update', function(e) {
-            try { var d = JSON.parse(e.data); if (d.id === alertId) location.reload(); } catch(ex) {}
+            try { var d = JSON.parse(e.data); if (d.id === alertId) window.refreshAmlPage(); } catch(ex) {}
           });
           es.addEventListener('sar_report', function(e) {
-            try { var d = JSON.parse(e.data); if (d.alert_id === alertId) location.reload(); } catch(ex) {}
+            try { var d = JSON.parse(e.data); if (d.alert_id === alertId) window.refreshAmlPage(); } catch(ex) {}
           });
           es.onerror = function() { es.close(); };
           window.addEventListener('beforeunload', function() { es.close(); });
@@ -114,7 +114,13 @@
     <li><strong>Receiver Wallet:</strong> {{ transaction.receiver_account }}</li>
     <li><strong>Channel:</strong> {{ transaction.channel or 'online' }}</li>
     <li><strong>Destination:</strong> {{ transaction.destination_country or 'ZW' }}</li>
-    <li><strong>AI risk level:</strong> {{ transaction.ai_risk_level or 'unavailable' }} ({{ "%.0f"|format((transaction.ai_confidence or 0) * 100) }}% confidence)</li>
+    <li><strong>Recorded AI decision:</strong> {{ transaction.ai_risk_level or 'unavailable' }}
+      {% if transaction.ai_risk_level not in ('pending_v4', 'inference_error', None, '') and transaction.ai_confidence is not none %}
+        ({{ "%.1f"|format(transaction.ai_confidence * 100) }}%
+        {{ 'suspicious-pattern probability' if (transaction.ai_reason or '').startswith('V4 ') else 'recorded confidence' }})
+      {% else %} — prediction unavailable{% endif %}
+    </li>
+    <li><strong>Independent rule assessment:</strong> {{ transaction.rule_level or 'unavailable' }} — {{ transaction.rule_reason or 'No rule explanation recorded.' }}</li>
     {% if transaction.ctr_required %}<li><strong>CTR required:</strong> Yes</li>{% endif %}
     {% if transaction.sar_required %}<li><strong>SAR required:</strong> Yes</li>{% endif %}
   </ul>
@@ -171,63 +177,8 @@
 </section>
 
 <p><a href="{{ url_for('compliance_dashboard') }}">&larr; Back to Compliance Hub</a></p>
-  </main>
+  </div>
 </div>
 
-<script>
-  (function() {
-    const sidebar = document.getElementById('page-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    let sidebarOpen = false;
 
-    function toggleSidebar(forceState) {
-      sidebarOpen = typeof forceState === 'boolean' ? forceState : !sidebarOpen;
-      if (sidebar) {
-        sidebar.classList.toggle('open', sidebarOpen);
-      }
-      if (overlay) {
-        overlay.classList.toggle('active', sidebarOpen);
-      }
-    }
-
-    // Register with global sidebar controller
-    window.__amlSidebarController = window.__amlSidebarController || {
-      listeners: new Set(),
-      register(handler) {
-        this.listeners.add(handler);
-        return () => this.listeners.delete(handler);
-      },
-      toggle() {
-        this.listeners.forEach((handler) => handler());
-      },
-      close() {
-        this.listeners.forEach((handler) => handler(false));
-      }
-    };
-
-    const unregister = window.__amlSidebarController.register(toggleSidebar);
-
-    // Handle sidebar toggle click from header
-    const handleToggleClick = (nextValue) => {
-      if (typeof nextValue === 'boolean') {
-        toggleSidebar(nextValue);
-        return;
-      }
-      toggleSidebar();
-    };
-    const fallback = () => handleToggleClick();
-    window.addEventListener('sidebar-toggle-click', fallback);
-
-    // Close sidebar when clicking overlay
-    if (overlay) {
-      overlay.addEventListener('click', () => toggleSidebar(false));
-    }
-
-    // Cleanup
-    window.addEventListener('beforeunload', function() {
-      unregister();
-      window.removeEventListener('sidebar-toggle-click', fallback);
-    });
-  })();
-</script>
 {% endblock %}
