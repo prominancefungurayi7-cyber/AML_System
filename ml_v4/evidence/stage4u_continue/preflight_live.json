@@ -1,0 +1,23 @@
+{
+  "database": "v4_stage4s_disposable",
+  "fixture_transactions": 0,
+  "mysql_version": "8.0.46",
+  "principal": "v4_stage4t_runner@127.0.0.1",
+  "production_connector_rejected_test_database": true,
+  "schema_empty": true,
+  "scoped_privileges": [
+    "ALTER",
+    "CREATE",
+    "DELETE",
+    "INDEX",
+    "INSERT",
+    "REFERENCES",
+    "SELECT",
+    "TRIGGER",
+    "UPDATE"
+  ],
+  "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+  "status": "PASS",
+  "test_account_aml_access_denied": true,
+  "writes": 0
+}

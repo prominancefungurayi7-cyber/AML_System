@@ -1,0 +1,32 @@
+{
+  "attestation_id": "60f76774-0802-45ea-bfb4-a5b4ffe6d4de",
+  "database": "v4_stage4s_disposable",
+  "freshness": "COMPLETE_VERIFIED",
+  "principal": "v4_stage4t_runner@127.0.0.1",
+  "scope_id": "stage4t-isolated-v1",
+  "sequence": 9,
+  "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+  "source_counts": {
+    "alerts": 1,
+    "canonical_mobile_money_events": 8,
+    "cmm_source_changes": 16,
+    "ctr_reports": 0,
+    "sar_reports": 0,
+    "transactions": 8,
+    "v4_shadow_results": 8
+  },
+  "source_revision": "003c0400c9bfe5c22ff3de2406c30d8bfc166d8236a8648daa20d0c838901be4",
+  "source_row_sha256": {
+    "alerts": "42ae8bd42292154947ce56c32001097243735a02dd85ab661b3be87f90cf01c2",
+    "canonical_mobile_money_events": "b0051b1e975507339969f37eba9143ea634c8adcc2d16abe443055a1a84082a6",
+    "cmm_observation_scopes": "032951e7c6963791e854b5f1b7ecf559204ef9c7557a40b84d29f4e912885d84",
+    "cmm_source_changes": "fa335850e65b4f3e43e31abf0eaf4b4ab5751dc30401c960d82f2c01aa8627b4",
+    "ctr_reports": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "sar_reports": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "transactions": "866766c7fc477d2d34523c435d58ecaeba45603ff6eddd0e9bf2b058808a151c",
+    "users": "3a00a001c3e70c974aa9ada3b9ac2f5cff944bc03fa58b571284a49a8e0c2c53",
+    "v4_shadow_results": "5c78b5b9394ea521cafd2352132b2d9f626aab7ac3514a8480d7f448e79ae8b0"
+  },
+  "status": "PASS",
+  "transaction_8_ai_state": "inference_error"
+}

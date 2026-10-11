@@ -1,0 +1,17 @@
+{
+  "shadow_tests_passed": 25,
+  "stage3_tests_passed": 54,
+  "stage3_parity_equal_to_original": true,
+  "fixed_examples": 128,
+  "stage3_preservation_test_exceptions": [
+    "server.py",
+    "templates/compliance_dashboard.html"
+  ],
+  "four_forms": "PASS: extracted Flask handler, isolated SQLite, real frozen model; legacy model stubbed",
+  "mysql_schema_and_lock_checks": "PASS",
+  "complete_flask_mysql_model_e2e": "NOT_RUN",
+  "browser_visual_test": "NOT_RUN; Node DOM representation checks passed",
+  "new_fits": 0,
+  "live_predictions": 0,
+  "decision": "B"
+}

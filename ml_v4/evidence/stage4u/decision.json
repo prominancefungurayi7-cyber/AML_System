@@ -1,0 +1,24 @@
+{
+  "decision": "B \u2014 ADMINISTRATOR ACTION REQUIRED",
+  "database_identity_verified": false,
+  "test_authority_established": false,
+  "mysql_connections": 0,
+  "mysql_writes": 0,
+  "new_predictions": 0,
+  "new_fits": 0,
+  "v4_activated": false,
+  "protected_stage4s_paths_exact": 524,
+  "stage4t_paths_unchanged_except": "ml_v4/test_binding/v1.py",
+  "adapter_before_sha256": "156491786d0314b6532da07b1ffea03307ee134e7dbe60f07d0898ca75b59c6d",
+  "adapter_after_sha256": "4ec57bbdc3f1b0f203f86ab4c723ebdd04029ee001d7164ab1e14aebc83a42dc",
+  "new_artifact_sha256": {
+    "ml_v4/evidence/stage4u/build_schema.py": "169378fef11bb11292748f38215e7be800d04c9297334d559e028e118095342d",
+    "ml_v4/evidence/stage4u/install_schema.py": "96814a30538c2ffb083e454e5f81e2d6694a65911225ca2554f7efe8a316da1f",
+    "ml_v4/evidence/stage4u/application_schema_only.sql": "951d72badd2c9ed53cfc4d09857bbd47f9a70d257102b9425ff6c5b4cfeda646",
+    "ml_v4/evidence/stage4u/schema_review.json": "64c54ea728bc32ce914be200ff5427a038c7d5bd80d4c60d1612eb8f2d34f1cd",
+    "ml_v4/evidence/stage4u/preflight.json": "854d6f7bba119f57f4d0761fff552e6b42903a4fd41640982be5791c4e38fd88",
+    "ml_v4/evidence/stage4u/finalize.py": "8d866d581ab01e99c5c4df7ea6e4022f2a79edd2884f15a162816f54c013e474",
+    "ml_v4/reports/V4_STAGE4U_MYSQL_PROVISIONING_REPORT.md": "2647c7b62a684687e4eed8dc683afc7afcdc540f3da6753866213b9dcfaf1c08",
+    "ml_v4/test_binding/v1.py": "4ec57bbdc3f1b0f203f86ab4c723ebdd04029ee001d7164ab1e14aebc83a42dc"
+  }
+}

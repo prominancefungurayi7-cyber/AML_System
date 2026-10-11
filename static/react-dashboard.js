@@ -267,6 +267,9 @@
     const [activeSection, setActiveSection] = useState("overview");
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [theme, setTheme] = useState(document.documentElement.dataset.theme || "dark");
+    // Native form resubmissions preserve this value; a new dashboard draft gets a new one.
+    const [transactionRequestId] = useState(() =>
+      window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : "");
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -390,6 +393,7 @@
               h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Send or Receive Money" }),
                 h("form", { method: "post", action: "/customer/transaction" },
+                  h("input", { type: "hidden", name: "client_request_id", value: transactionRequestId }),
                   h("input", { type: "hidden", name: "canonical_version", value: "mobile_money.canonical.v1" }),
                   h("input", { type: "hidden", name: "currency", value: "USD" }),
                   h("label", null, "Type"),
@@ -419,7 +423,10 @@
                     h("option", { value: "cash_out" }, "Cash out")
                   ),
                   h("p", { className: "form-hint" }, "Cash requires an agent, your wallet as the serviced wallet, and the matching cash direction. For agent-assisted transfers, name exactly one serviced endpoint. Leave agent and serviced wallet empty for direct transfers."),
-                  h("button", { type: "submit" }, "Complete Mobile-Money Transaction")
+                  !transactionRequestId && h("p", { className: "form-hint" },
+                    "Secure request IDs are unavailable in this browser. Please use a supported browser."),
+                  h("button", { type: "submit", disabled: !transactionRequestId },
+                    "Complete Mobile-Money Transaction")
                 )
               ),
             )

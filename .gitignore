@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
+data/local-v4-backups/
 __pycache__/
 MYSQL_DEPLOYMENT.md
 RILWAY_DEPLOYMENT.md

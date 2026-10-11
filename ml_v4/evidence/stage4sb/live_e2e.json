@@ -1,0 +1,59 @@
+{
+  "cases": [
+    {
+      "canonical_rows": 1,
+      "case": "wallet_transfer",
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "ledger_history_status": "COMPLETE_VERIFIED",
+      "observation_scope": "stage4t-isolated-v1",
+      "prediction": 0,
+      "request_plus_inference_ms": 5646.61,
+      "shadow_status": "success",
+      "suspicious_probability": 0.0035925768315792084,
+      "transaction_id": 1
+    },
+    {
+      "canonical_rows": 1,
+      "case": "agent_transfer",
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "ledger_history_status": "COMPLETE_VERIFIED",
+      "observation_scope": "stage4t-isolated-v1",
+      "prediction": 0,
+      "request_plus_inference_ms": 4509.37,
+      "shadow_status": "success",
+      "suspicious_probability": 0.005726395174860954,
+      "transaction_id": 2
+    },
+    {
+      "canonical_rows": 1,
+      "case": "cash_in",
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "ledger_history_status": "COMPLETE_VERIFIED",
+      "observation_scope": "stage4t-isolated-v1",
+      "prediction": 0,
+      "request_plus_inference_ms": 4575.44,
+      "shadow_status": "success",
+      "suspicious_probability": 0.008130382746458054,
+      "transaction_id": 3
+    },
+    {
+      "canonical_rows": 1,
+      "case": "cash_out",
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "ledger_history_status": "COMPLETE_VERIFIED",
+      "observation_scope": "stage4t-isolated-v1",
+      "prediction": 0,
+      "request_plus_inference_ms": 4375.36,
+      "shadow_status": "success",
+      "suspicious_probability": 0.037156715989112854,
+      "transaction_id": 4
+    }
+  ],
+  "database": "v4_stage4s_disposable",
+  "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+  "status": "EXECUTED"
+}

@@ -1,0 +1,13 @@
+{
+  "mysql80_service_running": true,
+  "dedicated_test_url_configured": false,
+  "expected_test_server_uuid_configured": false,
+  "admin_url_configured": false,
+  "test_authority_file_exists": false,
+  "mysql_connections_attempted": 0,
+  "mysql_writes": 0,
+  "actual_test_database_identity_verified": false,
+  "actual_test_grants_verified": false,
+  "financial_fixtures_submitted": 0,
+  "meaning": "Service status and configuration presence only; no MySQL identity claim."
+}

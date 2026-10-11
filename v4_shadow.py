@@ -145,7 +145,7 @@ def safe_payload(r):
     fields=('inference_id','transaction_id','status','decision','suspicious_probability','threshold','model_version','feature_version','inference_timestamp','error_code')
     return {k:r.get(k) for k in fields}
 
-def process(connection_factory,tx,publish,runner=None):
+def process(connection_factory,tx,publish,runner=None,expected_source_revision=None):
     """Called only after source commit. DB key/lock deduplicate concurrent calls.
 
     Final successes and errors are immutable and reused. Pending rows can resume
@@ -178,6 +178,27 @@ def process(connection_factory,tx,publish,runner=None):
                 r=validate(invoke(tx,digest,server_uuid),tx)
             else:r=validate(runner(tx),tx)
         except Exception:r=error(tx,'INFERENCE_ERROR')
+        if expected_source_revision is not None and r['status']=='success':
+            # The frozen worker verifies history in its own snapshot. Accept
+            # only the exact revision attested for this committed payment.
+            if r.get('source_revision') != expected_source_revision:
+                r=error(tx,'HISTORY_INCOMPLETE')
+            else:
+                try:
+                    from canonical_history_store import assess
+                    from canonical_history import freshness
+                    c.rollback()
+                    c.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
+                    c.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT, READ ONLY')
+                    scope,current,previous=assess(c,'controlled-prototype-v1')
+                    valid=(current['source_revision']==expected_source_revision and
+                           freshness(scope,current,previous)=='COMPLETE_VERIFIED' and
+                           not current['issues'])
+                    c.rollback()
+                    if not valid:r=error(tx,'HISTORY_INCOMPLETE')
+                except Exception:
+                    c.rollback()
+                    r=error(tx,'HISTORY_INCOMPLETE')
         c.execute('UPDATE '+TABLE+' SET inference_id=?,status=?,prediction=?,suspicious_probability=?,decision=?,error_code=?,body=? WHERE transaction_id=? AND model_version=? AND feature_version=? AND status=?',
             (r['inference_id'],r['status'],r['prediction'],r['suspicious_probability'],r['decision'],r['error_code'],json.dumps(r,allow_nan=False),tx,MODEL,FEATURE,'pending'))
         c.commit()

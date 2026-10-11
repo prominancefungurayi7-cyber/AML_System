@@ -1,0 +1,207 @@
+{
+  "after": {
+    "counts": {
+      "alerts": 0,
+      "canonical_mobile_money_events": 4,
+      "cmm_source_changes": 8,
+      "transactions": 4,
+      "v4_shadow_results": 4
+    },
+    "history_status": "COMPLETE_VERIFIED",
+    "principal": "v4_stage4t_runner@127.0.0.1",
+    "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+    "v4_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+    "v4_results": [
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.0035925768315792084,
+        "transaction_id": 1
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.005726395174860954,
+        "transaction_id": 2
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.008130382746458054,
+        "transaction_id": 3
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.037156715989112854,
+        "transaction_id": 4
+      }
+    ]
+  },
+  "before": {
+    "counts": {
+      "alerts": 0,
+      "canonical_mobile_money_events": 4,
+      "cmm_source_changes": 8,
+      "transactions": 4,
+      "v4_shadow_results": 4
+    },
+    "history_status": "COMPLETE_VERIFIED",
+    "principal": "v4_stage4t_runner@127.0.0.1",
+    "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+    "v4_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+    "v4_results": [
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.0035925768315792084,
+        "transaction_id": 1
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.005726395174860954,
+        "transaction_id": 2
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.008130382746458054,
+        "transaction_id": 3
+      },
+      {
+        "prediction": 0,
+        "suspicious_probability": 0.037156715989112854,
+        "transaction_id": 4
+      }
+    ]
+  },
+  "database": "v4_stage4s_disposable",
+  "database_errors": [],
+  "missing_feature_service_rejected": true,
+  "requests": [
+    {
+      "closed_after_request": true,
+      "feature_errors": [],
+      "feature_queries": 31,
+      "http_status": 200,
+      "mysql_connection_id": 67,
+      "stage13_features": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "stage14_prediction": 1,
+      "stage14_probability": 0.4293867016900525,
+      "stage14_threshold": 0.35,
+      "transaction_id": 2
+    },
+    {
+      "closed_after_request": true,
+      "feature_errors": [],
+      "feature_queries": 31,
+      "http_status": 200,
+      "mysql_connection_id": 68,
+      "stage13_features": [
+        2.0,
+        2.0,
+        2.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "stage14_prediction": 1,
+      "stage14_probability": 0.4404458666749327,
+      "stage14_threshold": 0.35,
+      "transaction_id": 3
+    },
+    {
+      "closed_after_request": true,
+      "feature_errors": [],
+      "feature_queries": 31,
+      "http_status": 200,
+      "mysql_connection_id": 69,
+      "stage13_features": [
+        3.0,
+        3.0,
+        3.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0,
+        1.0,
+        0.6365141682948128,
+        0.6666666666666666,
+        0.0,
+        0.6666666666666666,
+        0.5,
+        1.0,
+        3.0,
+        1.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        1.0,
+        0.75,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "stage14_prediction": 1,
+      "stage14_probability": 0.9867030219121098,
+      "stage14_threshold": 0.35,
+      "transaction_id": 4
+    }
+  ],
+  "status": "PASS"
+}

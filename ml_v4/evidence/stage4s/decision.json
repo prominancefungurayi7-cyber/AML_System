@@ -1,0 +1,12 @@
+{
+  "decision": "C \u2014 ACTIVATION BLOCKED BY INTEGRATION FAILURE",
+  "database_isolation_established": false,
+  "fixture_writes": 0,
+  "new_predictions": 0,
+  "regressions_rerun": false,
+  "artifacts": {
+    "ml_v4/evidence/stage4s/verify.py": "69635b4d4ae5cd85fcb1cced343810f3ec6c064531abba32ffdffe9bb1494829",
+    "ml_v4/evidence/stage4s/verification.json": "9db3e4fdb6d23f4487655645568374e9134cdbe0b11808f3d5b16c9812574676",
+    "ml_v4/reports/V4_STAGE4S_MYSQL_VERIFICATION_REPORT.md": "49734bd114c1b81f7e1053e35672ea8ca7fc801d30e0b0b23c0c137fde9a6638"
+  }
+}

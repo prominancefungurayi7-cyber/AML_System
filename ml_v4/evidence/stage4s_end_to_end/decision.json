@@ -1,0 +1,23 @@
+{
+  "decision": "C — BLOCKED; DO NOT ACTIVATE V4",
+  "test_database": "v4_stage4s_disposable",
+  "saved_recovery_status": "PASS",
+  "saved_live_verification_status": "PASS",
+  "saved_authority_sha256": "b200fe8004a96fc0748409a238276a8a72badcf85a88ac38b0f59917927324d5",
+  "current_authority_sha256": "b200fe8004a96fc0748409a238276a8a72badcf85a88ac38b0f59917927324d5",
+  "test_database_url_available": false,
+  "expected_uuid_variable_available": false,
+  "fresh_mysql_check": "NOT_RUN",
+  "mysql_connections": 0,
+  "fixture_transactions": 0,
+  "predictions": 0,
+  "latency_measurements": 0,
+  "inherited_protected_hashes_verified": 524,
+  "frozen_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "test_worker_success_scope": "stage4t-isolated-v1",
+  "production_coordinator_required_success_scope": "controlled-prototype-v1",
+  "test_result_can_pass_current_coordinator": false,
+  "v4_shadow_enabled": false,
+  "operational_alerts_created": 0,
+  "report": "ml_v4/reports/STAGE4S_END_TO_END_REPORT.md"
+}

@@ -34,6 +34,8 @@ class RealtimeBroker:
     def __init__(self, app=None, socketio=None):
         self.app = app
         self.socketio = socketio
+        self._staff_sockets = {}
+        self._staff_authorizer = None
         self._subscribers = []
         self._redis_client = None
         self._redis_pubsub = None
@@ -178,7 +180,13 @@ class RealtimeBroker:
         # to stop receiving updates.
         if self.socketio is not None:
             try:
-                self.socketio.emit(event_name, payload)
+                # Ordinary AML events include accounts, amounts and risk data.
+                # Recheck the current staff role for every delivery.
+                for sid, user_id in list(self._staff_sockets.items()):
+                    if self._staff_authorizer is None or not self._staff_authorizer(user_id):
+                        self._staff_sockets.pop(sid, None)
+                        continue
+                    self.socketio.emit(event_name, payload, to=sid)
                 if self.app:
                     self.app.logger.info(f"SocketIO broadcast event: {event_name}")
             except Exception as e:
@@ -188,6 +196,18 @@ class RealtimeBroker:
     def set_socketio(self, socketio):
         """Set the SocketIO instance."""
         self.socketio = socketio
+
+    def set_staff_authorizer(self, authorizer):
+        self._staff_authorizer = authorizer
+
+    def add_staff_socket(self, sid, user_id):
+        if self._staff_authorizer is not None and self._staff_authorizer(user_id):
+            self._staff_sockets[sid] = user_id
+            return True
+        return False
+
+    def remove_staff_socket(self, sid):
+        self._staff_sockets.pop(sid, None)
 
     def add_subscriber(self, queue):
         """Add a queue as a subscriber."""

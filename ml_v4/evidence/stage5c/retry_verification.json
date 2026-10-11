@@ -1,0 +1,19 @@
+{
+  "attempt_outcome": "success",
+  "database": "v4_stage4s_disposable",
+  "effective_decision": "normal",
+  "history": "COMPLETE_VERIFIED",
+  "original_error_preserved": true,
+  "prediction": 0,
+  "protected_sha256": {
+    "canonical": "b0051b1e975507339969f37eba9143ea634c8adcc2d16abe443055a1a84082a6",
+    "capture": "fa335850e65b4f3e43e31abf0eaf4b4ab5751dc30401c960d82f2c01aa8627b4",
+    "financial": "3a7f8b77d02e7834791fc947e625377ae2a82256791cf6c1be8e219f900da3ca",
+    "original_results": "5c78b5b9394ea521cafd2352132b2d9f626aab7ac3514a8480d7f448e79ae8b0",
+    "users": "04c9102666601a86f4845fef455548af32b83d059d2265a2c7074823b58ebf6f"
+  },
+  "request_key": "585fe3ed-f486-41e2-a849-852396004cb0",
+  "status": "PASS",
+  "suspicious_probability": 0.007690737023949623,
+  "transaction_id": 8
+}

@@ -22,6 +22,7 @@ CRITICAL:
 
 import os
 import logging
+from copy import copy
 import joblib
 import numpy as np
 from typing import Dict, List, Optional, Tuple
@@ -214,22 +215,27 @@ _model_service_instance = None
 
 def get_stage14_model_service(feature_service=None) -> Stage14ModelService:
     """
-    Get or create the singleton Stage 14 model service instance.
+    Reuse the frozen model while binding Stage 13 to this request only.
     
     Args:
-        feature_service: Stage13FeatureService instance (required on first call)
+        feature_service: Stage13FeatureService for the current request
         
     Returns:
         Stage14ModelService instance
     """
     global _model_service_instance
     
+    if feature_service is None:
+        raise RuntimeError("Current feature service required")
     if _model_service_instance is None:
-        if feature_service is None:
-            raise RuntimeError("Feature service required on first call")
         _model_service_instance = Stage14ModelService(feature_service)
-    
-    return _model_service_instance
+        _model_service_instance.feature_service = None
+
+    # The model is immutable, but a Stage 13 service owns a request connection.
+    # Never replace the singleton's service: concurrent requests need their own.
+    request_service = copy(_model_service_instance)
+    request_service.feature_service = feature_service
+    return request_service
 
 
 def reset_model_service():

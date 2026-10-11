@@ -1,0 +1,33 @@
+{
+  "authorization": {
+    "customer_api_http": 403,
+    "customer_dashboard_http": 302,
+    "customer_socket_subscribe": {
+      "ok": false
+    },
+    "staff_api_http": 200,
+    "staff_dashboard_http": 200,
+    "staff_received_test_event": true,
+    "staff_socket_subscribe": {
+      "ok": true
+    }
+  },
+  "counts": {
+    "alerts": 1,
+    "canonical_mobile_money_events": 8,
+    "cmm_source_changes": 16,
+    "ctr_reports": 0,
+    "sar_reports": 0,
+    "transactions": 8,
+    "v4_shadow_results": 8
+  },
+  "historical_notifications": "UNAVAILABLE_FROM_SAVED_EVIDENCE",
+  "history": "COMPLETE_VERIFIED",
+  "request_ids_unique": true,
+  "status": "READ_ONLY_PASS",
+  "suspicious_v4_prediction": "NOT_OBSERVED",
+  "wallet_balances": {
+    "S5C75dda2d365750": 29988.5,
+    "S5C75dda2d365751": 20011.5
+  }
+}

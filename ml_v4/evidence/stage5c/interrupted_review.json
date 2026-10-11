@@ -1,0 +1,143 @@
+{
+  "baseline": {
+    "counts": {
+      "alerts": 1,
+      "canonical_mobile_money_events": 8,
+      "cmm_source_changes": 16,
+      "ctr_reports": 0,
+      "sar_reports": 0,
+      "transactions": 8,
+      "v4_shadow_results": 8
+    },
+    "history": "UNKNOWN",
+    "history_assessment": {
+      "attestation_id": "5aec0d07-d9f5-44af-92b2-6bcca085db9f",
+      "attestation_sequence": 8,
+      "attested_source_revision": "7a85163c5703ddb4dd8f95b500c22d6ca6382df05a2121a6a0bb5b3cf616b6e5",
+      "attested_status": "COMPLETE_VERIFIED",
+      "current_canonical_event_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "current_issues": [],
+      "current_observed_through_key": [
+        "2026-10-09T21:58:42.145752Z",
+        8
+      ],
+      "current_source_revision": "003c0400c9bfe5c22ff3de2406c30d8bfc166d8236a8648daa20d0c838901be4",
+      "current_status": "COMPLETE_VERIFIED",
+      "freshness": "UNKNOWN",
+      "scope_revision": 1
+    },
+    "idempotency_schema": "verified",
+    "identity": {
+      "database": "v4_stage4s_disposable",
+      "principal": "v4_stage4t_runner@127.0.0.1",
+      "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005"
+    },
+    "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+  },
+  "ctr_columns": [
+    "id",
+    "reference_number",
+    "account_number",
+    "total_amount",
+    "transaction_count",
+    "filing_date",
+    "status",
+    "filed_by",
+    "filed_at"
+  ],
+  "fingerprint": "4bc544449d82091144f43bc3abd0ee5533652614c9c9c86c45050daa62fb60f1",
+  "prior_runs": [
+    {
+      "fixture_run": "1c1a02c8859e",
+      "transactions": [
+        {
+          "ai_risk_level": "normal",
+          "alerts": 0,
+          "amount": 10.5,
+          "canonical_rows": 1,
+          "capture_operations": [
+            "SOURCE_INSERT",
+            "CANONICAL_INSERT"
+          ],
+          "prediction": 0,
+          "probability": 0.003931179642677307,
+          "request_id": "5657a44f-0fd7-492b-988c-36c6f7032e89",
+          "shadow_status": "success",
+          "transaction_id": 5,
+          "type": "transfer"
+        }
+      ],
+      "wallet_balances": {
+        "S5C1c1a02c8859e0": 19989.5,
+        "S5C1c1a02c8859e1": 20010.5
+      }
+    },
+    {
+      "fixture_run": "75dda2d36575",
+      "transactions": [
+        {
+          "ai_risk_level": "normal",
+          "alerts": 0,
+          "amount": 10.5,
+          "canonical_rows": 1,
+          "capture_operations": [
+            "SOURCE_INSERT",
+            "CANONICAL_INSERT"
+          ],
+          "prediction": 0,
+          "probability": 0.003931179642677307,
+          "request_id": "92c5a847-45e7-4539-9ad2-a8ac0652d006",
+          "shadow_status": "success",
+          "transaction_id": 6,
+          "type": "transfer"
+        },
+        {
+          "ai_risk_level": "normal",
+          "alerts": 1,
+          "amount": 10000.0,
+          "canonical_rows": 1,
+          "capture_operations": [
+            "SOURCE_INSERT",
+            "CANONICAL_INSERT"
+          ],
+          "prediction": 0,
+          "probability": 0.008331581950187683,
+          "request_id": "011ab8ec-0d40-4e0f-8a04-5d0f25592db9",
+          "shadow_status": "success",
+          "transaction_id": 7,
+          "type": "deposit"
+        },
+        {
+          "ai_risk_level": "inference_error",
+          "alerts": 0,
+          "amount": 1.0,
+          "canonical_rows": 1,
+          "capture_operations": [
+            "SOURCE_INSERT",
+            "CANONICAL_INSERT"
+          ],
+          "prediction": null,
+          "probability": null,
+          "request_id": "2fff4c34-3309-4944-960a-7a12d312200c",
+          "shadow_status": "inference_error",
+          "transaction_id": 8,
+          "type": "transfer"
+        }
+      ],
+      "wallet_balances": {
+        "S5C75dda2d365750": 29988.5,
+        "S5C75dda2d365751": 20011.5
+      }
+    }
+  ],
+  "status": "UNRESOLVED"
+}

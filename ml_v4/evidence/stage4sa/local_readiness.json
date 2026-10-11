@@ -1,0 +1,14 @@
+{
+  "database": "v4_stage4s_disposable",
+  "financial_fixtures": 0,
+  "frozen_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "history_status": "COMPLETE_VERIFIED",
+  "principal": "v4_stage4t_runner@127.0.0.1",
+  "scope": "stage4t-isolated-v1",
+  "scope_revision": 1,
+  "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+  "startup_skipped": true,
+  "status": "PASS",
+  "v4_shadow_enabled": false,
+  "worker": "ml_v4/test_binding/worker.py"
+}

@@ -1,0 +1,66 @@
+{
+  "status": "GENERATED_NOT_APPLIED",
+  "source_hashes": {
+    "database.py": "fe08a247c07a0db59020028737cffec5c43faef92715f87c849164e49fdce266",
+    "server.py": "d2598a8042c4a8e6869d58cf613478b160f8bdb41948529549842f96bff6a4e0"
+  },
+  "ordered_tables": [
+    "users",
+    "agents",
+    "transactions",
+    "alerts",
+    "behavioral_profiles",
+    "sar_reports",
+    "ctr_reports",
+    "system_activity_log",
+    "activity_log",
+    "watchlist"
+  ],
+  "migration_additions": [
+    "ALTER TABLE transactions ADD COLUMN currency VARCHAR(255) DEFAULT 'USD';",
+    "ALTER TABLE transactions ADD COLUMN rule_reason LONGTEXT;",
+    "ALTER TABLE transactions ADD COLUMN ai_reason LONGTEXT;",
+    "ALTER TABLE transactions ADD COLUMN rules_triggered LONGTEXT;",
+    "ALTER TABLE transactions ADD COLUMN screening_hits LONGTEXT;",
+    "ALTER TABLE transactions ADD COLUMN reviewed_by VARCHAR(255);",
+    "ALTER TABLE transactions ADD COLUMN reviewed_at VARCHAR(255);",
+    "ALTER TABLE transactions ADD COLUMN status VARCHAR(50) DEFAULT 'Completed';",
+    "ALTER TABLE alerts ADD COLUMN case_notes LONGTEXT;"
+  ],
+  "indexes": [
+    [
+      "idx_stage4u_tx_sender_time",
+      "transactions",
+      "sender_account,timestamp,id"
+    ],
+    [
+      "idx_stage4u_tx_receiver_time",
+      "transactions",
+      "receiver_account,timestamp,id"
+    ],
+    [
+      "idx_stage4u_tx_agent_time",
+      "transactions",
+      "agent_id,timestamp,id"
+    ],
+    [
+      "idx_stage4u_alert_account",
+      "alerts",
+      "account_number,status,id"
+    ],
+    [
+      "idx_stage4u_activity_actor",
+      "activity_log",
+      "actor,timestamp,id"
+    ],
+    [
+      "idx_stage4u_watchlist_account",
+      "watchlist",
+      "account_number"
+    ]
+  ],
+  "timestamp_treatment": "Transaction and alert event timestamps preserve six-digit UTC text in VARCHAR(40).",
+  "financial_rows_copied": 0,
+  "schema_sha256": "951d72badd2c9ed53cfc4d09857bbd47f9a70d257102b9425ff6c5b4cfeda646",
+  "limits": "Static SQL review only; server syntax, grants and Flask route compatibility require isolated MySQL verification."
+}

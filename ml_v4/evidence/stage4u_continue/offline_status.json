@@ -1,0 +1,16 @@
+{
+  "status": "LOCAL_CREDENTIAL_BINDING_REQUIRED",
+  "database_connection_attempted": false,
+  "schema_installed": false,
+  "test_authority_created": false,
+  "live_preflight_completed": false,
+  "stage4s_ready": false,
+  "protected_stage4s_paths_exact": 524,
+  "stage4u_artifacts_exact": 8,
+  "new_artifact_sha256": {
+    "ml_v4/evidence/stage4u_continue/live_checks.py": "aee1ae0afaef66499cf3c89d8555cb6cee6ec04bab67392fffb53eb5ac5e6854",
+    "ml_v4/evidence/stage4u_continue/run_local.ps1": "dffc558aad4b983130e08a228d995a3c6757d65db1e36c8d34b965cf3fceb19f",
+    "ml_v4/evidence/stage4u_continue/finalize.py": "b59ae96de6d6dbe24e070205edc9a7f9e58506a65213d987a3f05864c6e07b68",
+    "ml_v4/reports/V4_STAGE4U_CONTINUATION_REPORT.md": "94333ee46864373ba664bd880ace5b44fd75864ea0681f803617a7d2cc0aa3e7"
+  }
+}

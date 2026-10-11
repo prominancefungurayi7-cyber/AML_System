@@ -1,0 +1,25 @@
+{
+  "decision": "A \u2014 TEST HARNESS READY FOR LOCAL LIVE CHECKS",
+  "existing_stage4r_tests_passed": 25,
+  "existing_stage4t_tests_passed": 11,
+  "financial_fixtures_this_stage": 0,
+  "frozen_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "inherited_protected_hashes_verified": 524,
+  "local_live_readiness": "NOT_RUN_CREDENTIALS_UNAVAILABLE",
+  "mysql_connections_this_stage": 0,
+  "new_artifact_sha256": {
+    "ml_v4/evidence/stage4sa/finalize.py": "9e4f8163da778bb4e68c67e7b6f63e858f95398b5c722275312f4b053dc3ba45",
+    "ml_v4/evidence/stage4sa/verify_live.py": "e0c5887f248037f91d05a627d984685234cf69e531f4906eb320d6b8458fcbcf",
+    "ml_v4/reports/STAGE4S_A_HARNESS_REPAIR.md": "bdd66dbc3edde1b8acc8450f61ee54debe256db5a1c1fa87bdf71d7f20f6454d",
+    "ml_v4/stage4sa/__init__.py": "04b60f4c5849d87042c0e18171d8aedefdaf958df29fde9537ee9327424dde51",
+    "ml_v4/stage4sa/coordinator.py": "a9b89d7b7cafcb85aa3c946f3059f9b4f64f3d466ed5d4e7565f300046039dc6",
+    "ml_v4/stage4sa/harness.py": "f54c5e0da2f3681718316c6be9be1cf530b0523b22b56d10ab2704db8d7f770e",
+    "ml_v4/stage4sa/live_readiness.py": "fac2f62995c5ab14a487ea04d66e94ae511dd9b73fce609a043c16dd6d0e2a52",
+    "ml_v4/stage4sa/run_local.ps1": "a41699d0fc2ffcf841bde0fee50111a060bd36bb0445608be6295ff27ad78fe0",
+    "ml_v4/stage4sa/tests/test_harness.py": "096d68bb4e8a788059cb55f1e5bd03ded927f2d7c7e08857151d8cb2ae9186af"
+  },
+  "new_fits": 0,
+  "new_predictions": 0,
+  "offline_stage4sa_tests_passed": 5,
+  "v4_activated": false
+}

@@ -165,12 +165,15 @@ def test_isolated_ingestion_route(monkeypatch):
     from datetime import datetime, timezone
     from decimal import Decimal
     import threading
+    import uuid
     tree=ast.parse(Path('server.py').read_text(encoding='utf-8'))
     fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='create_transaction')
     fn.decorator_list=[]
     c=db(); c.execute('ALTER TABLE transactions ADD currency TEXT');c.execute('ALTER TABLE transactions ADD channel TEXT')
     for col in ('amount REAL','timestamp TEXT','status TEXT','risk_score REAL','risk_level TEXT','description TEXT'):
         c.execute('ALTER TABLE transactions ADD '+col)
+    c.execute('ALTER TABLE transactions ADD client_request_id TEXT')
+    c.execute('CREATE UNIQUE INDEX uq_transactions_sender_request ON transactions(sender_account, client_request_id)')
     c.execute('CREATE TABLE users (id INTEGER PRIMARY KEY,balance REAL)');c.execute('INSERT INTO users VALUES(1,100)');c.execute('INSERT INTO users VALUES(2,100)')
     migrate(c);c.commit()
     app=Flask(__name__);app.secret_key='test-only'
@@ -184,12 +187,13 @@ def test_isolated_ingestion_route(monkeypatch):
     ns=dict(app=app,session=session,request=request,datetime=datetime,timezone=timezone,Decimal=Decimal,os=os,
        threading=threading,get_user_by_id=lambda _:user,get_user_by_account_number=lambda _:recipient,
        normalize_account_number=lambda x:x.strip().upper(),VALID_TRANSACTION_TYPES={'deposit','withdraw','transfer'},
-       get_db=lambda:c,get_last_insert_id=lambda _:c.execute('SELECT last_insert_rowid()').fetchone()[0],
+       get_db=lambda:c,connect_db=lambda:c,socketio=None,
+       get_last_insert_id=lambda _:c.execute('SELECT last_insert_rowid()').fetchone()[0],
        process_transaction_event=legacy,broadcast_user_balance=lambda *a:None,broadcast_stats=lambda *a:None,
        record_activity=lambda *a:None,_train_ai_model_from_db=train,flash=flashes.append,
        redirect=lambda x:x,url_for=lambda x:x)
     exec(compile(ast.Module(body=[fn],type_ignores=[]),'isolated_handler','exec'),ns)
-    form=dict(canonical_version=VERSION,type='wallet_to_wallet',amount='10.50',currency='USD',channel='direct_wallet',agent_id='',serviced_wallet='',agent_flow_direction='none',recipient='B')
+    form=dict(client_request_id=str(uuid.uuid4()),canonical_version=VERSION,type='wallet_to_wallet',amount='10.50',currency='USD',channel='direct_wallet',agent_id='',serviced_wallet='',agent_flow_direction='none',recipient='B')
     with app.test_request_context('/customer/transaction',method='POST',data=form):
         session['user_id']=1
         assert ns['create_transaction']()=='customer_dashboard'
@@ -207,7 +211,7 @@ def test_isolated_ingestion_route(monkeypatch):
     def fail(*a):
         raise ValueError('injected persistence failure')
     monkeypatch.setattr(canonical_mobile_money_store,'persist',fail)
-    with app.test_request_context('/customer/transaction',method='POST',data=form):
+    with app.test_request_context('/customer/transaction',method='POST',data={**form,'client_request_id':str(uuid.uuid4())}):
         session['user_id']=1;ns['create_transaction']()
     assert len(calls)==1 and c.execute('SELECT COUNT(*) FROM transactions').fetchone()[0]==1
     c.close()

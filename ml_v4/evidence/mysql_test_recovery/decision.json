@@ -1,0 +1,17 @@
+{
+  "artifact_sha256": {
+    "ml_v4/evidence/mysql_test_recovery/finalize.py": "fbcf5963d0601567ca4af9936183e2f8cf1d8ab24a1892a9184e7c976418547b",
+    "ml_v4/evidence/mysql_test_recovery/recover_partial.py": "908d6976efa1dc2262ca8e4a2287a82ee1abc97dd875e76656199eb8bbe891db",
+    "ml_v4/evidence/mysql_test_recovery/run_local.ps1": "263f843bb1eb094456ced23c9aa61252b24d2bb5f476652665f8bff674000f47",
+    "ml_v4/reports/V4_MYSQL_TEST_RECOVERY_REPORT.md": "69484495467d713daa89ac1034dbf8a946f558a3b4644fc2df5761ae87eb4d87"
+  },
+  "current_mysql_state_verified": false,
+  "decision": "B \u2014 RECOVERY IMPLEMENTED; LOCAL EXECUTION REQUIRED",
+  "financial_fixtures": 0,
+  "frozen_model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "genuine_test_authority_established": false,
+  "local_test_credentials_available": false,
+  "mysql_connections_this_turn": 0,
+  "mysql_writes_this_turn": 0,
+  "v4_activated": false
+}

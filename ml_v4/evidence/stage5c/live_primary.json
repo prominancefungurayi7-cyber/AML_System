@@ -1,0 +1,158 @@
+{
+  "cases": [
+    {
+      "ai_risk_level": "normal",
+      "alert_rows": 0,
+      "canonical_rows": 1,
+      "capture_rows": 2,
+      "case": "wallet_transfer",
+      "ctr_required": 0,
+      "ctr_required_observed": 0,
+      "feature_version": "v4.features.1",
+      "history_complete_through": {
+        "key": [
+          "2026-10-09T21:58:32.927938Z",
+          6
+        ],
+        "timestamp": "2026-10-09T21:58:33.470693Z"
+      },
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+      "prediction": 0,
+      "probability": 0.003931179642677307,
+      "request_ms": 4519.01,
+      "risk_level": "normal",
+      "rule_score": 0.0,
+      "sar_required": 0,
+      "scope": "stage4t-isolated-v1",
+      "shadow_status": "success",
+      "source_revision": "bc85ccd7740d15e95edec13e3ae63ed1d65d2e4cdf9ba9fa01493b47c5a8790d",
+      "threshold": 0.5,
+      "transaction_id": 6
+    },
+    {
+      "ai_risk_level": "normal",
+      "alert_rows": 1,
+      "canonical_rows": 1,
+      "capture_rows": 2,
+      "case": "cash_in_ctr",
+      "ctr_required": 1,
+      "ctr_required_observed": 1,
+      "feature_version": "v4.features.1",
+      "history_complete_through": {
+        "key": [
+          "2026-10-09T21:58:37.588250Z",
+          7
+        ],
+        "timestamp": "2026-10-09T21:58:38.122363Z"
+      },
+      "history_status": "COMPLETE_VERIFIED",
+      "http_status": 302,
+      "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+      "prediction": 0,
+      "probability": 0.008331581950187683,
+      "request_ms": 4520.98,
+      "risk_level": "suspicious",
+      "rule_score": 45.0,
+      "sar_required": 1,
+      "scope": "stage4t-isolated-v1",
+      "shadow_status": "success",
+      "source_revision": "7a85163c5703ddb4dd8f95b500c22d6ca6382df05a2121a6a0bb5b3cf616b6e5",
+      "threshold": 0.5,
+      "transaction_id": 7
+    }
+  ],
+  "idempotency": {
+    "changed_payload_http": 409,
+    "retry_http": 302,
+    "retry_ms": 78.21
+  },
+  "inference_failure": {
+    "ai_risk_level": "inference_error",
+    "http_status": 302,
+    "request_ms": 209.05,
+    "risk_level": "pending_review",
+    "stored_status": "inference_error",
+    "transaction_id": 8
+  },
+  "preflight": {
+    "counts": {
+      "alerts": 0,
+      "canonical_mobile_money_events": 5,
+      "cmm_source_changes": 10,
+      "ctr_reports": 0,
+      "sar_reports": 0,
+      "transactions": 5,
+      "v4_shadow_results": 5
+    },
+    "history": "COMPLETE_VERIFIED",
+    "idempotency_schema": "verified",
+    "identity": {
+      "database": "v4_stage4s_disposable",
+      "principal": "v4_stage4t_runner@127.0.0.1",
+      "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005"
+    },
+    "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+  },
+  "prior_reconciliation": {
+    "baseline": {
+      "counts": {
+        "alerts": 0,
+        "canonical_mobile_money_events": 5,
+        "cmm_source_changes": 10,
+        "ctr_reports": 0,
+        "sar_reports": 0,
+        "transactions": 5,
+        "v4_shadow_results": 5
+      },
+      "history": "COMPLETE_VERIFIED",
+      "idempotency_schema": "verified",
+      "identity": {
+        "database": "v4_stage4s_disposable",
+        "principal": "v4_stage4t_runner@127.0.0.1",
+        "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005"
+      },
+      "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18"
+    },
+    "ctr_columns": [
+      "id",
+      "reference_number",
+      "account_number",
+      "total_amount",
+      "transaction_count",
+      "filing_date",
+      "status",
+      "filed_by",
+      "filed_at"
+    ],
+    "fingerprint": "04b76ee6d11e82bc02f398f2a51a433e41ce0656ddf069b3cd1046ef00dcc857",
+    "prior_runs": [
+      {
+        "fixture_run": "1c1a02c8859e",
+        "transactions": [
+          {
+            "ai_risk_level": "normal",
+            "alerts": 0,
+            "amount": 10.5,
+            "canonical_rows": 1,
+            "capture_rows": 2,
+            "prediction": 0,
+            "probability": 0.003931179642677307,
+            "request_id": "5657a44f-0fd7-492b-988c-36c6f7032e89",
+            "shadow_status": "success",
+            "transaction_id": 5,
+            "type": "transfer"
+          }
+        ],
+        "wallet_balances": {
+          "S5C1c1a02c8859e0": 19989.5,
+          "S5C1c1a02c8859e1": 20010.5
+        }
+      }
+    ],
+    "status": "RECONCILED"
+  },
+  "rule_engine": "on",
+  "status": "INCOMPLETE"
+}

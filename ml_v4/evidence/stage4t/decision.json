@@ -1,0 +1,28 @@
+{
+  "decision": "B \u2014 ADAPTER IMPLEMENTED; ADMINISTRATOR PROVISIONING REQUIRED",
+  "binding_version": "v4.test_binding.stage4t.1",
+  "database_isolation_verified_live": false,
+  "administrator_provisioning_required": true,
+  "mysql_connections": 0,
+  "fixture_writes": 0,
+  "new_fits": 0,
+  "shadow_application_enabled": false,
+  "protected_paths_exact": 524,
+  "adapter_tests_passed": 11,
+  "stage3_tests_passed": 54,
+  "original_stage3_parity_equal": true,
+  "artifact_sha256": {
+    "ml_v4/test_binding/__init__.py": "ce3d2e694e4d35a55a220dd62ef5e31966a51d39def2b7bd0b888427a49f60b1",
+    "ml_v4/test_binding/v1.py": "156491786d0314b6532da07b1ffea03307ee134e7dbe60f07d0898ca75b59c6d",
+    "ml_v4/test_binding/worker.py": "50d36d6408267b4768901690c76570705dfaec556f431266c61eb1b8d7422bc5",
+    "ml_v4/test_binding/.gitignore": "829d0020f278175ced8dddc4437d29c5d524ce0269c078f66b31973e76b959da",
+    "ml_v4/test_binding/README.md": "0dca21402e51b28ac0f4a02044cd46350bfb4f77346254295840fdc4b05e7294",
+    "ml_v4/test_binding/tests/test_v1.py": "3f5b0e62d52bc293777022f8523256169564a36033d4f02e53fbeba6651c0fc0",
+    "ml_v4/reports/V4_STAGE4T_TEST_BINDING_REPORT.md": "13df423c0c461152ac6630b1a3da94ffd639f169251521fe4efdf5e50f003993",
+    "ml_v4/evidence/stage4t/run_checks.py": "4f6ec49ee1dc86348d21a0ae4f56d3ce5d31c249f32fc1d14d24b1fa1016319c",
+    "ml_v4/evidence/stage4t/binding_tests.txt": "9830e2c31919df7eb1d67205a5901773c68b58be9a8390c1ba2e280897d566e1",
+    "ml_v4/evidence/stage4t/stage3_tests.txt": "146d94b7792ec721fb5817796e38634935a45d225e7be2c6adaa54f2b0980179",
+    "ml_v4/evidence/stage4t/stage3_parity.json": "afdf4b9463cbcaeff3886da229e404d0db3ffc90bd3ee51627039465d6b18b24",
+    "ml_v4/evidence/stage4t/finalize.py": "b2fe0bf20d8677b37915fc89c482d63123d1647f3c91bae82a59059084393dd6"
+  }
+}

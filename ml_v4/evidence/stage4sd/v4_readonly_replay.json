@@ -1,0 +1,13 @@
+{
+  "counts_unchanged": true,
+  "history_status": "COMPLETE_VERIFIED",
+  "model_sha256": "555bf1606bf0af97361e3f187575b7229645d5979a43e4c812db259dbfd2bf18",
+  "prediction": 0,
+  "shadow_body_unchanged": true,
+  "status": "PASS",
+  "stored_prediction": 0,
+  "stored_suspicious_probability": 0.037156715989112854,
+  "suspicious_probability": 0.037156715989112854,
+  "threshold": 0.5,
+  "transaction_id": 4
+}

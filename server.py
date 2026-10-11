@@ -41,6 +41,7 @@ if __name__ == "__main__":
         raise SystemExit(0)
 
 import json
+import hmac
 
 import logging
 
@@ -365,7 +366,8 @@ def _migrate_sqlite(conn):
                          "rules_triggered TEXT DEFAULT '[]'", "ctr_required INTEGER DEFAULT 0",
                          "sar_required INTEGER DEFAULT 0", "destination_country TEXT DEFAULT 'ZW'",
                          "screening_hits TEXT", "reviewed_by TEXT", "reviewed_at TEXT",
-                         "generated_label TEXT", "status TEXT DEFAULT 'Completed'"],
+                         "generated_label TEXT", "status TEXT DEFAULT 'Completed'",
+                         "client_request_id TEXT"],
         "alerts": ["rules_triggered TEXT DEFAULT '[]'", "status TEXT DEFAULT 'open'",
                    "assigned_to TEXT", "case_notes TEXT", "resolved_at TEXT", "resolved_by TEXT"],
         "behavioral_profiles": ["account_number TEXT PRIMARY KEY", "profile_data TEXT", "last_updated TEXT", "total_transactions INTEGER DEFAULT 0"],
@@ -377,6 +379,8 @@ def _migrate_sqlite(conn):
             col_name = col_def.split()[0]
             if col_name not in existing:
                 conn.execute(f"ALTER TABLE {table} ADD COLUMN {col_def}")
+    conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_transactions_sender_request "
+                 "ON transactions(sender_account, client_request_id)")
     
     # Create messaging tables if they don't exist
     messaging_sql = create_messaging_tables_sql(app.config["DATABASE"])
@@ -480,6 +484,7 @@ def _migrate_postgres(conn):
             ("reviewed_at", "TEXT"),
             ("generated_label", "VARCHAR(50)"),
             ("status", "VARCHAR(50) DEFAULT 'Completed'"),
+            ("client_request_id", "TEXT"),
         ],
         "alerts": [
             ("rules_triggered", "TEXT DEFAULT '[]'"),
@@ -508,6 +513,8 @@ def _migrate_postgres(conn):
                     conn.execute(f"ALTER TABLE {table} ADD COLUMN {column_name} {column_def}")
         except Exception as e:
             logging.error(f"Error adding columns to {table}: {e}")
+    conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_transactions_sender_request "
+                 "ON transactions(sender_account, client_request_id)")
     
     # Create messaging tables if they don't exist
     messaging_sql = create_messaging_tables_sql(app.config["DATABASE"])
@@ -580,8 +587,11 @@ app.logger.setLevel(logging.INFO)
 
 # Configure SocketIO for cross-device broadcasting
 # Note: We use RealtimeBroker with Redis for cross-instance messaging, not SocketIO's message queue
+_socket_origins = os.environ.get('SOCKETIO_ALLOWED_ORIGINS', '').strip()
+if os.environ.get('AML_PRIMARY_MODEL') == 'V4' and (not _socket_origins or '*' in _socket_origins):
+    raise RuntimeError('V4 primary requires explicit Socket.IO allowed origins')
 socketio_kwargs = {
-    "cors_allowed_origins": "*",
+    "cors_allowed_origins": (_socket_origins.split(',') if _socket_origins else '*'),
     "manage_session": False,
     # The deployment uses Gunicorn's threaded worker (see Procfile/Dockerfile),
     # which is the matching and portable Socket.IO runtime for this application.
@@ -598,6 +608,21 @@ socketio = SocketIO(app, **socketio_kwargs)
 app.logger.info(f"SocketIO initialized with async_mode: {socketio.async_mode}")
 
 app.extensions["realtime_broker"] = RealtimeBroker(app=app, socketio=socketio)
+
+def _current_staff_socket_user(user_id):
+    try:
+        conn = connect_db()
+        try:
+            row = conn.execute('SELECT role FROM users WHERE id=?', (user_id,)).fetchone()
+            return bool(row and row['role'] in ('compliance', 'admin'))
+        finally:
+            conn.rollback()
+            conn.close()
+    except Exception:
+        app.logger.exception('Realtime staff authorization unavailable')
+        return False
+
+app.extensions["realtime_broker"].set_staff_authorizer(_current_staff_socket_user)
 
 # ============================================================================
 # Stage 13 + Stage 14 AI Service Initialization
@@ -632,6 +657,8 @@ def handle_connect():
     
     # Rate limit connection logging to prevent log spam
     broker = app.extensions.get('realtime_broker')
+    if broker:
+        broker.add_staff_socket(sid, user_id)
     if broker and broker._redis_client:
         try:
             presence_key = f"presence:user:{user_id}"
@@ -695,6 +722,9 @@ def handle_heartbeat():
 def handle_disconnect():
     from v4_shadow import forget_socket
     forget_socket(request.sid)
+    broker = app.extensions.get('realtime_broker')
+    if broker:
+        broker.remove_staff_socket(request.sid)
     if 'user_id' in session:
         user_id = session.get('user_id')
         role = session.get('role', 'unknown')
@@ -1715,6 +1745,26 @@ def broadcast_report_event(kind, row):
     })
 
 
+def broadcast_committed_customer_transaction(conn, transaction_id, alert_id):
+    """Publish customer transaction/AML events only from committed rows."""
+    tx = conn.execute('SELECT * FROM transactions WHERE id=?', (transaction_id,)).fetchone()
+    if tx:
+        broadcast_event('transaction', _transaction_payload(tx))
+    if alert_id:
+        alert = conn.execute('SELECT * FROM alerts WHERE id=?', (alert_id,)).fetchone()
+        if alert:
+            broadcast_event('alert', {
+                'id': alert['id'], 'transaction_id': alert['transaction_id'],
+                'account_number': alert['account_number'],
+                'risk_score': alert['risk_score'], 'risk_level': alert['risk_level'],
+                'reason': alert['reason'], 'timestamp': alert['timestamp'],
+            })
+    # CTR reports aggregate by account and filing date. They have no
+    # transaction_id key, so this transaction cannot identify a report to emit.
+    # The committed transaction payload already carries ctr_required.
+    broadcast_stats(conn)
+
+
 
 def _generate_sar_ref():
 
@@ -2096,13 +2146,69 @@ def _combine_rule_ai_risk(rule_score, rule_level, rule_reason, triggered_rules, 
 
 
 
-# Flag to disable rule-based engine for AI-only testing
-_RULE_ENGINE_ENABLED = False
+# V4 primary requires an explicit operator choice for independent AML rules.
+_RULE_ENGINE_POLICY = os.environ.get('AML_RULE_ENGINE_ENABLED')
+_RULE_ENGINE_ENABLED = _RULE_ENGINE_POLICY == 'ON'
 
 def set_rule_engine_enabled(enabled: bool):
     """Enable or disable the rule-based engine for AI-only testing."""
-    global _RULE_ENGINE_ENABLED
+    global _RULE_ENGINE_ENABLED, _RULE_ENGINE_POLICY
+    _RULE_ENGINE_POLICY = 'ON' if enabled else 'OFF'
     _RULE_ENGINE_ENABLED = enabled
+
+
+def require_v4_rule_policy():
+    if _RULE_ENGINE_POLICY not in ('ON', 'OFF'):
+        raise RuntimeError('Explicit AML_RULE_ENGINE_ENABLED=ON|OFF required for V4 primary')
+    if _RULE_ENGINE_ENABLED != (_RULE_ENGINE_POLICY == 'ON'):
+        raise RuntimeError('V4 rule-engine policy mismatch')
+
+
+def v4_primary_enabled():
+    """An explicit operator setting; importing this module never activates V4."""
+    return os.environ.get('AML_PRIMARY_MODEL') == 'V4'
+
+
+def _notify_v4_decision(result):
+    conn = connect_db()
+    try:
+        broadcast_committed_customer_transaction(
+            conn, result['transaction_id'], result.get('alert_id'))
+    finally:
+        conn.close()
+
+
+def _prepare_v4_primary(conn, transaction_id, account_number, amount,
+                        transaction_type, timestamp, destination_country,
+                        rule_score, rule_level, rule_reason, rules_json,
+                        triggered, screen_json):
+    """Persist independent controls and an unresolved AI state before commit."""
+    require_v4_rule_policy()
+    canonical = conn.execute(
+        'SELECT transaction_id FROM canonical_mobile_money_events WHERE transaction_id=?',
+        (transaction_id,)).fetchone()
+    if canonical is None:
+        raise ValueError('V4 primary requires a prospective canonical event')
+    ctr_required = int(transaction_type in ('deposit', 'withdraw') and
+                       float(amount) >= CTR_THRESHOLD)
+    sar_required = int(any(rule['rule_id'] == 'R07' for rule in triggered) or
+                       rule_score >= 40)
+    risk_level = rule_level if rule_score >= 40 else 'pending_review'
+    conn.execute(
+        'UPDATE transactions SET risk_score=?,risk_level=?,rule_score=?,rule_level=?,'
+        'rule_reason=?,ai_risk_level=?,ai_confidence=?,ai_reason=?,description=?,'
+        'rules_triggered=?,ctr_required=?,sar_required=?,destination_country=?,'
+        'screening_hits=? WHERE id=?',
+        (rule_score, risk_level, rule_score, rule_level, rule_reason,
+         'pending_v4', 0, 'V4 inference pending', 'V4 inference pending',
+         rules_json, ctr_required, sar_required, destination_country,
+         json.dumps(screen_json) if screen_json else '[]', transaction_id))
+    alert_id = create_alert_if_needed(
+        conn, transaction_id, account_number, rule_score, risk_level,
+        rule_reason, rules_json, timestamp, database_url=conn.engine + '://')
+    # ctr_required is the transaction-level compliance signal. A filed CTR is
+    # account/date aggregate data and must use the separate report workflow.
+    return rule_score, risk_level, 'V4 inference pending', alert_id
 
 def process_transaction_event(
 
@@ -2208,6 +2314,14 @@ def process_transaction_event(
         rule_level = "normal"
         rule_reason = "Rule engine disabled - AI-only mode"
         rules_json = json.dumps([])
+
+    if v4_primary_enabled():
+        if emit_events:
+            raise ValueError('V4 primary notifications require a committed transaction')
+        return _prepare_v4_primary(
+            conn, transaction_id, account_number or sender_account, amount,
+            transaction_type, timestamp, destination_country, rule_score,
+            rule_level, rule_reason, rules_json, triggered, screen_json)
 
     # ============================================================================
     # STAGE 13 + STAGE 14 AI PREDICTION (Replaces legacy aml_ai_model.pkl)
@@ -2483,6 +2597,25 @@ def monitor_transactions():
         try:
 
             with app.app_context():
+
+                if v4_primary_enabled():
+                    import v4_primary
+                    pending_conn = connect_db()
+                    try:
+                        pending_ids = [row['id'] for row in pending_conn.execute(
+                            "SELECT id FROM transactions WHERE ai_risk_level='pending_v4' "
+                            'ORDER BY id ASC LIMIT 100').fetchall()]
+                    finally:
+                        pending_conn.close()
+                    for pending_id in pending_ids:
+                        try:
+                            v4_primary.complete_committed(
+                                connect_db, pending_id, notify=_notify_v4_decision)
+                        except Exception:
+                            app.logger.exception(
+                                'Pending V4 decision %s remains unresolved', pending_id)
+                    time.sleep(app.config.get('REALTIME_POLL_INTERVAL', 0.5))
+                    continue
 
                 conn = connect_db()
 
@@ -3288,6 +3421,14 @@ def customer_dashboard():
 def create_transaction():
 
     user = get_user_by_id(session["user_id"])
+    if v4_primary_enabled() and os.environ.get('V4_SHADOW_ENABLED') == 'ON':
+        return 'Primary and shadow V4 modes cannot run together.', 503
+    from transaction_idempotency import request_id, require_schema, submission, existing
+    from transaction_idempotency import is_unique_conflict, is_retryable_lock
+    try:
+        client_request_id = request_id(request.form)
+    except ValueError:
+        return "A valid transaction request ID is required. Refresh the form.", 400
 
     # Explicit prospective mobile-money envelope. Legacy banking submissions
     # remain separate and are never silently backfilled into canonical history.
@@ -3296,17 +3437,22 @@ def create_transaction():
         if os.environ.get("CANONICAL_MOBILE_MONEY_ENABLED", "ON") != "ON":
             flash("Mobile-money submissions are temporarily disabled.")
             return redirect(url_for("customer_dashboard"))
+
         from canonical_mobile_money import prepare_ingestion, LEGACY_TYPES
         try:
             if any(len(request.form.getlist(k)) != 1 for k in request.form):
                 raise ValueError("Duplicate mobile-money fields")
             canonical_event = prepare_ingestion(
-                request.form.to_dict(), user["account_number"],
+                {k: v for k, v in request.form.to_dict().items() if k != "client_request_id"},
+                user["account_number"],
                 datetime.now(timezone.utc).isoformat(timespec="microseconds"),
             )
         except (ValueError, TypeError) as exc:
             flash(str(exc))
             return redirect(url_for("customer_dashboard"))
+
+    if v4_primary_enabled() and canonical_event is None:
+        return 'V4 primary requires a canonical mobile-money transaction.', 400
 
     tx_type = request.form.get("type")
 
@@ -3347,6 +3493,24 @@ def create_transaction():
 
         flash("Amount must be greater than zero.")
 
+        return redirect(url_for("customer_dashboard"))
+
+    try:
+        requested_payment = submission(canonical_event, user["account_number"], tx_type,
+                                       amount, recipient_account, agent_id_str)
+    except (ValueError, TypeError):
+        return "Invalid transaction details.", 400
+    try:
+        require_schema(get_db())
+        prior_id = existing(get_db(), user["account_number"], client_request_id,
+                            requested_payment)
+    except ValueError:
+        return "Request ID conflicts with an earlier transaction.", 409
+    except Exception:
+        app.logger.exception("Customer request uniqueness gate unavailable")
+        return "Transaction service unavailable. Retry with the same request ID.", 503
+    if prior_id is not None:
+        flash(f"Transaction #{prior_id} was already recorded.")
         return redirect(url_for("customer_dashboard"))
 
 
@@ -3397,79 +3561,99 @@ def create_transaction():
 
 
 
-    get_db().execute(
+    try:
+        get_db().execute(
+            """INSERT INTO transactions (sender_account, receiver_account, amount,
+                transaction_type, currency, channel, timestamp, status, risk_score,
+                risk_level, description, agent_id, client_request_id)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp,
+             'Completed', 0, 'normal', 'Initiated', agent_id, client_request_id),
+        )
+        transaction_id = get_last_insert_id(get_db())
 
-        """
-
-        INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-
-            currency, channel, timestamp, status, risk_score, risk_level, description, agent_id)
-
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-
-        """,
-
-        (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp, 'Completed', 0, 'normal', 'Initiated', agent_id),
-
-    )
-
-    transaction_id = get_last_insert_id(get_db())
-
-    if canonical_event is not None:
-        from canonical_mobile_money import with_id
-        from canonical_mobile_money_store import persist
-        try:
+        if canonical_event is not None:
+            from canonical_mobile_money import with_id
+            from canonical_mobile_money_store import persist
             persist(get_db(), with_id(canonical_event, transaction_id))
-        except Exception:
+
+        risk_score, risk_level, reason, created_alert = process_transaction_event(
+            get_db(), transaction_id, sender_account, receiver_account,
+            amount, tx_type, timestamp, account_number=user["account_number"],
+            emit_events=False,
+        )
+
+        if tx_type == "deposit":
+            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, user["id"]))
+        elif tx_type == "withdraw":
+            get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
+        elif tx_type == "transfer":
+            get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
+            if recipient_user and recipient_user["id"] is not None:
+                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?",
+                                 (amount, recipient_user["id"]))
+
+        get_db().commit()
+    except Exception as exc:
+        try:
             get_db().rollback()
-            app.logger.exception("Canonical event persistence failed")
-            flash("Mobile-money transaction was not saved. Canonical data validation or storage failed.")
-            return redirect(url_for("customer_dashboard"))
+        except Exception:
+            app.logger.exception("Customer transaction rollback unavailable")
+        if is_unique_conflict(exc):
+            try:
+                prior_id = existing(get_db(), sender_account, client_request_id,
+                                    requested_payment)
+            except ValueError:
+                return "Request ID conflicts with an earlier transaction.", 409
+            except Exception:
+                app.logger.exception("Committed request lookup unavailable")
+                return "Transaction state unavailable. Retry with the same request ID.", 503
+            if prior_id is not None:
+                flash(f"Transaction #{prior_id} was already recorded.")
+                return redirect(url_for("customer_dashboard"))
+            return "Transaction state unavailable. Retry with the same request ID.", 503
+        if is_retryable_lock(exc):
+            return "Transaction busy. Retry with the same request ID.", 503
+        app.logger.exception("Customer transaction was not committed")
+        return "Transaction was not saved. Retry with the same request ID.", 503
 
+    if v4_primary_enabled():
+        import v4_primary
+        try:
+            primary_result = v4_primary.complete_committed(
+                app.config.get('V4_PRIMARY_CONNECTION_FACTORY', connect_db),
+                transaction_id,
+                worker=app.config.get('V4_PRIMARY_TEST_WORKER') if app.testing else None,
+                processor=app.config.get('V4_PRIMARY_TEST_PROCESSOR') if app.testing else None,
+                validator=app.config.get('V4_PRIMARY_TEST_VALIDATOR') if app.testing else None)
+            if primary_result['status'] != 'success':
+                app.logger.error('V4 primary decision unresolved for transaction %s', transaction_id)
+        except Exception:
+            app.logger.exception('V4 primary decision remains pending for transaction %s', transaction_id)
+    else:
+        if canonical_event is not None:
+            from v4_shadow import after_commit
+            after_commit(app, connect_db, transaction_id, socketio)
 
-
-    risk_score, risk_level, reason, _ = process_transaction_event(
-
-        get_db(), transaction_id, sender_account, receiver_account,
-
-        amount, tx_type, timestamp, account_number=user["account_number"],
-
-    )
-
-
-
-    # Update balances
-
-    if tx_type == "deposit":
-
-        get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, user["id"]))
-
-    elif tx_type == "withdraw":
-
-        get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
-
-    elif tx_type == "transfer":
-
-        get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
-
-        if recipient_user and recipient_user["id"] is not None:
-            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient_user["id"]))
-
-
-
-    get_db().commit()
-
-    if canonical_event is not None:
-        from v4_shadow import after_commit
-        after_commit(app, connect_db, transaction_id, socketio)
+    try:
+        committed = get_db().execute(
+            'SELECT risk_level FROM transactions WHERE id=?', (transaction_id,)).fetchone()
+        if committed is not None:
+            risk_level = committed['risk_level']
+        if v4_primary_enabled():
+            alert_row = get_db().execute(
+                'SELECT id FROM alerts WHERE transaction_id=? ORDER BY id DESC LIMIT 1',
+                (transaction_id,)).fetchone()
+            created_alert = alert_row['id'] if alert_row else None
+        broadcast_committed_customer_transaction(get_db(), transaction_id, created_alert)
+    except Exception:
+        app.logger.exception('Committed customer notification unavailable')
 
     broadcast_user_balance(get_db(), sender_account)
 
     if tx_type == "transfer":
 
         broadcast_user_balance(get_db(), receiver_account)
-
-    broadcast_stats(get_db())
 
     # Train AI model in background thread to avoid blocking
     import threading
@@ -3487,6 +3671,8 @@ def create_transaction():
 
 
     risk_labels = {
+
+        "pending_review": "Transaction committed; AML decision requires review.",
 
         "normal": "Transaction processed successfully.",
 
@@ -3651,6 +3837,72 @@ def compliance_dashboard():
         open_alert_count=open_alert_count,
 
     )
+
+
+@app.route('/compliance/v4-error/<int:transaction_id>', methods=['GET'])
+@login_required('compliance', 'admin')
+def v4_error_case(transaction_id):
+    if not v4_primary_enabled():
+        return jsonify({'error': 'V4 primary is not enabled'}), 404
+    import v4_retry
+    import v4_shadow
+    try:
+        v4_retry.require_schema(get_db())
+        row = get_db().execute(
+            'SELECT id,ai_risk_level,risk_level FROM transactions WHERE id=?',
+            (transaction_id,)).fetchone()
+        original = v4_shadow.get(get_db(), transaction_id)
+        if row is None or original is None or original['status'] != 'inference_error':
+            return jsonify({'error': 'V4 error case unavailable'}), 404
+        events = get_db().execute(
+            'SELECT event_id,staff_user_id,request_key,event_kind,recorded_at,outcome,error_code,reason '
+            'FROM v4_primary_attempt_events WHERE transaction_id=? ORDER BY event_id',
+            (transaction_id,)).fetchall()
+        token = session.setdefault('v4_error_csrf', uuid.uuid4().hex)
+        return jsonify({'transaction_id': transaction_id,
+                        'effective_ai_state': row['ai_risk_level'],
+                        'effective_risk_level': row['risk_level'],
+                        'original_error_code': original['error_code'],
+                        'case_closed': any(item['event_kind'] == 'CLOSED' for item in events),
+                        'events': [dict(item) for item in events],
+                        'csrf_token': token})
+    except Exception:
+        app.logger.exception('V4 error case unavailable')
+        return jsonify({'error': 'V4 error case unavailable'}), 503
+
+
+@app.route('/compliance/v4-error/<int:transaction_id>/<action>', methods=['POST'])
+@login_required('compliance', 'admin')
+def v4_error_action(transaction_id, action):
+    if not v4_primary_enabled() or action not in ('retry', 'close'):
+        return jsonify({'error': 'V4 error action unavailable'}), 404
+    token = request.form.get('csrf_token', '')
+    expected = session.get('v4_error_csrf', '')
+    if not expected or not hmac.compare_digest(token, expected):
+        return jsonify({'error': 'Invalid action token'}), 403
+    import v4_retry
+    staff = get_user_by_id(session['user_id'])
+    try:
+        if action == 'retry':
+            result = v4_retry.retry(
+                connect_db, transaction_id, staff['id'], request.form.get('request_key'),
+                runner=app.config.get('V4_RETRY_TEST_WORKER') if app.testing else None,
+                validator=app.config.get('V4_RETRY_TEST_VALIDATOR') if app.testing else None,
+                notify=_notify_v4_decision)
+        else:
+            result = v4_retry.close(connect_db, transaction_id, staff['id'],
+                                    request.form.get('request_key'),
+                                    request.form.get('reason'))
+        return jsonify(result)
+    except PermissionError:
+        return jsonify({'error': 'Staff authorization unavailable'}), 403
+    except v4_retry.RetryConflict as exc:
+        return jsonify({'error': str(exc)}), 409
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 400
+    except Exception:
+        app.logger.exception('V4 error action failed')
+        return jsonify({'error': 'V4 error action unavailable'}), 503
 
 
 
@@ -4090,6 +4342,8 @@ def admin_dashboard():
 @login_required("admin")
 
 def generate_transactions():
+    if v4_primary_enabled():
+        return 'Legacy batch generator lacks verified canonical V4 events.', 503
     app.logger.info("Transaction generation route called")
     admin_user = get_user_by_id(session["user_id"])
 
@@ -4275,6 +4529,8 @@ def generate_transactions():
 @app.route("/admin/generate-structuring-scenario", methods=["POST"])
 @login_required("admin")
 def generate_structuring_scenario():
+    if v4_primary_enabled():
+        return 'Legacy structuring generator lacks verified canonical V4 events.', 503
     """
     Generate structuring-style transaction sequence for Stage 13 feature testing.
     
@@ -4397,6 +4653,8 @@ def generate_structuring_scenario():
 @app.route("/admin/generate-network-scenario", methods=["POST"])
 @login_required("admin")
 def generate_network_scenario():
+    if v4_primary_enabled():
+        return 'Legacy network generator lacks verified canonical V4 events.', 503
     """
     Generate network-style transaction sequence for Stage 13 feature testing.
     
@@ -4520,6 +4778,8 @@ def generate_network_scenario():
 @app.route("/admin/generate-agent-scenario", methods=["POST"])
 @login_required("admin")
 def generate_agent_scenario():
+    if v4_primary_enabled():
+        return 'Legacy agent generator lacks verified canonical V4 events.', 503
     """
     Generate agent-mediated transaction sequence for Stage 13 feature testing.
     
@@ -4944,7 +5204,7 @@ def api_agent_detail(agent_id):
 
 @app.route("/stream")
 
-@login_required("customer", "compliance", "admin")
+@login_required("compliance", "admin")
 
 def stream():
 
@@ -5028,7 +5288,7 @@ def ensure_ai_model_ready():
 
     """Bootstrap AI model on cold start using synthetic typology data."""
 
-    if app.config.get("TESTING"):
+    if app.config.get("TESTING") or v4_primary_enabled():
 
         return
 

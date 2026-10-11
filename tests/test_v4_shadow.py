@@ -33,7 +33,8 @@ def setup(path):
     c.execute('CREATE TABLE users (id INTEGER PRIMARY KEY,account_number TEXT,username TEXT,role TEXT,balance REAL)')
     c.execute("INSERT INTO users VALUES (1,'A','alice','customer',500),(2,'B','bob','customer',500),(3,'STAFF','reviewer','compliance',0)")
     c.execute('CREATE TABLE agents (id INTEGER PRIMARY KEY)');c.execute('INSERT INTO agents VALUES(1)')
-    c.execute('CREATE TABLE transactions (id INTEGER PRIMARY KEY,sender_account TEXT,receiver_account TEXT,amount REAL,transaction_type TEXT,currency TEXT,channel TEXT,timestamp TEXT,status TEXT,risk_score REAL,risk_level TEXT,description TEXT,agent_id INTEGER,rule_score REAL DEFAULT 0,ai_confidence REAL DEFAULT 0)')
+    c.execute('CREATE TABLE transactions (id INTEGER PRIMARY KEY,sender_account TEXT,receiver_account TEXT,amount REAL,transaction_type TEXT,currency TEXT,channel TEXT,timestamp TEXT,status TEXT,risk_score REAL,risk_level TEXT,description TEXT,agent_id INTEGER,rule_score REAL DEFAULT 0,ai_confidence REAL DEFAULT 0,client_request_id TEXT)')
+    c.execute('CREATE UNIQUE INDEX uq_transactions_sender_request ON transactions(sender_account, client_request_id)')
     canonical_migrate(c);history_migrate(c);ensure(c,apply=True);v.migrate(c)
     from canonical_history import boundary
     scope=boundary('controlled-prototype-v1','2026-01-01T00:00:00.000000Z',0,'isolated-fixture','no-live-data')
@@ -43,7 +44,7 @@ def setup(path):
 
 def form(kind='wallet_to_wallet',assisted=False):
     agent=kind!='wallet_to_wallet' or assisted
-    return dict(canonical_version=VERSION,type=kind,amount='10.50',currency='USD',channel='agent' if agent else 'direct_wallet',
+    return dict(client_request_id=str(uuid.uuid4()),canonical_version=VERSION,type=kind,amount='10.50',currency='USD',channel='agent' if agent else 'direct_wallet',
         agent_id='1' if agent else '',serviced_wallet=('B' if assisted else 'A') if agent else '',
         agent_flow_direction=kind if kind!='wallet_to_wallet' else 'none',recipient='B' if kind=='wallet_to_wallet' else '')
 
@@ -58,7 +59,8 @@ def response(tx,p=.2,code=None):
 def handler(path,monkeypatch,runner=None,rollback=False):
     c=db(path);app=Flask(__name__);app.secret_key='fixture-only'
     monkeypatch.setenv('V4_SHADOW_ENABLED','ON')
-    calls=[];events=[]
+    calls=[];events=[];notifications=[]
+    app.config['notification_events']=notifications
     socket=type('Socket',(),{'emit':lambda *a,**k:None})()
     def after(app,factory,tx,socket):
         check=db(path)
@@ -75,17 +77,24 @@ def handler(path,monkeypatch,runner=None,rollback=False):
     fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='create_transaction');fn.decorator_list=[]
     def legacy(c,tx,*a,**kw):
         calls.append('V1_stub')
+        assert kw.get('emit_events') is False
         c.execute('UPDATE transactions SET risk_score=55,rule_score=12,ai_confidence=.8 WHERE id=?',(tx,))
-        if rollback:
+        if rollback() if callable(rollback) else rollback:
             c.rollback();raise RuntimeError('controlled source rollback')
         return 55,'suspicious','V1 unchanged',None
     def user(i):return dict(c.execute('SELECT * FROM users WHERE id=?',(i,)).fetchone())
+    def committed_events(_connection,tx,_alert_id):
+        check=db(path)
+        assert check.execute('SELECT id FROM transactions WHERE id=?',(tx,)).fetchone()
+        check.close();notifications.append(tx)
     ns=dict(app=app,request=request,session=session,datetime=datetime,timezone=timezone,Decimal=Decimal,os=os,
+        v4_primary_enabled=lambda:False,
         get_db=lambda:c,connect_db=lambda:db(path),socketio=socket,get_user_by_id=user,
         get_user_by_account_number=lambda a:dict(c.execute('SELECT * FROM users WHERE account_number=?',(a,)).fetchone()),
         normalize_account_number=lambda a:a.strip().upper(),VALID_TRANSACTION_TYPES={'transfer','deposit','withdraw'},
         get_last_insert_id=lambda c:c.execute('SELECT last_insert_rowid() AS id').fetchone()['id'],
         process_transaction_event=legacy,broadcast_user_balance=lambda *a:None,broadcast_stats=lambda *a:None,
+        broadcast_committed_customer_transaction=committed_events,
         record_activity=lambda *a:None,_train_ai_model_from_db=lambda *a:pytest.fail('Training forbidden'),
         flash=lambda *a:None,redirect=lambda x:x,url_for=lambda x:x)
     exec(compile(ast.Module(body=[fn],type_ignores=[]),'current_customer_handler','exec'),ns)
@@ -105,6 +114,7 @@ def test_flask_committed_roles_real_isolated_model(tmp_path,monkeypatch,kind,ass
     c,client,calls,events=handler(path,monkeypatch,child)
     assert client.post('/customer/transaction',data=form(kind,assisted)).status_code==200
     assert calls==['V1_stub','post_commit'] and len(events)==1
+    assert client.application.config['notification_events']==[1]
     raw=dict(c.execute('SELECT * FROM canonical_mobile_money_events').fetchone())
     assert raw['transaction_type']==kind and raw['amount_minor']==1050
     assert raw['sender_wallet']=='A' and raw['receiver_wallet']==('B' if kind=='wallet_to_wallet' else 'A')
@@ -119,8 +129,9 @@ def test_flask_committed_roles_real_isolated_model(tmp_path,monkeypatch,kind,ass
 def test_rollback_no_shadow(tmp_path,monkeypatch):
     path=tmp_path/'f.db';setup(path)
     c,client,calls,events=handler(path,monkeypatch,rollback=True)
-    assert client.post('/customer/transaction',data=form()).status_code==500
+    assert client.post('/customer/transaction',data=form()).status_code==503
     assert calls==['V1_stub'] and not events
+    assert client.application.config['notification_events']==[]
     assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==0
     assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==0
     c.close()
@@ -274,3 +285,180 @@ def test_concurrent_duplicate_mysql_lock_semantics(tmp_path,monkeypatch):
     assert v.process(SimulatedMySQL,1,lambda _:None,runner=run) is None
     finish.set();t.join(5);assert not t.is_alive() and calls==[1]
     assert v.process(SimulatedMySQL,1,lambda _:None,runner=lambda _:pytest.fail('duplicate'))==outputs[0]
+
+
+def test_same_request_id_returns_original_without_reprocessing(tmp_path,monkeypatch):
+    path=tmp_path/'repeated-request.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    payload=form()
+    assert client.post('/customer/transaction',data=payload).status_code==200
+    assert client.post('/customer/transaction',data=payload).status_code==200
+    assert calls==['V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM canonical_mobile_money_events').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==1
+    assert tuple(r['balance'] for r in c.execute('SELECT balance FROM users WHERE id IN (1,2) ORDER BY id').fetchall())==(489.5,510.5)
+    c.close()
+
+
+def test_new_request_id_allows_identical_intentional_transfer(tmp_path,monkeypatch):
+    path=tmp_path/'intentional-repeat.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    first=form();second=dict(first,client_request_id=str(uuid.uuid4()))
+    assert client.post('/customer/transaction',data=first).status_code==200
+    assert client.post('/customer/transaction',data=second).status_code==200
+    assert calls==['V1_stub','post_commit','V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==2
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==2
+    c.close()
+
+
+def test_changed_payload_with_same_request_id_conflicts(tmp_path,monkeypatch):
+    path=tmp_path/'conflict.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    original=form();changed=dict(original,amount='11.50')
+    assert client.post('/customer/transaction',data=original).status_code==200
+    assert client.post('/customer/transaction',data=changed).status_code==409
+    assert calls==['V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM canonical_mobile_money_events').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==1
+    c.close()
+
+
+def test_failed_first_request_can_retry_same_id(tmp_path,monkeypatch):
+    path=tmp_path/'failed-then-retry.db';setup(path)
+    attempts=iter((True,False))
+    c,client,calls,_=handler(path,monkeypatch,rollback=lambda:next(attempts))
+    payload=form()
+    assert client.post('/customer/transaction',data=payload).status_code==503
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==0
+    assert client.post('/customer/transaction',data=payload).status_code==200
+    assert calls==['V1_stub','V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==1
+    c.close()
+
+
+def test_lost_response_retry_returns_committed_result(tmp_path,monkeypatch):
+    path=tmp_path/'lost-response.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    payload=form()
+    client.post('/customer/transaction',data=payload)  # Treat response as lost.
+    retry=client.post('/customer/transaction',data=payload)
+    assert retry.status_code==200
+    assert calls==['V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==1
+    c.close()
+
+
+def test_duplicate_insert_race_recovers_original_after_rollback(tmp_path,monkeypatch):
+    path=tmp_path/'duplicate-insert-race.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    payload=form()
+    assert client.post('/customer/transaction',data=payload).status_code==200
+    import transaction_idempotency as idem
+    real_existing=idem.existing
+    lookups=[]
+    def delayed_lookup(*args):
+        lookups.append(1)
+        return None if len(lookups)==1 else real_existing(*args)
+    monkeypatch.setattr(idem,'existing',delayed_lookup)
+    assert client.post('/customer/transaction',data=payload).status_code==200
+    assert len(lookups)==2
+    assert calls==['V1_stub','post_commit']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==1
+    c.close()
+
+
+@pytest.mark.parametrize('key',[None,'bad','00000000-0000-1000-8000-000000000000',
+                                'AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA'])
+def test_missing_or_malformed_request_id_rejected_before_write(tmp_path,monkeypatch,key):
+    path=tmp_path/'bad-id.db';setup(path)
+    c,client,calls,_=handler(path,monkeypatch)
+    payload=form()
+    if key is None:payload.pop('client_request_id')
+    else:payload['client_request_id']=key
+    assert client.post('/customer/transaction',data=payload).status_code==400
+    assert calls==[]
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==0
+    c.close()
+
+
+def test_missing_unique_index_fails_closed(tmp_path,monkeypatch):
+    path=tmp_path/'missing-index.db';setup(path)
+    c=db(path);c.execute('DROP INDEX uq_transactions_sender_request');c.commit();c.close()
+    c,client,calls,_=handler(path,monkeypatch)
+    assert client.post('/customer/transaction',data=form()).status_code==503
+    assert calls==[]
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==0
+    c.close()
+
+
+def test_concurrent_duplicate_claim_waits_for_unique_winner(tmp_path):
+    path=tmp_path/'concurrent-claim.db';setup(path)
+    key=str(uuid.uuid4())
+    sql=('INSERT INTO transactions (sender_account,receiver_account,amount,transaction_type,'
+         'currency,channel,timestamp,status,risk_score,risk_level,description,agent_id,client_request_id) '
+         'VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)')
+    values=('A','B',1.0,'transfer','USD','online','2026-10-09T12:00:00.000000Z',
+            'Completed',0,'normal','Initiated',None,key)
+    first=db(path)
+    first.execute(sql,values)
+    started=threading.Event();finished=threading.Event();result=[]
+    def second_attempt():
+        second=db(path)
+        try:
+            started.set()
+            try:
+                second.execute(sql,values)
+            except sqlite3.IntegrityError as exc:
+                result.append(exc)
+                second.rollback()
+            else:
+                second.commit()
+                result.append(None)
+        finally:
+            second.close();finished.set()
+    thread=threading.Thread(target=second_attempt)
+    thread.start();assert started.wait(5)
+    assert not finished.wait(.1)
+    first.commit()
+    assert finished.wait(5)
+    thread.join(5)
+    assert len(result)==1 and result[0] is not None
+    from transaction_idempotency import is_unique_conflict
+    assert is_unique_conflict(result[0])
+    assert first.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    first.close()
+
+
+def test_post_commit_v4_failure_preserves_v1_and_creates_no_operational_reports(tmp_path,monkeypatch):
+    path=tmp_path/'failure-boundary.db';setup(path)
+    c=db(path)
+    for table in ('alerts','sar_reports','ctr_reports'):
+        c.execute('CREATE TABLE '+table+' (id INTEGER PRIMARY KEY, transaction_id INTEGER)')
+    c.commit();c.close()
+    real_after_commit=v.after_commit
+    c,client,calls,_=handler(path,monkeypatch)
+    monkeypatch.setattr(v,'after_commit',real_after_commit)
+    monkeypatch.setattr(v,'process',lambda *_a,**_k: (_ for _ in ()).throw(RuntimeError('worker unavailable')))
+    response_=client.post('/customer/transaction',data=form())
+    assert response_.status_code==200
+    assert calls==['V1_stub']
+    assert c.execute('SELECT COUNT(*) AS n FROM transactions').fetchone()['n']==1
+    assert tuple(c.execute('SELECT risk_score,rule_score,ai_confidence FROM transactions').fetchone())==(55,12,.8)
+    assert c.execute('SELECT COUNT(*) AS n FROM canonical_mobile_money_events').fetchone()['n']==1
+    assert c.execute('SELECT COUNT(*) AS n FROM '+v.TABLE).fetchone()['n']==0
+    for table in ('alerts','sar_reports','ctr_reports'):
+        assert c.execute('SELECT COUNT(*) AS n FROM '+table).fetchone()['n']==0
+    c.close()
+
+
+def test_production_shadow_off_skips_processing(monkeypatch):
+    monkeypatch.setenv('V4_SHADOW_ENABLED','OFF')
+    monkeypatch.setattr(v,'process',lambda *_a,**_k: pytest.fail('Shadow processing while disabled'))
+    app=type('App',(),{'logger':type('Logger',(),{'error':lambda *a:pytest.fail('Unexpected error')})()})()
+    assert v.after_commit(app,lambda:pytest.fail('Unexpected connection'),1,None) is None

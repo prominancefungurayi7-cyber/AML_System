@@ -52,6 +52,7 @@ class TestStage17DIntegration:
         # Create temporary database file
         fd, db_path = tempfile.mkstemp(suffix='.db')
         os.close(fd)
+        db = None
         
         try:
             # Initialize database
@@ -72,6 +73,8 @@ class TestStage17DIntegration:
             
         finally:
             # Cleanup
+            if db is not None:
+                db.close()
             if os.path.exists(db_path):
                 os.remove(db_path)
     

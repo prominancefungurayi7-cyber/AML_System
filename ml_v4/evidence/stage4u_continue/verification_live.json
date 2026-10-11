@@ -1,0 +1,38 @@
+{
+  "altered_boundary_rejected": true,
+  "assessment_status": "COMPLETE_VERIFIED",
+  "authority_file_sha256": "b200fe8004a96fc0748409a238276a8a72badcf85a88ac38b0f59917927324d5",
+  "boundary_digest": "dc53f10b4ad56ae69498bb816a24e961b9fb7fb900466982d952eb7e389e025c",
+  "database": "v4_stage4s_disposable",
+  "financial_rows": 0,
+  "mysql_version": "8.0.46",
+  "observation_scope": "stage4t-isolated-v1",
+  "principal": "v4_stage4t_runner@127.0.0.1",
+  "production_rejects_test_database": true,
+  "scoped_privileges": [
+    "ALTER",
+    "CREATE",
+    "DELETE",
+    "INDEX",
+    "INSERT",
+    "REFERENCES",
+    "SELECT",
+    "TRIGGER",
+    "UPDATE"
+  ],
+  "server_uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+  "shadow_results": 0,
+  "source_revision": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "status": "PASS",
+  "test_rejects_aml": true,
+  "trigger_bodies_exact": true,
+  "trigger_names": [
+    "cmm_ce_delete",
+    "cmm_ce_insert",
+    "cmm_ce_update",
+    "cmm_tx_delete",
+    "cmm_tx_insert",
+    "cmm_tx_update"
+  ],
+  "wrong_server_rejected": true
+}
