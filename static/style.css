@@ -978,6 +978,12 @@ button:disabled {
 }
 .contacts-close { font-size:22px; line-height:1; padding:5px 10px }
 .contacts-close:hover,.contacts-toggle:hover { background:var(--EpoCash-hover) }
+.contacts-toggle.device-alerts-enabled {
+  color:#166534;
+  background:#dcfce7;
+  border-color:#86efac;
+}
+.contacts-toggle.device-alerts-enabled:hover { background:#bbf7d0 }
 .messaging-chat-toolbar {
   display:flex;
   justify-content:space-between;
@@ -1102,6 +1108,15 @@ button:disabled {
 .message-group {
   align-self:flex-start;
   max-width:80%
+}
+.unread-messages-divider {
+  flex-shrink:0;
+  text-align:center;
+  color:var(--EpoCash-muted);
+  border-block:1px solid var(--EpoCash-border);
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:600;
 }
 .message-group.sent {
   align-self:flex-end

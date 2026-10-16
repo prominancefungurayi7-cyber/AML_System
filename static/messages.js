@@ -5,6 +5,7 @@
   const currentUser = document.body.dataset.username;
   const drafts = new Map();
   const visibleMessages = new Map();
+  let unreadBoundary = null;
   let contacts = [], conversations = [], receiver = '', conversationId = null;
   let pending = null, generation = 0, oldestId = null, moreHistory = false, typingTimer;
   const el = id => document.getElementById(id);
@@ -57,7 +58,7 @@
     if (conversationId) socket?.emit('stop_typing', { conversation_id: conversationId });
     generation++; receiver = contact.username;
     conversationId = conversations.find(item => item.other_participant === receiver)?.id || null;
-    visibleMessages.clear(); oldestId = null; moreHistory = false;
+    visibleMessages.clear(); oldestId = null; moreHistory = false; unreadBoundary = null;
     el('messageInput').value = drafts.get(receiver) || '';
     el('chatArea').hidden = true; el('chatContent').hidden = false;
     el('chatTitle').textContent = contact.username;
@@ -67,15 +68,28 @@
     el('statusIndicator').className = `status-indicator ${contact.is_online ? '' : 'offline'}`;
     contactsOpen(false); renderContacts(); renderMessages();
     el('messageInput').focus();
-    if (conversationId) await loadHistory(false);
+    if (conversationId) await loadHistory(false, true);
   }
-  async function loadHistory(older) {
+  async function loadHistory(older, opening = false) {
     const selected = conversationId, version = generation;
     if (!selected) return;
     const cursor = older && oldestId ? `?before_id=${oldestId}` : '';
     try {
       const data = await getJSON(`/api/conversations/${selected}/messages${cursor}`);
       if (version !== generation || selected !== conversationId) return;
+      // Find the actual unread boundary even when it lies before the latest page.
+      let earliestPage = data.messages;
+      if (opening && data.messages.some(m => m.receiver_username === currentUser && m.status !== 'read')) {
+        while (earliestPage.length === 50 && !earliestPage.some(m => m.receiver_username === currentUser && m.status === 'read')) {
+          const before = Math.min(...earliestPage.map(m => m.id));
+          const earlier = await getJSON(`/api/conversations/${selected}/messages?before_id=${before}`);
+          if (version !== generation || selected !== conversationId) return;
+          earliestPage = earlier.messages;
+          data.messages.push(...earliestPage);
+        }
+        const unread = data.messages.filter(m => m.receiver_username === currentUser && m.status !== 'read');
+        unreadBoundary = Math.min(...unread.map(m => m.id));
+      }
       for (const message of data.messages) visibleMessages.set(message.id, {
         ...message, sender: message.sender_username, timestamp: message.created_at
       });
@@ -85,15 +99,16 @@
       }
       if (older || oldestId === null) {
         oldestId = data.messages.length ? Math.min(...data.messages.map(m => m.id)) : oldestId;
-        moreHistory = data.messages.length === 50;
+        moreHistory = earliestPage.length === 50;
       }
-      renderMessages(!older);
+      renderMessages(older ? 'prepend' : opening ? 'opening' : false);
       if (!older && !document.hidden) socket?.emit('mark_read', { conversation_id: selected });
     } catch (error) { if (version === generation) notify(error.message); }
   }
   function renderMessages(scroll = true) {
     const container = el('messagesContainer');
     const previousHeight = container.scrollHeight;
+    const previousTop = container.scrollTop;
     container.replaceChildren();
     if (moreHistory) {
       const older = document.createElement('button'); older.type = 'button'; older.textContent = 'Load earlier messages';
@@ -101,6 +116,14 @@
       container.append(older);
     }
     for (const message of [...visibleMessages.values()].sort((a, b) => a.id - b.id)) {
+      if (message.id === unreadBoundary) {
+        const divider = document.createElement('div');
+        divider.className = 'unread-messages-divider';
+        divider.setAttribute('role', 'separator');
+        divider.setAttribute('aria-label', 'Unread Messages');
+        divider.textContent = 'Unread Messages';
+        container.append(divider);
+      }
       const group = document.createElement('div'); group.dataset.messageId = message.id;
       group.className = `message-group ${message.sender === currentUser ? 'sent' : 'received'}`;
       const content = document.createElement('div'), bubble = document.createElement('div'), time = document.createElement('div');
@@ -120,7 +143,14 @@
       content.append(bubble, time); group.append(content); container.append(group);
     }
     if (!visibleMessages.size) container.textContent = 'No messages in this conversation yet.';
-    container.scrollTop = scroll ? container.scrollHeight : Math.max(0, container.scrollHeight - previousHeight);
+    if (scroll === 'opening' && unreadBoundary !== null) {
+      const divider = container.querySelector('.unread-messages-divider');
+      container.scrollTop = divider ? divider.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - 48 : container.scrollHeight;
+    } else if (scroll === 'prepend') {
+      container.scrollTop = previousTop + container.scrollHeight - previousHeight;
+    } else {
+      container.scrollTop = scroll ? container.scrollHeight : previousTop;
+    }
   }
   function receive(message) {
     const other = message.sender === currentUser ? message.receiver : message.sender;
@@ -194,13 +224,37 @@
     const enableAlerts = el('enableMessageNotifications');
     if (!('Notification' in window) || !window.isSecureContext) enableAlerts.hidden = true;
     else {
-      enableAlerts.textContent = Notification.permission === 'granted' ? 'Device alerts enabled' : 'Enable device alerts';
+      const syncAlertPermission = () => {
+        const enabled = Notification.permission === 'granted';
+        const blocked = Notification.permission === 'denied';
+        enableAlerts.textContent = enabled ? '\u2713 Device alerts enabled' : blocked ? '\u00d7 Device alerts blocked' : 'Enable device alerts';
+        enableAlerts.classList.toggle('device-alerts-enabled', enabled);
+        enableAlerts.setAttribute('aria-pressed', String(enabled));
+        enableAlerts.title = blocked ? 'Allow notifications in your browser site settings.' : enabled ? 'Device alerts are enabled while this application is open.' : 'Enable notifications on this device.';
+      };
+      enableAlerts.setAttribute('aria-live', 'polite');
+      syncAlertPermission();
+      window.addEventListener('focus', syncAlertPermission);
+      document.addEventListener('visibilitychange', syncAlertPermission);
+      // Permission changes in browser settings update the open page immediately.
+      navigator.permissions?.query({ name: 'notifications' }).then(permission => {
+        permission.addEventListener('change', syncAlertPermission);
+      }).catch(() => {});
       enableAlerts.onclick = async () => {
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted' && 'serviceWorker' in navigator)
-          navigator.serviceWorker.register('/static/message-notifications-sw.js').catch(() => {});
-        enableAlerts.textContent = permission === 'granted' ? 'Device alerts enabled' : 'Enable device alerts';
-        if (permission === 'granted') window.showAmlNotification('Device message alerts enabled while this application is open.', 'device-alerts', 'success');
+        enableAlerts.disabled = true;
+        try {
+          const permission = Notification.permission === 'default' ? await Notification.requestPermission() : Notification.permission;
+          if (permission === 'granted' && 'serviceWorker' in navigator)
+            navigator.serviceWorker.register('/static/message-notifications-sw.js').catch(() => {});
+          if (permission === 'granted') window.showAmlNotification('Device alerts enabled.', 'device-alerts', 'success');
+          else if (permission === 'denied') notify('Device alerts are blocked. Allow notifications in your browser site settings.');
+          else notify('Device alerts were not enabled. Select Allow in the permission prompt.');
+        } catch (error) {
+          notify('Unable to enable device alerts. Check your browser notification settings.');
+        } finally {
+          syncAlertPermission();
+          enableAlerts.disabled = false;
+        }
       };
     }
     document.addEventListener('visibilitychange', () => {
