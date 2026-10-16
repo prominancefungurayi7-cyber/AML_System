@@ -119,6 +119,10 @@
     toggle: () => setNavigation(!navigationOpen),
   };
   window.refreshAmlPage = function () {
+    if (document.getElementById('messagingWorkspace')) {
+      window.dispatchEvent(new Event('aml:messages-resync'));
+      return;
+    }
     if (!dirty) {
       clearTimeout(refreshTimer);
       refreshTimer = setTimeout(() => { if (!dirty) location.reload(); }, 400);
@@ -138,7 +142,7 @@
   window.getAmlSocket = function () {
     if (document.body.dataset.authenticated !== 'true' || !window.io) return null;
     if (!socket) {
-      socket = window.io({ transports: ['websocket', 'polling'] });
+      socket = window.io({ transports: ['polling', 'websocket'] });
       let hasConnected = false;
       socket.on('connect', () => {
         if (hasConnected) window.refreshAmlPage();

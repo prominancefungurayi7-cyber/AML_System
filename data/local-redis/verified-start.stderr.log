@@ -1,0 +1,13 @@
+INFO:server:SocketIO configured with threading (RealtimeBroker handles cross-instance messaging)
+INFO:server:SocketIO initialized with async_mode: threading
+INFO:server:RealtimeBroker connected to Redis
+INFO:server:Primary AML model selected: V4
+INFO:server:SocketIO broadcast event: realtime_resync
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.21.246:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:server:User 16 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:05:25] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:05:26] "GET /health HTTP/1.1" 200 -

@@ -93,6 +93,10 @@
     <p><strong>Recorded confidence:</strong> {{ "%.1f"|format(transaction.ai_confidence * 100) }}%</p>
   {% endif %}
   <p>{{ findings.ai_reason }}</p>
+  {% if findings.ai_risk_level == 'suspicious_pattern' %}
+    <button type="button" class="btn" id="load-v4-evidence">Show model evidence</button>
+    <div class="v4-evidence" id="v4-evidence-result" role="status"></div>
+  {% endif %}
 </section>
 <section class="card table-card" aria-labelledby="rule-findings-heading">
   <h3 id="rule-findings-heading">Rule Findings</h3>
@@ -159,7 +163,7 @@
         <strong>{{ sar.reference_number or ('SAR #' ~ sar.id) }}</strong> — {{ sar.status|upper }}
         {% if sar.status == 'draft' %}
           <form method="post" action="{{ url_for('submit_sar', sar_id=sar.id) }}" style="display:inline;">
-            <button type="submit" class="btn btn-primary">Submit to FIU</button>
+            <button type="submit" class="btn btn-primary">Record submission</button>
           </form>
         {% endif %}
         <br><em>{{ sar.narrative[:200] }}{% if sar.narrative|length > 200 %}…{% endif %}</em>
@@ -189,6 +193,29 @@
 <p><a href="{{ url_for('compliance_dashboard') }}">&larr; Back to Compliance Hub</a></p>
   </div>
 </div>
-
-
+{% if findings.ai_risk_level == 'suspicious_pattern' %}
+<script>
+document.getElementById('load-v4-evidence')?.addEventListener('click', async function () {
+  const target = document.getElementById('v4-evidence-result');
+  this.disabled = true;
+  target.textContent = 'Loading model evidence…';
+  try {
+    const response = await fetch({{ url_for('alert_ai_evidence', alert_id=alert.id)|tojson }});
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Model evidence unavailable');
+    target.textContent = 'Largest model contributions, measured in log-odds. Positive values raise the suspicious score; negative values lower it.';
+    const list = document.createElement('ul');
+    for (const finding of result.findings) {
+      const item = document.createElement('li');
+      item.textContent = `${finding.label} — ${finding.direction} (${finding.contribution > 0 ? '+' : ''}${finding.contribution})`;
+      list.appendChild(item);
+    }
+    target.appendChild(list);
+  } catch (error) {
+    target.textContent = error.message;
+    this.disabled = false;
+  }
+});
+</script>
+{% endif %}
 {% endblock %}

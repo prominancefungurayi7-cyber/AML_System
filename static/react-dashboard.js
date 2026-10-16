@@ -438,12 +438,41 @@
     );
   }
 
+  function V4Evidence({ alertId }) {
+    const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    async function loadEvidence() {
+      if (loading || result) return;
+      setLoading(true); setError('');
+      try {
+        const response = await fetch(`/api/alerts/${alertId}/ai-evidence`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Model evidence unavailable');
+        setResult(data);
+      } catch (failure) { setError(failure.message); }
+      finally { setLoading(false); }
+    }
+    return h('div', { className: 'v4-evidence' },
+      h('button', { type: 'button', onClick: loadEvidence, disabled: loading },
+        loading ? 'Loading model evidence…' : 'Show model evidence'),
+      error && h('p', { role: 'status' }, error),
+      result && h('div', null,
+        h('p', null, 'Largest model contributions, measured in log-odds. Positive values raise the suspicious score; negative values lower it.'),
+        h('ul', null, result.findings.map((finding) => h('li', { key: finding.feature },
+          `${finding.label} — ${finding.direction} (${finding.contribution > 0 ? '+' : ''}${finding.contribution})`
+        )))
+      )
+    );
+  }
+
   function AlertFinding({ alert, source }) {
     const reason = alert[`${source}_reason`] || `No separate ${source === "ai" ? "AI" : "rule"} reasoning recorded.`;
     const level = alert[source === "ai" ? "ai_risk_level" : "rule_level"] || "unavailable";
     return h("div", null,
       h("strong", { className: "block-line" }, labelize(level)),
       h("span", { className: "reason-preview", title: reason }, reason),
+      source === 'ai' && level === 'suspicious_pattern' && alert.id && ['admin', 'compliance'].includes(document.body.dataset.userRole) && h(V4Evidence, { alertId: alert.id }),
       source === "rule" && alert.unclassified_reason && h("details", null,
         h("summary", null, "Recorded reason ? source unavailable"),
         h("p", null, alert.unclassified_reason))

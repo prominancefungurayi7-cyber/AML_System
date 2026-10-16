@@ -1,10 +1,12 @@
 """Start the local Redis-compatible broker for an interactive Windows launch."""
 
 import os
+import json
 from pathlib import Path
 import socket
 import subprocess
 import time
+from urllib.request import urlopen
 
 
 def _redis_responds():
@@ -24,9 +26,24 @@ def configure_local_realtime(project_root):
 
     try:
         with socket.create_connection(("127.0.0.1", 5000), timeout=1):
-            raise RuntimeError("Port 5000 is already in use. Stop the existing Flask server before running python server.py again.")
-    except (ConnectionRefusedError, TimeoutError, OSError):
-        pass
+            occupied = True
+    except OSError:
+        occupied = False
+    if occupied:
+        try:
+            with urlopen("http://127.0.0.1:5000/health", timeout=3) as response:
+                health = json.load(response)
+            if (health.get("service") == "epocash-aml"
+                    and health.get("primary_model") == "V4"
+                    and health.get("rules_enabled") is True
+                    and health.get("realtime", {}).get("redis_connected") is True):
+                print("EpoCash AML is already running at http://127.0.0.1:5000 (V4, rules and Redis ready).")
+                raise SystemExit(0)
+        except SystemExit:
+            raise
+        except Exception:
+            pass
+        raise SystemExit("Port 5000 is in use by a different or unhealthy service. Stop it before starting EpoCash AML.")
 
     os.environ.setdefault("AML_PRIMARY_MODEL", "V4")
     os.environ.setdefault("AML_RULE_ENGINE_ENABLED", "ON")

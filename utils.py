@@ -40,6 +40,13 @@ def get_last_insert_id(conn, database_url=None):
     Returns:
         Last inserted row ID
     """
+    # The actual connection takes precedence over a default/configured URL.
+    if getattr(conn, 'engine', None) == 'mysql':
+        return conn.execute("SELECT LAST_INSERT_ID() as id").fetchone()['id']
+    if getattr(conn, 'engine', None) == 'postgres':
+        return conn.execute("SELECT LASTVAL() as id").fetchone()['id']
+    if getattr(conn, 'engine', None) == 'sqlite':
+        return conn.execute("SELECT last_insert_rowid()").fetchone()[0]
     # Try to get database URL from Flask app config if not provided
     if not database_url:
         try:
@@ -240,54 +247,28 @@ def send_email(to_email, subject, body, html_body=None):
     smtp_email = os.environ.get("SMTP_EMAIL")
     smtp_password = os.environ.get("SMTP_PASSWORD")
     smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
-    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
-    
-    # Log SMTP configuration (without password)
-    print(f"\n{'='*60}")
-    print(f"SMTP Email Function Called")
-    print(f"  To: {to_email}")
-    print(f"  SMTP_EMAIL: {smtp_email}")
-    print(f"  SMTP_PASSWORD: {'SET' if smtp_password else 'NOT SET'}")
-    print(f"  SMTP_SERVER: {smtp_server}")
-    print(f"  SMTP_PORT: {smtp_port}")
-    print(f"{'='*60}\n")
-    
-    logging.info(f"SMTP Configuration - Email: {smtp_email}, Server: {smtp_server}, Port: {smtp_port}")
-    
-    # Check if SMTP is configured
     if not smtp_email or not smtp_password:
-        print("ERROR: SMTP not configured - missing credentials")
-        logging.error(f"SMTP not configured: SMTP_EMAIL={'SET' if smtp_email else 'NOT SET'}, SMTP_PASSWORD={'SET' if smtp_password else 'NOT SET'}")
+        logging.error("Email delivery unavailable: SMTP credentials are not configured")
         return False
-    
     try:
+        smtp_port = int(os.environ.get("SMTP_PORT", "587"))
         msg = EmailMessage()
         msg["From"] = smtp_email
         msg["To"] = to_email
         msg["Subject"] = subject
         msg.set_content(body)
-        
         if html_body:
             msg.add_alternative(html_body, subtype="html")
-        
-        print("Attempting to connect to SMTP server...")
-        logging.info(f"Attempting to connect to SMTP server {smtp_server}:{smtp_port}")
-        
-        # Connect to SMTP server and send
-        with smtplib.SMTP(smtp_server, smtp_port, timeout=30) as server:
-            print("Connected to SMTP server, starting TLS...")
-            logging.info(f"Connected to SMTP server, starting TLS")
-            server.starttls()  # Secure the connection
-            print("TLS started, attempting login...")
-            logging.info(f"TLS started, attempting login")
+        # Port 465 uses TLS from connection establishment; other configured
+        # submission ports use STARTTLS before credentials are transmitted.
+        transport = smtplib.SMTP_SSL if smtp_port == 465 else smtplib.SMTP
+        with transport(smtp_server, smtp_port, timeout=30) as server:
+            if smtp_port != 465:
+                server.starttls()
             server.login(smtp_email, smtp_password)
-            print("Login successful, sending email...")
-            logging.info(f"Login successful, sending email to {to_email}")
             server.send_message(msg)
-        
-        logging.info("Email sent successfully to %s", to_email)
+        logging.info("Email accepted by the configured SMTP server")
         return True
-        
-    except Exception as e:
-        logging.exception("Failed to send email to %s", to_email)
+    except Exception:
+        logging.exception("Email delivery failed")
         return False

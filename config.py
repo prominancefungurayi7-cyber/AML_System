@@ -22,9 +22,8 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    # Note: Test databases archived to data/archive/databases/
-    # For testing, use MySQL with test database or create new test database
-    DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("MYSQL_URL") or DEFAULT_MYSQL_DATABASE_URL
+    # Tests must never inherit the application's live MySQL connection.
+    DATABASE_URL = "sqlite:///:memory:"
 
 
 class ProductionConfig(Config):

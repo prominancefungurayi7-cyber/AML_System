@@ -65,6 +65,9 @@ import threading
 import time
 
 import uuid
+from verification_codes import VerificationCodes
+
+verification_codes = VerificationCodes()
 
 from queue import Empty, Queue
 
@@ -600,9 +603,12 @@ def _socket_origin_allowed(origin, environ):
     if not origin or environ.get('REMOTE_ADDR') not in ('127.0.0.1', '::1'):
         return False
     from urllib.parse import urlsplit
-    parsed = urlsplit(origin)
-    host = parsed.hostname or ''
-    if parsed.scheme != 'https' or not host.endswith('.trycloudflare.com') or parsed.port:
+    try:
+        parsed = urlsplit(origin)
+        host = parsed.hostname or ''
+        if parsed.scheme != 'https' or not host.endswith('.trycloudflare.com') or parsed.port:
+            return False
+    except ValueError:
         return False
     forwarded_host = environ.get('HTTP_X_FORWARDED_HOST', '').split(',')[0].strip()
     request_host = environ.get('HTTP_HOST', '').split(',')[0].strip()
@@ -656,6 +662,17 @@ app.logger.info("Primary AML model selected: %s", os.environ.get('AML_PRIMARY_MO
 
 
 # SocketIO authentication middleware with presence tracking
+_presence_lock = threading.Lock()
+_presence_sockets = {}
+
+
+def _live_user_status(conn, username):
+    # The supported deployment uses one process with multiple threads.
+    # Count every live tab instead of reading stale database presence flags.
+    with _presence_lock:
+        online = any(name == username and seen > time.time() - 90
+                     for name, seen in _presence_sockets.values())
+    return {'is_online': online, 'last_seen': None}
 
 @socketio.on('connect')
 def handle_connect():
@@ -670,6 +687,8 @@ def handle_connect():
     role = user['role']
     sid = request.sid
     username = user['username']
+    with _presence_lock:
+        _presence_sockets[sid] = (username, time.time())
     if username:
         # Every browser tab for a signed-in user joins the same private room.
         # This makes unread badges update immediately without exposing direct
@@ -724,13 +743,18 @@ def handle_connect():
 @socketio.on('heartbeat')
 def handle_heartbeat():
     """Client heartbeat to maintain connection and refresh presence TTL"""
+    with _presence_lock:
+        presence = _presence_sockets.get(request.sid)
+        if presence:
+            _presence_sockets[request.sid] = (presence[0], time.time())
     if 'user_id' in session:
         user_id = session.get('user_id')
         broker = app.extensions.get('realtime_broker')
         if broker and broker._redis_client:
             try:
                 presence_key = f"presence:user:{user_id}"
-                broker._redis_client.expire(presence_key, 300)  # Refresh TTL
+                broker._redis_client.hset(presence_key, mapping={'sid': request.sid})
+                broker._redis_client.expire(presence_key, 300)
                 app.logger.debug(f"Heartbeat received from user {user_id}")
             except Exception as e:
                 app.logger.error(f"Failed to refresh presence TTL: {e}")
@@ -743,6 +767,9 @@ def handle_heartbeat():
 def handle_disconnect():
     from v4_shadow import forget_socket
     forget_socket(request.sid)
+    with _presence_lock:
+        previous = _presence_sockets.pop(request.sid, None)
+        still_online = previous and any(name == previous[0] for name, _ in _presence_sockets.values())
     broker = app.extensions.get('realtime_broker')
     if broker:
         broker.remove_staff_socket(request.sid)
@@ -755,21 +782,15 @@ def handle_disconnect():
         if broker and broker._redis_client:
             try:
                 presence_key = f"presence:user:{user_id}"
-                broker._redis_client.delete(presence_key)
+                if not still_online:
+                    broker._redis_client.delete(presence_key)
                 app.logger.info(f"User {user_id} (role: {role}) disconnected, presence removed from Redis")
             except Exception as e:
                 app.logger.error(f"Failed to remove presence from Redis: {e}")
         else:
             app.logger.info(f"User {user_id} (role: {role}) disconnected from SocketIO")
     
-    # Mark user as offline
-    try:
-        conn = connect_db()
-        if 'username' in session:
-            set_user_online(conn, session['username'], False)
-        conn.close()
-    except:
-        pass
+    # Presence is ephemeral. Disconnecting must not write application records.
 
 
 # ============================================================================
@@ -783,13 +804,19 @@ def handle_send_message(data):
         socketio.emit('message_error', {'message': 'Not authenticated'}, to=request.sid)
         return
 
+    if not isinstance(data, dict):
+        return {'status': 'error', 'message': 'Invalid message request'}
     receiver = str(data.get('receiver') or '').strip()
     content = str(data.get('content') or '').strip()
     
     if not receiver or not content:
         socketio.emit('message_error', {'message': 'Missing receiver or content'}, to=request.sid)
         return
+    if len(content) > 10000:
+        return {'status': 'error', 'message': 'Message must contain at most 10,000 characters'}
     
+    conn = None
+    msg = None
     try:
         conn = connect_db()
         
@@ -804,13 +831,11 @@ def handle_send_message(data):
         if not sender_user:
             app.logger.error(f"Sender user not found for session user_id: {session['user_id']}")
             socketio.emit('message_error', {'message': 'Sender account not found'}, to=request.sid)
-            conn.close()
             return
         
         if not receiver_user:
             app.logger.error(f"Receiver user not found for username: {receiver}")
             socketio.emit('message_error', {'message': 'Recipient not found'}, to=request.sid)
-            conn.close()
             return
 
         sender = sender_user['username']
@@ -822,7 +847,6 @@ def handle_send_message(data):
         if not can_message:
             app.logger.warning(f"Messaging not allowed: {sender} ({sender_user['role']}) -> {receiver} ({receiver_user['role']}): {reason}")
             socketio.emit('message_error', {'message': reason}, to=request.sid)
-            conn.close()
             return
         
         # Get or create conversation
@@ -831,14 +855,10 @@ def handle_send_message(data):
         if not conv or conv.get('id') is None:
             app.logger.error(f"Failed to get or create conversation between {sender} and {receiver}")
             socketio.emit('message_error', {'message': 'Could not create conversation'}, to=request.sid)
-            conn.close()
             return
         
         # Send message
         msg = send_message(conn, conv['id'], sender, receiver, content, sender_user['role'])
-        
-        # Mark as unread for receiver
-        add_unread_message(conn, conv['id'], receiver)
         
         # Emit to both users
         message_data = {
@@ -861,78 +881,74 @@ def handle_send_message(data):
         unread = get_unread_count(conn, receiver)
         socketio.emit('unread_update', unread, to=f"user:{receiver}")
         
-        conn.close()
-        return {'status': 'success', 'message_id': msg['id']}
+        return {'status': 'success', 'message_id': msg['id'], 'message': message_data}
     except Exception as e:
         app.logger.exception("Error sending message")
+        if msg and msg.get('id'):
+            # Delivery can be recovered from persisted history after reconnect.
+            return {'status': 'success', 'message_id': msg['id'], 'message': message_data}
         socketio.emit('message_error', {'message': 'Message could not be sent. Please try again.'}, to=request.sid)
         return {'status': 'error', 'message': 'Message could not be sent. Please refresh the conversation before retrying.'}
+    finally:
+        if conn:
+            conn.close()
+
+def _messaging_participant(conn, data):
+    if not isinstance(data, dict) or not session.get('user_id'):
+        return None
+    user = conn.execute('SELECT * FROM users WHERE id=?', (session['user_id'],)).fetchone()
+    conversation = conn.execute('SELECT * FROM conversations WHERE id=?',
+                                (data.get('conversation_id'),)).fetchone()
+    if not user or not conversation:
+        return None
+    participants = (conversation['participant_1'], conversation['participant_2'])
+    if user['username'] not in participants:
+        return None
+    other = participants[1] if participants[0] == user['username'] else participants[0]
+    recipient = fetch_user_by_username(conn, other)
+    if not recipient or not _is_authorized_messaging_counterpart(conn, user, recipient):
+        return None
+    return user['username'], other, conversation['id']
+
+
+def _emit_typing(data, active):
+    conn = connect_db()
+    try:
+        participant = _messaging_participant(conn, data)
+        if participant:
+            username, other, conversation_id = participant
+            socketio.emit('user_typing' if active else 'user_stop_typing',
+                          {'user': username, 'conversation_id': conversation_id},
+                          to=f'user:{other}')
+    finally:
+        conn.close()
 
 
 @socketio.on('typing')
 def handle_typing(data):
-    """Handle typing indicator."""
-    if 'username' not in session:
-        return
-    
-    username = session['username']
-    conversation_id = data.get('conversation_id')
-    
-    try:
-        conn = connect_db()
-        set_typing_indicator(conn, username, conversation_id)
-        conn.close()
-        
-        # Broadcast typing status
-        socketio.emit('user_typing', {
-            'user': username,
-            'conversation_id': conversation_id
-        })
-    except Exception as e:
-        app.logger.error(f"Error handling typing: {e}")
+    _emit_typing(data, True)
 
 
 @socketio.on('stop_typing')
 def handle_stop_typing(data):
-    """Handle stop typing indicator."""
-    if 'username' not in session:
-        return
-    
-    username = session['username']
-    conversation_id = data.get('conversation_id')
-    
-    try:
-        conn = connect_db()
-        set_typing_indicator(conn, username, None)
-        conn.close()
-        
-        socketio.emit('user_stop_typing', {
-            'user': username,
-            'conversation_id': conversation_id
-        })
-    except Exception as e:
-        app.logger.error(f"Error handling stop typing: {e}")
+    _emit_typing(data, False)
 
 
 @socketio.on('mark_read')
 def handle_mark_read(data):
-    """Mark messages as read."""
-    if 'username' not in session:
-        return
-    
-    username = session['username']
-    conversation_id = data.get('conversation_id')
-    
+    conn = connect_db()
     try:
-        conn = connect_db()
+        participant = _messaging_participant(conn, data)
+        if not participant:
+            return {'status': 'error', 'message': 'Conversation access denied'}
+        username, other, conversation_id = participant
         mark_conversation_as_read(conn, conversation_id, username)
-        unread = get_unread_count(conn, username)
+        socketio.emit('unread_update', get_unread_count(conn, username), to=f'user:{username}')
+        socketio.emit('messages_read', {'conversation_id': conversation_id, 'reader': username},
+                      to=f'user:{other}')
+        return {'status': 'success'}
+    finally:
         conn.close()
-
-        # Update unread badge
-        socketio.emit('unread_update', unread, to=f"user:{username}")
-    except Exception as e:
-        app.logger.error(f"Error marking messages as read: {e}")
 
 
 # ============================================================================
@@ -942,7 +958,7 @@ def handle_mark_read(data):
 def _get_messaging_counterparts(conn, user):
     """Return live, registered messaging contacts for the current role.
 
-    Compliance officers are intentionally given customer records only. The
+    Compliance officers can reply to customers and administrators. The
     users table is the registration authority, so stale conversation rows,
     manually typed names, and deleted accounts cannot populate the contact
     list.
@@ -959,7 +975,7 @@ def _get_messaging_counterparts(conn, user):
         # This query runs for every API request rather than using a cached
         # list or prior conversation participants.
         return conn.execute(
-            "SELECT * FROM users WHERE role='customer' "
+            "SELECT * FROM users WHERE role IN ('customer', 'admin') "
             "AND username IS NOT NULL AND account_number IS NOT NULL "
             "ORDER BY account_number ASC, id ASC",
         ).fetchall()
@@ -1019,7 +1035,11 @@ def api_get_messages(conversation_id):
             conn.close()
             return jsonify({'status': 'error', 'message': 'Conversation is not available to this user'}), 403
 
-        messages = get_conversation_messages(conn, conversation_id, limit=50)
+        before_id = request.args.get('before_id', type=int)
+        if 'before_id' in request.args and (before_id is None or before_id <= 0):
+            conn.close()
+            return jsonify({'status': 'error', 'message': 'Invalid history cursor'}), 400
+        messages = get_conversation_messages(conn, conversation_id, limit=50, before_id=before_id)
         conn.close()
         
         return jsonify({
@@ -1089,7 +1109,7 @@ def api_get_user_status(username):
     """Get user's online status."""
     try:
         conn = connect_db()
-        status = get_user_online_status(conn, username)
+        status = _live_user_status(conn, username)
         conn.close()
         
         return jsonify({
@@ -1118,7 +1138,7 @@ def api_get_messageable_users():
         # Build the response directly from verified rows; expose only the
         # contact fields needed by the secure messaging interface.
         for counterpart in _get_messaging_counterparts(conn, current_user):
-            status = get_user_online_status(conn, counterpart['username'])
+            status = _live_user_status(conn, counterpart['username'])
             messageable_users.append({
                 'username': counterpart['username'],
                 'role': counterpart['role'],
@@ -1196,25 +1216,8 @@ def seed_demo_data():
 
             )
 
-        else:
-
-            conn.execute(
-
-                """
-
-                UPDATE users
-
-                SET username=?, email=?, id_number=?, password_hash=?, role=?,
-
-                    account_number=?, kyc_status='verified', wealth_segment='average'
-
-                WHERE id=?
-
-                """,
-
-                (username, email, id_number, pwd_hash, role, acct, existing["id"]),
-
-            )
+        # Existing accounts retain their password, contact details and KYC state.
+        # Seeding must never undo a password reset or an analyst's review.
 
     _seed_wealth_tier_users(conn, now)
 
@@ -1451,7 +1454,7 @@ def _stats_payload(conn):
             (SELECT COUNT(*) FROM alerts) as total_alerts,
             (SELECT COUNT(*) FROM transactions WHERE risk_level IN ('super_suspicious','high_risk','critical') AND timestamp>=?) as high_risk_today,
             (SELECT COUNT(*) FROM sar_reports WHERE status='draft') as pending_sars,
-            (SELECT COUNT(*) FROM sar_reports WHERE status='filed') as filed_sars,
+            (SELECT COUNT(*) FROM sar_reports WHERE status IN ('filed','submitted')) as filed_sars,
             (SELECT COUNT(*) FROM ctr_reports WHERE status='pending') as pending_ctrs
             ,(SELECT COUNT(*) FROM ctr_reports WHERE status='filed') as filed_ctrs
     """
@@ -2960,7 +2963,7 @@ def register():
 
                 return redirect(url_for("register"))
 
-            if str(otp) != str(pending.get("otp")):
+            if not verification_codes.consume(pending.get("challenge"), "registration", otp):
 
                 flash("Invalid verification code.")
 
@@ -2990,9 +2993,7 @@ def register():
 
 
 
-            user_count = get_db().execute("SELECT COUNT(*) as c FROM users").fetchone()["c"]
-
-            acct = f"ACC{1000 + int(user_count or 0) + 1}"
+            acct = "ACC" + uuid.uuid4().hex[:16].upper()
 
             pep_flag = 1 if any(h.list_type == "pep" for h in reg_hits) else 0
 
@@ -3017,6 +3018,8 @@ def register():
             user = get_user_by_username(pending["username"])
 
             session["user_id"] = user["id"]
+
+            session["username"] = user["username"]
 
             session["role"] = user["role"]
 
@@ -3079,7 +3082,13 @@ def register():
 
 
         # Generate server-side OTP
-        otp_code = f"{random.randint(100000, 999999)}"
+        old = session.pop("pending_registration", {})
+        verification_codes.discard(old.get("challenge"))
+        try:
+            challenge, otp_code = verification_codes.issue("registration")
+        except RuntimeError as exc:
+            flash(str(exc))
+            return render_template("register.html"), 429
         
         session["pending_registration"] = {
 
@@ -3087,12 +3096,13 @@ def register():
 
             "password_hash": generate_password_hash(password), "role": role,
 
-            "otp": otp_code, "expires_at": time.time() + 600,
+            "challenge": challenge, "expires_at": time.time() + 600,
 
         }
 
         # Do not show the verification step until SMTP accepts the message.
         if not send_otp_email_async(email, otp_code):
+            verification_codes.discard(challenge)
             session.pop("pending_registration", None)
             flash("Could not send verification code. Please check the email address or try again later.")
             return render_template("register.html")
@@ -3266,12 +3276,18 @@ def forgot_password():
         if user:
 
             # Generate reset token
-            reset_token = f"{random.randint(100000, 999999)}"
+            old = session.pop("password_reset", {})
+            verification_codes.discard(old.get("challenge"))
+            try:
+                challenge, reset_token = verification_codes.issue("password-reset")
+            except RuntimeError as exc:
+                flash(str(exc))
+                return render_template("forgot_password.html"), 429
             
-            # Store token in database (using a simple approach - in production, use a dedicated table)
+            # The readable session cookie contains no verification code.
             session["password_reset"] = {
                 "user_id": user["id"],
-                "token": reset_token,
+                "challenge": challenge,
                 "expires_at": time.time() + 600  # 10 minutes
             }
             
@@ -3279,6 +3295,8 @@ def forgot_password():
             if send_otp_email_async(email, reset_token):
                 flash(f"Password reset code sent to {email}.")
                 return redirect(url_for("reset_password"))
+            verification_codes.discard(challenge)
+            session.pop("password_reset", None)
             flash("Could not send reset code. Please try again later.")
             return render_template("forgot_password.html")
         
@@ -3313,16 +3331,16 @@ def reset_password():
             flash("All fields are required.")
             return render_template("reset_password.html")
 
-        if str(reset_code) != str(reset_data.get("token")):
-            flash("Invalid reset code.")
-            return render_template("reset_password.html")
-
         if new_password != confirm_password:
             flash("Passwords do not match.")
             return render_template("reset_password.html")
 
         if len(new_password) < 6:
             flash("Password must be at least 6 characters.")
+            return render_template("reset_password.html")
+
+        if not verification_codes.consume(reset_data.get("challenge"), "password-reset", reset_code):
+            flash("Invalid or expired reset code. Request a new code after five failed attempts.")
             return render_template("reset_password.html")
 
         # Update password
@@ -3944,6 +3962,38 @@ def _get_next_open_alert_id(conn, current_alert_id):
     return next_alert["id"] if next_alert else None
 
 
+@app.route('/api/alerts/<int:alert_id>/ai-evidence', methods=['GET'])
+@login_required('compliance', 'admin')
+def alert_ai_evidence(alert_id):
+    """Explain a recorded V4 result with the frozen model, on demand and read-only."""
+    row = get_db().execute(
+        'SELECT a.transaction_id,t.ai_risk_level FROM alerts a '
+        'JOIN transactions t ON t.id=a.transaction_id WHERE a.id=?', (alert_id,)
+    ).fetchone()
+    if not row or row['ai_risk_level'] != 'suspicious_pattern':
+        return jsonify({'error': 'V4 evidence is unavailable for this alert'}), 404
+    import subprocess
+    from pathlib import Path
+    import v4_shadow
+    script = Path(__file__).resolve().parent / 'tools' / 'v4_model_evidence.py'
+    try:
+        completed = subprocess.run(
+            [str(v4_shadow.PYTHON), '-I', '-B', str(script), str(row['transaction_id'])],
+            cwd=str(v4_shadow.ROOT), capture_output=True, text=True,
+            timeout=30, check=True,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0),
+        )
+        result = json.loads(completed.stdout)
+        if result['transaction_id'] != row['transaction_id'] or result['prediction'] != 1:
+            raise ValueError('V4 evidence mismatch')
+        response = jsonify(result)
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+    except Exception:
+        app.logger.exception('Read-only V4 evidence unavailable for alert %s', alert_id)
+        return jsonify({'error': 'Model evidence could not be loaded; the recorded V4 result remains available'}), 503
+
+
 @app.route("/compliance/alert/<int:alert_id>", methods=["GET", "POST"])
 
 @login_required("compliance", "admin")
@@ -3958,6 +4008,7 @@ def alert_detail(alert_id):
 
         return redirect(url_for("compliance_dashboard"))
 
+    alert = dict(alert)
     app.logger.info(f"Alert #{alert_id} loaded, transaction_id: {alert.get('transaction_id')}, account_number: {alert.get('account_number')}")
 
     transaction = get_db().execute(
@@ -3966,6 +4017,8 @@ def alert_detail(alert_id):
 
     ).fetchone()
 
+    if transaction:
+        transaction = dict(transaction)
     if not transaction:
         app.logger.warning(f"Transaction not found for alert #{alert_id}, transaction_id: {alert.get('transaction_id')}")
     
@@ -4170,12 +4223,18 @@ def alert_detail(alert_id):
 def submit_sar(sar_id):
 
     officer = get_user_by_id(session["user_id"])
+    existing_report = get_db().execute('SELECT status FROM sar_reports WHERE id=?', (sar_id,)).fetchone()
+    if not existing_report:
+        return 'Report not found.', 404
+    if existing_report['status'] != 'draft':
+        flash('This report has already been processed.')
+        return redirect(url_for('reports'))
 
     filed_at = datetime.now(timezone.utc).isoformat()
 
     get_db().execute(
 
-        "UPDATE sar_reports SET status='submitted', filed_at=? WHERE id=?",
+        "UPDATE sar_reports SET status='submitted', filed_at=? WHERE id=? AND status='draft'",
 
         (filed_at, sar_id),
 
@@ -4191,9 +4250,9 @@ def submit_sar(sar_id):
 
     broadcast_stats(get_db())
 
-    record_activity(officer["username"], "submit_sar", f"SAR #{sar_id} submitted to FIU")
+    record_activity(officer["username"], "submit_sar", f"SAR #{sar_id} submission recorded locally")
 
-    flash(f"SAR #{sar_id} submitted to the Financial Intelligence Unit.")
+    flash(f"SAR #{sar_id} submission recorded. This application does not transmit reports to the FIU.")
 
     return redirect(url_for("reports"))
 
@@ -4224,6 +4283,10 @@ def admin_dashboard():
             user_id = request.form.get("user_id")
 
             kyc = request.form.get("kyc_status")
+            if not user_id or kyc not in ('pending', 'verified', 'rejected', 'pending_edd'):
+                return 'Select a user and a valid KYC status.', 400
+            if not get_db().execute('SELECT id FROM users WHERE id=?', (user_id,)).fetchone():
+                return 'User not found.', 404
 
             if user_id:
 
@@ -4261,6 +4324,9 @@ def admin_dashboard():
             list_type = request.form.get("wl_type", "internal")
 
             reason = request.form.get("wl_reason", "")
+            name = name.strip()
+            if not name or list_type not in ('internal', 'pep', 'sanctions'):
+                return 'A name and a valid watchlist type are required.', 400
 
             if name:
 
@@ -4289,6 +4355,9 @@ def admin_dashboard():
                 record_activity(admin_user["username"], "add_watchlist", f"Added {name} to watchlist")
 
                 flash(f"{name} added to watchlist.")
+        else:
+            return 'Unknown administration action.', 400
+        return redirect(url_for('admin_dashboard'))
 
 
 
@@ -4333,7 +4402,7 @@ def admin_dashboard():
             (SELECT COUNT(*) FROM alerts WHERE status='open') AS open_alerts,
             (SELECT COUNT(*) FROM alerts) AS total_alerts,
             (SELECT COUNT(*) FROM sar_reports WHERE status='draft') AS pending_sars,
-            (SELECT COUNT(*) FROM sar_reports WHERE status='filed') AS filed_sars,
+            (SELECT COUNT(*) FROM sar_reports WHERE status IN ('filed','submitted')) AS filed_sars,
             (SELECT COUNT(*) FROM ctr_reports WHERE status='pending') AS pending_ctrs,
             (SELECT COUNT(*) FROM ctr_reports WHERE status='filed') AS filed_ctrs
         """
@@ -5478,7 +5547,8 @@ if __name__ == "__main__":
 
         app,
 
-        debug=app.config.get("DEBUG", False),
+        debug=False,
+        use_debugger=False,
 
         host="0.0.0.0",
 

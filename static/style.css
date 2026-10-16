@@ -796,6 +796,11 @@ button:disabled {
 .notification-toast--message p strong { font-size:13px }
 .notification-toast--message p span { color:var(--EpoCash-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 .notification-message-avatar { display:grid; place-items:center; flex:none; width:34px; height:34px; border-radius:50%; background:#d9f2e7; color:#116446; font-weight:700 }
+.v4-evidence { margin-top:8px; font-size:12px }
+.v4-evidence button { padding:5px 9px; border:1px solid var(--EpoCash-border); border-radius:6px; background:var(--EpoCash-panel-strong); color:var(--EpoCash-text); cursor:pointer; font:inherit }
+.v4-evidence button:hover { background:var(--EpoCash-hover) }
+.v4-evidence ul { margin:6px 0 0; padding-left:18px }
+.v4-evidence li+li { margin-top:4px }
 .notification-close { padding:0; min-width:24px; min-height:24px; border:0; background:transparent; color:inherit; font-size:20px; cursor:pointer }
 .notification-toast.is-leaving { opacity:0; transform:translateY(-8px); pointer-events:none }
 @keyframes notification-enter {

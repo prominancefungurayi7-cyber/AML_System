@@ -103,11 +103,18 @@ def get_or_create_conversation(conn, user1: str, user2: str, conversation_type: 
         return dict(row)
     
     # Create new conversation
-    conn.execute(
-        "INSERT INTO conversations (participant_1, participant_2, conversation_type) VALUES (?, ?, ?)",
-        (user1, user2, conversation_type)
-    )
-    conn.commit()
+    try:
+        conn.execute(
+            "INSERT INTO conversations (participant_1, participant_2, conversation_type) VALUES (?, ?, ?)",
+            (user1, user2, conversation_type)
+        )
+        conn.commit()
+    except Exception as exc:
+        conn.rollback()
+        from transaction_idempotency import is_unique_conflict
+        if not is_unique_conflict(exc):
+            raise
+        # Another tab may have created this same conversation while we waited.
     
     row = conn.execute(
         "SELECT id FROM conversations WHERE participant_1=? AND participant_2=?",
@@ -123,43 +130,32 @@ def send_message(conn, conversation_id: int, sender: str, receiver: str, content
         return {"error": "Message cannot be empty"}
     
     now = datetime.now(timezone.utc).isoformat()
-    
-    conn.execute(
-        """INSERT INTO messages 
-           (conversation_id, sender_username, sender_role, receiver_username, content, status, created_at)
-           VALUES (?, ?, ?, ?, ?, ?, ?)""",
-        (conversation_id, sender, sender_role, receiver, content.strip(), "sent", now)
-    )
-    conn.commit()
-    
-    # Retrieve the generated primary key using the active database dialect.
-    # MySQL normalizes TIMESTAMP values, so matching the original Python
-    # timestamp string is not reliable after the insert.
-    message_id = get_last_insert_id(conn)
-    msg = conn.execute(
-        """SELECT id, sender_username, receiver_username, content, status, created_at
-           FROM messages
-           WHERE id=?""",
-        (message_id,),
-    ).fetchone()
-    if msg is None:
-        raise RuntimeError("Message was saved but could not be retrieved")
-    
-    # Update conversation's last message
-    conn.execute(
-        "UPDATE conversations SET last_message_at=?, last_message_id=? WHERE id=?",
-        (now, msg["id"], conversation_id)
-    )
-    conn.commit()
-    
-    # Reset unread for receiver if they're reading
-    conn.execute(
-        "DELETE FROM unread_messages WHERE conversation_id=? AND user_username=?",
-        (conversation_id, receiver)
-    )
-    conn.commit()
-    
-    return dict(msg)
+    try:
+        # Serialize sends and read receipts for this conversation.
+        lock = " FOR UPDATE" if getattr(conn, "engine", "sqlite") in ("mysql", "postgres") else ""
+        row = conn.execute("SELECT id FROM conversations WHERE id=?" + lock,
+                           (conversation_id,)).fetchone()
+        if row is None:
+            raise ValueError("Conversation not found")
+        conn.execute(
+            """INSERT INTO messages
+               (conversation_id, sender_username, sender_role, receiver_username, content, status, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (conversation_id, sender, sender_role, receiver, content.strip(), "sent", now))
+        message_id = get_last_insert_id(conn)
+        msg = conn.execute(
+            "SELECT id, sender_username, receiver_username, content, status, created_at FROM messages WHERE id=?",
+            (message_id,)).fetchone()
+        if msg is None:
+            raise RuntimeError("Inserted message could not be retrieved")
+        conn.execute("UPDATE conversations SET last_message_at=?, last_message_id=? WHERE id=?",
+                     (now, message_id, conversation_id))
+        add_unread_message(conn, conversation_id, receiver, commit=False)
+        conn.commit()
+        return dict(msg)
+    except Exception:
+        conn.rollback()
+        raise
 
 
 def mark_message_as_delivered(conn, message_id: int) -> bool:
@@ -187,31 +183,31 @@ def mark_message_as_read(conn, message_id: int) -> bool:
 def mark_conversation_as_read(conn, conversation_id: int, user: str) -> bool:
     """Mark all messages in conversation as read."""
     now = datetime.now(timezone.utc).isoformat()
-    conn.execute(
-        "UPDATE messages SET status='read', read_at=? WHERE conversation_id=? AND receiver_username=? AND status != 'read'",
-        (now, conversation_id, user)
-    )
-    conn.commit()
-    
-    # Clear unread count
-    conn.execute(
-        "DELETE FROM unread_messages WHERE conversation_id=? AND user_username=?",
-        (conversation_id, user)
-    )
-    conn.commit()
-    return True
+    try:
+        lock = " FOR UPDATE" if getattr(conn, "engine", "sqlite") in ("mysql", "postgres") else ""
+        conn.execute("SELECT id FROM conversations WHERE id=?" + lock, (conversation_id,)).fetchone()
+        conn.execute(
+            "UPDATE messages SET status='read', read_at=? WHERE conversation_id=? AND receiver_username=? AND status != 'read'",
+            (now, conversation_id, user))
+        conn.execute("DELETE FROM unread_messages WHERE conversation_id=? AND user_username=?",
+                     (conversation_id, user))
+        conn.commit()
+        return True
+    except Exception:
+        conn.rollback()
+        raise
 
 
-def get_conversation_messages(conn, conversation_id: int, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+def get_conversation_messages(conn, conversation_id: int, limit: int = 50, offset: int = 0, before_id=None) -> List[Dict[str, Any]]:
     """Get message history for a conversation."""
     rows = conn.execute(
         """SELECT id, sender_username, sender_role, receiver_username, content, status, created_at, 
                   read_at, delivered_at, edited_at
            FROM messages 
-           WHERE conversation_id=? AND deleted_at IS NULL
-           ORDER BY created_at DESC
+           WHERE conversation_id=? AND deleted_at IS NULL AND (? IS NULL OR id < ?)
+           ORDER BY id DESC
            LIMIT ? OFFSET ?""",
-        (conversation_id, limit, offset)
+        (conversation_id, before_id, before_id, limit, offset)
     ).fetchall()
     
     return [dict(row) for row in rows]
@@ -268,11 +264,12 @@ def get_unread_by_conversation(conn, username: str) -> Dict[int, int]:
     return {row["conversation_id"]: row["unread_count"] for row in rows}
 
 
-def add_unread_message(conn, conversation_id: int, receiver: str) -> bool:
+def add_unread_message(conn, conversation_id: int, receiver: str, *, commit=True) -> bool:
     """Increment unread count for a message."""
     # Check if record exists
+    lock = " FOR UPDATE" if getattr(conn, "engine", "sqlite") in ("mysql", "postgres") else ""
     row = conn.execute(
-        "SELECT id, unread_count FROM unread_messages WHERE conversation_id=? AND user_username=?",
+        "SELECT id, unread_count FROM unread_messages WHERE conversation_id=? AND user_username=?" + lock,
         (conversation_id, receiver)
     ).fetchone()
     
@@ -289,7 +286,8 @@ def add_unread_message(conn, conversation_id: int, receiver: str) -> bool:
             (conversation_id, receiver, now)
         )
     
-    conn.commit()
+    if commit:
+        conn.commit()
     return True
 
 

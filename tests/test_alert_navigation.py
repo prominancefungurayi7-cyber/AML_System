@@ -2,7 +2,7 @@ import json
 import os
 import re
 
-import server as aml_app
+
 
 
 def _dashboard_data(response):
@@ -15,18 +15,7 @@ def _dashboard_data(response):
     return json.loads(match.group(1))
 
 
-def test_resolving_an_alert_redirects_to_next_open_alert():
-    aml_app.app.config.update(
-        TESTING=True,
-        SECRET_KEY="test-secret",
-        DATABASE=str(aml_app.TestingConfig.DATABASE_URL),
-    )
-    if os.path.exists(aml_app.app.config["DATABASE"]):
-        try:
-            os.remove(aml_app.app.config["DATABASE"])
-        except PermissionError:
-            pass
-
+def test_resolving_an_alert_redirects_to_next_open_alert(aml_app):
     with aml_app.app.test_client() as client:
         with aml_app.app.app_context():
             aml_app.init_db()
@@ -67,18 +56,7 @@ def test_resolving_an_alert_redirects_to_next_open_alert():
             assert next_alert["status"] == "open"
 
 
-def test_compliance_dashboard_paginates_all_open_alerts():
-    aml_app.app.config.update(
-        TESTING=True,
-        SECRET_KEY="test-secret",
-        DATABASE=str(aml_app.TestingConfig.DATABASE_URL),
-    )
-    if os.path.exists(aml_app.app.config["DATABASE"]):
-        try:
-            os.remove(aml_app.app.config["DATABASE"])
-        except PermissionError:
-            pass
-
+def test_compliance_dashboard_paginates_all_open_alerts(aml_app):
     with aml_app.app.test_client() as client:
         with aml_app.app.app_context():
             aml_app.init_db()

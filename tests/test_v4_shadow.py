@@ -235,7 +235,7 @@ def test_result_commit_failure_no_notification(tmp_path,monkeypatch):
     c=db(path);assert v.get(c,1)['status']=='pending';c.close()
 
 def test_no_ordinary_ml_imports():
-    assert not any(k.startswith(('sklearn','xgboost','ai_core','ai_stage14_model')) for k in sys.modules)
+    subprocess.run([sys.executable, '-c', "import v4_shadow, sys; assert not any(k.startswith(('sklearn','xgboost','ai_core','ai_stage14_model')) for k in sys.modules)"], check=True)
 
 def test_worker_integrity_before_runtime(monkeypatch):
     from ml_v4.shadow_integration.worker import main

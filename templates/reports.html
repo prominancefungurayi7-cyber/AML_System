@@ -120,7 +120,7 @@
         Wallet {{ sar.account_number }} — {{ sar.created_at }}
         {% if sar.status == 'draft' %}
           <form method="post" action="{{ url_for('submit_sar', sar_id=sar.id) }}" style="display:inline;">
-            <button type="submit" class="btn btn-primary">Submit to FIU</button>
+            <button type="submit" class="btn btn-primary">Record submission</button>
           </form>
         {% endif %}
       </li>
