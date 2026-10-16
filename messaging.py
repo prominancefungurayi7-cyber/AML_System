@@ -158,15 +158,20 @@ def send_message(conn, conversation_id: int, sender: str, receiver: str, content
         raise
 
 
-def mark_message_as_delivered(conn, message_id: int) -> bool:
-    """Mark a message as delivered."""
+def mark_message_as_delivered(conn, message_id: int, receiver: str) -> bool:
+    """Confirm receipt only for the intended recipient and a sent message."""
     now = datetime.now(timezone.utc).isoformat()
-    conn.execute(
-        "UPDATE messages SET status='delivered', delivered_at=? WHERE id=?",
-        (now, message_id)
-    )
+    row = conn.execute(
+        "SELECT conversation_id FROM messages WHERE id=? AND receiver_username=? AND status='sent'",
+        (message_id, receiver),
+    ).fetchone()
+    if not row:
+        return False
+    updated = conn.execute("UPDATE messages SET status='delivered', delivered_at=? "
+                           "WHERE id=? AND receiver_username=? AND status='sent'",
+                           (now, message_id, receiver))
     conn.commit()
-    return True
+    return updated.rowcount == 1
 
 
 def mark_message_as_read(conn, message_id: int) -> bool:
@@ -180,19 +185,24 @@ def mark_message_as_read(conn, message_id: int) -> bool:
     return True
 
 
-def mark_conversation_as_read(conn, conversation_id: int, user: str) -> bool:
-    """Mark all messages in conversation as read."""
+def mark_conversation_as_read(conn, conversation_id: int, user: str) -> int:
+    """Mark received messages as read and return the last observed message ID."""
     now = datetime.now(timezone.utc).isoformat()
     try:
         lock = " FOR UPDATE" if getattr(conn, "engine", "sqlite") in ("mysql", "postgres") else ""
         conn.execute("SELECT id FROM conversations WHERE id=?" + lock, (conversation_id,)).fetchone()
+        last = conn.execute(
+            "SELECT MAX(id) AS id FROM messages WHERE conversation_id=? AND receiver_username=?",
+            (conversation_id, user),
+        ).fetchone()
+        last_id = (last['id'] or 0) if last else 0
         conn.execute(
-            "UPDATE messages SET status='read', read_at=? WHERE conversation_id=? AND receiver_username=? AND status != 'read'",
-            (now, conversation_id, user))
+            "UPDATE messages SET status='read', read_at=? WHERE conversation_id=? AND receiver_username=? AND id<=? AND status != 'read'",
+            (now, conversation_id, user, last_id))
         conn.execute("DELETE FROM unread_messages WHERE conversation_id=? AND user_username=?",
                      (conversation_id, user))
         conn.commit()
-        return True
+        return last_id
     except Exception:
         conn.rollback()
         raise

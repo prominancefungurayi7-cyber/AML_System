@@ -45,6 +45,7 @@ def test_contacts_drafts_history_acknowledgement_and_reconnect():
         try:
             page.goto('http://127.0.0.1:5000/messages')
             page.locator('.conversation-item').filter(has_text='demo').click()
+            expect(page.locator('#chatAccount')).to_have_text('ACC1003')
             expect(page.locator('#openContacts')).to_have_attribute('aria-expanded', 'false')
             expect(page.locator('.message-group')).to_have_count(50)
             page.get_by_role('button', name='Load earlier messages').click()
@@ -67,6 +68,12 @@ def test_contacts_drafts_history_acknowledgement_and_reconnect():
             }""")
             expect(page.locator('#messageInput')).to_have_value('')
             expect(page.locator('[data-message-id="56"]')).to_have_count(1)
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Sent')
+            page.evaluate("fire('message_status', {id:56,conversation_id:1,status:'delivered'})")
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Delivered')
+            page.evaluate("fire('messages_read', {conversation_id:1,last_read_id:56})")
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Read')
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_class('message-receipt message-receipt--read')
             assert not errors
         finally:
             browser.close()

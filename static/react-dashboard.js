@@ -100,6 +100,14 @@
     return String(value || "normal").replace(/_/g, " ");
   }
 
+  function customerRiskLabel(value) {
+    const level = normalizeLevel(value);
+    if (["critical", "high-risk", "super-suspicious"].includes(level)) return "Super suspicious";
+    if (level === "suspicious") return "Suspicious";
+    if (level === "normal" || level === "low") return "Normal";
+    return labelize(value || "Pending review");
+  }
+
   function labelizeTransactionType(value) {
     const type = String(value || "").toLowerCase();
     const mobileMoneyLabels = {
@@ -256,7 +264,8 @@
     const [stats, setStats] = useState(initialData.stats || {});
     const [feed, setFeed] = useState([]);
     const [status, setStatus] = useState("Connecting to live updates");
-    const [activeSection, setActiveSection] = useState("overview");
+    const [activeSection, setActiveSection] = useState(
+      () => new URLSearchParams(window.location.search).has("page") ? "transactions" : "overview");
     // Native form resubmissions preserve this value; a new dashboard draft gets a new one.
     const [transactionRequestId] = useState(() =>
       window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : "");
@@ -385,10 +394,12 @@
                     "Confirm transaction")
                 )
               ),
-            )
+            ),
+            h(CustomerTransactionsPanel, { transactions, page: Number(initialData.page || 1),
+              pageCount: Number(initialData.transaction_pages || 1) })
           );
         case "transactions":
-          return h(CustomerTransactionsPanel, { transactions });
+          return h(CustomerTransactionsPanel, { transactions, page: Number(initialData.page || 1), pageCount: Number(initialData.transaction_pages || 1) });
         case "alerts":
           return h(CustomerAlertsPanel, { alerts });
         case "activity":
@@ -409,12 +420,12 @@
     );
   }
 
-  function CustomerTransactionsPanel({ transactions }) {
+  function CustomerTransactionsPanel({ transactions, page = 1, pageCount = 1 }) {
     return h("div", { className: "card table-card" },
       h(PanelHeading, { title: "Recent Transactions" }),
       transactions.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Transaction", "Type", "Amount", "Risk", "Recorded AI"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Transaction", "From / to", "Type", "Amount", "Status", "AI finding", "Rule finding"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -422,19 +433,33 @@
               h("strong", null, `#${txn.id || ""}`),
               h("span", { className: "muted-line block-line" }, shortTime(txn.timestamp))
             ),
+            h("td", null, `${txn.sender_account || ""} → ${txn.receiver_account || ""}`),
             h("td", null, labelizeTransactionType(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
             h("td", null,
-              h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)),
+              h("span", { className: riskClass(txn.risk_level) }, customerRiskLabel(txn.risk_level)),
               h("span", { className: "muted-line block-line" }, `Operational score ${score(txn.risk_score)}`)
             ),
             h("td", null,
-              h("span", null, labelize(txn.ai_risk_level || "unavailable")),
-              h("span", { className: "muted-line block-line" }, confidence(["pending_v4", "inference_error"].includes(txn.ai_risk_level) ? null : txn.ai_confidence))
+              h("strong", { className: "block-line" }, labelize(txn.ai_risk_level || "unavailable")),
+              h("span", { className: "muted-line block-line" }, txn.ai_reason || "No AI reason recorded")
+            ),
+            h("td", null,
+              h("strong", { className: "block-line" }, labelize(txn.rule_level || "normal")),
+              h("span", { className: "muted-line block-line" }, txn.rule_reason || "No rule indicators")
             )
           ))
         )
-      ) : h(EmptyState, null, "No transactions to show.")
+      ) : h(EmptyState, null, "No transactions to show."),
+      h("nav", { className: "table-pagination", "aria-label": "Customer transaction pages" },
+        h("a", { className: page <= 1 ? "action-link pagination-disabled" : "action-link",
+          href: page <= 1 ? undefined : `/customer?page=${page - 1}`,
+          "aria-disabled": page <= 1 }, "Previous"),
+        h("span", null, `Page ${page} of ${pageCount}`),
+        h("a", { className: page >= pageCount ? "action-link pagination-disabled" : "action-link",
+          href: page >= pageCount ? undefined : `/customer?page=${page + 1}`,
+          "aria-disabled": page >= pageCount }, "Next")
+      )
     );
   }
 

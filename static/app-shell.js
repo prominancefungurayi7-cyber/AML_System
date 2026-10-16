@@ -79,13 +79,64 @@
     notice.prepend(avatar);
     notice.addEventListener('click', (click) => {
       if (click.target.closest('.notification-close')) return;
-      location.href = '/messages';
+      location.href = `/messages?contact=${encodeURIComponent(event.sender)}`;
     });
     notice.setAttribute('role', 'link');
     notice.setAttribute('tabindex', '0');
     notice.addEventListener('keydown', (key) => {
-      if (key.key === 'Enter') location.href = '/messages';
+      if (key.key === 'Enter') location.href = `/messages?contact=${encodeURIComponent(event.sender)}`;
     });
+    if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
+      try {
+        const options = {
+          body: String(event.content || 'New message').slice(0, 120),
+          icon: '/static/favicon.svg',
+          tag: `epocash-message-${event.id}`,
+          data: { contact: event.sender },
+        };
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/static/message-notifications-sw.js')
+            .then(async registration => {
+              if (!registration.active) {
+                const worker = registration.installing || registration.waiting;
+                if (!worker) throw new Error('Notification worker is unavailable');
+                await new Promise((resolve, reject) => {
+                  const timer = setTimeout(() => reject(new Error('Notification worker timed out')), 5000);
+                  worker.addEventListener('statechange', () => {
+                    if (worker.state === 'activated') { clearTimeout(timer); resolve(); }
+                    if (worker.state === 'redundant') { clearTimeout(timer); reject(new Error('Notification worker failed')); }
+                  });
+                  if (worker.state === 'activated') { clearTimeout(timer); resolve(); }
+                });
+              }
+              await registration.showNotification(`Message from ${event.sender}`, options);
+              setTimeout(async () => {
+                const shown = await registration.getNotifications({ tag: options.tag });
+                shown.forEach(notification => notification.close());
+              }, 4000);
+            })
+            .catch(() => {
+              try {
+                const fallback = new Notification(`Message from ${event.sender}`, options);
+                fallback.onclick = () => {
+                  window.focus();
+                  location.href = `/messages?contact=${encodeURIComponent(event.sender)}`;
+                  fallback.close();
+                };
+                setTimeout(() => fallback.close(), 4000);
+              } catch (_) { /* Some mobile browsers require the worker notification. */ }
+            });
+        } else {
+          const notification = new Notification(`Message from ${event.sender}`, options);
+          notification.onclick = () => {
+            window.focus();
+            location.href = `/messages?contact=${encodeURIComponent(event.sender)}`;
+            notification.close();
+          };
+          setTimeout(() => notification.close(), 4000);
+        }
+      } catch (_) { /* In-app notice remains available when OS alerts fail. */ }
+    }
   };
   let dirty = false;
   let refreshTimer;
@@ -153,7 +204,10 @@
         if (document.body.dataset.userRole === 'customer') window.refreshAmlPage();
       });
       socket.on('new_message', event => {
-        if (event.sender !== document.body.dataset.username) window.showAmlMessageNotification(event);
+        if (event.sender !== document.body.dataset.username) {
+          socket.emit('message_received', { message_id: event.id });
+          window.showAmlMessageNotification(event);
+        }
       });
       if (['admin', 'compliance'].includes(document.body.dataset.userRole)) {
         socket.on('alert', event => window.showAmlNotification(

@@ -132,6 +132,11 @@ class RealtimeBroker:
                             event = message.get("event")
                             if event in ("connect", "disconnect", "heartbeat"):
                                 continue
+                            if event == "private_user_event":
+                                data = message.get("data")
+                                if isinstance(data, dict):
+                                    self._local_private_deliver(data)
+                                continue
                             self._local_deliver(event, message.get("data"))
                         except (ValueError, TypeError):
                             continue
@@ -197,6 +202,26 @@ class RealtimeBroker:
     def set_socketio(self, socketio):
         """Set the SocketIO instance."""
         self.socketio = socketio
+
+    def _local_private_deliver(self, envelope):
+        username, event_name, payload = (envelope.get("username"), envelope.get("event"), envelope.get("data"))
+        if isinstance(username, str) and username and event_name in {
+            "new_message", "unread_update", "message_status", "messages_read",
+            "user_typing", "user_stop_typing",
+        } and isinstance(payload, dict) and self.socketio is not None:
+            self.socketio.emit(event_name, payload, to=f"user:{username}")
+
+    def publish_private(self, username, event_name, payload):
+        """Deliver a direct message event to authenticated user rooms on all instances."""
+        envelope = {"username": username, "event": event_name, "data": payload}
+        self._local_private_deliver(envelope)
+        if self._redis_client is not None:
+            try:
+                self._publish_queue.put_nowait({"event": "private_user_event", "data": envelope,
+                                                "publisher": self._instance_id})
+            except Exception:
+                if self.app:
+                    self.app.logger.error("Redis private event queue full; stored history remains available")
 
     def set_staff_authorizer(self, authorizer):
         self._staff_authorizer = authorizer

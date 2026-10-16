@@ -1073,6 +1073,7 @@ button:disabled {
 .chat-title {
   font-weight:600
 }
+.chat-account { font-size:11px; color:var(--EpoCash-muted) }
 .user-status {
   font-size:11px;
   color:var(--EpoCash-muted);
@@ -1128,6 +1129,8 @@ button:disabled {
 .message-group.sent .message-time {
   text-align:right
 }
+.message-receipt { display:inline-block; margin-left:5px; font-size:11px; letter-spacing:-3px; padding-right:3px; color:#8b99b4; vertical-align:baseline }
+.message-receipt--read { color:#278cde }
 .modern-input-area {
   display:flex;
   gap:12px;

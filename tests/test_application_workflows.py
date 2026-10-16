@@ -32,6 +32,14 @@ def test_private_message_delivery_unread_history_and_multiple_tabs(aml_app):
         assert not any(x['name'] == 'new_message' for x in sockets[2].get_received())
         history = sender.get(f'/api/conversations/{cid}/messages').json['messages']
         assert [x['content'] for x in history] == ['Second message', 'First message']
+        assert all(x['status'] == 'sent' for x in history)
+        latest_id = history[0]['id']
+        assert sockets[2].emit('message_received', {'message_id': latest_id}, callback=True)['status'] == 'error'
+        assert sockets[1].emit('message_received', {'message_id': latest_id}, callback=True)['status'] == 'success'
+        delivered = sender.get(f'/api/conversations/{cid}/messages').json['messages']
+        assert delivered[0]['status'] == 'delivered' and delivered[1]['status'] == 'sent'
+        assert any(x['name'] == 'message_status' and x['args'][0]['status'] == 'delivered'
+                   for x in sockets[0].get_received())
         assert outsider.get(f'/api/conversations/{cid}/messages').status_code == 403
         sockets[0].emit('typing', {'conversation_id': cid})
         assert any(x['name'] == 'user_typing' for x in sockets[1].get_received())
@@ -40,6 +48,7 @@ def test_private_message_delivery_unread_history_and_multiple_tabs(aml_app):
         assert not any(x['name'] == 'user_typing' for x in sockets[1].get_received())
         sockets[1].emit('mark_read', {'conversation_id': cid}, callback=True)
         assert recipient.get('/api/unread-count').json['unread']['total_unread'] == 0
+        assert all(x['status'] == 'read' for x in sender.get(f'/api/conversations/{cid}/messages').json['messages'])
         sockets[0].disconnect()
         assert recipient.get('/api/user-status/demo').json['user_status']['is_online']
         sockets[3].disconnect()

@@ -11,3 +11,1557 @@ INFO:werkzeug:[33mPress CTRL+C to quit[0m
 INFO:server:User 16 (role: customer) connected via SocketIO, presence stored in Redis
 INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:05:25] "GET /api/unread-count HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:05:26] "GET /health HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:21:12] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 337, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 262, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:24:19] "GET /health HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:26:36] "GET /health HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:27:58] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:00] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+ERROR:werkzeug:Error on request:
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 337, in execute
+    write(b"")
+    ~~~~~^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\werkzeug\serving.py", line 262, in write
+    assert status_set is not None, "write() before start_response"
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: write() before start_response
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:00] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /static/app-shell.js?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /socket.io/?EIO=4&transport=polling&t=Q55-9Ed HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /socket.io/?EIO=4&transport=polling&t=Q55-9FG&sid=otolUmhXHNYwUJNXAAAE HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "POST /socket.io/?EIO=4&transport=polling&t=Q55-9FF&sid=otolUmhXHNYwUJNXAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /socket.io/?EIO=4&transport=polling&t=Q55-9I8&sid=otolUmhXHNYwUJNXAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:01] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /socket.io/?EIO=4&transport=websocket&sid=otolUmhXHNYwUJNXAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /socket.io/?EIO=4&transport=polling&t=Q55-Bzl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /socket.io/?EIO=4&transport=polling&t=Q55-B-H.0&sid=2agsnY9d5eLWYlAOAAAG HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "POST /socket.io/?EIO=4&transport=polling&t=Q55-B-H&sid=2agsnY9d5eLWYlAOAAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:12] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 16 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "GET /socket.io/?EIO=4&transport=websocket&sid=2agsnY9d5eLWYlAOAAAG HTTP/1.1" 200 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:40] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:50] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:50] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:50] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:50] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "GET /admin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:56] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "GET /socket.io/?EIO=4&transport=polling&t=Q55-Muu HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "GET /socket.io/?EIO=4&transport=polling&t=Q55-Mv8&sid=eAXNNF-wmMG44VORAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "GET /api/admin/generation HTTP/1.1" 200 -
+INFO:server:User 1 (role: admin) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "POST /socket.io/?EIO=4&transport=polling&t=Q55-Mv7&sid=eAXNNF-wmMG44VORAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:28:57] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:25] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:26] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:26] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:26] "GET /static/vendor/socket.io.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:27] "GET /static/app-shell.js?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:27] "GET /static/style.css?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:28] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:49] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:50] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:50] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:51] "GET /static/vendor/socket.io.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:51] "GET /static/style.css?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:51] "GET /static/app-shell.js?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:31:51] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:32:04] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:32:05] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:32:05] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:32:05] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:root:Email accepted by the configured SMTP server
+INFO:server:OTP sent via email to fungurayiprominance45@gmail.com
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:13] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:14] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:14] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:14] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:41] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:42] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:42] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "GET /static/vendor/react.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "GET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "GET /static/vendor/react-dom.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:43] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:44] "GET /socket.io/?EIO=4&transport=polling&t=Q55_T45 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:44] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:45] "POST /socket.io/?EIO=4&transport=polling&t=Q55_TBY&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:45] "GET /socket.io/?EIO=4&transport=polling&t=Q55_TBZ&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:45] "GET /socket.io/?EIO=4&transport=polling&t=Q55_TL7&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:46] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:46] "GET /socket.io/?EIO=4&transport=polling&t=Q55_TVH&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:33:46] "GET /socket.io/?EIO=4&transport=polling&t=Q55_Tdm&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:24] "GET /socket.io/?EIO=4&transport=websocket&sid=kcVsz87F0eaxFlH3AAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:24] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:25] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:25] "GET /static/messages.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:25] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:25] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:26] "GET /socket.io/?EIO=4&transport=polling&t=Q560Xz5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:27] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:27] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:27] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:27] "POST /socket.io/?EIO=4&transport=polling&t=Q560Y7M&sid=AFvgV7JRY8KVfKDEAAAM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:27] "GET /socket.io/?EIO=4&transport=polling&t=Q560Y7O&sid=AFvgV7JRY8KVfKDEAAAM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:28] "GET /socket.io/?EIO=4&transport=polling&t=Q560YNv&sid=AFvgV7JRY8KVfKDEAAAM HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:40] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:40] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:40] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:40] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:38:40] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:10] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:10] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:11] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:12] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:50] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:50] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:51] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:52] "GET /static/app-shell.js?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:52] "GET /static/style.css?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:52] "GET /static/vendor/socket.io.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:39:55] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:07] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:07] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:07] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "GET /static/vendor/react-dom.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "GET /static/react-dashboard.js?v=v4-evidence-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:09] "GET /static/vendor/react.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:10] "GET /static/v4-shadow.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:12] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:12] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:12] "GET /socket.io/?EIO=4&transport=polling&t=Q560xRL HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:13] "POST /socket.io/?EIO=4&transport=polling&t=Q560xoW&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:13] "GET /socket.io/?EIO=4&transport=polling&t=Q560xoy&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:14] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:14] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:14] "GET /socket.io/?EIO=4&transport=polling&t=Q560xz8&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:14] "POST /socket.io/?EIO=4&transport=polling&t=Q560xzC&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:15] "GET /socket.io/?EIO=4&transport=polling&t=Q560yC6&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:20] "GET /socket.io/?EIO=4&transport=websocket&sid=U10jKvkHJD8BmRstAAAO HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:20] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:20] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:20] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:21] "GET /static/messages.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:21] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:21] "GET /socket.io/?EIO=4&transport=polling&t=Q560zqM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:21] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:22] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:22] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:22] "POST /socket.io/?EIO=4&transport=polling&t=Q560z-9&sid=3Y1aG1SoQPBd-OO2AAAQ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:22] "GET /socket.io/?EIO=4&transport=polling&t=Q560z-Q&sid=3Y1aG1SoQPBd-OO2AAAQ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:23] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:23] "GET /socket.io/?EIO=4&transport=polling&t=Q560-99&sid=3Y1aG1SoQPBd-OO2AAAQ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:31] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:32] "GET /socket.io/?EIO=4&transport=polling&t=Q5610P- HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:33] "GET /socket.io/?EIO=4&transport=polling&t=Q5610mj&sid=ZyB-DQSo5GhK-Z6sAAAS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:33] "POST /socket.io/?EIO=4&transport=polling&t=Q5610mf&sid=ZyB-DQSo5GhK-Z6sAAAS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:34] "GET /socket.io/?EIO=4&transport=polling&t=Q5610vb&sid=ZyB-DQSo5GhK-Z6sAAAS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:34] "GET /socket.io/?EIO=4&transport=polling&t=Q56111b&sid=ZyB-DQSo5GhK-Z6sAAAS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:35] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:35] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:36] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:36] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:37] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:37] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:40:38] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:04] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:06] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:15] "GET /customer HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:15] "GET /socket.io/?EIO=4&transport=websocket&sid=AFvgV7JRY8KVfKDEAAAM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:16] "GET /socket.io/?EIO=4&transport=polling&t=Q561BNE HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:16] "GET /socket.io/?EIO=4&transport=polling&t=Q561BU5.0&sid=LGRPfi5Ns201DdMSAAAU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:16] "POST /socket.io/?EIO=4&transport=polling&t=Q561BU5&sid=LGRPfi5Ns201DdMSAAAU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:17] "GET /socket.io/?EIO=4&transport=polling&t=Q561Bbo&sid=LGRPfi5Ns201DdMSAAAU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:17] "GET /socket.io/?EIO=4&transport=polling&t=Q561BkS&sid=LGRPfi5Ns201DdMSAAAU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:17] "GET /api/unread-count HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:30] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:30] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:30] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:30] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:30] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:31] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:32] "GET /socket.io/?EIO=4&transport=websocket&sid=ZyB-DQSo5GhK-Z6sAAAS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:32] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:33] "GET /socket.io/?EIO=4&transport=polling&t=Q561FNt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:33] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:34] "GET /socket.io/?EIO=4&transport=polling&t=Q561FVj&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:34] "POST /socket.io/?EIO=4&transport=polling&t=Q561FVg&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:34] "GET /socket.io/?EIO=4&transport=polling&t=Q561Fim&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:36] "GET /socket.io/?EIO=4&transport=polling&t=Q561Fxt&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:36] "POST /socket.io/?EIO=4&transport=polling&t=Q561Fx-&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:36] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:36] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:36] "GET /socket.io/?EIO=4&transport=polling&t=Q561G5I&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:39] "GET /socket.io/?EIO=4&transport=websocket&sid=LGRPfi5Ns201DdMSAAAU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:39] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:40] "GET /socket.io/?EIO=4&transport=polling&t=Q561H9Z HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:40] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:40] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:40] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:40] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "GET /socket.io/?EIO=4&transport=polling&t=Q561HRZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "POST /socket.io/?EIO=4&transport=polling&t=Q561HZB&sid=AETJp95b_xRKE7r2AAAZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:41] "GET /socket.io/?EIO=4&transport=polling&t=Q561HZC&sid=AETJp95b_xRKE7r2AAAZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:42] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:42] "GET /socket.io/?EIO=4&transport=polling&t=Q561Hfx&sid=AETJp95b_xRKE7r2AAAZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:47] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:48] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:48] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:41:48] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:43:09] "GET /socket.io/?EIO=4&transport=websocket&sid=3Y1aG1SoQPBd-OO2AAAQ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:07] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:07] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:08] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:09] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:23] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:24] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:24] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:25] "GET /static/vendor/socket.io.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:25] "GET /static/app-shell.js?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:25] "GET /static/style.css?v=messages-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:45:26] "GET /static/favicon.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:46:40] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:46:40] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:46:40] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:46:40] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:root:Email accepted by the configured SMTP server
+INFO:server:OTP sent via email to jordanmuguyo99@gmail.com
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:32] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:33] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:33] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:33] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:46] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:47] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:47] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:47] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:48] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:48] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:48] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:48] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:49] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:49] "GET /socket.io/?EIO=4&transport=polling&t=Q562hJf HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:49] "POST /socket.io/?EIO=4&transport=polling&t=Q562hSX&sid=ZS5xgFdQ1RnU2OuzAAAb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:49] "GET /socket.io/?EIO=4&transport=polling&t=Q562hSk&sid=ZS5xgFdQ1RnU2OuzAAAb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:50] "GET /socket.io/?EIO=4&transport=polling&t=Q562hbO&sid=ZS5xgFdQ1RnU2OuzAAAb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:50] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:56] "GET /socket.io/?EIO=4&transport=websocket&sid=ZS5xgFdQ1RnU2OuzAAAb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:58] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:59] "GET /socket.io/?EIO=4&transport=polling&t=Q562jnZ HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:59] "POST /socket.io/?EIO=4&transport=polling&t=Q562juX&sid=xrVWWHCPBD4hzLzlAAAd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:59] "GET /socket.io/?EIO=4&transport=polling&t=Q562jui&sid=xrVWWHCPBD4hzLzlAAAd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:47:59] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:00] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:broadcast_event called: activity
+INFO:server:RealtimeBroker.publish called for event: activity
+INFO:server:SocketIO broadcast event: activity
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "GET /customer HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "GET /socket.io/?EIO=4&transport=websocket&sid=xrVWWHCPBD4hzLzlAAAd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "GET /static/vendor/react-dom.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "GET /static/vendor/react.production.min.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "GET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:27] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:28] "GET /socket.io/?EIO=4&transport=polling&t=Q562qwI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:29] "GET /socket.io/?EIO=4&transport=polling&t=Q562rBU&sid=C6HztIpMiSyVBTO3AAAf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:29] "POST /socket.io/?EIO=4&transport=polling&t=Q562rBI&sid=C6HztIpMiSyVBTO3AAAf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:30] "GET /socket.io/?EIO=4&transport=polling&t=Q562rHp&sid=C6HztIpMiSyVBTO3AAAf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:30] "GET /socket.io/?EIO=4&transport=polling&t=Q562rPC&sid=C6HztIpMiSyVBTO3AAAf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:31] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "GET /messages HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "GET /socket.io/?EIO=4&transport=websocket&sid=C6HztIpMiSyVBTO3AAAf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "GET /static/messages.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:35] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "GET /socket.io/?EIO=4&transport=polling&t=Q562soV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "GET /api/messageable-users HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "POST /socket.io/?EIO=4&transport=polling&t=Q562sv1&sid=LYCzFZTE5h_5h16qAAAh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:36] "GET /socket.io/?EIO=4&transport=polling&t=Q562svA&sid=LYCzFZTE5h_5h16qAAAh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /socket.io/?EIO=4&transport=polling&t=Q562t5R&sid=LYCzFZTE5h_5h16qAAAh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:37] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:38] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:48:38] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:01] "GET /messages HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:01] "GET /socket.io/?EIO=4&transport=websocket&sid=hLSgtafPh6cvZ4eqAAAW HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "GET /socket.io/?EIO=4&transport=polling&t=Q562y_v HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "GET /socket.io/?EIO=4&transport=polling&t=Q562z60&sid=Ae2mlksxcnXKQMDcAAAj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:02] "POST /socket.io/?EIO=4&transport=polling&t=Q562z5b&sid=Ae2mlksxcnXKQMDcAAAj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:03] "GET /socket.io/?EIO=4&transport=polling&t=Q562zCG&sid=Ae2mlksxcnXKQMDcAAAj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:03] "GET /socket.io/?EIO=4&transport=polling&t=Q562zJj&sid=Ae2mlksxcnXKQMDcAAAj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:03] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:04] "GET /socket.io/?EIO=4&transport=websocket&sid=Ae2mlksxcnXKQMDcAAAj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:04] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "GET /socket.io/?EIO=4&transport=polling&t=Q562zk4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:05] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:06] "GET /socket.io/?EIO=4&transport=polling&t=Q562zs8&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:06] "POST /socket.io/?EIO=4&transport=polling&t=Q562zs5&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:06] "GET /socket.io/?EIO=4&transport=polling&t=Q562-3T&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:07] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /socket.io/?EIO=4&transport=polling&t=Q562-9x&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /socket.io/?EIO=4&transport=polling&t=Q562-Tv&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:08] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:10] "GET /socket.io/?EIO=4&transport=polling&t=Q562-c5&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:11] "POST /socket.io/?EIO=4&transport=polling&t=Q562_3e&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:14] "GET /socket.io/?EIO=4&transport=polling&t=Q562_3h&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:14] "GET /api/conversations/4/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:15] "GET /socket.io/?EIO=4&transport=polling&t=Q56304D&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:15] "POST /socket.io/?EIO=4&transport=polling&t=Q56307W&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+Exception in thread Thread-1459 (_handle_event_internal):
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 597, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 623, in _trigger_event
+    return handler(*args)
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 306, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 858, in _handle_event
+    ret = handler(*args)
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 946, in handle_mark_read
+    socketio.emit('unread_update', get_unread_count(conn, username), to=f'user:{username}')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:34] "GET /socket.io/?EIO=4&transport=polling&t=Q5634mB HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:35] "GET /socket.io/?EIO=4&transport=websocket&sid=LYCzFZTE5h_5h16qAAAh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "GET /customer HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "GET /socket.io/?EIO=4&transport=polling&t=Q5635E1&sid=HVbJNVYbV4QDewhuAAAn HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "POST /socket.io/?EIO=4&transport=polling&t=Q5635Dy&sid=HVbJNVYbV4QDewhuAAAn HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:36] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /socket.io/?EIO=4&transport=polling&t=Q5635QU&sid=HVbJNVYbV4QDewhuAAAn HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /socket.io/?EIO=4&transport=polling&t=Q5635kE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:37] "GET /api/conversations/4/messages HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:38] "POST /socket.io/?EIO=4&transport=polling&t=Q5635vl&sid=DDR6A2_9cAxvdwTUAAAp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:38] "GET /socket.io/?EIO=4&transport=polling&t=Q5635vu&sid=DDR6A2_9cAxvdwTUAAAp HTTP/1.1" 200 -
+Exception in thread Thread-1524 (_handle_event_internal):
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 597, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 623, in _trigger_event
+    return handler(*args)
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 306, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 858, in _handle_event
+    ret = handler(*args)
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 946, in handle_mark_read
+    socketio.emit('unread_update', get_unread_count(conn, username), to=f'user:{username}')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:39] "GET /socket.io/?EIO=4&transport=polling&t=Q5636G6&sid=DDR6A2_9cAxvdwTUAAAp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:39] "GET /api/unread-count HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:40] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:40] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:40] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:41] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:41] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:42] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:46] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:46] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:47] "GET /socket.io/?EIO=4&transport=websocket&sid=DDR6A2_9cAxvdwTUAAAp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:47] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:47] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:47] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:47] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:49] "GET /socket.io/?EIO=4&transport=polling&t=Q5638eI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:49] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:49] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:49] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:50] "POST /socket.io/?EIO=4&transport=polling&t=Q5638q4&sid=XmvqBat0-qdqj0TiAAAr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:50] "GET /socket.io/?EIO=4&transport=polling&t=Q5638qC&sid=XmvqBat0-qdqj0TiAAAr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:51] "GET /socket.io/?EIO=4&transport=polling&t=Q5638-j&sid=XmvqBat0-qdqj0TiAAAr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:51] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:49:55] "GET /socket.io/?EIO=4&transport=websocket&sid=XmvqBat0-qdqj0TiAAAr HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:13] "GET /socket.io/?EIO=4&transport=websocket&sid=HVbJNVYbV4QDewhuAAAn HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:13] "GET /socket.io/?EIO=4&transport=polling&t=Q563EKc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:13] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:14] "POST /socket.io/?EIO=4&transport=polling&t=Q563ESS&sid=E0PWaF2k9d8MZO2wAAAt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:14] "GET /socket.io/?EIO=4&transport=polling&t=Q563ESX&sid=E0PWaF2k9d8MZO2wAAAt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:14] "POST /socket.io/?EIO=4&transport=polling&t=Q563Eac&sid=E0PWaF2k9d8MZO2wAAAt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:14] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:14] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:15] "GET /socket.io/?EIO=4&transport=polling&t=Q563EaX&sid=E0PWaF2k9d8MZO2wAAAt HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:53] "GET /socket.io/?EIO=4&transport=websocket&sid=E0PWaF2k9d8MZO2wAAAt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:53] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:54] "GET /socket.io/?EIO=4&transport=polling&t=Q563OBm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:54] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:54] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:54] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:54] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:55] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:55] "GET /socket.io/?EIO=4&transport=polling&t=Q563OVb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:55] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:55] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:55] "GET /socket.io/?EIO=4&transport=websocket&sid=TAw-vvsXygm2fsYVAAAv HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:56] "GET /socket.io/?EIO=4&transport=polling&t=Q563OeA&sid=SbB5ec7SaoVF2Fn5AAAw HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:56] "POST /socket.io/?EIO=4&transport=polling&t=Q563Odv&sid=SbB5ec7SaoVF2Fn5AAAw HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:56] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "GET /socket.io/?EIO=4&transport=websocket&sid=SbB5ec7SaoVF2Fn5AAAw HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:58] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "GET /socket.io/?EIO=4&transport=polling&t=Q563PSz HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "POST /socket.io/?EIO=4&transport=polling&t=Q563Pai&sid=ORphSwSil8MLQVhwAAAy HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:50:59] "GET /socket.io/?EIO=4&transport=polling&t=Q563Pam&sid=ORphSwSil8MLQVhwAAAy HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:00] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:00] "GET /socket.io/?EIO=4&transport=polling&t=Q563Pgh&sid=ORphSwSil8MLQVhwAAAy HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:05] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:06] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:06] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:06] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:19] "GET /socket.io/?EIO=4&transport=websocket&sid=AETJp95b_xRKE7r2AAAZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:20] "GET /socket.io/?EIO=4&transport=polling&t=Q563UmY HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:20] "POST /socket.io/?EIO=4&transport=polling&t=Q563Usm&sid=4fNoVoWnaBFRm_SsAAA0 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:20] "GET /socket.io/?EIO=4&transport=polling&t=Q563Usn&sid=4fNoVoWnaBFRm_SsAAA0 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:20] "GET /socket.io/?EIO=4&transport=polling&t=Q563U-S&sid=4fNoVoWnaBFRm_SsAAA0 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:20] "GET /api/unread-count HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:31] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:31] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:31] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:31] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:32] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:32] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:47] "GET /socket.io/?EIO=4&transport=websocket&sid=4fNoVoWnaBFRm_SsAAA0 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:47] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "GET /socket.io/?EIO=4&transport=polling&t=Q563bj5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "GET /socket.io/?EIO=4&transport=polling&t=Q563bo_&sid=p8uuZ7eHPaTf9i5BAAA2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:48] "POST /socket.io/?EIO=4&transport=polling&t=Q563bo-&sid=p8uuZ7eHPaTf9i5BAAA2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:49] "GET /socket.io/?EIO=4&transport=polling&t=Q563bw8&sid=p8uuZ7eHPaTf9i5BAAA2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:49] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:50] "GET /socket.io/?EIO=4&transport=polling&t=Q563c36&sid=p8uuZ7eHPaTf9i5BAAA2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:56] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:57] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:57] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:51:57] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:13] "GET /socket.io/?EIO=4&transport=websocket&sid=p8uuZ7eHPaTf9i5BAAA2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:13] "GET /socket.io/?EIO=4&transport=polling&t=Q563hwX HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:14] "POST /socket.io/?EIO=4&transport=polling&t=Q563i1D&sid=NRjD1FhKh1YYO4OGAAA4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:14] "GET /socket.io/?EIO=4&transport=polling&t=Q563i1E&sid=NRjD1FhKh1YYO4OGAAA4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:15] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:16] "GET /socket.io/?EIO=4&transport=websocket&sid=UdeUOyPokjTLOqbQAAAl HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:52:28] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:13] "GET /api/conversations/4/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:14] "GET /socket.io/?EIO=4&transport=polling&t=Q563wLY HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:14] "GET /socket.io/?EIO=4&transport=polling&t=Q563wkq&sid=9xbmPCiWSm5V4_urAAA6 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:14] "POST /socket.io/?EIO=4&transport=polling&t=Q563wkf&sid=9xbmPCiWSm5V4_urAAA6 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:15] "GET /socket.io/?EIO=4&transport=polling&t=Q563x0a&sid=9xbmPCiWSm5V4_urAAA6 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:16] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:17] "GET /api/conversations/4/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:17] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:17] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:17] "GET /api/unread-count HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:43] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:54] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "GET /socket.io/?EIO=4&transport=websocket&sid=ORphSwSil8MLQVhwAAAy HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:55] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "GET /socket.io/?EIO=4&transport=polling&t=Q5644iw HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:56] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "GET /socket.io/?EIO=4&transport=websocket&sid=9xbmPCiWSm5V4_urAAA6 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/favicon.svg HTTP/1.1[0m" 304 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "POST /socket.io/?EIO=4&transport=polling&t=Q5644ow&sid=XYyIkX4K0rX6IdWrAAA8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "GET /socket.io/?EIO=4&transport=polling&t=Q5644o-&sid=XYyIkX4K0rX6IdWrAAA8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:57] "GET /socket.io/?EIO=4&transport=polling&t=Q564564&sid=XYyIkX4K0rX6IdWrAAA8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:58] "GET /socket.io/?EIO=4&transport=polling&t=Q5645Oj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:58] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:58] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:58] "GET /socket.io/?EIO=4&transport=polling&t=Q5645VE&sid=8mGOHynReev1zNy3AAA- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:58] "POST /socket.io/?EIO=4&transport=polling&t=Q5645V8&sid=8mGOHynReev1zNy3AAA- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:53:59] "GET /socket.io/?EIO=4&transport=polling&t=Q5645c9&sid=8mGOHynReev1zNy3AAA- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:00] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:01] "GET /api/conversations/4/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:02] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:02] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:02] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 22 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:06] "GET /socket.io/?EIO=4&transport=websocket&sid=8mGOHynReev1zNy3AAA- HTTP/1.1" 200 -
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:15] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:15] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:15] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:15] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:15] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:17] "GET /socket.io/?EIO=4&transport=websocket&sid=XYyIkX4K0rX6IdWrAAA8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:17] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:18] "GET /socket.io/?EIO=4&transport=polling&t=Q5649zi HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:18] "POST /socket.io/?EIO=4&transport=polling&t=Q564A8a&sid=OVrZLsRylpzR6b-2AABA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:18] "GET /socket.io/?EIO=4&transport=polling&t=Q564A8e&sid=OVrZLsRylpzR6b-2AABA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:19] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:19] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:19] "POST /socket.io/?EIO=4&transport=polling&t=Q564AFv&sid=OVrZLsRylpzR6b-2AABA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:54:19] "GET /socket.io/?EIO=4&transport=polling&t=Q564AFt&sid=OVrZLsRylpzR6b-2AABA HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:13] "GET /socket.io/?EIO=4&transport=websocket&sid=OVrZLsRylpzR6b-2AABA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:13] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:14] "GET /socket.io/?EIO=4&transport=polling&t=Q564q-P HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:14] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:14] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:14] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:14] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:15] "GET /socket.io/?EIO=4&transport=polling&t=Q564rNx HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:15] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:15] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:15] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:16] "GET /socket.io/?EIO=4&transport=polling&t=Q564rVX&sid=LRPzeA7VHY3p1AW2AABD HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:16] "POST /socket.io/?EIO=4&transport=polling&t=Q564rVQ&sid=LRPzeA7VHY3p1AW2AABD HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:16] "GET /socket.io/?EIO=4&transport=polling&t=Q564rg0&sid=LRPzeA7VHY3p1AW2AABD HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 20:57:18] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:02:05] "GET /socket.io/?EIO=4&transport=websocket&sid=LRPzeA7VHY3p1AW2AABD HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:08] "GET /socket.io/?EIO=4&transport=polling&t=Q566stS HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:09] "POST /socket.io/?EIO=4&transport=polling&t=Q566thX&sid=2DYMmo2lOKn7MUmvAABF HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:09] "GET /socket.io/?EIO=4&transport=polling&t=Q566thg&sid=2DYMmo2lOKn7MUmvAABF HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:09] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:09] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:10] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:12] "GET /socket.io/?EIO=4&transport=polling&t=Q566tpL&sid=2DYMmo2lOKn7MUmvAABF HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:12] "GET /socket.io/?EIO=4&transport=polling&t=Q566uQr&sid=2DYMmo2lOKn7MUmvAABF HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:37] "GET /socket.io/?EIO=4&transport=polling&t=Q566-Vf HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:38] "GET /socket.io/?EIO=4&transport=polling&t=Q566-k0&sid=k4IDf4LB5mI56ImwAABH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:38] "POST /socket.io/?EIO=4&transport=polling&t=Q566-jx&sid=k4IDf4LB5mI56ImwAABH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:38] "GET /socket.io/?EIO=4&transport=polling&t=Q566-pd&sid=k4IDf4LB5mI56ImwAABH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:38] "GET /messages HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:38] "POST /socket.io/?EIO=4&transport=polling&t=Q566-tA&sid=k4IDf4LB5mI56ImwAABH HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "GET /socket.io/?EIO=4&transport=polling&t=Q566_8- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:39] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:40] "GET /socket.io/?EIO=4&transport=polling&t=Q566_HA&sid=DpLuSxBncyBrZLvuAABJ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:40] "POST /socket.io/?EIO=4&transport=polling&t=Q566_H5&sid=DpLuSxBncyBrZLvuAABJ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:41] "GET /socket.io/?EIO=4&transport=polling&t=Q566_OG&sid=DpLuSxBncyBrZLvuAABJ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:41] "GET /api/unread-count HTTP/1.1" 200 -
+'Session is disconnected' k4IDf4LB5mI56ImwAABH (further occurrences of this error will be logged with level INFO)
+ERROR:engineio.server:'Session is disconnected' k4IDf4LB5mI56ImwAABH (further occurrences of this error will be logged with level INFO)
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:06:43] "[31m[1mGET /socket.io/?EIO=4&transport=websocket&sid=k4IDf4LB5mI56ImwAABH HTTP/1.1[0m" 400 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+ERROR:server:Error sending message
+Traceback (most recent call last):
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\server.py", line 882, in handle_send_message
+    socketio.emit('unread_update', unread, to=f"user:{receiver}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\flask_socketio\__init__.py", line 486, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\server.py", line 167, in emit
+    self.manager.emit(event, data, namespace, room=room,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      skip_sid=skip_sid, callback=callback,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      ignore_queue=ignore_queue)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\manager.py", line 44, in emit
+    encoded_packet = pkt.encode()
+  File "C:\Users\PROMINENT\Desktop\important\My Projects\Last update for AML system\AML System\.venv\Lib\site-packages\socketio\packet.py", line 64, in encode
+    encoded_packet += self.json.dumps(data, separators=(',', ':'))
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\PROMINENT\AppData\Local\Programs\Python\Python314\Lib\json\encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type Decimal is not JSON serializable
+when serializing dict item 'total_unread'
+when serializing list item 1
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:07:34] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:07:34] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:08] "GET /socket.io/?EIO=4&transport=websocket&sid=NRjD1FhKh1YYO4OGAAA4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:11] "GET /socket.io/?EIO=4&transport=polling&t=Q567LQ0 HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:11] "POST /socket.io/?EIO=4&transport=polling&t=Q567Llo&sid=W2O9FpyDm7SL4FC5AABL HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:12] "GET /socket.io/?EIO=4&transport=polling&t=Q567Llp&sid=W2O9FpyDm7SL4FC5AABL HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:12] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:13] "GET /socket.io/?EIO=4&transport=websocket&sid=W2O9FpyDm7SL4FC5AABL HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:13] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:14] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:14] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:15] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:15] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:15] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:15] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:18] "GET /socket.io/?EIO=4&transport=polling&t=Q567MxF HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:18] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:19] "GET /socket.io/?EIO=4&transport=polling&t=Q567NRT&sid=xSZ7h7fHKKJ94omqAABN HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:19] "POST /socket.io/?EIO=4&transport=polling&t=Q567NRS&sid=xSZ7h7fHKKJ94omqAABN HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:22] "GET /socket.io/?EIO=4&transport=polling&t=Q567O0C HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:25] "GET /socket.io/?EIO=4&transport=websocket&sid=xSZ7h7fHKKJ94omqAABN HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:25] "GET /messages HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:25] "POST /socket.io/?EIO=4&transport=polling&t=Q567NgW&sid=xSZ7h7fHKKJ94omqAABN HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:25] "GET /socket.io/?EIO=4&transport=polling&t=Q567ONV.0&sid=VmZ3D1VYpCCSpRA1AABP HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:25] "POST /socket.io/?EIO=4&transport=polling&t=Q567ONV&sid=VmZ3D1VYpCCSpRA1AABP HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:26] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:26] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:27] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:27] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:29] "GET /socket.io/?EIO=4&transport=polling&t=Q567QCz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:30] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:31] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:31] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:31] "GET /socket.io/?EIO=4&transport=polling&t=Q567QNc&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:31] "POST /socket.io/?EIO=4&transport=polling&t=Q567QNb&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:33] "GET /socket.io/?EIO=4&transport=polling&t=Q567QnE&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:34] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:34] "GET /socket.io/?EIO=4&transport=polling&t=Q567RGc&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:36] "POST /socket.io/?EIO=4&transport=polling&t=Q567ReH&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:41] "GET /socket.io/?EIO=4&transport=polling&t=Q567ReH.0&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:47] "POST /socket.io/?EIO=4&transport=polling&t=Q567S_M&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:47] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:48] "GET /socket.io/?EIO=4&transport=websocket&sid=DpLuSxBncyBrZLvuAABJ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:49] "GET /socket.io/?EIO=4&transport=polling&t=Q567Ude HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:49] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:51] "GET /socket.io/?EIO=4&transport=polling&t=Q567V56&sid=eAnLiFQRSRUDaYFjAABT HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:51] "POST /socket.io/?EIO=4&transport=polling&t=Q567V51&sid=eAnLiFQRSRUDaYFjAABT HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:52] "GET /socket.io/?EIO=4&transport=polling&t=Q567VPc&sid=eAnLiFQRSRUDaYFjAABT HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:52] "GET /socket.io/?EIO=4&transport=polling&t=Q567S_M.0&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:52] "GET /socket.io/?EIO=4&transport=polling&t=Q567VZ6&sid=eAnLiFQRSRUDaYFjAABT HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:55] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:08:55] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:01] "GET /socket.io/?EIO=4&transport=websocket&sid=2DYMmo2lOKn7MUmvAABF HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:19] "POST /socket.io/?EIO=4&transport=polling&t=Q567S_M&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:19] "POST /socket.io/?EIO=4&transport=polling&t=Q567bqZ&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:19] "[31m[1mGET /socket.io/?EIO=4&transport=polling&t=Q567S_M.0&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:19] "GET /socket.io/?EIO=4&transport=polling&t=Q567cB- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:19] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:20] "GET /socket.io/?EIO=4&transport=polling&t=Q567cVR.0&sid=dQVayUwZcyjskgdNAABV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:20] "POST /socket.io/?EIO=4&transport=polling&t=Q567cVR&sid=dQVayUwZcyjskgdNAABV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:22] "GET /socket.io/?EIO=4&transport=polling&t=Q567cpc&sid=dQVayUwZcyjskgdNAABV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:23] "GET /socket.io/?EIO=4&transport=polling&t=Q567dGI&sid=dQVayUwZcyjskgdNAABV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:24] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:24] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:24] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:25] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:25] "GET /api/conversations/3/messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:25] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:25] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:26] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:28] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:09:39] "[31m[1mGET /socket.io/?EIO=4&transport=websocket&sid=v5xaVa4OoJg9yQMeAABR HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:31] "GET /socket.io/?EIO=4&transport=websocket&sid=VmZ3D1VYpCCSpRA1AABP HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:53] "GET /socket.io/?EIO=4&transport=websocket&sid=dQVayUwZcyjskgdNAABV HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:53] "GET /socket.io/?EIO=4&transport=polling&t=Q567zBv HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:54] "POST /socket.io/?EIO=4&transport=polling&t=Q567zZ4&sid=7AvmU646czQ9TpE3AABX HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:55] "GET /socket.io/?EIO=4&transport=polling&t=Q567zZ5&sid=7AvmU646czQ9TpE3AABX HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:55] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:10:56] "GET /socket.io/?EIO=4&transport=polling&t=Q567zpp&sid=7AvmU646czQ9TpE3AABX HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:26] "GET /socket.io/?EIO=4&transport=polling&t=Q5685EH HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:27] "POST /socket.io/?EIO=4&transport=polling&t=Q5685Sa&sid=X66pRyaMrneCDFTHAABZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:27] "GET /socket.io/?EIO=4&transport=polling&t=Q5685Sb&sid=X66pRyaMrneCDFTHAABZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:28] "GET /socket.io/?EIO=4&transport=polling&t=Q5685tY&sid=X66pRyaMrneCDFTHAABZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:28] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:29] "GET /socket.io/?EIO=4&transport=polling&t=Q56860m&sid=X66pRyaMrneCDFTHAABZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "GET /socket.io/?EIO=4&transport=websocket&sid=X66pRyaMrneCDFTHAABZ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "GET /socket.io/?EIO=4&transport=polling&t=Q5686Mz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:30] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:31] "POST /socket.io/?EIO=4&transport=polling&t=Q5686RX&sid=Q2JOuqERXNLUDu18AABb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:31] "GET /socket.io/?EIO=4&transport=polling&t=Q5686RY&sid=Q2JOuqERXNLUDu18AABb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:31] "GET /socket.io/?EIO=4&transport=polling&t=Q5686X9&sid=Q2JOuqERXNLUDu18AABb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:31] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:56] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "GET /socket.io/?EIO=4&transport=polling&t=Q568C-9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:57] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:58] "POST /socket.io/?EIO=4&transport=polling&t=Q568D5k&sid=NQ1nyjvUGjYpreXwAABd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:58] "GET /socket.io/?EIO=4&transport=polling&t=Q568D5k.0&sid=NQ1nyjvUGjYpreXwAABd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:59] "GET /socket.io/?EIO=4&transport=polling&t=Q568DHT&sid=NQ1nyjvUGjYpreXwAABd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:11:59] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:31] "GET /socket.io/?EIO=4&transport=polling&t=Q568LBE HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:32] "POST /socket.io/?EIO=4&transport=polling&t=Q568LKL&sid=qCoArH6-tV5S8DXdAABf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:32] "GET /socket.io/?EIO=4&transport=polling&t=Q568LKN&sid=qCoArH6-tV5S8DXdAABf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "GET /api/alerts/6876/ai-evidence HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "POST /socket.io/?EIO=4&transport=polling&t=Q568Lb3&sid=qCoArH6-tV5S8DXdAABf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "GET /socket.io/?EIO=4&transport=polling&t=Q568LUU&sid=qCoArH6-tV5S8DXdAABf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:33] "GET /socket.io/?EIO=4&transport=websocket&sid=qCoArH6-tV5S8DXdAABf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:34] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:34] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:34] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:34] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:34] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:35] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:36] "GET /socket.io/?EIO=4&transport=polling&t=Q568MJj HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:36] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:36] "POST /socket.io/?EIO=4&transport=polling&t=Q568MSw&sid=T8hLRLzuJuwY84yUAABh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:37] "GET /socket.io/?EIO=4&transport=polling&t=Q568MSx&sid=T8hLRLzuJuwY84yUAABh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:37] "GET /socket.io/?EIO=4&transport=polling&t=Q568MfV&sid=T8hLRLzuJuwY84yUAABh HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:44] "GET /socket.io/?EIO=4&transport=websocket&sid=eAnLiFQRSRUDaYFjAABT HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:48] "GET /socket.io/?EIO=4&transport=polling&t=Q568Obd HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:48] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:51] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:51] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:54] "[36mGET /static/v4-shadow.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:54] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:12:59] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:00] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:00] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:01] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:01] "[36mGET /static/v4-shadow.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:01] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:01] "[36mGET /static/react-dashboard.js?v=v4-evidence-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:01] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:02] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:03] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:03] "GET /socket.io/?EIO=4&transport=polling&t=Q568SV1 HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:03] "POST /socket.io/?EIO=4&transport=polling&t=Q568Sub&sid=obfu6MuKft23a-N2AABk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:03] "GET /socket.io/?EIO=4&transport=polling&t=Q568Sue&sid=obfu6MuKft23a-N2AABk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:05] "POST /socket.io/?EIO=4&transport=polling&t=Q568T16&sid=obfu6MuKft23a-N2AABk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:05] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:05] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:07] "GET /socket.io/?EIO=4&transport=polling&t=Q568T14&sid=obfu6MuKft23a-N2AABk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:07] "GET /socket.io/?EIO=4&transport=polling&t=Q568Txa HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:08] "GET /socket.io/?EIO=4&transport=polling&t=Q568U7d&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:08] "POST /socket.io/?EIO=4&transport=polling&t=Q568U7c&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:09] "GET /socket.io/?EIO=4&transport=polling&t=Q568UWt&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:10] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "GET /customer HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "POST /socket.io/?EIO=4&transport=polling&t=Q568Um8&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "GET /socket.io/?EIO=4&transport=polling&t=Q568UfS&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "[31m[1mGET /socket.io/?EIO=4&transport=websocket&sid=HCqtRehnbHpOuEe6AABm HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:11] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:12] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:12] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:13] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:31] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:32] "GET /socket.io/?EIO=4&transport=polling&t=Q568Znb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:32] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/react-dashboard.js?v=v4-evidence-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/v4-shadow.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "GET /socket.io/?EIO=4&transport=polling&t=Q568aDJ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:33] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:34] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:34] "GET /socket.io/?EIO=4&transport=polling&t=Q568aLa&sid=Qb2SKJUYbM73DrAnAABp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:34] "POST /socket.io/?EIO=4&transport=polling&t=Q568aLU&sid=Qb2SKJUYbM73DrAnAABp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:34] "GET /socket.io/?EIO=4&transport=polling&t=Q568aVy HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:34] "GET /socket.io/?EIO=4&transport=polling&t=Q568aSM&sid=Qb2SKJUYbM73DrAnAABp HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:35] "GET /socket.io/?EIO=4&transport=polling&t=Q568ago.0&sid=LbXgxpJqSW07K6fgAABr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:35] "POST /socket.io/?EIO=4&transport=polling&t=Q568ago&sid=LbXgxpJqSW07K6fgAABr HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:35] "GET /socket.io/?EIO=4&transport=polling&t=Q568aYw&sid=Qb2SKJUYbM73DrAnAABp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:35] "GET /socket.io/?EIO=4&transport=polling&t=Q568anD&sid=LbXgxpJqSW07K6fgAABr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:35] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:36] "GET /socket.io/?EIO=4&transport=polling&t=Q568awl&sid=LbXgxpJqSW07K6fgAABr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:36] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:37] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:44] "GET /socket.io/?EIO=4&transport=websocket&sid=7AvmU646czQ9TpE3AABX HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "GET /socket.io/?EIO=4&transport=websocket&sid=Qb2SKJUYbM73DrAnAABp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:46] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:47] "GET /socket.io/?EIO=4&transport=polling&t=Q568dYR HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:47] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:47] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:47] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:48] "GET /socket.io/?EIO=4&transport=polling&t=Q568dem&sid=jp7zrkXe-1S6SAm_AABt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:48] "POST /socket.io/?EIO=4&transport=polling&t=Q568dec&sid=jp7zrkXe-1S6SAm_AABt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:48] "GET /socket.io/?EIO=4&transport=polling&t=Q568dlN&sid=jp7zrkXe-1S6SAm_AABt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:48] "GET /socket.io/?EIO=4&transport=polling&t=Q568dti&sid=jp7zrkXe-1S6SAm_AABt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:13:48] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:15] "GET /socket.io/?EIO=4&transport=websocket&sid=Q2JOuqERXNLUDu18AABb HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:43] "GET /socket.io/?EIO=4&transport=websocket&sid=NQ1nyjvUGjYpreXwAABd HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:44] "GET /socket.io/?EIO=4&transport=websocket&sid=jp7zrkXe-1S6SAm_AABt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:45] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:45] "GET /socket.io/?EIO=4&transport=polling&t=Q568rnP HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:49] "POST /socket.io/?EIO=4&transport=polling&t=Q568sn0&sid=SiHRiLQBrhRe8iJVAABv HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:49] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:49] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:49] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:50] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:14:53] "GET /socket.io/?EIO=4&transport=websocket&sid=SiHRiLQBrhRe8iJVAABv HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:07] "GET /socket.io/?EIO=4&transport=polling&t=Q568x9J HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:09] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:09] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:09] "GET /api/conversations HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:11] "GET /socket.io/?EIO=4&transport=polling&t=Q568xa9&sid=Zgyjaq7XJzh3jNWEAABx HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:11] "POST /socket.io/?EIO=4&transport=polling&t=Q568xZz&sid=Zgyjaq7XJzh3jNWEAABx HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:14] "GET /socket.io/?EIO=4&transport=websocket&sid=obfu6MuKft23a-N2AABk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:14] "GET /socket.io/?EIO=4&transport=polling&t=Q568yCZ&sid=Zgyjaq7XJzh3jNWEAABx HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:15] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:15:27] "GET /socket.io/?EIO=4&transport=websocket&sid=T8hLRLzuJuwY84yUAABh HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:33] "GET /socket.io/?EIO=4&transport=websocket&sid=Zgyjaq7XJzh3jNWEAABx HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:33] "GET /socket.io/?EIO=4&transport=websocket&sid=LbXgxpJqSW07K6fgAABr HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:47] "GET /socket.io/?EIO=4&transport=polling&t=Q569_Wp HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:47] "GET /socket.io/?EIO=4&transport=polling&t=Q569_gU&sid=CDe7KEIk9SyxGEDFAABz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:47] "POST /socket.io/?EIO=4&transport=polling&t=Q569_gT&sid=CDe7KEIk9SyxGEDFAABz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:48] "GET /socket.io/?EIO=4&transport=polling&t=Q569_mM&sid=CDe7KEIk9SyxGEDFAABz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:48] "GET /socket.io/?EIO=4&transport=polling&t=Q569_s9&sid=CDe7KEIk9SyxGEDFAABz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:48] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "GET /socket.io/?EIO=4&transport=websocket&sid=CDe7KEIk9SyxGEDFAABz HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "GET /customer HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/react-dashboard.js?v=reasoning-7 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:50] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:51] "GET /socket.io/?EIO=4&transport=polling&t=Q56A0W4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:51] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 21 (role: customer) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:51] "GET /socket.io/?EIO=4&transport=polling&t=Q56A0cO.0&sid=krD5vkd70aXzMS4KAAB1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:51] "POST /socket.io/?EIO=4&transport=polling&t=Q56A0cO&sid=krD5vkd70aXzMS4KAAB1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:51] "GET /socket.io/?EIO=4&transport=polling&t=Q56A0ia&sid=krD5vkd70aXzMS4KAAB1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:19:52] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:37] "GET /socket.io/?EIO=4&transport=polling&t=Q56ABbY HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "GET /socket.io/?EIO=4&transport=polling&t=Q56ABmK&sid=Qa95Db_aF38ZvW7OAAB3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "POST /socket.io/?EIO=4&transport=polling&t=Q56ABmD&sid=Qa95Db_aF38ZvW7OAAB3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "GET /socket.io/?EIO=4&transport=polling&t=Q56ABt8&sid=Qa95Db_aF38ZvW7OAAB3 HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "POST /socket.io/?EIO=4&transport=polling&t=Q56ABu1&sid=Qa95Db_aF38ZvW7OAAB3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "GET /messages HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:38] "GET /socket.io/?EIO=4&transport=websocket&sid=Qa95Db_aF38ZvW7OAAB3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "[36mGET /static/messages.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "GET /socket.io/?EIO=4&transport=polling&t=Q56AC5- HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "GET /api/messageable-users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "GET /api/conversations HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "GET /socket.io/?EIO=4&transport=polling&t=Q56ACBS&sid=GytNL6I1S9idP7BvAAB5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:39] "POST /socket.io/?EIO=4&transport=polling&t=Q56ACBL&sid=GytNL6I1S9idP7BvAAB5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:40] "GET /socket.io/?EIO=4&transport=polling&t=Q56ACHL&sid=GytNL6I1S9idP7BvAAB5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:40] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:41] "GET /socket.io/?EIO=4&transport=websocket&sid=GytNL6I1S9idP7BvAAB5 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:41] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:41] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "GET /compliance HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "GET /socket.io/?EIO=4&transport=polling&t=Q56ACrk HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/vendor/socket.io.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/app-shell.js?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/vendor/react-dom.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/v4-shadow.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/style.css?v=messages-1 HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "[36mGET /static/vendor/react.production.min.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:42] "GET /static/react-dashboard.js?v=v4-evidence-1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "GET /socket.io/?EIO=4&transport=polling&t=Q56AD0l HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) connected via SocketIO, presence stored in Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "POST /socket.io/?EIO=4&transport=polling&t=Q56AD6k&sid=C9YgKQ3V2U3r4yF5AAB8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "GET /socket.io/?EIO=4&transport=polling&t=Q56AD6n&sid=C9YgKQ3V2U3r4yF5AAB8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "GET /socket.io/?EIO=4&transport=polling&t=Q56ADCu&sid=C9YgKQ3V2U3r4yF5AAB8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:43] "POST /socket.io/?EIO=4&transport=polling&t=Q56ADD0&sid=C9YgKQ3V2U3r4yF5AAB8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:44] "GET /api/v4-shadow/results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:20:44] "GET /api/unread-count HTTP/1.1" 200 -
+INFO:server:User 2 (role: compliance) disconnected, presence removed from Redis
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:21:27] "GET /socket.io/?EIO=4&transport=websocket&sid=C9YgKQ3V2U3r4yF5AAB8 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:33:36] "GET /health HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Oct/2026 21:34:34] "GET /health HTTP/1.1" 200 -

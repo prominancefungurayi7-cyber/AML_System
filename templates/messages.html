@@ -11,14 +11,14 @@
     </ul>
   </aside>
   <section class="chat-panel modern-chat-panel" aria-label="Active conversation">
-    <div class="messaging-chat-toolbar"><button type="button" class="contacts-toggle" id="openContacts" aria-controls="contactsRail" aria-expanded="true">Contacts</button><span class="secure-chip">Private</span></div>
+    <div class="messaging-chat-toolbar"><button type="button" class="contacts-toggle" id="openContacts" aria-controls="contactsRail" aria-expanded="true">Contacts</button><button type="button" class="contacts-toggle" id="enableMessageNotifications">Enable device alerts</button><span class="secure-chip">Private</span></div>
     <div id="chatArea" class="no-conversation modern-empty-chat">
       <div class="empty-chat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
       <h3>Your secure conversation</h3><p>Select a contact to open a conversation.</p>
     </div>
     <div id="chatContent" class="chat-content" hidden>
       <header class="chat-header modern-chat-header">
-        <div class="chat-header-info"><div class="conversation-avatar chat-avatar" id="chatAvatar">--</div><div><div class="chat-title" id="chatTitle"></div><div class="user-status"><span class="status-indicator offline" id="statusIndicator"></span><span id="userStatus">Offline</span></div></div></div>
+        <div class="chat-header-info"><div class="conversation-avatar chat-avatar" id="chatAvatar">--</div><div><div class="chat-title" id="chatTitle"></div><div class="chat-account" id="chatAccount"></div><div class="user-status"><span class="status-indicator offline" id="statusIndicator"></span><span id="userStatus">Offline</span></div></div></div>
         <span class="secure-chip">Access controlled</span>
       </header>
       <div class="messages-container modern-messages-container" id="messagesContainer"></div>
@@ -26,5 +26,5 @@
     </div>
   </section>
 </section>
-<script src="{{ url_for('static', filename='messages.js') }}"></script>
+<script src="{{ url_for('static', filename='messages.js', v='receipts-1') }}"></script>
 {% endblock %}

@@ -648,6 +648,9 @@ def _current_staff_socket_user(user_id):
 
 app.extensions["realtime_broker"].set_staff_authorizer(_current_staff_socket_user)
 
+def emit_private_message_event(username, event_name, payload):
+    app.extensions['realtime_broker'].publish_private(username, event_name, payload)
+
 # ============================================================================
 # Stage 13 + Stage 14 AI Service Initialization
 # ============================================================================
@@ -873,13 +876,13 @@ def handle_send_message(data):
         
         # Deliver only to the sender and recipient.  Broadcasting direct
         # messages to every connected client was both noisy and unsafe.
-        socketio.emit('new_message', message_data, to=f"user:{sender}")
+        emit_private_message_event(sender, 'new_message', message_data)
         if receiver != sender:
-            socketio.emit('new_message', message_data, to=f"user:{receiver}")
+            emit_private_message_event(receiver, 'new_message', message_data)
         
         # Broadcast unread badge update
         unread = get_unread_count(conn, receiver)
-        socketio.emit('unread_update', unread, to=f"user:{receiver}")
+        emit_private_message_event(receiver, 'unread_update', unread)
         
         return {'status': 'success', 'message_id': msg['id'], 'message': message_data}
     except Exception as e:
@@ -917,9 +920,8 @@ def _emit_typing(data, active):
         participant = _messaging_participant(conn, data)
         if participant:
             username, other, conversation_id = participant
-            socketio.emit('user_typing' if active else 'user_stop_typing',
-                          {'user': username, 'conversation_id': conversation_id},
-                          to=f'user:{other}')
+            emit_private_message_event(other, 'user_typing' if active else 'user_stop_typing',
+                                       {'user': username, 'conversation_id': conversation_id})
     finally:
         conn.close()
 
@@ -942,10 +944,39 @@ def handle_mark_read(data):
         if not participant:
             return {'status': 'error', 'message': 'Conversation access denied'}
         username, other, conversation_id = participant
-        mark_conversation_as_read(conn, conversation_id, username)
-        socketio.emit('unread_update', get_unread_count(conn, username), to=f'user:{username}')
-        socketio.emit('messages_read', {'conversation_id': conversation_id, 'reader': username},
-                      to=f'user:{other}')
+        last_read_id = mark_conversation_as_read(conn, conversation_id, username)
+        emit_private_message_event(username, 'unread_update', get_unread_count(conn, username))
+        emit_private_message_event(other, 'messages_read', {'conversation_id': conversation_id, 'reader': username,
+                                                           'last_read_id': last_read_id})
+        return {'status': 'success'}
+    finally:
+        conn.close()
+
+
+@socketio.on('message_received')
+def handle_message_received(data):
+    """A browser confirms receipt; sending to a room alone is not delivery."""
+    if not isinstance(data, dict) or not session.get('user_id'):
+        return {'status': 'error'}
+    try:
+        message_id = int(data.get('message_id'))
+        if message_id <= 0:
+            raise ValueError
+    except (TypeError, ValueError):
+        return {'status': 'error'}
+    conn = connect_db()
+    try:
+        user = conn.execute('SELECT username FROM users WHERE id=?', (session['user_id'],)).fetchone()
+        if not user:
+            return {'status': 'error'}
+        message = conn.execute('SELECT sender_username, receiver_username, conversation_id, status '
+                               'FROM messages WHERE id=?', (message_id,)).fetchone()
+        if not message or message['receiver_username'] != user['username']:
+            return {'status': 'error'}
+        if mark_message_as_delivered(conn, message_id, user['username']):
+            emit_private_message_event(message['sender_username'], 'message_status',
+                                       {'id': message_id, 'conversation_id': message['conversation_id'],
+                                        'status': 'delivered'})
         return {'status': 'success'}
     finally:
         conn.close()
@@ -3410,7 +3441,8 @@ def customer_dashboard():
 
         "flagged": get_db().execute(
 
-            "SELECT COUNT(*) as c FROM transactions WHERE (sender_account=? OR receiver_account=?) AND risk_level!='normal'",
+            "SELECT COUNT(*) as c FROM transactions WHERE (sender_account=? OR receiver_account=?) "
+            "AND risk_level IN ('suspicious','super_suspicious','high_risk','critical')",
 
             (user["account_number"], user["account_number"]),
 
@@ -3425,6 +3457,7 @@ def customer_dashboard():
         ).fetchone()["c"],
 
     }
+    transaction_pages = max(1, (stats['total_tx'] + PAGE_SIZE - 1) // PAGE_SIZE)
 
     return render_template(
 
@@ -3441,6 +3474,7 @@ def customer_dashboard():
             "stats": stats,
 
             "page": page,
+            "transaction_pages": transaction_pages,
 
         },
 

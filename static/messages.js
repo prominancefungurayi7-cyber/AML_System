@@ -39,7 +39,7 @@
       avatar.textContent = contact.username.slice(0, 2).toUpperCase();
       const info = document.createElement('div'); info.className = 'conversation-info';
       const name = document.createElement('div'); name.className = 'conversation-name';
-      name.textContent = contact.role === 'customer' ? `${contact.username} (${contact.account_number})` : contact.username;
+      name.textContent = contact.account_number ? `${contact.username} (${contact.account_number})` : contact.username;
       const preview = document.createElement('div'); preview.className = 'conversation-preview';
       preview.textContent = thread?.content || 'Start a secure conversation';
       info.append(name, preview); item.append(avatar, info);
@@ -61,6 +61,7 @@
     el('messageInput').value = drafts.get(receiver) || '';
     el('chatArea').hidden = true; el('chatContent').hidden = false;
     el('chatTitle').textContent = contact.username;
+    el('chatAccount').textContent = contact.account_number || '';
     el('chatAvatar').textContent = contact.username.slice(0, 2).toUpperCase();
     el('userStatus').textContent = contact.is_online ? 'Online' : 'Offline';
     el('statusIndicator').className = `status-indicator ${contact.is_online ? '' : 'offline'}`;
@@ -78,12 +79,16 @@
       for (const message of data.messages) visibleMessages.set(message.id, {
         ...message, sender: message.sender_username, timestamp: message.created_at
       });
+      for (const message of data.messages) {
+        if (message.receiver_username === currentUser && message.status === 'sent')
+          socket?.emit('message_received', { message_id: message.id });
+      }
       if (older || oldestId === null) {
         oldestId = data.messages.length ? Math.min(...data.messages.map(m => m.id)) : oldestId;
         moreHistory = data.messages.length === 50;
       }
       renderMessages(!older);
-      socket?.emit('mark_read', { conversation_id: selected });
+      if (!older && !document.hidden) socket?.emit('mark_read', { conversation_id: selected });
     } catch (error) { if (version === generation) notify(error.message); }
   }
   function renderMessages(scroll = true) {
@@ -102,7 +107,16 @@
       bubble.className = 'message-bubble'; bubble.textContent = message.content;
       time.className = 'message-time';
       time.textContent = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      if (message.sender === currentUser) time.textContent += message.status === 'read' ? ' · Read' : ' · Sent';
+      if (message.sender === currentUser) {
+        const receipt = document.createElement('span');
+        const status = message.status === 'read' ? 'read' : message.status === 'delivered' ? 'delivered' : 'sent';
+        receipt.className = `message-receipt message-receipt--${status}`;
+        receipt.setAttribute('role', 'img');
+        receipt.setAttribute('aria-label', status === 'read' ? 'Read' : status === 'delivered' ? 'Delivered' : 'Sent');
+        receipt.title = receipt.getAttribute('aria-label');
+        receipt.textContent = status === 'sent' ? '\u2713' : '\u2713\u2713';
+        time.append(receipt);
+      }
       content.append(bubble, time); group.append(content); container.append(group);
     }
     if (!visibleMessages.size) container.textContent = 'No messages in this conversation yet.';
@@ -114,7 +128,7 @@
     if (other === receiver) {
       conversationId = message.conversation_id;
       visibleMessages.set(message.id, message); renderMessages();
-      if (message.sender !== currentUser) socket?.emit('mark_read', { conversation_id: conversationId });
+      if (message.sender !== currentUser && !document.hidden) socket?.emit('mark_read', { conversation_id: conversationId });
     }
   }
   function send() {
@@ -156,8 +170,16 @@
   socket?.on('unread_update', () => refreshContacts().catch(error => notify(error.message)));
   socket?.on('messages_read', event => {
     if (event.conversation_id !== conversationId) return;
-    for (const message of visibleMessages.values()) if (message.sender === currentUser) message.status = 'read';
+    for (const message of visibleMessages.values())
+      if (message.sender === currentUser && message.id <= event.last_read_id) message.status = 'read';
     renderMessages(false);
+  });
+  socket?.on('message_status', event => {
+    const message = visibleMessages.get(event.id);
+    if (message && message.sender === currentUser && message.status !== 'read') {
+      message.status = event.status;
+      renderMessages(false);
+    }
   });
   socket?.on('user_typing', event => {
     if (event.conversation_id !== conversationId) return;
@@ -169,11 +191,30 @@
     el('openContacts').onclick = () => contactsOpen(true);
     el('closeContacts').onclick = () => contactsOpen(false);
     el('sendButton').onclick = send;
+    const enableAlerts = el('enableMessageNotifications');
+    if (!('Notification' in window) || !window.isSecureContext) enableAlerts.hidden = true;
+    else {
+      enableAlerts.textContent = Notification.permission === 'granted' ? 'Device alerts enabled' : 'Enable device alerts';
+      enableAlerts.onclick = async () => {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted' && 'serviceWorker' in navigator)
+          navigator.serviceWorker.register('/static/message-notifications-sw.js').catch(() => {});
+        enableAlerts.textContent = permission === 'granted' ? 'Device alerts enabled' : 'Enable device alerts';
+        if (permission === 'granted') window.showAmlNotification('Device message alerts enabled while this application is open.', 'device-alerts', 'success');
+      };
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && conversationId) socket?.emit('mark_read', { conversation_id: conversationId });
+    });
     el('messageInput').onkeydown = event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); send(); } };
     el('messageInput').oninput = () => {
       drafts.set(receiver, el('messageInput').value);
       if (conversationId) socket?.emit(el('messageInput').value.trim() ? 'typing' : 'stop_typing', { conversation_id: conversationId });
     };
-    refreshContacts().catch(error => notify(error.message));
+    refreshContacts().then(() => {
+      const requested = new URLSearchParams(window.location.search).get('contact');
+      const contact = contacts.find(item => item.username === requested);
+      if (contact) openContact(contact);
+    }).catch(error => notify(error.message));
   });
 })();
