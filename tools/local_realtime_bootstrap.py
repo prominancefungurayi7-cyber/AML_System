@@ -22,6 +22,12 @@ def configure_local_realtime(project_root):
     if os.name != "nt":
         return
 
+    try:
+        with socket.create_connection(("127.0.0.1", 5000), timeout=1):
+            raise RuntimeError("Port 5000 is already in use. Stop the existing Flask server before running python server.py again.")
+    except (ConnectionRefusedError, TimeoutError, OSError):
+        pass
+
     os.environ.setdefault("AML_PRIMARY_MODEL", "V4")
     os.environ.setdefault("AML_RULE_ENGINE_ENABLED", "ON")
     os.environ.setdefault("SOCKETIO_ALLOWED_ORIGINS", "http://127.0.0.1:5000")

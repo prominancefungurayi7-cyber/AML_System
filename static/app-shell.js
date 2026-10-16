@@ -7,7 +7,14 @@
   } catch (_) { /* Storage may be disabled. The server theme still works. */ }
   let socket;
   const notices = new Map();
-  window.showAmlNotification = function (message, key = Symbol('notification')) {
+  function notificationKind(message, category) {
+    if (['success', 'error', 'info'].includes(category)) return category;
+    const value = String(message).toLowerCase();
+    if (/\b(failed|failure|error|invalid|denied|expired|insufficient|disabled|cannot|could not|not found|required|must|mismatch|locked|attention|unavailable|reserved|taken)\b|do not match|try again|already registered|^no customer accounts|^no active agents|^need at least|^too many/.test(value)) return 'error';
+    if (/\b(successfully|success|sent|saved|created|welcome|resolved|submitted|updated|recorded|generated|filed|added|completed)\b|signed out|up to date/.test(value)) return 'success';
+    return 'info';
+  }
+  window.showAmlNotification = function (message, key = Symbol('notification'), category) {
     if (!message || !document.body) return;
     notices.get(key)?.();
     let region = document.getElementById('notification-region');
@@ -20,7 +27,15 @@
       document.body.appendChild(region);
     }
     const notice = document.createElement('div');
-    notice.className = 'notification-toast';
+    const kind = notificationKind(message, category);
+    notice.className = `notification-toast notification-toast--${kind}`;
+    if (kind !== 'info') {
+      const icon = document.createElement('span');
+      icon.className = 'notification-status-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = kind === 'success' ? '\u2713' : '\u00d7';
+      notice.appendChild(icon);
+    }
     const text = document.createElement('p');
     text.textContent = String(message);
     const close = document.createElement('button');
@@ -43,6 +58,34 @@
     // Fade during the final 300 ms; fully removed four seconds after arrival.
     fadeTimer = setTimeout(() => notice.classList.add('is-leaving'), 3700);
     removeTimer = setTimeout(dismiss, 4000);
+    return notice;
+  };
+  window.showAmlMessageNotification = function (event) {
+    if (!event || !event.sender || event.sender === document.body.dataset.username) return;
+    const notice = window.showAmlNotification('New message', `message:${event.id || Date.now()}`, 'info');
+    if (!notice) return;
+    notice.classList.add('notification-toast--message');
+    const text = notice.querySelector('p');
+    text.textContent = '';
+    const sender = document.createElement('strong');
+    sender.textContent = String(event.sender);
+    const preview = document.createElement('span');
+    preview.textContent = String(event.content || 'New message').slice(0, 120);
+    text.append(sender, preview);
+    const avatar = document.createElement('span');
+    avatar.className = 'notification-message-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = String(event.sender).slice(0, 1).toUpperCase();
+    notice.prepend(avatar);
+    notice.addEventListener('click', (click) => {
+      if (click.target.closest('.notification-close')) return;
+      location.href = '/messages';
+    });
+    notice.setAttribute('role', 'link');
+    notice.setAttribute('tabindex', '0');
+    notice.addEventListener('keydown', (key) => {
+      if (key.key === 'Enter') location.href = '/messages';
+    });
   };
   let dirty = false;
   let refreshTimer;
@@ -105,7 +148,9 @@
       socket.on('customer_refresh', () => {
         if (document.body.dataset.userRole === 'customer') window.refreshAmlPage();
       });
-      socket.on('new_message', () => window.showAmlNotification('New message received.', 'message'));
+      socket.on('new_message', event => {
+        if (event.sender !== document.body.dataset.username) window.showAmlMessageNotification(event);
+      });
       if (['admin', 'compliance'].includes(document.body.dataset.userRole)) {
         socket.on('alert', event => window.showAmlNotification(
           `AML alert #${event.id || ''} is available for review.`, `alert:${event.id}`));
@@ -126,7 +171,8 @@
   };
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.flash-messages').forEach(list => {
-      list.querySelectorAll('li').forEach(item => window.showAmlNotification(item.textContent));
+      list.querySelectorAll('li').forEach(item => window.showAmlNotification(
+        item.textContent, Symbol('flash'), item.dataset.category));
       list.remove();
     });
     document.addEventListener('input', (event) => { if (event.target.closest('form')) dirty = true; });

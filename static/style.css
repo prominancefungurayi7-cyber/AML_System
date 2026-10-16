@@ -321,6 +321,11 @@ svg {
   text-decoration:none;
   color:#fff
 }
+.sidebar-item[href="/logout"]:hover,
+.sidebar-item[href="/logout"]:focus-visible {
+  background:#fce8e8;
+  color:#a82935;
+}
 .sidebar-item.active {
   background:#e3edaa;
   color:#202b3d;
@@ -771,6 +776,26 @@ button:disabled {
   transition:opacity 300ms ease, transform 300ms ease
 }
 .notification-toast p { margin:0; flex:1; font-size:13px; overflow-wrap:anywhere }
+.notification-toast--error { border-left-color:#c43c49 }
+.notification-status-icon {
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#e4f3e8;
+  color:#16683a;
+  font-size:17px;
+  font-weight:700;
+  line-height:1;
+}
+.notification-toast--error .notification-status-icon { background:#fde9e9; color:#b42332 }
+.notification-toast--message { cursor:pointer; border-left-color:#278264 }
+.notification-toast--message p { display:grid; gap:2px }
+.notification-toast--message p strong { font-size:13px }
+.notification-toast--message p span { color:var(--EpoCash-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.notification-message-avatar { display:grid; place-items:center; flex:none; width:34px; height:34px; border-radius:50%; background:#d9f2e7; color:#116446; font-weight:700 }
 .notification-close { padding:0; min-width:24px; min-height:24px; border:0; background:transparent; color:inherit; font-size:20px; cursor:pointer }
 .notification-toast.is-leaving { opacity:0; transform:translateY(-8px); pointer-events:none }
 @keyframes notification-enter {
@@ -916,12 +941,16 @@ button:disabled {
   border:1px solid var(--EpoCash-border);
   border-radius:16px;
   overflow:hidden;
-  background:var(--EpoCash-panel)
+  background:var(--EpoCash-panel);
+  transition:grid-template-columns .2s ease
 }
+.messaging-workspace:not(.contacts-open) { grid-template-columns:0 minmax(0,1fr) }
 .messaging-rail {
   border-right:1px solid var(--EpoCash-border);
-  overflow:auto
+  overflow:auto;
+  min-width:0
 }
+.messaging-workspace:not(.contacts-open) .messaging-rail { visibility:hidden; border-right:0 }
 .messaging-rail__header {
   padding:24px;
   display:flex;
@@ -932,6 +961,25 @@ button:disabled {
 .messaging-rail__header h2 {
   font-size:23px;
   margin:5px 0 0
+}
+.contacts-close,.contacts-toggle {
+  border:1px solid var(--EpoCash-border);
+  border-radius:8px;
+  background:var(--EpoCash-panel-strong);
+  color:var(--EpoCash-text);
+  cursor:pointer;
+  padding:8px 12px;
+  font:inherit;
+}
+.contacts-close { font-size:22px; line-height:1; padding:5px 10px }
+.contacts-close:hover,.contacts-toggle:hover { background:var(--EpoCash-hover) }
+.messaging-chat-toolbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 20px;
+  border-bottom:1px solid var(--EpoCash-border)
 }
 .messaging-kicker {
   font-size:10px;
@@ -995,8 +1043,11 @@ button:disabled {
 }
 .modern-chat-panel {
   min-width:0;
-  min-height:0
+  min-height:0;
+  display:flex;
+  flex-direction:column
 }
+.modern-chat-panel>.chat-content,.modern-chat-panel>.modern-empty-chat { flex:1; min-height:0 }
 .chat-content {
   height:100%;
   display:flex;
@@ -1333,13 +1384,22 @@ input:focus,select:focus,textarea:focus { border-color:var(--EpoCash-green); }
   .messaging-workspace {
     grid-template-columns:1fr;
     height:auto;
-    min-height:600px
+    min-height:600px;
+    position:relative
   }
+  .messaging-workspace:not(.contacts-open) { grid-template-columns:1fr }
   .messaging-rail {
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background:var(--EpoCash-panel);
     border-right:0;
-    border-bottom:1px solid var(--EpoCash-border);
-    max-height:220px
+    border-bottom:0;
+    max-height:none;
+    transform:translateX(0);
+    transition:transform .2s ease,visibility .2s
   }
+  .messaging-workspace:not(.contacts-open) .messaging-rail { transform:translateX(-100%) }
   .messaging-rail__header {
     padding:16px
   }

@@ -590,8 +590,26 @@ app.logger.setLevel(logging.INFO)
 _socket_origins = os.environ.get('SOCKETIO_ALLOWED_ORIGINS', '').strip()
 if os.environ.get('AML_PRIMARY_MODEL') == 'V4' and (not _socket_origins or '*' in _socket_origins):
     raise RuntimeError('V4 primary requires explicit Socket.IO allowed origins')
+_configured_socket_origins = {origin.strip() for origin in _socket_origins.split(',') if origin.strip()}
+
+def _socket_origin_allowed(origin, environ):
+    if origin in _configured_socket_origins:
+        return True
+    # Quick Tunnel names change on every launch. Accept only the exact HTTPS
+    # origin of this request when cloudflared forwards it from localhost.
+    if not origin or environ.get('REMOTE_ADDR') not in ('127.0.0.1', '::1'):
+        return False
+    from urllib.parse import urlsplit
+    parsed = urlsplit(origin)
+    host = parsed.hostname or ''
+    if parsed.scheme != 'https' or not host.endswith('.trycloudflare.com') or parsed.port:
+        return False
+    forwarded_host = environ.get('HTTP_X_FORWARDED_HOST', '').split(',')[0].strip()
+    request_host = environ.get('HTTP_HOST', '').split(',')[0].strip()
+    return host == forwarded_host or host == request_host
+
 socketio_kwargs = {
-    "cors_allowed_origins": (_socket_origins.split(',') if _socket_origins else '*'),
+    "cors_allowed_origins": _socket_origin_allowed,
     "manage_session": False,
     # The deployment uses Gunicorn's threaded worker (see Procfile/Dockerfile),
     # which is the matching and portable Socket.IO runtime for this application.
@@ -798,7 +816,7 @@ def handle_send_message(data):
         sender = sender_user['username']
         
         can_message, reason = can_user_message(sender_user['role'], receiver_user['role'])
-        if can_message and not _is_authorized_messaging_counterpart(conn, sender_user, receiver):
+        if can_message and not _is_authorized_messaging_counterpart(conn, sender_user, receiver_user):
             can_message = False
             reason = 'This is not your assigned secure messaging contact'
         if not can_message:
@@ -829,7 +847,7 @@ def handle_send_message(data):
             'receiver': receiver,
             'content': msg['content'],
             'status': 'sent',
-            'timestamp': msg['created_at'],
+            'timestamp': msg['created_at'].isoformat() if hasattr(msg['created_at'], 'isoformat') else msg['created_at'],
             'conversation_id': conv['id']
         }
         
@@ -844,9 +862,11 @@ def handle_send_message(data):
         socketio.emit('unread_update', unread, to=f"user:{receiver}")
         
         conn.close()
+        return {'status': 'success', 'message_id': msg['id']}
     except Exception as e:
-        app.logger.error(f"Error sending message: {e}")
+        app.logger.exception("Error sending message")
         socketio.emit('message_error', {'message': 'Message could not be sent. Please try again.'}, to=request.sid)
+        return {'status': 'error', 'message': 'Message could not be sent. Please refresh the conversation before retrying.'}
 
 
 @socketio.on('typing')
