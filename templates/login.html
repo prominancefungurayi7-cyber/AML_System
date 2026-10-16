@@ -20,7 +20,7 @@
         <p>Secure access to your mobile-money experience</p>
       </div>
     </div>
-    <form method="post" class="auth-form">
+    <form method="post" class="auth-form" id="signInForm" data-auto-sign-in="{{ 'true' if request.method == 'GET' and not otp_step else 'false' }}">
       {% if otp_step %}
       <p>Enter the six-digit code sent to the email attached to your account. It expires in 10 minutes.</p>
       <label for="otp">Verification code</label>
@@ -45,4 +45,12 @@
   </div>
 </section>
 
+{% if not otp_step %}
+<style>
+  @keyframes savedCredentialFilled { from { opacity:1 } to { opacity:1 } }
+  #signInForm input:-webkit-autofill { animation-name:savedCredentialFilled; animation-duration:0.01s }
+  #signInForm input:autofill { animation-name:savedCredentialFilled; animation-duration:0.01s }
+</style>
+<script src="{{ url_for('static', filename='login.js', v='saved-password-1') }}"></script>
+{% endif %}
 {% endblock %}
