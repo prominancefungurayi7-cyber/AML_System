@@ -78,28 +78,45 @@
     {% if alert.assigned_to %}<li><strong>Assigned to:</strong> {{ alert.assigned_to }}</li>{% endif %}
     {% if alert.resolved_by %}<li><strong>Resolved by:</strong> {{ alert.resolved_by }} at {{ alert.resolved_at }}</li>{% endif %}
   </ul>
-  <p><strong>Reason:</strong> {{ alert.reason }}</p>
+  {% if findings.unclassified_reason %}
+    <p><strong>Recorded reason — source unavailable:</strong> {{ findings.unclassified_reason }}</p>
+  {% endif %}
   {% if alert.case_notes %}
     <p><strong>Case notes:</strong> {{ alert.case_notes }}</p>
   {% endif %}
 </section>
 
-{% if transaction %}
-<section class="card table-card">
-  <h3>AI Assessment and Possible Activity</h3>
-  <p>{{ ai_review_reason or transaction.ai_reason or 'No AI explanation was recorded for this transaction. Review the alert reason and available transaction history.' }}</p>
-  {% if explanation_reconstructed %}
-    <p class="muted-line">Historical indicators reconstructed from currently available records preceding this transaction. The original AI decision is unchanged.</p>
+<section class="card table-card" aria-labelledby="ai-findings-heading">
+  <h3 id="ai-findings-heading">AI Findings</h3>
+  <p><strong>Recorded decision:</strong> {{ findings.ai_risk_level|replace('_', ' ')|title }}</p>
+  {% if transaction and findings.ai_risk_level not in ('pending_v4', 'inference_error', 'unavailable') and transaction.ai_confidence is not none %}
+    <p><strong>Recorded confidence:</strong> {{ "%.1f"|format(transaction.ai_confidence * 100) }}%</p>
   {% endif %}
-  {% if rules %}
-    <h4>Rule and Screening Findings</h4>
+  <p>{{ findings.ai_reason }}</p>
+</section>
+<section class="card table-card" aria-labelledby="rule-findings-heading">
+  <h3 id="rule-findings-heading">Rule Findings</h3>
+  <p><strong>Independent rule assessment:</strong> {{ findings.rule_level|replace('_', ' ')|title }}</p>
+  {% if findings.rule_findings %}
     <ul>
-      {% for rule in rules if rule.reason %}
-        <li><strong>{{ rule.typology or 'Review indicator' }}:</strong> {{ rule.reason }}</li>
+      {% for rule in findings.rule_findings %}
+        <li><strong>{% if rule.rule_id %}{{ rule.rule_id }} — {% endif %}{{ rule.typology or 'Rule / screening indicator' }}:</strong> {{ rule.reason }}</li>
       {% endfor %}
     </ul>
+  {% else %}
+    <p>{{ findings.rule_reason }}</p>
   {% endif %}
 </section>
+{% if historical_indicators %}
+<section class="card table-card">
+  <h3>Historical Indicators</h3>
+  <p>{{ historical_indicators }}</p>
+  {% if explanation_reconstructed %}
+    <p class="muted-line">Reconstructed from available earlier transactions. These observations are separate from the recorded AI decision and rule findings.</p>
+  {% endif %}
+</section>
+{% endif %}
+{% if transaction %}
 <section class="card table-card">
   <h3>Transaction Details</h3>
   <ul>
@@ -114,13 +131,6 @@
     <li><strong>Receiver Wallet:</strong> {{ transaction.receiver_account }}</li>
     <li><strong>Channel:</strong> {{ transaction.channel or 'online' }}</li>
     <li><strong>Destination:</strong> {{ transaction.destination_country or 'ZW' }}</li>
-    <li><strong>Recorded AI decision:</strong> {{ transaction.ai_risk_level or 'unavailable' }}
-      {% if transaction.ai_risk_level not in ('pending_v4', 'inference_error', None, '') and transaction.ai_confidence is not none %}
-        ({{ "%.1f"|format(transaction.ai_confidence * 100) }}%
-        {{ 'suspicious-pattern probability' if (transaction.ai_reason or '').startswith('V4 ') else 'recorded confidence' }})
-      {% else %} — prediction unavailable{% endif %}
-    </li>
-    <li><strong>Independent rule assessment:</strong> {{ transaction.rule_level or 'unavailable' }} — {{ transaction.rule_reason or 'No rule explanation recorded.' }}</li>
     {% if transaction.ctr_required %}<li><strong>CTR required:</strong> Yes</li>{% endif %}
     {% if transaction.sar_required %}<li><strong>SAR required:</strong> Yes</li>{% endif %}
   </ul>

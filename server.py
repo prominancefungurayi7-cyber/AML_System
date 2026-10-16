@@ -39,6 +39,9 @@ if __name__ == "__main__":
         from experimental_v3.web import main as _experimental_main
         _experimental_main()
         raise SystemExit(0)
+    from pathlib import Path as _local_path
+    from tools.local_realtime_bootstrap import configure_local_realtime
+    configure_local_realtime(_local_path(__file__).resolve().parent)
 
 import json
 import hmac
@@ -152,9 +155,11 @@ from transaction_simulation import (
     SUSPICIOUS_TRANSACTION_SCENARIOS,
     SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS,
     PROFILE_FEATURE_DEFAULTS,
-    generate_structuring_scenario,
-    generate_network_scenario,
-    generate_agent_scenario,
+    generate_structuring_scenario as build_structuring_scenario,
+    generate_network_scenario as build_network_scenario,
+    generate_agent_scenario as build_agent_scenario,
+    simulation_batch,
+    simulation_summary,
 )
 
 # Import from modularized components
@@ -186,7 +191,7 @@ from alerts import (
 from realtime import RealtimeBroker
 from ai_stage13_features import Stage13FeatureService
 from ai_stage14_model import Stage14ModelService, get_stage14_model_service
-from ai_explanations import explain_features
+from ai_explanations import explain_features, display_reason, reasoning_fields
 from utils import (
     serialize_value,
     serialize_row,
@@ -661,7 +666,7 @@ def handle_connect():
         try:
             presence_key = f"presence:user:{user_id}"
             existing = broker._redis_client.hget(presence_key, 'sid')
-            if existing and existing.decode('utf-8') == sid:
+            if existing and existing == sid:
                 # Same socket reconnecting, don't log
                 pass
             else:
@@ -1576,7 +1581,8 @@ def serialize_value(value):
 
 def serialize_row(row):
 
-    return {key: serialize_value(row[key]) for key in row.keys()}
+    return {key: serialize_value(display_reason(row[key]) if key in ('reason', 'ai_reason', 'description')
+                                 else row[key]) for key in row.keys()}
 
 
 
@@ -1585,6 +1591,16 @@ def serialize_row(row):
 def serialize_rows(rows):
 
     return [serialize_row(row) for row in rows]
+
+
+def serialize_alert_rows(conn, rows):
+    ids = sorted({row['transaction_id'] for row in rows if row['transaction_id'] is not None})
+    transactions = {}
+    if ids:
+        transactions = {row['id']: row for row in conn.execute(
+            'SELECT id,ai_risk_level,ai_reason,rule_level,rule_reason,rules_triggered '
+            'FROM transactions WHERE id IN (' + ','.join('?' for _ in ids) + ')', tuple(ids)).fetchall()}
+    return [{**serialize_row(row), **reasoning_fields(transactions.get(row['transaction_id']), row)} for row in rows]
 
 
 
@@ -1616,6 +1632,8 @@ def broadcast_alert_update(conn, alert_id, event_name="alert_update"):
     if row:
 
         broadcast_event(event_name, {
+
+            **reasoning_fields(conn.execute('SELECT * FROM transactions WHERE id=?', (row['transaction_id'],)).fetchone(), row),
 
             "id": row["id"],
 
@@ -1679,10 +1697,18 @@ def broadcast_committed_customer_transaction(conn, transaction_id, alert_id):
     tx = conn.execute('SELECT * FROM transactions WHERE id=?', (transaction_id,)).fetchone()
     if tx:
         broadcast_event('transaction', _transaction_payload(tx))
+        # Only the affected customers need a fresh private dashboard snapshot.
+        # Never distribute staff AML payloads to customer sockets.
+        accounts = {tx['sender_account'], tx['receiver_account']}
+        for account in accounts - {None, ''}:
+            owner = conn.execute('SELECT username FROM users WHERE account_number=?', (account,)).fetchone()
+            if owner:
+                socketio.emit('customer_refresh', {}, to=f"user:{owner['username']}")
     if alert_id:
         alert = conn.execute('SELECT * FROM alerts WHERE id=?', (alert_id,)).fetchone()
         if alert:
             broadcast_event('alert', {
+                **reasoning_fields(tx, alert),
                 'id': alert['id'], 'transaction_id': alert['transaction_id'],
                 'account_number': alert['account_number'],
                 'risk_score': alert['risk_score'], 'risk_level': alert['risk_level'],
@@ -2098,6 +2124,22 @@ def v4_primary_enabled():
     return os.environ.get('AML_PRIMARY_MODEL') == 'V4'
 
 
+def legacy_simulation_block_reason(conn):
+    """An established canonical boundary also protects against a legacy startup."""
+    if conn.engine == 'mysql':
+        exists = conn.execute('SHOW TABLES LIKE ?', ('cmm_observation_scopes',)).fetchone()
+    elif conn.engine == 'sqlite':
+        exists = conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+                              ('cmm_observation_scopes',)).fetchone()
+    else:
+        return 'Legacy simulation is unsupported for this database engine.'
+    if exists and conn.execute('SELECT scope_id FROM cmm_observation_scopes LIMIT 1').fetchone():
+        return ('This database has an established V4 history boundary. Legacy generation and ledger '
+                'clearing are blocked even in Stage14 mode. Use an isolated simulation database; '
+                'the live V4 route requires canonical events and verified history.')
+    return None
+
+
 def primary_model_metadata():
     """Report the selected model without loading or training a legacy model."""
     if not v4_primary_enabled():
@@ -2503,6 +2545,7 @@ def process_transaction_event(
         if created_alert:
             # Include Stage 14 AI information in alert broadcast
             alert_data = {
+                **reasoning_fields(tx_row),
                 "id": created_alert,
                 "transaction_id": transaction_id,
                 "account_number": account_number or sender_account,
@@ -2562,6 +2605,8 @@ def monitor_transactions():
                         try:
                             v4_primary.complete_committed(
                                 connect_db, pending_id, notify=_notify_v4_decision)
+                        except v4_primary.DecisionAlreadyApplied:
+                            app.logger.debug('V4 decision %s already finalized by another caller', pending_id)
                         except Exception:
                             app.logger.exception(
                                 'Pending V4 decision %s remains unresolved', pending_id)
@@ -2718,7 +2763,7 @@ def health():
 
             "subscribers": len(broker._subscribers) if broker else 0,
 
-            "redis_connected": broker._redis_client is not None if broker else False,
+            "redis_connected": broker.redis_healthy() if broker else False,
 
             "kafka_connected": broker._kafka_producer is not None if broker else False,
 
@@ -3353,7 +3398,7 @@ def customer_dashboard():
 
             "transactions": serialize_rows(transactions),
 
-            "alerts": serialize_rows(alerts),
+            "alerts": serialize_alert_rows(get_db(), alerts),
 
             "stats": stats,
 
@@ -3378,6 +3423,13 @@ def create_transaction():
     user = get_user_by_id(session["user_id"])
     if v4_primary_enabled() and os.environ.get('V4_SHADOW_ENABLED') == 'ON':
         return 'Primary and shadow V4 modes cannot run together.', 503
+    if v4_primary_enabled():
+        from v4_simulation import payment_lock
+        try:
+            payment_lock(get_db())
+            user = get_user_by_id(session['user_id'])
+        except RuntimeError:
+            return 'Transaction service busy. Retry with the same request ID.', 503
     from transaction_idempotency import request_id, require_schema, submission, existing
     from transaction_idempotency import is_unique_conflict, is_retryable_lock
     try:
@@ -3583,6 +3635,8 @@ def create_transaction():
                 validator=app.config.get('V4_PRIMARY_TEST_VALIDATOR') if app.testing else None)
             if primary_result['status'] != 'success':
                 app.logger.error('V4 primary decision unresolved for transaction %s', transaction_id)
+        except v4_primary.DecisionAlreadyApplied:
+            app.logger.debug('V4 decision %s already finalized by the monitor', transaction_id)
         except Exception:
             app.logger.exception('V4 primary decision remains pending for transaction %s', transaction_id)
     else:
@@ -3755,7 +3809,7 @@ def compliance_dashboard():
 
             "transactions": serialize_rows(transactions),
 
-            "open_alerts": serialize_rows(open_alerts),
+            "open_alerts": serialize_alert_rows(get_db(), open_alerts),
             "model": primary_model_metadata(),
 
             "filter_value": filter_value,
@@ -4047,33 +4101,35 @@ def alert_detail(alert_id):
 
 
     ai_review_reason = transaction.get("ai_reason") if transaction else None
+    findings = reasoning_fields(transaction, alert)
+    historical_indicators = None
     explanation_reconstructed = False
     # Older records only stored a probability. Reconstruct descriptive evidence
     # from strictly earlier history without rescoring or rewriting the record.
-    if transaction and transaction.get("ai_risk_level") == "suspicious_pattern" and not any(
+    if transaction and not (ai_review_reason or '').startswith('V4 ') and transaction.get("ai_risk_level") == "suspicious_pattern" and not any(
         marker in (ai_review_reason or "")
         for marker in ("Observed indicators:", "Possible activity:")
     ):
         try:
             features = Stage13FeatureService(get_db()).generate_features(dict(transaction))
-            ai_review_reason = (ai_review_reason or "") + ". " + explain_features(features, True)
+            historical_indicators = explain_features(features, True)
             explanation_reconstructed = True
         except Exception:
             app.logger.exception("Could not reconstruct explanation for alert %s", alert_id)
-            ai_review_reason = (ai_review_reason or "AI explanation unavailable.") + (
-                " Historical evidence could not be loaded; possible activity is undetermined."
-            )
+            historical_indicators = "Historical evidence could not be loaded; possible activity is undetermined."
 
     return render_template(
 
         "alert_detail.html",
 
-        ai_review_reason=ai_review_reason,
+        ai_review_reason=display_reason(ai_review_reason),
+        findings=findings,
+        historical_indicators=historical_indicators,
         explanation_reconstructed=explanation_reconstructed,
 
-        alert=alert,
+        alert={**alert, 'reason': display_reason(alert.get('reason'))},
 
-        transaction=transaction,
+        transaction={**transaction, 'ai_reason': display_reason(transaction.get('ai_reason'))} if transaction else None,
 
         account_user=account_user,
 
@@ -4271,6 +4327,8 @@ def admin_dashboard():
 
             "users": [dashboard_user(user) for user in users],
             "model": primary_model_metadata(),
+            "simulation_block_reason": legacy_simulation_block_reason(get_db()),
+            "generation": v4_generation_options() if v4_primary_enabled() else None,
 
             "activity": serialize_rows(activity),
 
@@ -4294,13 +4352,99 @@ def admin_dashboard():
 
 
 
+def v4_generation_options():
+    from v4_simulation import options, decode
+    data = options(get_db(), app.secret_key, session['user_id'])
+    data['csrf'] = session.setdefault('generation_csrf', uuid.uuid4().hex)
+    if session.get('last_generation'):
+        try:
+            previous = decode(session['last_generation'], app.secret_key, session['user_id'])
+            data['last_request'] = {'token': session['last_generation'], 'count': previous['count']}
+        except ValueError:
+            pass
+    return data
+
+
+@app.route('/api/admin/generation', methods=['GET'])
+@login_required('admin')
+def v4_generation_status():
+    from v4_simulation import decode, receipt
+    token = session.get('last_generation')
+    if not token:
+        return jsonify(None)
+    try:
+        ticket = decode(token, app.secret_key, session['user_id'])
+    except ValueError:
+        return jsonify(None)
+    return jsonify(receipt(get_db(), ticket))
+
+
+def generate_v4_transactions():
+    import hmac
+    from v4_simulation import decode, commit_batch
+    from v4_primary import verify_startup
+    from v4_history_attestation import refresh_committed
+    if (not session.get('generation_csrf') or not hmac.compare_digest(
+            request.form.get('csrf', ''), session['generation_csrf'])):
+        return 'Generation request could not be verified. Reload the dashboard.', 403
+    try:
+        ticket = decode(request.form.get('generation_token', ''), app.secret_key, session['user_id'])
+    except ValueError as exc:
+        return str(exc), 400
+    require_v4_rule_policy()
+    if os.environ.get('CANONICAL_MOBILE_MONEY_ENABLED', 'ON') != 'ON':
+        return 'Canonical mobile-money submissions are disabled.', 503
+    conn = connect_db()
+    # Retain the exact request after an uncertain response or a browser retry.
+    session['last_generation'] = request.form['generation_token']
+    try:
+        result = commit_batch(conn, ticket, process_transaction_event,
+                              get_last_insert_id, lambda: verify_startup(connect_db))
+    except ValueError as exc:
+        conn.rollback()
+        flash(str(exc))
+        return redirect(url_for('admin_dashboard'))
+    except Exception:
+        conn.rollback()
+        app.logger.exception('V4 generation request unresolved')
+        flash('Generation could not be confirmed. Retry the same form request; do not start a new batch.')
+        return redirect(url_for('admin_dashboard'))
+    finally:
+        conn.close()  # releases the payment lock before any history/inference work
+    if result['replayed']:
+        flash(f"This batch was already saved ({result['saved']} transactions). No payments were repeated.")
+        return redirect(url_for('admin_dashboard'))
+    try:
+        refresh_committed(connect_db, result['transaction_ids'][-1])
+    except Exception:
+        app.logger.exception('Generated payments saved; history refresh remains pending')
+    # Durable pending_v4 rows are picked up by the existing monitor, including
+    # after restart. This request never replays payment writes to retry inference.
+    try:
+        record_activity(session['username'], 'generate_transactions',
+                        f"V4 demo batch {ticket['batch_id']}: {result['saved']} payments; scenario {ticket['mode']}")
+        broadcast_event('transaction_batch', {'count': result['saved'],
+                         'timestamp': datetime.now(timezone.utc).isoformat()})
+        broadcast_stats()
+        for wallet in ticket['wallets']:
+            broadcast_user_balance(get_db(), wallet['account_number'])
+    except Exception:
+        app.logger.exception('Saved V4 batch notification unavailable')
+    flash(f"Saved {result['saved']} demo transactions. V4 analysis is processing; progress is shown under Transaction Generation.")
+    return redirect(url_for('admin_dashboard'))
+
+
 @app.route("/admin/generate-transactions", methods=["POST"])
 
 @login_required("admin")
 
 def generate_transactions():
+    committed = False
     if v4_primary_enabled():
-        return 'Legacy batch generator lacks verified canonical V4 events.', 503
+        return generate_v4_transactions()
+    block = legacy_simulation_block_reason(get_db())
+    if block:
+        return block, 409
     app.logger.info("Transaction generation route called")
     admin_user = get_user_by_id(session["user_id"])
 
@@ -4332,77 +4476,52 @@ def generate_transactions():
 
 
 
-        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        generated = simulation_summary([])
+        decisions = []
 
         # Get agents for simulation
         agents = get_db().execute("SELECT id, agent_code, agent_name, location, region, city FROM agents WHERE status='active'").fetchall()
 
         # Batch insert transactions first for performance
         transactions_to_process = []
-        for label in _simulation_plan(count):
-            transactions = _simulation_transaction(label, users, agents)
-            for (
-                sender, recipient, tx_type, amount, timestamp,
-                channel, description, _scenario_reason, dest_country, agent_id,
-            ) in transactions:
-                sender_account = sender["account_number"]
-                receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
+        recent = get_db().execute("SELECT COUNT(*) AS n FROM transactions WHERE timestamp>=?",
+                                  ((datetime.now(timezone.utc) - timedelta(days=30)).isoformat(),)).fetchone()["n"]
+        planned = simulation_batch(count, users, agents, existing_count=recent)
+        for (
+            sender, recipient, tx_type, amount, timestamp,
+            channel, description, _scenario_reason, dest_country, agent_id,
+        ) in planned:
+            sender_account = sender["account_number"]
+            receiver_account = recipient["account_number"] if tx_type == "transfer" else sender_account
 
-                # STAGE 17E: Remove label contamination - do not insert generated_label
-                # Simulated transactions must go through real Stage 13 + Stage 14 pipeline
-                # Handle NULL agent_id properly for MySQL
-                from database import is_mysql_database_url
-                db = get_db()
-                insert_params = (
-                    sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id if agent_id is not None else None, 'Completed',
+            db = get_db()
+            db.execute(
+                """INSERT INTO transactions (sender_account, receiver_account, amount,
+                   transaction_type, currency, channel, timestamp, risk_score, risk_level,
+                   description, destination_country, agent_id, status)
+                   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                (sender_account, receiver_account, amount, tx_type, "USD", channel,
+                 timestamp, 0, 'normal', description, dest_country, agent_id, 'Completed'))
+            transaction_id = get_last_insert_id(db)
+            transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
+
+            if tx_type == "deposit":
+                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
+            elif tx_type == "withdraw":
+                debit = get_db().execute(
+                    "UPDATE users SET balance=balance-? WHERE balance>=? AND id=?",
+                    (amount, amount, sender["id"]),
                 )
-
-                if is_mysql_database_url(app.config["DATABASE"]):
-                    # Use raw MySQL connection for direct parameter handling
-                    conn = db.connection
-                    cursor = conn.cursor(dictionary=True, buffered=True)
-                    cursor.execute(
-                        """
-                        INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-                            currency, channel, timestamp, risk_score, risk_level, description,
-                            destination_country, agent_id, status)
-                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                        """,
-                        insert_params,
-                    )
-                    transaction_id = cursor.lastrowid
-                    cursor.close()
-                else:
-                    # Use database adapter for SQLite/PostgreSQL
-                    db.execute(
-                        """
-                        INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
-                            currency, channel, timestamp, risk_score, risk_level, description,
-                            destination_country, agent_id, status)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-                        """,
-                        insert_params,
-                    )
-                    transaction_id = get_last_insert_id(db)
-
-                transaction_id = get_last_insert_id(get_db())
-                transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
-
-                if tx_type == "deposit":
-                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
-                elif tx_type == "withdraw":
-                    get_db().execute(
-                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-                        (amount, amount, sender["id"]),
-                    )
-                elif tx_type == "transfer":
-                    get_db().execute(
-                        "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
-                        (amount, amount, sender["id"]),
-                    )
-                    get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
-
-        get_db().commit()
+                if debit.rowcount != 1:
+                    raise ValueError("Insufficient demo funds; batch rolled back without minting funds")
+            elif tx_type == "transfer":
+                debit = get_db().execute(
+                    "UPDATE users SET balance=balance-? WHERE balance>=? AND id=?",
+                    (amount, amount, sender["id"]),
+                )
+                if debit.rowcount != 1:
+                    raise ValueError("Insufficient demo funds; batch rolled back without minting funds")
+                get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
 
         # STAGE 17E: Remove legacy AI training - use Stage 13 + Stage 14 pipeline only
         # Process transactions in batch through real application pipeline
@@ -4418,21 +4537,19 @@ def generate_transactions():
                 get_db(), transaction_id, sender_account, receiver_account,
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
+                emit_events=False,
                 generated_label=None,  # STAGE 17E: No label contamination
                 scenario_reason=None,  # STAGE 17E: No scenario contamination
             )
 
             # STAGE 17E: Use Stage 14 binary classification results
-            if risk_level == "normal":
-                generated["normal"] += 1
-            elif risk_level == "suspicious_pattern":
-                generated["suspicious_pattern"] += 1
-            elif risk_level in ("critical", "high_risk"):
-                generated["high_risk"] += 1
-            else:
-                generated["normal"] += 1  # Default to normal for unknown levels
+            decisions.append(get_db().execute(
+                "SELECT risk_level,ai_risk_level FROM transactions WHERE id=?",
+                (transaction_id,)).fetchone())
+        generated = simulation_summary(decisions)
 
         get_db().commit()
+        committed = True
 
         # Only broadcast balances for affected accounts
         affected_accounts = set()
@@ -4445,10 +4562,8 @@ def generate_transactions():
             broadcast_user_balance(get_db(), account)
 
         broadcast_event("transaction_batch", {
-            "count": count,
-            "normal": generated["normal"],
-            "suspicious_pattern": generated["suspicious_pattern"],
-            "high_risk": generated["high_risk"],
+            "count": generated["total"],
+            **generated,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         })
 
@@ -4461,18 +4576,26 @@ def generate_transactions():
             admin_user["username"],
             "generate_transactions",
             (
-                f"Generated {count} transactions through Stage 13 + Stage 14 pipeline: "
-                f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
-                f"{generated['high_risk']} high_risk"
+                f"Generated {generated['total']} transactions through Stage 13 + Stage 14 pipeline: "
+                f"{generated['normal']} normal, {generated['ai_suspicious']} suspicious_pattern, "
+                f"{generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending"
             ),
         )
 
         app.logger.info(f"Transaction generation completed: {count} transactions generated through Stage 13 + Stage 14 pipeline")
-        flash(f"Generated {count} transactions: {generated['normal']} normal, {generated['flagged']} flagged, {generated['critical']} critical.")
+        flash(f"Generated {generated['total']} transactions: {generated['normal']} normal, {generated['low']} low, "
+              f"{generated['flagged']} flagged, {generated['pending']} pending. "
+              f"AI: {generated['ai_suspicious']} suspicious, {generated['ai_normal']} normal, "
+              f"{generated['ai_unavailable']} unavailable. Independent AML rules: "
+              f"{'ON' if _RULE_ENGINE_ENABLED else 'OFF'}.")
 
         return redirect(url_for("admin_dashboard"))
 
     except Exception as e:
+        if committed:
+            app.logger.exception("Simulation batch committed; follow-up notification failed")
+            flash("The simulation batch was saved. A follow-up notification failed; reload the dashboard. Do not generate the batch again.")
+            return redirect(url_for("admin_dashboard"))
 
         get_db().rollback()
 
@@ -4486,8 +4609,12 @@ def generate_transactions():
 @app.route("/admin/generate-structuring-scenario", methods=["POST"])
 @login_required("admin")
 def generate_structuring_scenario():
+    committed = False
     if v4_primary_enabled():
         return 'Legacy structuring generator lacks verified canonical V4 events.', 503
+    block = legacy_simulation_block_reason(get_db())
+    if block:
+        return block, 409
     """
     Generate structuring-style transaction sequence for Stage 13 feature testing.
     
@@ -4518,7 +4645,7 @@ def generate_structuring_scenario():
         transactions_to_process = []
         
         # Use the new structuring scenario generator
-        structuring_txs = generate_structuring_scenario(get_db(), sender_wallet, None, count)
+        structuring_txs = build_structuring_scenario(get_db(), sender_wallet, None, count, agents=agents)
         
         for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in structuring_txs:
             sender_account = sender["account_number"]
@@ -4530,7 +4657,7 @@ def generate_structuring_scenario():
                 INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
                     currency, channel, timestamp, risk_score, risk_level, description,
                     destination_country, agent_id)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
                 (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
             )
@@ -4539,18 +4666,19 @@ def generate_structuring_scenario():
             transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
             
             # Update balance for Cash-In
-            if "Cash-In" in description:
+            if tx_type == "deposit":
                 get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
-            elif "Cash-Out" in description:
-                get_db().execute(
-                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+            elif tx_type == "withdraw":
+                debit = get_db().execute(
+                    "UPDATE users SET balance=balance-? WHERE balance>=? AND id=?",
                     (amount, amount, sender["id"]),
                 )
-        
-        get_db().commit()
+                if debit.rowcount != 1:
+                    raise ValueError("Insufficient demo funds; batch rolled back without minting funds")
         
         # Process through real Stage 13 + Stage 14 pipeline
-        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        generated = simulation_summary([])
+        decisions = []
         
         for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
             transactions_to_process, key=lambda item: item[5]
@@ -4559,30 +4687,26 @@ def generate_structuring_scenario():
                 get_db(), transaction_id, sender_account, receiver_account,
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
+                emit_events=False,
                 generated_label=None,  # No label contamination
                 scenario_reason=None,  # No scenario contamination
             )
             
-            if risk_level == "normal":
-                generated["normal"] += 1
-            elif risk_level == "suspicious_pattern":
-                generated["suspicious_pattern"] += 1
-            elif risk_level in ("critical", "high_risk"):
-                generated["high_risk"] += 1
-            else:
-                generated["normal"] += 1
+            decisions.append(get_db().execute(
+                "SELECT risk_level,ai_risk_level FROM transactions WHERE id=?",
+                (transaction_id,)).fetchone())
+        generated = simulation_summary(decisions)
         
         get_db().commit()
+        committed = True
         
         # Broadcast updates
         for account in set([tx[6] for tx in transactions_to_process]):
             broadcast_user_balance(get_db(), account)
         
         broadcast_event("transaction_batch", {
-            "count": count,
-            "normal": generated["normal"],
-            "suspicious_pattern": generated["suspicious_pattern"],
-            "high_risk": generated["high_risk"],
+            "count": generated["total"],
+            **generated,
             "scenario_type": "structuring",
             "timestamp": datetime.now(timezone.utc).isoformat(),
         })
@@ -4592,15 +4716,19 @@ def generate_structuring_scenario():
         record_activity(
             admin_user["username"],
             "generate_structuring_scenario",
-            f"Generated structuring scenario with {count} transactions through Stage 13 + Stage 14 pipeline: "
-            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
-            f"{generated['high_risk']} high_risk"
+            f"Generated structuring scenario with {generated['total']} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['ai_suspicious']} suspicious_pattern, "
+            f"{generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending"
         )
         
-        flash(f"Generated structuring scenario: {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        flash(f"Generated structuring scenario: {generated['total']} transactions ({generated['normal']} normal, {generated['ai_suspicious']} suspicious, {generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending)")
         return redirect(url_for("admin_dashboard"))
         
     except Exception as e:
+        if committed:
+            app.logger.exception("Simulation batch committed; follow-up notification failed")
+            flash("The simulation batch was saved. A follow-up notification failed; reload the dashboard. Do not generate the batch again.")
+            return redirect(url_for("admin_dashboard"))
         get_db().rollback()
         app.logger.error(f"Structuring scenario generation failed: {e}")
         flash(f"Structuring scenario generation failed: {str(e)}")
@@ -4610,8 +4738,12 @@ def generate_structuring_scenario():
 @app.route("/admin/generate-network-scenario", methods=["POST"])
 @login_required("admin")
 def generate_network_scenario():
+    committed = False
     if v4_primary_enabled():
         return 'Legacy network generator lacks verified canonical V4 events.', 503
+    block = legacy_simulation_block_reason(get_db())
+    if block:
+        return block, 409
     """
     Generate network-style transaction sequence for Stage 13 feature testing.
     
@@ -4640,7 +4772,7 @@ def generate_network_scenario():
         transactions_to_process = []
         
         # Use the new network scenario generator
-        network_txs = generate_network_scenario(get_db(), users, scenario_type, count)
+        network_txs = build_network_scenario(get_db(), users, scenario_type, count)
         
         for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in network_txs:
             sender_account = sender["account_number"]
@@ -4652,7 +4784,7 @@ def generate_network_scenario():
                 INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
                     currency, channel, timestamp, risk_score, risk_level, description,
                     destination_country, agent_id)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
                 (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
             )
@@ -4661,16 +4793,17 @@ def generate_network_scenario():
             transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
             
             # Update balances for wallet-to-wallet transfers
-            get_db().execute(
-                "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+            debit = get_db().execute(
+                "UPDATE users SET balance=balance-? WHERE balance>=? AND id=?",
                 (amount, amount, sender["id"]),
             )
+            if debit.rowcount != 1:
+                raise ValueError("Insufficient demo funds; batch rolled back without minting funds")
             get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, recipient["id"]))
         
-        get_db().commit()
-        
         # Process through real Stage 13 + Stage 14 pipeline
-        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        generated = simulation_summary([])
+        decisions = []
         
         for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
             transactions_to_process, key=lambda item: item[5]
@@ -4679,20 +4812,18 @@ def generate_network_scenario():
                 get_db(), transaction_id, sender_account, receiver_account,
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
+                emit_events=False,
                 generated_label=None,  # No label contamination
                 scenario_reason=None,  # No scenario contamination
             )
             
-            if risk_level == "normal":
-                generated["normal"] += 1
-            elif risk_level == "suspicious_pattern":
-                generated["suspicious_pattern"] += 1
-            elif risk_level in ("critical", "high_risk"):
-                generated["high_risk"] += 1
-            else:
-                generated["normal"] += 1
+            decisions.append(get_db().execute(
+                "SELECT risk_level,ai_risk_level FROM transactions WHERE id=?",
+                (transaction_id,)).fetchone())
+        generated = simulation_summary(decisions)
         
         get_db().commit()
+        committed = True
         
         # Broadcast updates
         affected_accounts = set()
@@ -4704,10 +4835,8 @@ def generate_network_scenario():
             broadcast_user_balance(get_db(), account)
         
         broadcast_event("transaction_batch", {
-            "count": count,
-            "normal": generated["normal"],
-            "suspicious_pattern": generated["suspicious_pattern"],
-            "high_risk": generated["high_risk"],
+            "count": generated["total"],
+            **generated,
             "scenario_type": f"network_{scenario_type}",
             "timestamp": datetime.now(timezone.utc).isoformat(),
         })
@@ -4717,15 +4846,19 @@ def generate_network_scenario():
         record_activity(
             admin_user["username"],
             "generate_network_scenario",
-            f"Generated network scenario ({scenario_type}) with {count} transactions through Stage 13 + Stage 14 pipeline: "
-            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
-            f"{generated['high_risk']} high_risk"
+            f"Generated network scenario ({scenario_type}) with {generated['total']} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['ai_suspicious']} suspicious_pattern, "
+            f"{generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending"
         )
         
-        flash(f"Generated network scenario ({scenario_type}): {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        flash(f"Generated network scenario ({scenario_type}): {generated['total']} transactions ({generated['normal']} normal, {generated['ai_suspicious']} suspicious, {generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending)")
         return redirect(url_for("admin_dashboard"))
         
     except Exception as e:
+        if committed:
+            app.logger.exception("Simulation batch committed; follow-up notification failed")
+            flash("The simulation batch was saved. A follow-up notification failed; reload the dashboard. Do not generate the batch again.")
+            return redirect(url_for("admin_dashboard"))
         get_db().rollback()
         app.logger.error(f"Network scenario generation failed: {e}")
         flash(f"Network scenario generation failed: {str(e)}")
@@ -4735,8 +4868,12 @@ def generate_network_scenario():
 @app.route("/admin/generate-agent-scenario", methods=["POST"])
 @login_required("admin")
 def generate_agent_scenario():
+    committed = False
     if v4_primary_enabled():
         return 'Legacy agent generator lacks verified canonical V4 events.', 503
+    block = legacy_simulation_block_reason(get_db())
+    if block:
+        return block, 409
     """
     Generate agent-mediated transaction sequence for Stage 13 feature testing.
     
@@ -4772,7 +4909,7 @@ def generate_agent_scenario():
         transactions_to_process = []
         
         # Use the new agent scenario generator
-        agent_txs = generate_agent_scenario(get_db(), users, agents, scenario_type, count)
+        agent_txs = build_agent_scenario(get_db(), users, agents, scenario_type, count)
         
         for (sender, recipient, tx_type, amount, timestamp, channel, description, scenario_reason, dest_country, agent_id) in agent_txs:
             sender_account = sender["account_number"]
@@ -4784,7 +4921,7 @@ def generate_agent_scenario():
                 INSERT INTO transactions (sender_account, receiver_account, amount, transaction_type,
                     currency, channel, timestamp, risk_score, risk_level, description,
                     destination_country, agent_id)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
                 (sender_account, receiver_account, amount, tx_type, "USD", channel, timestamp, 0, 'normal', description, dest_country, agent_id),
             )
@@ -4793,18 +4930,19 @@ def generate_agent_scenario():
             transactions_to_process.append((transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country))
             
             # Update balance for Cash-In
-            if "Cash-In" in description:
+            if tx_type == "deposit":
                 get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, sender["id"]))
-            elif "Cash-Out" in description:
-                get_db().execute(
-                    "UPDATE users SET balance=CASE WHEN balance > ? THEN balance-? ELSE 0 END WHERE id=?",
+            elif tx_type == "withdraw":
+                debit = get_db().execute(
+                    "UPDATE users SET balance=balance-? WHERE balance>=? AND id=?",
                     (amount, amount, sender["id"]),
                 )
-        
-        get_db().commit()
+                if debit.rowcount != 1:
+                    raise ValueError("Insufficient demo funds; batch rolled back without minting funds")
         
         # Process through real Stage 13 + Stage 14 pipeline
-        generated = {"normal": 0, "suspicious_pattern": 0, "high_risk": 0}
+        generated = simulation_summary([])
+        decisions = []
         
         for transaction_id, sender, recipient, tx_type, amount, timestamp, sender_account, receiver_account, dest_country in sorted(
             transactions_to_process, key=lambda item: item[5]
@@ -4813,30 +4951,26 @@ def generate_agent_scenario():
                 get_db(), transaction_id, sender_account, receiver_account,
                 amount, tx_type, timestamp, account_number=sender_account,
                 destination_country=dest_country,
+                emit_events=False,
                 generated_label=None,  # No label contamination
                 scenario_reason=None,  # No scenario contamination
             )
             
-            if risk_level == "normal":
-                generated["normal"] += 1
-            elif risk_level == "suspicious_pattern":
-                generated["suspicious_pattern"] += 1
-            elif risk_level in ("critical", "high_risk"):
-                generated["high_risk"] += 1
-            else:
-                generated["normal"] += 1
+            decisions.append(get_db().execute(
+                "SELECT risk_level,ai_risk_level FROM transactions WHERE id=?",
+                (transaction_id,)).fetchone())
+        generated = simulation_summary(decisions)
         
         get_db().commit()
+        committed = True
         
         # Broadcast updates
         for account in set([tx[6] for tx in transactions_to_process]):
             broadcast_user_balance(get_db(), account)
         
         broadcast_event("transaction_batch", {
-            "count": count,
-            "normal": generated["normal"],
-            "suspicious_pattern": generated["suspicious_pattern"],
-            "high_risk": generated["high_risk"],
+            "count": generated["total"],
+            **generated,
             "scenario_type": f"agent_{scenario_type}",
             "timestamp": datetime.now(timezone.utc).isoformat(),
         })
@@ -4846,15 +4980,19 @@ def generate_agent_scenario():
         record_activity(
             admin_user["username"],
             "generate_agent_scenario",
-            f"Generated agent scenario ({scenario_type}) with {count} transactions through Stage 13 + Stage 14 pipeline: "
-            f"{generated['normal']} normal, {generated['suspicious_pattern']} suspicious_pattern, "
-            f"{generated['high_risk']} high_risk"
+            f"Generated agent scenario ({scenario_type}) with {generated['total']} transactions through Stage 13 + Stage 14 pipeline: "
+            f"{generated['normal']} normal, {generated['ai_suspicious']} suspicious_pattern, "
+            f"{generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending"
         )
         
-        flash(f"Generated agent scenario ({scenario_type}): {count} transactions ({generated['normal']} normal, {generated['suspicious_pattern']} suspicious, {generated['high_risk']} high_risk)")
+        flash(f"Generated agent scenario ({scenario_type}): {generated['total']} transactions ({generated['normal']} normal, {generated['ai_suspicious']} suspicious, {generated['flagged']} operational flags, {generated['low']} low, {generated['pending']} pending)")
         return redirect(url_for("admin_dashboard"))
         
     except Exception as e:
+        if committed:
+            app.logger.exception("Simulation batch committed; follow-up notification failed")
+            flash("The simulation batch was saved. A follow-up notification failed; reload the dashboard. Do not generate the batch again.")
+            return redirect(url_for("admin_dashboard"))
         get_db().rollback()
         app.logger.error(f"Agent scenario generation failed: {e}")
         flash(f"Agent scenario generation failed: {str(e)}")
@@ -4872,6 +5010,9 @@ def clear_transactions():
 
     if v4_primary_enabled():
         return 'The verified V4 ledger cannot be cleared from the application.', 409
+    block = legacy_simulation_block_reason(get_db())
+    if block:
+        return block, 409
 
     admin_user = get_user_by_id(session["user_id"])
 
@@ -4943,7 +5084,16 @@ def clear_watchlist():
 def migrate_database():
 
     if v4_primary_enabled():
-        return 'V4 schema maintenance requires the guarded local administration command.', 409
+        from v4_primary import verify_database
+        try:
+            verify_database(get_db())
+        except Exception:
+            app.logger.exception('V4 database verification failed; no migration applied')
+            flash('Database verification needs attention. No data or schema was changed. '
+                  'Review the diagnostic log before approving a migration.')
+        else:
+            flash('Database is up to date for V4. No migration was required; no data or schema was changed.')
+        return redirect(url_for('admin_dashboard'))
 
     admin_user = get_user_by_id(session["user_id"])
 
@@ -5280,8 +5430,12 @@ install_v4_shadow(app, socketio, get_db)
 
 
 def initialize_startup():
-    init_db()
-    seed_demo_data()
+    if v4_primary_enabled():
+        from v4_primary import verify_startup
+        verify_startup(connect_db)
+    else:
+        init_db()
+        seed_demo_data()
     ensure_ai_model_ready()
     ensure_background_monitor()
 
@@ -5292,6 +5446,8 @@ if __name__ != "__main__":
         initialize_startup()
     except Exception as e:
         logging.error(f"Error during startup initialization: {e}")
+        if v4_primary_enabled():
+            raise
 
 
 if __name__ == "__main__":

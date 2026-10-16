@@ -56,7 +56,9 @@ def verify_identity(conn, expected):
             operations.update(piece.strip().upper() for piece in privilege_list.split(','))
         else:
             raise RuntimeError('Runtime grant outside aml')
-    if not {'SELECT', 'INSERT', 'UPDATE'}.issubset(operations):
+    # MySQL reports schema-scoped ALL as one token, not expanded privileges.
+    # Global ALL and grants outside aml have already been rejected above.
+    if 'ALL PRIVILEGES' not in operations and not {'SELECT', 'INSERT', 'UPDATE'}.issubset(operations):
         raise RuntimeError('Required aml runtime grants unavailable')
     return row
 

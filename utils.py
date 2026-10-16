@@ -285,14 +285,9 @@ def send_email(to_email, subject, body, html_body=None):
             logging.info(f"Login successful, sending email to {to_email}")
             server.send_message(msg)
         
-        print(f"✓ Email sent successfully to {to_email}")
-        logging.info(f"Email sent successfully to {to_email}")
+        logging.info("Email sent successfully to %s", to_email)
         return True
         
     except Exception as e:
-        print(f"✗ Failed to send email: {type(e).__name__}: {e}")
-        logging.error(f"Failed to send email to {to_email}: {type(e).__name__}: {e}")
-        import traceback
-        print(f"Full traceback:\n{traceback.format_exc()}")
-        logging.error(f"Full traceback: {traceback.format_exc()}")
+        logging.exception("Failed to send email to %s", to_email)
         return False

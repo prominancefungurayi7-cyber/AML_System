@@ -143,13 +143,42 @@ def test_duplicate_completion_has_no_second_decision_or_notification(tmp_path):
     factory = lambda: connect(path)
     v4_primary.complete_committed(factory, 1, worker=lambda tx: success(tx, .8),
                                   notify=events.append)
-    with pytest.raises(ValueError, match='not awaiting'):
+    with pytest.raises(v4_primary.DecisionAlreadyApplied, match='not awaiting'):
         v4_primary.complete_committed(factory, 1,
                                       worker=lambda tx: pytest.fail('duplicate inference'),
                                       notify=events.append)
     db = connect(path)
     assert db.execute('SELECT COUNT(*) AS n FROM alerts').fetchone()['n'] == 1
     assert len(events) == 1
+    db.close()
+
+
+def test_losing_concurrent_decision_update_is_not_an_inference_failure(tmp_path):
+    from types import SimpleNamespace
+    path = tmp_path / 'concurrent-completion.db'
+    setup(path)
+    calls = []
+    class LostUpdate:
+        def __init__(self):
+            self.db = connect(path)
+        def execute(self, sql, params=()):
+            if sql.startswith('UPDATE transactions SET risk_score='):
+                return SimpleNamespace(rowcount=0)
+            return self.db.execute(sql, params)
+        def __getattr__(self, name):
+            return getattr(self.db, name)
+    def factory():
+        calls.append(1)
+        return LostUpdate() if len(calls) == 3 else connect(path)
+    notifications = []
+    with pytest.raises(v4_primary.DecisionAlreadyApplied, match='Concurrent'):
+        v4_primary.complete_committed(factory, 1, worker=lambda tx: success(tx, .8),
+                                      notify=notifications.append)
+    db = connect(path)
+    assert db.execute('SELECT COUNT(*) FROM alerts').fetchone()[0] == 0
+    assert db.execute('SELECT status FROM v4_shadow_results').fetchone()[0] == 'success'
+    assert [r['balance'] for r in db.execute('SELECT balance FROM users ORDER BY id')] == [489.5, 510.5]
+    assert not notifications
     db.close()
 
 

@@ -41,6 +41,8 @@ class RealtimeBroker:
         self._redis_pubsub = None
         self._kafka_producer = None
         self._instance_id = str(uuid.uuid4())
+        self._redis_ready = threading.Event()
+        self._publish_queue = Queue(maxsize=10000)
         self._init_brokers()
         self._start_redis_listener()
 
@@ -70,11 +72,10 @@ class RealtimeBroker:
                 )
                 self._redis_client.ping()
                 if self.app:
-                    self.app.logger.info(f"RealtimeBroker connected to Redis: {redis_url}")
+                    self.app.logger.info("RealtimeBroker connected to Redis")
             except Exception as e:
                 if self.app:
-                    self.app.logger.error(f"RealtimeBroker failed to connect to Redis: {e}")
-                self._redis_client = None
+                    self.app.logger.warning("Redis unavailable at startup; reconnecting in background (%s)", type(e).__name__)
 
         kafka_bootstrap = os.environ.get("KAFKA_BOOTSTRAP_SERVERS")
         # Skip Kafka if not configured or set to localhost (won't work in cloud)
@@ -90,72 +91,72 @@ class RealtimeBroker:
             except Exception:
                 self._kafka_producer = None
 
-    def _start_redis_listener(self):
-        """Subscribe to Redis pub/sub for cross-instance event fan-out."""
-        if self._redis_client is None:
-            if self.app:
-                self.app.logger.warning("Redis client not available, skipping Redis listener")
-            return
+    def redis_healthy(self):
+        if self._redis_client is None or not self._redis_ready.is_set():
+            return False
         try:
-            self._redis_pubsub = self._redis_client.pubsub(ignore_subscribe_messages=True)
-            self._redis_pubsub.subscribe("aml-events")
-            if self.app:
-                self.app.logger.info("Redis listener started, subscribed to 'aml-events' channel")
+            return bool(self._redis_client.ping())
+        except Exception:
+            return False
 
-            def _listen():
-                consecutive_errors = 0
-                max_consecutive_errors = 5
-                if self.app:
-                    self.app.logger.info("Redis listener thread started")
-                while True:
-                    try:
-                        # Use get_message with timeout for faster response
-                        raw = self._redis_pubsub.get_message(timeout=0.1)
-                        if raw and raw.get("type") == "message":
-                            try:
-                                message = json.loads(raw["data"])
-                                if message.get("publisher") == self._instance_id:
-                                    if self.app:
-                                        self.app.logger.debug(f"Skipping own event from Redis: {message.get('event')}")
-                                    continue
-                                event_name = message.get("event")
-                                # Skip internal SocketIO events to prevent infinite loops
-                                if event_name in ['connect', 'disconnect', 'heartbeat']:
-                                    if self.app:
-                                        self.app.logger.debug(f"Skipping internal SocketIO event from Redis: {event_name}")
-                                    continue
-                                if self.app:
-                                    self.app.logger.info(f"Received event from Redis: {event_name}")
-                                self._local_deliver(event_name, message.get("data"))
-                                consecutive_errors = 0  # Reset error counter on success
-                            except Exception as e:
-                                if self.app:
-                                    self.app.logger.error(f"Error processing Redis message: {e}")
-                                consecutive_errors += 1
-                    except Exception as e:
-                        consecutive_errors += 1
-                        if self.app:
-                            self.app.logger.error(f"Redis listener error: {e}")
-                        # If too many consecutive errors, wait longer before reconnecting
-                        if consecutive_errors >= max_consecutive_errors:
-                            if self.app:
-                                self.app.logger.warning(f"Too many consecutive Redis errors ({consecutive_errors}), waiting 5 seconds before reconnect")
-                            time.sleep(5)
-                        else:
-                            # Brief pause before reconnecting
-                            time.sleep(0.5)
+    def _start_redis_listener(self):
+        """Reconnect automatically, including when Redis starts after Flask."""
+        if self._redis_client is None:
+            return
+
+        def listen():
+            while True:
+                pubsub = None
+                try:
+                    pubsub = self._redis_client.pubsub(ignore_subscribe_messages=False)
+                    self._redis_pubsub = pubsub
+                    pubsub.subscribe("aml-events")
+                    while True:
+                        raw = pubsub.get_message(timeout=1.0)
+                        if not raw:
+                            continue
+                        if raw.get("type") == "subscribe":
+                            self._redis_ready.set()
+                            # Pub/Sub does not replay missed messages. Clients
+                            # reconcile their view from the authorised HTTP page.
+                            self._local_deliver("realtime_resync", {})
+                            continue
+                        if raw.get("type") != "message":
+                            continue
                         try:
-                            self._redis_pubsub = self._redis_client.pubsub(ignore_subscribe_messages=True)
-                            self._redis_pubsub.subscribe("aml-events")
-                        except:
-                            pass
+                            message = json.loads(raw["data"])
+                            if not isinstance(message, dict):
+                                continue
+                            if message.get("publisher") == self._instance_id:
+                                continue
+                            event = message.get("event")
+                            if event in ("connect", "disconnect", "heartbeat"):
+                                continue
+                            self._local_deliver(event, message.get("data"))
+                        except (ValueError, TypeError):
+                            continue
+                except Exception as exc:
+                    if self.app:
+                        self.app.logger.warning("Redis listener reconnecting (%s)", type(exc).__name__)
+                finally:
+                    self._redis_ready.clear()
+                    if pubsub is not None:
+                        pubsub.close()
+                time.sleep(1)
 
-            thread = threading.Thread(target=_listen, daemon=True)
-            thread.start()
-        except Exception as e:
-            if self.app:
-                self.app.logger.error(f"Failed to start Redis listener: {e}")
-            self._redis_pubsub = None
+        def publish_pending():
+            while True:
+                message = self._publish_queue.get()
+                try:
+                    self._redis_client.publish("aml-events", json.dumps(message))
+                except Exception as exc:
+                    if self.app:
+                        self.app.logger.warning("Redis event delivery failed (%s); local delivery retained", type(exc).__name__)
+                finally:
+                    self._publish_queue.task_done()
+
+        threading.Thread(target=listen, daemon=True, name="aml-redis-listener").start()
+        threading.Thread(target=publish_pending, daemon=True, name="aml-redis-publisher").start()
 
     def _local_deliver(self, event_name, payload):
         """Deliver event locally to subscribers and SocketIO."""
@@ -241,20 +242,13 @@ class RealtimeBroker:
             self.app.logger.info(f"RealtimeBroker.publish called for event: {event_name}")
         self._local_deliver(event_name, payload)
 
-        # Publish to Redis in background thread to avoid blocking
+        # A single publisher preserves order without spawning a thread per event.
         if self._redis_client is not None:
-            def publish_to_redis():
-                try:
-                    self._redis_client.publish("aml-events", json.dumps(message))
-                    if self.app:
-                        self.app.logger.info(f"Published event to Redis: {event_name}")
-                except Exception as e:
-                    if self.app:
-                        self.app.logger.error(f"Failed to publish event to Redis: {e}")
-            threading.Thread(target=publish_to_redis, daemon=True).start()
-        else:
-            if self.app:
-                self.app.logger.warning("Redis client not available, event not published to Redis")
+            try:
+                self._publish_queue.put_nowait(message)
+            except Exception:
+                if self.app:
+                    self.app.logger.error("Redis event queue full; local delivery retained")
 
         if self._kafka_producer is not None:
             try:

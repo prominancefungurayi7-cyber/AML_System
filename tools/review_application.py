@@ -136,13 +136,30 @@ def main():
     health = clients['anonymous'].get('/health').json
     assert isinstance(health['database'], dict) and health['primary_model'] == 'V4'
     assert clients['admin'].get('/api/v1/ai-model').json['primary_model'] == 'V4'
-    # These endpoints must reject before any database mutation.
-    for path in ('/admin/generate-transactions', '/admin/generate-structuring-scenario',
+    # Restored V4 generation requires the signed form and session CSRF token.
+    # An empty POST must fail before any payment work.
+    response = clients['admin'].post('/admin/generate-transactions')
+    if response.status_code != 403:
+        failures.append(f'Generation request protection: {response.status_code}')
+    response = clients['admin'].get('/api/admin/generation')
+    if response.status_code != 200 or not response.is_json:
+        failures.append(f'Generation progress access: {response.status_code}')
+    for role in ('anonymous', 'customer', 'compliance'):
+        for path in ('/api/admin/generation', '/admin/generate-transactions'):
+            response = (clients[role].get(path) if path.startswith('/api/')
+                        else clients[role].post(path))
+            if response.status_code not in (302, 401, 403):
+                failures.append(f'Generation authorization {role} {path}: {response.status_code}')
+    # Unsupported legacy generators and destructive maintenance remain blocked.
+    for path in ('/admin/generate-structuring-scenario',
                  '/admin/generate-network-scenario', '/admin/generate-agent-scenario',
-                 '/admin/clear-transactions', '/admin/migrate-database'):
+                 '/admin/clear-transactions'):
         response = clients['admin'].post(path)
         if response.status_code not in (409, 503):
             failures.append(f'V4 blocked operation {path}: {response.status_code}')
+    response = clients['admin'].post('/admin/migrate-database', follow_redirects=True)
+    if response.status_code != 200 or b'No migration was required' not in response.data:
+        failures.append('V4 database maintenance verification did not pass')
     # Exercise actual socket authorization and private balance delivery without a network server.
     anonymous_socket = module.socketio.test_client(app, flask_test_client=clients['anonymous'])
     assert not anonymous_socket.is_connected()
@@ -192,10 +209,10 @@ def main():
                     page.goto('http://127.0.0.1:5000' + path, wait_until='networkidle')
                     page.screenshot(path=str(out / f'{role}-{path.strip("/").replace("/", "-")}-{width}.png'), full_page=True)
                     if page.locator('.sidebar-item').count() and 'dashboard' in page.content():
-                        for label in ('Transactions', 'Alerts', 'User Management', 'Watchlist', 'Activity Feed', 'Settings'):
+                        for label in ('Transactions', 'Transaction Generation', 'Alerts', 'User Management', 'Watchlist', 'Activity Feed', 'Settings'):
                             button = page.get_by_role('button', name=label, exact=True)
                             if button.count():
-                                if width < 1000:
+                                if page.get_by_role('button', name='Toggle navigation').get_attribute('aria-expanded') != 'true':
                                     page.get_by_role('button', name='Toggle navigation').click()
                                 button.click()
                                 page.wait_for_timeout(80)

@@ -23,11 +23,19 @@ def test_primary_mode_requires_explicit_setting(monkeypatch):
 
 
 def test_all_legacy_batch_routes_stop_before_any_database_work():
-    for name in ('generate_transactions', 'generate_structuring_scenario',
+    for name in ('generate_structuring_scenario',
                  'generate_network_scenario', 'generate_agent_scenario'):
         route = _function(name, {'v4_primary_enabled': lambda: True})
         message, status = route()
         assert status == 503 and 'canonical' in message
+
+
+def test_generation_dispatches_to_canonical_v4_before_legacy_database_work():
+    route = _function('generate_transactions', {
+        'v4_primary_enabled': lambda: True,
+        'generate_v4_transactions': lambda: 'canonical V4 generator',
+    })
+    assert route() == 'canonical V4 generator'
 
 
 def test_primary_branch_precedes_stage14_inference():

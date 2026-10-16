@@ -19,13 +19,14 @@ V4 detects patterns from a synthetic research benchmark. It does not establish t
 
 Use the existing `.env` and existing MySQL database. Do not recreate the database or seed another dataset. Keep credentials out of source control and presentations.
 
-After database readiness passes and activation is approved, run from the project directory in PowerShell:
+V4 was activated and verified locally on 12 October 2026. To start it again when the application is stopped, run from the project directory in PowerShell:
 
 ```powershell
 $env:AML_PRIMARY_MODEL = 'V4'
 $env:AML_RULE_ENGINE_ENABLED = 'ON'
 $env:SOCKETIO_ALLOWED_ORIGINS = 'http://127.0.0.1:5000'
 $env:V4_SHADOW_ENABLED = 'OFF'
+$env:CANONICAL_MOBILE_MONEY_ENABLED = 'ON'
 & .\.venv\Scripts\python.exe .\server.py
 ```
 
@@ -47,11 +48,27 @@ Do not run the entire historical test directory against the local application da
 
 ## Current demonstration readiness
 
-Read-only review on 11 October 2026 found **18 users, 1,000 transactions and 804 alerts**. The capture journal contains **7,800 source deletions and 1,000 source inserts**, with no canonical events for those inserts. The existing authority returns **INCOMPLETE** (1,000 missing canonical counterparts; 846 backdated before the boundary). There are no persisted V4 results.
+**V4 is ACTIVE.** Authorized recovery archived the 6,100 generated transactions and their alerts/audit evidence, then restored the verified 7,800-transaction baseline without changing the schema or history authority. The approved $0.01 customer transfer **14621** produced a genuine frozen V4 result: **normal**, suspicious probability **0.304357%**, threshold **0.50**. History is `COMPLETE_VERIFIED`.
 
-The UI and access checks can pass while inference is blocked. Do not activate V4 or execute a financial demonstration until authorized history recovery is complete. Do not fabricate canonical records, replace the authority, reset the boundary or bypass the frozen gate.
+At completion of the approved single-payment tests, there were **18 users, 7,802 transactions, 415 alerts and two persisted V4 inferences**. The approved admin generator test on 13 October 2026 created transaction **14622**, a **$17.74** demo transfer classified **normal** by frozen V4 (suspicious probability **0.465588%**). Balance reconciliation, fresh history, compliance visibility, progress reporting and same-request duplicate protection passed. Authentication, customer/compliance pages, reports and staff-only notifications also passed prior live checks. See [the final integration report](docs/V4_LOCAL_INTEGRATION.md) for configuration, evidence and safe rollback.
 
-The existing running process needs a restart to load backend changes. No process restart, database repair, model training or financial test was performed by the UI cleanup.
+### Transaction generation
+
+The admin generator defaults to **70% routine payment inputs and 30% suspicious-scenario inputs**, rounding towards routine payments for a single-payment request. Dedicated scenario modes remain available. Routine payers and payees have separate roles; routine payments no longer create reciprocal loops. Suspicious inputs combine repeated split payments and converging/onward wallet transfers, with agent cash activity when an active agent exists. All payments use current timestamps, existing demo wallets, available balances, canonical capture and post-commit V4 inference.
+
+The input mix is **not a guaranteed prediction ratio or an accuracy measure**. The dashboard shows input intentions separately from persisted V4 normal/suspicious/pending/error counts. Independent AML rules remain enabled; rapid large batches can still trigger velocity alerts. Insufficient funds roll back the entire batch. Existing signed payment retries keep their original plan; unsubmitted forms from the old planner require a reload.
+
+Nonfinancial checks on 13 October 2026 used the unchanged frozen V4 model, feature extractor and threshold. Against the current 102-event verified history, a hypothetical 100-payment plan produced **70/70 routine predictions normal**, and **13/30 suspicious-scenario predictions suspicious** (3 structuring, 10 network). These results are offline diagnostics, not committed payments or measured production accuracy. Agent growth behaviours need sufficient real history; choosing an agent scenario cannot guarantee a flag. No existing transaction or prediction was relabelled.
+
+Scenario funding roles are selected from available demo balances and fixed in each signed request. The mixed plan combines near-threshold transfers with smaller repeated splits. Read-only balance projections passed for every supported mixed-batch size, including 5,000, against the current balances; this does not reserve funds or override the atomic insufficient-funds check.
+
+Reproduce the nonfinancial check against verified local history:
+
+```powershell
+& .\.venv\Scripts\python.exe -B .\tools\check_v4_generation.py --local-history
+```
+
+The existing approved customer and generator payments remain evidence that the live V4 path works. The new mix has not been submitted as a live financial batch. Frozen assets, history authority and database schema are unchanged. Legacy generation and ledger clearing remain blocked to protect canonical history.
 
 ## Presentation flow
 
@@ -59,6 +76,6 @@ The existing running process needs a restart to load backend changes. No process
 2. Sign in as compliance: alert queue, individual case, independent rules and recorded AI decision.
 3. Open reports: SAR/CTR workflow records and transaction summaries. This prototype does not claim an external regulator submission integration.
 4. Open admin: users, KYC, watchlist and configured model information.
-5. Explain the post-commit boundary, idempotent request ID, history gate and audited retry. Demonstrate a real V4 decision only after an approved controlled payment has succeeded.
+5. Show transaction **14621** and its persisted V4 result. Explain the post-commit boundary, unique request ID, history gate and audited retry without generating another dataset.
 
 Browser dependencies are pinned and served locally from `static/vendor`; their license files are included. Customer, admin and compliance dashboards share navigation, themes and a single authenticated socket connection per page.

@@ -4,7 +4,7 @@ from unittest.mock import Mock
 import numpy as np
 import pytest
 
-from ai_explanations import explain_features
+from ai_explanations import explain_features, reasoning_fields
 from ai_stage13_features import Stage13FeatureService
 from ai_stage14_model import Stage14ModelService
 
@@ -17,7 +17,7 @@ def test_repeated_near_threshold_activity_has_evidence_and_possible_typology():
     assert "100%" in reason
     assert "synthetic $10,000 threshold" in reason
     assert "may indicate structuring" in reason
-    assert "not model feature attributions or proof" in reason
+    assert "not model feature attributions or proof" not in reason
 
 
 def test_single_near_threshold_observation_does_not_claim_repetition():
@@ -82,3 +82,32 @@ def test_historical_explanation_excludes_current_and_future_transactions():
         reason = explain_features(features, True)
         assert "4 earlier outgoing transactions" in reason
         assert "may indicate structuring" in reason
+
+
+@pytest.mark.parametrize('decision', ['normal', 'suspicious_pattern', 'pending_v4', 'inference_error'])
+def test_rule_findings_never_become_ai_reasoning(decision):
+    tx = dict(ai_risk_level=decision, ai_reason='V4 recorded result',
+              rule_level='critical', rule_reason='Five payments within an hour',
+              rules_triggered='[{"rule_id":"R04","reason":"Five payments within an hour"}]')
+    fields = reasoning_fields(tx, {'reason': 'Combined historical alert reason'})
+    assert fields['ai_risk_level'] == decision
+    assert fields['ai_reason'] == 'V4 recorded result'
+    assert fields['rule_reason'] == 'Five payments within an hour'
+    assert fields['rule_findings'][0]['rule_id'] == 'R04'
+    assert fields['unclassified_reason'] is None
+    assert tx['ai_reason'] == 'V4 recorded result'
+
+
+def test_missing_source_is_not_guessed_from_combined_reason():
+    fields = reasoning_fields(None, {'reason': 'AI and rule review required', 'rules_triggered': 'invalid'})
+    assert fields['ai_risk_level'] == fields['rule_level'] == 'unavailable'
+    assert fields['unclassified_reason'] == 'AI and rule review required'
+    assert fields['ai_reason'] != fields['unclassified_reason']
+    assert fields['rule_reason'] != fields['unclassified_reason']
+
+
+def test_rule_evidence_survives_missing_transaction():
+    fields = reasoning_fields(None, {'reason': 'Historical alert',
+                                    'rules_triggered': '[{"rule_id":"R02","reason":"Repeated split payments"}]'})
+    assert fields['rule_reason'] == 'Repeated split payments'
+    assert fields['ai_risk_level'] == 'unavailable'

@@ -4,6 +4,37 @@ The descriptive cutoffs below do not change model inputs, scores or decisions.
 Reporting bands refer to this prototype's synthetic data, not legal thresholds.
 """
 import math
+import json
+
+
+def display_reason(reason):
+    """Omit retired explanatory copy when displaying existing audit records."""
+    if not isinstance(reason, str):
+        return reason
+    return reason.replace(
+        " These are history-based investigation leads, not model feature attributions "
+        "or proof of money laundering.", ""
+    )
+
+
+def reasoning_fields(transaction=None, alert=None):
+    """Present recorded sources separately; never infer a source from combined prose."""
+    tx, record = dict(transaction or {}), dict(alert or {})
+    raw = tx.get('rules_triggered') or record.get('rules_triggered') or '[]'
+    try:
+        rules = json.loads(raw) if isinstance(raw, str) else raw
+    except (TypeError, ValueError):
+        rules = []
+    rules = [r for r in rules if isinstance(r, dict) and r.get('reason')] if isinstance(rules, list) else []
+    rule_reason = tx.get('rule_reason') or '; '.join(str(r['reason']) for r in rules)
+    return dict(
+        ai_risk_level=tx.get('ai_risk_level') or 'unavailable',
+        ai_reason=display_reason(tx.get('ai_reason')) or 'No separate AI reasoning recorded.',
+        rule_level=tx.get('rule_level') or 'unavailable',
+        rule_reason=display_reason(rule_reason) or 'No separate rule reasoning recorded.',
+        rule_findings=rules,
+        unclassified_reason=display_reason(record.get('reason')) if not tx.get('ai_reason') and not rule_reason else None,
+    )
 
 
 def explain_features(features, is_suspicious):
@@ -78,6 +109,4 @@ def explain_features(features, is_suspicious):
     return (
         "Observed indicators: " + " ".join(observations)
         + " Possible activity: " + " ".join(activities)
-        + " These are history-based investigation leads, not model feature attributions "
-        "or proof of money laundering."
     )

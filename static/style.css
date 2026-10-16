@@ -1,25 +1,25 @@
 /* EpoCash workspace: shared tokens, components and responsive layouts. */
 :root {
   color-scheme: light;
-  --EpoCash-bg:#f3f6f7;
+  --EpoCash-bg:#f5f3ed;
   --EpoCash-panel:#fff;
-  --EpoCash-panel-strong:#edf3f4;
-  --EpoCash-text:#19333b;
-  --EpoCash-muted:#5c7078;
-  --EpoCash-border:#dce5e8;
-  --EpoCash-border-strong:#b7c8cd;
-  --EpoCash-green:#087c70;
-  --EpoCash-green-dark:#086157;
-  --EpoCash-gold:#087c70;
-  --EpoCash-gold-soft:#e0f4ec;
-  --EpoCash-dark:#102f36;
+  --EpoCash-panel-strong:#f0efe9;
+  --EpoCash-text:#202b3d;
+  --EpoCash-muted:#69717d;
+  --EpoCash-border:#e2e1da;
+  --EpoCash-border-strong:#babfc7;
+  --EpoCash-green:#3955c6;
+  --EpoCash-green-dark:#2d429c;
+  --EpoCash-gold:#3955c6;
+  --EpoCash-gold-soft:#edf0d9;
+  --EpoCash-dark:#202b3d;
   --EpoCash-danger:#ba3547;
   --EpoCash-info:#2366a4;
   --EpoCash-warning:#986315;
   --EpoCash-critical:#ad2440;
   --EpoCash-success:#08745b;
-  --EpoCash-hover:#edf4f3;
-  --EpoCash-shadow:0 4px 20px #17323b06;
+  --EpoCash-hover:#f1f2fa;
+  --EpoCash-shadow:0 4px 20px #202b3d06;
   --EpoCash-glow:none;
   --space-1:.5rem;
   --space-2:.75rem;
@@ -30,18 +30,18 @@
 }
 html[data-theme="dark"] {
   color-scheme:dark;
-  --EpoCash-bg:#101e25;
-  --EpoCash-panel:#172a33;
-  --EpoCash-panel-strong:#203741;
-  --EpoCash-text:#e2eef0;
-  --EpoCash-muted:#a4b9c1;
-  --EpoCash-border:#2b424d;
-  --EpoCash-border-strong:#48636e;
-  --EpoCash-green:#55c9ad;
-  --EpoCash-green-dark:#7edfc4;
-  --EpoCash-gold:#70dabb;
-  --EpoCash-gold-soft:#203e36;
-  --EpoCash-hover:#223d46;
+  --EpoCash-bg:#161d29;
+  --EpoCash-panel:#202b3d;
+  --EpoCash-panel-strong:#28354a;
+  --EpoCash-text:#f0f1eb;
+  --EpoCash-muted:#acb7c9;
+  --EpoCash-border:#394459;
+  --EpoCash-border-strong:#536078;
+  --EpoCash-green:#afbdff;
+  --EpoCash-green-dark:#c5cfff;
+  --EpoCash-gold:#e3edaa;
+  --EpoCash-gold-soft:#354235;
+  --EpoCash-hover:#2b384e;
 }
 * {
   box-sizing:border-box
@@ -107,13 +107,13 @@ svg {
   top:8px
 }
 .topbar {
-  height:76px;
+  height:80px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 28px;
+  padding:0 32px;
   gap:20px;
-  background:var(--EpoCash-panel);
+  background:var(--EpoCash-bg);
   border-bottom:1px solid var(--EpoCash-border);
   position:sticky;
   top:0;
@@ -133,14 +133,16 @@ svg {
 .brand-symbol {
   display:grid;
   place-items:center;
-  width:40px;
-  height:40px;
-  background:#102f36;
-  color:#8be2c6;
-  border-radius:12px;
-  font-size:30px;
-  font-weight:800;
-  line-height:1
+  width:42px;
+  height:42px;
+  background:#202b3d;
+  color:#e3edaa;
+  border-radius:50%;
+  font-family:Georgia,serif;
+  font-size:32px;
+  font-weight:700;
+  line-height:1;
+  padding-bottom:5px
 }
 .brand-home strong {
   display:block;
@@ -151,18 +153,6 @@ svg {
   display:block;
   font-size:11px;
   letter-spacing:.4px
-}
-.engine-badge {
-  font-size:12px;
-  font-weight:700;
-  border:1px solid var(--EpoCash-border);
-  padding:6px 10px;
-  border-radius:20px;
-  white-space:nowrap
-}
-.engine-badge span {
-  font-weight:400;
-  color:var(--EpoCash-muted)
 }
 .account-link {
   color:var(--EpoCash-text);
@@ -207,17 +197,17 @@ svg {
   padding:1px 4px
 }
 .page-shell>main {
-  max-width:1700px;
+  max-width:1800px;
   margin:0 auto;
-  padding:32px 36px 40px 272px;
-  min-height:calc(100vh - 132px)
+  padding:38px 40px 48px;
+  min-height:calc(100vh - 136px)
 }
 .no-sidebar>main {
   padding:32px;
   max-width:1300px
 }
 .site-footer {
-  margin-left:236px;
+  margin-left:0;
   padding:14px 36px;
   border-top:1px solid var(--EpoCash-border);
   font-size:11px;
@@ -229,21 +219,25 @@ svg {
   margin-left:0
 }
 .hero-banner {
-  margin:0 0 28px;
-  padding:0;
-  background:none;
-  max-width:900px
+  position:relative;
+  isolation:isolate;
+  margin:0 0 32px;
+  padding:0 160px 28px 0;
+  border-bottom:1px solid var(--EpoCash-border)
 }
 .hero-badge {
-  color:var(--EpoCash-green);
-  font-size:11px;
-  font-weight:700;
+  color:var(--EpoCash-muted);
+  font-size:10px;
+  font-weight:600;
   text-transform:uppercase;
-  letter-spacing:1.6px;
-  margin-bottom:10px
+  letter-spacing:2px;
+  margin-bottom:18px
 }
 .hero-banner h2 {
-  margin:0 0 10px
+  font:600 clamp(28px,2.7vw,40px)/1.2 "Segoe UI",Arial,sans-serif;
+  letter-spacing:-1px;
+  margin:0 0 14px;
+  text-wrap:balance
 }
 .hero-banner p {
   color:var(--EpoCash-muted);
@@ -256,33 +250,48 @@ svg {
 }
 .admin-sidebar {
   position:fixed;
-  top:76px;
-  bottom:0;
-  left:0;
-  width:236px;
+  top:96px;
+  bottom:16px;
+  left:16px;
+  width:230px;
   z-index:50;
-  background:var(--EpoCash-panel);
-  border-right:1px solid var(--EpoCash-border);
-  padding:26px 16px 18px;
+  background:#202b3d;
+  color:#f4f4ee;
+  border:1px solid #354258;
+  border-radius:18px;
+  padding:28px 14px 22px;
   display:flex;
   flex-direction:column;
-  overflow:auto
+  overflow:auto;
+  scrollbar-color:#566177 transparent;
+  transform:translateX(calc(-100% - 16px));
+  visibility:hidden;
+  pointer-events:none;
+  transition:transform .2s ease,visibility .2s
+}
+.admin-sidebar.open {
+  transform:translateX(0);
+  visibility:visible;
+  pointer-events:auto
 }
 .sidebar-brand {
-  padding:0 14px 24px
+  padding:0 14px 24px;
+  margin-bottom:14px;
+  border-bottom:1px solid #ffffff1a
 }
 .sidebar-brand__title {
   display:block;
-  font-size:10px;
-  letter-spacing:1.8px;
-  color:var(--EpoCash-muted);
-  font-weight:700
+  font-size:9px;
+  letter-spacing:2px;
+  color:#a9b5c7;
+  font-weight:600
 }
 .sidebar-brand__role {
   display:block;
-  margin-top:6px;
-  font-size:13px;
-  font-weight:600
+  margin-top:8px;
+  font-size:15px;
+  font-weight:500;
+  color:#f3f3eb
 }
 .admin-sidebar nav {
   display:flex;
@@ -299,22 +308,23 @@ svg {
   text-align:left;
   background:none;
   border:0;
-  border-radius:9px;
-  color:var(--EpoCash-muted);
+  border-radius:8px;
+  color:#c3cad7;
   font-size:13px;
-  font-weight:500;
+  font-weight:400;
   cursor:pointer;
-  box-shadow:none
+  box-shadow:none;
+  transition:background .15s,color .15s
 }
 .sidebar-item:hover {
-  background:var(--EpoCash-hover);
+  background:#354258;
   text-decoration:none;
-  color:var(--EpoCash-text)
+  color:#fff
 }
 .sidebar-item.active {
-  background:var(--EpoCash-gold-soft);
-  color:var(--EpoCash-green);
-  font-weight:700
+  background:#e3edaa;
+  color:#202b3d;
+  font-weight:600
 }
 .sidebar-item svg {
   width:18px;
@@ -329,7 +339,7 @@ svg {
   align-items:center;
   gap:10px;
   background:none;
-  color:var(--EpoCash-muted);
+  color:#c3cad7;
   padding:0;
   border:0;
   font-size:12px
@@ -352,7 +362,7 @@ html[data-theme="dark"] .theme-toggle__thumb {
   transform:translateX(14px)
 }
 .sidebar-toggle {
-  display:none;
+  display:inline-flex;
   padding:8px;
   background:transparent;
   color:var(--EpoCash-text);
@@ -369,24 +379,29 @@ html[data-theme="dark"] .theme-toggle__thumb {
   margin-bottom:24px
 }
 .metric-tile {
-  padding:20px 22px;
+  position:relative;
+  padding:22px;
   background:var(--EpoCash-panel);
   border:1px solid var(--EpoCash-border);
-  border-radius:14px;
-  box-shadow:var(--EpoCash-shadow)
+  border-radius:10px;
+  min-width:0
 }
 .metric-label {
   display:block;
+  padding-right:24px;
   color:var(--EpoCash-muted);
   font-size:12px;
   font-weight:500
 }
 .metric-tile strong {
   display:block;
-  font-size:28px;
-  letter-spacing:-.7px;
-  margin:8px 0 2px;
-  font-variant-numeric:tabular-nums
+  font-family:Bahnschrift,"Segoe UI",sans-serif;
+  font-size:clamp(24px,2.35vw,36px);
+  font-weight:500;
+  letter-spacing:-1px;
+  margin:22px 0 2px;
+  font-variant-numeric:tabular-nums;
+  overflow-wrap:anywhere
 }
 .metric-tile small {
   font-size:11px
@@ -403,10 +418,10 @@ html[data-theme="dark"] .theme-toggle__thumb {
 .card,.panel {
   background:var(--EpoCash-panel);
   border:1px solid var(--EpoCash-border);
-  border-radius:14px;
-  padding:24px;
+  border-radius:12px;
+  padding:26px;
   min-width:0;
-  box-shadow:var(--EpoCash-shadow)
+  box-shadow:none
 }
 .table-card {
   overflow-x:auto
@@ -416,7 +431,9 @@ html[data-theme="dark"] .theme-toggle__thumb {
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin-bottom:20px
+  margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--EpoCash-border)
 }
 .panel-heading-row h3 {
   margin:0
@@ -429,24 +446,33 @@ html[data-theme="dark"] .theme-toggle__thumb {
   color:var(--EpoCash-muted)
 }
 .account-card {
-  background:#102f36;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#3955c6;
   color:#fff;
-  min-height:250px;
+  min-height:310px;
   border:0;
-  padding:30px
+  padding:32px
 }
 .account-card .muted-line {
-  color:#b8ced1
+  color:#e0e6ff;
+  max-width:290px;
+  font-size:12px
 }
 .account-card .metric {
-  font-size:40px;
-  letter-spacing:-1px;
-  color:#8be2c6;
-  margin:22px 0
+  font:500 clamp(34px,3.5vw,52px)/1.1 Bahnschrift,"Segoe UI",sans-serif;
+  letter-spacing:-1.8px;
+  color:#fff;
+  margin:30px 0;
+  overflow-wrap:anywhere
 }
 .account-card .status-pill {
-  background:#25494e;
-  color:#b0efda
+  background:#ffffff1c;
+  border:1px solid #ffffff4a;
+  color:#fff;
+  letter-spacing:1.5px;
+  text-transform:uppercase
 }
 .account-card h3 {
   font-size:14px;
@@ -719,6 +745,38 @@ button:disabled {
 .flash-messages li+li {
   margin-top:8px
 }
+.notification-region {
+  position:fixed;
+  top:calc(88px + env(safe-area-inset-top, 0px));
+  right:16px;
+  width:min(400px, calc(100vw - 32px));
+  display:grid;
+  gap:10px;
+  z-index:1200;
+  pointer-events:none
+}
+.notification-toast {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:16px;
+  color:var(--EpoCash-text);
+  background:var(--EpoCash-panel);
+  border:1px solid var(--EpoCash-border);
+  border-left:3px solid var(--EpoCash-green);
+  border-radius:12px;
+  box-shadow:0 8px 24px rgb(0 0 0 / 14%);
+  pointer-events:auto;
+  animation:notification-enter 160ms ease-out;
+  transition:opacity 300ms ease, transform 300ms ease
+}
+.notification-toast p { margin:0; flex:1; font-size:13px; overflow-wrap:anywhere }
+.notification-close { padding:0; min-width:24px; min-height:24px; border:0; background:transparent; color:inherit; font-size:20px; cursor:pointer }
+.notification-toast.is-leaving { opacity:0; transform:translateY(-8px); pointer-events:none }
+@keyframes notification-enter {
+  from { opacity:0; transform:translateY(-8px) }
+  to { opacity:1; transform:translateY(0) }
+}
 .auth-layout {
   display:grid;
   grid-template-columns:1.05fr 1fr;
@@ -728,7 +786,7 @@ button:disabled {
   border:1px solid var(--EpoCash-border);
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 16px 60px #19333b0a
+  box-shadow:0 16px 60px #202b3d0a
 }
 .auth-panel {
   padding:52px
@@ -737,20 +795,22 @@ button:disabled {
   display:flex;
   flex-direction:column;
   justify-content:center;
-  background:#102f36;
+  background:#202b3d;
   color:#fff;
-  position:relative
+  position:relative;
+  isolation:isolate;
+  overflow:hidden
 }
 .auth-panel--brand .hero-badge {
-  color:#8be2c6
+  color:#e3edaa
 }
 .auth-panel--brand h2 {
-  font-size:46px;
-  margin:16px 0;
+  font:600 42px/1.2 "Segoe UI",Arial,sans-serif;
+  margin:16px 0 24px;
   letter-spacing:-1.5px
 }
 .auth-panel--brand p {
-  color:#bbd0d3;
+  color:#c3cad5;
   font-size:15px;
   max-width:320px
 }
@@ -761,7 +821,7 @@ button:disabled {
 }
 .auth-point {
   font-size:13px;
-  color:#d2e4e5;
+  color:#dbe0ea;
   display:flex;
   gap:12px;
   align-items:center
@@ -771,8 +831,8 @@ button:disabled {
   width:23px;
   height:23px;
   border-radius:50%;
-  background:#264b4d;
-  color:#9be5ce;
+  background:#39475b;
+  color:#e3edaa;
   display:grid;
   place-items:center
 }
@@ -999,7 +1059,7 @@ button:disabled {
   font-size:13px
 }
 .message-group.sent .message-bubble {
-  background:#11695f;
+  background:#3955c6;
   color:white;
   border:0;
   border-radius:12px 12px 2px 12px
@@ -1099,6 +1159,36 @@ button:disabled {
   display:grid;
   place-items:center
 }
+
+/* Atelier identity: ink navigation, ivory canvas and citron accents. */
+.account-avatar { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:var(--EpoCash-panel-strong); border:1px solid var(--EpoCash-border-strong); font-size:12px; font-weight:600; }
+.hero-banner::after { content:''; position:absolute; z-index:-1; right:12px; top:0; width:112px; height:112px; border:1px solid var(--EpoCash-border-strong); border-radius:50%; box-shadow:inset 0 0 0 18px var(--EpoCash-bg),inset 0 0 0 19px var(--EpoCash-border),inset 0 0 0 36px var(--EpoCash-bg); background:#dce79f; transform:rotate(-25deg) scaleX(.75); }
+.metric-index { position:absolute; top:23px; right:20px; color:var(--EpoCash-muted); font:10px/1.4 Consolas,monospace; opacity:.65; }
+.metric-tile:first-child { background:#202b3d; border-color:#202b3d; color:#f5f3ed; }
+.metric-tile:first-child .metric-label,.metric-tile:first-child small,.metric-tile:first-child .metric-index { color:#c6d0df; }
+.metric-tile:first-child strong { color:#e3edaa; }
+.account-card::after { content:''; position:absolute; right:-100px; top:-70px; z-index:-1; width:320px; height:320px; border:1px solid #ffffff30; border-radius:50%; box-shadow:0 0 0 32px #ffffff0a,0 0 0 64px #ffffff0a,0 0 0 96px #ffffff0a; pointer-events:none; }
+.auth-panel--brand::after { content:''; position:absolute; z-index:-1; width:320px; height:320px; right:-200px; bottom:-180px; border:1px solid #e3edaa60; border-radius:50%; box-shadow:0 0 0 30px #e3edaa08,0 0 0 60px #e3edaa08,0 0 0 90px #e3edaa08; pointer-events:none; }
+.sidebar-item.active::after { content:'\2197'; margin-left:auto; font-size:15px; }
+
+/* Settings actions remain visible; restrictions are explained beside each action. */
+.settings-layout { display:grid; gap:24px; }
+.maintenance-row { display:flex; align-items:center; justify-content:space-between; gap:28px; padding:24px 0; border-bottom:1px solid var(--EpoCash-border); }
+.maintenance-row:first-of-type { padding-top:8px; }
+.maintenance-row:last-child { border-bottom:0; padding-bottom:0; }
+.maintenance-description { min-width:0; max-width:660px; }
+.maintenance-description h4 { margin:0 0 8px; font-size:15px; }
+.maintenance-description p { margin:0; color:var(--EpoCash-muted); font-size:13px; }
+.maintenance-description .maintenance-restriction { margin-top:10px; padding-left:12px; border-left:2px solid var(--EpoCash-border-strong); font-size:12px; }
+.maintenance-row form { flex-shrink:0; }
+.maintenance-row button { min-width:172px; }
+.maintenance-row button:disabled { background:var(--EpoCash-panel-strong); color:var(--EpoCash-muted); border:1px solid var(--EpoCash-border-strong); opacity:1; }
+button,.button,input,select,textarea { transition:background-color .15s,border-color .15s,color .15s,box-shadow .15s; }
+input:focus,select:focus,textarea:focus { border-color:var(--EpoCash-green); }
+.section-transition { animation:section-enter .16s ease-out; }
+@keyframes section-enter { from { opacity:.65; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:700px) { .maintenance-row { flex-direction:column; align-items:stretch; gap:16px; } .maintenance-row button { width:100%; } }
+
 @media(min-width:1001px) {
   .sidebar-overlay.active {
     display:none
@@ -1106,7 +1196,7 @@ button:disabled {
 }
 @media(max-width:1200px) {
   .page-shell>main {
-    padding:28px 24px 32px 260px
+    padding:28px 24px 32px
   }
   .no-sidebar>main {
     padding:24px
@@ -1126,6 +1216,10 @@ button:disabled {
     padding:24px
   }
   .admin-sidebar {
+    top:80px;
+    left:0;
+    bottom:0;
+    border-radius:0 18px 18px 0;
     transform:translateX(-100%);
     transition:transform .2s
   }
@@ -1138,7 +1232,7 @@ button:disabled {
   .sidebar-overlay.active {
     display:block;
     position:fixed;
-    inset:76px 0 0;
+    inset:80px 0 0;
     background:#071d2a66;
     z-index:45
   }
@@ -1164,7 +1258,7 @@ button:disabled {
   .brand-block,.topbar-actions {
     gap:10px
   }
-  .brand-home small,.engine-badge,.header-caption {
+  .brand-home small,.header-caption {
     display:none
   }
   .brand-home strong {
@@ -1181,9 +1275,10 @@ button:disabled {
   .page-shell>main {
     padding:24px 16px
   }
-  .hero-banner h2 {
-    font-size:26px
-  }
+  .hero-banner { padding:0 0 24px; }
+  .hero-banner::after { display:none; }
+  .hero-banner h2 { font-size:30px; letter-spacing:-.7px; }
+  .account-avatar { display:none; }
   .hero-banner p {
     font-size:13px
   }
@@ -1285,6 +1380,19 @@ button:disabled {
 }
 .filter-bar {
   max-width:280px
+}
+.generation-progress {
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--EpoCash-border)
+}
+.generation-progress progress {
+  width:100%;
+  height:8px;
+  accent-color:var(--EpoCash-green)
+}
+.generation-card>form+form {
+  margin-top:16px
 }
 details>summary {
   cursor:pointer;

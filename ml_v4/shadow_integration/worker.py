@@ -1,4 +1,4 @@
-"""Fixed isolated child: technical reassessment then unchanged Stage3 inference."""
+"""Read-only isolated child: verify committed source, then frozen Stage3 inference."""
 import argparse
 import hashlib
 import json
@@ -22,43 +22,30 @@ def main(tx,source_digest,server_uuid):
         from ml_v4.frozen_inference.service import verified_bytes
         pins=json.loads((ROOT/'ml_v4/frozen_inference/history_authority.json').read_text())
         for path,h in pins.items():verified_bytes({'path':path,'sha256':h})
-        c=connection();locked=False
+        c=connection()
         try:
-            locked=c.execute("SELECT GET_LOCK('cmm_history_admin_v1',5) AS ok").fetchone()['ok']==1
-            if not locked:return error(tx,'HISTORY_INCOMPLETE')
-            c.rollback()
-            # Stage3 performs exact trigger and original-boundary checks. A stale
-            # attestation is expected; repeat checks independently before writes.
-            from canonical_history_journal import triggers
-            from canonical_history_store import current_scope,attest
-            rows=c.execute('SELECT TRIGGER_NAME,EVENT_OBJECT_TABLE,EVENT_MANIPULATION,ACTION_TIMING,ACTION_STATEMENT FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA=DATABASE()').fetchall()
-            rows=[r for r in rows if r['TRIGGER_NAME'].lower().startswith('cmm_')]
-            want=triggers('mysql')
-            if {r['TRIGGER_NAME'] for r in rows}!=set(want):return error(tx,'HISTORY_INCOMPLETE')
-            for r in rows:
-                table,op,body=want[r['TRIGGER_NAME']]
-                if (r['EVENT_OBJECT_TABLE'],r['EVENT_MANIPULATION'],r['ACTION_TIMING'],r['ACTION_STATEMENT'])!=(table,op,'AFTER',body):return error(tx,'HISTORY_INCOMPLETE')
-            original=json.loads((ROOT/'ml_v4/evidence/integration_stage2a2/observation_boundary.json').read_text())
-            scope=current_scope(c,'controlled-prototype-v1')
-            for k in ('scope_id','scope_version','start_timestamp','start_transaction_id_exclusive','source_ledger','canonical_version','preexisting_parent_ids','preexisting_change_ids'):
-                if scope is None or scope[k]!=original[k]:return error(tx,'HISTORY_INCOMPLETE')
-            row=c.execute('SELECT * FROM canonical_mobile_money_events WHERE transaction_id=?',(tx,)).fetchone()
-            if not row:return error(tx,'EVENT_UNAVAILABLE')
-            operations={r['operation'] for r in c.execute('SELECT operation FROM cmm_source_changes WHERE transaction_id=?',(tx,)).fetchall()}
-            if not {'SOURCE_INSERT','CANONICAL_INSERT'}.issubset(operations):return error(tx,'HISTORY_INCOMPLETE')
-            if (c.execute('SELECT @@server_uuid AS id').fetchone()['id']!=server_uuid or
-                hashlib.sha256(json.dumps(dict(row),sort_keys=True,separators=(',',':')).encode()).hexdigest()!=source_digest):
+            # The primary coordinator has already refreshed the attestation using
+            # the existing local authority. This child must never replace it.
+            verified_snapshot(c,tx)
+            identity=c.execute('SELECT @@server_uuid AS uuid, CURRENT_USER() AS principal').fetchone()
+            if identity['uuid']!=server_uuid or identity['principal']!='aml@127.0.0.1':
                 return error(tx,'HISTORY_INCOMPLETE')
-            c.rollback()
-            c.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
-            c.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT')
-            a=attest(c,'controlled-prototype-v1','automatic-shadow-technical-reassessment',
-                     'integration_stage4r/source-transaction/'+str(tx))
-            c.commit()
-            if a['status']!='COMPLETE_VERIFIED':return error(tx,'HISTORY_INCOMPLETE')
+            from canonical_history_store import current_scope,latest
+            authority='configured-db-identity:'+identity['principal']
+            scope=current_scope(c,'controlled-prototype-v1')
+            previous=latest(c,'controlled-prototype-v1')
+            if scope['verification_authority']!=authority or previous['verification_authority']!=authority:
+                return error(tx,'HISTORY_INCOMPLETE')
+            row=c.execute('SELECT * FROM canonical_mobile_money_events WHERE transaction_id=?',(tx,)).fetchone()
+            operations=[r['operation'] for r in c.execute(
+                'SELECT operation FROM cmm_source_changes WHERE transaction_id=? ORDER BY change_id',(tx,)).fetchall()]
+            if operations!=['SOURCE_INSERT','CANONICAL_INSERT']:
+                return error(tx,'HISTORY_INCOMPLETE')
+            if (not row or hashlib.sha256(json.dumps(dict(row),sort_keys=True,
+                    separators=(',',':')).encode()).hexdigest()!=source_digest):
+                return error(tx,'HISTORY_INCOMPLETE')
         finally:
             c.rollback()
-            if locked:c.execute("SELECT RELEASE_LOCK('cmm_history_admin_v1')")
             c.close()
         # A new read-only snapshot must still match. Concurrent later commits
         # invalidate freshness; infer fails closed rather than bypassing it.

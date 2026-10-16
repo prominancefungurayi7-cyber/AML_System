@@ -402,7 +402,7 @@ SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS = [
 # AML SCENARIO GENERATORS FOR STAGE 17E
 # ============================================================================
 
-def generate_structuring_scenario(conn, sender_wallet, receiver_wallet=None, count=5):
+def generate_structuring_scenario(conn, sender_wallet, receiver_wallet=None, count=5, agents=None):
     """
     Generate structuring-style transaction sequence for testing Stage 13 structuring features.
     
@@ -425,8 +425,10 @@ def generate_structuring_scenario(conn, sender_wallet, receiver_wallet=None, cou
     if receiver_wallet is None:
         receiver_wallet = sender_wallet  # Cash-In/Cash-Out case
     
+    if receiver_wallet == sender_wallet and not agents:
+        raise ValueError("Cash-in scenarios require an active demo agent")
     transactions = []
-    base_amount = random.choice([4800, 4900, 9500, 9800])  # Near CTR threshold
+    base_amount = random.choice([9500, 9800])  # Near CTR threshold
     current_time = datetime.now(timezone.utc)
     
     for i in range(count):
@@ -442,7 +444,7 @@ def generate_structuring_scenario(conn, sender_wallet, receiver_wallet=None, cou
         # Determine transaction type based on wallet relationship
         if sender_wallet == receiver_wallet:
             # Cash-In or Cash-Out
-            tx_type = "transfer"  # All represented as transfer in DB
+            tx_type = "deposit"  # Cash-in must not become a self-transfer
             channel = "agent"
             description = f"Structuring Cash-In of ${amount:,.2f} near threshold"
         else:
@@ -453,7 +455,7 @@ def generate_structuring_scenario(conn, sender_wallet, receiver_wallet=None, cou
         
         transactions.append((
             sender_wallet, receiver_wallet, tx_type, amount, timestamp,
-            channel, description, "Structuring pattern: repeated amounts near threshold", "ZW", None
+            channel, description, "Structuring pattern: repeated amounts near threshold", "ZW", agents[0]["id"] if tx_type == "deposit" else None
         ))
     
     return transactions
@@ -583,8 +585,7 @@ def generate_agent_scenario(conn, wallets, agents, scenario_type="concentration"
     current_time = datetime.now(timezone.utc)
     
     if not agents:
-        # If no agents available, generate with None agent_id
-        agent_id = None
+        raise ValueError("Agent scenarios require an active demo agent")
     else:
         agent_id = agents[0]["id"] if scenario_type == "concentration" else random.choice(agents)["id"]
     
@@ -597,7 +598,7 @@ def generate_agent_scenario(conn, wallets, agents, scenario_type="concentration"
             timestamp = (current_time - time_offset).isoformat()
             
             transactions.append((
-                wallet, wallet, "transfer", amount, timestamp,
+                wallet, wallet, "deposit", round(amount, 2), timestamp,
                 "agent", f"Agent-mediated Cash-In of ${amount:,.2f}",
                 "Agent pattern: concentration around single agent", "ZW", agent_id
             ))
@@ -615,7 +616,7 @@ def generate_agent_scenario(conn, wallets, agents, scenario_type="concentration"
             timestamp = (current_time - time_offset).isoformat()
             
             transactions.append((
-                wallet, wallet, "transfer", amount, timestamp,
+                wallet, wallet, "deposit", round(amount, 2), timestamp,
                 "agent", f"Agent burst transaction of ${amount:,.2f}",
                 "Agent pattern: burst activity in short time window", "ZW", agent_id
             ))
@@ -635,7 +636,7 @@ def generate_agent_scenario(conn, wallets, agents, scenario_type="concentration"
             timestamp = (current_time - time_offset).isoformat()
             
             transactions.append((
-                wallet, wallet, "transfer", amount, timestamp,
+                wallet, wallet, "deposit", round(amount, 2), timestamp,
                 "agent", f"New wallet Cash-In of ${amount:,.2f}",
                 "Agent pattern: new wallet cold-start behavior", "ZW", agent_id
             ))
@@ -694,8 +695,9 @@ def _simulation_transaction(label, users, agents=None):
     else:
         scenario = random.choice(SUPER_SUSPICIOUS_TRANSACTION_SCENARIOS)
 
-    tx_type = scenario["type"]  # Always "transfer" in DB
     ecocash_type = scenario.get("ecocash_type", "wallet_to_wallet")
+    tx_type = {"cash_in": "deposit", "cash_out": "withdraw",
+               "wallet_to_wallet": "transfer"}[ecocash_type]
     sender = random.choice(users)
     hour = random.choice(scenario["hours"])
     dest_country = scenario.get("destination_country", "ZW")
@@ -718,9 +720,16 @@ def _simulation_transaction(label, users, agents=None):
 
     # Determine recipient based on EcoCash transaction type
     recipient = sender
-    if ecocash_type == "wallet_to_wallet" and len(users) > 1:
-        recipient = random.choice([user for user in users if user["id"] != sender["id"]])
-    # For cash_in and cash_out, recipient = sender (self-transfer in DB)
+    if ecocash_type == "wallet_to_wallet":
+        if len(users) < 2:
+            raise ValueError('A wallet transfer needs two different wallets')
+        if label == 'normal':
+            ordered = sorted(users, key=lambda user: user['id'])
+            recipient = ordered[(next(i for i, user in enumerate(ordered)
+                                      if user['id'] == sender['id']) + 1) % len(ordered)]
+        else:
+            recipient = random.choice([user for user in users if user["id"] != sender["id"]])
+    # Cash is booked as deposit/withdraw; it is not a self-transfer.
 
     # Assign agent if agents are available and transaction type requires agent
     agent_id = None
@@ -739,6 +748,87 @@ def _simulation_transaction(label, users, agents=None):
             scenario["channel"], description, scenario_reason, dest_country, agent_id,
         )
     ]
+
+
+def simulation_batch(count, users, agents, *, now=None, existing_count=0):
+    """Build a bounded legacy demo fixture; no DB writes or model decisions.
+
+    Ordinary wallets have stable partners. Deliberate episodes use a separate
+    wallet group and agent, so ordinary traffic does not accidentally become a
+    random all-to-all network. The 70/30 input mix is NOT a prediction quota.
+    V4 requires canonical events and does not accept this legacy tuple format.
+    """
+    if count < 1 or len(users) < 6 or len(agents) < 2:
+        raise ValueError('Mixed simulation needs at least six demo wallets and two agents')
+    # A fixed small population cannot support arbitrarily large monthly batches.
+    if existing_count + count > len(users) * 28 * 4:
+        raise ValueError('Simulation exceeds four events per wallet per day over 28 days. '
+                         'Use a smaller isolated fixture; do not clear the live ledger.')
+    now = now or datetime.now(timezone.utc)
+    start = (now - timedelta(days=29)).replace(hour=8, minute=0, second=0, microsecond=0)
+    wallets = sorted(users, key=lambda user: user['id'])
+    ordinary = wallets[:len(wallets) // 2]
+    episode_wallets = wallets[len(wallets) // 2:]
+    ordered_agents = sorted(agents, key=lambda agent: agent['id'])
+    normal_count = int(count * .70)
+    per_wallet = max(1, (normal_count + len(ordinary) - 1) // len(ordinary))
+    if per_wallet > 28 * 4:
+        raise ValueError('Too many ordinary events for the available demo wallets')
+    rows = []
+    for i in range(normal_count):
+        sender = ordinary[i % len(ordinary)]
+        receiver = ordinary[(i % len(ordinary) + 1) % len(ordinary)]
+        slot = (i // len(ordinary)) * (28 * 4) // per_wallet
+        timestamp = start + timedelta(days=slot // 4, hours=(slot % 4) * 3,
+                                      minutes=i % len(ordinary))
+        tx_type = ('deposit', 'transfer', 'withdraw')[(i // len(ordinary) + i) % 3]
+        amount = round(random.uniform(25, 450), 2)
+        cash = tx_type != 'transfer'
+        rows.append((sender, sender if cash else receiver, tx_type, amount,
+                     timestamp.isoformat(), 'agent' if cash else 'mobile',
+                     'Ordinary ' + {'deposit': 'cash-in', 'withdraw': 'cash-out',
+                                    'transfer': 'payment to regular beneficiary'}[tx_type],
+                     None, 'ZW', ordered_agents[1 + i % (len(ordered_agents) - 1)]['id'] if cash else None))
+    remaining = count - normal_count
+    episode_count = (remaining + 5) // 6
+    for episode in range(episode_count):
+        family = ('structuring', 'network', 'agent')[episode % 3]
+        base = start + timedelta(days=(episode * 28 // episode_count), hours=2)
+        for step in range(min(6, remaining - episode * 6)):
+            sender = episode_wallets[0]
+            receiver = sender
+            tx_type, channel, agent_id = 'deposit', 'agent', ordered_agents[0]['id']
+            amount = round(random.uniform(9300, 9700), 2)
+            if family == 'network':
+                receiver = episode_wallets[1 + step % (len(episode_wallets) - 1)]
+                tx_type, channel, agent_id = 'transfer', 'mobile', None
+                amount = round(random.uniform(1000, 1800), 2)
+            elif family == 'agent':
+                sender = receiver = episode_wallets[step % len(episode_wallets)]
+                amount = round(random.uniform(600, 1400), 2)
+            rows.append((sender, receiver, tx_type, amount,
+                         (base + timedelta(minutes=step * 5)).isoformat(), channel,
+                         'Demo episode: ' + family, None, 'ZW', agent_id))
+    return sorted(rows, key=lambda row: row[4])
+
+
+def simulation_summary(rows):
+    """Count stored operational states and AI decisions independently."""
+    result = {'total': 0, 'normal': 0, 'low': 0, 'flagged': 0, 'critical': 0,
+              'pending': 0, 'ai_normal': 0, 'ai_suspicious': 0, 'ai_unavailable': 0}
+    for row in rows:
+        result['total'] += 1
+        level = row['risk_level']
+        if level in ('normal', 'low'):
+            result[level] += 1
+        elif level in ('suspicious', 'super_suspicious', 'high_risk', 'critical', 'suspicious_pattern'):
+            result['flagged'] += 1
+            result['critical'] += level == 'critical'
+        else:
+            result['pending'] += 1
+        ai = row['ai_risk_level']
+        result['ai_normal' if ai == 'normal' else 'ai_suspicious' if ai == 'suspicious_pattern' else 'ai_unavailable'] += 1
+    return result
 
 
 def _simulation_reason(label, amount, tx_type, scenario_reason=None):

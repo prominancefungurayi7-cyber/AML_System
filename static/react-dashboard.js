@@ -14,20 +14,6 @@
   const { createElement: h, useEffect, useMemo, useState, useRef } = window.React;
   const suspiciousLevels = ["suspicious", "super_suspicious", "high_risk", "critical"];
 
-  window.__amlSidebarController = window.__amlSidebarController || {
-    listeners: new Set(),
-    register(handler) {
-      this.listeners.add(handler);
-      return () => this.listeners.delete(handler);
-    },
-    toggle() {
-      this.listeners.forEach((handler) => handler());
-    },
-    close() {
-      this.listeners.forEach((handler) => handler(false));
-    }
-  };
-
   function Icon({ name }) {
     const icons = {
       home: h("svg", { viewBox: "0 0 24 24" },
@@ -94,7 +80,7 @@
   }
 
   function money(value) {
-    return `$${Number(value || 0).toFixed(2)}`;
+    return Number(value || 0).toLocaleString("en-US", { style: "currency", currency: "USD" });
   }
 
   function score(value) {
@@ -146,9 +132,10 @@
 
   function StatGrid({ items }) {
     return h("section", { className: "react-metrics" },
-      items.map((item) => h("div", { className: "metric-tile", key: item.label },
+      items.map((item, index) => h("div", { className: "metric-tile", key: item.label },
+        h("span", { className: "metric-index", "aria-hidden": "true" }, String(index + 1).padStart(2, "0")),
         h("span", { className: "metric-label" }, item.label),
-        h("strong", null, item.value),
+        h("strong", null, typeof item.value === "number" ? item.value.toLocaleString() : item.value),
         item.caption ? h("small", null, item.caption) : null
       ))
     );
@@ -193,7 +180,8 @@
   }
 
   function upsert(items, item, limit) {
-    return [item, ...items.filter((row) => String(row.id) !== String(item.id))].slice(0, limit);
+    const previous = items.find((row) => String(row.id) === String(item.id));
+    return [{ ...previous, ...item }, ...items.filter((row) => String(row.id) !== String(item.id))].slice(0, limit);
   }
 
   function ownsTransaction(txn, accountNumber) {
@@ -212,32 +200,16 @@
       setTheme(newTheme);
     };
 
-    // Listen for sidebar toggle click from header
-    useEffect(() => {
-      const handleToggleClick = (nextValue) => {
-        if (typeof nextValue === 'boolean') {
-          setSidebarOpen(nextValue);
-          return;
-        }
-        setSidebarOpen((prev) => !prev);
-      };
-      const unregister = window.__amlSidebarController.register(handleToggleClick);
-      const fallback = () => handleToggleClick();
-      window.addEventListener('sidebar-toggle-click', fallback);
-      return () => {
-        unregister();
-        window.removeEventListener('sidebar-toggle-click', fallback);
-      };
-    }, []);
+    useEffect(() => window.__amlSidebarController.register(setSidebarOpen), []);
 
     return h(window.React.Fragment, null,
       sidebarOpen && h("div", {
         className: "sidebar-overlay active",
-        onClick: () => setSidebarOpen(false)
+        onClick: () => window.__amlSidebarController.close()
       }),
-      h("aside", { className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
+      h("aside", { id: "page-sidebar", className: `admin-sidebar ${sidebarOpen ? "open" : ""}` },
         h("div", { className: "sidebar-brand" },
-          h("span", { className: "sidebar-brand__title" }, "WORKSPACE"),
+          h("span", { className: "sidebar-brand__title" }, "YOUR WORKSPACE"),
           h("span", { className: "sidebar-brand__role" }, role)
         ),
         h("nav", null,
@@ -253,7 +225,7 @@
               className: activeSection === item.id ? "sidebar-item active" : "sidebar-item",
               onClick: () => {
                 setActiveSection(item.id);
-                setSidebarOpen(false);
+                window.__amlSidebarController.close();
               },
               type: "button"
             }, h(Icon, { name: item.icon }), item.label))
@@ -322,7 +294,7 @@
         setAlerts((current) => upsert(current, alert, 10));
         setStats((current) => ({ ...current, open_alerts: Number(current.open_alerts || 0) + 1 }));
         setStatus("Live alert received | stream active");
-        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | Score ${score(alert.risk_score)} | ${alert.reason || ""}`);
+        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | Score ${score(alert.risk_score)} | AI: ${alert.ai_reason || "Not recorded"} | Rules: ${alert.rule_reason || "Not recorded"}`);
       },
       alert_update: (alert) => {
         if (alert.account_number !== accountNumber) return;
@@ -330,7 +302,7 @@
           if (alert.status !== "open") return current.filter((item) => String(item.id) !== String(alert.id));
           const exists = current.some((item) => String(item.id) === String(alert.id));
           return exists
-            ? current.map((item) => String(item.id) === String(alert.id) ? alert : item)
+            ? current.map((item) => String(item.id) === String(alert.id) ? { ...item, ...alert } : item)
             : upsert(current, alert, 10);
         });
         if (alert.status !== "open") {
@@ -433,7 +405,7 @@
 
     return h("div", { className: "admin-layout" },
       h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Wallet Customer" }),
-      h("div", { className: "admin-content" }, renderSection())
+      h("div", { className: "admin-content section-transition", key: activeSection }, renderSection())
     );
   }
 
@@ -466,12 +438,24 @@
     );
   }
 
+  function AlertFinding({ alert, source }) {
+    const reason = alert[`${source}_reason`] || `No separate ${source === "ai" ? "AI" : "rule"} reasoning recorded.`;
+    const level = alert[source === "ai" ? "ai_risk_level" : "rule_level"] || "unavailable";
+    return h("div", null,
+      h("strong", { className: "block-line" }, labelize(level)),
+      h("span", { className: "reason-preview", title: reason }, reason),
+      source === "rule" && alert.unclassified_reason && h("details", null,
+        h("summary", null, "Recorded reason ? source unavailable"),
+        h("p", null, alert.unclassified_reason))
+    );
+  }
+
   function CustomerAlertsPanel({ alerts }) {
     return h("div", { className: "card table-card" },
       h(PanelHeading, { title: "AML Alerts" }),
       alerts.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Alert", "Transaction", "Risk", "Reason"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Alert", "Transaction", "Risk", "AI Findings", "Rule Findings"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           alerts.map((alert, index) => h("tr", { key: alert.id || index },
@@ -481,7 +465,8 @@
             ),
             h("td", null, `#${alert.transaction_id || ""}`),
             h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk"))),
-            h("td", null, alert.reason || "")
+            h("td", null, h(AlertFinding, { alert, source: "ai" })),
+            h("td", null, h(AlertFinding, { alert, source: "rule" }))
           )
         )
       )) : h(EmptyState, null, "No alerts for this wallet.")
@@ -515,7 +500,131 @@
         h("dt", null, "Feature contract"), h("dd", null, "40 semantic / 42 model inputs"),
         h("dt", null, "Independent AML rules"), h("dd", null, model.rules_enabled ? "On" : "Off"),
         h("dt", null, "Automatic legacy fallback"), h("dd", null, "Disabled")),
-      h("p", { className: "form-hint" }, "Batch generators and destructive maintenance are unavailable in V4 mode. Decisions and errors are recorded for analyst review.")
+      h("p", { className: "form-hint" }, "Payments and generated demo transactions use V4. Decisions and errors are recorded for analyst review.")
+    );
+  }
+
+  function AdminSettings({ model, simulationBlockReason }) {
+    const v4 = model?.primary_model === "V4";
+    const protectedLedger = v4 || Boolean(simulationBlockReason);
+    const actions = [
+      {
+        id: "clear-watchlist", title: "Watchlist Management", button: "Clear Watchlist",
+        description: "Remove all watchlist entries. Transaction history and existing alerts are retained.",
+        confirmation: "Clear all watchlist entries? This action cannot be undone.",
+      },
+      {
+        id: "clear-transactions", title: "Transaction Records", button: "Clear All Transactions",
+        description: "Clear transactions, alerts, reports and related activity from an eligible demonstration database.",
+        confirmation: "Clear all transactions, alerts, reports, recent activity, and the AI model?",
+        restricted: protectedLedger,
+        reason: "Unavailable for this verified ledger. Clearing its history would prevent V4 from assessing subsequent payments.",
+      },
+      {
+        id: "migrate-database", title: "Database Maintenance", button: "Migrate Database",
+        description: v4 ? "Verify the current database before migration. If it is up to date, no changes are made. Required schema changes are reported for approved maintenance." : "Apply missing database tables and columns.",
+        confirmation: v4 ? "Check whether the V4 database needs migration? This check does not change data or schema." : "Run database migration to add missing columns?",
+      },
+    ];
+    return h("section", { className: "settings-layout", "aria-label": "Admin Settings" },
+      h("div", { className: "card maintenance-card" },
+        h(PanelHeading, { title: "System Maintenance" }),
+        actions.map((action) => h("div", { className: "maintenance-row", key: action.id },
+          h("div", { className: "maintenance-description" },
+            h("h4", null, action.title),
+            h("p", null, action.description),
+            action.restricted ? h("p", { className: "maintenance-restriction", id: action.id + "-reason" }, action.reason) : null
+          ),
+          h("form", {
+            method: "post", action: "/admin/" + action.id,
+            onSubmit: (event) => {
+              if (action.restricted || !window.confirm(action.confirmation)) event.preventDefault();
+            },
+          }, h("button", {
+            type: "submit", className: "danger-button", disabled: Boolean(action.restricted),
+            "aria-describedby": action.restricted ? action.id + "-reason" : undefined,
+          }, action.button))
+        ))
+      ),
+      v4 ? h(ModelCard, { model }) : null
+    );
+  }
+
+  function TransactionGeneration({ generation, legacyBlockReason }) {
+    const [count, setCount] = useState(100);
+    const [mode, setMode] = useState("mixed");
+    const [submitted, setSubmitted] = useState(false);
+    const [progress, setProgress] = useState(null);
+    const [statusError, setStatusError] = useState(false);
+    useEffect(() => {
+      if (!generation) return;
+      let active = true, timer;
+      const refresh = async () => {
+        try {
+          const response = await fetch("/api/admin/generation", { credentials: "same-origin" });
+          if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) throw new Error("Status unavailable");
+          const data = await response.json();
+          if (active) { setProgress(data); setStatusError(false); }
+          if (active && data?.pending_v4 > 0) timer = setTimeout(refresh, 4000);
+        } catch (_) {
+          if (active) { setStatusError(true); timer = setTimeout(refresh, 10000); }
+        }
+      };
+      refresh();
+      return () => { active = false; clearTimeout(timer); };
+    }, [generation]);
+    const choice = generation?.choices.find(item => item.count === count && item.mode === mode);
+    const restricted = generation ? !choice : Boolean(legacyBlockReason);
+    const modes = { mixed: "Balanced Mix (70% Routine / 30% Suspicious Scenarios)", ordinary: "Routine Payments", structuring: "Repeated Split Payments", network: "Wallet Network", agent: "Agent Cash Activity" };
+    const routineInputs = mode === "mixed" ? Math.ceil(count * 0.7) : mode === "ordinary" ? count : 0;
+    return h("section", { className: "card action-card generation-card" },
+      h(PanelHeading, { title: "Transaction Generation" }),
+      h("p", { className: "muted-line" }, generation
+        ? `Uses ${generation.wallet_count} existing demo wallets. Payments update their balances and remain in the verified ledger. V4 analysis runs after they are saved.`
+        : "Generate cash-ins, cash-outs and wallet transfers for demonstration."),
+      generation && h("p", { className: "form-hint" }, generation.agent_count
+        ? "Active agents are available for cash scenarios."
+        : "No active agents are registered. Wallet transfers are available; cash scenarios require an active agent."),
+      h("form", {
+        method: "post", action: "/admin/generate-transactions",
+        onSubmit: event => {
+          if (restricted || submitted || !window.confirm(`Generate ${count} demo transactions? This updates demo wallet balances and adds permanent transaction records.`)) {
+            event.preventDefault(); return;
+          }
+          setSubmitted(true);
+        },
+      },
+        generation && h("input", { type: "hidden", name: "csrf", value: generation.csrf }),
+        generation && h("input", { type: "hidden", name: "generation_token", value: choice?.token || "" }),
+        generation && h("label", { htmlFor: "generation-mode" }, "Scenario"),
+        generation && h("select", { id: "generation-mode", value: mode, onChange: e => setMode(e.target.value), disabled: submitted },
+          Object.entries(modes).map(([value, label]) => h("option", {
+            key: value, value, disabled: !generation.choices.some(item => item.mode === value),
+          }, label))),
+        h("label", { htmlFor: "generation-count" }, "Number of Transactions"),
+        h("select", { id: "generation-count", name: "count", value: count, onChange: e => setCount(Number(e.target.value)), disabled: submitted },
+          (generation ? [1, 10, 100, 500, 1000, 2000, 5000] : [100, 500, 1000, 2000, 5000]).map(value => h("option", { key: value, value }, value.toLocaleString()))),
+        generation && h("p", { className: "form-hint", "aria-live": "polite" }, `Planned inputs: ${routineInputs.toLocaleString()} routine payments and ${(count - routineInputs).toLocaleString()} suspicious-scenario payments. These are scenario intentions, not V4 results or an accuracy score.`),
+        h("p", { className: "form-hint" }, "Payments use current timestamps and available demo funds. Large or repeated batches can trigger independent velocity rules. V4 determines each prediction from verified history; its result ratio may differ from the input mix."),
+        restricted && h("p", { className: "maintenance-restriction" }, generation ? "At least six existing demo wallets are required." : legacyBlockReason),
+        h("button", { type: "submit", disabled: restricted || submitted }, submitted ? "Saving Transactions…" : "Generate Transactions")
+      ),
+      statusError && h("p", { role: "status", className: "form-hint" }, "Generation status is temporarily unavailable. Do not submit another batch to retry analysis."),
+      generation?.last_request && progress?.saved === 0 && h("form", {
+        method: "post", action: "/admin/generate-transactions",
+        onSubmit: event => { if (!window.confirm("Retry the previous request with its original payment IDs?")) event.preventDefault(); },
+      },
+        h("input", { type: "hidden", name: "csrf", value: generation.csrf }),
+        h("input", { type: "hidden", name: "generation_token", value: generation.last_request.token }),
+        h("button", { type: "submit", className: "secondary-button" }, "Retry Previous Request")
+      ),
+      progress && h("div", { className: "generation-progress", role: "status", "aria-live": "polite" },
+        h("h4", null, "Latest Batch"),
+        progress.ordinary_inputs != null && h("p", null, `Input scenarios: ${progress.ordinary_inputs} routine · ${progress.suspicious_inputs} suspicious`),
+        h("p", null, `${progress.saved} / ${progress.requested} saved · ${progress.normal} V4 normal · ${progress.suspicious_pattern} V4 suspicious · ${progress.pending_v4} pending · ${progress.inference_error} errors`),
+        progress.pending_v4 > 0 && h("progress", { max: progress.requested, value: progress.normal + progress.suspicious_pattern + progress.inference_error, "aria-label": "V4 analysis progress" }),
+        progress.inference_error > 0 && h("p", { className: "form-hint" }, "Errors remain available for compliance review and audited inference retry. Payments must not be repeated.")
+      )
     );
   }
 
@@ -531,6 +640,7 @@
       { id: "overview", label: "Overview", icon: "home" },
       { id: "users", label: "User Management", icon: "users" },
       { id: "transactions", label: "Transactions", icon: "list" },
+      { id: "generation", label: "Transaction Generation", icon: "activity" },
       { id: "watchlist", label: "Watchlist", icon: "shield" },
       { id: "activity", label: "Activity Feed", icon: "activity" },
       { id: "messages", label: "Messages", href: "/messages", icon: "message" },
@@ -595,21 +705,7 @@
           return h(window.React.Fragment, null,
             h(StatGrid, { items: metricItems }),
             h("section", { className: "react-dashboard-grid" },
-              initialData.model?.primary_model === "V4" ? h(ModelCard, { model: initialData.model }) : h("div", { className: "card action-card" },
-                h(PanelHeading, { title: "Mobile-Money Transaction Simulator", meta: h("span", { className: "status-pill" }, "Wallet users only") }),
-                h("p", { className: "muted-line" }, "Generate realistic cash-ins, cash-outs, and wallet transfers using registered EpoCash wallets."),
-                h("form", { method: "post", action: "/admin/generate-transactions" },
-                  h("label", null, "Number of Transactions"),
-                  h("select", { name: "count", defaultValue: "100" },
-                    h("option", { value: "100" }, "100"),
-                    h("option", { value: "500" }, "500"),
-                    h("option", { value: "1000" }, "1000"),
-                    h("option", { value: "2000" }, "2000"),
-                    h("option", { value: "5000" }, "5000")
-                  ),
-                  h("button", { type: "submit" }, "Generate Transactions")
-                )
-              ),
+              h(TransactionGeneration, { generation: initialData.generation, legacyBlockReason: initialData.simulation_block_reason }),
               h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Manage Users" }),
                 h("form", { method: "post", action: "/admin" },
@@ -653,50 +749,14 @@
           return h(UsersTable, { users });
         case "transactions":
           return h(AdminTransactionsPanel, { transactions });
+        case "generation":
+          return h(TransactionGeneration, { generation: initialData.generation, legacyBlockReason: initialData.simulation_block_reason });
         case "watchlist":
           return h(WatchlistPanel, { watchlist });
         case "activity":
           return h(ActivityPanel, { activity });
         case "settings":
-          if (initialData.model?.primary_model === "V4") return h(ModelCard, { model: initialData.model });
-          return h("section", { className: "admin-danger-zone" },
-            h("div", { className: "card action-card" },
-              h(PanelHeading, { title: "System Maintenance" }),
-              h("form", {
-                method: "post",
-                action: "/admin/clear-transactions",
-                onSubmit: (event) => {
-                  if (!window.confirm("Clear all transactions, alerts, reports, recent activity, and the AI model?")) {
-                    event.preventDefault();
-                  }
-                },
-              },
-                h("button", { type: "submit", className: "danger-button" }, "Clear All Transactions")
-              ),
-              h("form", {
-                method: "post",
-                action: "/admin/clear-watchlist",
-                onSubmit: (event) => {
-                  if (!window.confirm("Clear all watchlist entries?")) {
-                    event.preventDefault();
-                  }
-                },
-              },
-                h("button", { type: "submit", className: "danger-button" }, "Clear Watchlist")
-              ),
-              h("form", {
-                method: "post",
-                action: "/admin/migrate-database",
-                onSubmit: (event) => {
-                  if (!window.confirm("Run database migration to add missing columns?")) {
-                    event.preventDefault();
-                  }
-                },
-              },
-                h("button", { type: "submit", className: "danger-button" }, "Migrate Database")
-              )
-            )
-          );
+          return h(AdminSettings, { model: initialData.model, simulationBlockReason: initialData.simulation_block_reason });
         default:
           return null;
       }
@@ -704,7 +764,7 @@
 
     return h("div", { className: "admin-layout" },
       h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Institutional Admin" }),
-      h("div", { className: "admin-content" }, renderSection())
+      h("div", { className: "admin-content section-transition", key: activeSection }, renderSection())
     );
   }
 
@@ -826,14 +886,14 @@
       alert: (alert) => {
         setAlerts((current) => upsert(current, alert, 30));
         setStatus("New alert received | stream active");
-        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | ${alert.reason || ""}`);
+        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | AI: ${alert.ai_reason || "Not recorded"} | Rules: ${alert.rule_reason || "Not recorded"}`);
       },
       alert_update: (alert) => {
         setAlerts((current) => {
           if (alert.status !== "open") return current.filter((item) => String(item.id) !== String(alert.id));
           const exists = current.some((item) => String(item.id) === String(alert.id));
           return exists
-            ? current.map((item) => String(item.id) === String(alert.id) ? alert : item)
+            ? current.map((item) => String(item.id) === String(alert.id) ? { ...item, ...alert } : item)
             : upsert(current, alert, 30);
         });
         addFeed(`Alert status | #${alert.id || ""} | ${alert.status || ""}`);
@@ -892,7 +952,7 @@
 
     return h("div", { className: "admin-layout" },
       h(DashboardSidebar, { sidebarItems, activeSection, setActiveSection, role: "Compliance Operations" }),
-      h("div", { className: "admin-content" }, renderSection())
+      h("div", { className: "admin-content section-transition", key: activeSection }, renderSection())
     );
   }
 
@@ -946,7 +1006,7 @@
       h(PanelHeading, { title: "Open Alerts" }),
       alerts.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Alert", "Wallet", "Risk", "Reason", "Action"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Alert", "Wallet", "Risk", "AI Findings", "Rule Findings", "Action"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           alerts.map((alert, index) => h("tr", { key: alert.id || index },
@@ -956,7 +1016,8 @@
             ),
             h("td", null, alert.account_number || ""),
             h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk"))),
-            h("td", null, h("span", { className: "reason-preview", title: alert.reason || "" }, alert.reason || "")),
+            h("td", null, h(AlertFinding, { alert, source: "ai" })),
+            h("td", null, h(AlertFinding, { alert, source: "rule" })),
             h("td", null, alert.id
               ? h("a", { className: "action-link", href: `/compliance/alert/${alert.id}` }, "Review")
               : h("span", { className: "muted-line" }, "Pending")
