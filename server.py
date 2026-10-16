@@ -664,6 +664,99 @@ app.logger.info("Primary AML model selected: %s", os.environ.get('AML_PRIMARY_MO
 
 
 
+from auth_sessions import AuthSessions
+from functools import wraps
+
+auth_sessions = AuthSessions()
+app.config.setdefault("AUTH_IDLE_SECONDS", 3600)
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+
+def auth_redis():
+    broker = app.extensions.get("realtime_broker")
+    client = getattr(broker, "_redis_client", None)
+    if os.environ.get("REDIS_URL") and client is None:
+        raise RuntimeError("Session broker unavailable")
+    return client
+
+
+def revoke_auth_session():
+    try:
+        auth_sessions.revoke(session.get("auth_token"), redis=auth_redis())
+    except Exception:
+        app.logger.warning("Unable to revoke session in session broker")
+
+
+def system_account_without_otp(user):
+    """Match seeded identities, never exempt arbitrary roles or email domains."""
+    for name, staff in STAFF_ACCOUNTS.items():
+        if (user["username"] == name and user["role"] == staff["role"]
+                and user["account_number"] == staff["account_number"]):
+            return True
+    identities = {"demo": ("ACC1003", "63-1000003A03")}
+    number = 1000
+    for tier, count in (("low", 5), ("average", 5), ("high", 3), ("ultra_high", 2)):
+        for index in range(1, count + 1):
+            identities[f"user_{tier}_{index}"] = (f"ACC{number}", f"63-{number:07d}A{number % 100:02d}")
+            number += 1
+    identity = identities.get(user["username"])
+    return bool(identity and user["role"] == "customer"
+        and user["account_number"] == identity[0]
+        and normalize_id_number(user["id_number"] or "") == identity[1]
+        and (user["email"] or "").lower() == user["username"].lower() + "@example.com")
+
+
+def establish_auth_session(user):
+    try:
+        exempt = system_account_without_otp(user)
+        token = auth_sessions.create(user["id"], None if exempt else app.config["AUTH_IDLE_SECONDS"], redis=auth_redis())
+    except Exception:
+        app.logger.warning("Unable to create authenticated session")
+        session.clear()
+        return False
+    revoke_auth_session()
+    session.clear()
+    session.update(user_id=user["id"], username=user["username"], role=user["role"], auth_token=token, idle_exempt=exempt)
+    return True
+
+
+def auth_session_valid(touch=False):
+    try:
+        return auth_sessions.valid(session.get("auth_token"), session.get("user_id"),
+            None if session.get("idle_exempt") else app.config["AUTH_IDLE_SECONDS"], touch=touch, redis=auth_redis())
+    except Exception:
+        return False
+
+
+@app.before_request
+def enforce_auth_session():
+    if "user_id" not in session or request.endpoint == "static":
+        return
+    # Automated polling never extends an idle session.
+    touch = request.method == "POST" or request.headers.get("Sec-Fetch-Dest") == "document"
+    if auth_session_valid(touch=touch):
+        return
+    session.clear()
+    if request.path.startswith("/api/"):
+        return jsonify(status="error", message="Session expired. Sign in and verify your email.", session_expired=True), 401
+    flash("Your session expired. Sign in and verify your email to continue.")
+    return redirect(url_for("login"))
+
+
+def authenticated_socket(func):
+    @wraps(func)
+    def checked(*args, **kwargs):
+        if not auth_session_valid(touch=func.__name__ in {"handle_send_message", "handle_typing"}):
+            if func.__name__ == "handle_connect":
+                return False
+            socketio.emit("session_expired", {}, to=request.sid)
+            socketio.server.disconnect(request.sid, namespace="/")
+            return {"status": "error", "message": "Session expired. Sign in again."}
+        return func(*args, **kwargs)
+    return checked
+
+
 # SocketIO authentication middleware with presence tracking
 _presence_lock = threading.Lock()
 _presence_sockets = {}
@@ -678,6 +771,7 @@ def _live_user_status(conn, username):
     return {'is_online': online, 'last_seen': None}
 
 @socketio.on('connect')
+@authenticated_socket
 def handle_connect():
     if 'user_id' not in session:
         app.logger.warning("SocketIO connection rejected: no user_id in session")
@@ -744,8 +838,11 @@ def handle_connect():
 
 
 @socketio.on('heartbeat')
-def handle_heartbeat():
+@authenticated_socket
+def handle_heartbeat(data=None):
     """Client heartbeat to maintain connection and refresh presence TTL"""
+    if isinstance(data, dict) and data.get("active") is True:
+        auth_session_valid(touch=True)
     with _presence_lock:
         presence = _presence_sockets.get(request.sid)
         if presence:
@@ -801,6 +898,7 @@ def handle_disconnect():
 # ============================================================================
 
 @socketio.on('send_message')
+@authenticated_socket
 def handle_send_message(data):
     """Handle incoming message."""
     if 'user_id' not in session:
@@ -927,16 +1025,19 @@ def _emit_typing(data, active):
 
 
 @socketio.on('typing')
+@authenticated_socket
 def handle_typing(data):
     _emit_typing(data, True)
 
 
 @socketio.on('stop_typing')
+@authenticated_socket
 def handle_stop_typing(data):
     _emit_typing(data, False)
 
 
 @socketio.on('mark_read')
+@authenticated_socket
 def handle_mark_read(data):
     conn = connect_db()
     try:
@@ -954,6 +1055,7 @@ def handle_mark_read(data):
 
 
 @socketio.on('message_received')
+@authenticated_socket
 def handle_message_received(data):
     """A browser confirms receipt; sending to a room alone is not delivery."""
     if not isinstance(data, dict) or not session.get('user_id'):
@@ -2890,54 +2992,9 @@ def messages():
 
 
 def send_otp_email(recipient_email, otp):
-
-    if app.config.get("TESTING"):
-        print(f"[TESTING MODE] Would send OTP to {recipient_email}: {otp}")
-        return True
-
-    sender_email = os.environ.get("SMTP_EMAIL")
-
-    sender_password = os.environ.get("SMTP_PASSWORD")
-
-    smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
-
-    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
-
-    if not sender_email or not sender_password:
-        print(f"ERROR: SMTP credentials not configured")
-        raise ValueError("SMTP credentials not configured")
-
-    print(f"[EMAIL] Preparing to send OTP to {recipient_email}")
-    print(f"[EMAIL] From: {sender_email}, Server: {smtp_server}:{smtp_port}")
-
-    msg = EmailMessage()
-
-    msg["Subject"] = "Epocash — Your verification code"
-
-    msg["From"] = sender_email
-
-    msg["To"] = recipient_email
-
-    msg.set_content(f"Your Epocash verification code is: {otp}\n\nThis code expires in 10 minutes.")
-
-    try:
-        print(f"[EMAIL] Connecting to SMTP server...")
-        with smtplib.SMTP(smtp_server, smtp_port, timeout=30) as server:
-            print(f"[EMAIL] Connected, starting TLS...")
-            server.starttls()
-            print(f"[EMAIL] TLS started, logging in...")
-            server.login(sender_email, sender_password)
-            print(f"[EMAIL] Login successful, sending message...")
-            server.send_message(msg)
-            print(f"[EMAIL] ✓ Message sent successfully")
-
-    except Exception as e:
-        print(f"[EMAIL] ✗ Error during send: {type(e).__name__}: {e}")
-        import traceback
-        print(f"[EMAIL] Traceback: {traceback.format_exc()}")
-        raise
-
-    return True
+    # Use the same recipient guard and transport as all other account emails.
+    return send_email(recipient_email, "EpoCash verification code",
+        f"Your EpoCash verification code is: {otp}\n\nThis code expires in 10 minutes.")
 
 
 def _legacy_background_otp_sender(recipient_email, otp):
@@ -2946,7 +3003,9 @@ def _legacy_background_otp_sender(recipient_email, otp):
         with app.app_context():
             try:
                 print(f"[ASYNC EMAIL] Starting to send OTP to {recipient_email}...")
-                send_otp_email(recipient_email, otp)
+                if not send_otp_email(recipient_email, otp):
+                    app.logger.info("OTP email was not sent")
+                    return
                 print(f"[ASYNC EMAIL] ✓ OTP email sent successfully to {recipient_email}")
 
             except Exception as e:
@@ -3048,11 +3107,9 @@ def register():
 
             user = get_user_by_username(pending["username"])
 
-            session["user_id"] = user["id"]
-
-            session["username"] = user["username"]
-
-            session["role"] = user["role"]
+            if not establish_auth_session(user):
+                flash("Account created. Please sign in to continue.")
+                return redirect(url_for("login"))
 
             record_activity(pending["username"], "register", f"New {pending['role']} registered")
 
@@ -3153,123 +3210,78 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 
 def login():
-
     if request.method == "POST":
-
-        login_identifier = request.form.get("login", "").strip()
-
-        username = request.form.get("username", "").strip()
-
-        email = request.form.get("email", "").strip().lower()
-
-        if not email and "@" in login_identifier:
-
-            email = login_identifier.lower()
-
-        id_number = normalize_id_number(request.form.get("id_number", ""))
-
-        password = request.form.get("password", "")
-
-        # ``email`` is retained for API/backward-compatible form submissions;
-        # the browser form itself submits the same value as ``login``.
-        staff_identifier = login_identifier or username or email
-        staff_username = next(
-            (
-                name
-                for name, staff in STAFF_ACCOUNTS.items()
-                if name.casefold() == staff_identifier.casefold()
-                or staff["email"].casefold() == staff_identifier.casefold()
-            ),
-            None,
-        )
-        login_key = staff_username or staff_identifier
-        # Security: Check rate limiting for staff login
-        can_login, lockout_message = check_login_attempts(login_key)
-        if not can_login:
-            flash(lockout_message)
-            return render_template("login.html")
-
-        if staff_username:
-            staff = STAFF_ACCOUNTS[staff_username]
-            user = get_user_by_username(staff_username)
-            if (
-                user
-                and user["role"] == staff["role"]
-                and check_password_hash(user["password_hash"], password)
-            ):
-                session["user_id"] = user["id"]
-                session["role"] = user["role"]
-                session["username"] = user["username"]
-                record_activity(staff_username, "login", f"Staff login from {request.remote_addr}")
-                record_login_attempt(login_key, True)
-                flash("Welcome back.")
-                return redirect(url_for("dashboard_redirect"))
-            flash("Invalid credentials.")
-            record_activity(staff_username, "failed_login", f"Failed staff login attempt from {request.remote_addr}")
-            is_locked = record_login_attempt(login_key, False)
-            if is_locked:
-                flash("Too many failed attempts. Account locked for 15 minutes.")
-            return render_template("login.html")
-
-        customer_identifier = email or login_identifier or username
-        # Security: Check rate limiting for customer login
-        can_login, lockout_message = check_login_attempts(customer_identifier)
-        if not can_login:
-            flash(lockout_message)
-            return render_template("login.html")
-
-        if not all([customer_identifier, id_number, password]):
-            flash("All fields are required.")
-            return render_template("login.html")
-
-        if not is_valid_id_number(id_number):
-            flash(ID_NUMBER_FORMAT_MESSAGE)
-            return render_template("login.html")
-
-        # MySQL collation varies by deployment.  Make customer lookup explicitly
-        # case-insensitive so an email or username's letter case cannot prevent login.
-        if email:
-            user = get_db().execute(
-                "SELECT * FROM users WHERE LOWER(email)=LOWER(?) LIMIT 1", (email,)
-            ).fetchone()
-        else:
-            user = get_db().execute(
-                "SELECT * FROM users WHERE LOWER(username)=LOWER(?) LIMIT 1", (customer_identifier,)
-            ).fetchone()
-
-        is_customer = bool(user and user["role"] == "customer")
-        # Older records may have been stored without the display hyphen or in
-        # lowercase. Normalize the persisted value before comparing it.
-        id_matches = bool(
-            is_customer and normalize_id_number(user["id_number"] or "") == id_number
-        )
-        password_matches = bool(id_matches and check_password_hash(user["password_hash"], password))
-        if password_matches:
-            session["user_id"] = user["id"]
-            session["role"] = user["role"]
-            session["username"] = user["username"]
-            record_activity(customer_identifier, "login", f"Login from {request.remote_addr}")
-            record_login_attempt(customer_identifier, True)
-            flash("Welcome back.")
+        otp = request.form.get("otp", "").strip()
+        if otp:
+            pending = session.get("pending_login", {})
+            if not pending or time.time() > pending.get("expires_at", 0):
+                session.pop("pending_login", None)
+                flash("Verification expired. Sign in again to request a new code.")
+                return redirect(url_for("login"))
+            if not verification_codes.consume(pending.get("challenge"), "login", otp):
+                flash("Invalid or expired code. Codes allow five attempts; sign in again if needed.")
+                return render_template("login.html", otp_step=True)
+            user = get_user_by_id(pending["user_id"])
+            if not user or user["email"] != pending["email"]:
+                session.clear()
+                return redirect(url_for("login"))
+            if not establish_auth_session(user):
+                flash("Sign-in is temporarily unavailable. Please try again.")
+                return redirect(url_for("login"))
+            record_activity(user["username"], "login", "Email OTP verified")
+            flash("Signed in successfully.")
             return redirect(url_for("dashboard_redirect"))
 
-        # Keep the UI response generic, but log enough to diagnose a deployment
-        # database mismatch without storing the supplied password or identifier.
-        app.logger.warning(
-            "Customer login rejected: account_found=%s role_customer=%s id_matches=%s password_matches=%s db_engine=%s",
-            bool(user), is_customer, id_matches, password_matches, get_db().engine,
-        )
-        flash("Invalid credentials.")
-        record_activity(customer_identifier, "failed_login", f"Failed login attempt from {request.remote_addr}")
-        is_locked = record_login_attempt(customer_identifier, False)
-        if is_locked:
-            flash("Too many failed attempts. Account locked for 15 minutes.")
+        identifier = (request.form.get("login") or request.form.get("email") or request.form.get("username") or "").strip()
+        password = request.form.get("password", "")
+        column = "email" if "@" in identifier else "username"
+        user = get_db().execute(
+            f"SELECT * FROM users WHERE LOWER({column})=LOWER(?) LIMIT 1", (identifier,)
+        ).fetchone()
+        login_key = user["username"] if user else identifier.casefold()
+        allowed, message = check_login_attempts(login_key)
+        if not allowed:
+            flash(message)
+            return render_template("login.html"), 429
+        if not user or not password or not check_password_hash(user["password_hash"], password):
+            record_login_attempt(login_key, False)
+            flash("Invalid credentials.")
+            return render_template("login.html")
+        if system_account_without_otp(user):
+            if not establish_auth_session(user):
+                flash("Sign-in is temporarily unavailable. Please try again.")
+                return render_template("login.html"), 503
+            record_login_attempt(login_key, True)
+            record_activity(user["username"], "login", "System account password verified")
+            flash("Signed in successfully.")
+            return redirect(url_for("dashboard_redirect"))
+        previous = session.pop("pending_login", {})
+        if time.time() < previous.get("sent_at", 0) + 60:
+            session["pending_login"] = previous
+            flash("Please wait one minute before requesting another code.")
+            return render_template("login.html", otp_step=True), 429
+        verification_codes.discard(previous.get("challenge"))
+        try:
+            challenge, code = verification_codes.issue("login")
+        except RuntimeError:
+            flash("Verification is busy. Please try again shortly.")
+            return render_template("login.html"), 429
+        if not user["email"] or not send_otp_email_async(user["email"], code):
+            verification_codes.discard(challenge)
+            flash("Could not send the verification code. Please try again later.")
+            return render_template("login.html")
+        record_login_attempt(login_key, True)
+        session["pending_login"] = dict(user_id=user["id"], email=user["email"],
+            challenge=challenge, sent_at=time.time(), expires_at=time.time() + 600)
+        flash("Verification code sent to your registered email.")
+        return render_template("login.html", otp_step=True)
     return render_template("login.html")
 
 
 @app.route("/logout")
 
 def logout():
+    revoke_auth_session()
     from v4_shadow import forget_user
     forget_user(session.get('user_id'))
 

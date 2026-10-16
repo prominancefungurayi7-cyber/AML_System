@@ -9,7 +9,8 @@ def client_for(module, username):
     db.close()
     client = module.app.test_client()
     with client.session_transaction() as state:
-        state.update(user_id=user['id'], username=username, role=user['role'])
+        state.update(user_id=user['id'], username=username, role=user['role'],
+                     auth_token=module.auth_sessions.create(user['id'], 1800))
     return client
 
 

@@ -194,6 +194,11 @@
     if (document.body.dataset.authenticated !== 'true' || !window.io) return null;
     if (!socket) {
       socket = window.io({ transports: ['polling', 'websocket'] });
+      socket.on('session_expired', () => { window.location.assign('/login'); });
+      let lastInteraction = Date.now();
+      ['pointerdown', 'keydown', 'scroll', 'focus'].forEach(name => {
+        window.addEventListener(name, () => { lastInteraction = Date.now(); }, { passive: true });
+      });
       let hasConnected = false;
       socket.on('connect', () => {
         if (hasConnected) window.refreshAmlPage();
@@ -218,7 +223,7 @@
           `${Number(event.count) || 0} transactions saved.`, 'transaction-batch'));
       }
       const heartbeat = window.setInterval(() => {
-        if (socket.connected) socket.emit('heartbeat');
+        if (socket.connected) socket.emit('heartbeat', { active: !document.hidden && Date.now() - lastInteraction < 60000 });
       }, 30000);
       window.addEventListener('pagehide', () => { clearInterval(heartbeat); socket.disconnect(); }, { once: true });
       window.addEventListener('pageshow', event => {

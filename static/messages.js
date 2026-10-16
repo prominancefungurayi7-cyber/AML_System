@@ -224,9 +224,16 @@
     const enableAlerts = el('enableMessageNotifications');
     if (!('Notification' in window) || !window.isSecureContext) enableAlerts.hidden = true;
     else {
+      let previousPermission, confirmationTimer;
       const syncAlertPermission = () => {
         const enabled = Notification.permission === 'granted';
         const blocked = Notification.permission === 'denied';
+        if (Notification.permission !== previousPermission) {
+          clearTimeout(confirmationTimer);
+          enableAlerts.hidden = false;
+          if (enabled) confirmationTimer = setTimeout(() => { enableAlerts.hidden = true; }, 4000);
+          previousPermission = Notification.permission;
+        }
         enableAlerts.textContent = enabled ? '\u2713 Device alerts enabled' : blocked ? '\u00d7 Device alerts blocked' : 'Enable device alerts';
         enableAlerts.classList.toggle('device-alerts-enabled', enabled);
         enableAlerts.setAttribute('aria-pressed', String(enabled));

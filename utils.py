@@ -225,6 +225,14 @@ def _stats_payload(conn):
     }
 
 
+def is_placeholder_email(address):
+    from email.utils import parseaddr
+    mailbox = parseaddr(str(address or ""))[1]
+    domain = mailbox.rpartition("@")[2].lower().rstrip(".")
+    return any(domain == reserved or domain.endswith("." + reserved)
+               for reserved in ("example.com", "example.net", "example.org", "example", "invalid", "test", "localhost"))
+
+
 def send_email(to_email, subject, body, html_body=None):
     """
     Send email using SMTP configuration from environment variables.
@@ -244,6 +252,9 @@ def send_email(to_email, subject, body, html_body=None):
     Returns:
         bool: True if email sent successfully, False otherwise
     """
+    if is_placeholder_email(to_email):
+        logging.info("Email skipped: recipient is a placeholder address")
+        return False
     smtp_email = os.environ.get("SMTP_EMAIL")
     smtp_password = os.environ.get("SMTP_PASSWORD")
     smtp_server = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
