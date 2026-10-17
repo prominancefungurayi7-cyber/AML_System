@@ -80,7 +80,14 @@ def processor():
 def ticket(conn, mode='mixed', count=10):
     choices = simulation.options(conn, 'fixture-secret', 1)['choices']
     token = next(item['token'] for item in choices if (item['mode'],item['count']) == (mode,count))
-    return simulation.decode(token, 'fixture-secret', 1)
+    # These regression cases exercise the preserved version-2 replay planner.
+    request = simulation.decode(token, 'fixture-secret', 1)
+    request['version'] = 2
+    request['wallets'] = [w for w in request['wallets'] if simulation.DEMO_WALLETS.get(w['username']) == w['account_number']]
+    funded = [dict(r) for r in conn.execute("SELECT id,username,account_number,balance FROM users ORDER BY id").fetchall()
+              if simulation.DEMO_WALLETS.get(r['username']) == r['account_number']]
+    request['scenario_wallet_ids'] = simulation.scenario_wallet_order(funded)
+    return request
 
 
 def generate(conn, request):
@@ -424,3 +431,154 @@ def test_http_generation_keeps_committed_batch_when_attestation_fails(ledger, mo
     assert balances(conn)==before
     assert conn.execute('SELECT COUNT(*) FROM transactions').fetchone()[0]==1
     assert len(notices)==1
+
+
+def test_history_planner_includes_registered_customers_and_retries_once(ledger):
+    _, conn = ledger
+    choices = simulation.options(conn, 'new-plan', 1)
+    assert 'PRIVATE' in choices['baseline_summary']
+    token = next(c['token'] for c in choices['choices'] if c['mode'] == 'ordinary' and c['count'] == 100)
+    request = simulation.decode(token, 'new-plan', 1)
+    assert request['version'] == 4
+    rows = simulation.plan(request)
+    assert set(s['account_number'] for s, _, _, _ in rows) == set(choices['baseline_summary'])
+    assert rows == simulation.plan(request)
+    before = sum(balances(conn).values())
+    first = generate(conn, request)
+    second = generate(conn, request)
+    assert first['saved'] == 100 and second['replayed']
+    assert conn.execute('SELECT COUNT(*) FROM transactions').fetchone()[0] == 100
+    assert sum(balances(conn).values()) == before
+
+
+def test_historical_amounts_recipients_and_limited_baseline(ledger):
+    from v4_customer_patterns import profiles
+    _, conn = ledger
+    # Only a disposable fixture receives these historical records.
+    for amount in (20, 25, 30, 35, 40):
+        conn.execute("INSERT INTO transactions(sender_account,receiver_account,amount,transaction_type,risk_level,timestamp,status) VALUES (?,?,?,?,?,?,?)",
+                     ('PRIVATE', 'ACC1003', amount, 'transfer', 'normal', '2026-01-01T12:00:00', 'Completed'))
+    wallets = [dict(r) for r in conn.execute("SELECT id,username,account_number,balance FROM users ORDER BY id").fetchall()]
+    baseline = profiles(conn, wallets)
+    assert baseline['PRIVATE']['median_minor'] == 3000
+    assert baseline['PRIVATE']['sufficient_history']
+    assert baseline['PRIVATE']['counterparties'] == ['ACC1003']
+    assert not baseline['ACC1003']['sufficient_history']
+    choices = simulation.options(conn, 'baseline', 1)['choices']
+    token = next(c['token'] for c in choices if c['mode'] == 'ordinary' and c['count'] == 100)
+    request = simulation.decode(token, 'baseline', 1)
+    generated = [(r, f) for sender,r,f,_ in simulation.plan(request) if sender['account_number'] == 'PRIVATE']
+    assert generated
+    assert all(r['account_number'] == 'ACC1003' and 25 <= float(f['amount']) <= 35 for r,f in generated)
+
+
+def current_ticket(conn, mode='ordinary', count=100):
+    token = next(c['token'] for c in simulation.options(conn, 'current-plan', 1)['choices']
+                 if c['mode'] == mode and c['count'] == count)
+    return simulation.decode(token, 'current-plan', 1)
+
+
+@pytest.mark.parametrize('mode', ['ordinary', 'mixed'])
+@pytest.mark.parametrize('wallet_id', [1, 100])
+def test_unfunded_customer_can_receive_before_joining_routine_senders(ledger, mode, wallet_id):
+    _, conn = ledger
+    conn.execute('UPDATE users SET balance=0 WHERE id=?', (wallet_id,))
+    conn.commit()
+    request = current_ticket(conn, mode=mode)
+    rows = simulation.plan(request)
+    unfunded = next(w['account_number'] for w in request['wallets'] if w['id'] == wallet_id)
+    received = False
+    sent = False
+    for sender, recipient, form, _ in rows:
+        assert sender['account_number'] != recipient['account_number']
+        if recipient['account_number'] == unfunded:
+            received = True
+        if sender['account_number'] == unfunded:
+            assert received
+            sent = True
+    assert sent
+    assert {s['account_number'] for s, _, _, _ in rows} == set(request['customer_profiles'])
+    before = sum(balances(conn).values())
+    first = generate(conn, request)
+    after = balances(conn)
+    assert first['saved'] == 100
+    assert sum(after.values()) == before
+    assert generate(conn, request)['replayed']
+    assert balances(conn) == after
+
+
+def test_version_three_signed_plan_keeps_original_unfunded_failure(ledger):
+    _, conn = ledger
+    conn.execute('UPDATE users SET balance=0 WHERE id=1')
+    conn.commit()
+    request = {**current_ticket(conn), 'version': 3}
+    with pytest.raises(ValueError, match='Insufficient balance'):
+        simulation.plan(request)
+    assert conn.execute('SELECT COUNT(*) FROM transactions').fetchone()[0] == 0
+
+
+def test_committed_version_three_request_replays_after_new_planner_and_balance_changes(ledger):
+    _, conn = ledger
+    original = {**current_ticket(conn, count=10), 'version': 3}
+    signed = simulation.serializer('retained-plan').dumps(original)
+    request = simulation.decode(signed, 'retained-plan', 1)
+    planned = simulation.plan(request)
+    first = generate(conn, request)
+    conn.execute('UPDATE users SET balance=0')
+    conn.commit()
+    assert current_ticket(conn, count=10)['version'] == 4
+    assert simulation.plan(request) == planned
+    before = balances(conn)
+    replay = generate(conn, request)
+    assert replay['replayed'] and replay['transaction_ids'] == first['transaction_ids']
+    assert balances(conn) == before
+    assert conn.execute('SELECT COUNT(*) FROM transactions').fetchone()[0] == 10
+
+
+def test_receipt_requires_exact_sender_and_request_pairs(ledger):
+    _, conn = ledger
+    request = current_ticket(conn, count=10)
+    result = generate(conn, request)
+    first, second = simulation.plan(request)[:2]
+    assert first[0]['account_number'] != second[0]['account_number']
+    conn.execute('UPDATE transactions SET client_request_id=? WHERE id=?',
+                 ('temporary-fixture-key', result['transaction_ids'][0]))
+    conn.execute('UPDATE transactions SET client_request_id=? WHERE id=?',
+                 (first[3], result['transaction_ids'][1]))
+    conn.execute('UPDATE transactions SET client_request_id=? WHERE id=?',
+                 (second[3], result['transaction_ids'][0]))
+    conn.commit()
+    before = balances(conn)
+    assert simulation.receipt(conn, request)['saved'] == 8
+    with pytest.raises(RuntimeError, match='Incomplete request identity'):
+        generate(conn, request)
+    assert balances(conn) == before
+    assert conn.execute('SELECT COUNT(*) FROM transactions').fetchone()[0] == 10
+
+
+def test_historical_baseline_excludes_unsuccessful_payments(ledger):
+    from v4_customer_patterns import profiles
+    _, conn = ledger
+    for status, amount in [('Completed', 25)] * 5 + [('Failed', 9000), ('Cancelled', 1), ('Pending', 5000)]:
+        conn.execute('INSERT INTO transactions(sender_account,receiver_account,amount,transaction_type,risk_level,status,timestamp) '
+                     'VALUES (?,?,?,?,?,?,?)', ('PRIVATE', 'ACC1003', amount, 'transfer', 'normal', status,
+                                               '2026-01-01T12:00:00'))
+    wallets = [dict(r) for r in conn.execute('SELECT id,username,account_number,balance FROM users')]
+    baseline = profiles(conn, wallets)['PRIVATE']
+    assert baseline['sample_count'] == 5
+    assert baseline['median_minor'] == baseline['lower_minor'] == baseline['upper_minor'] == 2500
+
+
+def test_live_balance_change_cannot_spend_signed_snapshot_twice(ledger):
+    _, conn = ledger
+    request = current_ticket(conn, count=10)
+    original = simulation.plan(request)
+    conn.execute('UPDATE users SET balance=0')
+    conn.commit()
+    assert simulation.plan(request) == original
+    before = balances(conn)
+    with pytest.raises(ValueError, match='Insufficient demo funds'):
+        generate(conn, request)
+    assert balances(conn) == before
+    for table in ('transactions', 'alerts', 'canonical_mobile_money_events', 'cmm_source_changes'):
+        assert conn.execute('SELECT COUNT(*) FROM ' + table).fetchone()[0] == 0

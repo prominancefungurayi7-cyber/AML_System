@@ -4,12 +4,101 @@
   const socket = window.getAmlSocket();
   const currentUser = document.body.dataset.username;
   const drafts = new Map();
+  const attachmentDrafts = new Map();
   const visibleMessages = new Map();
+  const receiptUpdates = new Map();
+  const receiptRank = { sent: 0, delivered: 1, read: 2 };
+  let lastReadId = 0;
   let unreadBoundary = null;
   let contacts = [], conversations = [], receiver = '', conversationId = null;
   let pending = null, generation = 0, oldestId = null, moreHistory = false, typingTimer;
+  let draftPreviewUrl = null;
+  const attachmentTypes = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'pdf', 'txt', 'csv', 'docx', 'xlsx', 'pptx']);
+  const imageTypes = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp']);
   const el = id => document.getElementById(id);
   const notify = message => window.showAmlNotification(message, 'messaging-error', 'error');
+
+  function attachmentRequestId() {
+    if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = Array.from(bytes, value => value.toString(16).padStart(2, '0')).join('');
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  }
+
+  function formatSize(size) {
+    return size < 1024 ? `${size} B` : size < 1024 * 1024 ? `${(size / 1024).toFixed(1)} KB` : `${(size / (1024 * 1024)).toFixed(1)} MB`;
+  }
+  function attachmentUrl(value) {
+    try {
+      const url = new URL(value, location.origin);
+      return url.origin === location.origin && /^\/api\/messages\/\d+\/attachment$/.test(url.pathname) ? url.href : null;
+    } catch (_) { return null; }
+  }
+  function showAttachmentDraft() {
+    if (draftPreviewUrl) URL.revokeObjectURL(draftPreviewUrl);
+    draftPreviewUrl = null;
+    const draft = attachmentDrafts.get(receiver);
+    el('attachmentDraft').hidden = !draft;
+    el('attachmentDraftImage').hidden = true;
+    if (!draft) return;
+    el('attachmentDraftName').textContent = draft.file.name;
+    el('attachmentDraftSize').textContent = formatSize(draft.file.size);
+    if (imageTypes.has(draft.file.type)) {
+      draftPreviewUrl = URL.createObjectURL(draft.file);
+      el('attachmentDraftImage').src = draftPreviewUrl;
+      el('attachmentDraftImage').hidden = false;
+    }
+  }
+  function selectAttachment(files) {
+    if (!receiver || !files?.length) return;
+    if (files.length !== 1) { notify('Attach one file per message.'); return; }
+    const file = files[0];
+    const extension = file.name.split('.').pop().toLowerCase();
+    if (!attachmentTypes.has(extension)) { notify('Use a PNG, JPEG, GIF, WebP, PDF, text, CSV, DOCX, XLSX or PPTX file.'); return; }
+    if (!file.size || file.size > 10 * 1024 * 1024) { notify('Choose a nonempty file no larger than 10 MB.'); return; }
+    attachmentDrafts.set(receiver, { file, requestId: attachmentRequestId(), content: null });
+    showAttachmentDraft();
+    el('messageInput').focus();
+  }
+  function appendAttachment(bubble, attachment) {
+    const url = attachmentUrl(attachment.url);
+    if (!url) { bubble.textContent = 'Attachment unavailable.'; return; }
+    bubble.classList.add('message-bubble--attachment');
+    const preview = attachmentUrl(attachment.preview_url);
+    if (imageTypes.has(attachment.media_type) && preview) {
+      const imageLink = document.createElement('a'); imageLink.href = preview;
+      imageLink.target = '_blank'; imageLink.rel = 'noopener'; imageLink.setAttribute('aria-label', `Open image: ${attachment.name}`);
+      const image = document.createElement('img'); image.className = 'message-attachment-image';
+      image.src = preview; image.alt = attachment.name; image.loading = 'lazy';
+      imageLink.append(image); bubble.append(imageLink);
+    }
+    const link = document.createElement('a'); link.href = url; link.download = attachment.name;
+    link.className = 'message-attachment-card'; link.setAttribute('aria-label', `Download ${attachment.name}`);
+    const icon = document.createElement('span'); icon.className = 'message-attachment-icon'; icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = attachment.name.split('.').pop().toUpperCase().slice(0, 5);
+    const details = document.createElement('span'); details.className = 'message-attachment-details';
+    const name = document.createElement('span'); name.className = 'message-attachment-name'; name.textContent = attachment.name;
+    const size = document.createElement('span'); size.className = 'message-attachment-size'; size.textContent = formatSize(attachment.size);
+    const download = document.createElement('span'); download.className = 'message-attachment-download'; download.setAttribute('aria-hidden', 'true'); download.textContent = '\u2193';
+    details.append(name, size); link.append(icon, details, download); bubble.append(link);
+  }
+
+  function mergeMessage(message) {
+    const previous = visibleMessages.get(message.id);
+    const merged = { ...previous, ...message };
+    if (merged.sender === currentUser) {
+      // Socket receipts may arrive before a send acknowledgement or HTTP history.
+      // Older snapshots must never turn read/delivered ticks back to sent.
+      const statuses = [previous?.status, message.status, receiptUpdates.get(message.id),
+        message.id <= lastReadId ? 'read' : 'sent'];
+      merged.status = statuses.reduce((best, status) =>
+        (receiptRank[status] ?? -1) > receiptRank[best] ? status : best, 'sent');
+      receiptUpdates.delete(message.id);
+    }
+    visibleMessages.set(message.id, merged);
+  }
 
   function contactsOpen(open) {
     el('messagingWorkspace').classList.toggle('contacts-open', open);
@@ -42,7 +131,7 @@
       const name = document.createElement('div'); name.className = 'conversation-name';
       name.textContent = contact.account_number ? `${contact.username} (${contact.account_number})` : contact.username;
       const preview = document.createElement('div'); preview.className = 'conversation-preview';
-      preview.textContent = thread?.content || 'Start a secure conversation';
+      preview.textContent = thread?.content || thread?.attachment?.name || 'Start a secure conversation';
       info.append(name, preview); item.append(avatar, info);
       if (thread?.unread_count) {
         const badge = document.createElement('span'); badge.className = 'unread-badge'; badge.textContent = thread.unread_count; item.append(badge);
@@ -58,8 +147,10 @@
     if (conversationId) socket?.emit('stop_typing', { conversation_id: conversationId });
     generation++; receiver = contact.username;
     conversationId = conversations.find(item => item.other_participant === receiver)?.id || null;
-    visibleMessages.clear(); oldestId = null; moreHistory = false; unreadBoundary = null;
+    visibleMessages.clear(); receiptUpdates.clear(); lastReadId = 0;
+    oldestId = null; moreHistory = false; unreadBoundary = null;
     el('messageInput').value = drafts.get(receiver) || '';
+    showAttachmentDraft();
     el('chatArea').hidden = true; el('chatContent').hidden = false;
     el('chatTitle').textContent = contact.username;
     el('chatAccount').textContent = contact.account_number || '';
@@ -90,7 +181,7 @@
         const unread = data.messages.filter(m => m.receiver_username === currentUser && m.status !== 'read');
         unreadBoundary = Math.min(...unread.map(m => m.id));
       }
-      for (const message of data.messages) visibleMessages.set(message.id, {
+      for (const message of data.messages) mergeMessage({
         ...message, sender: message.sender_username, timestamp: message.created_at
       });
       for (const message of data.messages) {
@@ -127,7 +218,14 @@
       const group = document.createElement('div'); group.dataset.messageId = message.id;
       group.className = `message-group ${message.sender === currentUser ? 'sent' : 'received'}`;
       const content = document.createElement('div'), bubble = document.createElement('div'), time = document.createElement('div');
-      bubble.className = 'message-bubble'; bubble.textContent = message.content;
+      bubble.className = 'message-bubble';
+      if (message.attachment) {
+        appendAttachment(bubble, message.attachment);
+        if (message.content) {
+          const caption = document.createElement('div'); caption.className = 'message-attachment-caption';
+          caption.textContent = message.content; bubble.append(caption);
+        }
+      } else bubble.textContent = message.content;
       time.className = 'message-time';
       time.textContent = new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       if (message.sender === currentUser) {
@@ -157,15 +255,17 @@
     if (!contacts.some(contact => contact.username === other)) return;
     if (other === receiver) {
       conversationId = message.conversation_id;
-      visibleMessages.set(message.id, message); renderMessages();
+      mergeMessage(message); renderMessages();
       if (message.sender !== currentUser && !document.hidden) socket?.emit('mark_read', { conversation_id: conversationId });
     }
   }
   function send() {
     const input = el('messageInput'), text = input.value.trim();
-    if (!receiver || !text || pending) return;
+    const attachment = attachmentDrafts.get(receiver);
+    if (!receiver || (!text && !attachment) || pending) return;
     if (!socket?.connected) { notify('Messaging is disconnected. Your draft is preserved.'); return; }
     if (text.length > 10000) { notify('Message must contain at most 10,000 characters.'); return; }
+    if (attachment) { sendAttachment(attachment, text); return; }
     const attempt = { receiver, text }; pending = attempt;
     el('sendButton').disabled = true;
     const finish = () => { if (pending === attempt) { pending = null; el('sendButton').disabled = false; } };
@@ -186,6 +286,45 @@
       finish();
     });
   }
+  async function sendAttachment(attachment, text) {
+    if (attachment.content !== null && attachment.content !== text) attachment.requestId = attachmentRequestId();
+    attachment.content = text;
+    const attempt = { receiver, text, file: attachment.file, requestId: attachment.requestId };
+    pending = attempt; el('sendButton').disabled = true;
+    el('attachmentUploadStatus').textContent = `Sending ${attempt.file.name}...`;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
+    try {
+      const data = new FormData();
+      data.append('receiver', attempt.receiver); data.append('content', text);
+      data.append('file', attempt.file); data.append('client_request_id', attempt.requestId);
+      data.append('csrf_token', el('messagingWorkspace').dataset.messageAttachmentCsrf);
+      const response = await fetch('/api/message-attachments', { method: 'POST', body: data, signal: controller.signal });
+      if (response.status === 401 || (response.redirected && new URL(response.url).pathname === '/login')) {
+        location.assign('/login'); return;
+      }
+      if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Attachment could not be sent. Your draft is preserved.');
+      const result = await response.json();
+      if (!response.ok || result.status !== 'success') throw new Error(result.message || 'Attachment could not be sent. Your draft is preserved.');
+      const saved = attachmentDrafts.get(attempt.receiver);
+      const currentCaption = receiver === attempt.receiver ? el('messageInput').value.trim() : (drafts.get(attempt.receiver) || '').trim();
+      const matchingDraft = saved?.file === attempt.file && saved.requestId === attempt.requestId && currentCaption === text;
+      if (matchingDraft) attachmentDrafts.delete(attempt.receiver);
+      if (receiver === attempt.receiver) {
+        if (matchingDraft && el('messageInput').value.trim() === text) el('messageInput').value = '';
+        showAttachmentDraft();
+      }
+      if (matchingDraft && drafts.get(attempt.receiver)?.trim() === text) drafts.delete(attempt.receiver);
+      if (result.message) receive(result.message);
+      if (conversationId) socket?.emit('stop_typing', { conversation_id: conversationId });
+      refreshContacts().catch(error => notify(error.message));
+    } catch (error) {
+      notify(error.name === 'AbortError' ? 'Upload is unconfirmed. Your draft is preserved; retry to check the same message.' : error.message || 'Attachment could not be sent. Your draft is preserved.');
+    } finally {
+      clearTimeout(timer);
+      if (pending === attempt) { pending = null; el('sendButton').disabled = false; el('attachmentUploadStatus').textContent = ''; }
+    }
+  }
   async function resync() {
     try {
       await refreshContacts();
@@ -200,15 +339,19 @@
   socket?.on('unread_update', () => refreshContacts().catch(error => notify(error.message)));
   socket?.on('messages_read', event => {
     if (event.conversation_id !== conversationId) return;
+    lastReadId = Math.max(lastReadId, Number(event.last_read_id) || 0);
     for (const message of visibleMessages.values())
-      if (message.sender === currentUser && message.id <= event.last_read_id) message.status = 'read';
+      if (message.sender === currentUser && message.id <= lastReadId) message.status = 'read';
     renderMessages(false);
   });
   socket?.on('message_status', event => {
+    if (event.conversation_id !== conversationId || !(event.status in receiptRank)) return;
     const message = visibleMessages.get(event.id);
-    if (message && message.sender === currentUser && message.status !== 'read') {
-      message.status = event.status;
+    if (message && message.sender === currentUser) {
+      mergeMessage({ ...message, status: event.status });
       renderMessages(false);
+    } else if (!message && receiptRank[event.status] > (receiptRank[receiptUpdates.get(event.id)] ?? -1)) {
+      receiptUpdates.set(event.id, event.status);
     }
   });
   socket?.on('user_typing', event => {
@@ -221,6 +364,22 @@
     el('openContacts').onclick = () => contactsOpen(true);
     el('closeContacts').onclick = () => contactsOpen(false);
     el('sendButton').onclick = send;
+    el('attachFile').onclick = () => el('attachmentInput').click();
+    el('attachmentInput').onchange = event => { selectAttachment(event.target.files); event.target.value = ''; };
+    el('removeAttachment').onclick = () => { attachmentDrafts.delete(receiver); showAttachmentDraft(); };
+    el('messageInput').addEventListener('paste', event => {
+      const files = Array.from(event.clipboardData?.files || []);
+      if (files.length) { event.preventDefault(); selectAttachment(files); }
+    });
+    const chatPanel = el('chatContent').closest('.chat-panel');
+    chatPanel.addEventListener('dragover', event => {
+      if (receiver && event.dataTransfer?.types.includes('Files')) { event.preventDefault(); chatPanel.classList.add('attachment-drop-active'); }
+    });
+    chatPanel.addEventListener('dragleave', event => { if (!chatPanel.contains(event.relatedTarget)) chatPanel.classList.remove('attachment-drop-active'); });
+    chatPanel.addEventListener('drop', event => {
+      if (!event.dataTransfer?.files.length) return;
+      event.preventDefault(); chatPanel.classList.remove('attachment-drop-active'); selectAttachment(event.dataTransfer.files);
+    });
     const enableAlerts = el('enableMessageNotifications');
     if (!('Notification' in window) || !window.isSecureContext) enableAlerts.hidden = true;
     else {

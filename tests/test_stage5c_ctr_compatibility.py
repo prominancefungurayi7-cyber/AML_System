@@ -28,7 +28,7 @@ def test_committed_notification_does_not_query_ctr_by_transaction_id():
                 raise AssertionError('CTR has no transaction_id relationship')
             if 'FROM transactions' in sql:
                 return type('Cursor', (), {'fetchone': lambda _self: {'id': 7,
-                    'ctr_required': 1, 'ai_risk_level': 'normal'}})()
+                    'ctr_required': 1, 'ai_risk_level': 'normal', 'sender_account': None, 'receiver_account': None}})()
             if 'FROM alerts' in sql:
                 return type('Cursor', (), {'fetchone': lambda _self: None})()
             raise AssertionError(sql)
@@ -60,7 +60,7 @@ def test_v4_precommit_sets_ctr_flag_without_inventing_report_link():
 
     prepare = function('_prepare_v4_primary', {
         'CTR_THRESHOLD': 10000, 'json': json, 'datetime': datetime,
-        'timezone': timezone,
+        'timezone': timezone, 'require_v4_rule_policy': lambda: None,
         'create_alert_if_needed': lambda *_args, **_kwargs: None,
     })
     prepare(Connection(), 7, 'WALLET', 10000, 'deposit',

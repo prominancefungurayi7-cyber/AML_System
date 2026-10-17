@@ -21,7 +21,8 @@ def test_customer_history_covers_all_pages_and_separates_risk_evidence(aml_app):
         db.close()
     client = aml_app.app.test_client()
     with client.session_transaction() as state:
-        state.update(user_id=user['id'], username='demo', role='customer')
+        state.update(user_id=user['id'], username='demo', role='customer',
+                     auth_token=aml_app.auth_sessions.create(user['id'], 3600))
 
     all_rows = []
     for page in (1, 2):

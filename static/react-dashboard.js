@@ -192,6 +192,23 @@
     return [{ ...previous, ...item }, ...items.filter((row) => String(row.id) !== String(item.id))].slice(0, limit);
   }
 
+  function upsertRecentTransaction(items, item, limit) {
+    const previous = items.find((row) => String(row.id) === String(item.id));
+    const rows = [{ ...previous, ...item }, ...items.filter((row) => String(row.id) !== String(item.id))];
+    rows.sort((left, right) => {
+      const leftTime = Date.parse(left.timestamp);
+      const rightTime = Date.parse(right.timestamp);
+      if (Number.isFinite(leftTime) && Number.isFinite(rightTime) && leftTime !== rightTime) return rightTime - leftTime;
+      // Compare decimal IDs without losing precision for large MySQL integers.
+      const leftId = String(left.id), rightId = String(right.id);
+      if (/^\d+$/.test(leftId) && /^\d+$/.test(rightId)) {
+        return rightId.length - leftId.length || (leftId < rightId ? 1 : leftId > rightId ? -1 : 0);
+      }
+      return 0;
+    });
+    return rows.slice(0, limit);
+  }
+
   function ownsTransaction(txn, accountNumber) {
     return txn.sender_account === accountNumber || txn.receiver_account === accountNumber;
   }
@@ -335,9 +352,9 @@
 
     const metricItems = [
       { label: "Wallet balance", value: money(balance), caption: accountNumber },
-      { label: "Transactions", value: stats.total_tx || transactions.length, caption: "wallet history" },
+      { label: "Transactions", value: stats.total_tx ?? transactions.length, caption: "wallet history" },
       { label: "Flagged", value: stats.flagged || 0, caption: "requires attention" },
-      { label: "Open alerts", value: stats.open_alerts || alerts.filter((alert) => alert.status === "open").length, caption: "live cases" },
+      { label: "Open alerts", value: stats.open_alerts ?? alerts.filter((alert) => alert.status === "open").length, caption: "live cases" },
     ];
 
     const renderSection = () => {
@@ -612,20 +629,38 @@
     const [statusError, setStatusError] = useState(false);
     useEffect(() => {
       if (!generation) return;
-      let active = true, timer;
+      let active = true, timer, busy = false, refreshPending = false;
       const refresh = async () => {
+        if (!active) return;
+        if (busy) { refreshPending = true; return; }
+        busy = true;
+        refreshPending = false;
+        clearTimeout(timer);
         try {
-          const response = await fetch("/api/admin/generation", { credentials: "same-origin" });
+          const response = await fetch("/api/admin/generation", { credentials: "same-origin", cache: "no-store" });
           if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) throw new Error("Status unavailable");
           const data = await response.json();
           if (active) { setProgress(data); setStatusError(false); }
           if (active && data?.pending_v4 > 0) timer = setTimeout(refresh, 4000);
         } catch (_) {
           if (active) { setStatusError(true); timer = setTimeout(refresh, 10000); }
+        } finally {
+          busy = false;
+          if (active && refreshPending) await refresh();
         }
       };
       refresh();
-      return () => { active = false; clearTimeout(timer); };
+      const socket = window.getAmlSocket();
+      socket?.on('transaction_batch', refresh);
+      socket?.on('connect', refresh);
+      window.addEventListener('focus', refresh);
+      return () => {
+        active = false;
+        clearTimeout(timer);
+        socket?.off('transaction_batch', refresh);
+        socket?.off('connect', refresh);
+        window.removeEventListener('focus', refresh);
+      };
     }, [generation]);
     const choice = generation?.choices.find(item => item.count === count && item.mode === mode);
     const restricted = generation ? !choice : Boolean(legacyBlockReason);
@@ -634,7 +669,7 @@
     return h("section", { className: "card action-card generation-card" },
       h(PanelHeading, { title: "Transaction Generation" }),
       h("p", { className: "muted-line" }, generation
-        ? `Uses ${generation.wallet_count} existing demo wallets. Payments update their balances and remain in the verified ledger. V4 analysis runs after they are saved.`
+        ? `Uses ${generation.wallet_count} existing customer wallets. Payments update their balances and remain in the verified ledger. V4 analysis runs after they are saved.`
         : "Generate cash-ins, cash-outs and wallet transfers for demonstration."),
       generation && h("p", { className: "form-hint" }, generation.agent_count
         ? "Active agents are available for cash scenarios."
@@ -642,7 +677,7 @@
       h("form", {
         method: "post", action: "/admin/generate-transactions",
         onSubmit: event => {
-          if (restricted || submitted || !window.confirm(`Generate ${count} demo transactions? This updates demo wallet balances and adds permanent transaction records.`)) {
+          if (restricted || submitted || !window.confirm(`Generate ${count} demo transactions? This updates customer wallet balances and adds permanent transaction records.`)) {
             event.preventDefault(); return;
           }
           setSubmitted(true);
@@ -659,10 +694,21 @@
         h("select", { id: "generation-count", name: "count", value: count, onChange: e => setCount(Number(e.target.value)), disabled: submitted },
           (generation ? [1, 10, 100, 500, 1000, 2000, 5000] : [100, 500, 1000, 2000, 5000]).map(value => h("option", { key: value, value }, value.toLocaleString()))),
         generation && h("p", { className: "form-hint", "aria-live": "polite" }, `Planned inputs: ${routineInputs.toLocaleString()} routine payments and ${(count - routineInputs).toLocaleString()} suspicious-scenario payments. These are scenario intentions, not V4 results or an accuracy score.`),
-        h("p", { className: "form-hint" }, "Payments use current timestamps and available demo funds. Large or repeated batches can trigger independent velocity rules. V4 determines each prediction from verified history; its result ratio may differ from the input mix."),
-        restricted && h("p", { className: "maintenance-restriction" }, generation ? "At least six existing demo wallets are required." : legacyBlockReason),
+        h("p", { className: "form-hint" }, "Payments use current timestamps and existing customer balances. Routine amounts and counterparties follow up to 100 recent outgoing transfers classified normal or low risk; fewer than five records means a limited baseline. Large or repeated batches can trigger independent velocity rules. V4 determines each prediction from verified history; its result ratio may differ from the input mix."),
+        restricted && h("p", { className: "maintenance-restriction" }, generation ? "At least six customer wallets are required." : legacyBlockReason),
         h("button", { type: "submit", disabled: restricted || submitted }, submitted ? "Saving Transactions…" : "Generate Transactions")
       ),
+      generation?.baseline_summary && h("details", { className: "card customer-baselines" },
+        h("summary", null, "Customer simulation baselines"),
+        h("p", null, "All customer wallets are eligible. Routine senders rotate across the customer list; a small batch may not reach every customer. Existing history is preserved. Historical normal/low classifications are observations, not proof of legitimate activity. Immediate batches do not reproduce historical timing and can trigger velocity rules."),
+        h("div", { className: "table-responsive", tabIndex: 0, role: "region", "aria-label": "Customer simulation baselines" }, h("table", null,
+          h("thead", null, h("tr", null, ["Wallet", "History records", "Typical amount (USD)", "Baseline", "Usual recipients"].map(label => h("th", { key: label }, label)))),
+          h("tbody", null, Object.entries(generation.baseline_summary).map(([account, profile]) => h("tr", { key: account },
+            h("td", null, account), h("td", null, profile.sample_count),
+            h("td", null, (profile.median_minor / 100).toFixed(2)),
+            h("td", null, profile.sufficient_history ? "Historical" : "Limited history"),
+            h("td", null, profile.counterparties.join(", ") || "No established customer recipient"))))
+        ))),
       statusError && h("p", { role: "status", className: "form-hint" }, "Generation status is temporarily unavailable. Do not submit another batch to retry analysis."),
       generation?.last_request && progress?.saved === 0 && h("form", {
         method: "post", action: "/admin/generate-transactions",
@@ -689,6 +735,28 @@
     const [watchlist, setWatchlist] = useState(initialData.watchlist || []);
     const [stats, setStats] = useState(initialData.system_stats || {});
     const [activeSection, setActiveSection] = useState("overview");
+    const [selectedUserId, setSelectedUserId] = useState(String(initialData.users?.[0]?.id || ""));
+    const [kycSaving, setKycSaving] = useState(false);
+    const selectedUser = users.find(user => String(user.id) === selectedUserId);
+    const [kycDraft, setKycDraft] = useState(null);
+    async function saveKyc(event) {
+      event.preventDefault();
+      if (kycSaving) return;
+      const body = new FormData(event.currentTarget);
+      setKycSaving(true);
+      try {
+        const response = await fetch('/admin', { method: 'POST', body, headers: { Accept: 'application/json' } });
+        if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) throw new Error('Unable to update KYC. Check your session and try again.');
+        const data = await response.json();
+        if (data.status !== 'success') throw new Error('KYC update failed.');
+        setUsers(current => current.map(user => String(user.id) === String(data.user.user_id) ? { ...user, kyc_status: data.user.kyc_status } : user));
+        setKycDraft(null);
+        window.showAmlNotification('KYC status updated.', 'kyc-update', 'success');
+      } catch (error) {
+        window.showAmlNotification(error.message, 'kyc-update', 'error');
+      } finally { setKycSaving(false); }
+    }
+
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -707,7 +775,7 @@
 
     useRealtime({
       transaction: (txn) => {
-        setTransactions((current) => upsert(current, txn, 20));
+        setTransactions((current) => upsertRecentTransaction(current, txn, 20));
       },
       balance: (event) => {
         setUsers((current) => current.map((user) => (
@@ -743,7 +811,7 @@
     });
 
     const metricItems = [
-      { label: "Users", value: stats.total_users || users.length, caption: "registered wallets" },
+      { label: "Users", value: stats.total_users ?? users.length, caption: "registered wallets" },
       { label: "KYC outstanding", value: stats.kyc_pending || 0, caption: "requires review" },
       { label: "PEP customers", value: stats.pep_customers || 0, caption: "enhanced due diligence" },
       { label: "Transactions", value: stats.total_transactions || 0, caption: "monitored ledger" },
@@ -762,19 +830,21 @@
               h(TransactionGeneration, { generation: initialData.generation, legacyBlockReason: initialData.simulation_block_reason }),
               h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Manage Users" }),
-                h("form", { method: "post", action: "/admin" },
+                h("form", { method: "post", action: "/admin", onSubmit: saveKyc },
                   h("input", { type: "hidden", name: "action", value: "update_role" }),
                   h("label", null, "User"),
-                  h("select", { name: "user_id" },
+                  h("select", { name: "user_id", value: selectedUserId, disabled: kycSaving, onChange: event => { setSelectedUserId(event.target.value); setKycDraft(null); } },
                     users.map((user) => h("option", { value: user.id, key: user.id }, `${user.username} (${user.role})`))
                   ),
                   h("label", null, "KYC Status"),
-                  h("select", { name: "kyc_status", defaultValue: "pending" },
+                  h("p", { role: "status", "aria-live": "polite" }, `Current KYC status: ${selectedUser?.kyc_status || "pending"}`),
+                  h("select", { name: "kyc_status", value: kycDraft ?? selectedUser?.kyc_status ?? "pending", disabled: kycSaving, onChange: event => setKycDraft(event.target.value) },
                     h("option", { value: "pending" }, "Pending"),
                     h("option", { value: "verified" }, "Verified"),
-                    h("option", { value: "rejected" }, "Rejected")
+                    h("option", { value: "rejected" }, "Rejected"),
+                    h("option", { value: "pending_edd" }, "Pending enhanced due diligence")
                   ),
-                  h("button", { type: "submit" }, "Update User")
+                  h("button", { type: "submit", disabled: kycSaving }, kycSaving ? "Saving..." : "Update User")
                 )
               ),
               h("div", { className: "card action-card" },
@@ -934,7 +1004,9 @@
       disconnect: () => setStatus("Disconnected. Reconnecting..."),
       connect_error: () => setStatus("Live updates unavailable. Reload to refresh."),
       transaction: (txn) => {
-        if (passesFilter(txn)) setTransactions((current) => upsert(current, txn, 25));
+        setTransactions((current) => passesFilter(txn)
+          ? upsertRecentTransaction(current, txn, 25)
+          : current.filter((item) => String(item.id) !== String(txn.id)));
         addFeed(`Transaction | Tx #${txn.id || ""} | ${txn.risk_level || "normal"} | Score ${score(txn.risk_score)}`);
       },
       alert: (alert) => {
@@ -970,7 +1042,7 @@
     }, [initialData.open_alert_count, initialData.page_size]);
 
     const metricItems = [
-      { label: "Open alerts", value: stats.open_alerts || alerts.length, caption: "needs review" },
+      { label: "Open alerts", value: stats.open_alerts ?? alerts.length, caption: "needs review" },
       { label: "High risk today", value: stats.high_risk_today || 0, caption: "new severe activity" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "case narratives" },
       { label: "Pending CTRs", value: stats.pending_ctrs || 0, caption: "currency reports" },

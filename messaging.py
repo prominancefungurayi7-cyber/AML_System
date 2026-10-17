@@ -17,6 +17,28 @@ from typing import Optional, Dict, List, Any, Tuple
 from utils import get_last_insert_id
 
 
+class MessageRequestConflict(ValueError):
+    pass
+
+
+def public_message(message):
+    """Project private attachment records into authenticated message URLs."""
+    from message_attachments import AttachmentError, decode_message
+    item = dict(message)
+    try:
+        caption, attachment = decode_message(item.get('content') or '')
+    except AttachmentError:
+        caption, attachment = 'Attachment unavailable', None
+    item['content'] = caption
+    if attachment:
+        url = f"/api/messages/{item['id']}/attachment"
+        item['attachment'] = {key: attachment[key] for key in ('name', 'size', 'media_type')}
+        item['attachment']['url'] = url
+        if attachment['media_type'].startswith('image/'):
+            item['attachment']['preview_url'] = url + '?inline=1'
+    return item
+
+
 def create_messaging_tables_sql(database_url):
     """Generate SQL for messaging tables based on database engine."""
     from database import is_postgres_database_url, is_mysql_database_url
@@ -124,7 +146,8 @@ def get_or_create_conversation(conn, user1: str, user2: str, conversation_type: 
     return dict(row) if row else {"id": None}
 
 
-def send_message(conn, conversation_id: int, sender: str, receiver: str, content: str, sender_role: str = None) -> Dict[str, Any]:
+def send_message(conn, conversation_id: int, sender: str, receiver: str, content: str, sender_role: str = None,
+                 *, attachment_request_id=None) -> Dict[str, Any]:
     """Send a direct message."""
     if not content.strip():
         return {"error": "Message cannot be empty"}
@@ -137,6 +160,23 @@ def send_message(conn, conversation_id: int, sender: str, receiver: str, content
                            (conversation_id,)).fetchone()
         if row is None:
             raise ValueError("Conversation not found")
+        if attachment_request_id is not None:
+            from message_attachments import PREFIX, decode_message
+            caption, metadata = decode_message(content)
+            if not metadata or metadata.get('request_id') != attachment_request_id:
+                raise MessageRequestConflict('Invalid attachment request identity')
+            prior = conn.execute(
+                "SELECT id,sender_username,receiver_username,content,status,created_at FROM messages "
+                "WHERE conversation_id=? AND sender_username=? AND content LIKE ? ESCAPE '!' ORDER BY id DESC LIMIT 1" + lock,
+                (conversation_id, sender, PREFIX.replace('_', '!_') + '%"request_id":"' + attachment_request_id + '"%')).fetchone()
+            if prior:
+                old_caption, old_metadata = decode_message(prior['content'])
+                fields = ('name', 'size', 'media_type', 'sha256', 'request_id')
+                if (not old_metadata or old_caption != caption or prior['receiver_username'] != receiver or
+                        any(old_metadata[key] != metadata[key] for key in fields)):
+                    raise MessageRequestConflict('This attachment request was already used. Select the file again to send a different message.')
+                conn.rollback()
+                return {**dict(prior), 'replayed': True}
         conn.execute(
             """INSERT INTO messages
                (conversation_id, sender_username, sender_role, receiver_username, content, status, created_at)
@@ -220,7 +260,7 @@ def get_conversation_messages(conn, conversation_id: int, limit: int = 50, offse
         (conversation_id, before_id, before_id, limit, offset)
     ).fetchall()
     
-    return [dict(row) for row in rows]
+    return [public_message(row) for row in rows]
 
 
 def get_user_conversations(conn, username: str) -> List[Dict[str, Any]]:
@@ -243,6 +283,12 @@ def get_user_conversations(conn, username: str) -> List[Dict[str, Any]]:
     conversations = []
     for row in rows:
         conv_dict = dict(row)
+        from message_attachments import AttachmentError, decode_message
+        try:
+            caption, attachment = decode_message(conv_dict.get('content') or '')
+            conv_dict['content'] = caption or (attachment['name'] if attachment else '')
+        except AttachmentError:
+            conv_dict['content'] = 'Attachment unavailable'
         other_participant = conv_dict['participant_2'] if conv_dict['participant_1'] == username else conv_dict['participant_1']
         conv_dict['other_participant'] = other_participant
         conv_dict['unread_count'] = conv_dict.get('unread_count') or 0

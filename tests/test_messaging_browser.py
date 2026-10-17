@@ -11,7 +11,9 @@ def test_contacts_drafts_history_acknowledgement_and_reconnect():
     section = (root / 'templates/messages.html').read_text(encoding='utf-8').split('<section', 1)[1].split('<script', 1)[0]
     stub = """window.handlers={}; window.outgoing=[];
     window.fakeSocket={connected:true,on(name,fn){(handlers[name]??=[]).push(fn)},
-      emit(name,data,ack){outgoing.push({name,data,ack})},disconnect(){}};
+      emit(name,data,ack){outgoing.push({name,data,ack})},
+      disconnect(){this.connected=false},
+      connect(){this.connected=true; window.reconnections=(window.reconnections||0)+1; fire('connect')}};
     window.io=()=>fakeSocket;
     window.fire=(name,data)=>(handlers[name]||[]).forEach(fn=>fn(data));"""
     html = '<html><head><script>' + stub + '</script><script src="/static/app-shell.js"></script></head><body data-authenticated="true" data-user-role="compliance" data-username="Compliance"><main id="main-content"><section' + section + '</main><script src="/static/messages.js"></script></body></html>'
@@ -20,6 +22,7 @@ def test_contacts_drafts_history_acknowledgement_and_reconnect():
     with sync_playwright() as pw:
         browser = pw.chromium.launch(channel='msedge', headless=True)
         page = browser.new_page()
+        page.clock.install()
         page.add_init_script("""
           window.testPermission = 'default';
           window.permissionEvents = new EventTarget();
@@ -105,6 +108,58 @@ def test_contacts_drafts_history_acknowledgement_and_reconnect():
             expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Read')
             expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_class('message-receipt message-receipt--read')
             assert page.locator('#messagesContainer').evaluate('(node) => Math.abs(node.scrollHeight - node.clientHeight - node.scrollTop) < 2')
+            # A late acknowledgement/echo and stale HTTP snapshot cannot undo receipts.
+            page.evaluate("""() => {
+              fire('new_message',{id:56,sender:'Compliance',receiver:'demo',content:'Late echo',
+                status:'sent',timestamp:'2026-10-16T12:01:00Z',conversation_id:1});
+            }""")
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Read')
+            messages.append(dict(id=56, sender_username='Compliance', receiver_username='demo', content='Stale snapshot',
+                                 status='sent', created_at='2026-10-16T12:01:00Z'))
+            page.evaluate("dispatchEvent(new Event('aml:messages-resync'))")
+            expect(page.locator('[data-message-id="56"] .message-bubble')).to_have_text('Stale snapshot')
+            expect(page.locator('[data-message-id="56"] .message-receipt')).to_have_attribute('aria-label', 'Read')
+            # Receipt events can beat the original new_message event across instances.
+            page.locator('#messageInput').fill('Receipt first')
+            page.locator('#messageInput').press('Enter')
+            page.evaluate("""() => {
+              fire('message_status',{id:57,conversation_id:1,status:'delivered'});
+              const attempt=outgoing.filter(event=>event.name==='send_message').at(-1);
+              attempt.ack({status:'success',message:{id:57,sender:'Compliance',receiver:'demo',content:'Receipt first',
+                status:'sent',timestamp:'2026-10-16T12:01:00Z',conversation_id:1}});
+            }""")
+            expect(page.locator('#messageInput')).to_have_value('')
+            expect(page.locator('[data-message-id="57"] .message-receipt')).to_have_attribute('aria-label', 'Delivered')
+            page.evaluate("""() => {
+              fire('messages_read',{conversation_id:1,last_read_id:58});
+              for(const id of [58,59]) fire('new_message',{id,sender:'Compliance',receiver:'demo',content:'Read cutoff',
+                status:'sent',timestamp:'2026-10-16T12:01:00Z',conversation_id:1});
+            }""")
+            expect(page.locator('[data-message-id="57"] .message-receipt')).to_have_attribute('aria-label', 'Read')
+            expect(page.locator('[data-message-id="58"] .message-receipt')).to_have_attribute('aria-label', 'Read')
+            expect(page.locator('[data-message-id="59"] .message-receipt')).to_have_attribute('aria-label', 'Sent')
+            # Returning from a cached mobile/browser page restores the socket and
+            # exactly one heartbeat, including after a second back/forward trip.
+            page.locator('#messageInput').fill('Draft preserved after browser return')
+            page.evaluate("fire('connect'); outgoing.length=0; dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true}))")
+            assert not page.evaluate('fakeSocket.connected')
+            page.clock.fast_forward(30001)
+            assert page.evaluate("outgoing.filter(event=>event.name==='heartbeat').length") == 0
+            page.evaluate("dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}))")
+            assert page.evaluate('fakeSocket.connected')
+            page.clock.fast_forward(30001)
+            assert page.evaluate("outgoing.filter(event=>event.name==='heartbeat').length") == 1
+            page.evaluate("dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true}))")
+            assert not page.evaluate('fakeSocket.connected')
+            page.clock.fast_forward(30001)
+            assert page.evaluate("outgoing.filter(event=>event.name==='heartbeat').length") == 1
+            page.evaluate("dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}))")
+            page.clock.fast_forward(30001)
+            assert page.evaluate("outgoing.filter(event=>event.name==='heartbeat').length") == 2
+            assert page.evaluate('reconnections') == 2
+            expect(page.locator('#messageInput')).to_have_value('Draft preserved after browser return')
+            page.evaluate("fire('connect_error',{message:'Connection rejected by server'})")
+            expect(page).to_have_url('http://127.0.0.1:5000/login')
             assert not errors
         finally:
             browser.close()

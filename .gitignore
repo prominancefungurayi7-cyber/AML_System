@@ -8,3 +8,4 @@ data/local-v4-backups/
 __pycache__/
 MYSQL_DEPLOYMENT.md
 RILWAY_DEPLOYMENT.md
+instance/message_attachments/

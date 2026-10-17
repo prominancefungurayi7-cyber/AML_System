@@ -70,7 +70,7 @@
     const sender = document.createElement('strong');
     sender.textContent = String(event.sender);
     const preview = document.createElement('span');
-    preview.textContent = String(event.content || 'New message').slice(0, 120);
+    preview.textContent = String(event.content || event.attachment?.name || 'New message').slice(0, 120);
     text.append(sender, preview);
     const avatar = document.createElement('span');
     avatar.className = 'notification-message-avatar';
@@ -89,7 +89,7 @@
     if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
       try {
         const options = {
-          body: String(event.content || 'New message').slice(0, 120),
+          body: String(event.content || event.attachment?.name || 'New message').slice(0, 120),
           icon: '/static/favicon.svg',
           tag: `epocash-message-${event.id}`,
           data: { contact: event.sender },
@@ -194,7 +194,16 @@
     if (document.body.dataset.authenticated !== 'true' || !window.io) return null;
     if (!socket) {
       socket = window.io({ transports: ['polling', 'websocket'] });
-      socket.on('session_expired', () => { window.location.assign('/login'); });
+      socket.on('session_expired', () => {
+        socket.disconnect();
+        window.location.assign('/login');
+      });
+      socket.on('connect_error', error => {
+        if (error.message === 'Connection rejected by server') {
+          socket.disconnect();
+          window.location.assign('/login');
+        }
+      });
       let lastInteraction = Date.now();
       ['pointerdown', 'keydown', 'scroll', 'focus'].forEach(name => {
         window.addEventListener(name, () => { lastInteraction = Date.now(); }, { passive: true });
@@ -222,12 +231,24 @@
         socket.on('transaction_batch', event => window.showAmlNotification(
           `${Number(event.count) || 0} transactions saved.`, 'transaction-batch'));
       }
-      const heartbeat = window.setInterval(() => {
-        if (socket.connected) socket.emit('heartbeat', { active: !document.hidden && Date.now() - lastInteraction < 60000 });
-      }, 30000);
-      window.addEventListener('pagehide', () => { clearInterval(heartbeat); socket.disconnect(); }, { once: true });
+      let heartbeat;
+      const startHeartbeat = () => {
+        clearInterval(heartbeat);
+        heartbeat = window.setInterval(() => {
+          if (socket.connected) socket.emit('heartbeat', { active: !document.hidden && Date.now() - lastInteraction < 60000 });
+        }, 30000);
+      };
+      startHeartbeat();
+      window.addEventListener('pagehide', () => { clearInterval(heartbeat); socket.disconnect(); });
       window.addEventListener('pageshow', event => {
-        if (event.persisted) window.refreshAmlPage();
+        if (event.persisted) {
+          lastInteraction = Date.now();
+          startHeartbeat();
+          // A cached page keeps its JavaScript state, including the disconnected
+          // socket. Reconnect before restoring live delivery and presence.
+          if (socket.connected) window.refreshAmlPage();
+          else socket.connect();
+        }
       });
     }
     return socket;

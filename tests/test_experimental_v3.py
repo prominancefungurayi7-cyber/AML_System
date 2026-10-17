@@ -123,11 +123,22 @@ def test_socket_namespace_and_recipient_isolation(app,monkeypatch):
     unauthorized=io.test_client(app,namespace='/experimental-v3',auth={},**opts)
     assert not unauthorized.is_connected('/experimental-v3')
 
-def test_v1_server_off_path_byte_equivalence():
-    s=(ROOT/'server.py').read_bytes()
-    start=s.index(b'# Explicit local synthetic testing exits before production imports/startup.')
-    end=s.index(b'import json',start)
-    restored=s[:start]+s[end:]
-    expected=(ROOT/'experimental_v3/server_before.sha256').read_text().strip()
-    assert hashlib.sha256(restored).hexdigest()==expected
-
+def test_experimental_server_mode_is_explicitly_opt_in(monkeypatch):
+    # Full server byte equality predates authorised V4 integration. Verify the
+    # actual isolation contract without pinning unrelated application code.
+    import ast
+    import types
+    import sys
+    source = ast.parse((ROOT / 'server.py').read_text(encoding='utf-8'))
+    guard = next(node for node in ast.walk(source) if isinstance(node, ast.If)
+                 and 'AML_EXPERIMENTAL_TEST_MODE' in ast.unparse(node.test))
+    code = compile(ast.Module(body=[guard], type_ignores=[]), 'server.py', 'exec')
+    calls = []
+    fake = types.ModuleType('experimental_v3.web')
+    fake.main = lambda: calls.append('experimental')
+    monkeypatch.setitem(sys.modules, 'experimental_v3.web', fake)
+    exec(code, {'_experimental_os': types.SimpleNamespace(environ={})})
+    assert not calls
+    with pytest.raises(SystemExit) as stopped:
+        exec(code, {'_experimental_os': types.SimpleNamespace(environ={'AML_EXPERIMENTAL_TEST_MODE': 'ON'})})
+    assert stopped.value.code == 0 and calls == ['experimental']

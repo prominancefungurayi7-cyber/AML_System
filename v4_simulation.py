@@ -13,8 +13,8 @@ from transaction_idempotency import require_schema, existing, submission
 COUNTS = (1, 10, 100, 500, 1000, 2000, 5000)
 MODES = ('mixed', 'ordinary', 'structuring', 'network', 'agent')
 PAYMENT_LOCK = 'aml_v4_payment_ingest_v1'
-# Existing seeded demonstration identities only. Newly registered customers are
-# never enrolled in simulation by their role alone.
+# Legacy identity list retained only for validating original signed payment plans.
+# Version 3 and later include all customer wallets as authorised by the owner.
 DEMO_WALLETS = {
     'demo': 'ACC1003', 'user_low_1': 'ACC1000', 'user_low_5': 'ACC1004',
     **{f'user_average_{i}': f'ACC{1004+i}' for i in range(1, 6)},
@@ -39,8 +39,10 @@ def serializer(secret):
 def options(conn, secret, admin_id):
     funded_wallets = [dict(row) for row in conn.execute(
         "SELECT id,username,account_number,balance FROM users WHERE role='customer' ORDER BY id").fetchall()
-        if DEMO_WALLETS.get(row['username']) == row['account_number']]
+        if row['account_number']]
     wallets = [{k: row[k] for k in ('id', 'username', 'account_number')} for row in funded_wallets]
+    from v4_customer_patterns import profiles
+    baseline = profiles(conn, funded_wallets)
     scenario_ids = scenario_wallet_order(funded_wallets)
     agents = [str(row['id']) for row in conn.execute(
         "SELECT id FROM agents WHERE status='active' ORDER BY id").fetchall()]
@@ -50,11 +52,12 @@ def options(conn, secret, admin_id):
             if mode == 'agent' and not agents:
                 continue
             for count in COUNTS:
-                ticket = dict(version=2, batch_id=str(uuid.uuid4()), admin_id=admin_id,
+                ticket = dict(version=4, batch_id=str(uuid.uuid4()), admin_id=admin_id,
                               count=count, mode=mode, wallets=wallets, agents=agents,
-                              scenario_wallet_ids=scenario_ids)
+                              scenario_wallet_ids=scenario_ids, customer_profiles=baseline)
                 choices.append(dict(count=count, mode=mode, token=serializer(secret).dumps(ticket)))
-    return dict(choices=choices, wallet_count=len(wallets), agent_count=len(agents))
+    return dict(choices=choices, wallet_count=len(wallets), agent_count=len(agents),
+                baseline_summary=baseline)
 
 
 def scenario_wallet_order(wallets):
@@ -75,7 +78,7 @@ def scenario_wallet_order(wallets):
 def decode(token, secret, admin_id):
     try:
         ticket = serializer(secret).loads(token, max_age=86400)
-        if (ticket['version'] not in (1, 2) or ticket['admin_id'] != admin_id or
+        if (ticket['version'] not in (1, 2, 3, 4) or ticket['admin_id'] != admin_id or
                 ticket['count'] not in COUNTS or ticket['mode'] not in MODES or
                 str(uuid.UUID(ticket['batch_id'], version=4)) != ticket['batch_id']):
             raise ValueError('Invalid generation request')
@@ -169,6 +172,9 @@ def plan(ticket):
     # byte-for-byte for old receipts/retries, including committed v1 batches.
     if ticket['version'] == 1:
         return _plan_v1(ticket)
+    if ticket['version'] in (3, 4):
+        from v4_customer_patterns import plan_from_history
+        return plan_from_history(ticket, plan, scenario_schedule)
     if ticket['version'] != 2:
         raise ValueError('Unknown generation plan version')
     wallets, agents = ticket['wallets'], ticket['agents']
@@ -257,11 +263,14 @@ def receipt(conn, ticket):
     planned = plan(ticket)
     accounts = sorted({sender['account_number'] for sender, _, _, _ in planned})
     for offset in range(0, len(planned), 250):
-        keys = [row[3] for row in planned[offset:offset+250]]
+        chunk = planned[offset:offset+250]
+        keys = [row[3] for row in chunk]
+        identities = {(sender['account_number'], key) for sender, _, _, key in chunk}
         rows.extend(dict(row) for row in conn.execute(
-            'SELECT id,ai_risk_level FROM transactions WHERE sender_account IN (' +
+            'SELECT id,ai_risk_level,sender_account,client_request_id FROM transactions WHERE sender_account IN (' +
             ','.join('?' for _ in accounts) + ') AND client_request_id IN (' +
-            ','.join('?' for _ in keys) + ')', (*accounts,*keys)).fetchall())
+            ','.join('?' for _ in keys) + ')', (*accounts,*keys)).fetchall()
+            if (row['sender_account'], row['client_request_id']) in identities)
     counts = {name: sum(row['ai_risk_level'] == name for row in rows)
               for name in ('normal', 'suspicious_pattern', 'pending_v4', 'inference_error')}
     return dict(batch_id=ticket['batch_id'], requested=ticket['count'], saved=len(rows),
@@ -279,7 +288,8 @@ def commit_batch(conn, ticket, process, last_id, preflight):
             raise RuntimeError('Incomplete request identity. No payment was replayed.')
         for sender, _, form, key in planned:
             event = prepare_ingestion(form, sender['account_number'], datetime.now(timezone.utc).isoformat())
-            existing(conn, sender['account_number'], key, submission(event, None, None, None, None, None))
+            if existing(conn, sender['account_number'], key, submission(event, None, None, None, None, None)) is None:
+                raise RuntimeError('Incomplete request identity. No payment was replayed.')
         return {**prior, 'replayed': True}
     if ticket['version'] == 1 or 'scenario_wallet_ids' not in ticket:
         raise ValueError('This generation form uses the retired planner. Reload the dashboard for the corrected mix.')
@@ -292,7 +302,7 @@ def commit_batch(conn, ticket, process, last_id, preflight):
                            (wallet['id'],)).fetchone()
         if (not row or row['role'] != 'customer' or row['username'] != wallet['username'] or
                 row['account_number'] != wallet['account_number'] or
-                DEMO_WALLETS.get(row['username']) != row['account_number']):
+                (ticket['version'] < 3 and DEMO_WALLETS.get(row['username']) != row['account_number'])):
             raise ValueError('Demo wallet identity changed. Reload the dashboard.')
     for agent in ticket['agents']:
         row = conn.execute("SELECT id FROM agents WHERE id=? AND status='active'" + suffix, (int(agent),)).fetchone()

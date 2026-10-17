@@ -101,3 +101,36 @@ def test_seeded_accounts_password_only_and_no_idle_expiry(aml_app, monkeypatch, 
     assert client.get('/api/unread-count').status_code == 200
     client.get('/logout')
     assert not m.auth_sessions.valid(token, uid, None)
+
+
+def test_password_rules_match_registration_ui(aml_app, monkeypatch):
+    m = aml_app
+    assert m.valid_new_password('Test-password1!')
+    for password in ('short', 'alllowercase1!', 'UPPERCASE1!', 'NoDigitsHere!', 'NoSymbols123'):
+        assert not m.valid_new_password(password)
+        response = m.app.test_client().post('/register', data={
+            'username': 'weakpasswordfixture', 'email': 'fixture@mail.org',
+            'id_number': '08-995728P34', 'password': password})
+        assert b'Use at least 8 characters' in response.data
+
+
+def test_redis_password_reset_invalidates_all_user_sessions():
+    from auth_sessions import AuthSessions
+    class RedisFixture:
+        def __init__(self): self.values = {}
+        def get(self, key): return self.values.get(key)
+        def set(self, key, value, ex=None): self.values[key] = value
+        def incr(self, key): self.values[key] = int(self.values.get(key, 0)) + 1
+        def expire(self, key, ttl): return key in self.values
+    redis = RedisFixture()
+    sessions = AuthSessions()
+    first = sessions.create(1, None, redis)
+    second = sessions.create(1, 3600, redis)
+    other = sessions.create(2, 3600, redis)
+    assert sessions.valid(first, 1, None, redis=redis)
+    sessions.revoke_user(1, redis)
+    assert not sessions.valid(first, 1, None, redis=redis)
+    assert not sessions.valid(second, 1, 3600, redis=redis)
+    assert sessions.valid(other, 2, 3600, redis=redis)
+    replacement = sessions.create(1, 3600, redis)
+    assert sessions.valid(replacement, 1, 3600, redis=redis)

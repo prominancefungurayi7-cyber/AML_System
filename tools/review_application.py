@@ -114,14 +114,15 @@ def main():
         'anonymous': ['/login', '/register', '/forgot-password', '/health'],
         'customer': ['/customer', '/messages', '/api/unread-count', '/api/conversations', '/api/messageable-users'],
         'admin': ['/admin', '/reports', '/messages', '/api/v1/ai-model'],
-        'compliance': ['/compliance', '/reports', '/compliance/alert/' + str(alert), '/api/v4-shadow/results', '/messages'],
+        'compliance': ['/compliance', '/reports', '/compliance/alert/' + str(alert), '/api/v4-shadow/results', '/api/v4-shadow/results?errors=1', '/messages'],
     }
     for role, routes in paths.items():
         client = app.test_client()
         clients[role] = client
         if role in users:
             with client.session_transaction() as session:
-                session.update(user_id=users[role]['id'], username=users[role]['username'], role=role)
+                session.update(user_id=users[role]['id'], username=users[role]['username'], role=role,
+                               auth_token=module.auth_sessions.create(users[role]['id'], 3600))
         for path in routes:
             response = client.get(path)
             passed = response.status_code == 200 and b'password_hash' not in response.data
@@ -207,6 +208,11 @@ def main():
                         request_route.fulfill(status=response.status_code, headers=dict(response.headers), body=response.data)
                     page.route('**/*', route)
                     page.goto('http://127.0.0.1:5000' + path, wait_until='networkidle')
+                    baseline = page.get_by_text('Customer simulation baselines', exact=True)
+                    if baseline.count():
+                        baseline.click()
+                        if page.evaluate('document.documentElement.scrollWidth > innerWidth + 1'):
+                            failures.append(f'Expanded baseline table overflows at {width}px')
                     page.screenshot(path=str(out / f'{role}-{path.strip("/").replace("/", "-")}-{width}.png'), full_page=True)
                     if page.locator('.sidebar-item').count() and 'dashboard' in page.content():
                         for label in ('Transactions', 'Transaction Generation', 'Alerts', 'User Management', 'Watchlist', 'Activity Feed', 'Settings'):
@@ -216,6 +222,8 @@ def main():
                                     page.get_by_role('button', name='Toggle navigation').click()
                                 button.click()
                                 page.wait_for_timeout(80)
+                                if page.evaluate('document.documentElement.scrollWidth > innerWidth + 1'):
+                                    failures.append(f'Browser {role} section {label} overflows at {width}px')
                     overflow = page.evaluate('document.documentElement.scrollWidth > innerWidth + 1')
                     if errors or overflow:
                         failures.append(f'Browser {role} {path} {width}: errors={errors}, overflow={overflow}')

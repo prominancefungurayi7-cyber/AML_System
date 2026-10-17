@@ -36,6 +36,8 @@ class RealtimeBroker:
         self.socketio = socketio
         self._staff_sockets = {}
         self._staff_authorizer = None
+        self._socket_authorizer = None
+        self._user_sockets = {}
         self._subscribers = []
         self._redis_client = None
         self._redis_pubsub = None
@@ -189,7 +191,8 @@ class RealtimeBroker:
                 # Ordinary AML events include accounts, amounts and risk data.
                 # Recheck the current staff role for every delivery.
                 for sid, user_id in list(self._staff_sockets.items()):
-                    if self._staff_authorizer is None or not self._staff_authorizer(user_id):
+                    if (self._staff_authorizer is None or not self._staff_authorizer(user_id)
+                            or (self._socket_authorizer is not None and not self._socket_authorizer(sid))):
                         self._staff_sockets.pop(sid, None)
                         continue
                     self.socketio.emit(event_name, payload, to=sid)
@@ -208,8 +211,15 @@ class RealtimeBroker:
         if isinstance(username, str) and username and event_name in {
             "new_message", "unread_update", "message_status", "messages_read",
             "user_typing", "user_stop_typing",
+            "balance", "customer_refresh",
         } and isinstance(payload, dict) and self.socketio is not None:
-            self.socketio.emit(event_name, payload, to=f"user:{username}")
+            authorizer = getattr(self, '_socket_authorizer', None)
+            if authorizer is None:
+                self.socketio.emit(event_name, payload, to=f"user:{username}")
+            else:
+                for sid, owner in list(self._user_sockets.items()):
+                    if owner == username and authorizer(sid):
+                        self.socketio.emit(event_name, payload, to=sid)
 
     def publish_private(self, username, event_name, payload):
         """Deliver a direct message event to authenticated user rooms on all instances."""
@@ -226,6 +236,12 @@ class RealtimeBroker:
     def set_staff_authorizer(self, authorizer):
         self._staff_authorizer = authorizer
 
+    def set_socket_authorizer(self, authorizer):
+        self._socket_authorizer = authorizer
+
+    def add_user_socket(self, sid, username):
+        self._user_sockets[sid] = username
+
     def add_staff_socket(self, sid, user_id):
         if self._staff_authorizer is not None and self._staff_authorizer(user_id):
             self._staff_sockets[sid] = user_id
@@ -234,6 +250,7 @@ class RealtimeBroker:
 
     def remove_staff_socket(self, sid):
         self._staff_sockets.pop(sid, None)
+        self._user_sockets.pop(sid, None)
 
     def add_subscriber(self, queue):
         """Add a queue as a subscriber."""
@@ -315,22 +332,33 @@ class RealtimeBroker:
                 self.app.logger.error(f"Failed to retrieve offline queue for user {user_id}: {e}")
             return []
 
-    def stream_response(self):
+    def stream_response(self, authorize=None):
         """Generate Server-Sent Events response for streaming."""
         queue = Queue()
         self.add_subscriber(queue)
 
+        def allowed():
+            try:
+                return authorize is None or bool(authorize())
+            except Exception:
+                return False
+
         def generate():
             try:
+                if not allowed():
+                    return
                 yield ": connected\n\n"
                 while True:
                     try:
                         message = queue.get(timeout=1)
                     except Empty:
+                        if not allowed():
+                            return
                         yield ": heartbeat\n\n"
                         continue
-                    yield f"event: {message['event']}\n"
-                    yield f"data: {json.dumps(message['data'])}\n\n"
+                    if not allowed():
+                        return
+                    yield f"event: {message['event']}\ndata: {json.dumps(message['data'])}\n\n"
             finally:
                 if queue in self._subscribers:
                     self._subscribers.remove(queue)

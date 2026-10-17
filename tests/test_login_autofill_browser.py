@@ -38,3 +38,28 @@ def test_autofill_submits_once_but_typing_and_failed_login_do_not():
                     assert page.evaluate('submissions') == 1
         finally:
             browser.close()
+
+
+def test_logout_requires_deliberate_credential_selection():
+    script = (Path(__file__).resolve().parents[1] / 'static/login.js').read_text(encoding='utf-8')
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(channel='msedge', headless=True)
+        try:
+            page = browser.new_page()
+            page.set_content('''<form id="signInForm" data-auto-sign-in="true" data-signed-out="true">
+              <input id="login" value="demo" required><input id="password" type="password" value="saved" required>
+              <button type="submit">Sign In</button></form>''')
+            page.evaluate('''() => {
+              window.submissions=0;
+              document.getElementById('password').matches = selector => selector === ':autofill';
+              document.querySelector('form').addEventListener('submit', e => {e.preventDefault(); submissions++;});
+            }''')
+            page.add_script_tag(content=script)
+            page.wait_for_timeout(300)
+            assert page.evaluate('submissions') == 0
+            page.locator('#password').click()
+            page.locator('#password').fill('selected-saved-password')
+            page.wait_for_timeout(300)
+            assert page.evaluate('submissions') == 1
+        finally:
+            browser.close()

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="messaging-workspace contacts-open" id="messagingWorkspace" aria-label="Secure messages">
+<section class="messaging-workspace contacts-open" id="messagingWorkspace" aria-label="Secure messages" data-message-attachment-csrf="{{ message_attachment_csrf }}">
   <aside class="messaging-rail" id="contactsRail" aria-label="Messaging contacts">
     <div class="messaging-rail__header">
       <div><span class="messaging-kicker">Secure Communications</span><h2>Messages</h2></div>
@@ -22,9 +22,20 @@
         <span class="secure-chip">Access controlled</span>
       </header>
       <div class="messages-container modern-messages-container" id="messagesContainer"></div>
-      <footer class="input-area modern-input-area"><div class="input-wrapper"><textarea class="message-input" id="messageInput" placeholder="Write a clear, professional message" rows="1"></textarea></div><button class="send-button" id="sendButton" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></button></footer>
+      <div class="message-attachment-draft" id="attachmentDraft" hidden aria-live="polite">
+        <img id="attachmentDraftImage" hidden alt="Selected image preview">
+        <div class="attachment-draft-details"><strong id="attachmentDraftName"></strong><span id="attachmentDraftSize"></span></div>
+        <button type="button" id="removeAttachment" class="attachment-remove" aria-label="Remove attachment" title="Remove attachment">&times;</button>
+      </div>
+      <footer class="input-area modern-input-area">
+        <input id="attachmentInput" type="file" hidden accept=".png,.jpg,.jpeg,.gif,.webp,.pdf,.txt,.csv,.docx,.xlsx,.pptx">
+        <button type="button" class="attachment-button" id="attachFile" aria-label="Attach an image or file" title="Attach an image or file (up to 10 MB)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 11-9 9a6 6 0 0 1-8.5-8.5l10-10a4 4 0 0 1 5.7 5.7l-10 10a2 2 0 0 1-2.9-2.9l9-9"></path></svg></button>
+        <div class="input-wrapper"><textarea class="message-input" id="messageInput" placeholder="Write a message or attach a file" rows="1" aria-label="Message"></textarea></div>
+        <button type="button" class="send-button" id="sendButton" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></button>
+      </footer>
+      <span class="message-upload-status" id="attachmentUploadStatus" role="status" aria-live="polite"></span>
     </div>
   </section>
 </section>
-<script src="{{ url_for('static', filename='messages.js', v='alerts-dismiss-1') }}"></script>
+<script src="{{ url_for('static', filename='messages.js', v='attachments-1') }}"></script>
 {% endblock %}

@@ -1154,8 +1154,34 @@ button:disabled {
   align-items:center
 }
 .input-wrapper {
-  flex:1
+  flex:1;
+  min-width:0
 }
+.attachment-button { width:40px; height:44px; flex:0 0 40px; padding:9px; border:1px solid var(--EpoCash-border); background:var(--EpoCash-panel); color:var(--EpoCash-muted); border-radius:10px }
+.attachment-button:hover { color:var(--EpoCash-text); background:var(--EpoCash-panel-strong) }
+.attachment-button svg { fill:none; stroke:currentColor; stroke-width:1.7; width:22px; height:22px }
+.message-attachment-draft { display:flex; align-items:center; gap:12px; padding:12px 20px; border-top:1px solid var(--EpoCash-border); background:var(--EpoCash-panel-strong); min-width:0 }
+.message-attachment-draft[hidden],.message-attachment-draft img[hidden] { display:none }
+.message-attachment-draft img { width:64px; height:64px; object-fit:cover; border-radius:8px; border:1px solid var(--EpoCash-border) }
+.attachment-draft-details { display:flex; flex:1; min-width:0; flex-direction:column; gap:4px; font-size:12px }
+.attachment-draft-details strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.attachment-draft-details span { color:var(--EpoCash-muted) }
+.attachment-remove { flex:0 0 32px; width:32px; height:32px; padding:0; background:transparent; border:1px solid var(--EpoCash-border); border-radius:50%; color:var(--EpoCash-muted); font-size:22px }
+.attachment-remove:hover { color:#ad3030; background:#fff0f0 }
+.message-upload-status { display:block; color:var(--EpoCash-muted); font-size:12px; padding:0 20px 8px }
+.message-upload-status:empty { display:none }
+.message-bubble--attachment { white-space:normal; max-width:360px }
+.message-attachment-image { display:block; width:100%; max-width:320px; height:auto; aspect-ratio:4/3; max-height:300px; object-fit:contain; border-radius:8px; background:rgba(0,0,0,.04) }
+.message-attachment-card { display:flex; align-items:center; gap:10px; padding:10px 0 4px; color:inherit; text-decoration:none; min-width:0 }
+.message-attachment-icon { flex:0 0 32px; width:32px; height:36px; border:1px solid currentColor; border-radius:5px; display:grid; place-items:center; font-size:10px; font-weight:700 }
+.message-attachment-details { min-width:0; flex:1; display:flex; flex-direction:column; gap:3px }
+.message-attachment-name { overflow-wrap:anywhere; font-size:12px; font-weight:600 }
+.message-attachment-size { font-size:11px; opacity:.8 }
+.message-attachment-download { flex:0 0 auto; font-size:18px; line-height:1 }
+.message-attachment-card:hover .message-attachment-name { text-decoration:underline }
+.message-attachment-caption { margin-top:8px; white-space:pre-wrap; overflow-wrap:anywhere }
+.modern-chat-panel.attachment-drop-active { outline:2px dashed #3955c6; outline-offset:-5px }
+@media (max-width:480px) { .modern-input-area { gap:6px; padding:12px 10px } .message-attachment-draft { padding:10px } .message-bubble--attachment { padding:8px 10px } }
 .message-input {
   min-height:44px;
   max-height:130px;
@@ -1497,3 +1523,7 @@ details>summary {
   box-shadow:0 4px 24px #0002;
   max-width:90vw
 }
+
+.customer-baselines { min-width:0; max-width:100% }
+.customer-baselines .table-responsive { max-width:100%; overflow-x:auto }
+.customer-baselines td { overflow-wrap:anywhere }

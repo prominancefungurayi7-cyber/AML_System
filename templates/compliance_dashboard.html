@@ -10,15 +10,17 @@
 
 <section id="v4-shadow-panel" class="card v4-audit-panel" aria-labelledby="v4-shadow-title">
   <h2 id="v4-shadow-title">V4 decision audit</h2>
+  <label for="v4-result-filter">Analysis records</label>
+  <select id="v4-result-filter"><option value="latest">Latest decisions</option><option value="errors">Unresolved analysis errors</option></select>
   <p>This model identifies transaction patterns defined as suspicious within the synthetic research benchmark. It does not determine that money laundering has occurred.</p>
   <p>A normal result does not certify that the transaction is legitimate. All positive results require human review. Probability is the uncalibrated synthetic benchmark class-1 output.</p>
   <p id="v4-shadow-state" role="status">Loading V4 results…</p>
   <div id="v4-shadow-results"></div>
 </section>
-<script defer src="{{ url_for('static', filename='v4-shadow.js') }}"></script>
+<script defer src="{{ url_for('static', filename='v4-shadow.js', v='audited-retry-2') }}"></script>
 
 <script id="compliance-dashboard-data" type="application/json">{{ dashboard_data|tojson }}</script>
 <script src="{{ url_for('static', filename='vendor/react.production.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/react-dom.production.min.js') }}"></script>
-<script src="{{ url_for('static', filename='react-dashboard.js', v='v4-evidence-1') }}"></script>
+<script src="{{ url_for('static', filename='react-dashboard.js', v='system-review-2') }}"></script>
 {% endblock %}

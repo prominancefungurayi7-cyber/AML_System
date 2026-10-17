@@ -12,7 +12,10 @@ class AuthSessions:
     def create(self, user_id, ttl, redis=None):
         token = secrets.token_urlsafe(32)
         if redis is not None:
-            redis.set('aml:auth:' + token, str(user_id), ex=ttl)
+            epoch = redis.get('aml:auth-epoch:' + str(user_id)) or b'0'
+            if isinstance(epoch, bytes):
+                epoch = epoch.decode()
+            redis.set('aml:auth:' + token, str(user_id) + ':' + str(epoch), ex=ttl)
         else:
             with self.lock:
                 self.local = {k: v for k, v in self.local.items() if v[1] > time.time()}
@@ -26,7 +29,10 @@ class AuthSessions:
             value = redis.get('aml:auth:' + token)
             if isinstance(value, bytes):
                 value = value.decode()
-            if value != str(user_id):
+            epoch = redis.get('aml:auth-epoch:' + str(user_id)) or b'0'
+            if isinstance(epoch, bytes):
+                epoch = epoch.decode()
+            if value != str(user_id) + ':' + str(epoch):
                 return False
             return bool(redis.expire('aml:auth:' + token, ttl)) if touch and ttl is not None else True
         with self.lock:
@@ -45,3 +51,12 @@ class AuthSessions:
             else:
                 with self.lock:
                     self.local.pop(token, None)
+
+    def revoke_user(self, user_id, redis=None):
+        """Invalidate all browsers after a password reset, including exempt accounts."""
+        if redis is not None:
+            redis.incr('aml:auth-epoch:' + str(user_id))
+        else:
+            with self.lock:
+                self.local = {key: value for key, value in self.local.items()
+                              if value[0] != str(user_id)}

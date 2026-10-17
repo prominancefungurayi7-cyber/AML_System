@@ -6,6 +6,15 @@
   const identifier = document.getElementById('login');
   if (!form || !password || !identifier || form.dataset.autoSignIn !== 'true') return;
   let submitted = false, timer;
+  let selectedAfterLogout = form.dataset.signedOut !== 'true';
+  let credentialInteraction = false;
+  [identifier, password].forEach(input => {
+    input.addEventListener('pointerdown', () => { credentialInteraction = true; });
+    input.addEventListener('keydown', () => { credentialInteraction = true; });
+    input.addEventListener('input', event => {
+      if (event.isTrusted && credentialInteraction) selectedAfterLogout = true;
+    });
+  });
   const isAutofilled = input => {
     for (const selector of [':autofill', ':-webkit-autofill']) {
       try { if (input.matches(selector)) return true; } catch (_) { /* Browser-specific selector. */ }
@@ -15,7 +24,7 @@
   function check() {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (submitted || !identifier.value.trim() || !password.value || !isAutofilled(password) || !form.checkValidity()) return;
+      if (!selectedAfterLogout || submitted || !identifier.value.trim() || !password.value || !isAutofilled(password) || !form.checkValidity()) return;
       form.requestSubmit();
     }, 200);
   }

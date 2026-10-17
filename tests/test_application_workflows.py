@@ -1,6 +1,7 @@
 """Exercise real Flask and Socket.IO routes using a disposable SQLite file."""
 from verification_codes import VerificationCodes
 from werkzeug.security import check_password_hash
+import pytest
 
 
 def client_for(module, username):
@@ -12,6 +13,109 @@ def client_for(module, username):
         state.update(user_id=user['id'], username=username, role=user['role'],
                      auth_token=module.auth_sessions.create(user['id'], 1800))
     return client
+
+
+@pytest.mark.parametrize('kind', ['private', 'staff', 'audit'])
+def test_revoked_and_expired_sockets_receive_no_private_or_staff_data(aml_app, kind):
+    m = aml_app
+    username = 'demo' if kind == 'private' else 'Compliance'
+    clients = [client_for(m, username) for _ in range(3)]
+    sockets = [m.socketio.test_client(m.app, flask_test_client=c) for c in clients]
+    try:
+        if kind == 'audit':
+            for sock in sockets:
+                assert sock.emit('v4_shadow_subscribe', callback=True) == {'ok': True}
+        for sock in sockets:
+            sock.get_received()
+        with clients[0].session_transaction() as state:
+            m.auth_sessions.revoke(state['auth_token'])
+        with clients[1].session_transaction() as state:
+            token = state['auth_token']
+        uid, _ = m.auth_sessions.local[token]
+        m.auth_sessions.local[token] = (uid, 0)
+        broker = m.app.extensions['realtime_broker']
+        if kind == 'private':
+            broker.publish_private(username, 'balance', {'balance': 123})
+            expected = 'balance'
+        elif kind == 'staff':
+            broker.publish('transaction', {'id': 123})
+            expected = 'transaction'
+        else:
+            from v4_shadow import publish_staff
+            publish_staff(m.connect_db, m.socketio, {'transaction_id': '123'})
+            expected = 'v4_shadow_result'
+        assert not sockets[0].is_connected()
+        assert not sockets[1].is_connected()
+        assert sockets[2].is_connected()
+        assert [event['name'] for event in sockets[2].get_received()] == [expected]
+    finally:
+        for sock in sockets:
+            if sock.is_connected():
+                sock.disconnect()
+
+
+def test_expired_staff_cannot_subscribe_and_rejected_messages_acknowledge(aml_app):
+    m = aml_app
+    staff, customer = client_for(m, 'Compliance'), client_for(m, 'demo')
+    ss = m.socketio.test_client(m.app, flask_test_client=staff)
+    cs = m.socketio.test_client(m.app, flask_test_client=customer)
+    try:
+        for data, reason in [({}, 'Missing'), ({'receiver': 'missing-user', 'content': 'Hi'}, 'Recipient'),
+                             ({'receiver': 'Admin', 'content': 'Hi'}, 'not')]:
+            result = cs.emit('send_message', data, callback=True)
+            assert result['status'] == 'error'
+            assert reason.lower() in result['message'].lower()
+        with staff.session_transaction() as state:
+            m.auth_sessions.revoke(state['auth_token'])
+        assert ss.emit('v4_shadow_subscribe', callback=True) == {'ok': False}
+        assert not ss.is_connected()
+        db = m.connect_db()
+        assert db.execute('SELECT COUNT(*) n FROM messages').fetchone()['n'] == 0
+        db.close()
+    finally:
+        for sock in (ss, cs):
+            if sock.is_connected():
+                sock.disconnect()
+
+
+@pytest.mark.parametrize('revoke', ['session', 'role'])
+def test_open_staff_stream_stops_before_delivering_after_access_revoked(aml_app, revoke):
+    m = aml_app
+    client = client_for(m, 'Compliance')
+    response = client.get('/stream', buffered=False)
+    try:
+        assert response.status_code == 200
+        if revoke == 'session':
+            with client.session_transaction() as state:
+                m.auth_sessions.revoke(state['auth_token'])
+        else:
+            db = m.connect_db()
+            db.execute("UPDATE users SET role='customer' WHERE username='Compliance'")
+            db.commit()
+            db.close()
+        m.app.extensions['realtime_broker'].publish('transaction', {'id': 'private'})
+        assert b'private' not in b''.join(response.response)
+        assert not m.app.extensions['realtime_broker']._subscribers
+    finally:
+        response.close()
+    assert not m.app.config['ACTIVE_STREAMS']
+
+
+def test_stream_limit_and_cleanup_allow_reconnection(aml_app):
+    m = aml_app
+    client = client_for(m, 'Compliance')
+    responses = [client.get('/stream', buffered=False) for _ in range(3)]
+    try:
+        assert all(r.status_code == 200 for r in responses)
+        assert client.get('/stream').status_code == 429
+        responses.pop().close()
+        responses.append(client.get('/stream', buffered=False))
+        assert responses[-1].status_code == 200
+    finally:
+        for response in responses:
+            response.close()
+    assert not m.app.config['ACTIVE_STREAMS']
+    assert not m.app.extensions['realtime_broker']._subscribers
 
 
 def test_private_message_delivery_unread_history_and_multiple_tabs(aml_app):
@@ -106,6 +210,7 @@ def test_message_history_cursor_and_seed_preservation(aml_app):
 
 def test_reset_code_is_server_side_single_use_and_email_failure_clears_it(aml_app, monkeypatch):
     m = aml_app
+    existing_client = client_for(m, 'demo')
     delivered = []
     monkeypatch.setattr(m, 'send_otp_email_async', lambda email, code: delivered.append(code) or True)
     client = m.app.test_client()
@@ -113,14 +218,15 @@ def test_reset_code_is_server_side_single_use_and_email_failure_clears_it(aml_ap
     with client.session_transaction() as state:
         original = dict(state['password_reset'])
         assert 'token' not in original and delivered[-1] not in str(original)
-    response = client.post('/reset-password', data={'reset_code': delivered[-1], 'new_password': 'new-demo-test', 'confirm_password': 'new-demo-test'})
+    response = client.post('/reset-password', data={'reset_code': delivered[-1], 'new_password': 'New-demo-test1!', 'confirm_password': 'New-demo-test1!'})
     assert response.status_code == 302
+    assert existing_client.get('/api/unread-count').status_code == 401
     with client.session_transaction() as state:
         state['password_reset'] = original
-    client.post('/reset-password', data={'reset_code': delivered[-1], 'new_password': 'replayed-password', 'confirm_password': 'replayed-password'})
+    client.post('/reset-password', data={'reset_code': delivered[-1], 'new_password': 'Replayed-password1!', 'confirm_password': 'Replayed-password1!'})
     db = m.connect_db()
     row = db.execute("SELECT password_hash FROM users WHERE username='demo'").fetchone()
-    assert check_password_hash(row['password_hash'], 'new-demo-test')
+    assert check_password_hash(row['password_hash'], 'New-demo-test1!')
     db.close()
     monkeypatch.setattr(m, 'send_otp_email_async', lambda *args: False)
     client.post('/forgot-password', data={'email': 'demo@example.com'})
@@ -179,7 +285,7 @@ def test_registration_establishes_messaging_session(aml_app, monkeypatch):
     monkeypatch.setattr(aml_app, 'send_otp_email_async', lambda email, code: delivered.append(code) or True)
     client = aml_app.app.test_client()
     response = client.post('/register', data={'username': 'fixture_customer', 'email': 'fixture@example.invalid',
-                                            'id_number': '08-995728P34', 'password': 'fixture-password'})
+                                            'id_number': '08-995728P34', 'password': 'Fixture-password1!'})
     assert response.status_code == 200 and len(delivered) == 1
     with client.session_transaction() as state:
         assert 'otp' not in state['pending_registration']
@@ -203,8 +309,26 @@ def test_email_transport_handles_windows_console_and_smtp_modes(monkeypatch):
         transport = MagicMock()
         monkeypatch.setattr(utils.smtplib, name, transport)
         monkeypatch.setenv('SMTP_PORT', port)
-        assert utils.send_email('fixture@example.invalid', 'Verification', 'Verification code')
+        assert utils.send_email('fixture@mailer-fixture.org', 'Verification', 'Verification code')
         transport.return_value.__enter__.return_value.send_message.assert_called_once()
         assert transport.return_value.__enter__.return_value.starttls.call_count == (port != '465')
     monkeypatch.setenv('SMTP_PORT', 'invalid')
-    assert utils.send_email('fixture@example.invalid', 'Verification', 'Code') is False
+    assert utils.send_email('fixture@mailer-fixture.org', 'Verification', 'Code') is False
+
+
+def test_admin_kyc_returns_saved_status(aml_app):
+    m = aml_app
+    admin = client_for(m, 'Admin')
+    db = m.connect_db()
+    user = db.execute("SELECT id FROM users WHERE username='demo'").fetchone()
+    db.close()
+    response = admin.post('/admin', data={'action': 'update_role', 'user_id': user['id'], 'kyc_status': 'pending_edd'}, headers={'Accept': 'application/json'})
+    assert response.status_code == 200
+    assert response.json['user']['kyc_status'] == 'pending_edd'
+    db = m.connect_db()
+    assert db.execute('SELECT kyc_status FROM users WHERE id=?', (user['id'],)).fetchone()['kyc_status'] == 'pending_edd'
+    db.close()
+    assert client_for(m, 'demo').post('/admin', data={'action': 'update_role', 'user_id': user['id'], 'kyc_status': 'verified'}).status_code == 302
+    db = m.connect_db()
+    assert db.execute('SELECT kyc_status FROM users WHERE id=?', (user['id'],)).fetchone()['kyc_status'] == 'pending_edd'
+    db.close()

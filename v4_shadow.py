@@ -238,7 +238,8 @@ def publish_staff(factory,socketio,payload):
         with _socket_lock:
             for sid,uid in list(_sockets.items()):
                 row=c.execute('SELECT role FROM users WHERE id=?',(uid,)).fetchone()
-                if row and row['role'] in ('compliance','admin'):
+                authorizer=getattr(socketio, 'aml_session_authorizer', None)
+                if row and row['role'] in ('compliance','admin') and (authorizer is None or authorizer(sid)):
                     socketio.emit('v4_shadow_result',payload,to=sid)
                 else:_sockets.pop(sid,None)
     finally:c.rollback();c.close()
@@ -255,11 +256,18 @@ def install(app,socketio,get_db):
     def results():
         if not staff():return jsonify({'error':'forbidden'}),403
         try:
-            rows=get_db().execute('SELECT body FROM '+TABLE+' ORDER BY transaction_id DESC LIMIT 50').fetchall()
+            if request.args.get('errors') == '1':
+                rows=get_db().execute('SELECT r.body FROM '+TABLE+' r JOIN transactions t '
+                    "ON t.id=r.transaction_id WHERE t.ai_risk_level='inference_error' "
+                    "AND r.status='inference_error' ORDER BY r.transaction_id DESC LIMIT 50").fetchall()
+            else:
+                rows=get_db().execute('SELECT body FROM '+TABLE+' ORDER BY transaction_id DESC LIMIT 50').fetchall()
             return jsonify({'results':[safe_payload(json.loads(r['body'])) for r in rows]})
         except Exception:return jsonify({'error':'V4 shadow storage unavailable','results':[]}),503
     @socketio.on('v4_shadow_subscribe')
     def subscribe():
+        authorizer=getattr(socketio, 'aml_session_authorizer', None)
+        if authorizer is not None and not authorizer(request.sid):return {'ok':False}
         if not staff():return {'ok':False}
         with _socket_lock:_sockets[request.sid]=session['user_id']
         return {'ok':True}

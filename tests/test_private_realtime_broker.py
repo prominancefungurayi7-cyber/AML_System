@@ -25,3 +25,9 @@ def test_private_room_delivery_and_remote_envelope():
     assert remote.socketio.calls == local.socketio.calls
     remote._local_private_deliver({'username': 'Compliance', 'event': 'alert', 'data': {'id': 17}})
     assert len(remote.socketio.calls) == 1
+
+    for event, data in [('balance', {'account_number': 'ACC1003', 'balance': 123}), ('customer_refresh', {})]:
+        local.publish_private('demo', event, data)
+        packet = local._publish_queue.get_nowait()
+        remote._local_private_deliver(packet['data'])
+        assert remote.socketio.calls[-1] == (event, data, 'user:demo')

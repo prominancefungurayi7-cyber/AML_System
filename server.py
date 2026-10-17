@@ -759,7 +759,29 @@ def authenticated_socket(func):
 
 # SocketIO authentication middleware with presence tracking
 _presence_lock = threading.Lock()
+_stream_lock = threading.Lock()
 _presence_sockets = {}
+_authenticated_sockets = {}
+
+
+def _socket_session_valid(sid):
+    with _presence_lock:
+        identity = _authenticated_sockets.get(sid)
+    if not identity:
+        return False
+    user_id, token, ttl = identity
+    try:
+        valid = auth_sessions.valid(token, user_id, ttl, redis=auth_redis())
+    except Exception:
+        valid = False
+    if not valid:
+        socketio.emit('session_expired', {}, to=sid)
+        socketio.server.disconnect(sid, namespace='/')
+    return valid
+
+
+app.extensions['realtime_broker'].set_socket_authorizer(_socket_session_valid)
+socketio.aml_session_authorizer = _socket_session_valid
 
 
 def _live_user_status(conn, username):
@@ -786,6 +808,8 @@ def handle_connect():
     username = user['username']
     with _presence_lock:
         _presence_sockets[sid] = (username, time.time())
+        _authenticated_sockets[sid] = (user_id, session.get('auth_token'),
+            None if session.get('idle_exempt') else app.config['AUTH_IDLE_SECONDS'])
     if username:
         # Every browser tab for a signed-in user joins the same private room.
         # This makes unread badges update immediately without exposing direct
@@ -795,6 +819,7 @@ def handle_connect():
     # Rate limit connection logging to prevent log spam
     broker = app.extensions.get('realtime_broker')
     if broker:
+        broker.add_user_socket(sid, username)
         broker.add_staff_socket(sid, user_id)
     if broker and broker._redis_client:
         try:
@@ -869,6 +894,7 @@ def handle_disconnect():
     forget_socket(request.sid)
     with _presence_lock:
         previous = _presence_sockets.pop(request.sid, None)
+        _authenticated_sockets.pop(request.sid, None)
         still_online = previous and any(name == previous[0] for name, _ in _presence_sockets.values())
     broker = app.extensions.get('realtime_broker')
     if broker:
@@ -903,7 +929,7 @@ def handle_send_message(data):
     """Handle incoming message."""
     if 'user_id' not in session:
         socketio.emit('message_error', {'message': 'Not authenticated'}, to=request.sid)
-        return
+        return {'status': 'error', 'message': 'Not authenticated'}
 
     if not isinstance(data, dict):
         return {'status': 'error', 'message': 'Invalid message request'}
@@ -912,9 +938,12 @@ def handle_send_message(data):
     
     if not receiver or not content:
         socketio.emit('message_error', {'message': 'Missing receiver or content'}, to=request.sid)
-        return
+        return {'status': 'error', 'message': 'Missing receiver or content'}
     if len(content) > 10000:
         return {'status': 'error', 'message': 'Message must contain at most 10,000 characters'}
+    from message_attachments import PREFIX
+    if content.startswith(PREFIX):
+        return {'status': 'error', 'message': 'Use the attachment button to send files.'}
     
     conn = None
     msg = None
@@ -932,12 +961,12 @@ def handle_send_message(data):
         if not sender_user:
             app.logger.error(f"Sender user not found for session user_id: {session['user_id']}")
             socketio.emit('message_error', {'message': 'Sender account not found'}, to=request.sid)
-            return
+            return {'status': 'error', 'message': 'Sender account not found'}
         
         if not receiver_user:
             app.logger.error(f"Receiver user not found for username: {receiver}")
             socketio.emit('message_error', {'message': 'Recipient not found'}, to=request.sid)
-            return
+            return {'status': 'error', 'message': 'Recipient not found'}
 
         sender = sender_user['username']
         
@@ -948,7 +977,7 @@ def handle_send_message(data):
         if not can_message:
             app.logger.warning(f"Messaging not allowed: {sender} ({sender_user['role']}) -> {receiver} ({receiver_user['role']}): {reason}")
             socketio.emit('message_error', {'message': reason}, to=request.sid)
-            return
+            return {'status': 'error', 'message': reason}
         
         # Get or create conversation
         conv = get_or_create_conversation(conn, sender, receiver)
@@ -956,7 +985,7 @@ def handle_send_message(data):
         if not conv or conv.get('id') is None:
             app.logger.error(f"Failed to get or create conversation between {sender} and {receiver}")
             socketio.emit('message_error', {'message': 'Could not create conversation'}, to=request.sid)
-            return
+            return {'status': 'error', 'message': 'Could not create conversation'}
         
         # Send message
         msg = send_message(conn, conv['id'], sender, receiver, content, sender_user['role'])
@@ -1010,6 +1039,163 @@ def _messaging_participant(conn, data):
     if not recipient or not _is_authorized_messaging_counterpart(conn, user, recipient):
         return None
     return user['username'], other, conversation['id']
+
+
+def _attachment_root():
+    from pathlib import Path
+    return Path(app.config.get('MESSAGE_ATTACHMENT_ROOT') or os.environ.get('MESSAGE_ATTACHMENT_ROOT') or
+                Path(app.instance_path) / 'message_attachments')
+
+
+def _attachment_message_payload(message, conversation_id):
+    from messaging import public_message
+    item = public_message(message)
+    created = item['created_at']
+    payload = dict(id=item['id'], sender=item['sender_username'], receiver=item['receiver_username'],
+                   content=item['content'], status=item['status'], conversation_id=conversation_id,
+                   timestamp=created.isoformat() if hasattr(created, 'isoformat') else created)
+    if item.get('attachment'):
+        payload['attachment'] = item['attachment']
+    return payload
+
+
+@app.post('/api/message-attachments')
+@login_required
+def api_send_message_attachment():
+    """Save one private file and use the existing atomic message/receipt flow."""
+    from werkzeug.exceptions import RequestEntityTooLarge
+    from message_attachments import AttachmentError, MAX_FILE_SIZE, save_upload, remove_upload, encode_message
+    from messaging import MessageRequestConflict
+    request.max_content_length = MAX_FILE_SIZE + 65536
+    request.max_form_memory_size = 65536
+    request.max_form_parts = 8
+    conn = None
+    metadata = None
+    persist_attempted = False
+    message = None
+    conversation = None
+    try:
+        expected = session.get('message_attachment_csrf')
+        if not expected or not hmac.compare_digest(request.form.get('csrf_token', '').encode('utf-8'), expected.encode('utf-8')):
+            return jsonify(status='error', message='Refresh Messages before sending an attachment.'), 403
+        receiver = request.form.get('receiver', '').strip()
+        caption = request.form.get('content', '').strip()
+        if not receiver or len(caption) > 10000:
+            raise AttachmentError('Choose a contact and use a caption of at most 10,000 characters.')
+        try:
+            request_id = uuid.UUID(request.form.get('client_request_id', ''))
+            if request_id.version != 4:
+                raise ValueError()
+        except (ValueError, AttributeError):
+            raise AttachmentError('Invalid attachment request. Select the file again.') from None
+        files = request.files.getlist('file')
+        if len(request.files) != 1 or len(files) != 1 or not files[0].filename:
+            raise AttachmentError('Select one image or document to send.')
+        conn = connect_db()
+        sender = conn.execute('SELECT * FROM users WHERE id=?', (session['user_id'],)).fetchone()
+        recipient = fetch_user_by_username(conn, receiver)
+        if not sender or not recipient:
+            return jsonify(status='error', message='Messaging account not found.'), 404
+        allowed, _ = can_user_message(sender['role'], recipient['role'])
+        if not allowed or not _is_authorized_messaging_counterpart(conn, sender, recipient):
+            return jsonify(status='error', message='This is not your assigned secure messaging contact.'), 403
+        metadata = save_upload(files[0], _attachment_root(), uuid.uuid4().hex)
+        metadata['request_id'] = request_id.hex
+        content = encode_message(caption, metadata)
+        conversation = get_or_create_conversation(conn, sender['username'], recipient['username'])
+        if not conversation or conversation.get('id') is None:
+            raise RuntimeError('Conversation unavailable')
+        persist_attempted = True
+        message = send_message(conn, conversation['id'], sender['username'], recipient['username'],
+                               content, sender['role'], attachment_request_id=request_id.hex)
+        if message.get('replayed'):
+            remove_upload(_attachment_root(), metadata['id'])
+        payload = _attachment_message_payload(message, conversation['id'])
+        if not message.get('replayed'):
+            try:
+                emit_private_message_event(sender['username'], 'new_message', payload)
+                emit_private_message_event(recipient['username'], 'new_message', payload)
+                emit_private_message_event(recipient['username'], 'unread_update', get_unread_count(conn, recipient['username']))
+            except Exception:
+                app.logger.exception('Attachment saved; realtime delivery will recover from message history')
+        return jsonify(status='success', message=payload)
+    except RequestEntityTooLarge:
+        return jsonify(status='error', message='Files must be 10 MB or smaller.'), 413
+    except (AttachmentError, MessageRequestConflict) as exc:
+        if metadata:
+            remove_upload(_attachment_root(), metadata['id'])
+        return jsonify(status='error', message=str(exc)), 409 if isinstance(exc, MessageRequestConflict) else 400
+    except Exception:
+        app.logger.exception('Could not complete attachment message')
+        if metadata and not persist_attempted:
+            remove_upload(_attachment_root(), metadata['id'])
+        elif metadata and message is None:
+            # A lost commit acknowledgement must never delete an evidence file
+            # that the database has already committed. Check an independent
+            # connection; retain the file if storage cannot be checked safely.
+            recovery = None
+            try:
+                recovery = connect_db()
+                lock = ' FOR UPDATE' if getattr(recovery, 'engine', 'sqlite') in ('mysql', 'postgres') else ''
+                recovery.execute('SELECT id FROM conversations WHERE id=?' + lock,
+                                 (conversation['id'],)).fetchone()
+                saved = recovery.execute(
+                    'SELECT id,sender_username,receiver_username,content,status,created_at FROM messages '
+                    'WHERE conversation_id=? AND content LIKE ?',
+                    (conversation['id'], '%"id":"' + metadata['id'] + '"%')).fetchone()
+                if saved:
+                    payload = _attachment_message_payload(saved, conversation['id'])
+                    try:
+                        emit_private_message_event(saved['sender_username'], 'new_message', payload)
+                        emit_private_message_event(saved['receiver_username'], 'new_message', payload)
+                        emit_private_message_event(saved['receiver_username'], 'unread_update',
+                                                   get_unread_count(recovery, saved['receiver_username']))
+                    except Exception:
+                        app.logger.exception('Committed attachment retained for history recovery')
+                    return jsonify(status='success', message=payload)
+                remove_upload(_attachment_root(), metadata['id'])
+            except Exception:
+                app.logger.error('Attachment persistence is uncertain; private evidence file retained')
+            finally:
+                if recovery:
+                    recovery.close()
+        return jsonify(status='error', message='Delivery could not be confirmed. Check history before retrying; your draft is preserved.'), 503
+    finally:
+        if conn:
+            conn.close()
+
+
+@app.get('/api/messages/<int:message_id>/attachment')
+@login_required
+def api_download_message_attachment(message_id):
+    from flask import send_file
+    from message_attachments import AttachmentError, attachment_path, decode_message
+    import hashlib
+    conn = connect_db()
+    try:
+        row = conn.execute('SELECT conversation_id,content FROM messages WHERE id=? AND deleted_at IS NULL',
+                           (message_id,)).fetchone()
+        if not row or not _messaging_participant(conn, {'conversation_id': row['conversation_id']}):
+            return jsonify(status='error', message='Attachment is not available to this user.'), 403
+        try:
+            _, attachment = decode_message(row['content'])
+            if not attachment:
+                raise AttachmentError('No attachment')
+            path = attachment_path(_attachment_root(), attachment['id'])
+            if (not path.is_file() or path.is_symlink() or path.stat().st_size != attachment['size']
+                    or hashlib.sha256(path.read_bytes()).hexdigest() != attachment['sha256']):
+                raise AttachmentError('Attachment unavailable')
+        except (AttachmentError, OSError):
+            return jsonify(status='error', message='Attachment is unavailable.'), 404
+        inline = request.args.get('inline') == '1' and attachment['media_type'].startswith('image/')
+        response = send_file(path, mimetype=attachment['media_type'], as_attachment=not inline,
+                             download_name=attachment['name'], conditional=False, etag=False, max_age=0)
+        response.headers['Cache-Control'] = 'private, no-store'
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['Content-Security-Policy'] = "sandbox; default-src 'none'"
+        return response
+    finally:
+        conn.close()
 
 
 def _emit_typing(data, active):
@@ -1775,7 +1961,7 @@ def broadcast_user_balance(conn, account_number):
     if row:
 
         broadcast_event("balance", _user_balance_payload(row))
-        socketio.emit("balance", _user_balance_payload(row), to=f"user:{row['username']}")
+        emit_private_message_event(row['username'], "balance", _user_balance_payload(row))
 
 
 
@@ -1859,7 +2045,7 @@ def broadcast_committed_customer_transaction(conn, transaction_id, alert_id):
         for account in accounts - {None, ''}:
             owner = conn.execute('SELECT username FROM users WHERE account_number=?', (account,)).fetchone()
             if owner:
-                socketio.emit('customer_refresh', {}, to=f"user:{owner['username']}")
+                emit_private_message_event(owner['username'], 'customer_refresh', {})
     if alert_id:
         alert = conn.execute('SELECT * FROM alerts WHERE id=?', (alert_id,)).fetchone()
         if alert:
@@ -2984,7 +3170,8 @@ def messages():
         flash("You don't have permission to access messaging.")
         return redirect(url_for("dashboard_redirect"))
     
-    return render_template("messages.html", user=user)
+    token = session.setdefault('message_attachment_csrf', uuid.uuid4().hex)
+    return render_template("messages.html", user=user, message_attachment_csrf=token)
 
 
 # ── Auth ──
@@ -3025,6 +3212,15 @@ def _legacy_background_otp_sender(recipient_email, otp):
 
 
 
+
+
+def valid_new_password(value):
+    return (len(value) >= 8 and bool(re.search(r"[A-Z]", value))
+            and bool(re.search(r"[a-z]", value)) and bool(re.search(r"[0-9]", value))
+            and bool(re.search(r"[!@#$%^&*]", value)))
+
+
+PASSWORD_REQUIREMENTS = "Use at least 8 characters, including uppercase and lowercase letters, a number and a symbol (!@#$%^&*)."
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -3135,6 +3331,10 @@ def register():
 
             flash("All fields are required.")
 
+            return render_template("register.html")
+
+        if not valid_new_password(password):
+            flash(PASSWORD_REQUIREMENTS)
             return render_template("register.html")
 
         if username.lower() in RESERVED_STAFF_USERNAMES:
@@ -3294,6 +3494,7 @@ def logout():
             record_activity(user["username"], "logout", "User logged out")
 
     session.clear()
+    session["signed_out"] = True
 
     flash("You have been signed out.")
 
@@ -3378,8 +3579,8 @@ def reset_password():
             flash("Passwords do not match.")
             return render_template("reset_password.html")
 
-        if len(new_password) < 6:
-            flash("Password must be at least 6 characters.")
+        if not valid_new_password(new_password):
+            flash(PASSWORD_REQUIREMENTS)
             return render_template("reset_password.html")
 
         if not verification_codes.consume(reset_data.get("challenge"), "password-reset", reset_code):
@@ -3389,6 +3590,11 @@ def reset_password():
         # Update password
         user_id = reset_data["user_id"]
         new_hash = generate_password_hash(new_password)
+        try:
+            auth_sessions.revoke_user(user_id, redis=auth_redis())
+        except Exception:
+            flash("Password reset is temporarily unavailable. Request a new code and try again.")
+            return redirect(url_for("forgot_password"))
         
         get_db().execute("UPDATE users SET password_hash=? WHERE id=?", (new_hash, user_id))
         get_db().commit()
@@ -4354,8 +4560,12 @@ def admin_dashboard():
 
                     broadcast_event("user", _user_balance_payload(updated))
                     broadcast_user_balance(get_db(), updated["account_number"])
+                    broadcast_stats(get_db())
 
                 record_activity(admin_user["username"], "update_user", f"Updated user {user_id}: kyc={kyc or 'unchanged'}")
+
+                if request.headers.get("Accept") == "application/json":
+                    return jsonify(status="success", user=_user_balance_payload(updated))
 
                 flash("User updated.")
 
@@ -5460,27 +5670,21 @@ def stream():
 
     user_streams_key = f"stream_user_{session.get('user_id')}"
 
-    active_streams = app.config.get("ACTIVE_STREAMS", {})
-
-    
-
-    if user_streams_key in active_streams:
-
-        active_streams[user_streams_key] += 1
-
-        if active_streams[user_streams_key] > 3:  # Max 3 concurrent streams per user
-
+    active_streams = app.config.setdefault("ACTIVE_STREAMS", {})
+    with _stream_lock:
+        if active_streams.get(user_streams_key, 0) >= 3:
             app.logger.warning(f"User {session.get('user_id')} exceeded stream limit")
-
             return Response("Too many active connections", status=429)
+        active_streams[user_streams_key] = active_streams.get(user_streams_key, 0) + 1
 
-    else:
+    user_id, token = session['user_id'], session.get('auth_token')
+    ttl = None if session.get('idle_exempt') else app.config['AUTH_IDLE_SECONDS']
+    def authorize_stream():
+        with app.app_context():
+            return (auth_sessions.valid(token, user_id, ttl, redis=auth_redis())
+                    and _current_staff_socket_user(user_id))
 
-        active_streams[user_streams_key] = 1
-
-    
-
-    response = app.extensions["realtime_broker"].stream_response()
+    response = app.extensions["realtime_broker"].stream_response(authorize=authorize_stream)
 
     
 
@@ -5489,14 +5693,11 @@ def stream():
     @response.call_on_close
 
     def cleanup():
-
-        if user_streams_key in active_streams:
-
-            active_streams[user_streams_key] -= 1
-
-            if active_streams[user_streams_key] <= 0:
-
-                del active_streams[user_streams_key]
+        with _stream_lock:
+            if user_streams_key in active_streams:
+                active_streams[user_streams_key] -= 1
+                if active_streams[user_streams_key] <= 0:
+                    del active_streams[user_streams_key]
 
     
 
