@@ -11,6 +11,25 @@ import v4_retry
 import v4_shadow
 
 
+@pytest.mark.parametrize('revision,issues,fresh,accepted', [
+    ('expected', [], 'COMPLETE_VERIFIED', True),
+    ('concurrent-new-revision', [], 'COMPLETE_VERIFIED', False),
+    ('expected', ['capture missing'], 'COMPLETE_VERIFIED', False),
+    ('expected', [], 'STALE', False),
+])
+def test_retry_checks_fresh_revision_after_worker(monkeypatch, revision, issues, fresh, accepted):
+    calls = []
+    class Connection:
+        def rollback(self): calls.append('rollback')
+        def execute(self, sql): calls.append(sql)
+    monkeypatch.setattr('canonical_history_store.assess', lambda *_: (
+        {}, {'source_revision': revision, 'issues': issues}, {}))
+    monkeypatch.setattr('canonical_history.freshness', lambda *_: fresh)
+    assert v4_retry._revision_still_verified(Connection(), 'expected') is accepted
+    assert calls[0] == calls[-1] == 'rollback'
+    assert 'START TRANSACTION WITH CONSISTENT SNAPSHOT, READ ONLY' in calls
+
+
 def prepared(tmp_path):
     path = tmp_path / 'retry.db'
     setup(path)

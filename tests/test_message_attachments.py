@@ -39,6 +39,40 @@ def png():
     return stream.getvalue()
 
 
+@pytest.mark.parametrize('size', [128 * 1024, 20 * 1024 * 1024])
+def test_multipart_files_over_one_chunk_up_to_20mb_are_accepted(messaging_app, size):
+    client = signed_in(messaging_app, 'demo')
+    body = b'x' * size
+    response = send(client, name='evidence.txt', body=body)
+    assert response.status_code == 200, response.json
+    attachment = response.json['message']['attachment']
+    assert attachment['size'] == size
+    assert client.get(attachment['url']).data == body
+
+
+def test_file_over_20mb_rejected_without_message_or_file(messaging_app):
+    client = signed_in(messaging_app, 'demo')
+    before = rows(messaging_app)
+    response = send(client, body=b'x' * (20 * 1024 * 1024 + 1))
+    assert response.status_code in (400, 413)
+    assert '20 MB' in response.json['message']
+    assert rows(messaging_app) == before
+    assert not files(messaging_app)
+
+
+def test_screenshot_larger_than_multipart_chunk_uploads(messaging_app):
+    import random
+    stream = io.BytesIO()
+    Image.frombytes('RGB', (300, 300), random.Random(7).randbytes(300 * 300 * 3)).save(stream, 'PNG')
+    body = stream.getvalue()
+    assert len(body) > 65536
+    client = signed_in(messaging_app, 'demo')
+    response = send(client, name='screenshot.png', body=body)
+    assert response.status_code == 200, response.json
+    attachment = response.json['message']['attachment']
+    assert client.get(attachment['preview_url']).data == body
+
+
 def rows(module):
     db = module.connect_db()
     result = db.execute('SELECT COUNT(*) n FROM messages').fetchone()['n']
@@ -120,7 +154,7 @@ def test_upload_retry_reuses_message_and_file_without_unread_increment(messaging
     assert recipient.get(first.json['message']['attachment']['url']).data == b'Evidence'
 
 
-@pytest.mark.parametrize('changes,status', [({'receiver': 'Admin'}, 403), ({'csrf': 'wrong'}, 403),
+@pytest.mark.parametrize('changes,status', [({'receiver': 'demo'}, 403), ({'csrf': 'wrong'}, 403),
     ({'name': 'run.exe'}, 400), ({'name': 'evidence.png', 'body': b'not an image'}, 400),
     ({'key': 'invalid-key'}, 400), ({'body': b''}, 400), ({'content': 'x' * 10001}, 400)])
 def test_invalid_or_unauthorized_uploads_create_no_messages_or_files(messaging_app, changes, status):
@@ -164,7 +198,7 @@ def test_deleted_corrupted_and_no_longer_authorized_downloads_are_denied(messagi
     path.write_bytes(b'Tampered')
     assert recipient.get(message['attachment']['url']).status_code == 404
     path.write_bytes(b'Evidence')
-    db.execute("UPDATE users SET role='customer' WHERE username='Compliance'")
+    db.execute("UPDATE users SET role='disabled' WHERE username='Compliance'")
     db.commit()
     assert sender.get(message['attachment']['url']).status_code == 403
     db.execute("UPDATE users SET role='compliance' WHERE username='Compliance'")

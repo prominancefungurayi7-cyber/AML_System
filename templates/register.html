@@ -21,7 +21,8 @@
         <button type="submit">Verify Wallet</button>
       {% else %}
         <label for="username">Username</label>
-        <input id="username" name="username" autocomplete="username" required>
+        <input id="username" name="username" autocomplete="username" minlength="3" maxlength="60" required aria-describedby="username-help">
+        <p id="username-help" class="form-hint">Use 3 to 60 characters and at least two letters. Your new wallet starts at $0.00.</p>
         <label for="email">Email</label>
         <input id="email" type="email" name="email" autocomplete="email" required>
         <label for="id_number">ID Number</label>

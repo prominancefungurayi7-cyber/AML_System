@@ -1,0 +1,707 @@
+{
+  "database": {
+    "db": "aml",
+    "uuid": "d441b7bb-43f6-11f1-a2d8-0a0027000005",
+    "principal": "aml@127.0.0.1"
+  },
+  "staff_user_id": 1,
+  "protected": {
+    "payments": "e1a7ea831dd3b27e96c1bd7b79b922abbc326a844610e71dbab306b36c05c5d9",
+    "wallets": "b6d8a47393cca2f8c11a2baad73a743f7d817cf35e3cd9ed0f7120c1d27bc5a4",
+    "canonical": "527e8724eaae4b64475d0a4d01ee6204c7e35f3e9ab511c1112012fa77ed2e37",
+    "captures": "15d13f5fe2b69259a07441d3f9f5de630abf6660db8eb27d10b56b265ca6b7fc",
+    "originals": "6d2f7de23d53d2b8893f544b84d61c18f4869730ed2a8713e0fb189c5f4d6123"
+  },
+  "actions": [
+    {
+      "transaction_id": 16598,
+      "request_key": "c34b0bac-7d05-4ea8-bc54-ecb3695ece8e",
+      "result": {
+        "status": "success",
+        "transaction_id": 16598,
+        "request_key": "c34b0bac-7d05-4ea8-bc54-ecb3695ece8e",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 19642,
+      "request_key": "776ecc21-a3d0-41b9-adaf-e0ed19f84499",
+      "result": {
+        "status": "success",
+        "transaction_id": 19642,
+        "request_key": "776ecc21-a3d0-41b9-adaf-e0ed19f84499",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 19653,
+      "request_key": "fe175ba2-1567-42ca-811f-94a6d76fc223",
+      "result": {
+        "status": "success",
+        "transaction_id": 19653,
+        "request_key": "fe175ba2-1567-42ca-811f-94a6d76fc223",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20784,
+      "request_key": "8af7506e-785e-42ec-991f-21c1f50a89fa",
+      "result": {
+        "status": "success",
+        "transaction_id": 20784,
+        "request_key": "8af7506e-785e-42ec-991f-21c1f50a89fa",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20823,
+      "request_key": "05bfedbf-9602-4b0f-a8e3-7dc9a405e77a",
+      "result": {
+        "status": "success",
+        "transaction_id": 20823,
+        "request_key": "05bfedbf-9602-4b0f-a8e3-7dc9a405e77a",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20824,
+      "request_key": "a13b5474-093e-4b61-829f-64b8a89d9d3a",
+      "result": {
+        "status": "success",
+        "transaction_id": 20824,
+        "request_key": "a13b5474-093e-4b61-829f-64b8a89d9d3a",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20871,
+      "request_key": "b2370e47-b8f7-44a1-b26e-8ad28f3a65d9",
+      "result": {
+        "status": "success",
+        "transaction_id": 20871,
+        "request_key": "b2370e47-b8f7-44a1-b26e-8ad28f3a65d9",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20900,
+      "request_key": "3d057ff8-f3f7-45d0-8891-adbfee36e86a",
+      "result": {
+        "status": "success",
+        "transaction_id": 20900,
+        "request_key": "3d057ff8-f3f7-45d0-8891-adbfee36e86a",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20942,
+      "request_key": "411076a6-13b6-420b-98f4-4a1b98f998fe",
+      "result": {
+        "status": "success",
+        "transaction_id": 20942,
+        "request_key": "411076a6-13b6-420b-98f4-4a1b98f998fe",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20971,
+      "request_key": "0616c8c6-3d78-4899-b4a9-d4acfacab1b7",
+      "result": {
+        "status": "success",
+        "transaction_id": 20971,
+        "request_key": "0616c8c6-3d78-4899-b4a9-d4acfacab1b7",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 20988,
+      "request_key": "562c3bc9-162a-4e49-9d7e-45ecd96be681",
+      "result": {
+        "status": "success",
+        "transaction_id": 20988,
+        "request_key": "562c3bc9-162a-4e49-9d7e-45ecd96be681",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21000,
+      "request_key": "edde52cc-9ae6-464b-86ff-5c1216c07a96",
+      "result": {
+        "status": "success",
+        "transaction_id": 21000,
+        "request_key": "edde52cc-9ae6-464b-86ff-5c1216c07a96",
+        "decision": "normal",
+        "alert_id": 6988,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21034,
+      "request_key": "8c8143b6-89db-4451-ab84-67fad0483f1a",
+      "result": {
+        "status": "success",
+        "transaction_id": 21034,
+        "request_key": "8c8143b6-89db-4451-ab84-67fad0483f1a",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21035,
+      "request_key": "1df0b82c-8fcf-4d85-94d2-607af0f960b4",
+      "result": {
+        "status": "success",
+        "transaction_id": 21035,
+        "request_key": "1df0b82c-8fcf-4d85-94d2-607af0f960b4",
+        "decision": "suspicious_pattern",
+        "alert_id": 7109,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21040,
+      "request_key": "c77b2c4c-085e-4b1f-b8f6-7b66aef9b9f8",
+      "result": {
+        "status": "success",
+        "transaction_id": 21040,
+        "request_key": "c77b2c4c-085e-4b1f-b8f6-7b66aef9b9f8",
+        "decision": "normal",
+        "alert_id": 7023,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21044,
+      "request_key": "d3701281-42ca-4142-9d09-966981581711",
+      "result": {
+        "status": "success",
+        "transaction_id": 21044,
+        "request_key": "d3701281-42ca-4142-9d09-966981581711",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21046,
+      "request_key": "cfec4d7d-90d7-470b-8681-3ec469aaec5c",
+      "result": {
+        "status": "success",
+        "transaction_id": 21046,
+        "request_key": "cfec4d7d-90d7-470b-8681-3ec469aaec5c",
+        "decision": "suspicious_pattern",
+        "alert_id": 7110,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21051,
+      "request_key": "915a2030-a9b6-42e3-866b-6f83a41f304f",
+      "result": {
+        "status": "success",
+        "transaction_id": 21051,
+        "request_key": "915a2030-a9b6-42e3-866b-6f83a41f304f",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21056,
+      "request_key": "d1c546b2-b0fd-491f-8301-5114613a7c06",
+      "result": {
+        "status": "success",
+        "transaction_id": 21056,
+        "request_key": "d1c546b2-b0fd-491f-8301-5114613a7c06",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21064,
+      "request_key": "66561d12-1997-4a18-babc-24ef48273b76",
+      "result": {
+        "status": "success",
+        "transaction_id": 21064,
+        "request_key": "66561d12-1997-4a18-babc-24ef48273b76",
+        "decision": "suspicious_pattern",
+        "alert_id": 7111,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21073,
+      "request_key": "eb13bff3-1603-45d3-b36f-ca73f455012f",
+      "result": {
+        "status": "success",
+        "transaction_id": 21073,
+        "request_key": "eb13bff3-1603-45d3-b36f-ca73f455012f",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21075,
+      "request_key": "92c9ab92-612a-4725-92c6-e06d5d57b8cd",
+      "result": {
+        "status": "success",
+        "transaction_id": 21075,
+        "request_key": "92c9ab92-612a-4725-92c6-e06d5d57b8cd",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21077,
+      "request_key": "b2ca865f-9865-422d-b159-4ad8afd04b58",
+      "result": {
+        "status": "success",
+        "transaction_id": 21077,
+        "request_key": "b2ca865f-9865-422d-b159-4ad8afd04b58",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21085,
+      "request_key": "f9c8c0fe-4d85-4046-a80a-1ea58995da51",
+      "result": {
+        "status": "success",
+        "transaction_id": 21085,
+        "request_key": "f9c8c0fe-4d85-4046-a80a-1ea58995da51",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21093,
+      "request_key": "24b6ad15-be2b-4a24-a3b8-97f11d4c3d4d",
+      "result": {
+        "status": "success",
+        "transaction_id": 21093,
+        "request_key": "24b6ad15-be2b-4a24-a3b8-97f11d4c3d4d",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21096,
+      "request_key": "00084f84-d6bf-49ee-bd85-766e61a7eabd",
+      "result": {
+        "status": "success",
+        "transaction_id": 21096,
+        "request_key": "00084f84-d6bf-49ee-bd85-766e61a7eabd",
+        "decision": "suspicious_pattern",
+        "alert_id": 7112,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21102,
+      "request_key": "da02690b-a3a7-4a66-870d-1d8f0756b258",
+      "result": {
+        "status": "success",
+        "transaction_id": 21102,
+        "request_key": "da02690b-a3a7-4a66-870d-1d8f0756b258",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21104,
+      "request_key": "391170d4-bdc8-44dc-926b-fc164807aa6c",
+      "result": {
+        "status": "success",
+        "transaction_id": 21104,
+        "request_key": "391170d4-bdc8-44dc-926b-fc164807aa6c",
+        "decision": "normal",
+        "alert_id": 7044,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21106,
+      "request_key": "a47b3f04-3dcf-470a-8e2d-a9130b262759",
+      "result": {
+        "status": "success",
+        "transaction_id": 21106,
+        "request_key": "a47b3f04-3dcf-470a-8e2d-a9130b262759",
+        "decision": "normal",
+        "alert_id": 7046,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21114,
+      "request_key": "ad831287-5672-4b41-85e5-433582114a50",
+      "result": {
+        "status": "success",
+        "transaction_id": 21114,
+        "request_key": "ad831287-5672-4b41-85e5-433582114a50",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21122,
+      "request_key": "4d4549a1-e4a8-467b-a3b3-e491ff361fbf",
+      "result": {
+        "status": "success",
+        "transaction_id": 21122,
+        "request_key": "4d4549a1-e4a8-467b-a3b3-e491ff361fbf",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21125,
+      "request_key": "628aaf13-088e-4d4e-b6cf-f69a78d4fe07",
+      "result": {
+        "status": "success",
+        "transaction_id": 21125,
+        "request_key": "628aaf13-088e-4d4e-b6cf-f69a78d4fe07",
+        "decision": "suspicious_pattern",
+        "alert_id": 7113,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21135,
+      "request_key": "7f57949b-2e0e-4ee7-9aea-91fbaaa37355",
+      "result": {
+        "status": "success",
+        "transaction_id": 21135,
+        "request_key": "7f57949b-2e0e-4ee7-9aea-91fbaaa37355",
+        "decision": "suspicious_pattern",
+        "alert_id": 7114,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21141,
+      "request_key": "dbec9dc8-503c-4397-ba09-0912c09d1e25",
+      "result": {
+        "status": "success",
+        "transaction_id": 21141,
+        "request_key": "dbec9dc8-503c-4397-ba09-0912c09d1e25",
+        "decision": "suspicious_pattern",
+        "alert_id": 7058,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21144,
+      "request_key": "6449edf0-a9a9-40d9-bd77-cbdc9cbe1a3a",
+      "result": {
+        "status": "success",
+        "transaction_id": 21144,
+        "request_key": "6449edf0-a9a9-40d9-bd77-cbdc9cbe1a3a",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21146,
+      "request_key": "c598ae02-af6c-4df3-bb3a-ce48216ffb9f",
+      "result": {
+        "status": "success",
+        "transaction_id": 21146,
+        "request_key": "c598ae02-af6c-4df3-bb3a-ce48216ffb9f",
+        "decision": "normal",
+        "alert_id": 7060,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21151,
+      "request_key": "8a2d07a7-3747-48cb-9d05-706111ba0f8d",
+      "result": {
+        "status": "success",
+        "transaction_id": 21151,
+        "request_key": "8a2d07a7-3747-48cb-9d05-706111ba0f8d",
+        "decision": "normal",
+        "alert_id": 7065,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21156,
+      "request_key": "5cac5005-06a8-49b6-ac73-8e666b500f1b",
+      "result": {
+        "status": "success",
+        "transaction_id": 21156,
+        "request_key": "5cac5005-06a8-49b6-ac73-8e666b500f1b",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21164,
+      "request_key": "e73144ed-c121-433a-9106-2d8630ad29fd",
+      "result": {
+        "status": "success",
+        "transaction_id": 21164,
+        "request_key": "e73144ed-c121-433a-9106-2d8630ad29fd",
+        "decision": "suspicious_pattern",
+        "alert_id": 7067,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21167,
+      "request_key": "6cd066e1-d1e8-429f-8a70-2ec5b50a73d3",
+      "result": {
+        "status": "success",
+        "transaction_id": 21167,
+        "request_key": "6cd066e1-d1e8-429f-8a70-2ec5b50a73d3",
+        "decision": "suspicious_pattern",
+        "alert_id": 7069,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21173,
+      "request_key": "2d9d98a2-c87c-4ba3-b4bc-4476bc15fa27",
+      "result": {
+        "status": "success",
+        "transaction_id": 21173,
+        "request_key": "2d9d98a2-c87c-4ba3-b4bc-4476bc15fa27",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21175,
+      "request_key": "c9906dc0-3905-442a-bdd2-e69fd80a89ba",
+      "result": {
+        "status": "success",
+        "transaction_id": 21175,
+        "request_key": "c9906dc0-3905-442a-bdd2-e69fd80a89ba",
+        "decision": "normal",
+        "alert_id": 7074,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21177,
+      "request_key": "86421314-075a-45d5-a0f0-3f75dd760c52",
+      "result": {
+        "status": "success",
+        "transaction_id": 21177,
+        "request_key": "86421314-075a-45d5-a0f0-3f75dd760c52",
+        "decision": "normal",
+        "alert_id": 7076,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21185,
+      "request_key": "a9cd3d5f-72a0-4d70-b765-0357ec6799ce",
+      "result": {
+        "status": "success",
+        "transaction_id": 21185,
+        "request_key": "a9cd3d5f-72a0-4d70-b765-0357ec6799ce",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21193,
+      "request_key": "3accbf1c-e1a3-4383-b7fb-093595c33c2c",
+      "result": {
+        "status": "success",
+        "transaction_id": 21193,
+        "request_key": "3accbf1c-e1a3-4383-b7fb-093595c33c2c",
+        "decision": "suspicious_pattern",
+        "alert_id": 7081,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21196,
+      "request_key": "34ce052e-51c2-4bd9-af89-d184bd89fee9",
+      "result": {
+        "status": "success",
+        "transaction_id": 21196,
+        "request_key": "34ce052e-51c2-4bd9-af89-d184bd89fee9",
+        "decision": "suspicious_pattern",
+        "alert_id": 7083,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21202,
+      "request_key": "c6a9ee16-8866-4dba-b7ce-d1337ac1a6b6",
+      "result": {
+        "status": "success",
+        "transaction_id": 21202,
+        "request_key": "c6a9ee16-8866-4dba-b7ce-d1337ac1a6b6",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21204,
+      "request_key": "dced1f02-98a4-4276-be2c-cb3e8e26f6ea",
+      "result": {
+        "status": "success",
+        "transaction_id": 21204,
+        "request_key": "dced1f02-98a4-4276-be2c-cb3e8e26f6ea",
+        "decision": "normal",
+        "alert_id": 7088,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21206,
+      "request_key": "f3561a08-c944-489e-845c-306182705c81",
+      "result": {
+        "status": "success",
+        "transaction_id": 21206,
+        "request_key": "f3561a08-c944-489e-845c-306182705c81",
+        "decision": "normal",
+        "alert_id": 7090,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21214,
+      "request_key": "013e93f6-52c3-49e2-a4a7-ca1073bf0f12",
+      "result": {
+        "status": "success",
+        "transaction_id": 21214,
+        "request_key": "013e93f6-52c3-49e2-a4a7-ca1073bf0f12",
+        "decision": "normal",
+        "alert_id": null,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21222,
+      "request_key": "7fb9900a-02cc-4d03-9fa5-dc23da922620",
+      "result": {
+        "status": "success",
+        "transaction_id": 21222,
+        "request_key": "7fb9900a-02cc-4d03-9fa5-dc23da922620",
+        "decision": "suspicious_pattern",
+        "alert_id": 7095,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21225,
+      "request_key": "e5d6b623-779b-450b-8399-dd7cfa05c4da",
+      "result": {
+        "status": "success",
+        "transaction_id": 21225,
+        "request_key": "e5d6b623-779b-450b-8399-dd7cfa05c4da",
+        "decision": "suspicious_pattern",
+        "alert_id": 7097,
+        "error_code": null,
+        "duplicate": false
+      }
+    },
+    {
+      "transaction_id": 21231,
+      "request_key": "e72ac575-7c41-4afa-af8f-f8a970009dd7",
+      "result": {
+        "status": "success",
+        "transaction_id": 21231,
+        "request_key": "e72ac575-7c41-4afa-af8f-f8a970009dd7",
+        "decision": "suspicious_pattern",
+        "alert_id": 7101,
+        "error_code": null,
+        "duplicate": false
+      }
+    }
+  ],
+  "protected_data_unchanged": true
+}

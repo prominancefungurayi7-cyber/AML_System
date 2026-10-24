@@ -131,7 +131,7 @@ def test_rejected_upload_never_creates_file(tmp_path, name, content):
 
 def test_size_limit_does_not_trust_client_metadata(tmp_path, monkeypatch):
     monkeypatch.setattr(attachments, "MAX_FILE_SIZE", 8)
-    with pytest.raises(attachments.AttachmentError, match="10 MB"):
+    with pytest.raises(attachments.AttachmentError, match="20 MB"):
         attachments.save_upload(uploaded(b"123456789"), tmp_path, uuid.uuid4().hex)
     assert not list(tmp_path.iterdir())
 
@@ -195,7 +195,7 @@ def test_canonical_envelope_roundtrip_and_optional_client_request_identifier():
 
 @pytest.mark.parametrize("key,value", [
     ("id", "../outside"), ("request_id", "invalid"), ("name", "../evidence.png"),
-    ("name", "evidence.svg"), ("size", True), ("size", -1), ("size", 20 * 1024 * 1024),
+    ("name", "evidence.svg"), ("size", True), ("size", -1), ("size", 20 * 1024 * 1024 + 1),
     ("media_type", "text/html"), ("media_type", "text/plain"), ("media_type", []),
     ("sha256", "invalid"), ("path", "C:/secret"),
 ])

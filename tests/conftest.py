@@ -57,7 +57,9 @@ def aml_app(tmp_path, monkeypatch):
     exec(compile(tree, module.__file__, "exec"), module.__dict__)
     url = "sqlite:///" + str(tmp_path / "application.sqlite")
     module.app.config.update(TESTING=True, SECRET_KEY="offline-test-secret", DATABASE=url,
-                             DATABASE_URL=url, MONITOR_STOP=True)
+                             DATABASE_URL=url, MONITOR_STOP=True,
+                             PROFILE_PHOTO_ROOT=str(tmp_path / 'profile-photos'),
+                             MESSAGE_ATTACHMENT_ROOT=str(tmp_path / 'message-attachments'))
     module.init_db()
     # Mirror the existing local MySQL reporting tables, which predate the
     # legacy schema factory. This DDL affects this temporary SQLite file only.

@@ -175,7 +175,8 @@ def process(connection_factory,tx,publish,runner=None,expected_source_revision=N
                 if c.engine!='mysql':raise ValueError('Production shadow requires MySQL')
                 server_uuid=c.execute('SELECT @@server_uuid AS id').fetchone()['id']
                 digest=hashlib.sha256(json.dumps(dict(source),sort_keys=True,separators=(',',':')).encode()).hexdigest()
-                r=validate(invoke(tx,digest,server_uuid),tx)
+                from v4_worker_client import invoke as invoke_reusable
+                r=validate(invoke_reusable(tx,digest,server_uuid),tx)
             else:r=validate(runner(tx),tx)
         except Exception:r=error(tx,'INFERENCE_ERROR')
         if expected_source_revision is not None and r['status']=='success':

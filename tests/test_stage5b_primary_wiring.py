@@ -47,11 +47,13 @@ def test_primary_branch_precedes_stage14_inference():
                                        source.index('stage14_service.predict')]
 
 
-def test_customer_commits_before_primary_completion_and_notification():
+def test_customer_commits_and_releases_connection_before_queuing_analysis():
     node = next(n for n in TREE.body if isinstance(n, ast.FunctionDef)
                 and n.name == 'create_transaction')
     source = ast.get_source_segment((ROOT / 'server.py').read_text(encoding='utf-8'), node)
-    assert source.index('get_db().commit()') < source.index('v4_primary.complete_committed(')
-    assert source.index('v4_primary.complete_committed(') < source.index(
+    assert source.index('get_db().commit()') < source.index('close_db(None)')
+    assert source.index('close_db(None)') < source.index('v4_primary.enqueue_committed(')
+    assert 'v4_primary.complete_committed(' not in source
+    assert source.index('v4_primary.enqueue_committed(') < source.index(
         'broadcast_committed_customer_transaction(get_db(), transaction_id, created_alert)')
     assert 'canonical_event is None' in source

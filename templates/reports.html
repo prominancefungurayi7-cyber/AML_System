@@ -118,6 +118,8 @@
       <li>
         {{ sar.reference_number or ('SAR #' ~ sar.id) }} — {{ sar.status|upper }} —
         Wallet {{ sar.account_number }} — {{ sar.created_at }}
+        <a href="{{ url_for('sar_detail', sar_id=sar.id) }}">View full report</a>
+        <a href="{{ url_for('sar_document', sar_id=sar.id) }}">Download PDF</a>
         {% if sar.status == 'draft' %}
           <form method="post" action="{{ url_for('submit_sar', sar_id=sar.id) }}" style="display:inline;">
             <button type="submit" class="btn btn-primary">Record submission</button>
@@ -128,6 +130,13 @@
   </ul>
   {% else %}
   <p>No SAR reports on file.</p>
+  {% endif %}
+  {% if sar_pages > 1 %}
+  <nav aria-label="SAR report pages">
+    {% if sar_page > 1 %}<a href="{{ url_for('reports', sar_page=sar_page-1) }}">Previous reports</a>{% endif %}
+    <span>Page {{ sar_page }} of {{ sar_pages }}</span>
+    {% if sar_page < sar_pages %}<a href="{{ url_for('reports', sar_page=sar_page+1) }}">Older reports</a>{% endif %}
+  </nav>
   {% endif %}
 
   <h3>CTR reports</h3>

@@ -36,7 +36,7 @@ def ledger(tmp_path):
     conn.executescript('''
         CREATE TABLE users(id INTEGER PRIMARY KEY,username TEXT,account_number TEXT UNIQUE,
           role TEXT,balance REAL,id_number TEXT,pep_flag INTEGER DEFAULT 0);
-        CREATE TABLE agents(id INTEGER PRIMARY KEY,status TEXT);
+        CREATE TABLE agents(id INTEGER PRIMARY KEY,status TEXT,agent_code TEXT);
         CREATE TABLE transactions(id INTEGER PRIMARY KEY,sender_account TEXT,receiver_account TEXT,
           amount REAL,transaction_type TEXT,currency TEXT,channel TEXT,timestamp TEXT,status TEXT,
           risk_score REAL,risk_level TEXT,description TEXT,agent_id INTEGER,client_request_id CHAR(36),
@@ -247,7 +247,8 @@ def test_large_mixed_plan_conserves_funds_with_uneven_demo_balances():
 @pytest.mark.parametrize('mode', ['mixed','ordinary','structuring','network','agent'])
 def test_scenario_forms_and_balances(ledger, mode):
     _, conn = ledger
-    conn.execute("INSERT INTO agents VALUES (1,'active')")
+    conn.execute("INSERT INTO agents VALUES (1,'active','AGENT0001')")
+    conn.execute("INSERT INTO users(id,username,account_number,role,balance) VALUES (200,'Agent','AGENT0001','agent',100000)")
     conn.commit()
     request = ticket(conn, mode)
     before = balances(conn)
@@ -257,7 +258,8 @@ def test_scenario_forms_and_balances(ledger, mode):
     rows = conn.execute('SELECT * FROM transactions ORDER BY id').fetchall()
     delta = sum(round(row['amount']*100) * (1 if row['transaction_type'] == 'deposit' else -1)
                 for row in rows if row['transaction_type'] != 'transfer')
-    assert sum(balances(conn).values()) == sum(before.values()) + delta
+    assert sum(balances(conn).values()) == sum(before.values())
+    assert balances(conn)[200] == before[200] - delta
     assert balances(conn)[100] == before[100]
     if mode == 'agent':
         assert {row['transaction_type'] for row in rows} == {'deposit','withdraw'}
@@ -439,7 +441,7 @@ def test_history_planner_includes_registered_customers_and_retries_once(ledger):
     assert 'PRIVATE' in choices['baseline_summary']
     token = next(c['token'] for c in choices['choices'] if c['mode'] == 'ordinary' and c['count'] == 100)
     request = simulation.decode(token, 'new-plan', 1)
-    assert request['version'] == 4
+    assert request['version'] == 5
     rows = simulation.plan(request)
     assert set(s['account_number'] for s, _, _, _ in rows) == set(choices['baseline_summary'])
     assert rows == simulation.plan(request)
@@ -526,7 +528,7 @@ def test_committed_version_three_request_replays_after_new_planner_and_balance_c
     first = generate(conn, request)
     conn.execute('UPDATE users SET balance=0')
     conn.commit()
-    assert current_ticket(conn, count=10)['version'] == 4
+    assert current_ticket(conn, count=10)['version'] == 5
     assert simulation.plan(request) == planned
     before = balances(conn)
     replay = generate(conn, request)

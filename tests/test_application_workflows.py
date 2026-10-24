@@ -61,7 +61,7 @@ def test_expired_staff_cannot_subscribe_and_rejected_messages_acknowledge(aml_ap
     cs = m.socketio.test_client(m.app, flask_test_client=customer)
     try:
         for data, reason in [({}, 'Missing'), ({'receiver': 'missing-user', 'content': 'Hi'}, 'Recipient'),
-                             ({'receiver': 'Admin', 'content': 'Hi'}, 'not')]:
+                             ({'receiver': 'demo', 'content': 'Hi'}, 'another')]:
             result = cs.emit('send_message', data, callback=True)
             assert result['status'] == 'error'
             assert reason.lower() in result['message'].lower()
@@ -293,7 +293,9 @@ def test_registration_establishes_messaging_session(aml_app, monkeypatch):
     with client.session_transaction() as state:
         assert state['username'] == 'fixture_customer'
     assert client.get('/api/conversations').status_code == 200
-    assert client.get('/api/messageable-users').json['users'][0]['role'] == 'compliance'
+    contacts = client.get('/api/messageable-users').json['users']
+    assert any(user['role'] == 'compliance' for user in contacts)
+    assert all(user['username'] != 'fixture_customer' for user in contacts)
 
 
 def test_email_transport_handles_windows_console_and_smtp_modes(monkeypatch):

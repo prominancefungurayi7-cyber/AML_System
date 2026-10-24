@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
+import math
+from statistics import fmean, median, pstdev
 from typing import Any
 
 
@@ -61,8 +63,60 @@ def _prior(conn, sender: str, timestamp: str, minutes: int, exclude_transaction_
     return [dict(row) for row in rows]
 
 
+def _personal_amount_rule(conn, amount, tx_type, sender, timestamp, transaction_id):
+    """Compare only causal, completed, comparable payments; never train V4."""
+    def utc_time(value):
+        value = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+        return (value if value.tzinfo else value.replace(tzinfo=timezone.utc)).astimezone(timezone.utc)
+
+    if transaction_id is not None:
+        current = conn.execute('SELECT timestamp FROM transactions WHERE id=?', (transaction_id,)).fetchone()
+        if current is not None:
+            timestamp = current['timestamp']
+    end = utc_time(timestamp)
+    start = end - timedelta(days=30)
+    # Parent timestamps include both canonical Z strings and older +00:00
+    # strings. SQL string ordering cannot decide equal instants safely. Narrow
+    # by dates, then compare normalized UTC (timestamp,id) before taking 100.
+    rows = conn.execute(
+        "SELECT id,amount,timestamp FROM transactions WHERE sender_account=? AND transaction_type=? "
+        "AND status='Completed' AND amount>0 AND timestamp>=? AND timestamp<?",
+        (sender, tx_type, (start - timedelta(days=1)).date().isoformat(),
+         (end + timedelta(days=2)).date().isoformat())).fetchall()
+    prior = []
+    for row in rows:
+        when = utc_time(row['timestamp'])
+        value = float(row['amount'])
+        if transaction_id is not None and row['id'] == transaction_id:
+            continue
+        causal = when < end or (when == end and transaction_id is not None and row['id'] < transaction_id)
+        if start <= when and causal and math.isfinite(value):
+            prior.append((when, row['id'], value))
+    amounts = [row[2] for row in sorted(prior, reverse=True)[:100]]
+    if len(amounts) < 5:
+        return None
+    average, middle, spread = fmean(amounts), median(amounts), pstdev(amounts)
+    # The threefold median guard avoids flagging ordinary variation in a stable
+    # history; the three-sigma guard also accommodates genuinely broad ranges.
+    lower = max(0.0, min(middle / 3, average - 3 * spread))
+    upper = max(middle * 3, average + 3 * spread)
+    if not math.isfinite(amount) or lower <= amount <= upper:
+        return None
+    direction = 'above' if amount > upper else 'below'
+    reason = (f"Personal amount deviation: ${amount:,.2f} is {direction} the monitoring range "
+              f"${lower:,.2f}-${upper:,.2f} from {len(amounts)} prior completed {tx_type} "
+              f"payments in 30 days (median ${middle:,.2f}).")
+    return RuleResult('R12', 40, reason, 'warning', 'Personal Amount Deviation', dict(
+        sample_count=len(amounts), window_days=30, sample_limit=100,
+        mean_amount=average, median_amount=middle, std_amount=spread,
+        lower_amount=lower, upper_amount=upper, amount=amount, direction=direction,
+        reference_timestamp=end.isoformat(), reference_transaction_id=transaction_id,
+        method='three_sigma_and_threefold_median', minimum_samples=5))
+
+
 def assess_rules(conn, *, amount: float, tx_type: str, sender: str, receiver: str,
-                 timestamp: str, destination_country: str = "ZW", exclude_transaction_id=None) -> list[RuleResult]:
+                 timestamp: str, destination_country: str = "ZW", exclude_transaction_id=None,
+                 personal_amount_check: bool = False) -> list[RuleResult]:
     """Return all independent rule hits for one transaction."""
     amount = float(amount)
     prior_hour = _prior(conn, sender, timestamp, 60, exclude_transaction_id)
@@ -112,5 +166,10 @@ def assess_rules(conn, *, amount: float, tx_type: str, sender: str, receiver: st
     country = (destination_country or "ZW").upper()
     if country in HIGH_RISK_COUNTRIES:
         hit("R11", 55, f"Transaction involves high-risk jurisdiction {country}", "critical", "High-Risk Geography", country=country)
+
+    if personal_amount_check:
+        personal = _personal_amount_rule(conn, amount, tx_type, sender, timestamp, exclude_transaction_id)
+        if personal is not None:
+            hits.append(personal)
 
     return hits

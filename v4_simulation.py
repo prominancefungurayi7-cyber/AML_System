@@ -10,7 +10,7 @@ from canonical_mobile_money import VERSION, LEGACY_TYPES, prepare_ingestion, wit
 from canonical_mobile_money_store import persist
 from transaction_idempotency import require_schema, existing, submission
 
-COUNTS = (1, 10, 100, 500, 1000, 2000, 5000)
+COUNTS = (1, 10, 30, 100, 500, 1000, 2000, 5000)
 MODES = ('mixed', 'ordinary', 'structuring', 'network', 'agent')
 PAYMENT_LOCK = 'aml_v4_payment_ingest_v1'
 # Legacy identity list retained only for validating original signed payment plans.
@@ -45,14 +45,15 @@ def options(conn, secret, admin_id):
     baseline = profiles(conn, funded_wallets)
     scenario_ids = scenario_wallet_order(funded_wallets)
     agents = [str(row['id']) for row in conn.execute(
-        "SELECT id FROM agents WHERE status='active' ORDER BY id").fetchall()]
+        "SELECT a.id FROM agents a JOIN users u ON u.account_number=a.agent_code "
+        "WHERE a.status='active' AND u.role='agent' ORDER BY a.id").fetchall()]
     choices = []
     if len(wallets) >= 6:
         for mode in MODES:
             if mode == 'agent' and not agents:
                 continue
             for count in COUNTS:
-                ticket = dict(version=4, batch_id=str(uuid.uuid4()), admin_id=admin_id,
+                ticket = dict(version=5, batch_id=str(uuid.uuid4()), admin_id=admin_id,
                               count=count, mode=mode, wallets=wallets, agents=agents,
                               scenario_wallet_ids=scenario_ids, customer_profiles=baseline)
                 choices.append(dict(count=count, mode=mode, token=serializer(secret).dumps(ticket)))
@@ -78,7 +79,7 @@ def scenario_wallet_order(wallets):
 def decode(token, secret, admin_id):
     try:
         ticket = serializer(secret).loads(token, max_age=86400)
-        if (ticket['version'] not in (1, 2, 3, 4) or ticket['admin_id'] != admin_id or
+        if (ticket['version'] not in (1, 2, 3, 4, 5) or ticket['admin_id'] != admin_id or
                 ticket['count'] not in COUNTS or ticket['mode'] not in MODES or
                 str(uuid.UUID(ticket['batch_id'], version=4)) != ticket['batch_id']):
             raise ValueError('Invalid generation request')
@@ -172,7 +173,7 @@ def plan(ticket):
     # byte-for-byte for old receipts/retries, including committed v1 batches.
     if ticket['version'] == 1:
         return _plan_v1(ticket)
-    if ticket['version'] in (3, 4):
+    if ticket['version'] in (3, 4, 5):
         from v4_customer_patterns import plan_from_history
         return plan_from_history(ticket, plan, scenario_schedule)
     if ticket['version'] != 2:
@@ -257,10 +258,11 @@ def plan(ticket):
     return rows
 
 
-def receipt(conn, ticket):
+def receipt(conn, ticket, *, planned=None):
     """Read a batch by immutable request keys, including after a browser retry."""
     rows = []
-    planned = plan(ticket)
+    if planned is None:
+        planned = plan(ticket)
     accounts = sorted({sender['account_number'] for sender, _, _, _ in planned})
     for offset in range(0, len(planned), 250):
         chunk = planned[offset:offset+250]
@@ -282,7 +284,7 @@ def commit_batch(conn, ticket, process, last_id, preflight):
     payment_lock(conn)
     require_schema(conn)
     planned = plan(ticket)
-    prior = receipt(conn, ticket)
+    prior = receipt(conn, ticket, planned=planned)
     if prior['saved']:
         if prior['saved'] != ticket['count']:
             raise RuntimeError('Incomplete request identity. No payment was replayed.')
@@ -304,10 +306,8 @@ def commit_batch(conn, ticket, process, last_id, preflight):
                 row['account_number'] != wallet['account_number'] or
                 (ticket['version'] < 3 and DEMO_WALLETS.get(row['username']) != row['account_number'])):
             raise ValueError('Demo wallet identity changed. Reload the dashboard.')
-    for agent in ticket['agents']:
-        row = conn.execute("SELECT id FROM agents WHERE id=? AND status='active'" + suffix, (int(agent),)).fetchone()
-        if row is None:
-            raise ValueError('Agent availability changed. Reload the dashboard.')
+    from agent_service import cash_agent_wallet, transfer_cash_value
+    agent_wallets = {str(agent): cash_agent_wallet(conn, int(agent)) for agent in ticket['agents']}
     try:
         for sender, recipient, form, key in planned:
             event = prepare_ingestion(form, sender['account_number'], datetime.now(timezone.utc).isoformat())
@@ -322,8 +322,9 @@ def commit_batch(conn, ticket, process, last_id, preflight):
             persist(conn, with_id(event, tx))
             process(conn, tx, event.sender_wallet, event.receiver_wallet, amount, kind,
                     event.event_timestamp, account_number=event.sender_wallet, emit_events=False)
-            if kind == 'deposit':
-                conn.execute('UPDATE users SET balance=balance+? WHERE id=?', (amount,sender['id']))
+            if kind in ('deposit', 'withdraw'):
+                transfer_cash_value(conn, sender['id'], agent_wallets[str(event.agent_id)]['id'],
+                                    event.transaction_type, amount)
             else:
                 debit = conn.execute('UPDATE users SET balance=balance-? WHERE id=? AND balance>=?',
                                      (amount,sender['id'],amount))
@@ -333,7 +334,7 @@ def commit_batch(conn, ticket, process, last_id, preflight):
                     conn.execute('UPDATE users SET balance=balance+? WHERE id=?', (amount,recipient['id']))
         # Capture the receipt before commit; a failed response must never cause
         # another financial execution. The signed ticket remains reusable.
-        result = receipt(conn, ticket)
+        result = receipt(conn, ticket, planned=planned)
         conn.commit()
         return {**result, 'replayed': False}
     except Exception:

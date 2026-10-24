@@ -92,9 +92,9 @@
   {% if transaction and findings.ai_risk_level not in ('pending_v4', 'inference_error', 'unavailable') and transaction.ai_confidence is not none %}
     <p><strong>Recorded confidence:</strong> {{ "%.1f"|format(transaction.ai_confidence * 100) }}%</p>
   {% endif %}
-  <p>{{ findings.ai_reason }}</p>
-  {% if findings.ai_risk_level == 'suspicious_pattern' %}
-    <button type="button" class="btn" id="load-v4-evidence">Show model evidence</button>
+  {% if findings.ai_risk_level != 'normal' %}<p>{{ findings.ai_reason|replace('; threshold: 0.50', '') }}</p>{% endif %}
+  {% if findings.ai_risk_level == 'suspicious_pattern' and findings.ai_reason.startswith('V4 ') %}
+    <button type="button" class="btn" id="load-v4-evidence">Show AI reasoning</button>
     <div class="v4-evidence" id="v4-evidence-result" role="status"></div>
   {% endif %}
 </section>
@@ -160,7 +160,8 @@
   <ul>
     {% for sar in sar_reports %}
       <li>
-        <strong>{{ sar.reference_number or ('SAR #' ~ sar.id) }}</strong> — {{ sar.status|upper }}
+        <a href="{{ url_for('sar_detail', sar_id=sar.id) }}"><strong>{{ sar.reference_number or ('SAR #' ~ sar.id) }}</strong></a> — {{ sar.status|upper }}
+        <a href="{{ url_for('sar_document', sar_id=sar.id) }}">Download PDF</a>
         {% if sar.status == 'draft' %}
           <form method="post" action="{{ url_for('submit_sar', sar_id=sar.id) }}" style="display:inline;">
             <button type="submit" class="btn btn-primary">Record submission</button>
@@ -175,6 +176,12 @@
 
 <section class="card table-card">
   <h3>Case Actions</h3>
+  {% if alert.status == 'escalated' %}
+  <form method="post" action="{{ url_for('send_case_document', kind='escalation', identifier=alert.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ session.report_delivery_csrf }}">
+    <button type="submit">Send to administrator</button>
+  </form>
+  {% endif %}
   <form method="post">
     <label for="case_notes">Case notes / investigation narrative</label>
     <textarea id="case_notes" name="case_notes" rows="4" placeholder="Document investigation findings…">{{ alert.case_notes or '' }}</textarea>
@@ -193,7 +200,7 @@
 <p><a href="{{ url_for('compliance_dashboard') }}">&larr; Back to Compliance Hub</a></p>
   </div>
 </div>
-{% if findings.ai_risk_level == 'suspicious_pattern' %}
+{% if findings.ai_risk_level == 'suspicious_pattern' and findings.ai_reason.startswith('V4 ') %}
 <script>
 document.getElementById('load-v4-evidence')?.addEventListener('click', async function () {
   const target = document.getElementById('v4-evidence-result');
@@ -203,11 +210,14 @@ document.getElementById('load-v4-evidence')?.addEventListener('click', async fun
     const response = await fetch({{ url_for('alert_ai_evidence', alert_id=alert.id)|tojson }});
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Model evidence unavailable');
-    target.textContent = 'Largest model contributions, measured in log-odds. Positive values raise the suspicious score; negative values lower it.';
+    target.textContent = result.summary;
+    const activity = document.createElement('p');
+    activity.textContent = result.activity;
+    target.appendChild(activity);
     const list = document.createElement('ul');
     for (const finding of result.findings) {
       const item = document.createElement('li');
-      item.textContent = `${finding.label} — ${finding.direction} (${finding.contribution > 0 ? '+' : ''}${finding.contribution})`;
+      item.textContent = `${finding.label} — ${finding.direction}`;
       list.appendChild(item);
     }
     target.appendChild(list);

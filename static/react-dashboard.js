@@ -87,6 +87,19 @@
     return Number(value || 0).toFixed(0);
   }
 
+  function scoringWeights(model) {
+    const policy = model?.risk_scoring;
+    if (!policy || !Number.isFinite(policy.ai_weight) || !Number.isFinite(policy.rule_weight)) return null;
+    return `V4 ${Math.round(policy.ai_weight * 100)}% \u00b7 Rules ${Math.round(policy.rule_weight * 100)}%`;
+  }
+
+  function operationalScoreHelp(model) {
+    const weights = scoringWeights(model);
+    return weights
+      ? `Current policy for new decisions: ${weights}. V4 contributes its suspicious probability on a 0\u2013100 scale. Independent rule or AI flags may still require review. Earlier recorded scores are retained.`
+      : 'Recorded operational score. AI and rule findings are shown separately.';
+  }
+
   function confidence(value) {
     if (value === null || value === undefined || value === "") return "unavailable";
     return `${Math.round(Number(value || 0) * 100)}%`;
@@ -286,6 +299,53 @@
     // Native form resubmissions preserve this value; a new dashboard draft gets a new one.
     const [transactionRequestId] = useState(() =>
       window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : "");
+    const [paymentSubmitting, setPaymentSubmitting] = useState(false);
+    const [paymentType, setPaymentType] = useState('wallet_to_wallet');
+    const cashService = paymentType !== 'wallet_to_wallet';
+    const [assistedTransfer, setAssistedTransfer] = useState(false);
+    const [transferRecipient, setTransferRecipient] = useState('');
+    const [servicedEndpoint, setServicedEndpoint] = useState('sender');
+    useEffect(() => {
+      let timer, running = false, queued = false, stopped = false;
+      const controller = new AbortController();
+      const refresh = async () => {
+        if (running) { queued = true; return; }
+        running = true;
+        try {
+          const response = await fetch(window.location.href, {
+            credentials: 'same-origin', cache: 'no-store', signal: controller.signal
+          });
+          if (!response.ok) throw new Error('Dashboard refresh unavailable');
+          const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+          const node = doc.getElementById('customer-dashboard-data');
+          if (!node) throw new Error('Dashboard session unavailable');
+          const data = JSON.parse(node.textContent);
+          if (stopped) return;
+          // Update data in place: preserve the selected section, payment draft,
+          // request ID and mounted page instead of reloading on each AI result.
+          setTransactions(data.transactions || []);
+          setAlerts(data.alerts || []);
+          setStats(data.stats || {});
+          setBalance(Number(data.user?.balance || 0));
+        } catch (error) {
+          if (!stopped) setStatus('Live refresh unavailable. Reconnecting...');
+        } finally {
+          running = false;
+          if (queued && !stopped) { queued = false; schedule(); }
+        }
+      };
+      const schedule = () => { clearTimeout(timer); timer = setTimeout(refresh, 400); };
+      window.addEventListener('aml:customer-resync', schedule);
+      return () => {
+        stopped = true; clearTimeout(timer); controller.abort();
+        window.removeEventListener('aml:customer-resync', schedule);
+      };
+    }, []);
+    useEffect(() => {
+      const restored = () => setPaymentSubmitting(false);
+      window.addEventListener("pageshow", restored);
+      return () => window.removeEventListener("pageshow", restored);
+    }, []);
 
     const sidebarItems = [
       { id: "overview", label: "Overview", icon: "home" },
@@ -320,7 +380,7 @@
         setAlerts((current) => upsert(current, alert, 10));
         setStats((current) => ({ ...current, open_alerts: Number(current.open_alerts || 0) + 1 }));
         setStatus("Live alert received | stream active");
-        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | Score ${score(alert.risk_score)} | AI: ${alert.ai_reason || "Not recorded"} | Rules: ${alert.rule_reason || "Not recorded"}`);
+        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | Score ${score(alert.risk_score)} | AI: ${(alert.ai_risk_level === "normal" ? "Normal" : displayAiReason(alert.ai_reason) || "Not recorded")} | Rules: ${alert.rule_reason || "Not recorded"}`);
       },
       alert_update: (alert) => {
         if (alert.account_number !== accountNumber) return;
@@ -353,7 +413,6 @@
     const metricItems = [
       { label: "Wallet balance", value: money(balance), caption: accountNumber },
       { label: "Transactions", value: stats.total_tx ?? transactions.length, caption: "wallet history" },
-      { label: "Flagged", value: stats.flagged || 0, caption: "requires attention" },
       { label: "Open alerts", value: stats.open_alerts ?? alerts.filter((alert) => alert.status === "open").length, caption: "live cases" },
     ];
 
@@ -371,52 +430,78 @@
               ),
               h("div", { className: "card action-card" },
                 h(PanelHeading, { title: "Send or Receive Money" }),
-                h("form", { method: "post", action: "/customer/transaction" },
+                h("form", { method: "post", action: "/customer/transaction", onSubmit: (event) => {
+                  if (paymentSubmitting) { event.preventDefault(); return; }
+                  setPaymentSubmitting(true);
+                } },
                   h("input", { type: "hidden", name: "client_request_id", value: transactionRequestId }),
                   h("input", { type: "hidden", name: "canonical_version", value: "mobile_money.canonical.v1" }),
                   h("input", { type: "hidden", name: "currency", value: "USD" }),
                   h("label", null, "Type"),
-                  h("select", { name: "type", defaultValue: "wallet_to_wallet" },
+                  h("select", { name: "type", value: paymentType, onChange: e => setPaymentType(e.target.value) },
                     h("option", { value: "cash_in" }, "Cash In"),
                     h("option", { value: "cash_out" }, "Cash Out"),
                     h("option", { value: "wallet_to_wallet" }, "Send Money")
                   ),
                   h("label", null, "Amount"),
-                  h("input", { type: "number", min: "0.01", max: "15000.00", step: "0.01", name: "amount", required: true }),
-                  h("label", null, "Recipient Wallet Number"),
-                  h("input", { name: "recipient", placeholder: "ACC1004" }),
-                  h("p", { className: "form-hint" }, "For direct transfers, enter the receiving wallet. For cash in or cash out, complete the agent service details below."),
-                  h("details", { className: "agent-details" },
-                  h("summary", null, "Agent service / cash transaction details"),
-                  h("label", null, "Service channel"),
-                  h("select", { name: "channel", defaultValue: "direct_wallet" },
-                    h("option", { value: "direct_wallet" }, "Direct wallet transfer"),
-                    h("option", { value: "agent" }, "Agent service")
-                  ),
-                  h("label", null, "Agent ID (required for agent service)"),
-                  h("input", { name: "agent_id", inputMode: "numeric" }),
-                  h("label", null, "Wallet serviced by the agent"),
-                  h("input", { name: "serviced_wallet", placeholder: accountNumber }),
-                  h("label", null, "Cash direction"),
-                  h("select", { name: "agent_flow_direction", defaultValue: "none" },
-                    h("option", { value: "none" }, "No cash — wallet transfer"),
-                    h("option", { value: "cash_in" }, "Cash in"),
-                    h("option", { value: "cash_out" }, "Cash out")
-                  ),
-                  h("p", { className: "form-hint" }, "Cash requires an agent, your wallet as the serviced wallet, and the matching cash direction. For agent-assisted transfers, name exactly one serviced endpoint. Leave agent and serviced wallet empty for direct transfers."),
+                  h("input", { type: "number", min: "0.01", max: "15000.00", step: "0.01", name: "amount", required: true,
+                    "aria-describedby": "payment-amount-limit" }),
+                  h("p", { id: "payment-amount-limit", className: "form-hint" }, "Current per-transaction limit: $15,000.00."),
+                  h("input", { type: "hidden", name: "channel", value: cashService || assistedTransfer ? 'agent' : 'direct_wallet' }),
+                  h("input", { type: "hidden", name: "serviced_wallet", value: cashService ? accountNumber :
+                    assistedTransfer ? (servicedEndpoint === 'sender' ? accountNumber : transferRecipient) : '' }),
+                  h("input", { type: "hidden", name: "agent_flow_direction", value: cashService ? paymentType : 'none' }),
+                  cashService ? h(React.Fragment, null,
+                    h("input", { type: "hidden", name: "recipient", value: '' }),
+                    h("label", null, "Service agent"),
+                    h("select", { name: "agent_id", required: true, defaultValue: '' },
+                      h("option", { value: '', disabled: true }, "Select an agent"),
+                      (initialData.agents || []).map(agent => h("option", { key: agent.id, value: agent.id },
+                        `${agent.username} (${agent.agent_code})`))),
+                    h("p", { className: "form-hint" }, paymentType === 'cash_in'
+                      ? 'Give cash to the agent. The agent transfers electronic value from their float to your wallet.'
+                      : 'Give electronic value to the agent. The agent gives you the same amount in cash.'),
+                    h("label", { className: "checkbox-label" },
+                      h("input", { type: "checkbox", name: "cash_confirmed", value: 'yes', required: true }),
+                      " I confirm the physical cash exchange with the agent.")
+                  ) : h(React.Fragment, null,
+                    !assistedTransfer && h("input", { type: "hidden", name: "agent_id", value: '' }),
+                    h("label", null, "Recipient wallet number"),
+                    h("input", { name: "recipient", placeholder: "ACC1004 or AGENT0001", required: true,
+                      value: transferRecipient, onChange: e => setTransferRecipient(e.target.value) }),
+                    h("p", { className: "form-hint" }, "Transfer to a customer wallet or fund an active agent's electronic float."),
+                    h("details", { className: "agent-details" },
+                      h("summary", null, "Optional agent assistance"),
+                      h("label", { className: "checkbox-label" },
+                        h("input", { type: "checkbox", checked: assistedTransfer,
+                          onChange: e => setAssistedTransfer(e.target.checked) }), " Agent-assisted transfer"),
+                      assistedTransfer && h(React.Fragment, null,
+                        h("label", null, "Service agent"),
+                        h("select", { name: "agent_id", required: true, defaultValue: '' },
+                          h("option", { value: '', disabled: true }, "Select an agent"),
+                          (initialData.agents || []).map(agent => h("option", { key: agent.id, value: agent.id },
+                            `${agent.username} (${agent.agent_code})`))),
+                        h("label", null, "Wallet assisted by the agent"),
+                        h("select", { value: servicedEndpoint, onChange: e => setServicedEndpoint(e.target.value),
+                          'aria-label': 'Wallet assisted by the agent' },
+                          h("option", { value: 'sender' }, "My wallet"),
+                          h("option", { value: 'recipient' }, "Recipient wallet")))
+                    )
                   ),
                   !transactionRequestId && h("p", { className: "form-hint" },
                     "Secure request IDs are unavailable in this browser. Please use a supported browser."),
-                  h("button", { type: "submit", disabled: !transactionRequestId },
-                    "Confirm transaction")
+                  h("button", { type: "submit", disabled: !transactionRequestId || paymentSubmitting },
+                    paymentSubmitting ? "Saving payment..." : "Confirm transaction"),
+                  h("p", { className: "form-hint", role: "status" },
+                    "Your payment confirmation appears after it is saved. AI review updates separately.")
                 )
               ),
             ),
-            h(CustomerTransactionsPanel, { transactions, page: Number(initialData.page || 1),
+            h(CustomerTransactionsPanel, { transactions, model: initialData.model, page: Number(initialData.page || 1),
               pageCount: Number(initialData.transaction_pages || 1) })
           );
         case "transactions":
-          return h(CustomerTransactionsPanel, { transactions, page: Number(initialData.page || 1), pageCount: Number(initialData.transaction_pages || 1) });
+          return h(CustomerTransactionsPanel, { transactions, model: initialData.model, page: Number(initialData.page || 1), pageCount: Number(initialData.transaction_pages || 1) });
         case "alerts":
           return h(CustomerAlertsPanel, { alerts });
         case "activity":
@@ -437,12 +522,12 @@
     );
   }
 
-  function CustomerTransactionsPanel({ transactions, page = 1, pageCount = 1 }) {
+  function CustomerTransactionsPanel({ transactions, model, page = 1, pageCount = 1 }) {
     return h("div", { className: "card table-card" },
       h(PanelHeading, { title: "Recent Transactions" }),
       transactions.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Transaction", "From / to", "Type", "Amount", "Status", "AI finding", "Rule finding"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Transaction", "From / to", "Type", "Amount", "Risk", "AI finding", "Rule finding"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -455,15 +540,18 @@
             h("td", null, money(txn.amount)),
             h("td", null,
               h("span", { className: riskClass(txn.risk_level) }, customerRiskLabel(txn.risk_level)),
-              h("span", { className: "muted-line block-line" }, `Operational score ${score(txn.risk_score)}`)
+              h(TransactionScores, { transaction: txn }),
             ),
             h("td", null,
               h("strong", { className: "block-line" }, labelize(txn.ai_risk_level || "unavailable")),
-              h("span", { className: "muted-line block-line" }, txn.ai_reason || "No AI reason recorded")
+              txn.ai_risk_level !== "normal" && h("span", { className: "muted-line block-line" }, displayAiReason(txn.ai_reason) || "No AI reason recorded"),
+              txn.ai_risk_level === "suspicious_pattern" && hasV4Decision(txn) && h(V4Evidence, { transactionId: txn.id }),
+              h(TransactionScores, { transaction: txn, part: "ai" })
             ),
             h("td", null,
               h("strong", { className: "block-line" }, labelize(txn.rule_level || "normal")),
-              h("span", { className: "muted-line block-line" }, txn.rule_reason || "No rule indicators")
+              h("span", { className: "muted-line block-line" }, txn.rule_reason || "No rule indicators"),
+              h(TransactionScores, { transaction: txn, part: "rule" })
             )
           ))
         )
@@ -480,7 +568,32 @@
     );
   }
 
-  function V4Evidence({ alertId }) {
+  function displayAiReason(reason) {
+    return String(reason || '').replace(/;\s*threshold:\s*0\.50\b/gi, '');
+  }
+
+  function hasV4Decision(row) {
+    return ['normal', 'suspicious_pattern'].includes(row.ai_risk_level) && /^V4 /.test(row.ai_reason || '');
+  }
+
+  function TransactionScores({ transaction, part = "overall" }) {
+    const confidence = transaction.ai_confidence;
+    const complete = hasV4Decision(transaction) && confidence != null &&
+      Number.isFinite(Number(confidence)) && Number(confidence) >= 0 && Number(confidence) <= 1;
+    // Stored confidence is confidence in the predicted class, not always risk.
+    const aiRisk = complete ? 100 * (transaction.ai_risk_level === 'normal'
+      ? 1 - Number(confidence) : Number(confidence)) : null;
+    const formatScore = (value) => value != null && Number.isFinite(Number(value))
+      ? `${Number(value).toFixed(2)} / 100` : 'Unavailable';
+    const waiting = transaction.ai_risk_level === 'pending_v4';
+    const text = part === 'rule' ? `Rule score: ${formatScore(transaction.rule_score)}`
+      : part === 'ai' ? `AI score: ${complete ? formatScore(aiRisk) : waiting ? 'Pending' : 'Unavailable'}`
+      : `Overall score: ${complete ? formatScore(transaction.risk_score) : 'Awaiting AI'}`;
+    return h('strong', { className: 'block-line transaction-scores',
+      title: part === 'overall' ? '70% AI + 30% rules. Independent findings can still require review.' : undefined }, text);
+  }
+
+  function V4Evidence({ alertId, transactionId }) {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -488,7 +601,7 @@
       if (loading || result) return;
       setLoading(true); setError('');
       try {
-        const response = await fetch(`/api/alerts/${alertId}/ai-evidence`);
+        const response = await fetch(transactionId ? `/api/transactions/${transactionId}/ai-evidence` : `/api/alerts/${alertId}/ai-evidence`);
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'Model evidence unavailable');
         setResult(data);
@@ -497,24 +610,27 @@
     }
     return h('div', { className: 'v4-evidence' },
       h('button', { type: 'button', onClick: loadEvidence, disabled: loading },
-        loading ? 'Loading model evidence…' : 'Show model evidence'),
+        loading ? 'Loading AI reasoning...' : 'Show AI reasoning'),
       error && h('p', { role: 'status' }, error),
       result && h('div', null,
-        h('p', null, 'Largest model contributions, measured in log-odds. Positive values raise the suspicious score; negative values lower it.'),
+        h('p', null, result.summary),
+        h('p', null, result.activity),
+        h('p', null, 'Factors that influenced the AI decision:'),
         h('ul', null, result.findings.map((finding) => h('li', { key: finding.feature },
-          `${finding.label} — ${finding.direction} (${finding.contribution > 0 ? '+' : ''}${finding.contribution})`
+          `${finding.label} — ${finding.direction}`
         )))
       )
     );
   }
 
   function AlertFinding({ alert, source }) {
-    const reason = alert[`${source}_reason`] || `No separate ${source === "ai" ? "AI" : "rule"} reasoning recorded.`;
+    const reason = (source === "ai" ? displayAiReason(alert.ai_reason) : alert.rule_reason) || `No separate ${source === "ai" ? "AI" : "rule"} reasoning recorded.`;
     const level = alert[source === "ai" ? "ai_risk_level" : "rule_level"] || "unavailable";
     return h("div", null,
       h("strong", { className: "block-line" }, labelize(level)),
-      h("span", { className: "reason-preview", title: reason }, reason),
-      source === 'ai' && level === 'suspicious_pattern' && alert.id && ['admin', 'compliance'].includes(document.body.dataset.userRole) && h(V4Evidence, { alertId: alert.id }),
+      (source !== "ai" || level !== "normal") && h("span", { className: "reason-preview", title: reason }, reason),
+      source === 'ai' && level === 'suspicious_pattern' && hasV4Decision(alert) && alert.transaction_id && h(V4Evidence, { transactionId: alert.transaction_id }),
+      h(TransactionScores, { transaction: alert, part: source }),
       source === "rule" && alert.unclassified_reason && h("details", null,
         h("summary", null, "Recorded reason ? source unavailable"),
         h("p", null, alert.unclassified_reason))
@@ -535,7 +651,7 @@
               h("span", { className: "muted-line block-line" }, shortTime(alert.timestamp))
             ),
             h("td", null, `#${alert.transaction_id || ""}`),
-            h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk"))),
+            h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk")), h(TransactionScores, { transaction: alert })),
             h("td", null, h(AlertFinding, { alert, source: "ai" })),
             h("td", null, h(AlertFinding, { alert, source: "rule" }))
           )
@@ -570,8 +686,11 @@
         h("dt", null, "Decision threshold"), h("dd", null, model.threshold),
         h("dt", null, "Feature contract"), h("dd", null, "40 semantic / 42 model inputs"),
         h("dt", null, "Independent AML rules"), h("dd", null, model.rules_enabled ? "On" : "Off"),
+        scoringWeights(model) ? h(window.React.Fragment, null,
+          h("dt", null, "Score weights for new decisions"), h("dd", null, scoringWeights(model))) : null,
         h("dt", null, "Automatic legacy fallback"), h("dd", null, "Disabled")),
-      h("p", { className: "form-hint" }, "Payments and generated demo transactions use V4. Decisions and errors are recorded for analyst review.")
+      h("p", { className: "form-hint" }, "Payments and generated demo transactions use V4. Decisions and errors are recorded for analyst review."),
+      scoringWeights(model) ? h("p", { className: "form-hint" }, operationalScoreHelp(model)) : null
     );
   }
 
@@ -622,7 +741,7 @@
   }
 
   function TransactionGeneration({ generation, legacyBlockReason }) {
-    const [count, setCount] = useState(100);
+    const [count, setCount] = useState(30);
     const [mode, setMode] = useState("mixed");
     const [submitted, setSubmitted] = useState(false);
     const [progress, setProgress] = useState(null);
@@ -692,7 +811,7 @@
           }, label))),
         h("label", { htmlFor: "generation-count" }, "Number of Transactions"),
         h("select", { id: "generation-count", name: "count", value: count, onChange: e => setCount(Number(e.target.value)), disabled: submitted },
-          (generation ? [1, 10, 100, 500, 1000, 2000, 5000] : [100, 500, 1000, 2000, 5000]).map(value => h("option", { key: value, value }, value.toLocaleString()))),
+          (generation ? [1, 10, 30, 100, 500, 1000, 2000, 5000] : [100, 500, 1000, 2000, 5000]).map(value => h("option", { key: value, value }, value === 30 ? '30 (demonstration)' : value.toLocaleString()))),
         generation && h("p", { className: "form-hint", "aria-live": "polite" }, `Planned inputs: ${routineInputs.toLocaleString()} routine payments and ${(count - routineInputs).toLocaleString()} suspicious-scenario payments. These are scenario intentions, not V4 results or an accuracy score.`),
         h("p", { className: "form-hint" }, "Payments use current timestamps and existing customer balances. Routine amounts and counterparties follow up to 100 recent outgoing transfers classified normal or low risk; fewer than five records means a limited baseline. Large or repeated batches can trigger independent velocity rules. V4 determines each prediction from verified history; its result ratio may differ from the input mix."),
         restricted && h("p", { className: "maintenance-restriction" }, generation ? "At least six customer wallets are required." : legacyBlockReason),
@@ -815,7 +934,6 @@
       { label: "KYC outstanding", value: stats.kyc_pending || 0, caption: "requires review" },
       { label: "PEP customers", value: stats.pep_customers || 0, caption: "enhanced due diligence" },
       { label: "Transactions", value: stats.total_transactions || 0, caption: "monitored ledger" },
-      { label: "Flagged transactions", value: stats.flagged_transactions || 0, caption: "AML indicators" },
       { label: "Open alerts", value: stats.open_alerts || 0, caption: "active cases" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "pending review" },
       { label: "Pending CTRs", value: stats.pending_ctrs || 0, caption: "currency reports" },
@@ -910,7 +1028,7 @@
       h(PanelHeading, { title: "Recent Transactions" }),
       transactions.length ? h("table", { className: "data-table admin-transactions-table" },
         h("thead", null,
-          h("tr", null, ["ID", "Time", "Route", "Type / channel", "Amount", "Risk", "CTR / SAR", "Status"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["ID", "Time", "Route", "Type / channel", "Amount", "Risk", "AI Findings", "Rule Findings", "CTR / SAR", "Status"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           transactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -919,7 +1037,9 @@
             h("td", null, `${txn.sender_account || ""} -> ${txn.receiver_account || ""}`),
             h("td", null, `${labelizeTransactionType(txn.transaction_type)} / ${txn.channel || "online"}`),
             h("td", null, money(txn.amount)),
-            h("td", null, h("span", { className: riskClass(txn.risk_level) }, `${labelize(txn.risk_level)} (${score(txn.risk_score)})`)),
+            h("td", null, h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)), h(TransactionScores, { transaction: txn })),
+            h("td", null, h(AlertFinding, { alert: { ...txn, transaction_id: txn.id }, source: "ai" })),
+            h("td", null, h(AlertFinding, { alert: txn, source: "rule" })),
             h("td", null, txn.ctr_required && txn.sar_required ? "CTR / SAR" : txn.ctr_required ? "CTR" : txn.sar_required ? "SAR" : "—"),
             h("td", null, txn.status || "Completed")
           ))
@@ -1012,7 +1132,7 @@
       alert: (alert) => {
         setAlerts((current) => upsert(current, alert, 30));
         setStatus("New alert received | stream active");
-        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | AI: ${alert.ai_reason || "Not recorded"} | Rules: ${alert.rule_reason || "Not recorded"}`);
+        addFeed(`Alert | Tx #${alert.transaction_id || ""} | ${alert.risk_level || ""} | AI: ${(alert.ai_risk_level === "normal" ? "Normal" : displayAiReason(alert.ai_reason) || "Not recorded")} | Rules: ${alert.rule_reason || "Not recorded"}`);
       },
       alert_update: (alert) => {
         setAlerts((current) => {
@@ -1042,6 +1162,7 @@
     }, [initialData.open_alert_count, initialData.page_size]);
 
     const metricItems = [
+      { label: "Total transactions", value: stats.total_transactions ?? 0, caption: "all recorded transactions" },
       { label: "Open alerts", value: stats.open_alerts ?? alerts.length, caption: "needs review" },
       { label: "High risk today", value: stats.high_risk_today || 0, caption: "new severe activity" },
       { label: "Draft SARs", value: stats.pending_sars || 0, caption: "case narratives" },
@@ -1060,7 +1181,7 @@
         case "alerts":
           return h(AlertsPanel, { alerts, page: initialData.alert_page, pageCount: alertPageCount });
         case "transactions":
-          return h(ComplianceTransactionsPanel, { transactions });
+          return h(ComplianceTransactionsPanel, { transactions, model: initialData.model });
         case "activity":
           return h("section", { className: "card table-card" },
             h(PanelHeading, { title: "Live Compliance Feed", meta: h(LiveStatus, null, status) }),
@@ -1082,7 +1203,7 @@
     );
   }
 
-  function ComplianceTransactionsPanel({ transactions }) {
+  function ComplianceTransactionsPanel({ transactions, model }) {
     const [filter, setFilter] = useState("all");
 
     const filteredTransactions = filter === "all"
@@ -1107,7 +1228,7 @@
       ),
       filteredTransactions.length ? h("table", { className: "data-table" },
         h("thead", null,
-          h("tr", null, ["Transaction", "Type", "Amount", "AI Assessment"].map((head) => h("th", { key: head }, head)))
+          h("tr", null, ["Transaction", "Type", "Amount", "Risk", "AI Findings", "Rule Findings"].map((head) => h("th", { key: head }, head)))
         ),
         h("tbody", null,
           filteredTransactions.map((txn, index) => h("tr", { key: txn.id || index },
@@ -1117,10 +1238,14 @@
             ),
             h("td", null, labelizeTransactionType(txn.transaction_type || txn.type)),
             h("td", null, money(txn.amount)),
+            h("td", null, h("span", { className: riskClass(txn.risk_level) }, labelize(txn.risk_level)), h(TransactionScores, { transaction: txn })),
             h("td", null,
               h("span", { className: riskClass(txn.ai_risk_level || txn.risk_level) }, labelize(txn.ai_risk_level || "unavailable")),
-              h("span", { className: "muted-line block-line" }, `Operational score ${score(txn.risk_score)}`)
-            )
+              txn.ai_risk_level !== "normal" && h("span", { className: "muted-line block-line" }, displayAiReason(txn.ai_reason) || "No AI reason recorded"),
+              txn.ai_risk_level === "suspicious_pattern" && hasV4Decision(txn) && h(V4Evidence, { transactionId: txn.id }),
+              h(TransactionScores, { transaction: txn, part: "ai" })
+            ),
+            h("td", null, txn.rule_reason || "No rule indicators", h(TransactionScores, { transaction: txn, part: "rule" }))
           ))
         )
       ) : h(EmptyState, null, "No transactions match this filter.")
@@ -1141,7 +1266,7 @@
               h("span", { className: "muted-line block-line" }, `Tx #${alert.transaction_id || ""}`)
             ),
             h("td", null, alert.account_number || ""),
-            h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk"))),
+            h("td", null, h("span", { className: riskClass(alert.risk_level) }, labelize(alert.risk_level || "risk")), h(TransactionScores, { transaction: alert })),
             h("td", null, h(AlertFinding, { alert, source: "ai" })),
             h("td", null, h(AlertFinding, { alert, source: "rule" })),
             h("td", null, alert.id

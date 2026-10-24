@@ -276,7 +276,7 @@ def get_user_conversations(conn, username: str) -> List[Dict[str, Any]]:
            LEFT JOIN unread_messages u ON u.conversation_id = c.id AND u.user_username = ?
            LEFT JOIN user_presence up ON up.username = CASE WHEN c.participant_1 = ? THEN c.participant_2 ELSE c.participant_1 END
            WHERE c.participant_1 = ? OR c.participant_2 = ?
-           ORDER BY c.last_message_at DESC""",
+           ORDER BY c.last_message_at DESC, c.last_message_id DESC, c.id DESC""",
         (username, username, username, username)
     ).fetchall()
     
@@ -298,26 +298,30 @@ def get_user_conversations(conn, username: str) -> List[Dict[str, Any]]:
 
 
 def get_unread_count(conn, username: str) -> Dict[str, Any]:
-    """Get total unread message count for user."""
-    row = conn.execute(
-        "SELECT SUM(unread_count) as total FROM unread_messages WHERE user_username=?",
-        (username,)
-    ).fetchone()
-    
+    """Count unread messages only in conversations still permitted by policy."""
+    counts = get_unread_by_conversation(conn, username)
     return {
-        "total_unread": row["total"] if row and row["total"] else 0,
-        "by_conversation": get_unread_by_conversation(conn, username)
+        "total_unread": sum(counts.values()),
+        "by_conversation": counts
     }
 
 
 def get_unread_by_conversation(conn, username: str) -> Dict[int, int]:
-    """Get unread count per conversation."""
+    """Keep retained, disallowed conversations out of current unread badges."""
     rows = conn.execute(
-        "SELECT conversation_id, unread_count FROM unread_messages WHERE user_username=?",
+        "SELECT um.conversation_id, um.unread_count, viewer.role AS viewer_role, "
+        "other.role AS other_role FROM unread_messages um "
+        "JOIN conversations c ON c.id=um.conversation_id "
+        "JOIN users viewer ON viewer.username=um.user_username "
+        "JOIN users other ON other.username=CASE WHEN c.participant_1=um.user_username "
+        "THEN c.participant_2 ELSE c.participant_1 END "
+        "WHERE um.user_username=? AND (c.participant_1=um.user_username "
+        "OR c.participant_2=um.user_username)",
         (username,)
     ).fetchall()
     
-    return {row["conversation_id"]: row["unread_count"] for row in rows}
+    return {row["conversation_id"]: row["unread_count"] for row in rows
+            if can_user_message(row['viewer_role'], row['other_role'])[0]}
 
 
 def add_unread_message(conn, conversation_id: int, receiver: str, *, commit=True) -> bool:
@@ -404,33 +408,13 @@ def set_typing_indicator(conn, username: str, conversation_id: Optional[int] = N
 
 
 def can_user_message(user_role: str, target_user_role: str) -> Tuple[bool, str]:
-    """Determine if user can message target user based on roles."""
-    
-    # Admin can message Compliance Officer
-    if user_role == "admin" and target_user_role == "compliance":
-        return True, "Admin can message Compliance Officer"
-    
-    # Compliance Officer can message Admin
-    if user_role == "compliance" and target_user_role == "admin":
-        return True, "Compliance Officer can message Admin"
-    
-    # Compliance Officer can message Customer
-    if user_role == "compliance" and target_user_role == "customer":
-        return True, "Compliance Officer can message Customer"
-    
-    # Customer can message Compliance Officer only
-    if user_role == "customer" and target_user_role == "compliance":
-        return True, "Customer can message Compliance Officer"
-    
-    # Admin can message Admin
-    if user_role == "admin" and target_user_role == "admin":
-        return True, "Admin can message Admin"
-    
-    # Compliance can message Compliance
-    if user_role == "compliance" and target_user_role == "compliance":
-        return True, "Compliance can message Compliance"
-    
-    return False, f"User role {user_role} cannot message user role {target_user_role}"
+    """Customers communicate with customers and compliance, never admins."""
+    roles = {'customer', 'admin', 'compliance'}
+    if user_role not in roles or target_user_role not in roles:
+        return False, 'Messaging is not available for this account'
+    if {user_role, target_user_role} == {'customer', 'admin'}:
+        return False, 'Customers can communicate with other customers and compliance officers'
+    return True, 'Messaging is available'
 
 
 def delete_message(conn, message_id: int, username: str) -> Tuple[bool, str]:

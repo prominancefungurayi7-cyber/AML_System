@@ -109,6 +109,15 @@ def test_file_drafts_upload_and_small_receipts(attachment_browser):
     expect(page.locator('[data-message-id="100"] .message-receipt')).to_have_attribute('aria-label', 'Read')
 
 
+def test_attachment_http_upload_works_while_socket_reconnects(attachment_browser):
+    page, uploads, state = attachment_browser
+    page.evaluate('fakeSocket.connected = false')
+    page.locator('#attachmentInput').set_input_files({'name': 'evidence.txt', 'mimeType': 'text/plain', 'buffer': b'evidence'})
+    page.locator('#sendButton').click()
+    expect(page.locator('[data-message-id="100"] .message-attachment-name')).to_have_text('evidence.txt')
+    assert len(uploads) == 1
+
+
 def test_failed_upload_preserves_file_and_retry_identity(attachment_browser):
     page, uploads, state = attachment_browser
     state['failures'] = 2

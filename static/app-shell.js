@@ -170,6 +170,10 @@
     toggle: () => setNavigation(!navigationOpen),
   };
   window.refreshAmlPage = function () {
+    if (document.getElementById('customer-react-root') && window.React && window.ReactDOM) {
+      window.dispatchEvent(new Event('aml:customer-resync'));
+      return;
+    }
     if (document.getElementById('messagingWorkspace')) {
       window.dispatchEvent(new Event('aml:messages-resync'));
       return;
@@ -216,6 +220,20 @@
       socket.on('realtime_resync', () => window.refreshAmlPage());
       socket.on('customer_refresh', () => {
         if (document.body.dataset.userRole === 'customer') window.refreshAmlPage();
+      });
+      socket.on('profile_updated', profile => {
+        if (profile.username !== document.body.dataset.username) return;
+        const avatar = document.querySelector('.account-avatar');
+        if (!avatar) return;
+        const initials = () => { avatar.textContent = String(profile.username).slice(0, 1).toUpperCase(); };
+        if (!profile.profile_photo_url) { initials(); return; }
+        try {
+          const url = new URL(profile.profile_photo_url, location.origin);
+          if (url.origin !== location.origin || !/^\/api\/users\/\d+\/profile-photo$/.test(url.pathname)) return;
+          const image = document.createElement('img');
+          image.alt = ''; image.src = url.href; image.onerror = initials;
+          avatar.replaceChildren(image);
+        } catch (_) { initials(); }
       });
       socket.on('new_message', event => {
         if (event.sender !== document.body.dataset.username) {

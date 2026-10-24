@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Suspicious Activity Report</h2>
+  <p><strong>{{ report.reference }}</strong> · {{ report.status|upper }}</p>
+  <dl><dt>Customer wallet</dt><dd>{{ report.account_number }}</dd>
+      <dt>Prepared by</dt><dd>{{ report.author }}</dd>
+      <dt>Created</dt><dd>{{ report.created_at }}</dd>
+      {% if report.filed_at %}<dt>Submitted internally</dt><dd>{{ report.filed_at }}</dd>{% endif %}</dl>
+  <h3>Case narrative</h3>
+  <div style="white-space:pre-wrap;overflow-wrap:anywhere">{{ report.narrative }}</div>
+  <p>Confidential internal report. External FIU transmission is not configured.</p>
+  <div class="action-bar">
+    <a class="btn btn-primary" href="{{ url_for('sar_document', sar_id=report.id) }}">Download PDF</a>
+    <a class="btn" href="{{ url_for('alert_detail', alert_id=report.alert_id) }}">View case</a>
+    <a class="btn" href="{{ url_for('reports') }}">All reports</a>
+    <form method="post" action="{{ url_for('send_case_document', kind='sar', identifier=report.id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf }}">
+      <button type="submit">Send to administrator</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

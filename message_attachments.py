@@ -22,7 +22,7 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 
 
-MAX_FILE_SIZE = 10 * 1024 * 1024
+MAX_FILE_SIZE = 20 * 1024 * 1024
 MAX_IMAGE_PIXELS = 20_000_000
 MAX_ARCHIVE_BYTES = 50 * 1024 * 1024
 MAX_ARCHIVE_ENTRIES = 1000
@@ -226,7 +226,7 @@ def save_upload(file_storage, root, attachment_id):
     if not isinstance(content, bytes) or not content:
         raise AttachmentError("Choose a non-empty file.")
     if len(content) > MAX_FILE_SIZE:
-        raise AttachmentError("Each attachment must be 10 MB or smaller.")
+        raise AttachmentError("Each attachment must be 20 MB or smaller.")
     media_type = _media_type(content, Path(name).suffix)
     metadata = {"id": attachment_id, "name": name, "size": len(content),
                 "media_type": media_type, "sha256": hashlib.sha256(content).hexdigest()}

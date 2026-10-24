@@ -6,15 +6,10 @@
   const identifier = document.getElementById('login');
   if (!form || !password || !identifier || form.dataset.autoSignIn !== 'true') return;
   let submitted = false, timer;
-  let selectedAfterLogout = form.dataset.signedOut !== 'true';
-  let credentialInteraction = false;
-  [identifier, password].forEach(input => {
-    input.addEventListener('pointerdown', () => { credentialInteraction = true; });
-    input.addEventListener('keydown', () => { credentialInteraction = true; });
-    input.addEventListener('input', event => {
-      if (event.isTrusted && credentialInteraction) selectedAfterLogout = true;
-    });
-  });
+  // A deliberate logout always requires an explicit form submission.
+  // Password-manager autofill events cannot reliably prove user intent.
+  const signedOut = form.dataset.signedOut === 'true' ||
+    new URLSearchParams(window.location.search).get('signed_out') === '1';
   const isAutofilled = input => {
     for (const selector of [':autofill', ':-webkit-autofill']) {
       try { if (input.matches(selector)) return true; } catch (_) { /* Browser-specific selector. */ }
@@ -24,7 +19,7 @@
   function check() {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (!selectedAfterLogout || submitted || !identifier.value.trim() || !password.value || !isAutofilled(password) || !form.checkValidity()) return;
+      if (signedOut || submitted || !identifier.value.trim() || !password.value || !isAutofilled(password) || !form.checkValidity()) return;
       form.requestSubmit();
     }, 200);
   }

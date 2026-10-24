@@ -4,7 +4,56 @@ The caller must commit the financial transaction and canonical event first and
 mark its AI state ``pending_v4``. This module never invokes Stage13/Stage14.
 """
 import v4_shadow
+from queue import Queue, Empty, Full
+import threading
 from alerts import create_alert_if_needed
+
+# Pending database rows remain the durable queue across restarts. This bounded
+# hint gives interactive payments priority over a large simulation backlog.
+_interactive = Queue(maxsize=128)
+_generated = Queue(maxsize=5000)
+_wake = threading.Event()
+
+
+def enqueue_committed(transaction_id):
+    try:
+        _interactive.put_nowait(transaction_id)
+    except Full:
+        pass
+    _wake.set()
+
+
+def next_interactive():
+    try:
+        return _interactive.get_nowait()
+    except Empty:
+        return None
+
+
+def enqueue_generated(transaction_ids):
+    for transaction_id in transaction_ids:
+        try:
+            _generated.put_nowait(transaction_id)
+        except Full:
+            break  # Database pending rows remain the durable recovery queue.
+    _wake.set()
+
+
+def next_generated():
+    try:
+        return _generated.get_nowait()
+    except Empty:
+        return None
+
+
+def wait_for_work(seconds):
+    _wake.wait(seconds)
+    _wake.clear()
+
+
+SCORING_POLICY = {'ai_weight': 0.70, 'rule_weight': 0.30}
+SCORING_POLICY_VERSION = 'v4.risk.ai70.rules30.v1'
+_REVIEW_LEVELS = ('normal', 'low', 'suspicious', 'high_risk', 'critical')
 
 
 class DecisionAlreadyApplied(ValueError):
@@ -61,27 +110,57 @@ def _risk_level(score):
 
 
 def _decision(result, rule_score, prior_sar):
-    """Use the frozen binary decision; preserve independent rule signals."""
+    """Weight V4 probability most heavily and retain independent review flags."""
     if result['status'] == 'success':
         suspicious = result['prediction'] == 1
-        score = max(rule_score, 40 if suspicious else 0)
-        level = _risk_level(score)
+        model_risk = 100.0 * result['suspicious_probability']
+        score = round(SCORING_POLICY['ai_weight'] * model_risk +
+                      SCORING_POLICY['rule_weight'] * rule_score, 2)
+        level = max((_risk_level(score), _risk_level(rule_score),
+                     'suspicious' if suspicious else 'normal'),
+                    key=_REVIEW_LEVELS.index)
         confidence = (result['suspicious_probability'] if suspicious else
                       1.0 - result['suspicious_probability'])
         reason = ('V4 suspicious pattern' if suspicious else 'V4 normal pattern') + \
-                 f" (probability: {result['suspicious_probability']:.2%}; threshold: 0.50)"
+                 f" (probability: {result['suspicious_probability']:.2%})"
+        description = (
+            f'Operational risk index {score:.2f}/100: 70% V4 suspicious-probability '
+            f'risk ({model_risk:.2f}/100) + 30% independent rule score '
+            f'({rule_score:.2f}/100). Policy: {SCORING_POLICY_VERSION}. '
+            f'{reason}. Review level: {level}; independent AI or rule findings '
+            'may require review regardless of the combined index.')
         return dict(risk_score=score, risk_level=level,
                     ai_risk_level=result['decision'], ai_confidence=confidence,
-                    ai_reason=reason, description=reason,
-                    sar_required=int(bool(prior_sar or suspicious or score >= 40)))
+                    ai_reason=reason, description=description,
+                    sar_required=int(bool(prior_sar or suspicious or
+                                          rule_score >= 40 or score >= 40)))
     # A committed payment cannot be undone here. Never classify a technical
     # failure as normal or infer a probability from fallback features.
     level = _risk_level(rule_score) if rule_score >= 40 else 'pending_review'
     reason = 'V4 inference unresolved: ' + result['error_code']
     return dict(risk_score=rule_score, risk_level=level,
                 ai_risk_level='inference_error', ai_confidence=0.0,
-                ai_reason=reason, description=reason,
+                ai_reason=reason,
+                description=reason + '. The recorded score is rule-only; no weighted AI result is available.',
                 sar_required=int(bool(prior_sar or rule_score >= 40)))
+
+
+def _persist_alert(connection, transaction_id, row, decision):
+    """Synchronise assessment fields while preserving an existing case's work."""
+    existing = connection.execute('SELECT id FROM alerts WHERE transaction_id=?',
+                                  (transaction_id,)).fetchone()
+    rules = row['rules_triggered'] or '[]'
+    if existing is not None:
+        connection.execute(
+            'UPDATE alerts SET risk_score=?,risk_level=?,reason=?,rules_triggered=? WHERE id=?',
+            (decision['risk_score'], decision['risk_level'], decision['description'],
+             rules, existing['id']))
+        return existing['id']
+    return create_alert_if_needed(
+        connection, transaction_id, row['sender_account'], decision['risk_score'],
+        decision['risk_level'], decision['description'], rules, row['timestamp'],
+        database_url=(getattr(connection, 'engine', None) or
+                      getattr(getattr(connection, 'db', None), 'engine')) + '://')
 
 
 def complete_committed(connection_factory, transaction_id, *, worker=None,
@@ -148,12 +227,7 @@ def complete_committed(connection_factory, transaction_id, *, worker=None,
              decision['sar_required'], transaction_id))
         if updated.rowcount != 1:
             raise DecisionAlreadyApplied('Concurrent V4 decision already applied')
-        alert_id = create_alert_if_needed(
-            connection, transaction_id, row['sender_account'],
-            decision['risk_score'], decision['risk_level'],
-            decision['ai_reason'], row['rules_triggered'] or '[]', row['timestamp'],
-            database_url=(getattr(connection, 'engine', None) or
-                          getattr(getattr(connection, 'db', None), 'engine')) + '://')
+        alert_id = _persist_alert(connection, transaction_id, row, decision)
         connection.commit()
     except Exception:
         connection.rollback()

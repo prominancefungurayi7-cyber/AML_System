@@ -211,7 +211,7 @@ class RealtimeBroker:
         if isinstance(username, str) and username and event_name in {
             "new_message", "unread_update", "message_status", "messages_read",
             "user_typing", "user_stop_typing",
-            "balance", "customer_refresh",
+            "balance", "customer_refresh", "profile_updated",
         } and isinstance(payload, dict) and self.socketio is not None:
             authorizer = getattr(self, '_socket_authorizer', None)
             if authorizer is None:

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="admin-layout">
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<aside class="admin-sidebar" id="page-sidebar">
+  <div class="sidebar-brand"><span class="sidebar-brand__title">Agent Services</span><span class="sidebar-brand__role">{{ agent.agent_code }}</span></div>
+  <nav aria-label="Agent navigation">
+    <a class="sidebar-item" href="#agent-overview">Dashboard</a>
+    <a class="sidebar-item" href="#cash-service">Customer Cash Service</a>
+    <a class="sidebar-item" href="#service-history">Service History</a>
+    <a class="sidebar-item" href="{{ url_for('logout') }}">Sign Out</a>
+  </nav>
+</aside>
+<div class="admin-content">
+<section class="hero hero-banner" id="agent-overview"><div class="hero-badge">Agent Services</div>
+<h2>Agent Service Dashboard</h2><p>Process customer cash services and review your service history.</p></section>
+<section class="card"><h3>{{ agent.agent_name }} · {{ agent.agent_code }}</h3>
+<p>Electronic float: <strong id="agent-float">${{ '%.2f'|format(user.balance) }}</strong></p>
+<p>Fund this float through a wallet transfer to {{ agent.agent_code }} or a customer cash-out. Cash-in requires sufficient float.</p>
+<p>Cash in transfers electronic value from your float to the customer. Cash out transfers value from the customer to your float. Confirm the physical cash exchange with the customer.</p>
+<a class="action-link" href="{{ url_for('agent_dashboard') }}">Refresh service history</a>
+<a class="action-link" href="{{ url_for('logout') }}">Sign Out</a></section>
+<section class="card" id="cash-service"><h3>Customer Cash Service</h3>
+<form method="post" action="{{ url_for('agent_cash_service') }}">
+<input type="hidden" name="csrf_token" value="{{ csrf }}"><input type="hidden" name="client_request_id" value="{{ request_id }}">
+<label for="customer">Customer wallet</label><input id="customer" name="customer" required placeholder="ACC1004">
+<label for="service-type">Service</label><select id="service-type" name="type"><option value="cash_in">Cash In</option><option value="cash_out">Cash Out</option></select>
+<label for="amount">Amount (USD)</label><input id="amount" name="amount" type="number" min="0.01" max="15000" step="0.01" required>
+<p>Per-service limit: $15,000.00. Available electronic balances must cover the service.</p>
+<label><input type="checkbox" name="cash_confirmed" value="yes" required> I have verified the customer and confirmed the cash exchange.</label>
+<button type="submit">Confirm service</button></form></section>
+<section class="card table-card" id="service-history"><h3>Recent Agent Services</h3><table class="data-table">
+<thead><tr><th>Transaction</th><th>Customer</th><th>Service</th><th>Amount</th><th>AI Findings</th><th>Rule Findings</th></tr></thead>
+<tbody>{% for tx in transactions %}<tr><td>#{{ tx.id }}<br>{{ tx.timestamp }}</td><td>{{ tx.sender_account }}</td><td>{{ tx.transaction_type }}</td><td>${{ '%.2f'|format(tx.amount) }}</td><td>{% if tx.ai_risk_level == 'normal' %}Normal{% else %}{{ (tx.ai_reason or 'AI review pending')|replace('; threshold: 0.50', '') }}{% endif %}</td><td>{{ tx.rule_reason or 'No rule indicators' }}</td></tr>{% else %}<tr><td colspan="6">No services recorded.</td></tr>{% endfor %}</tbody></table></section>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const socket = window.getAmlSocket && window.getAmlSocket();
+  if (!socket) return;
+  socket.on('balance', function (data) {
+    if (data.account_number !== {{ agent.agent_code|tojson }}) return;
+    const value = Number(data.balance);
+    if (Number.isFinite(value)) document.getElementById('agent-float').textContent =
+      new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(value);
+  });
+});
+</script>
+{% endblock %}

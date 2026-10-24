@@ -9,3 +9,4 @@ __pycache__/
 MYSQL_DEPLOYMENT.md
 RILWAY_DEPLOYMENT.md
 instance/message_attachments/
+instance/profile_photos/

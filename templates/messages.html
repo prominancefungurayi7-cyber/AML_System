@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="messaging-workspace contacts-open" id="messagingWorkspace" aria-label="Secure messages" data-message-attachment-csrf="{{ message_attachment_csrf }}">
+<section class="messaging-workspace contacts-open" id="messagingWorkspace" aria-label="Secure messages" data-message-attachment-csrf="{{ message_attachment_csrf }}" data-profile-photo-csrf="{{ profile_photo_csrf }}" data-profile-photo-url="{{ current_message_profile.profile_photo_url or '' }}" data-profile-account="{{ user.account_number }}">
   <aside class="messaging-rail" id="contactsRail" aria-label="Messaging contacts">
     <div class="messaging-rail__header">
       <div><span class="messaging-kicker">Secure Communications</span><h2>Messages</h2></div>
       <button type="button" class="contacts-close" id="closeContacts" aria-label="Close contacts">&times;</button>
     </div>
+    <section class="messaging-profile" aria-label="My profile">
+      <div class="messaging-profile__identity"><div class="conversation-avatar" id="myProfileAvatar" aria-hidden="true">--</div><div class="messaging-profile__details"><span class="messaging-kicker">My profile</span><strong id="myProfileName"></strong><span id="myProfileAccount"></span></div></div>
+      <div class="messaging-profile__actions"><button type="button" id="uploadProfilePhoto" class="profile-photo-action">Add photo</button><button type="button" id="removeProfilePhoto" class="profile-photo-action" hidden>Remove photo</button><button type="button" id="retryProfilePhoto" class="profile-photo-action" hidden>Retry profile</button></div>
+      <input type="file" id="profilePhotoInput" accept="image/jpeg,image/png,image/webp" hidden aria-label="Choose a profile photo">
+      <p class="messaging-profile__hint">JPG, PNG or WebP · up to 5 MB</p><span id="profilePhotoStatus" class="messaging-profile__status" role="status" aria-live="polite"></span>
+    </section>
+    <form class="messaging-search" id="contactSearchForm" role="search" aria-label="Search messaging contacts">
+      <label class="sr-only" for="contactSearch">Search by name or account number</label><input type="search" id="contactSearch" placeholder="Search name or account" maxlength="100" autocomplete="off"><button type="submit" id="searchContacts" aria-label="Search contacts" title="Search contacts"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg></button>
+    </form>
+    <p class="messaging-search-status" id="contactSearchStatus" role="status" aria-live="polite"></p>
     <ul class="conversations-list modern-message-list active" id="conversationsList">
       <li class="message-empty-state">Loading your secure conversation...</li>
     </ul>
@@ -29,7 +39,7 @@
       </div>
       <footer class="input-area modern-input-area">
         <input id="attachmentInput" type="file" hidden accept=".png,.jpg,.jpeg,.gif,.webp,.pdf,.txt,.csv,.docx,.xlsx,.pptx">
-        <button type="button" class="attachment-button" id="attachFile" aria-label="Attach an image or file" title="Attach an image or file (up to 10 MB)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 11-9 9a6 6 0 0 1-8.5-8.5l10-10a4 4 0 0 1 5.7 5.7l-10 10a2 2 0 0 1-2.9-2.9l9-9"></path></svg></button>
+        <button type="button" class="attachment-button" id="attachFile" aria-label="Attach an image or file" title="Attach an image or file (up to 20 MB)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 11-9 9a6 6 0 0 1-8.5-8.5l10-10a4 4 0 0 1 5.7 5.7l-10 10a2 2 0 0 1-2.9-2.9l9-9"></path></svg></button>
         <div class="input-wrapper"><textarea class="message-input" id="messageInput" placeholder="Write a message or attach a file" rows="1" aria-label="Message"></textarea></div>
         <button type="button" class="send-button" id="sendButton" title="Send message" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7z"></path></svg></button>
       </footer>
@@ -37,5 +47,5 @@
     </div>
   </section>
 </section>
-<script src="{{ url_for('static', filename='messages.js', v='attachments-1') }}"></script>
+<script src="{{ url_for('static', filename='messages.js', v='attachments20-errors-4') }}"></script>
 {% endblock %}

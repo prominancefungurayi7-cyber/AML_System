@@ -5,7 +5,6 @@ import re
 import threading
 import uuid
 
-from alerts import create_alert_if_needed
 import v4_primary
 import v4_shadow
 
@@ -129,6 +128,21 @@ def _insert(conn, tx, staff_id, key, kind, outcome, *, error_code=None, body=Non
                   json.dumps(body, sort_keys=True, allow_nan=False) if body else None, reason))
 
 
+def _revision_still_verified(conn, revision):
+    """Accept a retry only while the worker's attested revision is still current."""
+    from canonical_history_store import assess
+    from canonical_history import freshness
+    conn.rollback()
+    try:
+        conn.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
+        conn.execute('START TRANSACTION WITH CONSISTENT SNAPSHOT, READ ONLY')
+        scope, current, previous = assess(conn, 'controlled-prototype-v1')
+        return (current['source_revision'] == revision and not current['issues']
+                and freshness(scope, current, previous) == 'COMPLETE_VERIFIED')
+    finally:
+        conn.rollback()
+
+
 def retry(connection_factory, tx, staff_id, request_key, *, runner=None,
           validator=None, notify=None):
     if type(tx) is not int or tx <= 0 or type(staff_id) is not int or staff_id <= 0:
@@ -161,6 +175,9 @@ def retry(connection_factory, tx, staff_id, request_key, *, runner=None,
             if (expected_revision is not None and result['status'] == 'success' and
                     result.get('source_revision') != expected_revision):
                 result = v4_shadow.error(tx, 'HISTORY_INCOMPLETE')
+            if (expected_revision is not None and result['status'] == 'success'
+                    and not _revision_still_verified(conn, expected_revision)):
+                result = v4_shadow.error(tx, 'HISTORY_INCOMPLETE')
         except Exception:
             result = v4_shadow.error(tx, 'INFERENCE_ERROR')
         result = (validator or v4_shadow.validate)(result, tx)
@@ -176,10 +193,7 @@ def retry(connection_factory, tx, staff_id, request_key, *, runner=None,
                  decision['sar_required'], tx))
             if updated.rowcount != 1:
                 raise RetryConflict('Effective V4 decision changed concurrently')
-            alert_id = create_alert_if_needed(
-                conn, tx, row['sender_account'], decision['risk_score'],
-                decision['risk_level'], decision['ai_reason'],
-                row['rules_triggered'] or '[]', row['timestamp'], database_url=conn.engine + '://')
+            alert_id = v4_primary._persist_alert(conn, tx, row, decision)
         _insert(conn, tx, staff_id, key, 'COMPLETED', result['status'],
                 error_code=result.get('error_code'), body=result)
         conn.commit()

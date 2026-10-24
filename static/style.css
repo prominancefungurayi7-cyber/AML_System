@@ -967,6 +967,28 @@ button:disabled {
   font-size:23px;
   margin:5px 0 0
 }
+.messaging-profile { margin:0 16px 14px; padding:14px; background:var(--EpoCash-panel-strong); border:1px solid var(--EpoCash-border); border-radius:12px; min-width:0 }
+.messaging-profile__identity { display:flex; align-items:center; gap:10px; min-width:0 }
+.messaging-profile__details { display:flex; flex-direction:column; gap:3px; min-width:0 }
+.messaging-profile__details strong { font-size:13px; overflow-wrap:anywhere }
+.messaging-profile__details>span:last-child { font-size:11px; color:var(--EpoCash-muted); overflow-wrap:anywhere }
+.messaging-profile__actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px }
+.profile-photo-action { border:1px solid var(--EpoCash-border); border-radius:7px; background:var(--EpoCash-panel); color:var(--EpoCash-text); padding:6px 9px; font:inherit; font-size:11px; cursor:pointer }
+.profile-photo-action:hover { background:var(--EpoCash-hover) }
+.profile-photo-action:disabled { opacity:.55; cursor:wait }
+.messaging-profile__hint { font-size:10px; color:var(--EpoCash-muted); margin:8px 0 0 }
+.messaging-profile__status { display:block; font-size:11px; color:var(--EpoCash-muted); margin-top:6px }
+.messaging-profile__status:empty { display:none }
+.messaging-search { display:flex; align-items:center; gap:0; margin:0 16px; border:1px solid var(--EpoCash-border-strong); border-radius:9px; background:var(--EpoCash-panel); overflow:hidden }
+.messaging-search:focus-within { outline:2px solid var(--EpoCash-green); outline-offset:2px }
+.messaging-search input { flex:1; min-width:0; width:0; border:0; outline:0; box-shadow:none; background:transparent; color:var(--EpoCash-text); padding:11px; margin:0; font:inherit; font-size:12px }
+.messaging-search button { display:grid; place-items:center; flex:0 0 40px; width:40px; align-self:stretch; margin:0; padding:9px; border:0; border-radius:0; box-shadow:none; color:var(--EpoCash-text); background:transparent; cursor:pointer }
+.messaging-search button:hover { background:var(--EpoCash-hover) }
+.messaging-search button svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round }
+.messaging-search-status { margin:6px 18px 0; min-height:14px; font-size:10px; color:var(--EpoCash-muted) }
+.messaging-search .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+.conversation-avatar,.account-avatar { overflow:hidden }
+.conversation-avatar img,.account-avatar img { display:block; width:100%; height:100%; object-fit:cover }
 .contacts-close,.contacts-toggle {
   border:1px solid var(--EpoCash-border);
   border-radius:8px;

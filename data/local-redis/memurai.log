@@ -25,3 +25,21 @@
 [13464] 17 Oct 08:31:07.428 # Memurai QID = 80AC367098AECD4C;C6F069B438656021;CE4CACF12A9A7386;C6F066B438655B08;C6BD23B438398F96
 [13464] 17 Oct 08:31:07.431 * Server initialized
 [13464] 17 Oct 08:31:07.434 * Ready to accept connections tcp
+[22952] 19 Oct 13:59:27.161 # --- Memurai is starting ---
+[22952] 19 Oct 13:59:27.163 # Memurai Developer version=4.1.2, API=7.2.5, instance-name=, pid=22952, just started
+[22952] 19 Oct 13:59:27.163 # Usage of Memurai Developer Edition in a production environment is prohibited; it also automatically shuts down after 10 days. For more details see: https://www.memurai.com/faq
+[22952] 19 Oct 13:59:27.164 # Configuration loaded
+[22952] 19 Oct 13:59:27.167 * monotonic clock: Windows QueryPerformanceCounter
+[22952] 19 Oct 13:59:27.171 * Running mode=standalone, port=6379.
+[22952] 19 Oct 13:59:27.177 # Memurai QID = 80AC367098AECD4C;C6F069B438656021;CE4CACF12A9A7386;C6F066B438655B08
+[22952] 19 Oct 13:59:27.177 * Server initialized
+[22952] 19 Oct 13:59:27.181 * Ready to accept connections tcp
+[17512] 22 Oct 20:26:47.215 # --- Memurai is starting ---
+[17512] 22 Oct 20:26:47.217 # Memurai Developer version=4.1.2, API=7.2.5, instance-name=, pid=17512, just started
+[17512] 22 Oct 20:26:47.218 # Usage of Memurai Developer Edition in a production environment is prohibited; it also automatically shuts down after 10 days. For more details see: https://www.memurai.com/faq
+[17512] 22 Oct 20:26:47.219 # Configuration loaded
+[17512] 22 Oct 20:26:47.220 * monotonic clock: Windows QueryPerformanceCounter
+[17512] 22 Oct 20:26:47.222 * Running mode=standalone, port=6379.
+[17512] 22 Oct 20:26:47.227 # Memurai QID = 80AC367098AECD4C;C6F069B438656021;CE4CACF12A9A7386;C6F066B438655B08
+[17512] 22 Oct 20:26:47.229 * Server initialized
+[17512] 22 Oct 20:26:47.230 * Ready to accept connections tcp

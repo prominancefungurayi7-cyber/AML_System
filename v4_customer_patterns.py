@@ -39,6 +39,7 @@ def plan_from_history(ticket, legacy_plan, schedule):
     routine_index = 0
     next_wallet = 0
     output = []
+    cash_sender = None
     for family, (sender, recipient, form, key) in zip(schedule(ticket), rows):
         form = dict(form)
         if family == 'ordinary':
@@ -75,6 +76,18 @@ def plan_from_history(ticket, legacy_plan, schedule):
             form['recipient'] = recipient['account_number']
         else:
             amount = int(Decimal(form['amount']) * 100)
+        if ticket['version'] >= 5 and family == 'agent':
+            # A cash-out funds the agent float before the matching cash-in.
+            # Only new signed plans change; old receipt identities stay intact.
+            form['type'] = 'cash_out' if form['type'] == 'cash_in' else 'cash_in'
+            form['agent_flow_direction'] = form['type']
+            if form['type'] == 'cash_out':
+                candidates = [sender] + [w for w in wallets if w['id'] != sender['id']]
+                cash_sender = next((w for w in candidates if balances[w['account_number']] >= amount), None)
+                if cash_sender is None:
+                    raise ValueError('Insufficient customer funds for agent cash-out. Choose a smaller batch.')
+            sender = recipient = cash_sender
+            form['serviced_wallet'] = sender['account_number']
         account = sender['account_number']
         if form['type'] != 'cash_in':
             # Never invent funding. Refuse the complete plan before payment writes.

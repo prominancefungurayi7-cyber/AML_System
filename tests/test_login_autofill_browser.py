@@ -60,6 +60,11 @@ def test_logout_requires_deliberate_credential_selection():
             page.locator('#password').click()
             page.locator('#password').fill('selected-saved-password')
             page.wait_for_timeout(300)
+            assert page.evaluate('submissions') == 0
+            page.locator('#login').fill('another-user')
+            page.wait_for_timeout(300)
+            assert page.evaluate('submissions') == 0
+            page.get_by_role('button', name='Sign In').click()
             assert page.evaluate('submissions') == 1
         finally:
             browser.close()

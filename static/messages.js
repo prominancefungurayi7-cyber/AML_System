@@ -11,12 +11,122 @@
   let lastReadId = 0;
   let unreadBoundary = null;
   let contacts = [], conversations = [], receiver = '', conversationId = null;
+  let displayedContacts = [], contactRequest = 0, searchQuery = '', searchTimer;
+  let ownProfile = null, profileCsrf = '', profileBusy = false;
+  let profileRequest = null, profileVersion = 0, pendingProfileChange = null;
   let pending = null, generation = 0, oldestId = null, moreHistory = false, typingTimer;
   let draftPreviewUrl = null;
   const attachmentTypes = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'pdf', 'txt', 'csv', 'docx', 'xlsx', 'pptx']);
   const imageTypes = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp']);
   const el = id => document.getElementById(id);
   const notify = message => window.showAmlNotification(message, 'messaging-error', 'error');
+
+  function profilePhotoUrl(value) {
+    if (!value) return null;
+    try {
+      const url = new URL(value, location.origin);
+      return url.origin === location.origin && /^\/api\/users\/\d+\/profile-photo$/.test(url.pathname) ? url.href : null;
+    } catch (_) { return null; }
+  }
+  function renderAvatar(node, person) {
+    const initials = String(person.username || currentUser || '').slice(0, 2).toUpperCase();
+    node.replaceChildren(document.createTextNode(initials));
+    const url = profilePhotoUrl(person.profile_photo_url);
+    if (!url) return;
+    const image = document.createElement('img'); image.src = url; image.alt = '';
+    image.decoding = 'async'; image.loading = 'lazy';
+    image.addEventListener('error', () => { if (node.contains(image)) node.replaceChildren(document.createTextNode(initials)); }, { once: true });
+    node.replaceChildren(image);
+  }
+  function renderOwnProfile() {
+    if (!ownProfile) return;
+    el('myProfileName').textContent = ownProfile.username || currentUser;
+    el('myProfileAccount').textContent = ownProfile.account_number || '';
+    renderAvatar(el('myProfileAvatar'), ownProfile);
+    const hasPhoto = !!profilePhotoUrl(ownProfile.profile_photo_url);
+    el('uploadProfilePhoto').textContent = hasPhoto ? 'Change photo' : 'Add photo';
+    el('uploadProfilePhoto').disabled = profileBusy;
+    el('removeProfilePhoto').hidden = !hasPhoto;
+    el('removeProfilePhoto').disabled = profileBusy;
+    el('retryProfilePhoto').disabled = profileBusy;
+    document.querySelectorAll('.account-avatar').forEach(node => renderAvatar(node, ownProfile));
+  }
+  function applyProfileUpdate(profile) {
+    const update = contact => profile.username === contact.username || (profile.user_id != null && profile.user_id === contact.id)
+      ? { ...contact, profile_photo_url: profile.profile_photo_url } : contact;
+    contacts = contacts.map(update); displayedContacts = displayedContacts.map(update);
+    if (profile.username === currentUser) {
+      profileVersion += 1;
+      ownProfile = { ...(ownProfile || { username: currentUser }), ...profile };
+      renderOwnProfile();
+    }
+    const selected = contacts.find(person => person.username === receiver);
+    if (selected) renderAvatar(el('chatAvatar'), selected);
+    renderContacts();
+  }
+  async function loadOwnProfile() {
+    if (profileRequest) return profileRequest;
+    const version = profileVersion;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10000);
+    profileRequest = (async () => {
+      try {
+        const response = await fetch('/api/profile', { signal: controller.signal });
+        if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) throw new Error('Unable to load your profile.');
+        const data = await response.json();
+        if (!data.profile || data.profile.username !== currentUser || typeof data.csrf_token !== 'string' || !data.csrf_token) throw new Error('Unable to load your profile.');
+        // A delayed refresh must not undo a photo update received in the meantime.
+        if (version === profileVersion) ownProfile = data.profile;
+        profileCsrf = data.csrf_token;
+        renderOwnProfile();
+        if (!profileBusy && !pendingProfileChange) {
+          el('profilePhotoStatus').textContent = '';
+          el('retryProfilePhoto').hidden = true;
+        }
+      } finally {
+        clearTimeout(timer);
+      }
+    })();
+    try { await profileRequest; }
+    finally { profileRequest = null; }
+  }
+  function profileLoadFailed() {
+    el('profilePhotoStatus').textContent = pendingProfileChange
+      ? pendingProfileChange.file ? 'Your selected photo has been kept. Select Retry upload to try again.' : 'Photo removal was not confirmed. Select Retry removal to try again.'
+      : profileCsrf ? 'Profile refresh unavailable. You can still choose a photo.' : 'Unable to load your profile. Choose a photo or select Retry profile to try again.';
+    el('retryProfilePhoto').textContent = pendingProfileChange ? pendingProfileChange.file ? 'Retry upload' : 'Retry removal' : 'Retry profile';
+    el('retryProfilePhoto').hidden = false;
+  }
+  async function changeProfilePhoto(file) {
+    if (profileBusy) return;
+    if (file && (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || !file.size || file.size > 5 * 1024 * 1024)) {
+      notify('Choose a JPG, PNG or WebP photo no larger than 5 MB.'); return;
+    }
+    pendingProfileChange = { file };
+    profileBusy = true; renderOwnProfile();
+    el('retryProfilePhoto').hidden = true;
+    el('profilePhotoStatus').textContent = file ? 'Updating profile photo...' : 'Removing profile photo...';
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
+    try {
+      if (!profileCsrf) await loadOwnProfile();
+      const options = { method: file ? 'POST' : 'DELETE', signal: controller.signal, headers: { 'X-CSRF-Token': profileCsrf } };
+      if (file) { const body = new FormData(); body.append('photo', file); body.append('csrf_token', profileCsrf); options.body = body; }
+      const response = await fetch('/api/profile/photo', options);
+      if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Unable to update your profile photo. Please sign in again.');
+      const data = await response.json();
+      if (!response.ok || data.status !== 'success' || !data.profile) throw new Error(data.message || 'Unable to update your profile photo.');
+      applyProfileUpdate(data.profile);
+      pendingProfileChange = null;
+      window.showAmlNotification(file ? 'Profile photo updated.' : 'Profile photo removed.', 'profile-photo', 'success');
+    } catch (error) {
+      notify(error.name === 'AbortError' ? 'The photo update could not be confirmed. Refresh your profile before retrying.' : error.message);
+    } finally {
+      clearTimeout(timer); profileBusy = false; renderOwnProfile();
+      if (pendingProfileChange) profileLoadFailed();
+      else el('profilePhotoStatus').textContent = '';
+    }
+  }
 
   function attachmentRequestId() {
     if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
@@ -57,7 +167,7 @@
     const file = files[0];
     const extension = file.name.split('.').pop().toLowerCase();
     if (!attachmentTypes.has(extension)) { notify('Use a PNG, JPEG, GIF, WebP, PDF, text, CSV, DOCX, XLSX or PPTX file.'); return; }
-    if (!file.size || file.size > 10 * 1024 * 1024) { notify('Choose a nonempty file no larger than 10 MB.'); return; }
+    if (!file.size || file.size > 20 * 1024 * 1024) { notify('Choose a nonempty file no larger than 20 MB.'); return; }
     attachmentDrafts.set(receiver, { file, requestId: attachmentRequestId(), content: null });
     showAttachmentDraft();
     el('messageInput').focus();
@@ -114,19 +224,36 @@
     return data;
   }
   async function refreshContacts() {
-    const [people, threads] = await Promise.all([getJSON('/api/messageable-users'), getJSON('/api/conversations')]);
-    contacts = people.users || []; conversations = threads.conversations || [];
+    const request = ++contactRequest, query = searchQuery;
+    const [people, threads] = await Promise.all([getJSON(`/api/messageable-users${query ? `?q=${encodeURIComponent(query)}` : ''}`), getJSON('/api/conversations')]);
+    if (request !== contactRequest || query !== searchQuery) return;
+    displayedContacts = people.users || []; conversations = threads.conversations || [];
+    const known = new Map(contacts.map(contact => [contact.username, contact]));
+    for (const contact of displayedContacts) known.set(contact.username, { ...known.get(contact.username), ...contact });
+    contacts = [...known.values()];
     renderContacts();
   }
   function renderContacts() {
     const list = el('conversationsList'); list.replaceChildren();
-    for (const contact of contacts) {
+    const threads = new Map(conversations.map(thread => [thread.other_participant, thread]));
+    const recentFirst = [...displayedContacts].sort((left, right) => {
+      const a = threads.get(left.username), b = threads.get(right.username);
+      if (Boolean(a) !== Boolean(b)) return a ? -1 : 1;
+      const time = value => Date.parse(value || '') || 0;
+      const difference = time(b?.last_message_at) - time(a?.last_message_at);
+      if (difference) return difference;
+      const id = value => /^\d+$/.test(String(value || '')) ? BigInt(value) : 0n;
+      const aId = id(a?.last_message_id), bId = id(b?.last_message_id);
+      if (aId !== bId) return bId > aId ? 1 : -1;
+      return left.username.localeCompare(right.username);
+    });
+    for (const contact of recentFirst) {
       const thread = conversations.find(item => item.other_participant === contact.username);
       const item = document.createElement('li');
       item.className = `conversation-item modern-thread ${receiver === contact.username ? 'active' : ''}`;
       item.tabIndex = 0; item.setAttribute('role', 'button');
       const avatar = document.createElement('div'); avatar.className = `conversation-avatar ${contact.is_online ? 'online' : ''}`;
-      avatar.textContent = contact.username.slice(0, 2).toUpperCase();
+      renderAvatar(avatar, contact);
       const info = document.createElement('div'); info.className = 'conversation-info';
       const name = document.createElement('div'); name.className = 'conversation-name';
       name.textContent = contact.account_number ? `${contact.username} (${contact.account_number})` : contact.username;
@@ -140,7 +267,12 @@
       item.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openContact(contact); } };
       list.append(item);
     }
-    if (!contacts.length) list.textContent = 'No messaging contacts are available.';
+    if (!displayedContacts.length) {
+      const empty = document.createElement('li'); empty.className = 'message-empty-state';
+      empty.textContent = searchQuery ? 'No contacts match your search.' : 'No messaging contacts are available.';
+      list.append(empty);
+    }
+    el('contactSearchStatus').textContent = searchQuery ? `${displayedContacts.length} contact${displayedContacts.length === 1 ? '' : 's'} found` : '';
   }
   async function openContact(contact) {
     if (receiver) drafts.set(receiver, el('messageInput').value);
@@ -154,7 +286,7 @@
     el('chatArea').hidden = true; el('chatContent').hidden = false;
     el('chatTitle').textContent = contact.username;
     el('chatAccount').textContent = contact.account_number || '';
-    el('chatAvatar').textContent = contact.username.slice(0, 2).toUpperCase();
+    renderAvatar(el('chatAvatar'), contact);
     el('userStatus').textContent = contact.is_online ? 'Online' : 'Offline';
     el('statusIndicator').className = `status-indicator ${contact.is_online ? '' : 'offline'}`;
     contactsOpen(false); renderContacts(); renderMessages();
@@ -263,9 +395,9 @@
     const input = el('messageInput'), text = input.value.trim();
     const attachment = attachmentDrafts.get(receiver);
     if (!receiver || (!text && !attachment) || pending) return;
-    if (!socket?.connected) { notify('Messaging is disconnected. Your draft is preserved.'); return; }
     if (text.length > 10000) { notify('Message must contain at most 10,000 characters.'); return; }
     if (attachment) { sendAttachment(attachment, text); return; }
+    if (!socket?.connected) { notify('Messaging is disconnected. Your draft is preserved.'); return; }
     const attempt = { receiver, text }; pending = attempt;
     el('sendButton').disabled = true;
     const finish = () => { if (pending === attempt) { pending = null; el('sendButton').disabled = false; } };
@@ -293,7 +425,7 @@
     pending = attempt; el('sendButton').disabled = true;
     el('attachmentUploadStatus').textContent = `Sending ${attempt.file.name}...`;
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 30000);
+    const timer = setTimeout(() => controller.abort(), 120000);
     try {
       const data = new FormData();
       data.append('receiver', attempt.receiver); data.append('content', text);
@@ -303,7 +435,12 @@
       if (response.status === 401 || (response.redirected && new URL(response.url).pathname === '/login')) {
         location.assign('/login'); return;
       }
-      if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Attachment could not be sent. Your draft is preserved.');
+      if (!response.headers.get('content-type')?.includes('application/json')) {
+        const detail = response.status === 413 ? 'The server or tunnel rejected the upload size. The application limit is 20 MB.'
+          : [502, 503, 504, 520, 522, 524].includes(response.status) ? 'The server or tunnel could not complete the upload. Retry the same draft when the connection recovers.'
+          : `The server returned an unexpected response (HTTP ${response.status}).`;
+        throw new Error(`${detail} Your attachment and message draft are preserved.`);
+      }
       const result = await response.json();
       if (!response.ok || result.status !== 'success') throw new Error(result.message || 'Attachment could not be sent. Your draft is preserved.');
       const saved = attachmentDrafts.get(attempt.receiver);
@@ -337,6 +474,7 @@
   window.addEventListener('aml:messages-resync', resync);
   socket?.on('new_message', message => { receive(message); refreshContacts().catch(error => notify(error.message)); });
   socket?.on('unread_update', () => refreshContacts().catch(error => notify(error.message)));
+  socket?.on('profile_updated', applyProfileUpdate);
   socket?.on('messages_read', event => {
     if (event.conversation_id !== conversationId) return;
     lastReadId = Math.max(lastReadId, Number(event.last_read_id) || 0);
@@ -361,6 +499,27 @@
   });
   socket?.on('user_stop_typing', event => { if (event.conversation_id === conversationId) el('userStatus').textContent = 'Online'; });
   document.addEventListener('DOMContentLoaded', () => {
+    const profileData = el('messagingWorkspace').dataset;
+    const bootstrapValue = value => value && !value.includes('{{') ? value : '';
+    profileCsrf = bootstrapValue(profileData.profilePhotoCsrf);
+    ownProfile = { username: currentUser, account_number: bootstrapValue(profileData.profileAccount), profile_photo_url: bootstrapValue(profileData.profilePhotoUrl) };
+    renderOwnProfile();
+    const runSearch = () => {
+      clearTimeout(searchTimer); searchQuery = el('contactSearch').value.trim();
+      refreshContacts().catch(error => notify(error.message));
+    };
+    el('contactSearchForm').onsubmit = event => { event.preventDefault(); runSearch(); };
+    el('contactSearch').addEventListener('input', () => {
+      searchQuery = el('contactSearch').value.trim();
+      clearTimeout(searchTimer); searchTimer = setTimeout(runSearch, 250);
+    });
+    el('uploadProfilePhoto').onclick = () => el('profilePhotoInput').click();
+    el('profilePhotoInput').onchange = event => { const file = event.target.files?.[0]; event.target.value = ''; if (file) changeProfilePhoto(file); };
+    el('removeProfilePhoto').onclick = () => changeProfilePhoto(null);
+    el('retryProfilePhoto').onclick = () => pendingProfileChange
+      ? changeProfilePhoto(pendingProfileChange.file)
+      : loadOwnProfile().catch(profileLoadFailed);
+    loadOwnProfile().catch(profileLoadFailed);
     el('openContacts').onclick = () => contactsOpen(true);
     el('closeContacts').onclick = () => contactsOpen(false);
     el('sendButton').onclick = send;

@@ -690,6 +690,9 @@ def revoke_auth_session():
 
 def system_account_without_otp(user):
     """Match seeded identities, never exempt arbitrary roles or email domains."""
+    if (user['username'] == 'Agent' and user['role'] == 'agent' and
+            user['account_number'] == 'AGENT0001' and user['email'] == 'agent@example.com'):
+        return True
     for name, staff in STAFF_ACCOUNTS.items():
         if (user["username"] == name and user["role"] == staff["role"]
                 and user["account_number"] == staff["account_number"]):
@@ -734,7 +737,7 @@ def enforce_auth_session():
     if "user_id" not in session or request.endpoint == "static":
         return
     # Automated polling never extends an idle session.
-    touch = request.method == "POST" or request.headers.get("Sec-Fetch-Dest") == "document"
+    touch = request.method in {"POST", "PUT", "PATCH", "DELETE"} or request.headers.get("Sec-Fetch-Dest") == "document"
     if auth_session_valid(touch=touch):
         return
     session.clear()
@@ -973,7 +976,7 @@ def handle_send_message(data):
         can_message, reason = can_user_message(sender_user['role'], receiver_user['role'])
         if can_message and not _is_authorized_messaging_counterpart(conn, sender_user, receiver_user):
             can_message = False
-            reason = 'This is not your assigned secure messaging contact'
+            reason = 'Choose another registered messaging contact'
         if not can_message:
             app.logger.warning(f"Messaging not allowed: {sender} ({sender_user['role']}) -> {receiver} ({receiver_user['role']}): {reason}")
             socketio.emit('message_error', {'message': reason}, to=request.sid)
@@ -1067,7 +1070,9 @@ def api_send_message_attachment():
     from message_attachments import AttachmentError, MAX_FILE_SIZE, save_upload, remove_upload, encode_message
     from messaging import MessageRequestConflict
     request.max_content_length = MAX_FILE_SIZE + 65536
-    request.max_form_memory_size = 65536
+    # Multipart decoding buffers file chunks as well as field headers. A 64 KB
+    # cap rejects ordinary uploads before the file can spool to disk.
+    request.max_form_memory_size = 512 * 1024
     request.max_form_parts = 8
     conn = None
     metadata = None
@@ -1098,7 +1103,7 @@ def api_send_message_attachment():
             return jsonify(status='error', message='Messaging account not found.'), 404
         allowed, _ = can_user_message(sender['role'], recipient['role'])
         if not allowed or not _is_authorized_messaging_counterpart(conn, sender, recipient):
-            return jsonify(status='error', message='This is not your assigned secure messaging contact.'), 403
+            return jsonify(status='error', message='Choose another registered messaging contact.'), 403
         metadata = save_upload(files[0], _attachment_root(), uuid.uuid4().hex)
         metadata['request_id'] = request_id.hex
         content = encode_message(caption, metadata)
@@ -1120,7 +1125,7 @@ def api_send_message_attachment():
                 app.logger.exception('Attachment saved; realtime delivery will recover from message history')
         return jsonify(status='success', message=payload)
     except RequestEntityTooLarge:
-        return jsonify(status='error', message='Files must be 10 MB or smaller.'), 413
+        return jsonify(status='error', message='Files must be 20 MB or smaller.'), 413
     except (AttachmentError, MessageRequestConflict) as exc:
         if metadata:
             remove_upload(_attachment_root(), metadata['id'])
@@ -1254,12 +1259,15 @@ def handle_message_received(data):
         return {'status': 'error'}
     conn = connect_db()
     try:
-        user = conn.execute('SELECT username FROM users WHERE id=?', (session['user_id'],)).fetchone()
+        user = conn.execute('SELECT * FROM users WHERE id=?', (session['user_id'],)).fetchone()
         if not user:
             return {'status': 'error'}
         message = conn.execute('SELECT sender_username, receiver_username, conversation_id, status '
                                'FROM messages WHERE id=?', (message_id,)).fetchone()
         if not message or message['receiver_username'] != user['username']:
+            return {'status': 'error'}
+        sender = fetch_user_by_username(conn, message['sender_username'])
+        if not _is_authorized_messaging_counterpart(conn, user, sender):
             return {'status': 'error'}
         if mark_message_as_delivered(conn, message_id, user['username']):
             emit_private_message_event(message['sender_username'], 'message_status',
@@ -1275,38 +1283,129 @@ def handle_message_received(data):
 # ============================================================================
 
 def _get_messaging_counterparts(conn, user):
-    """Return live, registered messaging contacts for the current role.
-
-    Compliance officers can reply to customers and administrators. The
-    users table is the registration authority, so stale conversation rows,
-    manually typed names, and deleted accounts cannot populate the contact
-    list.
-    """
-    if user["role"] in {"admin", "customer"}:
-        target_role = "compliance"
-        return conn.execute(
-            "SELECT * FROM users WHERE role=? AND username IS NOT NULL "
-            "AND account_number IS NOT NULL ORDER BY id ASC LIMIT 1",
-            (target_role,),
-        ).fetchall()
-
-    if user["role"] == "compliance":
-        # This query runs for every API request rather than using a cached
-        # list or prior conversation participants.
-        return conn.execute(
-            "SELECT * FROM users WHERE role IN ('customer', 'admin') "
-            "AND username IS NOT NULL AND account_number IS NOT NULL "
-            "ORDER BY account_number ASC, id ASC",
-        ).fetchall()
-
-    return []
+    """Return registered contacts without exposing private customer records."""
+    if not user or user['role'] not in {'admin', 'compliance', 'customer'}:
+        return []
+    contacts = conn.execute(
+        "SELECT id,username,role,account_number FROM users "
+        "WHERE role IN ('customer','admin','compliance') AND id<>? "
+        "AND username IS NOT NULL AND account_number IS NOT NULL "
+        "ORDER BY LOWER(username),id", (user['id'],)).fetchall()
+    return [contact for contact in contacts
+            if can_user_message(user['role'], contact['role'])[0]]
 
 
 def _is_authorized_messaging_counterpart(conn, user, receiver_user):
     """Check if receiver_user is an authorized messaging counterpart for user."""
-    if not receiver_user:
+    if not user or not receiver_user or user['id'] == receiver_user['id']:
         return False
-    return any(counterpart["username"] == receiver_user["username"] for counterpart in _get_messaging_counterparts(conn, user))
+    return can_user_message(user['role'], receiver_user['role'])[0]
+
+
+def _profile_photo_root():
+    from pathlib import Path
+    return Path(app.config.get('PROFILE_PHOTO_ROOT') or os.environ.get('PROFILE_PHOTO_ROOT') or
+                Path(app.instance_path) / 'profile_photos')
+
+
+def _profile_photo_url(user_id):
+    from profile_photos import ProfilePhotoError, photo_version
+    try:
+        version = photo_version(_profile_photo_root(), int(user_id))
+    except (ProfilePhotoError, OSError):
+        return None
+    return f'/api/users/{user_id}/profile-photo?v={version}' if version else None
+
+
+def _public_profile(user):
+    return dict(id=user['id'], username=user['username'], role=user['role'],
+                account_number=user['account_number'], profile_photo_url=_profile_photo_url(user['id']))
+
+
+def _broadcast_profile_update(profile):
+    payload = dict(user_id=profile['id'], username=profile['username'], profile_photo_url=profile['profile_photo_url'])
+    conn = connect_db()
+    try:
+        for user in conn.execute("SELECT username FROM users WHERE role IN ('customer','admin','compliance')").fetchall():
+            emit_private_message_event(user['username'], 'profile_updated', payload)
+    finally:
+        conn.close()
+
+
+@app.get('/api/profile')
+@login_required
+def api_get_profile():
+    user = get_user_by_id(session['user_id'])
+    if not user or user['role'] not in {'customer', 'admin', 'compliance'}:
+        return jsonify(status='error', message='Profile access is unavailable.'), 403
+    token = session.setdefault('profile_photo_csrf', uuid.uuid4().hex)
+    return jsonify(status='success', profile=_public_profile(user), csrf_token=token)
+
+
+@app.route('/api/profile/photo', methods=['POST', 'DELETE'])
+@login_required
+def api_update_profile_photo():
+    from werkzeug.exceptions import RequestEntityTooLarge
+    from profile_photos import ProfilePhotoError, MAX_PHOTO_SIZE, save_photo, remove_photo
+    user = get_user_by_id(session['user_id'])
+    if not user or user['role'] not in {'customer', 'admin', 'compliance'}:
+        return jsonify(status='error', message='Profile access is unavailable.'), 403
+    request.max_content_length = MAX_PHOTO_SIZE + 65536
+    request.max_form_memory_size = 65536
+    request.max_form_parts = 4
+    try:
+        supplied = (request.form.get('csrf_token', '') if request.method == 'POST'
+                    else request.headers.get('X-CSRF-Token', ''))
+        expected = session.get('profile_photo_csrf')
+        if not expected or not hmac.compare_digest(supplied.encode('utf-8'), expected.encode('utf-8')):
+            return jsonify(status='error', message='Refresh your profile before changing the photo.'), 403
+        if request.method == 'POST':
+            photos = request.files.getlist('photo')
+            if len(request.files) != 1 or len(photos) != 1:
+                raise ProfilePhotoError('Choose one JPG, PNG or WebP profile photo.')
+            save_photo(photos[0], _profile_photo_root(), int(user['id']))
+        else:
+            remove_photo(_profile_photo_root(), int(user['id']))
+        profile = _public_profile(user)
+        try:
+            _broadcast_profile_update(profile)
+        except Exception:
+            app.logger.exception('Profile photo saved; contacts will refresh on reconnect')
+        return jsonify(status='success', profile=profile)
+    except RequestEntityTooLarge:
+        return jsonify(status='error', message='Profile photos must be 5 MB or smaller.'), 413
+    except ProfilePhotoError as exc:
+        return jsonify(status='error', message=str(exc)), 400
+    except OSError:
+        app.logger.exception('Profile photo storage unavailable')
+        return jsonify(status='error', message='Unable to save the photo. Please try again.'), 503
+
+
+@app.get('/api/users/<int:user_id>/profile-photo')
+@login_required
+def api_get_profile_photo(user_id):
+    from flask import send_file
+    from profile_photos import ProfilePhotoError, photo_path
+    import io
+    viewer = get_user_by_id(session['user_id'])
+    target = get_user_by_id(user_id)
+    roles = {'customer', 'admin', 'compliance'}
+    if not viewer or not target or viewer['role'] not in roles or target['role'] not in roles:
+        return jsonify(status='error', message='Profile photo is unavailable.'), 404
+    try:
+        path = photo_path(_profile_photo_root(), user_id)
+        if not path.is_file():
+            raise FileNotFoundError()
+        # Close the disk handle before streaming so Windows can replace or
+        # remove the photo while another browser is displaying its response.
+        response = send_file(io.BytesIO(path.read_bytes()), mimetype='image/jpeg', download_name='profile-photo.jpg',
+                             conditional=False, etag=False, max_age=0)
+        response.headers['Cache-Control'] = 'private, no-store'
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['Content-Security-Policy'] = "sandbox; default-src 'none'"
+        return response
+    except (ProfilePhotoError, OSError):
+        return jsonify(status='error', message='Profile photo is unavailable.'), 404
 
 
 @app.route('/api/conversations', methods=['GET'])
@@ -1387,7 +1486,7 @@ def api_can_message(username):
         if can_message:
             can_message = _is_authorized_messaging_counterpart(conn, sender_user, receiver_user)
             if not can_message:
-                reason = 'This is not your assigned secure messaging contact'
+                reason = 'Choose another registered messaging contact'
         conn.close()
         
         return jsonify({
@@ -1444,6 +1543,10 @@ def api_get_user_status(username):
 @login_required
 def api_get_messageable_users():
     """Get the users current user is permitted to message."""
+    query = request.args.get('q', '').strip().casefold()
+    if len(query) > 100:
+        return jsonify(status='error', message='Search using at most 100 characters.'), 400
+    conn = None
     try:
         conn = connect_db()
         current_user = conn.execute(
@@ -1457,13 +1560,18 @@ def api_get_messageable_users():
         # Build the response directly from verified rows; expose only the
         # contact fields needed by the secure messaging interface.
         for counterpart in _get_messaging_counterparts(conn, current_user):
+            if query and not any(query in str(counterpart[field]).casefold()
+                                 for field in ('username', 'account_number')):
+                continue
             status = _live_user_status(conn, counterpart['username'])
             messageable_users.append({
+                'id': counterpart['id'],
                 'username': counterpart['username'],
                 'role': counterpart['role'],
                 'account_number': counterpart['account_number'],
                 'is_online': status['is_online'],
-                'last_seen': status['last_seen']
+                'last_seen': status['last_seen'],
+                'profile_photo_url': _profile_photo_url(counterpart['id'])
             })
         
         conn.close()
@@ -1474,7 +1582,10 @@ def api_get_messageable_users():
         })
     except Exception as e:
         app.logger.error(f"Error fetching messageable users: {e}")
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        return jsonify({'status': 'error', 'message': 'Contacts are temporarily unavailable.'}), 503
+    finally:
+        if conn:
+            conn.close()
 
 
 # ============================================================================
@@ -1940,9 +2051,12 @@ def serialize_alert_rows(conn, rows):
     transactions = {}
     if ids:
         transactions = {row['id']: row for row in conn.execute(
-            'SELECT id,ai_risk_level,ai_reason,rule_level,rule_reason,rules_triggered '
+            'SELECT id,ai_risk_level,ai_reason,ai_confidence,rule_score,rule_level,rule_reason,rules_triggered '
             'FROM transactions WHERE id IN (' + ','.join('?' for _ in ids) + ')', tuple(ids)).fetchall()}
-    return [{**serialize_row(row), **reasoning_fields(transactions.get(row['transaction_id']), row)} for row in rows]
+    return [{**serialize_row(row),
+             **{key: dict(transactions.get(row['transaction_id']) or {}).get(key)
+                for key in ('ai_confidence', 'rule_score')},
+             **reasoning_fields(transactions.get(row['transaction_id']), row)} for row in rows]
 
 
 
@@ -2487,11 +2601,13 @@ def primary_model_metadata():
     if not v4_primary_enabled():
         return {**get_model_metadata(), 'primary_model': 'Stage14',
                 'rules_enabled': _RULE_ENGINE_ENABLED}
+    from v4_primary import SCORING_POLICY
     return {'primary_model': 'V4', 'name': 'V4 XGBoost', 'status': 'frozen',
             'version': 'v4.development.freeze.stage23.1',
             'feature_version': 'v4.features.1', 'semantic_features': 40,
             'estimator_columns': 42, 'threshold': 0.50,
             'rules_enabled': _RULE_ENGINE_ENABLED,
+            'risk_scoring': dict(SCORING_POLICY),
             'inference_mode': 'post_commit', 'automatic_fallback': False}
 
 
@@ -2628,6 +2744,7 @@ def process_transaction_event(
             conn, amount=amount, tx_type=transaction_type, sender=sender_account,
             receiver=receiver_account, timestamp=timestamp,
             destination_country=destination_country, exclude_transaction_id=transaction_id,
+            personal_amount_check=v4_primary_enabled(),
         )]
         if screen_delta:
             triggered.append({
@@ -2938,9 +3055,12 @@ def monitor_transactions():
                     import v4_primary
                     pending_conn = connect_db()
                     try:
-                        pending_ids = [row['id'] for row in pending_conn.execute(
+                        interactive_id = v4_primary.next_interactive()
+                        if interactive_id is None:
+                            interactive_id = v4_primary.next_generated()
+                        pending_ids = [interactive_id] if interactive_id is not None else [row['id'] for row in pending_conn.execute(
                             "SELECT id FROM transactions WHERE ai_risk_level='pending_v4' "
-                            'ORDER BY id ASC LIMIT 100').fetchall()]
+                            'ORDER BY id ASC LIMIT 1').fetchall()]
                     finally:
                         pending_conn.close()
                     for pending_id in pending_ids:
@@ -2952,7 +3072,9 @@ def monitor_transactions():
                         except Exception:
                             app.logger.exception(
                                 'Pending V4 decision %s remains unresolved', pending_id)
-                    time.sleep(app.config.get('REALTIME_POLL_INTERVAL', 0.5))
+                            v4_primary.wait_for_work(0.5)
+                    if not pending_ids:
+                        v4_primary.wait_for_work(app.config.get('REALTIME_POLL_INTERVAL', 0.5))
                     continue
 
                 conn = connect_db()
@@ -3061,6 +3183,7 @@ def inject_user():
 
     return {
         "current_user": user,
+        "current_user_photo_url": _profile_photo_url(user['id']) if user else None,
         "primary_model": primary_model_metadata(),
         "staff_login_identifiers": [
             identifier.casefold()
@@ -3148,11 +3271,74 @@ def dashboard_redirect():
 
         return redirect(url_for("customer_dashboard"))
 
+    if user['role'] == 'agent':
+        return redirect(url_for('agent_dashboard'))
+
     if user["role"] == "compliance":
 
         return redirect(url_for("compliance_dashboard"))
 
     return redirect(url_for("admin_dashboard"))
+
+
+@app.get('/agent')
+@login_required('agent')
+def agent_dashboard():
+    from agent_service import linked_agent
+    user = get_user_by_id(session['user_id'])
+    try:
+        agent = linked_agent(get_db(), user)
+    except ValueError as exc:
+        return render_template('error.html', message=str(exc)), 403
+    transactions = get_db().execute(
+        'SELECT * FROM transactions WHERE agent_id=? ORDER BY id DESC LIMIT 50', (agent['id'],)).fetchall()
+    csrf = session.setdefault('agent_service_csrf', uuid.uuid4().hex)
+    return render_template('agent_dashboard.html', user=user, agent=agent, transactions=transactions,
+                           csrf=csrf, request_id=str(uuid.uuid4()))
+
+
+@app.post('/agent/service')
+@login_required('agent')
+def agent_cash_service():
+    from agent_service import commit_service
+    from transaction_idempotency import request_id
+    if not v4_primary_enabled():
+        return 'Agent services require V4.', 503
+    expected = session.get('agent_service_csrf')
+    if not expected or not hmac.compare_digest(request.form.get('csrf_token', ''), expected):
+        return 'Invalid service confirmation. Reload the dashboard.', 403
+    if request.form.get('cash_confirmed') != 'yes':
+        return 'Confirm customer verification and the physical cash exchange.', 400
+    conn = connect_db()
+    try:
+        tx, replayed = commit_service(conn, session['user_id'],
+            normalize_account_number(request.form.get('customer', '')), request.form.get('type'),
+            request.form.get('amount', ''), request_id(request.form), process_transaction_event, get_last_insert_id)
+    except ValueError as exc:
+        conn.rollback()
+        return render_template('error.html', message=str(exc)), 400
+    except Exception:
+        conn.rollback()
+        app.logger.exception('Agent service could not be confirmed')
+        return 'Service unconfirmed. Check history and retry with the same request ID.', 503
+    finally:
+        conn.close()
+    import v4_primary
+    if not replayed:
+        v4_primary.enqueue_committed(tx)
+    try:
+        notice = connect_db()
+        try:
+            broadcast_committed_customer_transaction(notice, tx, None)
+            broadcast_user_balance(notice, normalize_account_number(request.form.get('customer', '')))
+            agent_user = notice.execute('SELECT account_number FROM users WHERE id=?', (session['user_id'],)).fetchone()
+            broadcast_user_balance(notice, agent_user['account_number'])
+        finally:
+            notice.close()
+    except Exception:
+        app.logger.exception('Agent service saved; notification unavailable')
+    flash(f'Service #{tx} already recorded.' if replayed else f'Service #{tx} completed. AI review pending.')
+    return redirect(url_for('agent_dashboard'))
 
 
 @app.route("/messages")
@@ -3171,7 +3357,9 @@ def messages():
         return redirect(url_for("dashboard_redirect"))
     
     token = session.setdefault('message_attachment_csrf', uuid.uuid4().hex)
-    return render_template("messages.html", user=user, message_attachment_csrf=token)
+    profile_token = session.setdefault('profile_photo_csrf', uuid.uuid4().hex)
+    return render_template("messages.html", user=user, message_attachment_csrf=token,
+                           profile_photo_csrf=profile_token, current_message_profile=_public_profile(user))
 
 
 # ── Auth ──
@@ -3214,6 +3402,14 @@ def _legacy_background_otp_sender(recipient_email, otp):
 
 
 
+def valid_new_username(value):
+    return (3 <= len(value) <= 60 and sum(c.isalpha() for c in value) >= 2
+            and all(c.isalnum() or c in " ._'-" for c in value))
+
+
+USERNAME_REQUIREMENTS = "Use 3 to 60 characters and at least two letters. Spaces, dots, hyphens, underscores and apostrophes are allowed."
+
+
 def valid_new_password(value):
     return (len(value) >= 8 and bool(re.search(r"[A-Z]", value))
             and bool(re.search(r"[a-z]", value)) and bool(re.search(r"[0-9]", value))
@@ -3247,6 +3443,11 @@ def register():
 
                 flash("Verification code expired. Please register again.")
 
+                return redirect(url_for("register"))
+
+            if not valid_new_username(pending.get("username", "")):
+                session.pop("pending_registration", None)
+                flash(USERNAME_REQUIREMENTS)
                 return redirect(url_for("register"))
 
             if not verification_codes.consume(pending.get("challenge"), "registration", otp):
@@ -3291,7 +3492,7 @@ def register():
 
                 (pending["username"], pending["email"], pending["id_number"],
 
-                 pending["password_hash"], pending["role"], acct, 5000, kyc_status, pep_flag,
+                 pending["password_hash"], pending["role"], acct, 0, kyc_status, pep_flag,
 
                  datetime.now(timezone.utc).isoformat()),
 
@@ -3331,6 +3532,10 @@ def register():
 
             flash("All fields are required.")
 
+            return render_template("register.html")
+
+        if not valid_new_username(username):
+            flash(USERNAME_REQUIREMENTS)
             return render_template("register.html")
 
         if not valid_new_password(password):
@@ -3498,7 +3703,7 @@ def logout():
 
     flash("You have been signed out.")
 
-    return redirect(url_for("login"))
+    return redirect(url_for("login", signed_out="1"))
 
 
 @app.route("/forgot-password", methods=["GET", "POST"])
@@ -3684,6 +3889,7 @@ def customer_dashboard():
         dashboard_data={
 
             "user": dashboard_user(user),
+            "model": primary_model_metadata(),
 
             "transactions": serialize_rows(transactions),
 
@@ -3693,6 +3899,9 @@ def customer_dashboard():
 
             "page": page,
             "transaction_pages": transaction_pages,
+            "agents": [dict(row) for row in get_db().execute(
+                "SELECT a.id,u.username,a.agent_code FROM agents a JOIN users u "
+                "ON u.account_number=a.agent_code WHERE a.status='active' AND u.role='agent' ORDER BY a.id").fetchall()],
 
         },
 
@@ -3739,8 +3948,15 @@ def create_transaction():
         try:
             if any(len(request.form.getlist(k)) != 1 for k in request.form):
                 raise ValueError("Duplicate mobile-money fields")
+            envelope = {k: v for k, v in request.form.to_dict().items()
+                        if k not in ("client_request_id", "cash_confirmed")}
+            if envelope.get('type') in ('cash_in', 'cash_out'):
+                if request.form.get('cash_confirmed') != 'yes':
+                    raise ValueError('Confirm the physical cash exchange with the agent before submitting.')
+                envelope.update(channel='agent', serviced_wallet=user['account_number'],
+                                agent_flow_direction=envelope['type'], recipient='')
             canonical_event = prepare_ingestion(
-                {k: v for k, v in request.form.to_dict().items() if k != "client_request_id"},
+                envelope,
                 user["account_number"],
                 datetime.now(timezone.utc).isoformat(timespec="microseconds"),
             )
@@ -3826,13 +4042,21 @@ def create_transaction():
 
         recipient_user = get_user_by_account_number(recipient_account)
 
-        if not recipient_user or (recipient_user["id"] is not None and recipient_user["id"] == user["id"]) or (recipient_user["role"] is not None and recipient_user["role"] != "customer"):
+        if not recipient_user or recipient_user["id"] == user["id"] or recipient_user["role"] not in ("customer", "agent"):
 
-            flash("Recipient customer account not found.")
+            flash("Recipient customer or agent wallet not found.")
 
             return redirect(url_for("customer_dashboard"))
 
 
+
+        if recipient_user['role'] == 'agent':
+            from agent_service import linked_agent
+            try:
+                linked_agent(get_db(), recipient_user)
+            except ValueError as exc:
+                flash(str(exc))
+                return redirect(url_for('customer_dashboard'))
 
     # Validate agent_id if provided
     agent_id = None
@@ -3840,7 +4064,7 @@ def create_transaction():
         try:
             agent_id = int(agent_id_str)
             # Verify agent exists
-            agent_check = get_db().execute("SELECT id FROM agents WHERE id=?", (agent_id,)).fetchone()
+            agent_check = get_db().execute("SELECT id FROM agents WHERE id=? AND status='active'", (agent_id,)).fetchone()
             if not agent_check:
                 flash("Invalid agent ID.")
                 return redirect(url_for("customer_dashboard"))
@@ -3849,6 +4073,19 @@ def create_transaction():
             return redirect(url_for("customer_dashboard"))
 
 
+
+    cash_agent = None
+    if tx_type in ('deposit', 'withdraw'):
+        if canonical_event is None:
+            return 'Cash services require a canonical transaction and an active agent.', 400
+        from agent_service import cash_agent_wallet, transfer_cash_value
+        try:
+            cash_agent = cash_agent_wallet(get_db(), agent_id)
+            if tx_type == 'deposit' and Decimal(str(cash_agent['balance'])) < Decimal(str(amount)):
+                raise ValueError('Insufficient agent electronic float. Fund the agent wallet before cash-in.')
+        except ValueError as exc:
+            flash(str(exc))
+            return redirect(url_for('customer_dashboard'))
 
     timestamp = canonical_event.event_timestamp if canonical_event is not None else datetime.now(timezone.utc).isoformat()
 
@@ -3864,7 +4101,8 @@ def create_transaction():
                 transaction_type, currency, channel, timestamp, status, risk_score,
                 risk_level, description, agent_id, client_request_id)
                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-            (sender_account, receiver_account, amount, tx_type, 'USD', 'online', timestamp,
+            (sender_account, receiver_account, amount, tx_type, 'USD',
+             canonical_event.channel if canonical_event else 'online', timestamp,
              'Completed', 0, 'normal', 'Initiated', agent_id, client_request_id),
         )
         transaction_id = get_last_insert_id(get_db())
@@ -3880,12 +4118,14 @@ def create_transaction():
             emit_events=False,
         )
 
-        if tx_type == "deposit":
-            get_db().execute("UPDATE users SET balance=balance+? WHERE id=?", (amount, user["id"]))
-        elif tx_type == "withdraw":
-            get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
+        if cash_agent is not None:
+            transfer_cash_value(get_db(), user['id'], cash_agent['id'],
+                                canonical_event.transaction_type, amount)
         elif tx_type == "transfer":
-            get_db().execute("UPDATE users SET balance=balance-? WHERE id=?", (amount, user["id"]))
+            debit = get_db().execute("UPDATE users SET balance=balance-? WHERE id=? AND balance>=?",
+                                     (amount, user["id"], amount))
+            if debit.rowcount != 1:
+                raise ValueError('Insufficient funds.')
             if recipient_user and recipient_user["id"] is not None:
                 get_db().execute("UPDATE users SET balance=balance+? WHERE id=?",
                                  (amount, recipient_user["id"]))
@@ -3911,24 +4151,21 @@ def create_transaction():
             return "Transaction state unavailable. Retry with the same request ID.", 503
         if is_retryable_lock(exc):
             return "Transaction busy. Retry with the same request ID.", 503
+        if isinstance(exc, ValueError):
+            flash(str(exc))
+            return redirect(url_for('customer_dashboard'))
         app.logger.exception("Customer transaction was not committed")
         return "Transaction was not saved. Retry with the same request ID.", 503
 
     if v4_primary_enabled():
         import v4_primary
+        # The money and pending AI state are durable. Release the shared payment
+        # lock before notifications or background analysis can delay this user.
         try:
-            primary_result = v4_primary.complete_committed(
-                app.config.get('V4_PRIMARY_CONNECTION_FACTORY', connect_db),
-                transaction_id,
-                worker=app.config.get('V4_PRIMARY_TEST_WORKER') if app.testing else None,
-                processor=app.config.get('V4_PRIMARY_TEST_PROCESSOR') if app.testing else None,
-                validator=app.config.get('V4_PRIMARY_TEST_VALIDATOR') if app.testing else None)
-            if primary_result['status'] != 'success':
-                app.logger.error('V4 primary decision unresolved for transaction %s', transaction_id)
-        except v4_primary.DecisionAlreadyApplied:
-            app.logger.debug('V4 decision %s already finalized by the monitor', transaction_id)
+            close_db(None)
         except Exception:
-            app.logger.exception('V4 primary decision remains pending for transaction %s', transaction_id)
+            app.logger.exception('Committed payment connection cleanup failed for %s', transaction_id)
+        v4_primary.enqueue_committed(transaction_id)
     else:
         if canonical_event is not None:
             from v4_shadow import after_commit
@@ -3948,11 +4185,14 @@ def create_transaction():
     except Exception:
         app.logger.exception('Committed customer notification unavailable')
 
-    broadcast_user_balance(get_db(), sender_account)
-
-    if tx_type == "transfer":
-
-        broadcast_user_balance(get_db(), receiver_account)
+    try:
+        broadcast_user_balance(get_db(), sender_account)
+        if tx_type == "transfer":
+            broadcast_user_balance(get_db(), receiver_account)
+        if cash_agent is not None:
+            broadcast_user_balance(get_db(), cash_agent['account_number'])
+    except Exception:
+        app.logger.exception('Committed payment balance notification unavailable')
 
     # Train AI model in background thread to avoid blocking
     import threading
@@ -3965,13 +4205,16 @@ def create_transaction():
     if canonical_event is None:
         threading.Thread(target=train_in_background, daemon=True).start()
 
-    record_activity(user["username"], f"{tx_type}", f"${amount:.2f} — risk: {risk_level}")
+    try:
+        record_activity(user["username"], f"{tx_type}", f"${amount:.2f} — risk: {risk_level}")
+    except Exception:
+        app.logger.exception('Committed payment activity notification unavailable')
 
 
 
     risk_labels = {
 
-        "pending_review": "Transaction committed; AML decision requires review.",
+        "pending_review": "Payment completed. AI review is pending and will update automatically.",
 
         "normal": "Transaction processed successfully.",
 
@@ -4072,6 +4315,10 @@ def compliance_dashboard():
 
 
     stats = {
+
+        "total_transactions": get_db().execute(
+            "SELECT COUNT(*) AS c FROM transactions"
+        ).fetchone()["c"],
 
         "open_alerts": open_alert_count,
 
@@ -4222,27 +4469,48 @@ def alert_ai_evidence(alert_id):
         'SELECT a.transaction_id,t.ai_risk_level FROM alerts a '
         'JOIN transactions t ON t.id=a.transaction_id WHERE a.id=?', (alert_id,)
     ).fetchone()
-    if not row or row['ai_risk_level'] != 'suspicious_pattern':
+    if not row or row['ai_risk_level'] not in ('normal', 'suspicious_pattern'):
         return jsonify({'error': 'V4 evidence is unavailable for this alert'}), 404
+    return _v4_evidence_response(row['transaction_id'], row['ai_risk_level'])
+
+
+@app.get('/api/transactions/<int:transaction_id>/ai-evidence')
+@login_required
+def transaction_ai_evidence(transaction_id):
+    """Customers may explain only their own payments; staff may review cases."""
+    user = get_user_by_id(session['user_id'])
+    row = get_db().execute(
+        'SELECT sender_account,receiver_account,ai_risk_level FROM transactions WHERE id=?',
+        (transaction_id,)).fetchone()
+    if not row or (user['role'] not in ('admin', 'compliance') and
+                   (user['role'] != 'customer' or not user['account_number'] or
+                    user['account_number'] not in (row['sender_account'], row['receiver_account']))):
+        return jsonify(error='Transaction evidence unavailable'), 404
+    if row['ai_risk_level'] not in ('normal', 'suspicious_pattern'):
+        return jsonify(error='AI analysis has not completed successfully for this payment.'), 409
+    return _v4_evidence_response(transaction_id, row['ai_risk_level'])
+
+
+def _v4_evidence_response(transaction_id, decision):
     import subprocess
     from pathlib import Path
     import v4_shadow
     script = Path(__file__).resolve().parent / 'tools' / 'v4_model_evidence.py'
     try:
         completed = subprocess.run(
-            [str(v4_shadow.PYTHON), '-I', '-B', str(script), str(row['transaction_id'])],
+            [str(v4_shadow.PYTHON), '-I', '-B', str(script), str(transaction_id)],
             cwd=str(v4_shadow.ROOT), capture_output=True, text=True,
             timeout=30, check=True,
             creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0),
         )
         result = json.loads(completed.stdout)
-        if result['transaction_id'] != row['transaction_id'] or result['prediction'] != 1:
+        if result['transaction_id'] != transaction_id or result['prediction'] != int(decision == 'suspicious_pattern'):
             raise ValueError('V4 evidence mismatch')
         response = jsonify(result)
         response.headers['Cache-Control'] = 'no-store'
         return response
     except Exception:
-        app.logger.exception('Read-only V4 evidence unavailable for alert %s', alert_id)
+        app.logger.exception('Read-only V4 evidence unavailable for transaction %s', transaction_id)
         return jsonify({'error': 'Model evidence could not be loaded; the recorded V4 result remains available'}), 503
 
 
@@ -4251,6 +4519,7 @@ def alert_ai_evidence(alert_id):
 @login_required("compliance", "admin")
 
 def alert_detail(alert_id):
+    session.setdefault('report_delivery_csrf', uuid.uuid4().hex)
 
     alert = get_db().execute("SELECT * FROM alerts WHERE id=?", (alert_id,)).fetchone()
 
@@ -4343,7 +4612,21 @@ def alert_detail(alert_id):
 
         elif action == "file_sar":
 
-            narrative = request.form.get("sar_narrative", notes)
+            narrative = (request.form.get("sar_narrative") or notes).strip()
+            if not narrative:
+                flash('Write the suspicious activity narrative before filing a SAR.')
+                return redirect(url_for('alert_detail', alert_id=alert_id))
+            # Serialize filing for this case; an identical browser retry reuses
+            # the stored report instead of filing it a second time.
+            lock = ' FOR UPDATE' if get_db().engine == 'mysql' else ''
+            get_db().execute('SELECT id FROM alerts WHERE id=?' + lock, (alert_id,)).fetchone()
+            prior = get_db().execute('SELECT id,narrative FROM sar_reports WHERE alert_id=? ORDER BY id DESC LIMIT 1',
+                                     (alert_id,)).fetchone()
+            if prior and prior['narrative'] == narrative:
+                get_db().commit()
+                _deliver_case_document('sar', prior['id'], officer)
+                flash('This SAR is already saved. Open Reports to view it.')
+                return redirect(url_for('sar_detail', sar_id=prior['id']))
 
             ref = _generate_sar_ref()
 
@@ -4394,6 +4677,10 @@ def alert_detail(alert_id):
             if sar:
 
                 broadcast_report_event("sar_report", sar)
+                _deliver_case_document('sar', sar['id'], officer)
+
+        if action == 'escalate':
+            _deliver_case_document('escalation', alert_id, officer)
 
         broadcast_stats(get_db())
 
@@ -4479,6 +4766,7 @@ def submit_sar(sar_id):
     if not existing_report:
         return 'Report not found.', 404
     if existing_report['status'] != 'draft':
+        _deliver_case_document('sar', sar_id, officer)
         flash('This report has already been processed.')
         return redirect(url_for('reports'))
 
@@ -4499,6 +4787,7 @@ def submit_sar(sar_id):
     if sar:
 
         broadcast_report_event("sar_report", sar)
+        _deliver_case_document('sar', sar_id, officer)
 
     broadcast_stats(get_db())
 
@@ -4507,6 +4796,71 @@ def submit_sar(sar_id):
     flash(f"SAR #{sar_id} submission recorded. This application does not transmit reports to the FIU.")
 
     return redirect(url_for("reports"))
+
+
+def _deliver_case_document(kind, identifier, officer):
+    from sar_documents import deliver_to_admins
+    def notify(message, conversation_id):
+        payload = _attachment_message_payload(message, conversation_id)
+        for username in {message['sender_username'], message['receiver_username']}:
+            emit_private_message_event(username, 'new_message', payload)
+        emit_private_message_event(message['receiver_username'], 'unread_update',
+                                   get_unread_count(get_db(), message['receiver_username']))
+    try:
+        delivered = deliver_to_admins(get_db(), kind, identifier, officer, _attachment_root(), notify)
+        flash('Report document is available in administrator Messages.' if delivered
+              else 'Report saved. You can view and download it from Reports.')
+        return True
+    except Exception:
+        app.logger.exception('Case saved; administrator document delivery needs retry')
+        flash('Case saved. Document delivery failed. Use Send to administrator on the report or case page to retry.')
+        return False
+
+
+@app.get('/reports/sar/<int:sar_id>')
+@login_required('admin', 'compliance')
+def sar_detail(sar_id):
+    from sar_documents import document_record
+    try:
+        report = document_record(get_db(), 'sar', sar_id)
+    except LookupError:
+        return 'Report not found.', 404
+    csrf = session.setdefault('report_delivery_csrf', uuid.uuid4().hex)
+    return render_template('sar_report.html', report=report, csrf=csrf)
+
+
+@app.get('/reports/sar/<int:sar_id>/document')
+@login_required('admin', 'compliance')
+def sar_document(sar_id):
+    import io
+    from flask import send_file
+    from sar_documents import document_record, render_pdf
+    try:
+        report = document_record(get_db(), 'sar', sar_id)
+    except LookupError:
+        return 'Report not found.', 404
+    response = send_file(io.BytesIO(render_pdf(report)), mimetype='application/pdf', as_attachment=True,
+                         download_name=f"{report['reference']}.pdf")
+    response.headers['Cache-Control'] = 'private, no-store'
+    return response
+
+
+@app.post('/reports/<kind>/<int:identifier>/send')
+@login_required('admin', 'compliance')
+def send_case_document(kind, identifier):
+    expected = session.get('report_delivery_csrf')
+    if not expected or not hmac.compare_digest(request.form.get('csrf_token', ''), expected):
+        return 'Reload the report before sending.', 403
+    if kind not in ('sar', 'escalation'):
+        return 'Report not found.', 404
+    from sar_documents import document_record
+    try:
+        document_record(get_db(), kind, identifier)
+    except LookupError:
+        return 'Report not found.', 404
+    _deliver_case_document(kind, identifier, get_user_by_id(session['user_id']))
+    return redirect(url_for('sar_detail', sar_id=identifier) if kind == 'sar'
+                    else url_for('alert_detail', alert_id=identifier))
 
 
 
@@ -4728,7 +5082,6 @@ def generate_v4_transactions():
     import hmac
     from v4_simulation import decode, commit_batch
     from v4_primary import verify_startup
-    from v4_history_attestation import refresh_committed
     if (not session.get('generation_csrf') or not hmac.compare_digest(
             request.form.get('csrf', ''), session['generation_csrf'])):
         return 'Generation request could not be verified. Reload the dashboard.', 403
@@ -4759,12 +5112,12 @@ def generate_v4_transactions():
     if result['replayed']:
         flash(f"This batch was already saved ({result['saved']} transactions). No payments were repeated.")
         return redirect(url_for('admin_dashboard'))
-    try:
-        refresh_committed(connect_db, result['transaction_ids'][-1])
-    except Exception:
-        app.logger.exception('Generated payments saved; history refresh remains pending')
+    # The post-commit worker refreshes and verifies history before inference.
+    # Do not repeat that full-ledger work in the HTTP payment response.
     # Durable pending_v4 rows are picked up by the existing monitor, including
     # after restart. This request never replays payment writes to retry inference.
+    import v4_primary
+    v4_primary.enqueue_generated(result['transaction_ids'])
     try:
         record_activity(session['username'], 'generate_transactions',
                         f"V4 demo batch {ticket['batch_id']}: {result['saved']} payments; scenario {ticket['mode']}")
@@ -4773,6 +5126,10 @@ def generate_v4_transactions():
         broadcast_stats()
         for wallet in ticket['wallets']:
             broadcast_user_balance(get_db(), wallet['account_number'])
+        for agent_id in ticket['agents']:
+            agent = get_db().execute('SELECT agent_code FROM agents WHERE id=?', (int(agent_id),)).fetchone()
+            if agent:
+                broadcast_user_balance(get_db(), agent['agent_code'])
     except Exception:
         app.logger.exception('Saved V4 batch notification unavailable')
     flash(f"Saved {result['saved']} demo transactions. V4 analysis is processing; progress is shown under Transaction Generation.")
@@ -5505,10 +5862,12 @@ def reports():
 
     ).fetchall()
 
+    sar_page = max(1, request.args.get('sar_page', 1, type=int) or 1)
+    sar_total = get_db().execute('SELECT COUNT(*) AS n FROM sar_reports').fetchone()['n']
+    sar_pages = max(1, (sar_total + 19) // 20)
+    sar_page = min(sar_page, sar_pages)
     sar_reports = get_db().execute(
-
-        "SELECT * FROM sar_reports ORDER BY created_at DESC LIMIT 20"
-
+        "SELECT * FROM sar_reports ORDER BY id DESC LIMIT 20 OFFSET ?", ((sar_page - 1) * 20,)
     ).fetchall()
 
     ctr_reports = get_db().execute(
@@ -5552,6 +5911,7 @@ def reports():
         sar_reports=sar_reports,
 
         ctr_reports=ctr_reports,
+        sar_page=sar_page, sar_pages=sar_pages,
 
         monthly_volume=monthly_volume,
 
